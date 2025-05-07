@@ -8,7 +8,7 @@
 
 
 % RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[graybox,envcountchap,sectrefs]{svmono}
+\documentclass[graybox,envcountchap,sectrefs,deutsch]{svmono}
 
 % choose options for [] as required from the list
 % in the Reference Guide
@@ -27,6 +27,8 @@
 
 \usepackage{newtxtext}       % 
 \usepackage{newtxmath}       % selects Times Roman as basic font
+
+\usepackage{ngerman}
 
 % see the list of further useful packages
 % in the Reference Guide
@@ -55,17 +57,34 @@
 
 \tableofcontents
 
+\bibliographystyle{alphabetic}
+
 \include{author/acronym}
 
 
 \mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\include{author/part}
-\include{author/chapter}
+
+\include{author/intro}
+
+\include{author/part1}
+\include{author/physics}
+\include{author/hardware}
+\include{author/error-correction}
+
+\include{author/part2}
+\include{author/quantum-information}
+\include{author/basic-algorithms}
+\include{author/quantum-programming}
+
+\include{author/part3}
+\include{author/applications}
+\include{author/trends}
+\include{author/ethics}
+
 \include{author/appendix}
 
 \backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \include{author/glossary}
-\include{author/solutions}
 \printindex
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
