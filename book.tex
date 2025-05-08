@@ -8,7 +8,6 @@
 \usepackage{mathptmx}
 \usepackage{helvet}
 \usepackage{courier}
-%
 \usepackage{type1cm}         
 
 \usepackage{makeidx}         % allows index generation
@@ -21,6 +20,15 @@
 \usepackage{newtxmath}       % selects Times Roman as basic font
 
 \usepackage{ngerman}
+
+\usepackage[
+    refsection=chapter,
+    backend=biber,
+    style=apa,
+  ]{biblatex}
+\addbibresource{references.bib} %Import the bibliography file
+
+
 
 % see the list of further useful packages
 % in the Reference Guide
@@ -39,8 +47,6 @@
 \title{Quantencomputer -- Ein aktueller Überblick}
 \subtitle{Grundlagen, Hardware, Software, Anwendungen, Trends, Ethische Aspekte}
 \maketitle
-
-\bibliographystyle{alphabetic}
 
 \frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
