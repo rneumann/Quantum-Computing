@@ -23,6 +23,19 @@
 
 \usepackage{ngerman}
 
+
+\usepackage{suffix}
+
+\makeatletter
+\newcommand{\chapterauthor}[1]{%
+  {\parindent0pt\vspace*{-35pt}%
+  \textsl{#1}%
+  \par\nobreak\vspace*{35pt}}
+  \@afterheading%
+}
+\makeatother
+
+
 \usepackage[
     refsection=chapter,
     backend=biber,
