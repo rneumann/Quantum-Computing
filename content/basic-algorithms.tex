@@ -1,5 +1,5 @@
 %\motto{Use the template \emph{chapter.tex} to style the various elements of your chapter content.}
-\chapter{Grundlegende Quntenalgorithmen}
+\chapter{Grundlegende Quantenalgorithmen}
 \label{basic_algorithms} % Always give a unique label
 % use \chaptermark{}
 % to alter or adjust the chapter heading in the running head
@@ -10,47 +10,49 @@
 
 \abstract{some abstract}
 
-\section{Das versteckte Untergruppenproblem und Anwendungen in der Kryptographie}
-Das versteckte Untergruppenproblem (HSP) ist ein allgemeines Problem, das viele wichtige Aufgaben wie Primfaktorzerlegung und diskrete Logarithmen umfasst. In der Kryptographie bilden diese Probleme die Basis der Sicherheit von Systemen wie RSA. Dieses Kapitel erläutert, wie Quantenalgorithmen das HSP in abelschen Gruppen lösen und damit klassische Verschlüsselungsverfahren bedrohen.
+\section{Quantenalgorithmen in der Kryptographie}
 
-\subsection{Primfaktorzerlegung in Kryptographie}
+Quantencomputer stellen eine fundamentale Herausforderung für klassische Kryptosysteme dar. Durch die besonderen Eigenschaften der Quantenmechanik lassen sich bestimmte mathematische Probleme, auf denen heutige Verschlüsselungsverfahren basieren, wesentlich schneller lösen. Insbesondere Shor’s Algorithmus demonstriert, dass die Primfaktorzerlegung großer Zahlen – und damit die Sicherheit des weit verbreiteten RSA-Systems – mit einem Quantencomputer effizient durchgeführt werden kann.
 
-Die Primfaktorzerlegung großer Zahlen ist ein zentrales Problem der klassischen Kryptographie: Systeme wie RSA basieren auf der Schwierigkeit, aus einem Produkt zweier großer Primzahlen die Faktoren zu bestimmen. \\
-Klassische Algorithmen (z.B. Number Field Sieve) lösen dieses Problem nur in subexponentieller Zeit, wohingegen Quantenalgorithmen (insbesondere Shor’s Algorithmus) es in polynomieller Zeit lösen können.\\
-Die Beschreibung der Primfaktorzerlegung bildet die Grundlage für das Verständnis des RSA-Kryptosystems.
+Dieses Kapitel beleuchtet zentrale Konzepte hinter solchen Quantenalgorithmen, darunter die Quanten-Fourier-Transformation (QFT) und das versteckte Untergruppenproblem (HSP). Darüber hinaus wird der Übergang zur Post-Quantum-Kryptographie skizziert, mit  Fokus auf das Learning-With-Errors-Problem (LWE), das Oded Regev als Grundlage für quantensichere Verfahren eingeführt hat. Regevs Arbeiten zeigen, dass Quantenalgorithmen nicht nur eine Bedrohung darstellen, sondern auch neue, robuste Sicherheitsmechanismen ermöglichen.
 
-\subsection{Anwendung: RSA-Algorithmus}
+Ziel dieses Kapitels ist es, eine Übersicht vom Angriff klassischer Kryptosysteme durch Quantenalgorithmen bis hin zu quantensicheren Alternativen zu spannen.
 
-Der RSA-Algorithmus (Rivest–Shamir–Adleman, 1978) ist ein bekanntes Public-Key-Kryptosystem, das auf der Annahme beruht, dass Primfaktorisierung schwierig ist.\\
-Der öffentliche Schlüssel besteht aus dem Produkt $N = p \cdot q$ zweier großer Primzahlen; der geheime Schlüssel hängt von den Primfaktoren ab.\\
-Shors Algorithmus kann RSA in polynomieller Zeit brechen, was die Sicherheit von RSA bei leistungsfähigen Quantencomputern unterminiert.
-
-\subsection{Verstecktes Untergruppenproblem}
-
-Das versteckte Untergruppenproblem ist folgendermaßen definiert: Gegeben sei eine Gruppe $G$ und eine Funktion, die konstant auf den Linksnebenklassen einer verborgenen Untergruppe $H \le G$ ist; Ziel ist es, diese Untergruppe $H$ zu finden.\\
-Viele Probleme, darunter Faktorisierung und diskreter Logarithmus, lassen sich als HSP für abelsche Gruppen formulieren.\\
-Quantenalgorithmen (insbesondere Shors Algorithmus) lösen das HSP in abelschen Gruppen effizient, was faktisch bedeutet, dass die betreffenden kryptografischen Probleme in polynomieller Zeit gelöst werden können.
-
-\subsection{Quantum Fourier Transformation}
-
-Die Quanten-Fourier-Transformation (QFT) ist eine Quantenversion der klassischen diskreten Fourier-Transformation und Teil vieler Quantenalgorithmen, insbesondere Shor’s Algorithmus und der Quanten-Phasenschätzung.\\
-Sie kann auf $n$ Qubits mit $O(n^2)$ elementaren Gattern implementiert werden (Hadamard- und kontrollierte Phasengatter). Mit Approximations-Techniken ist sogar $O(n\log n)$ möglich.\\
-Diese effiziente Implementierung liefert eine exponentielle Beschleunigung gegenüber der klassischen FT (die in $O(n2^n)$ Zeit arbeitet).
 
 \subsection{Shor-Algorithmus: Faktorisierung und diskreter Logarithmus}
 
 Peter Shor (1994) entwickelte einen Quantenalgorithmus, der die Faktorisierungs- und diskrete-Logarithmus-Probleme in polynomialer Zeit löst.\\
-Der Algorithmus nutzt die QFT, um Perioden einer Funktion modulo $N$ zu finden, und erreicht damit eine exponentielle Beschleunigung gegenüber den besten klassischen Algorithmen.\\
+Der Algorithmus nutzt die Quanten-Fourier-Transformation (QFT), um Perioden einer Funktion modulo $N$ zu finden, und erreicht damit eine exponentielle Beschleunigung gegenüber den besten klassischen Algorithmen.\\
 Shors Algorithmus zeigt, dass wichtige kryptografische Annahmen (wie die Schwierigkeit der Primfaktorisierung) in einer Welt mit leistungsfähigen Quantencomputern nicht mehr gelten.
 
-\subsection{Regev’s Algorithm: An Efficient Quantum Factoring Algorithm}
+\subsection{Quantum Fourier Transformation}
 
-Oded Regev (2023) stellte einen neuen Quantenalgorithmus für die Faktorisierung vor, der $n$-Bit-Zahlen mit Quanten-Schaltkreisen der Größe $\tilde O(n^{3/2})$ faktorisieren kann.\\
-Der Algorithmus wird etwa $\sqrt{n}$ Mal wiederholt ausgeführt und benötigt zusätzliches klassisches Post-Processing.\\
-Regevs Methode beruht auf heuristischen Annahmen aus der Zahlentheorie; dennoch könnte sie zu praktisch effizienteren Quanten-Faktorisierungsverfahren führen, wenn sich die Annahmen in der Praxis bestätigen.
+Die Quanten-Fourier-Transformation (QFT) ist eine Quantenversion der klassischen diskreten Fourier-Transformation und Teil vieler Quantenalgorithmen, insbesondere Shor’s Algorithmus und der Quanten-Phasenschätzung.\\
+Ziel dieser Transformation ist es Signale aus dem Zeitbereich in den Frequenzbereich umzuwandeln.
+Sie kann auf $n$ Qubits mit $O(n^2)$ elementaren Gattern implementiert werden (Hadamard- und kontrollierte Phasengatter). Mit Approximations-Techniken ist sogar $O(n\log n)$ möglich.\\
+Diese effiziente Implementierung liefert eine exponentielle Beschleunigung gegenüber der klassischen FT (die in $O(n2^n)$ Zeit arbeitet).
 
-\section{Das Suchproblem und Grover-Algorithmus}
-Dieses Kapitel behandelt Quantenalgorithmen für Suchprobleme. Es beginnt mit der Suche in unstrukturierten Daten, bei der jeder Eintrag gleich wahrscheinlich das gesuchte Objekt sein kann. Der Grover-Algorithmus bietet hier einen quadratischen Geschwindigkeitsvorteil gegenüber klassischen Verfahren. Außerdem werden Verallgemeinerungen wie Amplitudenverstärkung, quantengestützte Suchverfahren auf Graphen (Quantum Walks) sowie praktische Anwendungen und aktuelle Experiment-Ergebnisse diskutiert.
+\subsection{Primfaktorzerlegung, RSA und das versteckte Untergruppenproblem}
+
+Die Schwierigkeit der Primfaktorzerlegung großer Zahlen bildet das Fundament klassischer Kryptosysteme wie RSA. Während klassische Verfahren dieses Problem nur subexponentiell lösen können, ermöglicht Shor’s Quantenalgorithmus eine polynomielle Lösung – mit tiefgreifenden Folgen für die Kryptographie. Der RSA-Algorithmus basiert auf dem Produkt zweier großer Primzahlen, dessen Zerlegung ohne Quantencomputer als praktisch unlösbar gilt.Shor’s Algorithmus untergräbt jedoch diese Annahme. Mathematisch lässt sich die Faktorisierung – wie auch andere kryptografische Probleme – als spezieller Fall des versteckten Untergruppenproblems (HSP) in abelschen Gruppen beschreiben, das durch Shor’s Algorithmus effizient gelöst werden kann.
+
+\subsection{Regev's Algorithmus: Ein effizienter Quantenfaktorisierungsansatz}
+
+Im Jahr 2024 stellte Oded Regev einen neuen Quantenalgorithmus zur Faktorisierung vor, der eine effiziente alternative Methode zu Shor's Algorithmus bietet. Der Algorithmus verwendet $\tilde{O}(n^{3/2})$ Quanten-Gatter und benötigt etwa $\sqrt{n} + 4$ unabhängige Durchläufe, gefolgt von einer klassischen Nachbearbeitung in polynomieller Zeit. 
+
+Die Korrektheit des Algorithmus basiert auf einer heuristischen Annahme, ähnlich denen, die in subexponentiellen klassischen Faktorisierungsalgorithmen verwendet werden. Diese Entwicklung erweitert das Spektrum der Quantenalgorithmen zur Faktorisierung und bietet neue Perspektiven für die Entwicklung quantensicherer Kryptosysteme.
+
+\subsection{Learning With Errors: Regevs Beitrag zur quantensicheren Kryptographie}
+
+Neben seiner jüngsten Arbeit zur effizienten Faktorisierung mit Quantencomputern hat Oded Regev bereits 2005 das sogenannte Learning-With-Errors (LWE)-Problem eingeführt. LWE bildet heute die Grundlage vieler quantensicherer Kryptosysteme. 
+
+Regev zeigte, dass das LWE-Problem auf schwer lösbare Gitterprobleme zurückführbar ist – selbst für Quantenalgorithmen. Das macht LWE zu einem vielversprechenden Kandidaten für Post-Quantum-Kryptographie. Verfahren wie CRYSTALS-Kyber oder Dilithium, die derzeit vom NIST standardisiert werden, basieren direkt auf LWE bzw. dessen Varianten.
+
+Damit liefert Regev nicht nur eine effektive Angriffsmethode auf klassische Kryptosysteme, sondern auch eine mögliche Antwort auf die daraus resultierenden Sicherheitsprobleme.
+
+\section{Quantenalgorithmen für Suchprobleme}
+
+Dieses Kapitel behandelt Quantenalgorithmen für Suchprobleme. Es beginnt mit der Suche in unstrukturierten Daten, bei der jeder Eintrag gleich wahrscheinlich das gesuchte Objekt sein kann. Der Grover-Algorithmus bietet hier einen quadratischen Geschwindigkeitsvorteil gegenüber klassischen Verfahren. Außerdem werden Verallgemeinerungen wie Amplitudenverstärkung, quantengestützte Suchverfahren auf Graphen (Quantum Walks), sowie praktische Anwendungen und aktuelle Experiment-Ergebnisse diskutiert.
 
 \subsection{Unstrukturiertes Suchproblem}
 
@@ -135,5 +137,25 @@ Dieses Kapitel bietet einen Überblick über Transformer und Attention-Blöcke u
 Gao et al. (2023) zeigten kürzlich, wie man Grover’s Suche nutzen kann, um die Attention-Matrix in Transformers effizienter zu berechnen. Sie betrachten insbesondere spärliche Attention-Matrizen und erreichen einen polynomialen Quantenvorteil gegenüber klassischen Methoden.\\
 Ihr Algorithmus berechnet die relativ kleinen (sparse) Einträge der Attention-Matrix schneller, indem er Suche statt vollständiger Matrixmultiplikation verwendet.\\
 Solche Quanten-Transformer sind ein aktives Forschungsthema: Sie könnten zukünftig helfen, die Rechenzeit von LLMs zu reduzieren, indem sie die Aufmerksamkeitsschichten quantenbeschleunigt umsetzen.
+
+\section{Alternative Struktur}
+
+\section{Algorithmen und mathematische Hintergründe}
+
+\subsection{Shor, Regev, Grover, Q.Qalks etc.}
+
+\section{Laufzeiten im Vergleich zu klassischen Algorithmen}
+
+\subsection{Tabelle, Übersicht}
+
+\section{Konsequenzen}
+
+\subsection{Jeweilige Konsequenzen durch Q. Algorithmen}
+
+\section{Konkrete Anwendungsfälle}
+
+\subsection{Jeweilige Anwendungsfälle durch Q. Algorithmen}
+
+
 
 \printbibliography

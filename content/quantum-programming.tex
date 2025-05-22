@@ -19,13 +19,46 @@
 
 \subsection{Übertragung mathematischer Ideen in Quantenalgorithmen}
 
+- Mathematische Problemstellung als Ausgangspunkt (z.B. Suche -> Verweis)
+- Abbildung auf Prinzipien der Quantenmechanik
+- Auswahl eines passenden Algorithmus (z.B. Grover -> Verweis)
+
 \subsection{Fallstudie: Grover-Algorithmus}
+
+- Quadratische Beschleunigung unstrukturierter Suche
+- z.B. Orakel + Amplitudenverstärkung -> Verweise/Überschneidung
+- Darstellung als Pseudocode -> Details in 7.4?
 
 \subsection{Quantum Software Stack}
 
+- Überblick über Schichten von Algorithmus zur Hardware
+- Tooling
+- Rolle von:
+    - Compiler / Transpiler: z.B. Umwandlung von Circuit in hardware-spezifische Gates
+    - Backends: Simulator vs. Quantenchip
+    - Middleware: Warteschlange, Hardware-Auswahl, Jobverwaltung
+
 \subsection{Mitigation von Fehlerquellen}
 
+- Verweis auf Kapitel Fehlerkorrektur, Recap der typischen Fehlerarten (z.B. Dekohärenz, Gatter-Ungenauigkeit, Messfehler)
+- Beschreibung von softwareseitigen Maßnahmen:
+    - Zero-noise extrapolation
+    - Randomized benchmarking
+    - Dynamisches Decoupling, probabilistische Fehlerkorrektur
+- Bedeutung für algorithmische Genauigkeit und Wiederholbarkeit
+
 \subsection{Nutzung von Cloud-Plattformen}
+
+- Überblick über Cloud Plattformen (IBM, Amazon, Google)
+\\
+
+Einfache Quantenprogramme können mit Frameworks wie Qiskit, Cirq oder Q\# lokal entwickelt und auf Simulatoren ausgeführt werden. Der Zugriff auf echte Quantenhardware ist bislang jedoch lediglich über Cloud-Plattformen möglich.
+\\
+
+Neben dem Zugang zu Quantenhardware stellen Cloud-Plattformen Werkzeuge für die Entwicklung, Visualisierung und Ausführung von Quantenalgorithmen zur Verfügung. Darüber hinaus wird der Entwicklungsprozess durch die Abstraktion der Hardwaresteuerung, automatisierte Fehlerabschätzungen und die Integration von Entwicklungsumgebungen erleichtert.
+\\
+
+Die führenden Anbieter von Quantenhardware IBM, Amazon und Google stellen jeweils eigene Cloud-Plattformen bereit, die sich vor allem in den unterstützten Programmiersprachen und Hardware unterscheiden. Im Folgenden werden die Plattformen vorgestellt. und ihre wichtigsten Features erläutert.
 
 \section{Praxisbeispiel: Quantum Programm mit Qiskit}
 
