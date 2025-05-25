@@ -10,63 +10,32 @@
 
 \abstract{some abstract}
 
-\section{Quantenalgorithmen in der Kryptographie}
-
-Quantencomputer stellen eine fundamentale Herausforderung für klassische Kryptosysteme dar. Durch die besonderen Eigenschaften der Quantenmechanik lassen sich bestimmte mathematische Probleme, auf denen heutige Verschlüsselungsverfahren basieren, wesentlich schneller lösen. Insbesondere Shor’s Algorithmus demonstriert, dass die Primfaktorzerlegung großer Zahlen – und damit die Sicherheit des weit verbreiteten RSA-Systems – mit einem Quantencomputer effizient durchgeführt werden kann.
-
-Dieses Kapitel beleuchtet zentrale Konzepte hinter solchen Quantenalgorithmen, darunter die Quanten-Fourier-Transformation (QFT) und das versteckte Untergruppenproblem (HSP). Darüber hinaus wird der Übergang zur Post-Quantum-Kryptographie skizziert, mit  Fokus auf das Learning-With-Errors-Problem (LWE), das Oded Regev als Grundlage für quantensichere Verfahren eingeführt hat. Regevs Arbeiten zeigen, dass Quantenalgorithmen nicht nur eine Bedrohung darstellen, sondern auch neue, robuste Sicherheitsmechanismen ermöglichen.
-
-Ziel dieses Kapitels ist es, eine Übersicht vom Angriff klassischer Kryptosysteme durch Quantenalgorithmen bis hin zu quantensicheren Alternativen zu spannen.
-
-
-\subsection{Shor-Algorithmus: Faktorisierung und diskreter Logarithmus}
-
-Peter Shor (1994) entwickelte einen Quantenalgorithmus, der die Faktorisierungs- und diskrete-Logarithmus-Probleme in polynomialer Zeit löst.\\
-Der Algorithmus nutzt die Quanten-Fourier-Transformation (QFT), um Perioden einer Funktion modulo $N$ zu finden, und erreicht damit eine exponentielle Beschleunigung gegenüber den besten klassischen Algorithmen.\\
-Shors Algorithmus zeigt, dass wichtige kryptografische Annahmen (wie die Schwierigkeit der Primfaktorisierung) in einer Welt mit leistungsfähigen Quantencomputern nicht mehr gelten.
-
+\section{Shor-Algorithmus: Faktorisierung und diskreter Logarithmus}
+\subsection{Idee: Primfaktorzerlegung}
+\subsection{Diskreter Logarithmus}
 \subsection{Quantum Fourier Transformation}
-
-Die Quanten-Fourier-Transformation (QFT) ist eine Quantenversion der klassischen diskreten Fourier-Transformation und Teil vieler Quantenalgorithmen, insbesondere Shor’s Algorithmus und der Quanten-Phasenschätzung.\\
-Ziel dieser Transformation ist es Signale aus dem Zeitbereich in den Frequenzbereich umzuwandeln.
-Sie kann auf $n$ Qubits mit $O(n^2)$ elementaren Gattern implementiert werden (Hadamard- und kontrollierte Phasengatter). Mit Approximations-Techniken ist sogar $O(n\log n)$ möglich.\\
-Diese effiziente Implementierung liefert eine exponentielle Beschleunigung gegenüber der klassischen FT (die in $O(n2^n)$ Zeit arbeitet).
-
-\subsection{Primfaktorzerlegung, RSA und das versteckte Untergruppenproblem}
-
-Die Schwierigkeit der Primfaktorzerlegung großer Zahlen bildet das Fundament klassischer Kryptosysteme wie RSA. Während klassische Verfahren dieses Problem nur subexponentiell lösen können, ermöglicht Shor’s Quantenalgorithmus eine polynomielle Lösung – mit tiefgreifenden Folgen für die Kryptographie. Der RSA-Algorithmus basiert auf dem Produkt zweier großer Primzahlen, dessen Zerlegung ohne Quantencomputer als praktisch unlösbar gilt.Shor’s Algorithmus untergräbt jedoch diese Annahme. Mathematisch lässt sich die Faktorisierung – wie auch andere kryptografische Probleme – als spezieller Fall des versteckten Untergruppenproblems (HSP) in abelschen Gruppen beschreiben, das durch Shor’s Algorithmus effizient gelöst werden kann.
-
+\subsection{Anwendung: RSA-Algorithmus brechen}
 \subsection{Regev's Algorithmus: Ein effizienter Quantenfaktorisierungsansatz}
-
-Im Jahr 2024 stellte Oded Regev einen neuen Quantenalgorithmus zur Faktorisierung vor, der eine effiziente alternative Methode zu Shor's Algorithmus bietet. Der Algorithmus verwendet $\tilde{O}(n^{3/2})$ Quanten-Gatter und benötigt etwa $\sqrt{n} + 4$ unabhängige Durchläufe, gefolgt von einer klassischen Nachbearbeitung in polynomieller Zeit. 
-
-Die Korrektheit des Algorithmus basiert auf einer heuristischen Annahme, ähnlich denen, die in subexponentiellen klassischen Faktorisierungsalgorithmen verwendet werden. Diese Entwicklung erweitert das Spektrum der Quantenalgorithmen zur Faktorisierung und bietet neue Perspektiven für die Entwicklung quantensicherer Kryptosysteme.
-
 \subsection{Learning With Errors: Regevs Beitrag zur quantensicheren Kryptographie}
 
-Neben seiner jüngsten Arbeit zur effizienten Faktorisierung mit Quantencomputern hat Oded Regev bereits 2005 das sogenannte Learning-With-Errors (LWE)-Problem eingeführt. LWE bildet heute die Grundlage vieler quantensicherer Kryptosysteme. 
+\section{Quantum-safe Algorithmen in Kryptographie}
+\subsection{Aktuelle Stand der Kryptographie}
+\subsection{Vektoren in der asymmetrischen Verschlüsselung}
 
-Regev zeigte, dass das LWE-Problem auf schwer lösbare Gitterprobleme zurückführbar ist – selbst für Quantenalgorithmen. Das macht LWE zu einem vielversprechenden Kandidaten für Post-Quantum-Kryptographie. Verfahren wie CRYSTALS-Kyber oder Dilithium, die derzeit vom NIST standardisiert werden, basieren direkt auf LWE bzw. dessen Varianten.
-
-Damit liefert Regev nicht nur eine effektive Angriffsmethode auf klassische Kryptosysteme, sondern auch eine mögliche Antwort auf die daraus resultierenden Sicherheitsprobleme.
-
-\section{Quantenalgorithmen für Suchprobleme}
-
-Dieses Kapitel behandelt Quantenalgorithmen für Suchprobleme. Es beginnt mit der Suche in unstrukturierten Daten, bei der jeder Eintrag gleich wahrscheinlich das gesuchte Objekt sein kann. Der Grover-Algorithmus bietet hier einen quadratischen Geschwindigkeitsvorteil gegenüber klassischen Verfahren. Außerdem werden Verallgemeinerungen wie Amplitudenverstärkung, quantengestützte Suchverfahren auf Graphen (Quantum Walks), sowie praktische Anwendungen und aktuelle Experiment-Ergebnisse diskutiert.
-
-\subsection{Unstrukturiertes Suchproblem}
+\section{Grover-Algorithmus: Quantum-Suche}
+\subsection{Grundlagen: Unstrukturiertes Suchproblem}
 
 Das unstrukturierte Suchproblem besteht darin, in einer Menge von $N$ Einträgen ein spezielles Zielobjekt zu finden, ohne dass ein nützlicher Index oder eine Sortierung vorliegt. Klassisch erfordert dies im Mittel $O(N)$ Abfragen.\\
 Quantenalgorithmen können dieses Problem beschleunigen: Grover’s Algorithmus löst es in $O(\sqrt{N})$ Abfragen, was eine quadratische Beschleunigung darstellt.\\
 Anwendungen sind z.B. die Suche in Datenbanken, das Finden von Lösungen bei NP-Problemen per Exhaustive Search und kryptografische Angriffe (z.B. Passwortknacken).
 
-\subsection{Grover-Algorithmus}
+\subsection{Aufbau von dem Grover Algorithmus}
 
 Der Grover-Algorithmus (1996) führt eine quantengestützte Suche durch, indem er sukzessive die Amplitude des gesuchten Zustands verstärkt. Nach etwa $\sqrt{N}$ Iterationen erhält man das Ziel mit hoher Wahrscheinlichkeit.\\
 Dieser Algorithmus ist informationstheoretisch optimal für die unstrukturierte Suche. Er wird typischerweise durch eine Schleife aus Orakel-Abfrage (markiert das gesuchte Element) und Inversion der Amplituden um den Mittelwert realisiert.\\
 Grover findet Anwendungen als Subroutine in vielen Quantenalgorithmen (z.B. für Optimierung oder Simulation), etwa zur Stichprobensuche oder in hybriden Ansätzen.
 
-\subsection{Heuristisches Suchproblem und Amplitudenverstärkung}
+\subsection{Amplitudenverstärkung}
 
 Amplitudenverstärkung ist eine Verallgemeinerung des Grover-Algorithmus: Sie erhöht die Erfolgswahrscheinlichkeit eines beliebigen Quantenalgorithmus, der mit Wahrscheinlichkeit $a$ ein Ergebnis liefert, auf $O(1/\sqrt{a})$ Wiederholungen.\\
 Das Verfahren erlaubt es, den Aufwand zu halbieren, wenn man weiß, dass ein Ergebnis mit bestimmter Wahrscheinlichkeit auftaucht. Es ist also eine universelle Methode, um Algorithmen (nicht nur Suche) zu beschleunigen.\\
@@ -84,10 +53,21 @@ Grover’s Algorithmus wurde bereits auf ersten Quantenrechnern experimentell ge
 Der praktische Einsatz ist derzeit wegen begrenzter Qubit-Zahlen, niedriger Kohärenzzeiten und Fehlerraten noch eingeschränkt. Meist dienen kleine Grover-Experimente als Benchmark für Hardware.\\
 Zukünftige Anwendungen könnten in Bereichen wie Datenbankrecherche, Kryptanalyse (Brute-Force-Angriffe) oder NISQ-nahe Optimierungsaufgaben liegen; der Fortschritt in Hardware-Fehlerkorrektur wird entscheidend sein.
 
+\section{Grover-Algorithmus für Fine-tuning von LLM}
+\subsection{Idee: Transformer Architektur}
+Transformer-Architekturen (Vaswani et al., 2017) bilden die Grundlage moderner großer Sprachmodelle (LLMs). Sie verwenden Self-Attention-Mechanismen, um in einem Eingabesequenz-Kontext relevante Zusammenhänge zu gewichten.\\
+Ein Nachteil ist die quadratische Rechenkomplexität in der Sequenzlänge: Standard-Self-Attention erfordert $O(n^2)$ Operationen für eine Sequenz der Länge $n$. Das limitiert die Effizienz bei langen Eingaben.\\
+Dieses Kapitel bietet einen Überblick über Transformer und Attention-Blöcke und ihre Rolle in LLMs, um die Ausgangsbasis für quantenbeschleunigte Ansätze zu erklären.
+
+\subsection{Berechnung der Attention}
+Gao et al. (2023) zeigten kürzlich, wie man Grover’s Suche nutzen kann, um die Attention-Matrix in Transformers effizienter zu berechnen. Sie betrachten insbesondere spärliche Attention-Matrizen und erreichen einen polynomialen Quantenvorteil gegenüber klassischen Methoden.\\
+Ihr Algorithmus berechnet die relativ kleinen (sparse) Einträge der Attention-Matrix schneller, indem er Suche statt vollständiger Matrixmultiplikation verwendet.\\
+Solche Quanten-Transformer sind ein aktives Forschungsthema: Sie könnten zukünftig helfen, die Rechenzeit von LLMs zu reduzieren, indem sie die Aufmerksamkeitsschichten quantenbeschleunigt umsetzen.
+
 \section{Quantumoptimierung}
 Quantum-Optimierungsalgorithmen zielen darauf ab, kombinatorische und numerische Optimierungsprobleme schneller zu lösen oder mindestens gute Approximationslösungen zu finden. Typische Ansätze sind der Quanten-Aiabatischer Algorithmus (Quantenannealing) für NP-Probleme, hybride Algorithmen wie VQE und QAOA für Optimierung mit Quanten-Schaltkreisen, sowie Algorithmen zur Lösung linearer Gleichungssysteme (etwa HHL), die in Optimierungs- und Datenanalyseanwendungen münden.
 
-\subsection{Das Erfüllbarkeitsproblem und adiabatische Optimierung}
+\subsection{Adiabatische Optimierung}
 
 Der Quanten-adiabatische Algorithmus (Farhi et al., 2000) übersetzt kombinatorische Probleme wie 3-SAT in die Suche nach dem Grundzustand eines zeitabhängigen Hamiltonians.\\
 Man beginnt im Grundzustand eines einfachen Anfangs-Hamiltonians und ändert langsam zum Zielfall, dessen Grundzustand die Lösung enthält. Nach dem adiabatischen Theorem landet man bei entsprechender Langsamkeit im gewünschten Zustand.\\
@@ -105,7 +85,7 @@ QAOA (Farhi et al., 2014) ist ein hybrider Ansatz zur kombinatorischen Optimieru
 Durch Abstimmung dieser Parameter mithilfe eines klassischen Optimierers können gute Näherungslösungen für Probleme wie MaxCut oder andere NP-harte Optimierungsaufgaben gefunden werden. Die Qualität der Lösung verbessert sich mit zunehmendem $p$.\\
 Die Schaltkreustiefe wächst linear mit $p$ und der Problemgröße; wenn $p$ fest ist, kann man den Algorithmus effizient klassisch vorprozessieren. Die Frage, ob QAOA für bestimmte Probleme gegenüber klassischen Algorithmen Vorteile bietet, wird intensiv erforscht.\\
 
-\subsection{Lineare Gleichungssysteme lösen: Quantum Data Fitting}
+\subsection{Quantum Data Fitting: Lineare Gleichungssysteme lösen}
 
 Quantum Data Fitting bezieht sich darauf, lineare Regressions- oder Ausgleichsaufgaben mithilfe von Quantenalgorithmen durchzuführen. Kern ist meist der HHL-Algorithmus (Harrow, Hassidim, Lloyd 2009), der lineare Gleichungen $Ax=b$ in Logarithmus-Zeit löst.\\
 Beispielsweise kann man Parameter für ein lineares Modell auf einem großen Datensatz bestimmen oder die Qualität einer Kleinste-Quadrate-Anpassung untersuchen.\\
@@ -114,48 +94,16 @@ Ein neuer Quantenalgorithmus berechnet effizient die Güte einer linearen Regres
 \section{Quantum Maschinelles Lernen}
 Dieser Abschnitt erläutert Quantenalgorithmen und -modelle im Bereich des maschinellen Lernens. Neben klassischen Machine-Learning-Aufgaben (z.B. Klassifikation) werden auch Konzepte wie Reinforcement Learning und moderne neuronale Netzwerke betrachtet. Schwerpunkte sind Quantenversionen etablierter Algorithmen (z.B. SVM) und neue Quantenmodelle für Lernaufgaben (Boltzmann-Maschinen, Transformer).
 
-\subsection{Big Data Klassifizierung: Quantum support vector machines}
+\subsection{Quantum Support Vector Machines: Big Data Klassifizierung}
 
 Quantum-SVMs (Rebentrost et al., 2013) verwenden Quantenlinienalgebra, um Support-Vector-Machine-Berechnungen zu beschleunigen. Zentral ist die schnelle Inversion der Kernelmatrix mittels quantenmechanischer Algorithmen.\\
 Dadurch kann die Klassifikation mit Komplexität logarithmisch in der Datengröße und Vektordimension erfolgen – in bestimmten Fällen also exponentiell schneller als klassisch.\\
 Anwendungen liegen in der Klassifizierung großer Trainingsdatenmengen; dabei wird oft vorausgesetzt, dass die Daten in einem quantenmechanischen Speicher (QRAM) verfügbar sind.
 
-\subsection{Reinforcement learning: Boltzmann Maschine}
+\subsection{Boltzmann Maschine: Reinforcement learning}
 
 Quanten-Boltzmannmaschinen adaptieren das Konzept klassischer Boltzmannmaschinen, indem sie aus dem quantenmechanischen Boltzmann-Verteilung eines Transversal-Feld-Ising-Modells speisen.\\
 Amin et al. (2016) führten das Modell der „Quantum Boltzmann Machine“ ein: Sie zeigen, wie man solche Maschinen effizient trainieren kann, indem man Schranken auf die Quanten-Wahrscheinlichkeiten einführt und so eine Quanten-Variante des Sampling-Verfahrens ermöglicht.\\
 Diese Modelle sollen komplexere Zusammenhänge in den Daten erfassen können, und man kann sie ggf. mit Quanten-Annealing-Hardware (z.B. D-Wave) trainieren. Ihre Anwendung im praktischen Reinforcement Learning befindet sich jedoch noch in der Grundlagenforschung.
-
-\subsection{LLM Überblick: Transformers und Attentionblöcke}
-
-Transformer-Architekturen (Vaswani et al., 2017) bilden die Grundlage moderner großer Sprachmodelle (LLMs). Sie verwenden Self-Attention-Mechanismen, um in einem Eingabesequenz-Kontext relevante Zusammenhänge zu gewichten.\\
-Ein Nachteil ist die quadratische Rechenkomplexität in der Sequenzlänge: Standard-Self-Attention erfordert $O(n^2)$ Operationen für eine Sequenz der Länge $n$. Das limitiert die Effizienz bei langen Eingaben.\\
-Dieses Kapitel bietet einen Überblick über Transformer und Attention-Blöcke und ihre Rolle in LLMs, um die Ausgangsbasis für quantenbeschleunigte Ansätze zu erklären.
-
-\subsection{Quantenalgorithmus zur Berechnung der Attention}
-
-Gao et al. (2023) zeigten kürzlich, wie man Grover’s Suche nutzen kann, um die Attention-Matrix in Transformers effizienter zu berechnen. Sie betrachten insbesondere spärliche Attention-Matrizen und erreichen einen polynomialen Quantenvorteil gegenüber klassischen Methoden.\\
-Ihr Algorithmus berechnet die relativ kleinen (sparse) Einträge der Attention-Matrix schneller, indem er Suche statt vollständiger Matrixmultiplikation verwendet.\\
-Solche Quanten-Transformer sind ein aktives Forschungsthema: Sie könnten zukünftig helfen, die Rechenzeit von LLMs zu reduzieren, indem sie die Aufmerksamkeitsschichten quantenbeschleunigt umsetzen.
-
-\section{Alternative Struktur}
-
-\section{Algorithmen und mathematische Hintergründe}
-
-\subsection{Shor, Regev, Grover, Q.Qalks etc.}
-
-\section{Laufzeiten im Vergleich zu klassischen Algorithmen}
-
-\subsection{Tabelle, Übersicht}
-
-\section{Konsequenzen}
-
-\subsection{Jeweilige Konsequenzen durch Q. Algorithmen}
-
-\section{Konkrete Anwendungsfälle}
-
-\subsection{Jeweilige Anwendungsfälle durch Q. Algorithmen}
-
-
 
 \printbibliography

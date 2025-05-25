@@ -4,7 +4,7 @@
 % use \chaptermark{}
 % to alter or adjust the chapter heading in the running head
 
-\chapterauthor{Karin Mustermann, Dominik Neumaier, Thilo Prünte}
+\chapterauthor{Karin Mustermann, Dominik Neumaier, Thilo Prünte, Burak Demirtas}
 
 \abstract{some abstract}
 
@@ -13,6 +13,61 @@ Die fundamentale Funktionsweise klassischer Computer basiert auf einzelnen Bits,
 \\
 
 Im Kontext von Quantencomputing ist die kleinste Informationseinheit ein Quantenbit (Qubit). Ein Qubit ist in einer Superposition und kann somit mehr Zustände Annehmen als ein klassisches Bit. 
+
+\section{Quantenverschränkung und Teleportation}
+
+\subsection{Quantenverschränkung}
+Die Quantenverschränkung ist ein Phänomen, bei dem zwei oder mehr Quantenobjekte sich in einem Zustand befinden, in dem sie, egal wie weit voneinander entfernt sie sind, gleich auf externe Reize reagieren. Solche Objekte, bei denen die Quantenverschränkung nachgewiesen werden konnte, sind Atome, Elementarteilchen wie Elektronen und Photonen, bis hin zu Kristallen.\\
+\\
+An einem Beispiel mit Elektronen lässt sich die Quantenverschränkung wie folgt erklären. Elektronen können sich in einem Zustand befinden, in dem sie keine eindeutige, exakte Position haben, sondern eine Menge an potentiellen Positionen. Diese potentiellen Positionen befinden sich alle im Umfeld der durchschnittlichen Position, dem Massenmittelpunkt des Elektrons, wie eine Wolke. Wenn von diesem Elektron seine Position gemessen wird, Antwortet dieses Elektron auf die Messung mit einem zufälligen Wert. Bei den nächsten Messungen wird wiederum mit einem anderen zufälligen Wert geantwortet. Es besteht ein Indeterminismus. In diesem Zustand ist es sogar möglich, dass sich das Elektron, wegen dem Indeterminismus auch an zwei oder mehr Positionen gleichzeitig befindet. Und dieses Elektron, an zwei oder mehr Positionen gleichzeitig, reagiert auf Reize auf die gleiche Weise. Dies wurde im Doppelspaltexperiment von Thomas Young nachgewiesen, bei dem ein Elektron auf einen Reiz an der ersten Position an einem Young‘schen Spalt reagiert, und auf einen Reiz an der zweiten Position an einem anderen Young’schen Spalt reagiert.\\
+\\
+Obwohl es möglich ist, dass ein Quantenobjekt keine exakte Position hat, und ein weiteres mit dem ersten Quantenobjekt verbundenes, „verschränktes“ Quantenobjekt ebenfalls keine eindeutige Position hat, ist die Distanz zwischen den beiden Quantenobjekten klar bestimmt. Wenn man also die Position der beiden Quantenobjekte misst, erhält man für beide immer einen zufälligen Wert. Aber die Differenz der zufälligen Werte voneinander ist immer genau gleich. Das gilt immer, auch wenn die beiden Quantenobjekte sehr weit voneinander entfernt sind. Die Position eines Quantenobjekts selbst ist nicht wohlbestimmt, die Position im Bezug auf ein verbundenes, verschränktes Quantenobjekt hingegen schon. Dass sich ein Quantenobjekt „hier“ und „einer festen Distanz von hier“ gleichzeitig befindet, wird „Superposition“ genannt. Und dieser superpositionierte Zustand ist ein verschränkter Zustand.\\
+\\
+Die Verschränkung fixiert nicht nur die Distanz von zwei oder mehr Quantenobjekten voneinander, sondern auch weitere Variablen, z.B. die Geschwindigkeit. Sie haben die gleiche Geschwindigkeit, welche aber selbst nicht fest ist, sondern eine von einer Menge potentieller Geschwindigkeiten.\\
+\\
+(Vgl. \cite[S.83-88]{gisin_unbegreifliche_2014}) 
+
+\subsection{Quantenteleportation: Protokoll, um einen unbekannten Quantenzustand mithilfe eines verschränkten Paares und klassischer Kommunikation zu übertragen}
+Ein Objekt besteht aus Materie und physikalischem Zustand. Bei Quantenobjekten ist die Materie die Masse und permanente Attribute wie z.B. die elektrische Ladung bei Elektronen, bzw. die Energie bei massenlosen Quantenobjekten wie z.B. Photonen. Der physikalische Zustand ist gebildet aus potentiellen Attributen, wie z.B. die potentiellen Positionen (denke Wolke um Massen-/ Energiemittelpunkt), die potentiellen Geschwindigkeiten bei Elektronen bzw. die potentiellen Schwingungsfrequenzen bei Photonen.\\
+\\
+In der Quantenteleportation wird der Zustand eines Quantenobjekts, der sog. Quantenzustand, ohne das Durchlaufen einer Zwischenstrecke, von einer Position auf eine andere Position, vorausgesetzt, dass sich in dieser anderen Position ein Quantenobjekt derselben Art befindet, direkt versetzt. Die Masse bzw. Energie kann nicht teleportiert werden, weil dies das Prinzip der Unmöglichkeit von Kommunikation ohne Signalübertragung verletzen würde. Dahingegen hat der Zustand weder eine Masse, noch eine Energie, denn sie ist potentiell – eine Wahrscheinlichkeit.\\
+\\
+Nach einer solchen Quantenteleportation verliert das Quantenobjekt seinen Zustand. Am Beispiel eines Photons kann man dies wie folgt erklären. Es gäbe ein Photon mit gut strukturierter Polarisation. Bei solch einem Photon schwingt das elektrische Feld regelmäßig in eine bestimmte Richtung. Nach der Quantenteleportation verliert dieses Photon seine Struktur. Übrig bleibt ein depolarisiertes Photon, ein Photon mit strukturloser Polarisation, dessen elektrisches Feld unregelmäßig in alle Richtungen schwingt. Der Quantenzustand des ersten Quantenobjekts nach der Quantenteleportation entspricht dem Quantenzustand des zweiten Quantenobjekts vor der Quantenteleportation.\\
+\\
+Der Quantenzustand, der teleportiert wird, ist ein Qubit. Voraussetzung einer Quantenteleportation ist das Dasein einer Menge verschränkter Quantenobjekte. In der nächsten Subsektion wird hierüber genauer erläutert.\\
+\\
+(Vgl. \cite[S.124-128]{gisin_unbegreifliche_2014}) 
+
+
+\subsection{Bennett und Brassard (1993): wie drei Qubits (Senderzustand + 2 verschränkte) genutzt werden, um den Zustand über Distanz zu “teleportieren”}
+Es gebe ein Quantenobjekt eines Senders mit unbekanntem Quantenzustand bzw. Qubit \(\ket{\Phi}\). Dieser Qubit soll zu einem dritten Quantenobjekt eines Empfängers teleportiert werden. Der Sender ist im Besitz eines zweiten Quantenobjekts mit dem ursprünglichen Zustand \(\ket{\alpha_0}\), „Ancilla“ bzw. „Ancilla-Qubit“ genannt. Im ersten Schritt der Quantenteleportation bringt der Sender das Quantenobjekt mit dem Qubit \(\ket{\Phi}\) und das Quantenobjekt mit dem Ancilla-Qubit dazu, so miteinander zu interagieren, dass das erste Quantenobjekt in einen Standard Zustand \(\ket{\Phi_0}\), und das zweite Quantenobjekt in einen unbekannten Quantenzustand \(\ket{\alpha}\), welches die vollständige Information über \(\ket{\Phi}\) enthält, versetzt wird. Diese Interaktion ist eine gemeinsame Messung der Quantenzustände beider Quantenobjekte des Senders. Allerdings muss erwähnt werden, dass eine solche Messung nur ein positives Ergebnis liefert, wenn der Qubit \(\ket{\Phi}\) einem orthonormalen Set angehört. Im zweiten Schritt der Quantenteleportation wird dann die neue Ancilla, bzw. in anderen Worten das (positive) Ergebnis der Messung im ersten Schritt, an das Quantenobjekt des Empfängers gesendet, wonach der Empfänger die Qubit-Veränderung auslösende Interaktion vom Sender rückgängig machen kann, und somit eine Replikation des originalen Quantenobjekts mit dem Qubit \(\ket{\Phi}\) herstellen kann. Auf dieser Weise können Informationen von Quantenobjekten, also Quanteninformationen, ausgetauscht werden, ohne dass ein Quantenobjekt geklont wird. Diese Methode der Quantenteleportation wird „spin-exchange“ genannt.\\
+\\
+(Vgl. \cite[S.1-2]{bennett_teleporting_1993})\\
+\\
+Am anfänglichen Zustand der „spin-exchange“ Methode sind das Quantenobjekt 2 auf der Senderseite und das Quantenobjekt 3 auf der Empfängerseite miteinander verschränkt. Durch die Interaktion auf Senderseite, wobei die Qubits der Quantenobjekte 1 und 2 verändert werden, wird die Verschränkung der Quantenobjekte 2 und 3 aufgehoben, und stattdessen die Quantenobjekte 1 und 2 verschränkt.\\
+\\
+(Vgl. \cite[S.2-3]{bennett_teleporting_1993})\\
+\\
+Mathematisch lässt sich der Prozess, wobei die Quantenobjekte in diesem Beispiel spin-\(\frac{1}{2}\) Partikel sind, mit folgenden Formeln darstellen:
+
+\[ \ket{\Psi_{23}^{(-)}} = \sqrt{\frac{1}{2}} (\ket{\uparrow_2}\ket{\downarrow_3} + \ket{{\downarrow_2}\ket{\uparrow_3}}) \]
+\\
+Das zweite Quantenobjekt vom Sender (2) und das Quantenobjekt vom Empfänger (3) befinden sich in einem verschränkten Zustand. Dies ist die Ausgangssituation.
+
+\[ \ket{\Psi_{12}^{(+)}} = \sqrt{\frac{1}{2}} (\ket{\uparrow_1}\ket{\downarrow_2} + \ket{{\downarrow_1}\ket{\uparrow_2}}) \]
+\[ \ket{\Phi_{12}^{(\pm)}} = \sqrt{\frac{1}{2}} (\ket{\uparrow_1}\ket{\uparrow_2} \pm \ket{{\downarrow_1}\ket{\downarrow_2}}) \]
+\\
+Nun findet die gemeinsame Messung der beiden Quantenobjekte des Senders statt. Die vier sich in den Formeln befindenden Zustände bilden eine orthonormale Basis für die Quantenobjekte 1 und 2. Hiermit ist die Verschränkung der Quantenobjekte 2 und 3 aufgehoben, und stattdessen sind 1 und 2 verschränkt.
+
+\[ \ket{\Phi} = \ket{\Phi_1} = a{\uparrow_1} + b{\downarrow_1} \]
+\\
+Für einfache Verständlichkeit wird der unbekannte Originalzustand von Quantenobjekt 1, \(\ket{\Phi}\), so geschrieben. Dabei ist \(|a|^2 + |b|^2 = 1\).\\
+\\
+(Vgl. \cite[S.2]{bennett_teleporting_1993})
+
+\subsection{Bedeutung für Quantenkommunikation und als Demonstration von Quanteninformationstransfer}
+Wie Anhand des wissenschaftlichen Artikels von Bennett, Brassard et. al. gezeigt wurde, sind Quantenverschränkung und Quantenteleportation die Prinzipien, durch die es zu einem Quanteninformationstransfer kommen kann. Daraus kann man schließen, dass beide Prinzipien eine sehr wichtige Bedeutung für Quantenkommunikation haben.
+
 \section{Praxisbeispiel: Bell-Zustand und Quantenkorrelation}
 Bell-Zustände sind spezielle Zustände in der Quantenmechanik, in denen zwei Teilchen maximal miteinander verschränkt sind. Das bedeutet: Ihre Zustände hängen so stark zusammen, dass man sie nicht unabhängig voneinander beschreiben kann – selbst, wenn die Teilchen weit voneinander entfernt sind. Benannt ist der Bell-Zustand nach dem Physiker John S. Bell. Dieser zeigte im Jahre 1964 auf, dass die Vorhersagen der Quantenmechanik im Widerspruch zu den Prinzipien des lokalen Realismus stehen – also der Vorstellung, dass Informationen nicht schneller als Licht übertragen werden können und dass physikalische Größen vor der Messung bereits festgelegt sind. (Vgl. \cite[S.195]{bell_einstein_1964})
 \\
