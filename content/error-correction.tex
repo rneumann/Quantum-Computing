@@ -4,11 +4,96 @@
 % use \chaptermark{}
 % to alter or adjust the chapter heading in the running head
 
-\chapterauthor{Karin Mustermann, Max Mustermann}
+\chapterauthor{Niklas Bodfeld, Tim Boschert, Manuel Meixner, Ann-Kathrin Wenzel}
 
 \abstract{some abstract}
 
-\section{Section Heading}
+\section{Fehlertypen in Quantenrechnern}
+
+\subsection{Relevanz von Fehlern in Quantenrechnern}
+{-Überblick }
+{-Woher kommen Fehler}
+{-Wie wirken diese sich aus}
+{-Wo passieren sie}
+
+\subsection{Physikalische Fehlerursachen in Quantenrechnern}
+{-Dekohärenz-Phasendekohärenz-Amplitudendekohärenz -Rauschen-Unvollständige Isolation -Vibration-Umwelteinflüsse}
+
+\subsection{Klassifizierung von Quantenfehlern}
+{-Bit-Flip,-Phase-Flip,-Bit & Phasenflip,-Amplitudendämpfung,-Phasendämpfung}
+
+\subsection{Hardwarebedingte Fehler und Systematische Grenzen}
+{-Gaterroperationen, Messung falsch, Qubitinitalisierung, Konnektivität, Kalibrirungsfehler}
+
+\subsection{Quantifizierung und Modellierung von Quantenfehlern}
+{-Fehlerkanäle, Krausoperation, Fehlerrate, wie werden Fehelr gemessen}
+
+\subsection{Auswirkungen von Fehlern auf Quantenalgorithmen und Systemarchitektur}
+{-Rechenabbrüche, Bedarf an Fehlertoleranz, Fehlerbudget}
+
+
+
+
+\section{Grundprinzipien in Quantenfehlerkorrektur}
+
+\section{Praktische Realisierung der Fehlerkorrektur}
+
+\subsection{Warum Fehlerkorrektur? Grundlagen und erste Ideen}
+\begin{itemize}
+    \item \textbf{Grundlagen der Fehlerkorrektur -- ein Überblick:} Notwendigkeit durch Fehlerquellen, Lösungsansatz durch Fehlerschwellen-Theorem, Kernideen von QECCs und das Beispiel der Oberflächencodes.
+    \item \textbf{Fehlerquellen und deren Limitierung (Kap. 6.1)}
+    \item Kurzer Recap zu 6.1
+    \item ...
+    \item \textbf{Das Fehlerschwellen-Theorem (Kernidee \& Bedeutung)}
+    \item Was ist das
+    \item Warum wichtig
+    \item ...
+    \item \textbf{Grundprinzipien von QECCs (z.B. Redundanz, No-Cloning)}
+    \item ...
+    \item \textbf{Stabilisator-Formalismus und Logische Operatoren}
+    \item ...
+    \item \textbf{Oberflächencodes als führender Kandidat (2D-Gitter, Distanz $d$, hohe Schwelle)}
+    \item ...
+\end{itemize}
+
+\subsection{Der Fehlerkorrekturzyklus mit am Beispiel von Oberflächencodes}
+\begin{itemize}
+    \item \textbf{Der QEC-Zyklus -- ein Überblick:} Kodieren $\rightarrow$ Fehler passieren $\rightarrow$ Fehler finden $\rightarrow$ Fehler deute $\rightarrow$ Fehler beheben.
+    \item \textbf{1. Logische Qubits kodieren:}
+    \item ...
+    \item \textbf{2. Fehler aufspüren (Syndrommessung):}
+    \item ...
+    \item \textbf{3. Fehler interpretieren (Dekodierung):}
+    \item ...
+    \item \textbf{4. Fehler beheben (Korrekturoperation):}
+    \item ...
+\end{itemize}
+
+\subsection{Aktuelle Hürden und was die Zukunft bringt}
+\begin{itemize}
+    \item \textbf{Herausforderungen \& Ausblick -- ein Überblick:} Großer Qubit-Bedarf, Zeitaufwand, interne Fehlertoleranz des QEC-Prozesses, Dekoder-Performance, reale Fehlermodelle und die Suche nach besseren Lösungen.
+    \item \textbf{Hürde: Massiver Qubit-Overhead (z.B. $O(d^2)$)}
+    \item ...
+    \item \textbf{Hürde: Zeitlicher Overhead und Latenz der Zyklen}
+    \item ...
+    \item \textbf{Hürde: Fehlertoleranz des Fehlerkorrekturprozesses selbst}
+    \item ...
+    \item \textbf{Hürde: Komplexität und Geschwindigkeit der Dekoder}
+    \item ...
+    \item \textbf{Hürde: Korrelierte Fehler und Abweichungen von idealen Fehlermodellen}
+    \item ...
+    \item \textbf{Ausblick: Entwicklung effizienterer Codes, Hardware-Verbesserungen, Co-Design, Fortschritte bei fehlertoleranten Gattern}
+    \item ...
+\end{itemize}
+
+\section{Praxisbeispiel: Ein einfacher Quantenfehlerkorrekturcode}
+\begin{itemize}
+    \item Mit Qiskit Library und qiskit.providers.aer Rauschen simulieren und die Notwendigkeit von Fehlerkorrektur anhand eines Vergleichs aufzeigen
+    \item Verschiedene Algorithmen zur Fehlerminimierung verwenden
+    \item Verschiedene Rauschen und Ansätze vergleichen und kontrastisieren
+    \item Qiskit Visualization Library erlaubt Darstellung von Zusammenhängen
+\end{itemize}
+
 
 
 \printbibliography

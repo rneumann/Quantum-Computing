@@ -4,63 +4,195 @@
 % use \chaptermark{}
 % to alter or adjust the chapter heading in the running head
 
-\chapterauthor{Konrad Maywald, Tom Williard, Daniel Purtov, Dennis Schweigert}
+\chapterauthor{Konrad Maywald, Daniel Purtov, Dennis Schweigert, Tom Williard}
 
 \abstract{some abstract}
 
-\section{Programmiermodelle}
+\section{Programmiermodelle in der Quanteninformatik}
 
-\section{Programmiersprachen und -Frameworks}
-\subsection{Architektur von Quantenprogrammiersprachen}
-\subsection{Übersicht gängiger Quantenprogrammiersprachen und -frameworks}
-\subsection{Herausforderungen und Zukunftsperspektiven}
+\subsection{Gate-basiertes Paradigma (Quantum Circuit Model)}
+\begin{itemize}
+    \item Am weitesten verbreitetes Paradigma
+    \item Quantenprogramme als Sequenz von Quanten-Gates (ähnlich zu logischen Gattern)
+    \item Verwendung typischer Gates (Hadamard, CNOT, etc.) – siehe Kapitel „Quanteninformation“ (Thilo)
+    \item Beispielalgorithmen:
+    \begin{itemize}
+        \item Shor's Algorithmus
+        \item Grover's Algorithmus
+        \item Regev (Einordnung möglich)
+    \end{itemize}
+\end{itemize}
+
+\subsection{Messungsbasiertes Paradigma}
+\begin{itemize}
+    \item Berechnung durch gezielte Messungen an verschränkten Zuständen (Cluster-States)
+    \item Algorithmus wird durch Reihenfolge und Auswahl der Messungen bestimmt
+    \item Beispiele:
+    \begin{itemize}
+        \item Teleportationsprotokoll
+        \item Messungsbasierte Varianten von Grover/Shor
+    \end{itemize}
+\end{itemize}
+
+\subsection{Adiabatisches Paradigma (Quantum Annealing)}
+\begin{itemize}
+    \item Langsame Änderung eines Hamiltonians zur Lösungssuche (Adiabatik)
+    \item Ziel: System geht in Grundzustand über, der Lösung codiert
+    \item Problemklassen:
+    \begin{itemize}
+        \item Max-Cut, k-Clique
+        \item Graph Coloring
+        \item Ising-Modell-Minimierung
+    \end{itemize}
+\end{itemize}
+
+\subsection{Hybrid-Paradigma}
+\begin{itemize}
+    \item Kombination klassischer und quantenbasierter Teilalgorithmen
+    \item Klassischer Teil optimiert, evaluiert oder trainiert Quantenschaltungen
+    \item Beispiele:
+    \begin{itemize}
+        \item Variational Quantum Eigensolver (VQE)
+        \item Quantum Approximate Optimization Algorithm (QAOA)
+        \item Quantum Machine Learning (QML)
+    \end{itemize}
+\end{itemize}
+
+\subsection{Funktionelles Paradigma}
+\begin{itemize}
+    \item Quantenprogramme als Funktionen (ähnlich funktionaler Programmierung)
+    \item Häufig genutzt in Theorie und formaler Verifikation
+    \item Beispiele:
+    \begin{itemize}
+        \item Formalisierte Algorithmen (z.\,B. Shor, Grover)
+        \item Verifizierte Protokolle (z.\,B. Superdense Coding)
+        \item Einsatz linearer Typ-Systeme zur Abbildung von Quanteneigenschaften
+    \end{itemize}
+\end{itemize}
+
+\section{Quanten-Programmiersprachen und -Frameworks}
+
+\subsection{Übersicht über Sprachen und Frameworks}
+
+Übersicht über Programmiersprachen/Frameworks und Zuordnung zu Paradigmen:
+
+\begin{itemize}
+    \item \textbf{Gate-basiert:} Qiskit (IBM), Cirq (Google)
+    \item \textbf{Adiabatisch:} D-Wave Ocean SDK
+    \item \textbf{Hybrid:} PennyLane, TensorFlow Quantum, Qiskit (Variational Circuits)
+    \item \textbf{Funktionell / Linear:} Quipper, Q\#, Proto-Quipper, QML
+\end{itemize}
+-> Ergänzung um weitere und Darstellung als Tabelle
+
+\subsection{Vertiefung ausgewählter Frameworks}
+\begin{itemize}
+    \item \textbf{Qiskit SDK:} Umfangreiche Bibliotheken, Simulator, Backendsteuerung
+    \item \textbf{Cirq:} Framework von Google für Schaltungsdesign und Simulation
+    \item \textbf{Q\#:} Domänenspezifische Sprache von Microsoft
+    \item (\textbf{Quipper, Qrisp, OpenQL, Sliq:} Alternativen für High-Level- oder domänenspezifisches Design)
+\end{itemize}
 
 \section{Entwicklung von Quantenalgorithmen}
 
-\subsection{Übertragung mathematischer Ideen in Quantenalgorithmen}
-
-- Mathematische Problemstellung als Ausgangspunkt (z.B. Suche -> Verweis)
-- Abbildung auf Prinzipien der Quantenmechanik
-- Auswahl eines passenden Algorithmus (z.B. Grover -> Verweis)
-
-\subsection{Fallstudie: Grover-Algorithmus}
-
-- Quadratische Beschleunigung unstrukturierter Suche
-- z.B. Orakel + Amplitudenverstärkung -> Verweise/Überschneidung
-- Darstellung als Pseudocode -> Details in 7.4?
+\subsection{Überblick über den Entwicklungsprozess}
+\begin{itemize}
+    \item Ziel: Praktische Umsetzung eines Quantenalgorithmus (End-to-End)
+    \item Typische Phasen:
+    \begin{itemize}
+        \item Problemformulierung (z.\,B. Suche, Optimierung, Simulation)
+        \item Auswahl eines geeigneten Paradigmas
+        \item Abbildung auf ein Quantenmodell
+        \item Wahl geeigneter Sprache / Frameworks (z.\,B. Qiskit)
+        \item Implementierung, Testing, Ausführung (lokal und cloudbasiert)
+    \end{itemize}
+\end{itemize}
 
 \subsection{Quantum Software Stack}
+\begin{itemize}
+    \item Überblick: Schichten von Quantenalgorithmus bis Hardwareausführung
+    \item Typische Ebenen:
+    \begin{itemize}
+        \item \textbf{Anwendungsebene:} Algorithmen in Python, Q\#, etc.
+        \item \textbf{Framework/SDK:} Qiskit, Cirq, PennyLane
+        \item \textbf{Compiler / Transpiler:} Übersetzung in native Gates (z.\,B. Qiskit Transpiler)
+        \item \textbf{Middleware:} Jobverwaltung, Backend-Routing, Warteschlangen (z.\,B. IBMQ-Provider)
+        \item \textbf{Backend:} Simulator (Aer) oder physischer Quantenprozessor
+    \end{itemize}
+    \item Rolle der Stack-Komponenten in der Entwicklung
+\end{itemize}
 
-- Überblick über Schichten von Algorithmus zur Hardware
-- Tooling
-- Rolle von:
-    - Compiler / Transpiler: z.B. Umwandlung von Circuit in hardware-spezifische Gates
-    - Backends: Simulator vs. Quantenchip
-    - Middleware: Warteschlange, Hardware-Auswahl, Jobverwaltung
+\subsection{Praxisbeispiel: Grover-Suche mit Qiskit}
+\begin{itemize}
+    \item Ziel: Implementierung einer Grover-Suche zum Finden eines markierten Eintrags
+    \item Problemformulierung und Zielzustand
+    \item Bezug zur Theorie: siehe Kapitel \textit{Quantenalgorithmen}
+    \item Auswahl: Gate-basiertes Modell mit Qiskit SDK
+\end{itemize}
 
-\subsection{Mitigation von Fehlerquellen}
+\subsection{Implementierung und Testing mit Qiskit}
+\begin{itemize}
+    \item Projektstruktur und Setup (Python-Umgebung, Qiskit-Installation)
+    \item Konstruktion des Circuits:
+    \begin{itemize}
+        \item Oracle-Definition
+        \item Diffusion-Operator
+        \item Initialisierung und Messung
+    \end{itemize}
+    \item Ausführung auf Simulator (Qiskit Aer)
+    \item Visualisierung von Schaltkreis und Ergebnissen
+    \item Tests und Debugging-Hilfsmittel (z.\,B. Histogramme, Counts)
+\end{itemize}
 
-- Verweis auf Kapitel Fehlerkorrektur, Recap der typischen Fehlerarten (z.B. Dekohärenz, Gatter-Ungenauigkeit, Messfehler)
-- Beschreibung von softwareseitigen Maßnahmen:
-    - Zero-noise extrapolation
-    - Randomized benchmarking
-    - Dynamisches Decoupling, probabilistische Fehlerkorrektur
-- Bedeutung für algorithmische Genauigkeit und Wiederholbarkeit
+\subsection{Cloud Deployment: Ausführung auf echter Quantenhardware}
 
-\subsection{Nutzung von Cloud-Plattformen}
+Überblick über Cloud-Plattformen für Quantenentwicklung
 
-- Überblick über Cloud Plattformen (IBM, Amazon, Google)
-\\
+\begin{itemize}
+    \item Vergleich führender Plattformen:
+    \begin{itemize}
+        \item IBM Quantum + Qiskit
+        \item Amazon Braket + Braket SDK
+        \item Google Quantum AI + Cirq
+    \end{itemize}
+    \item Zentrale Features:
+    \begin{itemize}
+        \item Abstraktion vom Hardware-Backend
+        \item Zugang zu Simulatoren und echten Chips
+        \item Ressourcenverwaltung, Warteschlangen, Fehlermitigation
+    \end{itemize}
+    \item Rolle innerhalb einer Entwicklungs-/Deploymentpipeline
+\end{itemize}
 
-Einfache Quantenprogramme können mit Frameworks wie Qiskit, Cirq oder Q\# lokal entwickelt und auf Simulatoren ausgeführt werden. Der Zugriff auf echte Quantenhardware ist bislang jedoch lediglich über Cloud-Plattformen möglich.
-\\
+\begin{itemize}
+    \item Motivation für cloudbasierte Ausführung:
+    \begin{itemize}
+        \item Kein lokaler Zugang zu Quantenhardware
+        \item Automatisierte Fehlerkorrektur und Abstraktion
+        \item Vergleich mit klassischem Cloud Deployment
+    \end{itemize}
+    \item IBM Quantum:
+    \begin{itemize}
+        \item Account und Zugriffstoken
+        \item Auswahl von Backends über Qiskit
+        \item Transpilierung und Job-Submission
+        \item Job-Monitoring und Ergebnisabruf
+    \end{itemize}
+\end{itemize}
 
-Neben dem Zugang zu Quantenhardware stellen Cloud-Plattformen Werkzeuge für die Entwicklung, Visualisierung und Ausführung von Quantenalgorithmen zur Verfügung. Darüber hinaus wird der Entwicklungsprozess durch die Abstraktion der Hardwaresteuerung, automatisierte Fehlerabschätzungen und die Integration von Entwicklungsumgebungen erleichtert.
-\\
 
-Die führenden Anbieter von Quantenhardware IBM, Amazon und Google stellen jeweils eigene Cloud-Plattformen bereit, die sich vor allem in den unterstützten Programmiersprachen und Hardware unterscheiden. Im Folgenden werden die Plattformen vorgestellt. und ihre wichtigsten Features erläutert.
+\subsection{Tooling und Automatisierung}
+\begin{itemize}
+    \item Transpiler: Anpassung an spezifisches Backend
+    \item Middleware: Warteschlange, Priorisierung, Job-IDs
+    \item Backend-Optimierung: z.\,B. minimale Tiefe, minimale Fehlerwahrscheinlichkeit
+    \item Möglichkeit automatisierter Testausführung mit Simulator
+\end{itemize}
 
-\section{Praxisbeispiel: Quantum Programm mit Qiskit}
-
+\subsection{Fazit und Ausblick}
+\begin{itemize}
+    \item Zusammenfassung der Entwicklungsschritte
+    \item Stärken und Schwächen aktueller Toolchains
+    \item Ausblick: Hybrid-Ansätze, komplexere Anwendungsfälle, Integration in klassische Softwarelandschaften
+\end{itemize}
 
 \printbibliography

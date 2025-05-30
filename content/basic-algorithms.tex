@@ -4,7 +4,7 @@
 % use \chaptermark{}
 % to alter or adjust the chapter heading in the running head
 
-\chapterauthor{Gian-Luca Eberling, Vladimir Alyoshin}
+\chapterauthor{Vladimir Alyoshin, Gian-Luca Eberling}
 
 \abstract*{some abstract}
 
@@ -15,12 +15,6 @@
 \subsection{Diskreter Logarithmus}
 \subsection{Quantum Fourier Transformation}
 \subsection{Anwendung: RSA-Algorithmus brechen}
-\subsection{Regev's Algorithmus: Ein effizienter Quantenfaktorisierungsansatz}
-\subsection{Learning With Errors: Regevs Beitrag zur quantensicheren Kryptographie}
-
-\section{Quantum-safe Algorithmen in Kryptographie}
-\subsection{Aktuelle Stand der Kryptographie}
-\subsection{Vektoren in der asymmetrischen Verschlüsselung}
 
 \section{Grover-Algorithmus: Quantum-Suche}
 \subsection{Grundlagen: Unstrukturiertes Suchproblem}
@@ -53,17 +47,6 @@ Grover’s Algorithmus wurde bereits auf ersten Quantenrechnern experimentell ge
 Der praktische Einsatz ist derzeit wegen begrenzter Qubit-Zahlen, niedriger Kohärenzzeiten und Fehlerraten noch eingeschränkt. Meist dienen kleine Grover-Experimente als Benchmark für Hardware.\\
 Zukünftige Anwendungen könnten in Bereichen wie Datenbankrecherche, Kryptanalyse (Brute-Force-Angriffe) oder NISQ-nahe Optimierungsaufgaben liegen; der Fortschritt in Hardware-Fehlerkorrektur wird entscheidend sein.
 
-\section{Grover-Algorithmus für Fine-tuning von LLM}
-\subsection{Idee: Transformer Architektur}
-Transformer-Architekturen (Vaswani et al., 2017) bilden die Grundlage moderner großer Sprachmodelle (LLMs). Sie verwenden Self-Attention-Mechanismen, um in einem Eingabesequenz-Kontext relevante Zusammenhänge zu gewichten.\\
-Ein Nachteil ist die quadratische Rechenkomplexität in der Sequenzlänge: Standard-Self-Attention erfordert $O(n^2)$ Operationen für eine Sequenz der Länge $n$. Das limitiert die Effizienz bei langen Eingaben.\\
-Dieses Kapitel bietet einen Überblick über Transformer und Attention-Blöcke und ihre Rolle in LLMs, um die Ausgangsbasis für quantenbeschleunigte Ansätze zu erklären.
-
-\subsection{Berechnung der Attention}
-Gao et al. (2023) zeigten kürzlich, wie man Grover’s Suche nutzen kann, um die Attention-Matrix in Transformers effizienter zu berechnen. Sie betrachten insbesondere spärliche Attention-Matrizen und erreichen einen polynomialen Quantenvorteil gegenüber klassischen Methoden.\\
-Ihr Algorithmus berechnet die relativ kleinen (sparse) Einträge der Attention-Matrix schneller, indem er Suche statt vollständiger Matrixmultiplikation verwendet.\\
-Solche Quanten-Transformer sind ein aktives Forschungsthema: Sie könnten zukünftig helfen, die Rechenzeit von LLMs zu reduzieren, indem sie die Aufmerksamkeitsschichten quantenbeschleunigt umsetzen.
-
 \section{Quantumoptimierung}
 Quantum-Optimierungsalgorithmen zielen darauf ab, kombinatorische und numerische Optimierungsprobleme schneller zu lösen oder mindestens gute Approximationslösungen zu finden. Typische Ansätze sind der Quanten-Aiabatischer Algorithmus (Quantenannealing) für NP-Probleme, hybride Algorithmen wie VQE und QAOA für Optimierung mit Quanten-Schaltkreisen, sowie Algorithmen zur Lösung linearer Gleichungssysteme (etwa HHL), die in Optimierungs- und Datenanalyseanwendungen münden.
 
@@ -90,20 +73,20 @@ Die Schaltkreustiefe wächst linear mit $p$ und der Problemgröße; wenn $p$ fes
 Quantum Data Fitting bezieht sich darauf, lineare Regressions- oder Ausgleichsaufgaben mithilfe von Quantenalgorithmen durchzuführen. Kern ist meist der HHL-Algorithmus (Harrow, Hassidim, Lloyd 2009), der lineare Gleichungen $Ax=b$ in Logarithmus-Zeit löst.\\
 Beispielsweise kann man Parameter für ein lineares Modell auf einem großen Datensatz bestimmen oder die Qualität einer Kleinste-Quadrate-Anpassung untersuchen.\\
 Ein neuer Quantenalgorithmus berechnet effizient die Güte einer linearen Regression über ein exponentiell großes Datenset, indem er das lineare Gleichungssystem quantenmechanisch löst.
+ 
 
-\section{Quantum Maschinelles Lernen}
-Dieser Abschnitt erläutert Quantenalgorithmen und -modelle im Bereich des maschinellen Lernens. Neben klassischen Machine-Learning-Aufgaben (z.B. Klassifikation) werden auch Konzepte wie Reinforcement Learning und moderne neuronale Netzwerke betrachtet. Schwerpunkte sind Quantenversionen etablierter Algorithmen (z.B. SVM) und neue Quantenmodelle für Lernaufgaben (Boltzmann-Maschinen, Transformer).
+\section{Quantum-safe Algorithmen in Kryptographie}
+\subsection{Aktuelle Stand der Kryptographie}
+\subsection{Vektoren in der asymmetrischen Verschlüsselung}
 
-\subsection{Quantum Support Vector Machines: Big Data Klassifizierung}
+\section{Grover-Algorithmus für Fine-tuning von LLM}
+\subsection{Idee: Transformer Architektur}
+Transformer-Architekturen (Vaswani et al., 2017) bilden die Grundlage moderner großer Sprachmodelle (LLMs). Sie verwenden Self-Attention-Mechanismen, um in einem Eingabesequenz-Kontext relevante Zusammenhänge zu gewichten.\\
+Ein Nachteil ist die quadratische Rechenkomplexität in der Sequenzlänge: Standard-Self-Attention erfordert $O(n^2)$ Operationen für eine Sequenz der Länge $n$. Das limitiert die Effizienz bei langen Eingaben.\\
+Dieses Kapitel bietet einen Überblick über Transformer und Attention-Blöcke und ihre Rolle in LLMs, um die Ausgangsbasis für quantenbeschleunigte Ansätze zu erklären.
 
-Quantum-SVMs (Rebentrost et al., 2013) verwenden Quantenlinienalgebra, um Support-Vector-Machine-Berechnungen zu beschleunigen. Zentral ist die schnelle Inversion der Kernelmatrix mittels quantenmechanischer Algorithmen.\\
-Dadurch kann die Klassifikation mit Komplexität logarithmisch in der Datengröße und Vektordimension erfolgen – in bestimmten Fällen also exponentiell schneller als klassisch.\\
-Anwendungen liegen in der Klassifizierung großer Trainingsdatenmengen; dabei wird oft vorausgesetzt, dass die Daten in einem quantenmechanischen Speicher (QRAM) verfügbar sind.
-
-\subsection{Boltzmann Maschine: Reinforcement learning}
-
-Quanten-Boltzmannmaschinen adaptieren das Konzept klassischer Boltzmannmaschinen, indem sie aus dem quantenmechanischen Boltzmann-Verteilung eines Transversal-Feld-Ising-Modells speisen.\\
-Amin et al. (2016) führten das Modell der „Quantum Boltzmann Machine“ ein: Sie zeigen, wie man solche Maschinen effizient trainieren kann, indem man Schranken auf die Quanten-Wahrscheinlichkeiten einführt und so eine Quanten-Variante des Sampling-Verfahrens ermöglicht.\\
-Diese Modelle sollen komplexere Zusammenhänge in den Daten erfassen können, und man kann sie ggf. mit Quanten-Annealing-Hardware (z.B. D-Wave) trainieren. Ihre Anwendung im praktischen Reinforcement Learning befindet sich jedoch noch in der Grundlagenforschung.
-
+\subsection{Berechnung der Attention}
+Gao et al. (2023) zeigten kürzlich, wie man Grover’s Suche nutzen kann, um die Attention-Matrix in Transformers effizienter zu berechnen. Sie betrachten insbesondere spärliche Attention-Matrizen und erreichen einen polynomialen Quantenvorteil gegenüber klassischen Methoden.\\
+Ihr Algorithmus berechnet die relativ kleinen (sparse) Einträge der Attention-Matrix schneller, indem er Suche statt vollständiger Matrixmultiplikation verwendet.\\
+Solche Quanten-Transformer sind ein aktives Forschungsthema: Sie könnten zukünftig helfen, die Rechenzeit von LLMs zu reduzieren, indem sie die Aufmerksamkeitsschichten quantenbeschleunigt umsetzen.
 \printbibliography

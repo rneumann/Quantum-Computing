@@ -2,7 +2,7 @@
 \chapter{Physikalische Grundlagen}
 \label{physics} % Always give a unique label
 
-\chapterauthor{Karin Mustermann, Max Mustermann}
+\chapterauthor{Amanda Hagan, Lucie Hartmann, Leon Lukacin, Ole Pross}
 
 \abstract{some abstract}
 
@@ -12,32 +12,306 @@
 \subsubsection{\textit{\textit{Zustände und Wellenfunktion} }}
 \subsubsection{\textit{Observable und Messung}} 
 \subsubsection{\textit{(Zeitentwicklung und Schrödingergleichung??)} }
+
 \section{Zentrale Quantenphänomene }
 \subsection{Superposition }
+
+\begin{itemize}
+\item Licht verhält sich wie Welle (Doppelspaltexperiment) und Teilchen (Photon)
+\item Welle Teilchen Dualismus
+\item Beispiel mit Schrödingers Katze
+\item In beiden Zuständen bis gemessen wird
+\item Teilchen z.B. an zwei Orten gleichzeitig, aber auch andere (sich ausschließende) Eigenschaften parallel -> Superposition -> Teilchen in allen möglichen Zuständen gleichzeitig
+\item Einwirkung von außen oder Messung zerstört Superposition
+\item Heisenbergsche Unschärferelation
+\item Beide Zustände der Superposition haben jeweils einen Anteil, der genaue Wert eines Anteils ist nicht bekannt
+\item Mit einer Wahrscheinlichkeit abhängig vom Anteil nimmt ein Teilchen einen der beiden Zustände an
+
+\item Schrödingergleichung/Wellenfunktion
+\item Linearkombination (widersprüchlicher) Zustände z.B. 0 und 1/ tot und lebendig
+Bei Messung erfolgt Kollaps der Wellenfunktion -> am Ende ein Zustand
+\item Wellenfunktion beschreibt ein quantenmechanisches System und enthält alle Informationen über dieses System
+\item Eigenvalues und Eigenstates
+\end{itemize}
+
 \subsection{Quanteninterferenz}
+
+\begin{itemize}
+\item Interferenzmuster aus Doppelspaltexperiment -> Wahrscheinlichkeitsamplitude
+Wahrscheinlichkeitsamplituden können sich verstärken oder auslöschen (konstruktiv/destruktiv)
+\item Interferometer
+\item Einzelnes Photon löst allein Interferenz aus -> entgegen Intuition -> Photon muss in Superposition sein
+\item Messung zerstört Verhalten als Welle -> nur noch als Teilchen
+Nutzbar in Gattern
+\item Tunneleffekt
+\end{itemize}
+
 \subsection{Verschränkung }
+
+Korrelation mehrerer Qubits
+\begin{itemize}
+    \item Beispiel zweier Münzen bei einem verschränkten Coin Flip
+    \item lokale Unabhängigkeit (non-classical information)
+\end{itemize}
+
+Hidden Variable Theory (disproved)
+\begin{itemize}
+    \item keine Erklärung von Verschränkung in der klassischen Physik (reines Quantenphänomen)
+\end{itemize}
+
+Wie entsteht Verschränkung (kurz Prozess der Erzeugung von Entanglement)
+
+Quantenteleportation und Spukhafte Fernwirkung
+
+Mathematische Erschließung vs. menschliches Bild der Realität
+\begin{itemize}
+    \item Problem der Kausalität und Lokalität in der klassischen Physik
+    \item Debatte über Interpretation der experimentellen Ergebnisse (lokal-realistische Theorien vs. Kopplung in Quantenmechanik)
+\end{itemize}
+
+((Evtl. Bell-Zustand, Bell'sche Ungleichung)
+
 \section{Quantenmessung }
-\subsection{Grundlagen der Quantenmessung }
-(projektive Messungen, Messoperatoren)
+\subsection{Grundlagen der Quantenmessung (projektive Messungen, Messoperatoren)}
+Vergleich der Messung in klassischer Physik (Beobachtung des System beeinflusst in Quantenmechanischer Welt das Verhalten des Systems 
+- zweites Postulat der Quantenmechanik)
+- Zweites Messpostulat (projektive Messung): Quantenmessung entspricht einer Projektion des Zustandes auf eine Basis
+
+Beispiel: Photon und Polarisationsfilter 
+- einzelnes Photon nicht teilbar, daher Wahrscheinlichkeit der horizontalen / Vertikalen Verteilung beim Passieren des Polarisationsfilters (Zustand ändert sich)
+- im Kleinen (Einzelphoton) Zufall, jedoch mit Vielzahl relative Unsicherheit sehr klein (Verhalten wirkt klassisch und stabil) - Quantenfluktuationen verschwinden
+
+Genauer Zustand kann nicht ermittelt werden - zur Ermittlung des Zustandes, muss man Messen
+
+'Observable Operators'
+- Zuordnung eines Observable: Zuordnung von Messzuständen und entsprechenden Werten (Eigenwerte)
+- Möglichkeiten der statististischen Berechnung (Erwartungswert, Varianz)
+- Gleichzeitige Messung von zwei Observables (Uncertainty Principle)
+
 \subsection{Nichtdeterminismus}
-(keine Vorhersagbarkeit, Vergleich mit klassischer Statistik, Rolle in Quantenalgorithmen) 
-\subsection{Messprozess }
-(Kollaps der Wellenfunktion, Einfluss auf das Quantensystem, Messung als irreversible Operation) 
-\subsection{(((Technische Realisierung von Messungen, z.B. Fluoreszenz, Tunnelstrom, Photodetektion – eventuell aufgreifen in physikalische Realisierung (s. Supraleiter, Ionenfallen, etc.))) }
-\section{Mathematische Beschreibung von Qubits }
-\subsection{Hilbertraum und Zustandsvektoren }
-\subsection{Bra-Ket-Notation }
-\subsection{Bloch-Kugel-Darstellung }
-\subsection{Zwei-Niveau-Systeme als Qubits (?) }
+Beobachtung nur durch Betrachten des Outputs probabilistisch nach Durchlaufen eines Quantum Circuits möglich
+- keine direkte Auslese des Zustandes (s. Kollaps  der Wellenfunktion)
+- statistische Verteilung als Aussage über den Zustand bei wiederholtem Durchgang desselben Prozesses / Algorithmus
+
+\subsection{Messprozess (Kollaps der Wellenfunktion, Einfluss auf das Quantensystem, Messung als irreversible Operation) }
+Kollaps der Wellenfunktion: Zustand springt auf Basiszustand bei Messung
+- Wahrscheinlichkeitsregel: Bornsche Regel
+- Kontroversität durch deterministisches Weltbild (in Quantenmechanik ist der Zufall grundlegend) 
+- Superposition zerstört und klassischer Zustand angenommen 
+- Quanten-Folgezustand 
+- No-Cloning Theorem (Quanteninformation kann nicht erneut gemessen werden, da Messung System zerstört) 
+
+
+(((Technische Realisierung von Messungen, z.B. Fluoreszenz, Tunnelstrom, Photodetektion – eventuell aufgreifen in physikalische Realisierung (s. Supraleiter, Ionenfallen, etc.))) 
+
+
+\section{Mathematische Beschreibung von Qubits}
+
+\subsection{Hilbertraum und Zustandsvektoren}
+\textbf{Zustand eines Qubits} durch einen normierten Vektor in einem zwei-dimensionalen komplexen Hilbertraum.
+\begin{itemize}
+    \item Beschreibung des Hilbertraums:
+    \begin{itemize}
+        \item Komplexer Vektorraum mit Skalarprodukt.
+    \end{itemize}
+    \item Zustände als Basisvektoren.
+    \item Allgemeine Qubit-Zustände als Linearkombination.
+    \item Bedeutung der Normierung (Wahrscheinlichkeitsinterpretation und komplexe Koeffizienten).
+\end{itemize}
+
+\subsection{Bra-Ket-Notation}
+\begin{itemize}
+    \item Erklärung von \textit{Ket-Vektoren} $\ket{\psi}$ und \textit{Bra-Vektoren} $\bra{\phi}$.
+    \item Inneres Produkt: $\braket{\phi | \psi}$.
+    \item Operatoren als Transformationen im Hilbertraum, z. B. $U \ket{\psi}$.
+    \item Nutzen der Bra-Ket-Notation für spätere Abschnitte wie Quantenalgorithmen, Gates und Messungen.
+\end{itemize}
+
+\subsection{Bloch-Kugel-Darstellung}
+\begin{itemize}
+    \item Darstellung von Qubit-Zuständen geometrisch als Punkte auf der Oberfläche einer Kugel im 3D-Raum.
+    \item Bedeutung von Nord-/Südpol und Äquator (Superpositionen).
+    \item Veranschaulichung von Rotation durch Quanten-Gates:
+    \begin{itemize}
+        \item Pauli-X als Spiegelung.
+        \item Hadamard-Gate als Rotation.
+    \end{itemize}
+    \item Bedeutung der Darstellung für intuitive Visualisierung von Quantenzuständen und -operationen.
+\end{itemize}
+
+\subsection{Zwei-Niveau-Systeme als Qubits}
+\begin{itemize}
+    \item Physikalische Systeme, die als Qubits geeignet sind:
+    \begin{itemize}
+        \item Spin-1/2-Systeme.
+        \item Polarisationszustände von Photonen.
+    \end{itemize}
+    \item Erfüllung der mathematischen Anforderungen eines Qubit-Zustands durch physikalische Zwei-Niveau-Systeme.
+    \item Beispiele:
+    \begin{itemize}
+        \item Elektronenspin ($\ket{\uparrow}$, $\ket{\downarrow}$).
+        \item Lichtpolarisation (horizontal/vertikal).
+    \end{itemize}
+\end{itemize}
+
+
 \section{Physikalische Realisierung von Qubits }
 \subsection{Anforderungen an physikalische Systeme }
 \subsubsection{Allgemeine Voraussetzungen}
 (Kontrollierbarkeit, Isolation, Skalierbarkeit, Messbarkeit) 
 \subsubsection{DiVincenzo Kriterien}
+\textbf{1. Präzise definierter und skalierbarer Zustandsraum (Hilbertraum): Qubits als klar identifizierbare, kombinierbare Subsysteme} 
+
+- Freiheitsgrade zur Speicherung/Verarbeitung von Infos müssen als Dimensionen im Hilbertraum eines Quantensystems realisiert sein 
+
+- Isolation des Systems (wenig Wechselwirkung mit Umgebung) 
+
+- Hilbertraum muss präzise bestimmbar und in ein direktes Produkt kleiner Teilsysteme zerlegbar sein (mehrere Qubits) 
+
+- Zustandsraum soll exponentiell mit der Zahl der Qubits wachsen, sonst gibt es keinen Quantencomputing-Vorteil 
+
+\textbf{{2. Möglichkeit eines Startzustands} }
+
+Zb “alle Spins down” -> erreichbar durch Kühlung des Quantensystems auf den Grundzustand; Aufwand abhängig vom System zB bei Atomfallen: Kühlung auf Nano-Kelvin 
+
+-> muss kontrolliert reproduzierbar sein 
+
+\textbf{3. Isolation und Erhaltung der Kohärenz} 
+
+- System muss von der Umgebung abgeschirmt sein um Dekohärenz zu vermeiden -> Fehler entstehen, wenn Quantensystem mit der Umgebung verschränkt wird -> führt zu einem gemischten Zustand 
+
+\textbf{- Toleranz für Fehler sehr gering: }derzeit praktikabel nur bei ε < 10⁻⁶ 
+
+\textbf{4.Man muss kontrollierte Transformationen am System durchführen können} 
+
+(Quantengatter)Operationen müssen selektiv steuerbar sein und dürfen keine ungewollten Nebenwirkungen erzeugen -> meist über zeitabhängige Hamiltonian-Änderungen realisiert (Laser, Magnetfelder etc) 
+
+5. \textbf{.Messung einzelner Qubits im Eigenbasiszustand} 
+
+- “Starke” Messung notwendig -> eindeutige Projektion des Zustands auf den Basiszustand 
+
+- “Schwache” Messung reicht nicht aus (liefert nur Wahrscheinlichkeiten) 
+
+\cite{divincenzo_topics_nodate}
+ 
 \subsubsection{Einführung in Dekohärenz / Fehlerquellen}
+
+Def Quantencomputer (vs klassischer Computer): A quantum 
+
+computer is one whose operation exploits certain very special transformations of its internal state 
+
+Für diese Transformationen müssen “carefully controlled conditions” herrschen 
+
+Physikalisches System darf keine physikalischen Interaktionen haben, die nicht unter der Kontrolle des Programms sind: \textit{All other interactions,} 
+
+\textit{however irrelevant they might be in an ordinary computer – which} we shall call classical – introduce potentially catastrophic disruptions
+
+\textit{into the operation of a quantum comput}er zB Interaktionen mit externer Welt (Luftmoleküle / minimale thermische Energie etc) 
+
+-> führen zu Dekohärenz 
+\cite{mermin_quantum_2012}
+ 
+
+Nielsen 2010: Quantum Computation and Quantum information. S. 46 
+
+2 obstructions : noise as a fundamental barrier \& failed quantum mechanics (incorrect) 
+
+\textbf{Noise as a fundamental barrier -> Threshold Theorem}: noise (Umwelteinflüsse) kann unter einen Schwellenwert reduziert werden und mit error-correcting codes noch weiter reduziert werden 
+
+\textbf{failed / incorrect quantum mechanics:} ein Grund warum das Gebiet des Quantencomputing so interessant ist, ist um die Validität von Quantenmechanik zu beweisen (besonders large scale quantum systems) 
+
+\cite{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
+Fraunhofer Quantum computing compact training program 2025, S. 58 
+
+Noise sources:
+
+• Thermal fluctuations 
+
+• Electromagnetic interference 
+
+• Imperfections in quantum gates 
+
+• Interactions with the environment 
+
+• Influence of neighboring qubits 
+
+\textbf{Consequences in computations:} 
+
+• Flip the state of the qubit 
+
+• Errors can cause qubits to lose their 
+
+(phase) superposition and entanglement 
+
+properties 
+
+• Limits the size and complexity of feasible 
+
+quantum algorithms 
+
+-----------------------------------------------
+ 
+Dekohärenz vermeiden: To avoid decoherence individual bits cannot in general be encoded
+
+in physical systems of macroscopic size,because such systems except} under very special circumstances) cannot be isolated from their own irrelevant internal properties.
+
+Deswegen: bits werden kodiert in wenigen Zuständen von\textit{\textbf{ systems of atomic size }}(interne features sind egal, weil sie nicht existieren oder sie zu hohe Energie erfordern, um relevant zu werden 
+
+Diese Systeme müssen decoupled from their surroundings sein; except for the completely controlled interactions that are associated with the computational process itself
+
+S.2 warum die Situation nicht hoffnungslos ist
+
+Abstände zwischen diskreten Energieniveaus deutlich größer als bei makroskopischen Systemen -> dynamische Isolation auf atomarer Ebene einfacher zu erreichen (man  braucht einen größeren Einfluss um ein Atom aus dem Grundzustand zu bewegen) 
+
+\textbf{Fehlerkorrektur ist möglich}, wenn Einflüsse der Umwelt ausreichend niedrig sind (bei klassischen Computern ist das Routine, bei Quantencompuern muss Fehlerkorrektur stattfinden, ohne den Status der Bits (weder original noch “disrupted”) zu kennen 
+ 
+
+ \cite{mermin_quantum_2012}
 \subsection{Supraleitende Qubits }
+
+\begin{itemize}
+\item In Supraleitern fließt Strom verlustlos
+\item Temperatur nahe absolutem Nullpunkt
+\item In ringförmigen Supraleitern treten Quantenphänomene auf
+\item Erzeugung eines zirkulierenden Dauerstroms
+\item Bitzustände realisiert durch Flussrichtung des Stroms im Ring
+\item Zwei Elektronen ein Cooper-Paar -> Verhalten sich wie ein Teilchen
+\item Alle Cooper-Paare haben gemeinsame Wellenfunktion
+\item Josephson-Kontakt -> Unterbrechung durch Isolator/Normalleiter
+\item Tunneleffekt
+\item Messung von Spannung
+\end{itemize}
+
 \subsection{Ionenfallen-Qubits }
 \subsection{Photonenbasierte Qubits}
+
+Single Photons as Qubits 
+
+Single photons are largely free of the noise, or decoherence, that plagues other systems; can be easily manipulated to realize one-qubit logic gates; and enable encoding in any of several degrees of freedom, for example, polarization, time bin, or path. 
+\cite{obrien_optical_2007}
+
+
+
+Photons are chargeless particles, and do not interact very strongly with each other, or even 
+
+with most matter. They can be guided along long distances with low loss in optical fibers, 
+
+delayed efficiently using phase shifters, and combined easily using beamsplitters. Photons 
+
+exhibit signature quantum phenomena, such as the interference produced in two-slit ex- 
+
+periments. Furthermore, in principle, photons can be made to interact with each other, 
+
+using nonlinear optical media which mediate interactions 
+
+\textbf{In elektromagnetischem Resonator ist Energie nicht kontinuierlich sondern in units -> “Photonen” -> kleinste Einheiten von Licht / elektromagnetischer Strahlung. }
+
+\textbf{Energiemenge eines Photons hängt von Frequenz der Schwingung ab ℏω (}das reduzierte Plancksche Wirkungsquantum, eine fundamentale Naturkonstant) 
+
+-> in dem Resonator kann es null oder genau ein Photon geben (wie beim Qubit -> Superposition) 
+
+ \cite{nielsen_quantum_2010}
+ 
 \subsection{Spin-Qubits}
 \subsection{Neutralatom-Qubits }
 
