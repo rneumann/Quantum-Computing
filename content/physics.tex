@@ -73,37 +73,113 @@ Mathematische Erschließung vs. menschliches Bild der Realität
 
 \section{Quantenmessung }
 \subsection{Grundlagen der Quantenmessung (projektive Messungen, Messoperatoren)}
-Vergleich der Messung in klassischer Physik (Beobachtung des System beeinflusst in Quantenmechanischer Welt das Verhalten des Systems 
-- zweites Postulat der Quantenmechanik)
-- Zweites Messpostulat (projektive Messung): Quantenmessung entspricht einer Projektion des Zustandes auf eine Basis
 
-Beispiel: Photon und Polarisationsfilter 
-- einzelnes Photon nicht teilbar, daher Wahrscheinlichkeit der horizontalen / Vertikalen Verteilung beim Passieren des Polarisationsfilters (Zustand ändert sich)
-- im Kleinen (Einzelphoton) Zufall, jedoch mit Vielzahl relative Unsicherheit sehr klein (Verhalten wirkt klassisch und stabil) - Quantenfluktuationen verschwinden
+Die Messung in der Quantenmechanik unterscheidet sich grundlegend von der Messung in der klassischen Physik, einerseits durch die Auffassung der Grundkonzepte der Quantenmechanik, andererseits durch die mathematische Beschreibung und Interpretation der Messergebnisse.
+In der klassischen Welt wird das Verhalten eines Systems nicht durch das alleinige Beobachten des Systems beeinflusst; ein Ball beispielsweise wird sein Verhalten und seine Flugkurve nach einem Schuss nicht verändern, unabhängig davon, ob jemand dabei zusieht oder nicht.
+In der Quantenwelt hingegen sind die gemessenen Objekte (z.B. Photonen) winzig klein und die entsprechenden Messgeräte verhältnismäßig groß, sodass schon alleine deshalb die Messung zwangsläufig den Zustand eines Quantensystems beeinflussen wird. 
+Dass eine Messung den Zustand des Quantensystems verändert und das Ergebnis dieser Messung zufällig ist, ist im Rahmen des zweiten Postulats der Quantenmechanik eine zentrale Annahme, die in diesem Kapitel weiter erörtert werden soll. 
+%was ist das zweite Postulat? Wie kommst du drauf bzw in welchem Rahmen wurden diese Postulate ausgearbeitet bzw von wem? Kurze Einführung
+Das zweite Postulat besagt, dass eine Quantenmessung einer Projektion des Zustandes $\ket{\psi}$ auf eine Basis $\ket{|v_i|}$ entspricht. Mit der Wahrscheinlichkeit $|\braket{v_i|\psi}|^2$ erhalten wir das Ergebnis $v_i$. Das System befindet sich dann im Zustand $\ket{v_i}$. \cite{lvovsky_quantum_2018} 
+% Lvovsky - Quantum Physics - 2018 - Kapitel 1.4.1 The Measurement Postulate
+\newline Dieses Konzept wird auch 'projektive Messung' genannt, da die Messung des Zustandes auf einen Basiszustand projiziert wird, wobei die Begriffe der Projektion und der Basiszustände noch weiter erläutert werden sollen. \\
+\\
 
-Genauer Zustand kann nicht ermittelt werden - zur Ermittlung des Zustandes, muss man Messen
+Ein Quantensystem wird innerhalb einer bestimmten Basis gemessen.Der Begriff 'Basiszustand' bezieht sich hierbei auf die möglichen Zustände eines Systems, die insgesamt die Basis bilden (beispielsweise $\ket{v_1}$ oder $\ket{v_2}$) und bei der Messung angenommen werden können.
+Beim Messen springt das System in einen der Basiszustände. 
+Wird hierbei der Wert $v_i$ gemessen, so springt das System in den Zustand $\ket{v_i}$. Das Messergebnis ist also der Zustand $\ket{v_i}$. 
+Dabei wird die Information, welche Zustände gemessen werden und welche entsprechenden Zahlenwerte ihnen zugeordnet werden, in einem 'Observable Operator' zusammengefasst. 
+Dieser Observable Operator, der die Basis der Messungen beschreibt und die möglichen Werte der Messung enthält, kann folgendermaßen dargestellt werden: \\
+\\
+\begin{equation}
+\hat{V} = \sum_i v_i \, \ket{v_i}\bra{v_i}
+\end{equation}.
+\\ 
+\\
+Jeder Zustand $\ket{v_i}$ ist hierbei ein Eigenzustand dieses Operators. Der dazugehörige Eigenwert $v_i$ ist der Zahlenwert der Messung, den man bei der Messung des Zustandes erhält. 
+Die Zurdonung eines Wertes ist für einige Messgrößen (bspw. der Ort eines Teilchens im Raum) natürlich, für andere (z.B. die Polarisation eines Photons) weniger. Trotzdem wird auch in weniger natürlichen Fällen  eine Zahl zugeordnet, so beispielsweise
++1 für eine horizontale $\ket{H}$ und -1 für eine vertikale $\ket{V}$ Polarisation. 
+Observable kann für jede messbare Größe (Ort, Energie, Puls, Spin, etc.) definiert werden. Eine Ausnahme bildet hierbei die Zeit, da diese in der Quantenmechanik nicht als Observable definiert und behandelt wird.
+Daher gibt es keinen Zeit-Operator oder Eigenzustände der Zeit. Die Zeit dient lediglich als kontinuierliche Variable zur Beschreibung der Entwicklung des Quantensystems. 
+\cite{lvosvsky_quantum_2018} 
+% Lvovsky - Quantum Physics - 2018 - Kapitel 1.9.1 Observable Operators
+\\
+\\
 
-'Observable Operators'
-- Zuordnung eines Observable: Zuordnung von Messzuständen und entsprechenden Werten (Eigenwerte)
-- Möglichkeiten der statististischen Berechnung (Erwartungswert, Varianz)
-- Gleichzeitige Messung von zwei Observables (Uncertainty Principle)
+Projektive Messungen werden also durch einen Observabler M beschrieben. Seien die Eigenwerte m die möglichen Ergebnisse der Messung und $P_m$ die zugehörigen Projektoren, kann M geschrieben werden als:
+\begin{equation}
+    M = \sum_m mP_m
+\end{equation}
+Hierbei sind $P_m$ die orthogonalen Projektoren auf den Eigenraum von M. Jeder Projektor projiziert auf einen Unterraum des Hilbertraums, der zu einem bestimmten Eigenwert m gehört. % Check & umschreiben
+Es gelten daraus folgende Grundregeln: \\ \\
+\begin{enumerate}
+\item Die Gesamtwahrscheinlichkeit aller Messungen (Projektoren) ergeben in Summe 1, d.h. sie decken den gesamten Zustandsraum ab. Jeder mögliche Zustand wird durch eine Kombination der Projektoren beschrieben und bildet in Summe den Einheitsoperator. \\
+\item Die Wahrscheinlichkeit einer Messung m ergibt sich aus folgender Formel:
+\begin{equation}
+    p(m) = \langle \psi \mid P_m \mid \psi \rangle
+\end{equation}
+Hierbei ist p(m) die Wahrscheinlichkeit, dass die Messung des Systems im Zustand $\ket\psi$ das Ergebnis m ergibt. Das ist mathematisch das s.g. Bornsche Wahrscheinlichkeitsgesetz.
+Es ist das Quadrat der Länge der Projektion von $\ket\psi$ auf den m-Unterraum. Es berechnet also die Länge der Projektion von $\ket\psi$ auf den Eigenraum von m. \\
+\item Nach einer Messung mit Ergebnis m kollabiert der Zustand $\ket\psi$ in einen Zustand, der der Messung entspricht. Dies wird auch Projektionspostulat genannt. Die Projektion dieses Zustandes muss wieder normalisiert werden, um wieder einen Zustand mit der Norm 1 zu erhalten.
+Da wiederholte Messungen jedoch im Bereich des Quantumcomputing geringe Relevanz hat, wird auf die wiederholte Messung nicht weiter eingegangen. \\ 
+\end{enumerate}
+
+In kurz greift man bei der Messung eines Zustandes $\ket\psi$ also nur den Teil aus dem Vektor heraus, den man misst. Um hieraus wieder einen gültigen Zsutand zu erhalten, muss dieser Vektor mit seiner eigenen Länge normiert werden. Da dies jedoch nur zur weiteren Arbeit mit demselben Quantensystem relevant ist, wird die Normierung nicht weiter berücksichtigt und es wird stattdessen auf wiederholte Messungen verwiesen.
+\cite{kasirajan_fundamentals_2021} 
+%Fundamentals of Quantum Computing: Theory and Practice – Kasirajan (Kapitel zu Projective Measurements)
+
+Um ein Beispiel für den Messprozess und den Zerfall auf den Eigenzustand bei der projektiven Messung zu machen, soll ein Photon auf einen Polarizing Beam Splitter (PBS) treffen. Dieser lässt horizontal polarisiertes Licht, aber reflektiert vertikal polarisiertes Licht.
+Betrachtet man einen Lichtstrahl aus der klassischen Physik, würde man erwarten, dass dieser sich teilt - ein Teil des Lichtes würde reflektiert werden, ein anderer Teil würde passieren. Ein Photon als kleinster Teil des Lichts kann jedoch nicht weiter geteilt werden.
+Dementsprechend ist das Ergebnis zufällig: das Photon wird mit einer gewissen Wahrscheinlichkeit passieren oder reflektiert werden. Das Photon entscheidet sich bei der Messung, ob es horizontal oder vertikal polarisiert sein wird und springt bei der Messung in den gewählten Zustand.
+Man könnte auch sagen durch die Messung wird der Superpositionszustand auf einen der möglichen Eigenzustände reduziert. Hierbei zerfällt der Ursprungszustand jedoch, sodass dies bei folgenden PBS nicht erneut vonstatten gehen könnte - das Photon wird den hierbei gewählten Zustand beibehalten.
+Es gibt ab diesem Punkt keine weiteren zufälligen Zustandsänderungen. 
+\cite{lvovsky_quantum_2018}
+% Quantum Physics – Lvovsky – 2018 (Kapitel 1.4.1 The Measurement Postulate)
 
 \subsection{Nichtdeterminismus}
-Beobachtung nur durch Betrachten des Outputs probabilistisch nach Durchlaufen eines Quantum Circuits möglich
-- keine direkte Auslese des Zustandes (s. Kollaps  der Wellenfunktion)
-- statistische Verteilung als Aussage über den Zustand bei wiederholtem Durchgang desselben Prozesses / Algorithmus
 
-\subsection{Messprozess (Kollaps der Wellenfunktion, Einfluss auf das Quantensystem, Messung als irreversible Operation) }
-Kollaps der Wellenfunktion: Zustand springt auf Basiszustand bei Messung
-- Wahrscheinlichkeitsregel: Bornsche Regel
-- Kontroversität durch deterministisches Weltbild (in Quantenmechanik ist der Zufall grundlegend) 
-- Superposition zerstört und klassischer Zustand angenommen 
-- Quanten-Folgezustand 
-- No-Cloning Theorem (Quanteninformation kann nicht erneut gemessen werden, da Messung System zerstört) 
+Das oben beschrieben Phänomen der zufälligen Messung ist auf den Nichtdeterminismus der Quantenmessung zurückzuführen. Das bedeutet, dass das Ergebnis der Messung zufällig ist. Man erhält den Wert $\ket v_i$ mit einer gewissen Wahrscheinlichkeit.
+Je besser der Zustand $\ket \psi$ zu einem Messzustand $\ket v_i$ passt, desto wahrscheinlicher ist das Ergebnis $v_i$. Mit Hilfe des Observable Operators können Werte der klassischen Statistik berechnet werden, so der Erwartungswert, die Varianz bzw. die Unschärfe der Messung (Standardabweichung). 
+Klassisch statistische Kennzahlen lassen sich mit klassischen Operationen berechnen. Entsprechend ist die statistische Verteilung der Messergebnisse leicht zu berechnen. 
+\\ \\
+Um hierbei auf das Beispiel der Photonen zurückzukommen, führen wir ein, dass die horizontale Polarisierung des Photons dem Wert +1 zugeordnet wird, die vertikale Polarisierung dem Wert -1.
+Ein diagonal polarisiertes Photon (45°) hat entsprechend eine 50\% Chance den PBS zu passieren (+1) oder reflektiert zu werden (-1). Bei der wiederholten Messung dieses Prozesses, ist der Mittelwert 0, da sich beide Superpositionen ausgleichen.
+Die Varianz entspricht einem Wert von 1, da die Messung immer um +1 oder -1 vom Mittelwert (0) abweicht.
+In der klassischen Physik sind solche Messungen deterministisch vorhersehbar. Für einzelne Photonen gibt es den Zufall, für eine Vielzahl von Photonen als Licht gibt es jedoch feste Erwartungen und Regeln.
+Entsprechend ist es auch im Quantensystem. Mit einer Vielzahl an Photonen wird die relative Unsicherheit sehr klein und das Verhalten erscheint klassisch und stabil, obwohl die Photonen im Kleinen in Form der Einzelphotonen vom Zufall beherrscht sind.
+Die Quantenfluktuationen verschwindend relativ gesehen also im großen Maßstab durch die wiederholte Messung und eine klare Wahrscheinlichkeitsverteilung.
+\cite{kasirajan_fundamentals_2021}
+% Quantum Physics – Lyvovsky – 2018 (Kapitel 1.9.2 Observable Operators)
+\\ \\
+Erwähnenswert im Rahmen der Messung ist weiterhin das 'Heisenberg Uncertainty Principle'. In der klassischen Physik ist eine Unsicherheit im Rahmen der Messung Folge eines ungenauen Messapparates, die durch eine Verbesserung des Apparates selbst verringert werden kann.
+Dies gilt jedoch im Kontext der Quantenmechanik nicht. Hierbei kann ein Apparat präzise auf die Messung eines Observablen abgestimmt sein, jedoch bei der Messung einer anderen Observablen durchweg schlecht abschneiden. \\
+Möchte man zwei Größen gleichzeitig messen, beispielsweise Ort und Energie oder auch verschiedene Spins, so kann das möglich sein. Hierzu müssen jedoch zwei Observablen kommutieren, d.h. mathematisch verträglich sein, um gleichzeitig messbar sein zu können. \\
+Ist dies der Fall, gibt es eine bestimmte Basis von Zuständen (Eigenbasis), in der beide Observablen gleichzeitig genau bestimmt werden können. Das System in diesem Zustand verändert seinen Zustand nicht, wenn beide Größen nacheinander gemessen werden, d.h. die Observablen sind kompatibel. \\
+Wenn die Observablen jedoch nicht kommutieren, so gibt es keinen Zustand, bei dem man beide Größen gleichzeitig exakt wissen kann. Misst man hierbei A, wird das Ergebnis von B zufällig sein, da die Messung von B durch die Information über A gestört ist.
+Das heißt bestimmte Paare von Größen können nicht gleichzeitig beliebig genau gemessen werden. 
+Zwei Größen, die nicht kommutieren, sind z.B. Ort und Impuls eines Teilchens. Je genauer man den Ort kennt, desto lässt sich der Impuls messen und umgekehrt. 
+\cite{kasirajan_fundamentals_2021}
+% Quantum Physics – Lyvovsky – 2018 (Kapitel 1.9.3 Uncertainty Principle)
 
+\subsection{Messprozess}
 
-(((Technische Realisierung von Messungen, z.B. Fluoreszenz, Tunnelstrom, Photodetektion – eventuell aufgreifen in physikalische Realisierung (s. Supraleiter, Ionenfallen, etc.))) 
+Ein Prozess, der im Rahmen der Messung bereits mehrfach erwähnt, jedoch bisweilen noch nicht konkret benannt wurde, ist der Kollaps der Wellenfunktion. Dieser Prozess ist zentral für die Messung. 
+Unter dem Kollaps der Wellenfunktion versteht man den Vorgang, bei dem der Zustand eines Quantensystems auf einen Basiszustand 'springt', das heißt der Zustand des Systems kollabiert auf einen der möglichen Messzustände. Die Wahrscheinlichkeit für den Wert, den man beim Kollaps erhält, ist durch die bereits genannte Bornsche Regel beschrieben.
+Dies zeigt die Annahme der Quantenmechanik des Nichtdeterminismus, dass der Zufall grundlegend ist. Selbst mit perfekten Geräten kann der Zustand entsprechend nicht exakt vorhergesagt werden. 
+\cite{lvovsky_quantum_2018}
+% Quantum Physics – Lyvovsky – 2018 (Kapitel 1.4.1 The Measurement Postulate)
+\\
 
+Ein Quantenzustand ist also nur in abgeschottetem Zustand stabil. Um aus Perspektive der Außenwelt etwas über den Zustand des Systems zu erfahren, ist jedoch eine Messung nötig, wobei der genaue Zustand nicht ermittelt werden kann.
+Die Superposition selbst wird durch die Messung zerstört und ein klassischer Zustand wird angenommen und beobachtet. Diese Messung ist außerdem für verschiedene Basen möglich und es kann entsprechend nur der Zustand bzgl. einer Basis gemessen werden, sofern die folgende Messung durch den Zerfall des Systems nicht weiter möglich ist.
+Da die Messung nicht rückgängig gemacht werden kann, kann durch den Kollaps der Wellenfunktion dieselbe Messung nicht wiederholt werden.
+\cite{homeister_quantum_2022}
+% Quantum Computing verstehen: Grundlagen – Anwendungen – Perspektiven – Homeister – 2022 (Kapitel 2.8 Das Messen von Quantenregistern)
+\\
+
+Aus diesem Phänomen ergibt sich auch das No-Cloning-Theorem. Da das System selbst bei der Messung zerstört wird, kann das Qubit nicht erneut gemessen werden. Die Superposition selbst ist für dasselbe Qubit nicht mehr vorhanden. Die Messung kann entsprechend nur für ein identisches Qubit wiederholt werden.
+Folglich dieser Logik kann ein Qubit in einem unbekannten Zustand nicht kopiert werden. Dies hat wichtige Konsequenzen für die praktische Anwendung, da simple Kopien, wie sie auf klassischen Computern möglich sind, durch die zuvor notwendige Messung der bestehenden Zustände nicht ohne Weiteres auf quantenbasierten Systemen möglichen sind.
+\cite{hughes_quantum_2021}
+% Quantum Computing for the Quantum Curious – Hughes et al. – 2021 – s. 36
 
 \section{Mathematische Beschreibung von Qubits}
 
@@ -119,11 +195,60 @@ Kollaps der Wellenfunktion: Zustand springt auf Basiszustand bei Messung
     \item Bedeutung der Normierung (Wahrscheinlichkeitsinterpretation und komplexe Koeffizienten).
 \end{itemize}
 
+\section*{Beschreibung des Hilbertraums}
+
+Die mathematische Grundlage zur Beschreibung von Qubits bildet der sogenannte \textit{Hilbertraum}. In der Quanteninformationstheorie beschreibt dieser einen abstrakten, komplexen Vektorraum, der mit einem Skalarprodukt ausgestattet ist. Er dient als Trägerraum für alle möglichen Zustände eines quantenmechanischen Systems. In diesem Kapitel beschränken wir uns auf den einfachsten Fall: den zweidimensionalen Hilbertraum $\mathcal{H}_2$, der zur Darstellung eines einzelnen Qubits verwendet wird.
+
+Ein Hilbertraum ist per Definition ein vollständiger Vektorraum über dem Körper der komplexen Zahlen $\mathbb{C}$ mit einem inneren Produkt. Dieses \textit{Skalarprodukt} $\langle \psi | \phi \rangle$ ordnet jedem Paar von Vektoren eine komplexe Zahl zu und erfüllt dabei folgende Eigenschaften:
+
+\begin{itemize}
+    \item Linearität im zweiten Argument: $\langle \psi | a \phi_1 + b \phi_2 \rangle = a \langle \psi | \phi_1 \rangle + b \langle \psi | \phi_2 \rangle$
+    \item Konjugierte Symmetrie: $\langle \psi | \phi \rangle = \overline{\langle \phi | \psi \rangle}$
+    \item Positivität: $\langle \psi | \psi \rangle \geq 0$ mit Gleichheit nur für $|\psi\rangle = 0$
+\end{itemize}
+
+Diese Struktur erlaubt es, geometrische Konzepte wie Länge (Norm), Winkel und Orthogonalität zwischen Zuständen sinnvoll zu definieren – essentielle Eigenschaften, um Informationsverarbeitung im quantenmechanischen Sinne zu modellieren \cite{nielsen2002quantum}.
+
+\subsection*{Basiszustände und allgemeine Qubit-Zustände}
+Der Hilbertraum eines Qubits ist zweidimensional. Eine mögliche Orthonormalbasis dieses Raumes bilden die Zustände
+
+\begin{equation}
+|0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad |1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}.
+\end{equation}
+
+Diese Vektoren repräsentieren zwei klar unterscheidbare, klassische Zustände. Jedoch unterscheidet sich die Quanteninformation fundamental von der klassischen Information durch die Möglichkeit, dass ein Qubit sich in einer \textit{Superposition} dieser Basiszustände befinden kann. Allgemein kann jeder Zustand $|\psi\rangle$ eines Qubits als Linearkombination dieser Basisvektoren geschrieben werden:
+
+\begin{equation}
+|\psi\rangle = \alpha |0\rangle + \beta |1\rangle,
+\end{equation}
+
+wobei die Koeffizienten $\alpha, \beta \in \mathbb{C}$ sind. Diese Darstellung hebt eine der zentralen Eigenschaften der Quantenmechanik hervor: Die komplexe Linearkombination erlaubt eine weitaus reichere Struktur des Zustandsraumes im Vergleich zur klassischen Informationstheorie.
+
+\vspace{0.5em}
+\subsection*{Normierung und Wahrscheinlichkeitsinterpretation}
+
+Damit der Zustand $|\psi\rangle$ physikalisch sinnvoll ist, muss er normiert sein, das heißt:
+
+\begin{equation}
+\langle \psi | \psi \rangle = |\alpha|^2 + |\beta|^2 = 1.
+\end{equation}
+
+Diese Normierungsbedingung hat eine direkte probabilistische Interpretation: Bei einer Messung in der Basis $\{ |0\rangle, |1\rangle \}$ ist $|\alpha|^2$ die Wahrscheinlichkeit, das Qubit im Zustand $|0\rangle$ zu finden, und $|\beta|^2$ entsprechend die Wahrscheinlichkeit für $|1\rangle$. Diese fundamentale Verknüpfung zwischen linearen Algebraelementen und Messwahrscheinlichkeiten bildet die Grundlage der Quanteninformationstheorie.
+
+Es ist wichtig zu betonen, dass die physikalische Interpretation des Zustands nicht von einem konkreten Vektor abhängt, sondern vom durch ihn erzeugten Strahl im Hilbertraum. Das bedeutet, dass Zustände, die sich lediglich durch einen globalen Phasenfaktor unterscheiden, als physikalisch äquivalent gelten:
+
+\begin{equation}
+|\psi\rangle \sim e^{i\theta}|\psi\rangle, \quad \theta \in \mathbb{R}.
+\end{equation}
+
+
+
+
 \subsection{Bra-Ket-Notation}
 \begin{itemize}
     \item Erklärung von \textit{Ket-Vektoren} $\ket{\psi}$ und \textit{Bra-Vektoren} $\bra{\phi}$.
     \item Inneres Produkt: $\braket{\phi | \psi}$.
-    \item Operatoren als Transformationen im Hilbertraum, z. B. $U \ket{\psi}$.
+    \item Operatoren als Transformationen im Hilbertraum, z.B. $U \ket{\psi}$.
     \item Nutzen der Bra-Ket-Notation für spätere Abschnitte wie Quantenalgorithmen, Gates und Messungen.
 \end{itemize}
 
@@ -155,13 +280,130 @@ Kollaps der Wellenfunktion: Zustand springt auf Basiszustand bei Messung
 \end{itemize}
 
 
+In der Quantenphysik existieren zahlreiche physikalische Systeme, deren Zustände sich auf genau zwei unterscheidbare Alternativen beschränken. Solche Systeme, sogenannte \textit{Zwei-Niveau-Systeme}, lassen sich mathematisch exakt als Qubits modellieren, da sie einen zweidimensionalen Zustandsraum besitzen, der alle Anforderungen der Quanteninformation erfüllt \cite{nielsen2002quantum, sakurai1995modern}.
+
+Ein charakteristisches Merkmal dieser Systeme ist, dass jeder zulässige Zustand durch eine Linearkombination zweier orthogonaler Basiszustände beschrieben werden kann. Damit existiert eine bijektive mathematische Abbildung zwischen diesen physikalischen Zuständen und den allgemeinen Zuständen eines Qubits. Die nachfolgenden Beispiele verdeutlichen die physikalische Relevanz dieser Modellierung.
+
+\section*{Spin-$\frac{1}{2}$-Systeme}
+
+Ein prototypisches Beispiel ist der intrinsische Drehimpuls (Spin) eines Elektrons. Dieser besitzt nur zwei mögliche Eigenzustände bezüglich einer Raumrichtung, z.\,B. der $z$-Achse: $|\uparrow\rangle$ (Spin-up) und $|\downarrow\rangle$ (Spin-down). Diese Zustände bilden eine orthonormale Basis im Zustandsraum und ermöglichen eine vollständige Beschreibung beliebiger Superpositionen:
+
+\[
+|\psi\rangle = \alpha |\uparrow\rangle + \beta |\downarrow\rangle, \quad \alpha, \beta \in \mathbb{C}, \quad |\alpha|^2 + |\beta|^2 = 1.
+\]
+
+Der Spin verhält sich somit formal wie ein Qubit und ist daher ein zentrales physikalisches Modell in der Theorie der Quanteninformation.
+
+\section*{Photonenpolarisation}
+
+Ein weiteres physikalisch realisierbares Zwei-Niveau-System ergibt sich durch die Polarisation einzelner Photonen. Hier dienen typischerweise zwei orthogonale Polarisationszustände – etwa horizontale ($|H\rangle$) und vertikale ($|V\rangle$) Polarisation – als Basiszustände. Auch in diesem Fall kann jeder physikalisch erlaubte Polarisationszustand durch eine Superposition dieser beiden Basen dargestellt werden:
+
+\[
+|\psi\rangle = \alpha |H\rangle + \beta |V\rangle, \quad \alpha, \beta \in \mathbb{C}, \quad |\alpha|^2 + |\beta|^2 = 1.
+\]
+
+Beide Beispiele zeigen, dass Zwei-Niveau-Systeme in der Physik exakt den mathematischen Anforderungen eines Qubits genügen: Sie besitzen zwei orthonormale Zustände, ermöglichen kohärente Superpositionen und lassen sich über komplexe Amplituden beschreiben. Damit bilden sie die physikalische Grundlage für die abstrakte Theorie der Quanteninformation.
+
+
+
 \section{Physikalische Realisierung von Qubits }
 \subsection{Anforderungen an physikalische Systeme }
 \subsubsection{Allgemeine Voraussetzungen}
-(Kontrollierbarkeit, Isolation, Skalierbarkeit, Messbarkeit) 
+
+\begin{enumerate}
+    \item Robustly represent quantum information
+    \item Perform a universal family of unitary transformations
+    \item Prepare a fiducial initial state
+    \item Measure the output result
+\end{enumerate}
+
+    \item \textbf{Robuste Darstellung von Quanteninformation:}
+
+ Das System muss in der Lage sein, Quanteninformation zuverlässig in physikalischen Zuständen (Qubits) zu speichern, sodass sie ihre charakteristischen Quanteneigenschaften wie Superposition und Verschränkung ausreichend lange beibehalten. 
+
+Die Grundlage der Quanteninformationsverarbeitung ist die Transformation von Quantenzuständen. Die einfachsten Bausteine hierfür sind zwei-Niveau-Systeme, die als Qubits fungieren. Doch auch komplexere Systeme wie beispielsweise ein Teilchen mit Spin-3/2, das vier unterscheidbare Zustände besitzt (|m = +3/2〉, |m =
++1/2〉, |m = −1/2〉, |m = −3/2〉),  können zur Darstellung von mehreren Qubits verwendet werden, indem man zwei der vier möglichen Zustände jeweils einem Qubit zuordnet.
+
+Für praktische Quantenberechnungen ist es entscheidend, dass das System nur eine \textbf{endliche Menge zugänglicher Zustände} besitzt. Systeme mit einem kontinuierlichen Zustandsraum, wie etwa die Position eines Teilchens auf einer Linie, sind ungeeignet. Auch wenn solche Systeme in der Theorie unendlich viele Zustände unterscheiden könnten (und damit unbegrenzt Information speichern würden), ist dies in der Praxis unrealistisch. Denn reale physikalische Systeme sind immer störanfällig: Rauschen begrenzt die Zahl der tatsächlich unterscheidbaren Zustände – und damit auch die Informationskapazität – auf ein endliches Maß.
+
+Ein weiterer wichtiger Aspekt ist die \textbf{Symmetrie} des Systems. Symmetrisch beschränkte Zustandsräume – wie der zweidimensionale Raum eines Spin-1/2-Teilchens mit den Zuständen |↑⟩ und |↓⟩ – helfen, die Stabilität der Quanteninformation zu sichern. Solche Systeme sind weniger anfällig für Störungen von außen und daher besser gegen \textbf{Dekohärenz} geschützt. Die Wahl eines symmetrischen, wohldefinierten Zustandsraums kann somit entscheidend zur Fehlerresistenz eines Qubits beitragen.
+
+Demgegenüber können \textbf{ungeeignete physikalische Repräsentationen} schnell zur Dekohärenz führen. Ein Beispiel ist ein Teilchen in einem flachen Potentialtopf, das nur gerade tief genug ist, um zwei gebundene Zustände zu enthalten. Solch ein System könnte zwar theoretisch als Qubit verwendet werden – es besteht jedoch die Gefahr, dass das Teilchen durch äußere Einflüsse in den ungebundenen Bereich des Kontinuums übergeht. Dadurch würde der Zustand aus dem definierten Zustandsraum „herausspringen“, was zur Zerstörung der Superposition und damit zu Informationsverlust führt.
+
+Zur quantitativen Bewertung der Qualität eines Qubits betrachtet man typischerweise die \textbf{Lebensdauer seiner Zustände}. Die sogenannte \textbf{T₂-Zeit} gibt an, wie lange eine Superposition (z. B. |0⟩ + |1⟩) stabil bleibt – sie ist ein Maß für die Kohärenzzeit. Im Vergleich dazu beschreibt die \textbf{T₁-Zeit} die Lebensdauer des angeregten klassischen Zustands |1⟩, und ist in vielen Systemen deutlich länger als T₂. Beide Größen sind zentrale Kenngrößen für die Praxistauglichkeit einer Qubit-Implementierung.
+
+ 
+
+
+\subsubsection{ \textbf{Box 7.1 – Qubits im Potentialtopf}}
+
+\begin{itemize}
+    \item Ein eindimensionales Teilchen im „square well“ hat diskrete Energieniveaus.
+    \item Wenn nur die zwei niedrigsten Zustände genutzt werden, kann daraus ein Qubit gebildet werden: |ψ⟩ = a|ψ₁⟩ + b|ψ₂⟩.
+    \item Zeitentwicklung erfolgt mit effektiver Hamilton-Funktion.
+    \item Durch gezielte Störung des Potentials (δV(x)) kann man \textbf{Quantenoperationen} (z.B. Drehung um x-Achse) ausführen.
+    \item In realen Systemen treten höhere Zustände und Kopplungseffekte auf → \textbf{Dekohärenz} entsteht.
+\end{itemize}
+ 
+ 
+ 
+    \item \textbf{Ausführung einer universellen Familie unitärer Transformationen:}
+
+ Es muss möglich sein, eine Vielzahl kontrollierter Quantenoperationen durchzuführen, die jede beliebige quantenlogische Berechnung ermöglichen (Universalität).
+ 
+    \item \textbf{Vorbereitung eines definierten Anfangszustands:}
+ Zu Beginn der Berechnung muss das System in einen gut bekannten Ausgangszustand gebracht werden können – typischerweise alle Qubits im Zustand |0⟩.
+
+    \item \textbf{Messung des Ausgangszustands:}
+
+ Nach der Berechnung muss der finale Zustand des Systems zuverlässig gemessen werden können, um ein klassisches Ergebnis zu erhalten. 
+
+\textbf{Herausforderung: }
+Diese Voraussetzungen können häufig nur teilweise erfüllt werden, da sie gegensätzlich sind: ein Quantencomputer muss gut isoliert sein, um die Quanteneigenschaften beizubehalten; aber gleichzeitig müssen die Qubits so zugänglich sein, dass man sie für eine Computation manipulieren kann und die Ergebnisse messen kann. 
+-> Die Balance muss gefunden werden
+-> Frage ist nicht, wie man einen Quantencomputer baut, sondern eher, wie gut man überhaupt einen bauen kann
+
+Beispiel: Münze beim Münzwurf repräsentiert ein gutes Bit, weil sie zwei States hat (Kopf und Zahl) aber ein schlechtes Qubit weil sie nicht lange im Status der Superposition bleibt. Ein einzelner Nuklear-Spin hingegen wäre ein sehr gutes Qubit weil die Superposition lange beibehalten werden kann; jedoch ist die Messbarkeit sehr schwierig, was es wiederum zu einem schlechten Quantencomputer macht
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{Übersicht physikalische realisierung.png}
+    \caption{Enter Caption}
+    \label{fig:enter-label}
+\end{figure}
+\cite{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
+
+Quantenrauschen (auch \textit{Dekohärenz} genannt) ist entscheidend für die Bewertung eines Quantencomputers.
+= Prozesse, die die gewünschte Entwicklung des Systems stören oder verfälschen.
+\textbf{Dauer sinnvoller Quantenberechnungen:}
+ Bestimmt durch das Verhältnis von
+   • \textbf{τQ}: Kohärenzzeit (wie lange das System quantenmechanisch bleibt)
+
+   • \textbf{τop}: Zeit für eine elementare unitäre Operation (mind. 2 Qubits)
+
+ – Verhältnis: \textbf{λ = τop / τQ}
+    \item \textbf{Beide Zeiten hängen} meist von der Kopplung des Systems zur Umwelt ab.
+    \item \textbf{λ kann stark variieren} – je nach physikalischem System.
+    \item \textbf{Weitere Fehlerquellen:}
+
+ – Z. B. unerwünschte Übergänge in andere Zustände bei Qubit-Manipulation (z. B. durch Laser).
+
+ – Diese Prozesse \textbf{verlassen den Qubit-Zustandsraum} → gelten ebenfalls als Rauschen.
+--> Alles, was zu Informationsverlust führt, ist ein \textit{Rauschprozess}. (S. 278f)
+
+
 \subsubsection{DiVincenzo Kriterien}
+
+Die DiVincenzo-Kriterien, benannt nach dem Physiker David Divincenzo, ist eine Liste an Merkmalen, die jeder Quantencomputer erfüllen sollte. 
+
 \textbf{1. Präzise definierter und skalierbarer Zustandsraum (Hilbertraum): Qubits als klar identifizierbare, kombinierbare Subsysteme} 
 
+A large number (millions) of qubits is needed for most quantum algorithms. The
+biggest challenge for quantum computing is going from one qubit to a large-scale
+system of many qubits. The challenge lies not just in fabricating more qubits, but also
+in connecting each qubit to the external world for gate control without introducing
+dissipation or decoherence.(\cite{lapierre_introduction_2021})
+%S. 241
 - Freiheitsgrade zur Speicherung/Verarbeitung von Infos müssen als Dimensionen im Hilbertraum eines Quantensystems realisiert sein 
 
 - Isolation des Systems (wenig Wechselwirkung mit Umgebung) 
@@ -172,9 +414,9 @@ Kollaps der Wellenfunktion: Zustand springt auf Basiszustand bei Messung
 
 \textbf{{2. Möglichkeit eines Startzustands} }
 
-Zb “alle Spins down” -> erreichbar durch Kühlung des Quantensystems auf den Grundzustand; Aufwand abhängig vom System zB bei Atomfallen: Kühlung auf Nano-Kelvin 
-
--> muss kontrolliert reproduzierbar sein 
+typischerweise |0〉|0〉 . . . |0〉 \cite{lapierre_introduction_2021} -> erreichbar durch Kühlung des Quantensystems auf den Grundzustand; Aufwand abhängig vom System zB bei Atomfallen: Kühlung auf Nano-Kelvin 
+in einer sogenannten "relaxation time" T 1 . weitere methoden zb optical pumping -> hier nicht weiter betrachtet. 
+-> Startzustand muss kontrolliert reproduzierbar sein 
 
 \textbf{3. Isolation und Erhaltung der Kohärenz} 
 

@@ -9,14 +9,54 @@
 \abstract{some abstract}
 
 \section{Die verschiedenen Quanten Hardwareplattformen}
-\subsection{Einleitung und Unterschiede}
+Die Realisierung von Quantencomputern basiert wie beschrieben auf verschiedenen physikalischen Plattformen, die sich durch ihre spezifischen Qubit-Implementierungen, Steuerungsmechanismen und Anwendungsbereiche unterscheiden. Es wird zwischen zwei verschiedenen übergeordneten Hardwareplattformen unterschieden:
+
+
+\textbf{    - Festkörperplattformen, welche meistens aus Supraleiter oder Diamant basierte NV-Zentren bestehen } 
+
+\textbf{    - Atomare Plattformen, welche auf Ionen oder Photonen basieren} 
+
+Diese Unterschiede in Plattformen wirken sich erheblich auf die Skalierbarkeit, die Kohärenzzeiten und die potenziellen Anwendungsfelder bei Quantencomputer aus. Für beide Hauptplattformen existieren weitere Plattformen, wie z. B. Neutralatom-fallen oder Quanten-Punkte, sind jedoch aktuell nicht so forschungsrelevant wie die vorgestellten Plattformen.
+
 \subsection{Unterschied atomare und Festkörper Plattformen}
 
+Wie im vorherigen Kapitel vorgestellt, existieren in der Benutzung der Hauptplattformen Unterschiede.
+- Genaue Vorstellung Atomare Plattformen
+- Genaue Vorstellung Festkörper Plattformen
+
+Die folgende Tabelle gibt einen kompakten Überblick über die wichtigsten Eigenschaften beider Plattformarten:
+
+\begin{tabular}{ |p{4cm}|p{5cm}|p{5cm}|  }
+ \hline
+ \textbf{Aspekt}& \textbf{Atomare Plattformen} & \textbf{Festkörperplattformen}\\
+ \hline
+ \textbf{Beispiele}   & Ionenfallen-Qubits, neutrale Atome    &Supraleitende Qubits, Halbleiter-Spin-Qubits, NV-Zentren\\
+ \textbf{Qubit-Implementierung}&   Nutzung einzelner Atome oder Ionen als Qubits	  & Nutzung elektronischer oder magnetischer Zustände
+\\
+ \textbf{Kohärenzzeiten} &Sehr lang (Sekunden bis Minuten)	 & Kürzer (Mikrosekunden bis Millisekunden)
+\\
+ \textbf{Steuerung}    &Laser- und Mikrowellensteuerung	 & Mikrowellen- oder elektrischer Steuerung
+\\
+ \textbf{Herstellung}&   Aufwändige atomare Präparation und Kühlung	  & Integration in Halbleiterfertigung
+\\
+ \textbf{Skalierbarkeit}& Schwierig durch komplexe Fallen- oder Lasersysteme	  & Gut integrierbar, skalierbar
+   \\
+ \textbf{Anwendungen}& Präzise Quantenlogik, Metrologie, Quantensimulationen	  & Algorithmische Anwendungen, Quantenchemie, Optimierung
+\\
+ \hline
+\end{tabular}
+
 \section{Supraleitende Qubits}
+Supraleitende Quantencomputer nutzen die Prinzipien der Quantenmechanik und die einzigartigen Eigenschaften von Supraleitern, um Quantenberechnungen durchzuführen. Diese Systeme sind darauf ausgelegt, komplexe Aufgaben in Bereichen wie Quantenchemie, Simulation, Kryptographie und Optimierung zu bewältigen, was ihnen potenzielle Vorteile gegenüber klassischen Systemen verschafft. Die Realisierung dieser Rechenvorteile hängt jedoch von der effizienten und skalierbaren Ausführung von Quantenprogrammen auf robuster Hardware ab, die für Quantenoperationen konzipiert ist.
 \subsection{physikalisches Prinzip supraleitende qubits}
-\subsection{Gatterimplementierung}
+\subsection{Implementierung von Quantenlogik}
+\subsubsection{Grundlegende Prinzipien und Typen}
+Die fundamentalen Einheiten der Quanteninformation in supraleitenden Systemen sind supraleitende Qubits, die als künstliche Atome mit quantisierten Energieniveaus fungieren. Diese Qubits werden typischerweise aus supraleitenden Schaltkreisen gefertigt, die Materialien wie Aluminium oder Niob verwenden und bei extrem niedrigen Temperaturen, nahe dem absoluten Nullpunkt (ca. 15 Millikelvin), betrieben werden(The ultimate Guide to Superconducting Quantum Computers, 2025). Die Supraleitung, die bei diesen Temperaturen erreicht wird, gewährleistet einen widerstandslosen Stromfluss, was für die Aufrechterhaltung der Kohärenz der Qubits und ihrer Quantenzustände unerlässlich ist.
+\\\\
+Ein supraleitendes Qubit besteht häufig aus einem Induktor und einem Kondensator (LC-Oszillator), die durch einen Josephson-Kontakt verbunden sind. Der Josephson-Kontakt ist ein entscheidendes nichtlineares Element, das eine Anharmonizität in das Energiespektrum des Schaltkreises einführt. Diese Anharmonizität ist von größter Bedeutung, da sie sicherstellt, dass nur die beiden niedrigsten Energiezustände - der Grundzustand 0 and der erste angeregte Zustand 1 - als Qubit-Zustände dienen. Ohne diese Nichtlinearität würde der Quanten-LC-Schaltkreis als einfacher harmonischer Oszillator mit äquidistanten Energieniveaus fungieren, wodurch eine isolierte Zwei-Niveau-System-Nutzung als Qubit unmöglich wäre. Die präzise technische Gestaltung des Josephson-Kontakts und die Auswahl des supraleitenden Materials sind daher nicht nur Fertigungsdetails, sondern grundlegend für die Schaffung eines stabilen und adressierbaren Zwei-Niveau-Systems. Sie bestimmen die grundlegenden Eigenschaften des Qubits wie Anharmonizität, Kohärenzzeit und Rauschresistenz, die für zuverlässige Quantenoperationen unerlässlich sind
 \subsection{Beispiele supraleitende Qubits}
 \subsection{Herausforderungen supraleitende Qubits}
+\subsection{Ausblick und Weiterentwicklung}
 
 \section{Quantencomputer aus Ionenfallen-Qubits}
 \subsection{Physikalisches Prinzip}
@@ -105,6 +145,8 @@
 \subsection{Erste Netzwerke: Konzepte des Quanteninternets (Architekturmodell), Quantenrepeater, Quantenrouter, Verschränkungsverteilung}
 
 \section{Praxisbeispiel(e): Im Inneren eines IBM-Quantencomputers}
+Die Entwicklung kommerziell nutzbarer Quantencomputer stellt eine der größten wissenschaftlichen und ingenieurtechnischen Herausforderungen unserer Zeit dar. Während die physikalischen Grundlagen der Quantenmechanik, wie Qubit-Logik, Superposition und Verschränkung in den vorangegangenen Kapiteln dieses Buches bereits detailliert erläutert wurden, fokussiert sich dieses Kapitel auf die konkrete Hardwarearchitektur und Systemintegration eines der ersten kommerziellen Quantencomputersysteme: das IBM Q System One. Dieses System wurde erstmals 2019 vorgestellt und markiert einen wichtigen Meilenstein im Quantencomputing. IBM Q System One zielt darauf ab, Quantencomputing aus dem reinen Forschungslabor heraus und in eine zuverlässigere, wartungsärmere und industriell einsetzbare Form zu überführen (Gambetta et al., 2019; IBM News Room, 2019).
+
 
 \subsection{Aufbaus eines kommerziellen Quantencomputers - IBM Q System One}
 Beschreibung des Aufbaus eines kommerziellen Quantencomputers - IBM Q System One
@@ -117,5 +159,34 @@ Hier wird mithilfe eines Bildes gezeigt, wie ein realer Kryostat aufgebaut ist, 
 \subsection{Erläuterung eines einzelnen supraleitenden Qubits (Transmon)}
 Erläuterung eines einzelnen supraleitenden Qubits (Transmon) und wie ein Zwei-Qubit-Gatter durch kapazitive Kopplung realisiert wird
 Ein Transmon-Qubit ist ein spezieller supraleitender Schaltkreis, der zur Stabilisierung gegen Ladungsrauschen designt wurde. In diesem Teil wird erklärt, wie durch gezielte Mikrowellenpulse Zustände manipuliert und gelesen werden können. Zusätzlich wird gezeigt, wie zwei Transmon-Qubits über kapazitive Kopplung ein kontrolliertes Quantenlogikgatter bilden – ein zentrales Element zur Realisierung von Quantenalgorithmen.
+
+\subsection{IBM Quantum System Two – Auf dem Weg zur Quanten-zentrierten Supercomputation}
+Die Einführung des IBM Quantum System Two, dessen Details erstmals im Dezember 2023 umfassend vorgestellt wurden (Gambetta, 2023; IBM News Room, 2023), signalisiert einen signifikanten Fortschritt durch IBM in der Entwicklung kommerziell verfügbarer Quantencomputersysteme. Dieses System stellt nicht lediglich eine Weiterentwicklung des IBM Q System One dar, sondern verkörpert einen Paradigmenwechsel hin zu einer Architektur, die durch Modularität, Skalierbarkeit und Vernetzbarkeit charakterisiert ist. Diese Architektur soll als Fundament für das Konzept des „Quantum-centric Supercomputing“ dienen.
+
+\subsubsection{Designphilosophie und Architekturziele}
+Im Unterschied zum eher monolithischen Aufbau des IBM Q System One, das primär für den Betrieb eines einzelnen Quantenprozessors (QPU) konzipiert war, wurde das IBM Quantum System Two von Grund auf mit Blick auf mehrere Kernziele entwickelt. 
+
+Zu diesen Zielen zählt erstens die Modularität: Das System ist so strukturiert, dass es aus multiplen, potenziell miteinander verbundenen Modulen aufgebaut werden kann. Dieser Ansatz ermöglicht eine flexible Systemkonfiguration und eine schrittweise Erweiterung der Gesamtanlage. Zweitens steht die Skalierbarkeit im Fokus, mit dem Ziel, ein Wachstum auf Tausende von Qubits und darüber hinaus zu ermöglichen. Dies soll durch die Kooperation mehrerer QPUs innerhalb eines oder mehrerer vernetzter Systeme realisiert werden. Drittens ist die Konnektivität von essenzieller Bedeutung für die Skalierbarkeit. Darunter wird die Fähigkeit verstanden, QPUs sowohl innerhalb eines Systems als auch systemübergreifend zu verbinden, um die Bearbeitung umfangreicherer und komplexerer Problemstellungen zu ermöglichen. Viertens wurden Aspekte der Servicefreundlichkeit und Aufrüstbarkeit berücksichtigt; das modulare Design ist darauf ausgelegt, Wartungsarbeiten sowie die Implementierung von Hardware-Upgrades – beispielsweise neue QPU-Generationen oder verbesserte Steuerungselektronik – zu vereinfachen. Fünftens bildet die Hybridität, also die nahtlose Integration mit klassischer Hochleistungsrechner-Infrastruktur, einen zentralen Bestandteil der Vision des Quantum-centric Supercomputing.Kernbestandteil der Vision des Quantum-centric Supercomputing.
+
+\subsubsection{Systemarchitektur und Gehäuse}
+Das IBM Quantum System Two weist eine deutlich veränderte äußere Erscheinungsform auf. Die für das System One charakteristische Glaskuppel wurde durch eine umfangreichere, hexagonale Struktur ersetzt. Diese besteht aus hexagonal geformten Basiseinheiten, welche jeweils einen Kryostaten mit Quantenprozessoren sowie die zugehörige unterstützende Infrastruktur aufnehmen können. Die Wahl der hexagonalen Form ist nicht rein ästhetisch motiviert, sondern dient auch funktionalen Zwecken, indem sie die Verbindung mehrerer solcher Einheiten zu größeren Clustern erlaubt (Red Dot Design Award, 2024). Jede dieser Einheiten weist Abmessungen von etwa 4,6 Metern in der Höhe und 6,7 Metern in der Breite auf. Die modulare Erweiterung wird dadurch realisiert, dass an die Seitenflächen dieser hexagonalen Einheiten weitere Module angedockt werden können. Diese zusätzlichen Module können entweder weitere QPUs oder klassische Steuer- und Peripherieelektronik enthalten, was ein physisches Wachstum des Systems parallel zur Steigerung der Rechenleistung ermöglicht. Bei den Materialien und dem Design des Gehäuses kommen eloxiertes, poliertes Aluminium sowie Glaselemente zum Einsatz. Die sichtbaren Fugen zwischen den Modulen akzentuieren den modularen Charakter des Systems (iF Design Award, 2024). Das Gesamtdesign zielt darauf ab, Prinzipien der Offenheit und Zugänglichkeit zu vermitteln, während gleichzeitig der Schutz der sensitiven Technologie gewährleistet wird.
+
+\subsubsection{Kryogene Infrastruktur und QPU-Umgebung}
+Die Notwendigkeit, eine steigende Anzahl von Qubits bei extrem tiefen Temperaturen – typischerweise im Bereich von 10 bis 20 Millikelvin für supraleitende Qubits – zu betreiben, stellt hohe Anforderungen an die kryogene Infrastruktur. Im Hinblick auf eine skalierbare Kühlung müssen, obgleich die fundamentalen Prinzipien der Dilutionsrefrigeration beibehalten werden, die Kühlleistung und die interne Kapazität der Kryostaten für das Quantum System Two signifikant erhöht werden. Dies ist erforderlich, um multiple oder größere QPUs sowie die damit assoziierte Verkabelung und Komponenten, wie beispielsweise Verstärker, adäquat zu versorgen. In diesem Kontext hat IBM auch den „Goldeneye“-Kryostaten erwähnt, einen Dilutionsrefrigerator mit einer besonders großen Kühlkapazität, welcher für die Kühlung zukünftiger Generationen von Multi-Chip-Prozessoren ausgelegt ist (SpinQ, 2025). Die Integration von Prozessoren ist ein weiteres Kernelement; Quantum System Two ist dafür konzipiert, mehrere Quantenprozessoren, beispielsweise drei IBM Heron Prozessoren, in einem einzelnen Kryostaten zu beherbergen und zu betreiben (arXiv, 2024). Eine solche Integration erfordert eine präzise Planung der internen Verkabelung, der thermischen Anbindung und der elektromagnetischen Abschirmung. Das Vibrationsmanagement und die Stabilität gewinnen in einem modularen und potenziell sehr ausgedehnten System zusätzlich an Komplexität und Kritikalität im Vergleich zum System One, um die Kohärenz der Quantenzustände sicherzustellen.
+
+\subsubsection{Signalübertragung, Steuerungselektronik und Konnektivität}
+Mit der Zunahme der Anzahl von Qubits und Prozessoren steigen die Anforderungen an die Steuerungs- und Ausleseelektronik sowie an die Verbindungen zwischen den Systemkomponenten exponentiell. IBM hat eine Steuerungselektronik der dritten Generation entwickelt, die sich durch eine höhere Kompaktheit, gesteigerte Leistungsfähigkeit und eine engere Integration mit den QPUs auszeichnet. Diese Elektronik ist darauf ausgelegt, eine größere Anzahl von Qubits effizient zu steuern und auszulesen (IBM News Room, 2023). Die Erhöhung der Qubit-Dichte und -Anzahl macht zudem innovative Lösungen für eine hochdichte kryogene Verkabelung notwendig, um die Wärmelast gering zu halten und gleichzeitig eine hohe Signalintegrität zu gewährleisten. Flexible kryogene Hochfrequenzleitungen (CryoFlex) spielen hierbei eine wichtige Rolle. Für die Koordination und das sogenannte „Circuit Knitting“ – ein Verfahren, das große Quantenschaltkreise auf mehrere QPUs aufteilt und klassische Kommunikation von Zwischenergebnissen erfordert – sind leistungsfähige klassische Kommunikationslinks zwischen den Prozessoren und den Steuerungseinheiten unerlässlich. Langfristig verfolgt IBM das Ziel, auch direkte quantenkohärente Verbindungen (Quantum Links) zwischen QPUs zu realisieren, um echte verteilte Quantenberechnungen über mehrere Chips hinweg zu ermöglichen (IBM Quantum Roadmap).
+
+\subsubsection{Integration klassischer und quantenmechanischer Komponenten}
+Das IBM Quantum System Two ist als zentrales Element einer „Quantum-centric Supercomputing“-Architektur konzipiert. Dies impliziert, dass das System für eine enge Kooperation mit klassischen Supercomputern und Cloud-Ressourcen ausgelegt ist, um hybride Workflows zu unterstützen. Middleware und Software-Werkzeuge wie Qiskit werden kontinuierlich weiterentwickelt, um solche hybriden Quanten-Klassik-Workflows effizient zu orchestrieren, Rechenaufgaben dynamisch zu verteilen und Ergebnisse zu konsolidieren (The Quantum Insider, 2024). Der Ansatz des Quantum Serverless zielt darauf ab, Quanten- und klassische Berechnungen nahtlos in unterschiedlichen Umgebungen, sei es in der Cloud oder on-premises, zu integrieren und auszuführen.
+
+\subsubsection{Wartung, Skalierbarkeit und Modularität in der Praxis}
+Die praktische Umsetzung der Prinzipien von Modularität und Skalierbarkeit stellt einen Hauptfokus bei der Entwicklung des IBM Quantum System Two dar. Das System ist für eine phasenweise Inbetriebnahme (Phased Deployment) und für Upgrades konzipiert. Dies bedeutet, dass es schrittweise ausgebaut und mit neueren Prozessorgenerationen (wie den in der IBM Roadmap genannten zukünftigen Prozessoren Flamingo oder Kookaburra) oder verbesserter Steuerungshardware aufgerüstet werden kann, ohne dass ein Austausch des Gesamtsystems notwendig wird. Das Design berücksichtigt ferner die Notwendigkeit regelmäßiger Wartung durch entsprechend gestaltete Servicezugänge, die den Zugriff auf kritische Komponenten erleichtern. Über spezifische Wartungsprozeduren sind, ähnlich wie beim System One, öffentlich meist nur allgemeine Informationen verfügbar.
+
+\subsubsection{Relevante Designentscheidungen aus Ingenieursperspektive}
+Mehrere zentrale Designentscheidungen prägen die ingenieurtechnische Ausrichtung des IBM Quantum System Two. Die Priorisierung der Modularität stellt hierbei die fundamentalste und weitreichendste Entscheidung dar, welche die Skalierbarkeit und Zukunftsfähigkeit des Systems gewährleisten soll. Parallel dazu wurde ein starker Fokus auf die Interkonnektivität gelegt; die Fähigkeit, Prozessoren und Systeme miteinander zu verbinden, ist entscheidend, um die Limitierungen einzelner QPUs zu überwinden. Die Entwicklung des Systems folgt einem integrierten Ansatz, bei dem Hardware, Software (einschließlich Qiskit und Middleware), Steuerung und klassische Computerressourcen als eine kohärente Einheit betrachtet und entwickelt werden. Schließlich schafft die Architektur des Quantum System Two, obwohl sie selbst noch nicht die Ära der vollständigen Fehlertoleranz einläutet, die notwendige Skalierbarkeit und Komplexität, um fortgeschrittene Fehlerminderungs- und Quantenfehlerkorrekturcodes zu implementieren und zu testen.
+\\\\
+Das IBM Quantum System Two stellt somit einen entscheidenden Evolutionsschritt dar. Es legt die technologischen Grundlagen für Quantencomputer, die potenziell in der Lage sein werden, Probleme von praktischer Relevanz zu lösen, welche für klassische Supercomputer als unlösbar gelten. Die Realisierung dieser Vision ist maßgeblich von der erfolgreichen Bewältigung der komplexen ingenieurtechnischen Herausforderungen in den Bereichen Skalierung, Konnektivität und Systemintegration abhängig.
+
 
 \printbibliography

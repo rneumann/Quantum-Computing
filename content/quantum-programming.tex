@@ -62,7 +62,7 @@
 \begin{itemize}
     \item Quantenprogramme als Funktionen (ähnlich funktionaler Programmierung)
     \item Häufig genutzt in Theorie und formaler Verifikation
-    \item Beispiele:
+    \item Beispiele: 
     \begin{itemize}
         \item Formalisierte Algorithmen (z.\,B. Shor, Grover)
         \item Verifizierte Protokolle (z.\,B. Superdense Coding)
@@ -72,9 +72,103 @@
 
 \section{Quanten-Programmiersprachen und -Frameworks}
 
+
+Die Entwicklung von Quantencomputern hat zur Entstehung spezialisierter Programmiersprachen und Frameworks geführt, die die besonderen Eigenschaften des Quantencomputings berücksichtigen. Diese Sprachen und Frameworks ermöglichen es Entwicklern, Quantenalgorithmen zu implementieren und zu testen, ohne sich mit den komplexen physikalischen Details der Quantenhardware auseinandersetzen zu müssen.
+
+Im Gegensatz zu klassischen Programmiersprachen müssen Quanten-Programmiersprachen spezielle Konzepte wie Superposition, Verschränkung und Messung unterstützen. Sie müssen auch die Interaktion zwischen klassischen und Quantenberechnungen ermöglichen, da die meisten Quantenalgorithmen sowohl klassische als auch Quantenkomponenten enthalten.
+
+Dieses Kapitel gibt einen Überblick über die verschiedenen Arten von Quanten-Programmiersprachen und ordnet sie den vorangegangenen Programmierparadigmen zu. Anschließend werden drei wichtige Frameworks - Qiskit von IBM, Cirq von Google und Q\# von Microsoft - detailliert betrachtet.
+
 \subsection{Übersicht über Sprachen und Frameworks}
 
-Übersicht über Programmiersprachen/Frameworks und Zuordnung zu Paradigmen:
+
+\begin{itemize}
+    \item Quanten-Programmiersprachen lassen sich in verschiedene Kategorien einteilen:
+    \begin{itemize}
+        \item \textbf{Imperative Quanten-Programmiersprachen}
+        \begin{itemize}
+            \item Basieren auf Statements, die den globalen Zustand eines Programms ändern
+            \item Verwenden das QRAM-Modell (Quantum Random Access Machine)
+            \item Beispiele: QCL, LanQ, qGCL
+        \end{itemize}
+        
+        \item \textbf{Funktionale Quanten-Programmiersprachen}
+        \begin{itemize}
+            \item Basieren auf mathematischen Transformationen durch Ausführung von Abbildungen
+            \item Verwenden Lambda-Kalkül und oft lineare Logik
+            \item Beispiele: QFC, QPL, QML
+        \end{itemize}
+        
+        \item \textbf{Hybride Ansätze}
+        \begin{itemize}
+            \item Kombinieren klassische und Quantenprogrammierung
+            \item Ermöglichen komplexe Interaktionen zwischen klassischen und Quantenalgorithmen
+            \item Beispiele: Q\#, Qiskit, Cirq
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+    \item \textbf{Industriegetriebene Frameworks}
+    \begin{itemize}
+        \item \textbf{Qiskit (IBM)}
+        \begin{itemize}
+            \item Open-Source-SDK für Quanteninformatik
+            \item Python-basiert
+            \item Unterstützt IBM Quantum Experience Hardware
+            \item Umfangreiches Ökosystem von Tools und Plugins
+        \end{itemize}
+        
+        \item \textbf{Cirq (Google)}
+        \begin{itemize}
+            \item Open-Source-Framework für Quantencomputing
+            \item Python-basiert
+            \item Optimiert für Google's Quantenprozessoren
+            \item Fokus auf rauschbewusste Simulationen
+        \end{itemize}
+        
+        \item \textbf{Q\# (Microsoft)}
+        \begin{itemize}
+            \item Eigenständige domänenspezifische Sprache
+            \item Teil des Microsoft Quantum Development Kit
+            \item Fokus auf Algorithmusdefinition statt Schaltkreisdarstellung
+            \item Starke Typisierung und symbolische Codemanipulation
+        \end{itemize}
+        
+        \item \textbf{PyQuil (Rigetti)}
+        \begin{itemize}
+            \item Python-Bibliothek für Quantenprogrammierung
+            \item Zugriff auf Rigetti's Quantum Cloud Services
+            \item Basiert auf Quil (Quantum Instruction Language)
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Akademische und Open-Source-Frameworks}
+    \begin{itemize}
+        \item \textbf{Quipper}
+        \begin{itemize}
+            \item Eingebettet in Haskell
+            \item Stark typisierte, funktionale Quantenprogrammiersprache
+        \end{itemize}
+        
+        \item \textbf{Scaffold/ScaffCC}
+        \begin{itemize}
+            \item Eingebettet in C/C++
+            \item Nutzt die LLVM-Infrastruktur
+        \end{itemize}
+        
+        \item \textbf{QWire}
+        \begin{itemize}
+            \item Eingebettet in das Beweissystem Coq
+        \end{itemize}
+        
+        \item \textbf{ProjectQ}
+        \begin{itemize}
+            \item Open-Source-Framework in Python
+            \item Fokus auf Schaltkreisoptimierung und -manipulation
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
 
 \begin{itemize}
     \item \textbf{Gate-basiert:} Qiskit (IBM), Cirq (Google)
@@ -90,6 +184,236 @@
     \item \textbf{Cirq:} Framework von Google für Schaltungsdesign und Simulation
     \item \textbf{Q\#:} Domänenspezifische Sprache von Microsoft
     \item (\textbf{Quipper, Qrisp, OpenQL, Sliq:} Alternativen für High-Level- oder domänenspezifisches Design)
+\end{itemize}
+
+\subsubsection{Qiskit}
+Architktur
+\begin{itemize}
+    \item \textbf{Mehrschichtige Architektur}
+    \begin{itemize}
+        \item \textbf{Terra}: Grundlegende Funktionalität für das Arbeiten mit Quantenschaltkreisen
+        \begin{itemize}
+            \item Schaltkreisdarstellung und -manipulation
+            \item Transpiler für Optimierung und Übersetzung
+            \item Backend-Schnittstellen für Simulation und Hardware-Ausführung
+        \end{itemize}
+        
+        \item \textbf{Aer}: Hochleistungs-Simulatoren
+        \begin{itemize}
+            \item Unterstützt verschiedene Simulationstypen: Zustandsvektor, Dichtematrix, Stabilisator
+            \item Ermöglicht Rauschsimulation
+        \end{itemize}
+        
+        \item \textbf{Ignis}: Werkzeuge für Charakterisierung und Fehlerminderung
+        \begin{itemize}
+            \item Fehlercharakterisierung und -kalibrierung
+            \item Fehlerminderungstechniken
+        \end{itemize}
+        
+        \item \textbf{Aqua}: Algorithmen für verschiedene Anwendungsbereiche
+        \begin{itemize}
+            \item Chemie, Finanzen, Maschinelles Lernen, Optimierung
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Abstrakte und konkrete Schaltkreise}
+    \begin{itemize}
+        \item Abstrakte Schaltkreise: Repräsentation von Quantenalgorithmen auf hoher Abstraktionsebene
+        \item Konkrete Schaltkreise: Implementierung mit Standardbibliothek von Gates
+        \item OpenQASM als Zwischensprache für Quantenschaltkreise
+    \end{itemize}
+    
+    \item \textbf{Transpiler}
+    \begin{itemize}
+        \item Übersetzt und optimiert Schaltkreise für die Ziel-Hardware
+        \item Arbeitet in mehreren Durchläufen mit verschiedenen Passes
+        \item Wichtige Passes:
+        \begin{itemize}
+            \item Layout-Selektion: Mapping von logischen zu physischen Qubits
+            \item Routing: Einfügen von SWAP-Gates für nicht direkt verbundene Qubits
+            \item Optimierung: Zusammenfassen von Gates, Entfernen unnötiger Gates
+            \item Dekomposition: Zerlegung komplexer Gates in elementare Gates
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Primitives}
+    \begin{itemize}
+        \item Grundlegende Bausteine für Quantenberechnungen
+        \item \texttt{Sampler}: Stichproben aus Quantenschaltkreisen ziehen
+        \item \texttt{Estimator}: Erwartungswerte von Observablen schätzen
+    \end{itemize}
+\end{itemize}
+
+Besonderheiten und Anwendung
+
+\begin{itemize}
+    \item \textbf{Dynamische Schaltkreise}
+    \begin{itemize}
+        \item Ermöglichen klassisch kontrollierte Quantenoperationen
+        \item Unterstützen Mid-Circuit-Messungen und bedingte Operationen
+        \item Wichtig für adaptive Algorithmen und Fehlerkorrektur
+    \end{itemize}
+    
+    \item \textbf{Fehlerminderung}
+    \begin{itemize}
+        \item Verschiedene Techniken zur Reduzierung von Hardwarefehlern
+        \item Zero-Noise Extrapolation
+        \item Probabilistic Error Cancellation
+        \item Dynamical Decoupling
+    \end{itemize}
+    
+    \item \textbf{Anwendungsgebiete}
+    \begin{itemize}
+        \item Quantenchemie und Materialwissenschaft
+        \item Optimierungsprobleme
+        \item Maschinelles Lernen
+        \item Finanzmathematik
+    \end{itemize}
+    
+    \item \textbf{Ökosystem und Community}
+    \begin{itemize}
+        \item Über 6 Millionen Installationen, 300.000 pro Monat
+        \item 500+ Mitwirkende, die meisten nicht von IBM
+        \item 300+ Pakete im Python Package Index (PyPI) hängen von Qiskit ab
+        \item Über 2.000 wissenschaftliche Arbeiten haben Qiskit verwendet
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Cirq}
+Achitektur
+\begin{itemize}
+    \item \textbf{Grundlegende Abstraktionen}
+    \begin{itemize}
+        \item \texttt{Qubit}: Repräsentation eines Quantenbits
+        \item \texttt{Gate}: Quantenoperationen auf Qubits
+        \item \texttt{Circuit}: Sequenz von Quantenoperationen
+        \item \texttt{Moment}: Sammlung von Operationen, die parallel ausgeführt werden können
+    \end{itemize}
+    
+    \item \textbf{Hardware-spezifische Optimierung}
+    \begin{itemize}
+        \item Speziell für Google's Quantenprozessoren optimiert
+        \item Berücksichtigt Hardware-Topologie und -Einschränkungen
+        \item Unterstützt aber auch andere Hardware-Plattformen
+    \end{itemize}
+    
+    \item \textbf{Rauschmodellierung}
+    \begin{itemize}
+        \item Fortschrittliche Werkzeuge zur Simulation von Rauschen
+        \item Verschiedene Rauschmodelle für realistische Simulationen
+        \item Ermöglicht die Untersuchung der Auswirkungen von Rauschen auf Quantenalgorithmen
+    \end{itemize}
+    
+    \item \textbf{Python-Integration}
+    \begin{itemize}
+        \item Tiefe Integration mit dem Python-Ökosystem
+        \item Kompatibel mit NumPy, SciPy und anderen wissenschaftlichen Bibliotheken
+        \item Ermöglicht die Nutzung bestehender Python-Tools für Datenanalyse und Visualisierung
+    \end{itemize}
+\end{itemize}
+
+Besonderheiten
+\begin{itemize}
+    \item \textbf{Kalibrierungswerkzeuge}
+    \begin{itemize}
+        \item Werkzeuge zur Kalibrierung von Quantenhardware
+        \item Optimierung der Gateoperationen für spezifische Hardware
+        \item Wichtig für die praktische Implementierung von Quantenalgorithmen
+    \end{itemize}
+    
+    \item \textbf{Fokus auf NISQ-Ära}
+    \begin{itemize}
+        \item Optimiert für Noisy Intermediate-Scale Quantum (NISQ) Computer
+        \item Unterstützt Algorithmen, die mit begrenzter Qubit-Anzahl und Fehlerraten arbeiten können
+        \item Variational Quantum Eigensolver (VQE)
+        \item Quantum Approximate Optimization Algorithm (QAOA)
+    \end{itemize}
+    
+    \item \textbf{Visualisierungswerkzeuge}
+    \begin{itemize}
+        \item Umfangreiche Werkzeuge zur Visualisierung von Quantenschaltkreisen
+        \item Analyse von Simulationsergebnissen
+        \item Darstellung von Quantenzuständen und -operationen
+    \end{itemize}
+    
+    \item \textbf{Anwendungsgebiete}
+    \begin{itemize}
+        \item Quantenmaschinelles Lernen
+        \item Quantenchemie
+        \item Optimierungsprobleme
+        \item Grundlagenforschung in der Quanteninformatik
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Q\#}
+Architektur
+\begin{itemize}
+    \item \textbf{Eigenständige domänenspezifische Sprache}
+    \begin{itemize}
+        \item Nicht eingebettet in eine klassische Sprache
+        \item Speziell für Quantencomputing entwickelt
+        \item Teil des Microsoft Quantum Development Kit
+    \end{itemize}
+    
+    \item \textbf{Typsystem}
+    \begin{itemize}
+        \item Starke Typisierung
+        \item Betont klassischen Determinismus
+        \item First-Class-Callables (Funktionen als Werte)
+        \item Opazität von Qubit-Typen (keine direkten Zugriffe auf Qubit-Zustände)
+    \end{itemize}
+    
+    \item \textbf{Kontrollstrukturen}
+    \begin{itemize}
+        \item Klassische Kontrollstrukturen: if/else, for, while
+        \item Quantenspezifische Kontrollstrukturen: repeat-until-success
+        \item Unterstützung für rekursive Algorithmen
+    \end{itemize}
+    
+    \item \textbf{Symbolische Codemanipulation}
+    \begin{itemize}
+        \item Automatische Generierung des Adjungierten (konjugiert transponierte) einer Operation
+        \item Kontrollierte Versionen von Operationen
+        \item Funktioniert auf Typ-Ebene, nicht nur auf Wert-Ebene
+    \end{itemize}
+\end{itemize}
+Besonderheiten
+\begin{itemize}
+    \item \textbf{Klare Trennung von Quantencode und klassischem Code}
+    \begin{itemize}
+        \item Quantencode wird in Q\# geschrieben
+        \item Klassischer Treibercode kann in C\#, Python oder anderen Sprachen geschrieben werden
+        \item Saubere Schnittstelle zwischen beiden Welten
+    \end{itemize}
+    
+    \item \textbf{Fokus auf Algorithmusdefinition}
+    \begin{itemize}
+        \item Q\# ist eine Algorithmusdefinitionssprache, keine Schaltkreisbeschreibungssprache
+        \item Natürliche Darstellung der Komposition von klassischen und Quantenalgorithmen
+        \item Kein explizites Konzept eines "Schaltkreises"
+    \end{itemize}
+    
+    \item \textbf{Unterstützung für komplexe Algorithmen}
+    \begin{itemize}
+        \item Besonders geeignet für Phasenabschätzung und Quantenchemie-Algorithmen
+        \item Unterstützt reichhaltige Quantenklassische Interaktionen
+        \item Ermöglicht die Erstellung von Algorithmen mit nicht-trivialem Branching
+    \end{itemize}
+    
+    \item \textbf{Simulation und Ressourcenschätzung}
+    \begin{itemize}
+        \item Verschiedene Simulatoren für unterschiedliche Zwecke
+        \item Werkzeuge zur Schätzung der benötigten Ressourcen (Qubits, Gates)
+        \item Wichtig für die Entwicklung skalierbarer Quantenalgorithmen
+    \end{itemize}
+    
+    \item \textbf{Anwendungsgebiete}
+    \begin{itemize}
+        \item Quantenkryptographie
+        \item Quantenchemie
+        \item Optimierungsprobleme
+        \item Fehlerkorrektur und fehlertolerantes Quantencomputing
+    \end{itemize}
 \end{itemize}
 
 \section{Entwicklung von Quantenalgorithmen}
@@ -121,7 +445,7 @@
     \item Rolle der Stack-Komponenten in der Entwicklung
 \end{itemize}
 
-\subsection{Praxisbeispiel: Grover-Suche mit Qiskit}
+\subsection{Praxisbeispiel: Grover-Suche mit Qiskit} (erledigt, nur noch beschreiben was passiert)
 \begin{itemize}
     \item Ziel: Implementierung einer Grover-Suche zum Finden eines markierten Eintrags
     \item Problemformulierung und Zielzustand
@@ -130,18 +454,39 @@
 \end{itemize}
 
 \subsection{Implementierung und Testing mit Qiskit}
+\subsubsection{Projektstruktur und Setup (Python-Umgebung, Qiskit-Installation)} (erledigt)
 \begin{itemize}
-    \item Projektstruktur und Setup (Python-Umgebung, Qiskit-Installation)
-    \item Konstruktion des Circuits:
+        \item Systemanforderungen
+        \begin{table}[h]
+        \centering
+        \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Komponente} & \textbf{Beschreibung} \\
+        \hline
+            Betriebssystem& Windows 10 oder 11 (64-Bit)\\\hline
+            Python-Verson& Python 3.8 bis 3.11\\\hline
+            Arbeitsspeicher& mind. 4 Gb RAM (empfohlen: 8GB oder mehr)\\
+        \hline
+ Festplattenspeicher &ca. 1-2GB freier Speicherplatz\\\hline
+ Internetverbindung&Für Installation, Updates und optionalen IBM-Zugriff\\ \hline
+        \end{tabular}
+        \caption{Systemsetup für Qiskit-Projekt}
+        \label{tab:setup}
+\end{table}
+        \item Virtuelle Umgebung einrichten und aktivieren
+        \item Qiskit installieren
+    \end{itemize}
+\subsubsection{Konstruktion des Circuits: Dennis}
     \begin{itemize}
         \item Oracle-Definition
         \item Diffusion-Operator
         \item Initialisierung und Messung
     \end{itemize}
-    \item Ausführung auf Simulator (Qiskit Aer)
-    \item Visualisierung von Schaltkreis und Ergebnissen
-    \item Tests und Debugging-Hilfsmittel (z.\,B. Histogramme, Counts)
-\end{itemize}
+
+\subsubsection{Ausführung auf Simulator (Qiskit Aer)}
+\subsubsection{Visualisierung von Schaltkreis und Ergebnissen} Konrad
+\subsubsection{Tests und Debugging-Hilfsmittel (z.\,B. Histogramme, Counts) Konrad}
+
 
 \subsection{Cloud Deployment: Ausführung auf echter Quantenhardware}
 

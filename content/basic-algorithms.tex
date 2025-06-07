@@ -17,14 +17,27 @@
 \subsection{Anwendung: RSA-Algorithmus brechen}
 
 \section{Grover-Algorithmus: Quantum-Suche}
-\subsection{Grundlagen: Unstrukturiertes Suchproblem}
+In der Informatik zählt die Datenverarbeitung zu den gefragtesten Aufgaben. In der heutigen Zeit ist die Möglichkeit, große Datenmengen zu durchsuchen — insbesondere unstrukturierte Daten — ein wesentlicher Aspekt der Datenanalyse. Um dies zu veranschaulichen, betrachten wir folgendes Beispiel:\\ 
 
-Das unstrukturierte Suchproblem besteht darin, in einer Menge von $N$ Einträgen ein spezielles Zielobjekt zu finden, ohne dass ein nützlicher Index oder eine Sortierung vorliegt. Klassisch erfordert dies im Mittel $O(N)$ Abfragen.\\
-Quantenalgorithmen können dieses Problem beschleunigen: Grover’s Algorithmus löst es in $O(\sqrt{N})$ Abfragen, was eine quadratische Beschleunigung darstellt.\\
-Anwendungen sind z.B. die Suche in Datenbanken, das Finden von Lösungen bei NP-Problemen per Exhaustive Search und kryptografische Angriffe (z.B. Passwortknacken).
+\noindent Angenommen, wir möchten einen bestimmten Kunden in der Datenbank eines Online-Shops finden (unter der Annahme, dass die Datenbank nicht indexiert ist). Bei Verwendung eines klassischen Computers benötigen wir im schlechtesten Fall $N$ Iterationen, wobei $N$ die Anzahl der Zeilen in der Tabelle darstellt. Im durchschnittlichen Fall sind etwa $N/2$ Operationen erforderlich. Das bedeutet, dass alle Elemente der Tabelle durchlaufen werden müssen, sofern uns die genaue Position des gesuchten Kunden nicht bekannt ist — bis dieser schließlich gefunden wird.\\
+
+\noindent Wenn jedoch unsere Datenbank auf Quantenberechnungen basiert, können wir Quanten-Suchalgorithmen wie den Grover-Algorithmus einsetzen. In diesem Fall lässt sich das gesuchte Element mit etwa $\sqrt{N}$ Operationen finden. Zwar führt dieser Algorithmus nicht zu einer exponentiellen Beschleunigung der Suche und muss häufig mehrfach iterativ aufgerufen werden, dennoch stellt die quadratische Laufzeit bereits eine bedeutende Optimierung dar.
+
+\subsection{Grundlagen: Unstrukturiertes Suchproblem}
+Bevor wir uns dem Grover-Algorithmus zuwenden, betrachten wir folgendes Beispiel: Stellen wir uns vor, auf dem Tisch liegen vier Spielkarten verdeckt. Eine dieser vier Karten ist die Pik-Dame, und unsere Aufgabe besteht darin, sie zu finden. Wie viele Karten müssen wir im Durchschnitt aufdecken, um die Pik-Dame zu identifizieren? Im besten Fall finden wir die gesuchte Karte bereits beim ersten Versuch. Im schlechtesten Fall müssen wir drei Karten umdrehen — wenn keine von ihnen die Pik-Dame ist, dann bleibt nur noch die vierte, nicht aufgedeckte Karte als einzig mögliche Lösung. Im Durchschnitt müssen wir 2{,}25 Karten aufdecken, um die Pik-Dame zu finden.\\
+
+\noindent Formulieren wir nun das Beispiel um: Anstelle von Spielkarten betrachten wir eine binäre Reihenfolge natürlicher Zahlen — nämlich $00$, $01$, $10$ und $11$. Nehmen wir an, die Pik-Dame entspricht dabei der Zahl $10$. Wir definieren eine Funktion $f$, die den Wert $1$ zurückgibt, wenn das Eingabemuster $10$ ist, und $0$ in allen anderen Fällen. Somit lässt sich das Problem wie folgt formal ausdrücken:
+
+\begin{definition}[Unstrukturiertes Suchproblem]
+Sei $f\colon \{0, 1\}^n \rightarrow \{0, 1\}$ eine abstrakte Funktion mit $f(x) \in \{0, 1\}$. Gesucht ist ein Wert $x$, sodass $f(x) = 1$, falls ein solcher Wert existiert; andernfalls soll das Ergebnis $0$ sein.
+\end{definition}
+
+\noindent Die Komplexität des unstrukturierten Suchproblems ergibt sich daraus, wie viele Iterationen der Funktion erforderlich sind, um das gesuchte Element zu finden. Da wir keine Informationen über die Funktion besitzen, benötigen wir im schlechtesten Fall $N - 1$ Funktionsauswertungen, wobei $N = 2^n$ gilt. Auf diese Weise prüfen wir alle möglichen Eingaben. Ähnlich wie im Beispiel mit den Karten entspricht $N$ dem letzten Element, vorausgesetzt, die vorherigen wurden bereits geprüft. Der Grover-Algorithmus kann dieses Problem jedoch deutlich schneller lösen und erreicht dabei eine quadratische Laufzeitverbesserung.
+
 
 \subsection{Aufbau von dem Grover Algorithmus}
-
+\subsection{Geometrische Darstellung}
+\subsection{Komplexitätsanalyse}
 Der Grover-Algorithmus (1996) führt eine quantengestützte Suche durch, indem er sukzessive die Amplitude des gesuchten Zustands verstärkt. Nach etwa $\sqrt{N}$ Iterationen erhält man das Ziel mit hoher Wahrscheinlichkeit.\\
 Dieser Algorithmus ist informationstheoretisch optimal für die unstrukturierte Suche. Er wird typischerweise durch eine Schleife aus Orakel-Abfrage (markiert das gesuchte Element) und Inversion der Amplituden um den Mittelwert realisiert.\\
 Grover findet Anwendungen als Subroutine in vielen Quantenalgorithmen (z.B. für Optimierung oder Simulation), etwa zur Stichprobensuche oder in hybriden Ansätzen.

@@ -44,14 +44,14 @@ Ein Objekt besteht aus Materie und physikalischem Zustand. Bei Quantenobjekten i
 \\
 In der Quantenteleportation wird der Zustand eines Quantenobjekts, der sog. Quantenzustand, ohne das Durchlaufen einer Zwischenstrecke, von einer Position auf eine andere Position, vorausgesetzt, dass sich in dieser anderen Position ein Quantenobjekt derselben Art befindet, direkt versetzt. Die Masse bzw. Energie kann nicht teleportiert werden, weil dies das Prinzip der Unmöglichkeit von Kommunikation ohne Signalübertragung verletzen würde. Dahingegen hat der Zustand weder eine Masse, noch eine Energie, denn sie ist potentiell – eine Wahrscheinlichkeit.\\
 \\
-Nach einer solchen Quantenteleportation verliert das Quantenobjekt seinen Zustand. Am Beispiel eines Photons kann man dies wie folgt erklären. Es gäbe ein Photon mit gut strukturierter Polarisation. Bei solch einem Photon schwingt das elektrische Feld regelmäßig in eine bestimmte Richtung. Nach der Quantenteleportation verliert dieses Photon seine Struktur. Übrig bleibt ein depolarisiertes Photon, ein Photon mit strukturloser Polarisation, dessen elektrisches Feld unregelmäßig in alle Richtungen schwingt. Der Quantenzustand des ersten Quantenobjekts nach der Quantenteleportation entspricht dem Quantenzustand des zweiten Quantenobjekts vor der Quantenteleportation.\\
+Nach einer solchen Quantenteleportation verliert das Quantenobjekt seinen Zustand. Am Beispiel eines Photons kann man dies wie folgt erklären. Es gebe ein Photon mit gut strukturierter Polarisation. Bei solch einem Photon schwingt das elektrische Feld regelmäßig in eine bestimmte Richtung. Nach der Quantenteleportation verliert dieses Photon seine Struktur. Übrig bleibt ein depolarisiertes Photon, ein Photon mit strukturloser Polarisation, dessen elektrisches Feld unregelmäßig in alle Richtungen schwingt. Der Quantenzustand des ersten Quantenobjekts nach der Quantenteleportation entspricht dem Quantenzustand des zweiten Quantenobjekts vor der Quantenteleportation.\\
 \\
 Der Quantenzustand, der teleportiert wird, ist ein Qubit. Voraussetzung einer Quantenteleportation ist das Dasein einer Menge verschränkter Quantenobjekte. In der nächsten Subsektion wird hierüber genauer erläutert.\\
 \\
 (Vgl. \cite[S.124-128]{gisin_unbegreifliche_2014}) 
 
 
-\subsection{Bennett und Brassard (1993): wie drei Qubits (Senderzustand + 2 verschränkte) genutzt werden, um den Zustand über Distanz zu “teleportieren”}
+\subsection{Bennett und Brassard (1993): wie drei Qubits (Senderzustand + 2 verschränkte) genutzt werden, um den Zustand über Distanz zu „teleportieren“}
 Es gebe ein Quantenobjekt eines Senders mit unbekanntem Quantenzustand bzw. Qubit \(\ket{\Phi}\). Dieser Qubit soll zu einem dritten Quantenobjekt eines Empfängers teleportiert werden. Der Sender ist im Besitz eines zweiten Quantenobjekts mit dem ursprünglichen Zustand \(\ket{\alpha_0}\), „Ancilla“ bzw. „Ancilla-Qubit“ genannt. Im ersten Schritt der Quantenteleportation bringt der Sender das Quantenobjekt mit dem Qubit \(\ket{\Phi}\) und das Quantenobjekt mit dem Ancilla-Qubit dazu, so miteinander zu interagieren, dass das erste Quantenobjekt in einen Standard Zustand \(\ket{\Phi_0}\), und das zweite Quantenobjekt in einen unbekannten Quantenzustand \(\ket{\alpha}\), welches die vollständige Information über \(\ket{\Phi}\) enthält, versetzt wird. Diese Interaktion ist eine gemeinsame Messung der Quantenzustände beider Quantenobjekte des Senders. Allerdings muss erwähnt werden, dass eine solche Messung nur ein positives Ergebnis liefert, wenn der Qubit \(\ket{\Phi}\) einem orthonormalen Set angehört. Im zweiten Schritt der Quantenteleportation wird dann die neue Ancilla, bzw. in anderen Worten das (positive) Ergebnis der Messung im ersten Schritt, an das Quantenobjekt des Empfängers gesendet, wonach der Empfänger die Qubit-Veränderung auslösende Interaktion vom Sender rückgängig machen kann, und somit eine Replikation des originalen Quantenobjekts mit dem Qubit \(\ket{\Phi}\) herstellen kann. Auf dieser Weise können Informationen von Quantenobjekten, also Quanteninformationen, ausgetauscht werden, ohne dass ein Quantenobjekt geklont wird. Diese Methode der Quantenteleportation wird „spin-exchange“ genannt.\\
 \\
 (Vgl. \cite[S.1-2]{bennett_teleporting_1993})\\
@@ -77,8 +77,47 @@ Für einfache Verständlichkeit wird der unbekannte Originalzustand von Quanteno
 \\
 (Vgl. \cite[S.2]{bennett_teleporting_1993})
 
+\subsection{Quantenkommunikation per Quantenverschränkung in Quantennetzwerken}
+In der Quantenkommunikation bzw. im Quanteninformationstransfer innerhalb eines Quantennetzwerks werden Qubits bzw. Quantenzustände über Quantenkanäle gesendet. Quantenkanäle verbinden entfernte Knoten in einem Quantennetzwerk. Diese Quantenkanäle haben eine sog. Absorptionslänge. Die Länge der Quantenkanäle, und damit die maximale Distanz zweier miteinander verbundenen Knoten in einem Quantennetzwerk, ist nur auf wenige Vielfache der Absorptionslänge begrenzt. Dies führt zum Problem, dass Quantenkanäle „eng“ und „laut“ (Originaltext „noisy“) sind, und die transportierten Qubits sich miteinander verschränken können, was zu einem Übertragungsfehler führen könnte.\\
+\\
+Eine Lösung, die Wahrscheinlichkeit solcher Übertrangungsfehler zu reduzieren, mit Hinnahme von einer größeren Menge an benötigten Ressourcen, ist es, einzelne Qubits in einen konkatenierten Quantencode (z.B. einen verschränkten Zustand einer Vielzahl von Qubits) zu kodieren, und Operationen an diesem Code durchzuführen, während es durch den Quantenkanal übertragen wird. Dies wird „Verschränkungsreinigung“ (vom Eng. „entanglement purification“) genannt und ermöglicht möglichst unverfälschten Quanteninformationstransfer und sichere Quantenkryptographie in „engen“ und „lauten“ Quantenkanälen.\\
+\\
+Und um unverfälschten Quanteninformationstransfer auch über längere Quantenkanäle sicherzustellen, kann ein Schema verwendet werden, wobei sog. „Quantenrepeater“ einen langen Quantenkanal in kürzere Segmente aufteilen, und die Verschränkungen separat bereinigen, bevor diese wieder aneinander gehängt werden. Im Übergang von einem Segment zum nächsten werden Quantenkorrelationen aufgebaut, basieren auf Korrelationen die innerhalb der einzelnen Segmente existieren.\\
+\\
+(Vgl. \cite[S.1-2]{dur_quantum_1999})
+
+\subsection{Quantenteleportation in Quantencomputern}
+Für folgende Abschnitte gilt die Quelle (Vgl. \cite[S.1-2]{gottesman_quantum_1999}).\\
+\\
+Die Wissenschaftler Daniel Gottesman und Isaac Chuang stellen eine Technik, eine Verallgemeinerung von Quantenteleportation vor, welche Quantenberechnung in Quantencomputern effizient und ressourcenarm zulässt, und dabei bekannte fehlertolerante Protokolle für Quantenberechnung vereinigt. Mit dieser Technik der Quantenteleportation sollen Quanteninformationen in einen neuen Zustand transformiert werden, was der Wirkung eines Quantengatters ähnelt.\\
+\\
+Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. Ein CNOT gate ist eine Komponente, die zwei verschränkte Qubits in einem Bell-Zustand aufnimmt und den zweiten Qubit, den sog. „target“ Qubit dreht, wenn der erste Qubit, der sog. „control“ Qubit, einen Wert von \(\ket{1}\) hat. Beim Durchgang werden Pauli-Matrix Operationen durchgeführt, welche die Quanteninformationen, also den Quantenzustand, auf ein drittes Qubit übertragen.\\
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.0\textwidth]{images/quantenteleportation_cnot_1.png}
+    \caption{Zeitstrahl von links nach rechts. B = Bell-Zustand, X Y Z = Pauli Operatoren, \(\ket{\alpha}\) = Zustand des Sender-Qubits, der an den Empfänger-Qubit übertragen werden soll}
+    \label{fig:meinbild}
+\end{figure}
+\newpage
+\noindent Dieses Prinzip kann leicht modifiziert werden. Die modifizierte Variante erlaubt es, vier Qubits, wovon jeweils zwei verschränkt sind und sich in einem Bell-Zustand befinden, durchzulassen und anhand von Pauli-Matrix Operationen zu transformieren. Die zwei Bell-Zustand Paare sind vorerst getrennt. Eines beinhaltet den „target“ Qubit \(\ket{\alpha}\), das andere den „control“ Qubit \(\ket{\beta}\). Der „target“ Qubit wird gedreht, wenn der „control“ Qubit einen Wert von \(\ket{1}\) hat. Es stehen 4 Rechenoperationen (I, X, Y, Z) zur Verfügung. Welche Operationen auf die Qubits der Bell-Zustände angewendet werden, ist vom Zufall bestimmt. Was aus dem CNOT gate herauskommt, sind zwei Qubits \(\ket{out}\), welche die Quanteninformationen von \(\ket{\alpha}\) und \(\ket{\beta}\) enthalten, wobei \(\ket{out}\) = CNOT\(\ket{\beta}\)\(\ket{\alpha}\).\\
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.0\textwidth]{images/quantenteleportation_cnot_2.png}
+    \caption{Zeitstrahl von links nach rechts. B = Bell-Zustand, X Y Z = Pauli Operatoren, \(\ket{\chi}\) = Ausgangszustand für Operation}
+    \label{fig:meinbild}
+\end{figure}
+\newpage
+\noindent Eine andere modifizierte Variante ist eine, bei der ein CNOT gate zwischen zwei Qubits von zwei unterschiedlichen verschränkten Qubit Paaren geöffnet wird. Der Output von solch einem Gatter kann verwendet werden, um den Zustand \(\ket{\chi}\) der vorherigen Abbildung zu bilden, von dem in einer Quantenteleportation mit zwei Bell-Zuständen Gebrauch gemacht wird. \(\ket{\chi}\) kann so erzeugt werden, oder durch eine Quantenteleportation zwischen zwei GHZ (Greenberger Horne Zellinger) Zuständen. Ein GHZ Zustand ist eine Verschränkung von drei Quantenobjekten.\\
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.0\textwidth]{images/quantenteleportation_cnot_3.png}
+    \caption{Zeitstrahl von links nach rechts. \(\ket{\Upsilon}\) = GHZ Zustand, H = Hadamard gate (für Hadamard Transformation), B = Bell-Zustand, X Y Z = Pauli Operatoren}
+    \label{fig:meinbild}
+\end{figure}
+\newpage
+
 \subsection{Bedeutung für Quantenkommunikation und als Demonstration von Quanteninformationstransfer}
-Wie Anhand des wissenschaftlichen Artikels von Bennett, Brassard et. al. gezeigt wurde, sind Quantenverschränkung und Quantenteleportation die Prinzipien, durch die es zu einem Quanteninformationstransfer kommen kann. Daraus kann man schließen, dass beide Prinzipien eine sehr wichtige Bedeutung für Quantenkommunikation haben.
+Wie Anhand der wissenschaftlichen Artikel von Bennett, Brassard et. al., sowie Gottesmann und Chuang gezeigt wurde, sind Quantenverschränkung und Quantenteleportation die Prinzipien, durch die es zu einem Quanteninformationstransfer kommen kann. Daraus kann man schließen, dass beide Prinzipien eine sehr wichtige Bedeutung für Quantenkommunikation haben.
 
 \section{Praxisbeispiel: Bell-Zustand und Quantenkorrelation}
 \subsection{Was ist ein Bell-Zustand?}
