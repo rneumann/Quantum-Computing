@@ -11,17 +11,37 @@
 \section{Programmiermodelle in der Quanteninformatik}
 
 \subsection{Gate-basiertes Paradigma (Quantum Circuit Model)}
+Das Gate basierte Paradigma oder auch Quantenschaltkreis Modell (engl. Quantum Circuit Model) genannt, ist das Standardmodell für die Programmierung von Quantenprogrammen. Daher wird es auch häufig als das am weitesten verbreitete Paradigma in der Quanteninformatik zur Beschreibung und Realisierung von Quantenalgorithmen bezeichnet. In diesem Modell werden die Quantenprogramme als Schaltkreise (engl. Quantum circuits) dargestellt. Diese bestehen aus einer Sequenz von unitären Quanten Gattern, welche auf Qubits angewendet werden. 
+
+Strukturell orientiert sich das Quantenschaltkreismodell an klassischen digitalen Schaltungen. Klassische Schaltkreise bestehen aus Leitungen, Gattern und klassischen Bits mit den Zuständen 0 und 1. Ganz analog dazu bestehen Quantenschaltkreise aus Qubit-Leitungen und Gattern und Quantenbits (Qubits). Jede Leitung repräsentiert dabei ein Qubit und jedes Gatter eine unitäre Transformation auf eines oder mehrere Qubits. Die Struktur des Quantenschaltkreis wird genauso wie bei digitalen Schaltungen meist visuell dargestellt, um die Reihenfolge der angewendeten Operationen und die daran beteiligten Qubits zu verdeutlichen. 
+
+Folgende Abbildung zeigt typische elementare Gates, welche für die Konstruktion von Quantenschaltkreisen verwendet, werden: 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{Qubit Gates.png}
+    \caption{Qubit Gates}
+    \label{fig:enter-label}
+\end{figure}
+
 \begin{itemize}
-    \item Am weitesten verbreitetes Paradigma
-    \item Quantenprogramme als Sequenz von Quanten-Gates (ähnlich zu logischen Gattern)
-    \item Verwendung typischer Gates (Hadamard, CNOT, etc.) – siehe Kapitel „Quanteninformation“ (Thilo)
-    \item Beispielalgorithmen:
-    \begin{itemize}
-        \item Shor's Algorithmus
-        \item Grover's Algorithmus
-        \item Regev (Einordnung möglich)
-    \end{itemize}
+    \item Das Hadamard-Gate (H) bringt Qubits aus Ihren Basiszuständen in eine Superposition 
+    \item Das CNOT-Gate (Controlled-Not), ist ein zwei Qubit Gate, welches als zentraler Bestandteil der Quantenverschränkung funktiert, es verschränkt sozusagen zwei Qubits miteinander 
+    \item Neben diesen beiden sehr wichtigen Gates gibt es auch noch die Pauli-X, -Y. und -Z Gates, sowie Phasengatter, T-Gate  und weitere 
 \end{itemize}
+Werden mehrerer dieser Gatter nacheinander auf ein Qubit Register angewendet, bildet sich daraus ein Quanten-Schaltkries, welcher als gesamter Algorithmus verstanden werden kann.
+\subsection*{Bekannte Quantenalgorithmen basierend auf dem Quantenschaltkreismodell}
+Das Quantenschaltkreismodell dient als Grundlage für mehrere bekannte Quantenalgorithmen dazu zählen folgende: (siehe auch (\autoref{basic_algorithms}))
+\subsubsection*{1) Shor's Algorithmus}
+Der Shor Algorithmus führt eine effiziente Primfaktorzerlegung großer Zahlen durch, was klassische Verschlüsselungsverfahren wie RSA bedroht. Der Algorithmus verwendet die Quantum Fourier Transformation (QFT) und periodenfindende Subroutinen innerhalb des Circuit-Models. (siehe auch (\autoref{first:shor-algorithm})
+\subsubsection*{2) Grover´s Algorithmus}
+Der Grover Algorithmus dient zur Suche eines Eintrags in einer unstrukturierten Datenbank mit einer quadratischen Beschleunigung gegenüber klassischen Verfahren.
+Der Algorithmus basiert auf Rotation in einem zweidimensionalen Unterraum, dargestellt als wiederholte Anwendung von sogenannten Grover-Iterationen, realisiert durch Gates im Circuit-Modell. (ausführliche Erklärung: (\autoref{sec:grover-algorithm})) 
+
+\subsubsection*{3) Regev}
+Regevs Arbeiten zum LWE-Problem beinhalten eine theoretische Quantenreduktion, die sich vollständig im gate-basierten Modell realisieren lässt. Die dafür erforderlichen Operationen – wie das Erzeugen von Superpositionen, die Anwendung der Quanten-Fouriertransformation sowie die Verarbeitung von Messresultaten – sind mit klassischen Quanten-Gattern (z.B. Hadamard-, CNOT- und Phasengattern) darstellbar. Auch wenn Regevs Reduktion primär theoretischer Natur ist und keine praktischen Implementierungen wie Shor oder Grover hat, zeigen die verwendeten Techniken eine klare Kompatibilität mit dem Quantum Circuit Model.
+\textbf{Hier muss ne Leerzeile rein geht aber nicht}
+Das gate-basierte Paradigma ist nicht nur ein theoretisches Modell, das man in der Quanteninformatik zur Beschreibung von Algorithmen verwendet – es spielt auch in der Praxis eine zentrale Rolle. So setzt zum Beispiel das Open-Source-Framework Qiskit von IBM genau auf dieses Modell: Quantenprogramme werden dort direkt als sogenannte „Quantum Circuits“ aufgebaut. Diese bestehen aus einer festen Anzahl von Qubits und einer Folge von Operationen, also Gattern, Messungen und Resets – genau wie es im Schaltkreis-Modell vorgesehen ist.
+Dass Theorie und Praxis hier so eng zusammenhängen, zeigt, wie wichtig das gate-basierte Modell nicht nur für die Entwicklung von Algorithmen ist, sondern auch für den praktischen Einsatz auf echten Quantencomputern, wie denen von IBM oder Google.
 
 \subsection{Messungsbasiertes Paradigma}
 \begin{itemize}
@@ -35,17 +55,27 @@
 \end{itemize}
 
 \subsection{Adiabatisches Paradigma (Quantum Annealing)}
+Ein weiteres Modell zur Realisierung von Quantenalgorithmen ist das adiabatische Paradigma, welches auch als Quantum Annealing bezeichnet wird. Das Adiabatischen Modell basiert auf der Idee, ein Quantensystem durch eine langsame, kontinuierliche Änderung eines Hamiltonians gezielt in seinen Grundzustand zu führen. Die gesuchte Lösung des Modells ist in diesem Grundzustand markiert. Genau in dieser Art unterscheidet sich das Quantum Annealing auch vom Gate oder messungsbasierten Modell. 
+Das Grundprinzip des Modells besteht darin, dass man das Quantensystem zunächst in einem leicht vorbereiteten Anfangszustand hält. Dieser entspricht dem Grundzustand eines sogenannten Treibenden Hamiltonians $H_D$. Dieser Hamiltonian kann z.B. ein transversales Feld enthalten, das alle Qubits gleichmäßig beeinflusst. Im Laufe des Algorithmus wird dann schrittweise der Problem-Hamiltonian $H_P$ zugeschaltet, dieser enthält die Struktur des zu lösenden Problems. Die Gesamtentwicklung erfolgt über einen zeitabgängigen Hamiltonian, der folgenden Form:
+$$
+H(t) = A(t) \cdot H_D + B(t) \cdot H_P
+$$
+Die beiden Funktionen A(t) und B(t) steuern, wie stark der jeweilige Hamiltonian zu einem bestimmten Zeitpunkt t wirkt. Am Anfang dominiert hierbei HD und am Ende HP. Das System bleibt nach dem adiabatischen Theorem während des gesamten Prozesses im jeweiligen Grundzustand, wenn die Änderungen langsam genug erfolgen. Am Ende wird die gesuchte Lösung, also der Grundzustand von $H_P$ erreicht.
+Die Hamiltonian dürfen mit einer Geschwindigkeit geändert werden, die stark vom sogenannten Energieabstand (Gap) zwischen dem Grundzustand und dem ersten angeregten Zustand abhängt. Je kleiner dieser Abstand ist, desto langsamer muss die Änderung erfolgen, um unerwünschte Übergänge in angeregte Zustände zu vermeiden. 
+Das Quantum Annealing eignet sich besonders gut für kombinatorische Optimierungsprobleme, da viele davon auf sogenannte Ising-Modelle abgebildet werden können. Ein Beispiel für ein Problem-Hamiltonian ist folgendes:
+$$
+H_P = \sum_{i,j} J_{ij}\sigma_i^z\sigma_j^z + \sum_i h_i\sigma_i^z
+$$
+Die Kopplungsterme $J_{ij}$ und die lokalen Felder $h_i$ kodieren hierbei die jeweilige Problemstruktur.
+Es gibt verschiedene Problemklassen, welche durch Quantum Annealing gelöst werden können, zu den typischen gehören unter anderem Folgende Beispiele: 
 \begin{itemize}
-    \item Langsame Änderung eines Hamiltonians zur Lösungssuche (Adiabatik)
-    \item Ziel: System geht in Grundzustand über, der Lösung codiert
-    \item Problemklassen:
-    \begin{itemize}
-        \item Max-Cut, k-Clique
-        \item Graph Coloring
-        \item Ising-Modell-Minimierung
-    \end{itemize}
+    \item \textbf{Max-Cut: }Bei Max-Cut wird ein Graph aufgeteilt in zwei Teilmengen, sodass die Kantensumme zwischen den beiden Mengen maximal wird 
+    \item 	\textbf{k-Clique:} Bei der k-Clique-Suche geht es darum, vollständige Teilgraphen mit genau k Knoten zu finden, also Untergruppen, in denen jeder Knoten mit jedem anderen verbunden ist 
+    \item \textbf{Graph Coloring: }Beim Graph Coloring sollen Knoten eines Graphen mit möglichst wenigen Farben so eingefärbt werden, dass benachbarte Knoten unterschiedliche Farben erhalten 
+    \item \textbf{Ising-Modell-Minimierung:} Hier wird der Ising-Hamiltonian direkt minimiert. Da sich viele kombinatorische Probleme darauf abbilden lassen, bildet diese Minimierung die Grundlage für zahlreiche Optimierungsaufgaben 
 \end{itemize}
-
+Quantum Annealing (QA) verwendet im Gegensatz zum klassischen Simulated Annealing (SA), bei der thermische Fluktuationen benutzt werden, Quantenfluktuationen, insbesondere Quanten-Tunnel, um Energiebarrieren zu überwinden. Das ist vor allem dann ein Vorteil, wenn die Energiebarrieren hoch, aber schmal sind. In genau diesen Fällen kann das Quantum Annealing schneller zu einer optimalen Lösung finden als sein klassischen Gegenstück Simulated Annealing. 
+Das adiabatische Paradigma wurde in der Praxis unter anderem durch die Firma D-Wave Systems in Hardware umgesetzt. Die Systeme von D-Wave Systems sind darauf spezialisiert Optimierungsprobleme durch Quantum Annealing zu lösen, also das adiabatische Paradigma technisch zu realisieren. 
 \subsection{Hybrid-Paradigma}
 \begin{itemize}
     \item Kombination klassischer und quantenbasierter Teilalgorithmen
@@ -71,6 +101,7 @@
 \end{itemize}
 
 \section{Quanten-Programmiersprachen und -Frameworks}
+\label{sec:programming-languages}
 
 
 Die Entwicklung von Quantencomputern hat zur Entstehung spezialisierter Programmiersprachen und Frameworks geführt, die die besonderen Eigenschaften des Quantencomputings berücksichtigen. Diese Sprachen und Frameworks ermöglichen es Entwicklern, Quantenalgorithmen zu implementieren und zu testen, ohne sich mit den komplexen physikalischen Details der Quantenhardware auseinandersetzen zu müssen.
@@ -432,18 +463,98 @@ Besonderheiten
 \end{itemize}
 
 \subsection{Quantum Software Stack}
-\begin{itemize}
-    \item Überblick: Schichten von Quantenalgorithmus bis Hardwareausführung
-    \item Typische Ebenen:
-    \begin{itemize}
-        \item \textbf{Anwendungsebene:} Algorithmen in Python, Q\#, etc.
-        \item \textbf{Framework/SDK:} Qiskit, Cirq, PennyLane
-        \item \textbf{Compiler / Transpiler:} Übersetzung in native Gates (z.\,B. Qiskit Transpiler)
-        \item \textbf{Middleware:} Jobverwaltung, Backend-Routing, Warteschlangen (z.\,B. IBMQ-Provider)
-        \item \textbf{Backend:} Simulator (Aer) oder physischer Quantenprozessor
-    \end{itemize}
-    \item Rolle der Stack-Komponenten in der Entwicklung
-\end{itemize}
+
+Das Quantencomputing basiert auf einem mehrschichtigen Software-Stack, mit dem abstrakte Quantenalgorithmen auf Quantenhardware übertragen und ausgeführt werden können. Eine mögliche Strukturierung eines solchen Software-Stacks ist in \autoref{fig:quantum-software-stack} abgebildet und setzt sich aus den drei Ebenen \emph{Nutzer (User Layer)}, \emph{Plattform (Platform Layer)} und \emph{Hardware (Hardware Layer)} zusammen. Jede dieser Schichten übernimmt spezifische Aufgaben innerhalb des Gesamtsystems und abstrahiert die Komplexität der darunterliegenden Ebenen.
+\\
+\paragraph{Nutzer}  
+In der obersten Schicht werden Problemstellungen mittels Quantenalgorithmen (\autoref{basic_algorithms}) in konkreten Anwendungscode übertragen. Sie umfasst Werkzeuge und Bibliotheken, mit denen Entwickler Quantenalgorithmen und -anwendungen implementieren und für die Ausführung auf Quantenhardware vorbereiten können. Dazu gehören vor allem die in \autoref{sec:programming-languages} näher erläuterten Programmiersprachen und Entwicklungswerkzeuge (SDKs und Frameworks) wie Qiskit, Cirq oder Q\#.
+\\
+\paragraph{Plattform}  
+Die Plattformschicht ist für die Kompilierung und Optimierung von Quantenprogrammen zuständig. Dazu gehören Compiler wie TKET oder der Qiskit Transpiler, die den Programmcode in Quantenhardware-kompatible Befehle übersetzen. Dazu zählen z.B. Gate-Dekomposition, Qubit-Zuordnung und Optimierung hinsichtlich Laufzeit und Fehlerresistenz. Auch dedizierte Software zur Fehlerkorrektur wie Riverlane kann dieser Schicht zugeordnet werden. Darüber hinaus enthält die Plattformschicht Simulatoren und Emulatoren wie Qiskit Aer oder Intel Quantum Simulator. Dabei handelt es sich um Software, die echte Quantenhardware nachbildet und so ein einfacheres Testen, Debuggen und Optimieren von Quantenanwendungen ermöglicht.
+\\
+\paragraph{Hardware}  
+Am unteren Ende des Software-Stacks befindet sich die eigentliche Quantenhardware (Quantum Processing Unit) sowie Software für deren Verwaltung und Überwachung. Kontrollsysteme wie Quantum Machines OPX+ ermöglichen beispielsweise die Kalibrierung, Pulsgenerierung und qubitgenaue Steuerung der Hardware. Außerdem umfasst die Hardwareschicht weitere Fehlerkorrekturmechanismen.
+\\
+\\
+Jede Schicht im Software-Stack abstrahiert technische Details der darunterliegenden Ebene und trägt zur strukturierten Entwicklung, Optimierung und Ausführung von Quantenprogrammen bei. \autocite{shehata_building_2025} \autocite{ryan_understanding_2024}
+
+\begin{figure}[ht!]
+\centering
+\begin{tikzpicture}[
+  layerbox/.style={
+    draw,
+    minimum width=6cm,
+    minimum height=0.8cm,
+    text centered
+  }
+]
+
+\node[layerbox] (l1) at (0,  0) {Programmiersprachen};
+\node[layerbox] (l2) at (0, -1) {SDKs und Frameworks};
+\node[layerbox] (l3) at (0, -2) {Quantenalgorithmen};
+\node[layerbox] (l4) at (0, -3) {Quantenanwendungen};
+
+\node[layerbox] (l5) at (0, -4.5) {Simulation};
+\node[layerbox] (l6) at (0, -5.5) {Kompilierung};
+\node[layerbox] (l7) at (0, -6.5) {Fehlerkorrektur};
+
+\node[layerbox] (l8) at (0, -8) {Kontrollsysteme};
+\node[layerbox] (l9) at (0, -9) {Quantum Processing Unit (QPU)};
+
+\draw[decorate, decoration={brace, amplitude=6pt, mirror}, very thick]
+  ($(l1.north west) + (-0.2,0.1)$) -- ($(l4.south west) + (-0.2,-0.1)$)
+  node[midway, xshift=-0.4cm, anchor=east, font=\normalsize\bfseries] {Nutzer};
+
+\draw[decorate, decoration={brace, amplitude=6pt, mirror}, very thick]
+  ($(l5.north west) + (-0.2,0.1)$) -- ($(l7.south west) + (-0.2,-0.1)$)
+  node[midway, xshift=-0.4cm, anchor=east, font=\normalsize\bfseries] {\textbf{Plattform}};
+
+\draw[decorate, decoration={brace, amplitude=6pt, mirror}, very thick]
+  ($(l8.north west) + (-0.2,0.1)$) -- ($(l9.south west) + (-0.2,-0.1)$)
+  node[midway, xshift=-0.4cm, anchor=east, font=\normalsize\bfseries] {\textbf{Hardware}};
+
+\end{tikzpicture}
+\caption{Struktur eines Quantum Software-Stacks \autocite{ryan_understanding_2024}}
+\label{fig:quantum-software-stack}
+\end{figure}
+
+\textbf{Näher eingehen auf Compiler und Simulator?}
+
+\subsection{Quantum Cloud Computing}
+
+Die in der untersten Schicht des Quantum Software-Stacks befindliche Quantenhardware ist teuer in der Anschaffung und komplex zu betreiben. Das Konzept des Quantum Cloud Computing (QCC) zielt darauf ab, Endnutzern den Zugang zu Quantenhardware über Cloud-Plattformen zu erleichtern. Diese bieten Zugang zu Ressourcen, Jobmanagement und Fehlermitigation mittels abstrahierter Schnittstellen in einer skalierbaren Umgebung.
+
+Ein zentraler Vorteil Cloud-basierter Quantenplattformen liegt in ihrer Flexibilität: Nutzer können ihre Rechenkapazitäten bedarfsgerecht skalieren, was die Bearbeitung unterschiedlich komplexer Probleme effizienter gestaltet. Außerdem ermöglichen sie das einfache Entwickeln und Testen von Quantenalgorithmen in simulierten Umgebungen, bevor diese auf echter Hardware ausgeführt werden. Dies reduziert die Einstiegshürden, da keine spezialisierte Infrastruktur oder tiefgreifende Hardwarekenntnisse notwendig sind. Da alle Nutzer auf dieselbe Plattform zugreifen, werden darüber hinaus globale Kollaboration und standardisierte Entwicklungsumgebungen begünstigt.
+
+Zu den wichtigsten Anbietern von Quantum Cloud Plattformen zählen aktuell IBM, Amazon und Google. Ihre Plattformen IBM Quantum\footnote{IBM Quantum \url{https://quantum.ibm.com/}}, Amazon Braket\footnote{Amazon Braket \url{https://aws.amazon.com/braket/}} und Google Quantum AI\footnote{Google Quantum AI \url{https://quantumai.google/cirq/google/concepts}} sind in \autoref{tab:quantum-cloud-platforms} gegenübergestellt \autocite{trends+challenges-TODO-sync}.
+
+\begin{table}[ht!]
+\centering
+\begin{tabular}{|p{2.8cm}|p{2.5cm}|p{2.5cm}|p{4.5cm}|p{3.5cm}|}
+\hline
+\textbf{Plattform} & \textbf{Hardware} & \textbf{Sprachen / SDKs} & \textbf{Kernfeatures} & \textbf{Besonderheiten} \\
+\hline
+IBM Quantum & Falcon, Eagle (Supraleitende Qubits) & Qiskit & Hardware-agnostischer Code, Qiskit Runtime für containerisierte Near-time-Execution, integrierte Fehlerunterdrückung (z.\,B. ZNE, dynamical decoupling) & Sessions zur Reduktion klassisch-quantischer Latenz; optimiert für iterative Algorithmen \\
+\hline
+Amazon Braket & IonQ (Ionenfallen), Rigetti (supraleitend), OQC (Photonik) & Braket SDK, PennyLane, Qiskit & Hybrid Jobs: Orchestrierung von QPU und EC2, Priorisierung, parametric compilation, CloudWatch Monitoring & Pay-as-you-go-Modell; lokale Debug-Modi; EC2-Integration für hybride Workflows \\
+\hline
+Google Quantum AI & Sycamore (supraleitend) & Cirq & Integration mit Google-Infrastruktur, Fokus auf NISQ-Algorithmen und ML & Direkte ML-Pipeline-Anbindung; Forschungsfokus auf Skalierbarkeit \\
+\hline
+\end{tabular}
+\caption{Vergleich führender Quantum Cloud Plattformen}
+\label{tab:quantum-cloud-platforms}
+\end{table}
+
+Weitere Plattformen sind etwa \textit{Strangeworks}, \textit{Xanadu}, \textit{Quantinuum}, \textit{IonQ} (auch über Azure Quantum) und \textit{Microsoft Azure Quantum}. Diese bieten entweder eigene Hardwaretechnologien (wie photonische QPUs bei Xanadu oder trapped-ion Systeme bei Quantinuum) oder bündeln übergreifende Multi-Backend-Zugänge mit einheitlicher API. Microsoft ermöglicht zudem tiefe Integration in klassische Azure-Dienste, während Strangeworks auf eine benutzerfreundliche Multi-Vendor-Umgebung setzt.
+
+
+
+
+
+
+
+
+
 
 \subsection{Praxisbeispiel: Grover-Suche mit Qiskit} (erledigt, nur noch beschreiben was passiert)
 \begin{itemize}
@@ -477,15 +588,158 @@ Besonderheiten
         \item Qiskit installieren
     \end{itemize}
 \subsubsection{Konstruktion des Circuits: Dennis}
-    \begin{itemize}
-        \item Oracle-Definition
-        \item Diffusion-Operator
-        \item Initialisierung und Messung
-    \end{itemize}
+
+
+Um den Grover Algorithmus praktisch auf eine Quantencomputer umzusetzen, wird eine konkrete Konstruktion der Schaltung benötigt. Der Algorithmus setzt sich dabei aus 4 wesentlichen Komponenten zusammen: 
+\begin{enumerate}
+    \item  Initialisierung: Hierbei werden die Qubits in eine gleichmäßige Superposition gebracht
+    \item Oracle: Im Oracle wird der gesuchte Zustand, welcher der Grover Algorithmus identifizieren soll, ausgewählt
+    \item Diffusionsoperator: Der Diffusionsoperator verstärkt den Zustand des Oracle
+    \item   Messung: Abgeschlossen wird der Algorithmus mit der Messung, um das Ergebnis zu erhalten. 
+\end{enumerate}
+
+Diese 4 Schritte können beliebig für eine beliebige Anzahl an Qubits angewendet werden. Im Folgenden werden die 4 Komponenten nochmals ausführlicher beschrieben. Das Ganze erfolgt jeweils mathematisch, konzeptionell und zusätzlich noch praktisch. Für den praktischen Teil wurde ein Grover Algorithmus mit Qiskit in Jupyter Notebooks implementiert und Codeausschnitte zeigen Schritt für Schritt die praktische Umsetzung.
+
+\subsection*{Initialisierung}
+Der Startzustand aller Qubits ist $\ket{0}$. Um eine gleichverteilte Superposition über alle Basiszustände der Qubits zu erzeugen, muss für jedes der Qubits ein Hadamard-Gate ($H$) angewendet werden. Für die Anzahl $n$ Qubits ergibt sich daraus folgender Zusammenhang:
+$$
+|\psi_0\rangle = H^{\otimes n}|0\rangle^{\otimes n} = \frac{1}{\sqrt{2^n}} \sum_{x=0}^{2^n-1} |x\rangle
+$$
+Der beschriebene Zustand bildet die Grundlage für die Amplitudenverstärkung von Grovers Algorithmus. Jede Lösung hat damit zunächst dieselbe Wahrscheinlichkeit. (Nielsen \& Chuang 2010, S.257)
+
+Mit Qiskit in Jupyter Notebooks wird zunächst die `QuantumCircuit`-Bibliothek benötigt. Anschließend kann die Initialisierung, also der Ausgangspunkt für jeden Grover-Algorithmus, wie folgt in Qiskit umgesetzt werden:
+\subsection*{Beispiel für 2 Qubits:}
+\begin{verbatim}
+from qiskit import QuantumCircuit
+
+# Quantenschaltung mit 2 Qubits und 2 klassischen Bits erstellen
+qc = QuantumCircuit(2, 2)
+
+# Hadamard-Gate auf jedes Qubit anwenden
+qc.h([0, 1])
+
+
+\end{verbatim}
+Das gewählte Beispiel ist für 2 Qubits, kann jedoch, wie bereits erwähnt, für die Anzahl $n$ Qubits beliebig erweitert werden.
+
+\subsection*{Oracle}
+Der nächste Schritt in der Implementierung des Grover-Algorithmus nennt sich Oracle. Bei Oracle handelt es sich um eine unitäre Operation $U_f$, welche den gesuchten Zustand $\ket{T}$ durch eine Phaseninversion der Qubits kenntlich macht. Das bedeutet, dass in diesem Schritt immer der gesuchte Zielzustand markiert wird. Dies erlaubt im Beispiel von 2 Qubits vier verschiedene Zielzustände: "00", "01", "10" und "11".
+
+Dieser Zusammenhang wird wie folgt beschrieben:
+$$
+U_f \ket{x} = (-1)^{f(x)} \ket{x}
+$$
+Ein ideales Oracle wird formal wie folgt beschrieben:
+$$
+U_f \ket{x} = \begin{cases} -\ket{x} & \text{wenn } x \text{ der gesuchte Zustand ist} \\ \ket{x} & \text{sonst} \end{cases}
+$$
+Für die Standardversion des Grover-Algorithmus wird der Parameter $f(x)$ in der genannten Formel gesetzt, was zu folgender Formel führt:
+$$
+U_f \ket{x} = (-1)^{\delta_{x,T}} \ket{x}
+$$
+Die daraus entstehende Inversion lässt sich als eine Reflexion des Zustandsvektors im sogenannten Hilbertraum interpretieren. (Roy et al 2022, Grover 1996)
+
+Zum besseren Verständnis, wie das Genannte mit Qiskit in Jupyter Notebooks umgesetzt wird, hier die Fortsetzung des Beispiels für 2 Qubits. Als Beispiel wird im Folgenden nun der Zielzustand $\ket{01}$ markiert.
+
+Standardmäßig wirkt das CZ-Gate (Controlled-Z Gate) in Qiskit auf den Zustand $\ket{11}$. Wenn man nun einen der anderen genannten Zustände markieren möchte, muss man mit NOT-Gates (X-Gates) arbeiten, welche die Qubits so transformieren, dass der gewünschte Zielzustand vor dem CZ-Gate zum Zustand $\ket{11}$ wird und nach dem CZ-Gate wieder zurücktransformiert wird.
+
+\subsection*{Zielzustand $\ket{01}$ markieren (Beispiel):}
+Um den Zustand $\ket{01}$ zu markieren, invertieren wir das erste Qubit (Index 0) mit einem X-Gate, sodass aus $\ket{0}$ ein $\ket{1}$ wird. Das zweite Qubit (Index 1) bleibt $\ket{1}$. Somit wird aus $\ket{01}$ ein $\ket{11}$. Anschließend wenden wir das CZ-Gate an und invertieren das erste Qubit wieder zurück, um den Zustand wiederherzustellen.
+
+\begin{verbatim}
+# Oracle für den Zielzustand |01> erstellen
+# Qubit 0 (links) ist 0, Qubit 1 (rechts) ist 1
+# Um aus |01> ein |11> zu machen, muss Qubit 0 invertiert werden (X-Gate)
+
+# X-Gate auf Qubit 0 anwenden (0 -> 1)
+qc.x(0)
+# CZ-Gate anwenden (wirkt auf |11>)
+qc.cz(0, 1)
+# X-Gate auf Qubit 0 zurückanwenden (1 -> 0)
+qc.x(0)
+
+# Schaltung zeichnen (optional)
+# qc.draw('mpl')
+\end{verbatim}
+Mit dieser Vorgehensweise können beliebige Zielzustände auf einfache Weise realisiert werden, und das Ganze ohne zusätzliche Hilfs-Qubits. Das funktioniert auch für die Anzahl $n$ Qubits. (Roy et al, 2022)
+
+---
+
+\subsection*{Diffusionsoperator}
+Der Diffusionsoperator, welcher auch häufig „Inversion about the mean“ genannt wird, verstärkt den im Oracle markierten Zielzustand, indem er alle Amplituden am Mittelwert reflektiert. Die Definition des Diffusionsoperators ist folgende:
+$$
+D = 2\ket{s}\bra{s} - I
+$$
+Dabei steht der Parameter $\ket{s}$ für den gleichverteilten Zustand. Das entspricht aus geometrischer Sicht einer Spiegelung im Hilbertraum. Genau diese Operation ist für die Verstärkung des im Oracle markierten Zielzustands verantwortlich. Nach jeder Grover-Iteration bewirkt sie eine Rotation des Zustandsvektors um einen festen Winkel im Unterraum von markierten und unmarkierten Zuständen. (vgl. Grover 1996, Montanaro 2016).
+
+In unserem gewählten Beispiel mit 2 Qubits kann der Diffusionsoperator in Qiskit wie folgt umgesetzt werden:
+\begin{verbatim}
+# Diffusionsoperator
+qc.h([0, 1])  # Hadamard-Gate auf alle Qubits
+qc.x([0, 1])  # X-Gate auf alle Qubits
+qc.cz(0, 1)  # CZ-Gate
+qc.x([0, 1])  # X-Gate auf alle Qubits
+qc.h([0, 1])  # Hadamard-Gate auf alle Qubits
+
+# Schaltung zeichnen (optional)
+# qc.draw('mpl')
+\end{verbatim}
+
+Optional kann das auch mit dem `GroverOperator` aus der Qiskit-Bibliothek gelöst werden. Dieser kapselt Oracle und Diffusion und wird wie folgt umgesetzt:
+\begin{verbatim}
+from qiskit.algorithms import GroverOperator
+
+# Ein Oracle definieren (hier als Beispiel für |01>)
+oracle_qc = QuantumCircuit(2)
+oracle_qc.x(0)
+oracle_qc.cz(0, 1)
+oracle_qc.x(0)
+
+# GroverOperator erstellen
+grover_op = GroverOperator(oracle=oracle_qc)
+
+# GroverOperator zur Hauptschaltung hinzufügen (optional, da er bereits die Iteration enthält)
+# qc.append(grover_op, [0, 1])
+
+# Schaltung zeichnen (optional)
+# grover_op.draw('mpl')
+\end{verbatim}
 
 \subsubsection{Ausführung auf Simulator (Qiskit Aer)}
-\subsubsection{Visualisierung von Schaltkreis und Ergebnissen} Konrad
+\subsubsection{Visualisierung von Schaltkreis und Ergebnissen Konrad}
+
+Ein zentrales Anliegen beim Verständnis und bei der Vermittlung von Quantenalgorithmen ist die Möglichkeit, deren Funktionsweise nicht nur abstrakt-mathematisch, sondern auch visuell nachvollziehen zu können. Das folgende Kapitel widmet sich der Visualisierung des Grover-Algorithmus anhand zweier Implementierungen – einmal mit zwei, einmal mit drei Qubits – unter Verwendung des Qiskit-Frameworks. Sowohl der Aufbau des Quanten-Schaltkreises als auch die Messergebnisse werden grafisch dargestellt und interpretiert.
+
+\subsection*{Visualisierung des Quantenschaltkreises}
+
+Für beide Varianten des Grover-Algorithmus wird der jeweilige Quanten-Schaltkreis mit der Methode QuantumCircuit.draw() visualisiert. Diese Darstellung erlaubt einen direkten Einblick in den logischen Aufbau des Algorithmus, insbesondere in die Abfolge und Wirkung der verschiedenen quantenmechanischen Operationen. Die Schaltkreise bestehen jeweils aus mehreren charakteristischen Abschnitten:
+\begin{itemize}
+    \item \textbf{Initialisierung:} Alle Qubits werden im Zustand $\ket{0}$    vorbereitet.
+    \item \textbf{Superposition:} Durch Anwendung von Hadamard-Gattern wird eine gleichmäßige Überlagerung aller möglichen Basiszustände erzeugt.
+    \item \textbf{Oracle:} Eine gezielte Phaseninversion kennzeichnet den gesuchten Zustand. Dieser Schritt implementiert die sogenannte „Markierung“ des Zielzustands.
+    \item \textbf{Diffusion (Grover-Operator):} In einem weiteren Schritt wird der markierte Zustand durch Interferenz verstärkt. Dies geschieht durch Spiegelung an der Mittelwertachse aller Amplituden.
+    \item \textbf{Messung:} Zum Abschluss des Algorithmus erfolgt eine Messung aller Qubits.
+\end{itemize}
+\noindent
+Die nachstehenden Codeausschnitte zeigen, wie die Schaltkreise für beide
+Varianten im Notebook erzeugt und angezeigt werden:
+
+\begin{verbatim}
+circuit.draw()
+\end{verbatim}
+
+  \centering
+  \begin{figure}
+      \includegraphics[width=0.25\linewidth]{circuit_superposition.png}
+      \caption{Visualisierung des Schaltkreises (Superposition)}
+      \label{fig:enter-label}
+\end{figure}
+
+\subsubsection*{Visualisierung der Messergebnisse}
+
+
 \subsubsection{Tests und Debugging-Hilfsmittel (z.\,B. Histogramme, Counts) Konrad}
+
 
 
 \subsection{Cloud Deployment: Ausführung auf echter Quantenhardware}

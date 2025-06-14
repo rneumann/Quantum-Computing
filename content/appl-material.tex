@@ -4,12 +4,53 @@
 % use \chaptermark{}
 % to alter or adjust the chapter heading in the running head
 
-\chapterauthor{Hüma, Sabine}
+\chapterauthor{Hüma Yilmaz, Sabine Weigand}
 
 \abstract{some abstract}
 
 \section{Relevanz \& Problemstellung}
 \section{Top 3 Anwendungsfelder (Praxis \& Theorie)}
+\subsection{Simulation von Molekülen und Reaktionen}
+
+Die Simulation von Molekülen und chemischen Reaktionen geht auf Arbeiten von Richard Feynmann und Yuri Manin in den 1980er Jahren zurück \cite{cao_quantum_2019}. Sie erkannten, dass klassische Computer fundamentale Grenzen bei der Simulation quantenmechanischer Systeme haben, da der Rechenaufwand exponentiell mit der Teilchenzahl wächst. Sie übergingen dies, indem sie Quantensysteme mit anderen Quantensystemen emulieren.  Dies eröffnet neue Möglichkeiten, chemische Systeme auf atomarer und molekularer Ebene zu verstehen, zu modellieren und zu steuern.
+\subsubsection{Grundlegende Bedeutung und Herausforderungen}
+Die Eigenschaften von Molekülen, ihre Bindungen, Reaktionsfähigkeit und Dynamik lassen sich nur durch die Lösung der Schrödinger-Gleichung für Vielteilchensysteme vollständig beschreiben. Klassische Computer stoßen hierbei an ihre Grenzen, da der Rechenaufwand exponentiell mit der Systemgröße wächst. Quantencomputer nutzen im Gegensatz zu klassischen Computern die Prinzipien der Quantenmechanik, um diese Komplexität effizient nachzubilden.
+
+\subsubsection{Arten der Quantensimulation:}
+\textbf{Digitale Quantensimulation} \\
+Digitale Quantensimulation folgt dem Vorbild moderner klassischer Computer, indem die Berechnung in eine Reihe diskreter \glqq Gatter\grqq-Operationen wird, die gezielt auf quantenmechanischen Systemen wirken. Ein besonderer Vorteil dieses Ansatzes ist die Möglichkeit zur Fehlerkorrektur bei unvollkommenen Implementierungen der Gatter, was potenziell fehlertolerante Operationen für umfangreiche Quantenberechnungen ermöglicht. Allerdings arbeiten die meisten aktuell verfügbaren Geräte ohne solche Fehlerkorrekturen und werden als \glqq noisy intermediate-scale quantum (NISQ) computing\grqq{} bezeichnet.
+ Das Rauschen begrenzt dabei die Anzahl der ausführbaren Operationen.(Practical quantum advantage... Daley et al). Digitale Quantensimulatoren sind universell einsetzbar, da sie prinzipiell jeden gewünschten Hamilton-Operator realisieren können und somit ein breites Spektrum von Modellen untersuchen, ohne dass diese direkt im Labor umgesetzt werden müssen. Zwar können Algorithmen zur Präparation komplexer Niederenergiestaaten exponentiell in der Zeit skalieren, doch lässt sich die Entwicklung eines präzisen Ausgangszustands mit beliebig hoher Genauigkeit mit polynomiellem Aufwand durchführen. Für einen praktischen Quantenvorteil sind jedoch noch erhebliche Fortschritte in der Hardware-Entwicklung erforderlich, da die benötigten Gatter-Operationen und Qubits die Fähigkeiten aktueller NISQ-Geräte weit übersteigen.\\
+\textbf{Analoge Quantensimulation}\\ 
+Analoge Quantensimulation nutzt spezialisierte Quantensysteme, die gezielt bestimmte Klassen von Modellen abbilden, ähnlich wie ein Windkanal die Aerodynamik simuliert. Hierbei wird der gewünschte Hamilton-Operator mit gut kalibrierten Parametern umgesetzt. Ein großer Vorteil dieser Methode besteht darin, dass sie bereits heute auf große Systemgrößen skalieren kann und somit ein natürlicher Bereich für die Suche nach einem praktischen Quantenvorteil im Vergleich zu klassischen Simulationen ist. Allerdings sind analoge Quantensimulatoren anfällig für Kalibrierungsfehler, Dekohärenz und Rauschen. Dennoch lassen sich diese Fehlerquellen prinzipiell bestimmen und in der Praxis begrenzen, sodass die Simulationen eine quantitative Zuverlässigkeit auf dem Niveau der Kalibrierungsfehler erreichen. Analoge Quantensimulatoren haben bereits wertvolle Einblicke in wissenschaftliche Fragestellungen geliefert und operieren in Bereichen, die für klassische Algorithmen unzugänglich sind. Die Einschränkung liegt darin, dass nur solche Modelle simuliert werden können, deren Hamilton-Operatoren direkt im Analogsystem realisiert werden können.\\
+
+\textbf{Hybride digital-analoge Quantensimulation} \\
+Hybride digital-analoge Quantensimulation kombiniert die Fähigkeiten von analoger und digitaler Quantensimulation. Diese Methode gilt als vielversprechend für die nahe Zukunft, da sie die Vorteile beider Ansätze vereint. Die nativen analogen Operationen können zur Erzeugung hochverschränkter Zustände genutzt werden, während digitale Kontrolle und Variationsansätze zum Einsatz kommen. In diesen programmierbaren Hybridsimulatoren ist die Systemdynamik nicht mehr auf einfache Evolutionen unter einem nativen Hamilton-Operator beschränkt, da die zeitabhängige Kontrolle die Gestaltung verschiedener Modelle ermöglicht, etwa durch Floquet-Engineering. Hybrid-Algorithmen sind besonders für aktuelle NISQ-Geräte praktisch, da sie die Stärken von Quanten- und klassischen Computern nutzen und die Rechenaufgaben entsprechend aufteilen \cite{cao_quantum_2019}.
+
+\subsection{Materialforschung für Batterien\& Quantenmaterialien}
+cite Computational Design of Battery Materials
+
+\subsubsection*{Simulation komplexer Quantensysteme und Materialien}
+
+Batteriematerialien zeichnen sich durch eine ausgeprägte quantenmechanische Komplexität aus, die sich in der Vielzahl elektronischer Wechselwirkungen, Ionenbewegungen und Grenzflächeneffekte manifestiert. Klassische Simulationsmethoden stoßen hier an ihre Grenzen, da sie Wellenfunktionen nicht explizit darstellen können und der Hilbertraum mit der Anzahl der beteiligten Teilchen exponentiell wächst. Quantencomputer hingegen nutzen die natürliche Verschränkung von Qubits, um solche Systeme präzise abzubilden. Dadurch werden Elektronenkorrelationen, Ladungstransferprozesse und die elektronische Struktur von Materialien wie Lithium-Metalloxiden oder Festkörperelektrolyten realistisch modellierbar -- Eigenschaften, die für die Entwicklung leistungsfähiger Batterien von zentraler Bedeutung sind.
+
+\subsubsection*{Vorhersage und Design von Materialeigenschaften}
+
+Quantensimulationen ermöglichen es, Schlüsseleigenschaften von Batteriematerialien präzise vorherzusagen und gezielt zu optimieren. Dazu zählen die Ermittlung der Energiespeicherkapazität durch Berechnung der elektronischen Struktur von Elektrodenmaterialien, die Bestimmung von Spannungsprofilen anhand der Energieänderung beim Ein- und Ausbau von Ionen sowie die Berechnung von Diffusionskoeffizienten zur Analyse der Ionenmobilität in kristallinen oder amorphen Materialien. Auch Redoxpotentiale, die für die Stabilität und Lebensdauer von Batterien entscheidend sind, lassen sich durch quantenmechanische Modellierung von Elektronentransferprozessen an Grenzflächen wie der Fest-Elektrolyt-Phase (SEI) bestimmen. Diese Erkenntnisse sind essenziell für die Entwicklung sowohl von Lithium-Ionen- als auch von Post-Lithium-Batterien, etwa auf Basis von Natrium oder Magnesium.
+
+\subsubsection*{Analyse von Zeitentwicklungen und Dynamiken}
+
+Die Simulation der Zeitentwicklung unter einem Hamilton-Operator stellt klassische Computer vor erhebliche Herausforderungen, insbesondere bei Prozessen wie der Bildung der Fest-Elektrolyt-Grenzphase (SEI), der Ionenmobilität in Festkörperelektrolyten oder dem Bindungsbruch in Elektrodenmaterialien. Quantencomputer sind in der Lage, diese zeitabhängigen Prozesse effizient zu modellieren und so wertvolle Einblicke in die Mechanismen der Batteriealterung, der chemischen Stabilität und der Degradation zu liefern. Atomistische Molekulardynamik (AIMD) auf Quantencomputern könnte Rechenzeiten drastisch reduzieren und realistischere Zeitskalen abdecken, was für die Entwicklung robuster und langlebiger Batterien von großer Bedeutung ist.
+
+\subsubsection*{Entdeckung und Optimierung neuer Batteriematerialien}
+
+Quantencomputing eröffnet neue Möglichkeiten zur systematischen Erkundung und Optimierung neuartiger Materialklassen. So können Post-Lithium-Systeme wie Natrium-, Magnesium- oder Aluminium-Batterien simuliert werden, die aufgrund größerer Ionenradien andere Einlagerungsmechanismen erfordern. Auch Festkörperelektrolyte aus Sulfiden, Oxiden oder Polymeren mit hoher Ionenleitfähigkeit lassen sich auf ihre Stabilität und Kompatibilität mit Elektroden prüfen. Darüber hinaus werden Quantenmaterialien wie topologische Isolatoren oder Supraleiter untersucht, die ungewöhnliche elektronische Eigenschaften aufweisen und für spezielle Anwendungen, etwa als Quantensensoren, interessant sind. Analoge Quantensimulatoren liefern bereits heute Einblicke in Modellklassen, die klassischen Algorithmen verschlossen bleiben, etwa die Langzeitdynamik von Ionen in Defektstrukturen.
+
+\subsubsection*{Optimierung von Fertigungsprozessen}
+
+Die Kombination aus Quantencomputing und maschinellem Lernen revolutioniert die Batterieproduktion. Durch hybride Algorithmen lassen sich Fertigungsparameter wie Temperatur, Druck und Dotierungskonzentrationen bei der Synthese von Elektrodenmaterialien präzise einstellen. Quantenunterstützte Bildanalysen ermöglichen die Detektion von Mikrorissen in Elektrodenbeschichtungen oder Unregelmäßigkeiten in Elektrolytschichten. Zusätzlich werden durch quantenbasierte Stoffdatenbanken nachhaltige und recyclingfähige Materialien sowie energieeffiziente Herstellungsverfahren beschleunigt. Projekte wie \textit{BASIQ} (DLR) und Kooperationen zwischen Industrie und Start-ups, beispielsweise Volkswagen und Xanadu, demonstrieren bereits den erfolgreichen Transfer dieser Technologien in die Praxis.
+
+\subsection{Wirkstoffforschung}
+
 \section{Top Technologien \& Algorithmen}
 \section{Top 3 Zukunftsprojekte \& Forschungsinitiativen}
 \section{Bewertung anhand der Kriterien}

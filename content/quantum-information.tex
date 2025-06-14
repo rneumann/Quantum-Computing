@@ -10,6 +10,95 @@
 
 \section{Der Qubit als Informationsträger}
 \subsection{Vergleich Klassisches Bit und Qubit}
+Das \emph{Qubit}, kurz für \emph{Quantenbit}, bildet die Grundlage der Technologie hinter Quantencomputern. Der Begriff \emph{Quantenbit} stellt bewusst eine Verbindung zum klassischen \emph{Bit} her. Sowohl das klassische Bit als auch das Qubit sind in ihren jeweiligen Rechnersystemen die kleinste Einheit zur Darstellung von Information.
+
+Der grundlegende Unterschied liegt jedoch in der Art und Weise sowie im Umfang der Informationen, die auf dieser Einheit gespeichert und verarbeitet werden können:
+
+Ein klassisches Bit kann genau einen von zwei möglichen Zuständen annehmen:
+\[
+\text{Bit} \in \{0, 1\}
+\]
+Das bedeutet, dass ein Bit entweder den Wert \(0\) oder den Wert \(1\) hat – jedoch niemals beide gleichzeitig. Praktisch wird ein Bit häufig durch den Zustand eines elektronischen Schalters realisiert, z.\,B. durch das Fließen oder Nichtfließen von elektrischem Strom.
+
+Trotz enormer Fortschritte in der Entwicklung klassischer Computer stoßen diese bei bestimmten Problemen an fundamentale Grenzen. Insbesondere bei Aufgaben, deren Rechenaufwand exponentiell mit der Problemgröße wächst, wären klassische Computer selbst bei jahrzehntelanger Laufzeit überfordert.
+
+Hier setzen Quantencomputer an. Sie versprechen, zumindest bestimmte Klassen solcher Probleme deutlich schneller lösen zu können. Ein wesentlicher Bestandteil dieses Potenzials ist das Konzept der \emph{Superposition}.
+
+Ein Qubit kann nicht nur die Zustände \(0\) oder \(1\) annehmen, sondern auch \emph{gleichzeitig Anteile von beiden} enthalten. Man kann sich das vorstellen wie ein Zeiger, der in einem Halbkreis alle Zwischenpositionen einnehmen kann. 
+
+\bigskip
+
+\noindent
+Zur Veranschaulichung dient folgende grafische Darstellung eines Qubits in Superposition:
+
+
+\begin{center}
+\begin{tikzpicture}[scale=2]
+  % Koordinatensystem
+  \draw[->] (0,0) -- (1.2,0) node[right] {\( |0\rangle \)};
+  \draw[->] (0,0) -- (0,1.2) node[above] {\( |1\rangle \)};
+  
+  % Qubit-Zustand (Beispielvektor)
+  \draw[->, thick, blue] (0,0) -- (0.8,0.6) node[above right] {Qubit-Zustand};
+  
+  % Winkel markieren
+  %\draw (0.6,0) arc[start angle=0,end angle=36, radius=0.6];
+  %\node at (0.4,0.15) {\(\theta\)};
+  
+  % Basiszustände beschriften
+  \node at (1.05,-0.1) {\(0\)};
+  \node at (-0.1,1.05) {\(1\)};
+  
+  % Gitterlinien (optional)
+  \draw[dashed, gray!50] (0.8,0) -- (0.8,0.6);
+  \draw[dashed, gray!50] (0,0.6) -- (0.8,0.6);
+\end{tikzpicture}
+\end{center}
+
+\bigskip
+
+Dieses Diagramm zeigt ein Qubit als Vektor im Einheitskreis. Je nach Richtung des Vektors ist das Qubit näher an Zustand \(0\), Zustand \(1\) oder in einer Überlagerung dazwischen.
+
+\subsection{Bloch-Kugel-Darstellung}
+Die \emph{Bloch-Kugel} ist eine anschauliche geometrische Darstellung eines Qubits. Sie ermöglicht es, die Zustände eines Qubits als Punkte auf der Oberfläche einer Kugel zu visualisieren. Jeder Punkt auf der Oberfläche der Kugel entspricht einem möglichen Zustand des Qubits.
+\begin{center}
+\begin{tikzpicture}
+
+  % Define radius
+  \def\r{3}
+
+  % Bloch vector
+  \draw (0, 0) node[circle, fill, inner sep=1] (orig) {} -- (\r/3, \r/2) node[circle, fill, inner sep=0.7, label=above:$\vec{a}$] (a) {};
+  \draw[dashed] (orig) -- (\r/3, -\r/5) node (phi) {} -- (a);
+
+  % Sphere
+  \draw (orig) circle (\r);
+  \draw[dashed] (orig) ellipse (\r{} and \r/3);
+
+  % Axes
+  \draw[->] (orig) -- ++(-\r/5, -\r/3) node[below] (x1) {$x_1$};
+  \draw[->] (orig) -- ++(\r, 0) node[right] (x2) {$x_2$};
+  \draw[->] (orig) -- ++(0, \r) node[above] (x3) {$x_3$};
+
+  % Angles
+  \pic [draw=gray, text=gray, ->, "$\phi$"] {angle = x1--orig--phi};
+  \pic [draw=gray, text=gray, <-, "$\theta$", angle eccentricity=1.4] {angle = a--orig--x3};
+%TODO: citation
+\end{tikzpicture}
+\end{center}
+
+Die Pole der Kugel repräsentieren die Basiszustände \(|0\rangle\) und \(|1\rangle\). Jeder Punkt auf der Oberfläche der Kugel entspricht einem Zustand des Qubits, wobei die Position auf der Kugel die Superposition zwischen den Basiszuständen beschreibt.
+
+\subsection{Dirac-Notation}
+Die \emph{Dirac-Notation} ist eine kompakte und elegante Schreibweise zur Darstellung von Zuständen in der Quantenmechanik. Sie wird häufig verwendet, um Qubit-Zustände zu beschreiben. In dieser Notation werden Zustände als Vektoren in einem Hilbertraum dargestellt.
+Ein Qubit-Zustand wird typischerweise in der Form
+\[
+|\psi\rangle = \alpha |0\rangle + \beta |1\rangle\]
+geschrieben, wobei \(\alpha\) und \(\beta\) komplexe Zahlen sind, die die Amplituden der Basiszustände \(|0\rangle\) und \(|1\rangle\) repräsentieren. Die Beträge dieser Amplituden müssen die Bedingung
+\[
+|\alpha|^2 + |\beta|^2 = 1\]
+erfüllen, um sicherzustellen, dass der Zustand normiert ist. Dies bedeutet, dass die Summe der Wahrscheinlichkeiten, den Zustand \(|0\rangle\) oder \(|1\rangle\) zu messen, gleich \(1\) ist.
+Die Dirac-Notation ermöglicht es, Zustände und Operationen in der Quantenmechanik präzise und kompakt darzustellen. Sie ist besonders nützlich, um die mathematischen Eigenschaften von Qubit-Zuständen zu analysieren und zu manipulieren.
 
 \subsection{Darstellung von Qubits}
 \subsubsection{Block Kugel}
@@ -25,6 +114,7 @@
 
 \section{Quanten-Gatter}
 \subsection{tbd: Klären mit Gruppe Algorithmen}
+
 
 \section{Quantenverschränkung und Teleportation}
 
@@ -121,11 +211,11 @@ Wie Anhand der wissenschaftlichen Artikel von Bennett, Brassard et. al., sowie G
 
 \section{Praxisbeispiel: Bell-Zustand und Quantenkorrelation}
 \subsection{Was ist ein Bell-Zustand?}
-Bell-Zustände sind spezielle Zustände in der Quantenmechanik, in denen zwei Teilchen maximal miteinander verschränkt sind. Das bedeutet: Ihre Zustände hängen so stark zusammen, dass man sie nicht unabhängig voneinander beschreiben kann – selbst, wenn die Teilchen weit voneinander entfernt sind. Benannt ist der Bell-Zustand nach dem Physiker John S. Bell. Dieser zeigte im Jahre 1964 auf, dass die Vorhersagen der Quantenmechanik im Widerspruch zu den Prinzipien des lokalen Realismus stehen – also der Vorstellung, dass Informationen nicht schneller als Licht übertragen werden können und dass physikalische Größen vor der Messung bereits festgelegt sind. (Vgl. \cite[S.195]{bell_einstein_1964})
+Bell-Zustände sind spezielle Zustände in der Quantenmechanik, in denen zwei Teilchen maximal miteinander verschränkt sind. Das bedeutet: Ihre Zustände hängen so stark zusammen, dass man sie nicht unabhängig voneinander beschreiben kann – selbst, wenn die Teilchen physisch weit voneinander entfernt sind. Benannt ist der Bell-Zustand nach dem Physiker John S. Bell. Dieser zeigte im Jahre 1964 auf, dass die Vorhersagen der Quantenmechanik im Widerspruch zu den Prinzipien des lokalen Realismus stehen – also der Vorstellung, dass Informationen nicht schneller als Licht übertragen werden können und physikalische Größen vor der Messung bereits festgelegt sind. (Vgl. \cite[S.195]{bell_einstein_1964})
 \\
 
 
-Mit der von John S. Bell formulierten Bell-Ungleichung entwickelte Bell ein mathematisches Kriterium, mit dem sich klassische und quantenmechanische Theorien experimentell unterscheiden lassen. Die Quantenmechanik sagt unter bestimmten Bedingungen eine Verletzung dieser Ungleichung voraus. Belegt wurde dies in zahlreichen Experimenten ab 1972, den sogenannten Bell-Test. Seitdem wurde die Verletzung der Bell-Ungleichung in zahlreichen Experimenten mit verschränkten Teilchenpaaren eindeutig nachgewiesen. In allen Fällen bestätigten die Ergebnisse die Vorhersagen der Quantenmechanik. 
+Mit der von John S. Bell formulierten Bell-Ungleichung entwickelte Bell ein mathematisches Kriterium, mit dem sich klassische und quantenmechanische Theorien experimentell unterscheiden lassen. Die Quantenmechanik sagt unter bestimmten Bedingungen eine Verletzung der nach John S. Bell benannten Bell-Ungleichung voraus. Belegt wurde dies in zahlreichen Experimenten ab 1972, den sogenannten Bell-Test. Seitdem wurde die Verletzung der Bell-Ungleichung in zahlreichen Experimenten mit verschränkten Teilchenpaaren eindeutig nachgewiesen. In allen Fällen bestätigten die Ergebnisse die Vorhersagen der Quantenmechanik. 
 (Vgl. \cite[S.53-59]{homeister_quantum_2022})
 
 \subsection{Die vier Bell-Zustände}
@@ -177,10 +267,11 @@ Es resultiert die vollständige Quantenschaltung zur Erzeugung des Bell-Zustands
 \\
 
 
-Dieser Zustand ist einer der zuvor vorgestellten \textbf{Bell-Zustände} – ein maximal verschränkter Zustand, in dem die Messungen der beiden Qubits perfekt korreliert sind. Wird in einem verschränkten Bell-Zustand das erste Qubit gemessen, so ergibt sich mit gleicher Wahrscheinlichkeit entweder der Zustand \( \ket{0} \) oder \( \ket{1} \). In beiden Fällen legt diese erste Messung sofort auch den Zustand des zweiten Qubits fest: Beobachtet man \( \ket{0} \) am ersten Qubit, ergibt sich insgesamt der Zustand \( \ket{00} \); misst man \( \ket{1} \), resultiert der Zustand \( \ket{11} \). Eine anschließende Messung des zweiten Qubits führt daher zwangsläufig zum gleichen Ergebnis wie beim ersten – entweder beide Qubits liefern 0 oder beide liefern 1. Je nach Eingangs-Zustand und der Reihenfolge der Gatter ergibt sich ein anderer Bell-Zustand. (Vgl. \cite[S.53-54]{homeister_quantum_2022})
+Es resultiert einer der zuvor vorgestellten Bell-Zustände – ein maximal verschränkter Zustand, in dem die Messungen der beiden Qubits perfekt korreliert sind. Wird in einem verschränkten Bell-Zustand das erste Qubit gemessen, so ergibt sich mit gleicher Wahrscheinlichkeit entweder der Zustand \( \ket{0} \) oder \( \ket{1} \). In beiden Fällen legt diese erste Messung sofort auch den Zustand des zweiten Qubits fest: Beobachtet man \( \ket{0} \) am ersten Qubit, ergibt sich insgesamt der Zustand \( \ket{00} \); misst man \( \ket{1} \), resultiert der Zustand \( \ket{11} \). Eine anschließende Messung des zweiten Qubits führt daher zwangsläufig zum gleichen Ergebnis wie beim ersten – entweder beide Qubits liefern 0 oder beide liefern 1. Je nach Eingangs-Zustand und der Reihenfolge der Gatter ergibt sich ein anderer Bell-Zustand. (Vgl. \cite[S.53-54]{homeister_quantum_2022})
+\\
 
-\subsection{Gedankenexperiment zum Bell-Zustand}
-Ein anschauliches Beispiel für die Eigenschaften verschränkter Zustände liefert auch ein Gedankenexperiment mit zwei beispielhaften Personen, Alice und Bob. Angenommen die beiden erzeugen gemeinsam entsprechend der vorhergehenden Ausführungen folgenden Bell-Zustand:
+
+Ein anschauliches Beispiel für die Eigenschaften verschränkter Zustände liefert auch ein Gedankenexperiment mit zwei beispielhaften Personen, Alice und Bob. Angenommen die beiden erzeugten gemeinsam entsprechend der vorhergehenden Ausführungen folgenden Bell-Zustand:
 \[
 \frac{1}{\sqrt{2}} (|00\rangle + |11\rangle).
 \]
@@ -190,8 +281,25 @@ Alice erhält nun das erste Qubit, Bob das zweite Qubit. Angenommen die beiden b
 
 Genau darin zeigt sich der Informationsgehalt eines verschränkten Zustands: Die Information liegt nicht in einem einzelnen Qubit, sondern nur in ihrer gemeinsamen Beziehung. Diese Simulation macht das abstrakte Konzept der Quantenverschränkung greifbar und bietet einen intuitiven Zugang zu den Grundlagen der Quanteninformation. Es zeigt anschaulich, wie Quantencomputer fundamentale Prinzipien der Quantenmechanik sichtbar und messbar machen. 
 
+\subsection{Bell-Zustand in der Praxis}
+
+Bell-Zustände bilden das Fundament für viele Anwendungsfälle. Ein praktischer Anwendungsfall ist die Quantenkryptographie. Besonders bekannt ist insbesondere das sogenannte E91-Protokoll, welches auf dem Konzept der Quantenverschränkung beruht. Dabei erzeugt eine zentrale Quelle verschränkte Teilchenpaare und schickt je eines an zwei weit entfernte Personen – wie in unserem Beispiel etwa Alice und Bob. Wenn beide ihre Teilchen messen, erhalten sie stets perfekt korrelierte Ergebnisse. Dieser Effekt lässt sich nutzen, um einen gemeinsamen geheimen Schlüssel zu erzeugen. Ein Abhörversuch durch eine dritte Person würde diese Korrelation stören und könnte über einen Bell-Test erkannt werden. So kann mit Hilfe der Quantenmechanik sichergestellt werden, dass keine unbemerkte Informationsweitergabe stattgefunden hat – eine Grundlage für absolut sichere Kommunikation. (vgl. \cite[S. 3841 f.]{state-of-the-art-survey})
+\\
+
+
+Quantenbasierte Protokolle stehen daher im Zentrum aktueller Forschung zur Quantenkryptographie und wurden bereits in ersten praktischen Experimenten erprobt. Besonders eindrucksvoll ist das Experiment mit dem chinesischen Micius-Satelliten: Er übermittelte verschränkte Photon-Bell-Paare an zwei Bodenstationen, die über eine Entfernung von rund 1200 Kilometern verteilt waren. Die gemessenen Korrelationen verletzten dabei deutlich die Bell-Ungleichung – ein klares Zeichen dafür, dass die beobachteten Effekte nicht durch klassische Physik erklärbar sind, sondern echte Quantenverschränkung vorliegt. Auf dieser Grundlage könnten über Kontinente hinweg geheime Schlüssel erzeugt und die Kommunikation verschlüsselt werden. (vgl. \cite{Entanglement Distribution})
+\\
+
+
+Ein zweiter praktischer Anwendungsfall des Bell-Zustands findet sich im Quantencomputing, genauer gesagt in der sogenannten Quanten-Teleportation. Dabei wird der Zustand eines Quantenbits (Qubit) von einem Ort zu einem anderen übertragen, ohne dass das Teilchen selbst physisch bewegt wird. Grundlage hierfür ist ein gemeinsam genutzter Bell-Zustand zwischen Sender (Alice) und Empfänger (Bob), der die nötige Verschränkung bereitstellt. Durch eine spezielle Messung auf Seiten von Alice und die Übermittlung zweier klassischer Bits kann Bob den ursprünglichen Zustand lokal wiederherstellen. (vgl. \cite{Teleporting}
+\\
+
+
+Im Gegensatz zur Quantenkryptographie, bei der Sicherheit im Vordergrund steht, dient die Quanten-Teleportation der fehlerfreien Übertragung von Quanteninformation. Dies ist eine essenzielle Voraussetzung für die Vernetzung räumlich verteilter Quantencomputer. Sie gilt daher als Schlüsselfunktion zukünftiger Quantencomputer-Netzwerke, etwa im Rahmen eines „Quanteninternets“. (vgl. \cite{Entanglement Distribution}) Erste praktische Umsetzungen konnten dies bereits demonstrieren: 2017 gelang es ein Qubit über 1.400 km mit dem zuvor bereits erwähnten Satellit Micius erfolgreich zu teleportieren. (vgl. \cite{Ground-to-satellite })
+
+
 \subsection{Simulation mit IBM Quantencomputer}
-Die Eigenschaften von Bell-Zuständen lassen sich mithilfe von Quantencomputern, wie denen von IBM, direkt simulieren und beobachten. In diesem Beispiel wurde ein einfacher Quantenschaltkreis aufgebaut, um einen Bell-Zustand zu erzeugen. Ausgangszustand waren zwei Qubits, die beide den Wert 0 hatten. Zunächst wurde auf das erste Qubit ein Hadamard-Gatter (rotes Gatter) angewendet. Dadurch ging es in eine Überlagerung aus „0“ und „1“ über. Anschließend folgte ein CNOT-Gatter (blaues Gatter), das die beiden Qubits miteinander verschränkte: Wenn das erste Qubit auf „1“ übergeht, kippt das zweite automatisch ebenfalls auf „1“. Das Ergebnis ist ein Zustand, in dem die Qubits perfekt miteinander verbunden sind – man spricht von einem verschränkten Zustand. 
+Die Eigenschaften von Bell-Zuständen lassen sich mithilfe von Quantencomputern, wie denen von IBM, direkt auf Hardware simulieren und beobachten. In diesem Beispiel wurde ein einfacher Quantenschaltkreis aufgebaut, um einen Bell-Zustand zu erzeugen. Ausgangszustand waren zwei Qubits, die beide den Wert 0 hatten. Zunächst wurde auf das erste Qubit ein Hadamard-Gatter (rotes Gatter) angewendet. Dadurch ging es in eine Überlagerung aus „0“ und „1“ über. Anschließend folgte ein CNOT-Gatter (blaues Gatter), das die beiden Qubits miteinander verschränkte: Wenn das erste Qubit auf „1“ übergeht, kippt das zweite automatisch ebenfalls auf „1“. Das Ergebnis ist ein Zustand, in dem die Qubits perfekt miteinander verbunden sind – man spricht von einem verschränkten Zustand. 
 
 \begin{figure}[h]
     \centering
@@ -202,7 +310,7 @@ Die Eigenschaften von Bell-Zuständen lassen sich mithilfe von Quantencomputern,
 
 Nach dem Aufbau der Schaltung wurden auf dem IBM-Quantencomputer Messungen durchgeführt. Das bedeutet, dass die Qubits im Z-Basiszustand ausgelesen werden um zu überprüfen, ob sie im Zustand „0“ oder „1“ sind. 
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=1\textwidth]{images/results_ibm.png}
     \caption{Wahrscheinlichkeitsverteilung - IBM Quantum Learning Platform.}

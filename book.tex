@@ -13,6 +13,7 @@
 \usepackage{qcircuit}
 \usepackage{makeidx}         % allows index generation
 \usepackage{graphicx}        % standard LaTeX graphics tool
+\usetikzlibrary{angles,quotes} % for TikZ angle and quotes libraries
                              % when including figure files
 \usepackage{multicol}        % used for the two-column index
 \usepackage[bottom]{footmisc}% places footnotes at page bottom
@@ -20,11 +21,28 @@
 \usepackage{newtxtext}       % 
 \usepackage{newtxmath}       % selects Times Roman as basic font
 
-\usepackage{ngerman}
+\usepackage{amsmath}
+\usepackage{braket}        % für Dirac-Notation: \ket{}
+\usepackage{algorithm}     % für Algorithmus-Umgebung
+\usepackage{algpseudocode} % für Pseudocode-Befehle wie \State, \If, ...
 
- \usepackage{hyperref}
+\usepackage[ngerman]{babel}
+
+\usepackage{titlesec}
+
+\titleformat{\paragraph}[runin]  % Kein Zeilenumbruch nach Absatzüberschriften
+  {\normalfont\normalsize\bfseries}  % Stil: normaler Text, fett
+  {}
+  {0pt}
+  {}
+
+\titlespacing*{\paragraph}{0pt}{0ex}{1em}
+
+\usepackage{hyperref}
 
 \usepackage{suffix}
+\usepackage{tikz}
+\usetikzlibrary[calc, decorations.pathreplacing]
 
 \makeatletter
 \newcommand{\chapterauthor}[1]{%
@@ -35,12 +53,12 @@
 }
 \makeatother
 
-
 \usepackage[
     refsection=chapter,
     backend=biber,
     style=apa,
   ]{biblatex}
+  
 \addbibresource{references.bib} %Import the bibliography file
 
 
@@ -58,6 +76,8 @@
 
 \begin{document}
 
+\usetikzlibrary{angles, quotes}
+
 \author{Prof. Dr.-Ing. Rainer Neumann (Hrsg.)}
 \title{Quantencomputer -- Ein aktueller Überblick}
 \subtitle{Grundlagen, Hardware, Software, Anwendungen, Trends, Ethische Aspekte}
@@ -67,7 +87,7 @@
 
 %%\include{content/dedication}
 %%\include{content/foreword}
-\include{content/preface}
+%%\include{content/preface}
 %%\include{content/acknowledgement}
 
 \tableofcontents
@@ -82,21 +102,21 @@
 \include{content/physics}
 \include{content/quantum-information}
 
-
 \include{content/part2}
+
 \include{content/hardware}
 \include{content/basic-algorithms}
 \include{content/error-correction}
 \include{content/quantum-programming}
 
 \include{content/part3}
+
 \include{content/appl-it}
 \include{content/appl-medicine}
 \include{content/appl-pharma}
 \include{content/appl-material}
 \include{content/appl-finance}
-%%\include{content/applications}
-%%\include{content/trends}
+
 \include{content/ethics}
 
 %%\include{content/appendix}

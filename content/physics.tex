@@ -48,28 +48,38 @@ Nutzbar in Gattern
 
 \subsection{Verschränkung }
 
-Korrelation mehrerer Qubits
-\begin{itemize}
-    \item Beispiel zweier Münzen bei einem verschränkten Coin Flip
-    \item lokale Unabhängigkeit (non-classical information)
-\end{itemize}
+Das Konzept der Verschränkung (engl. ``entanglement'') beschreibt gewissermaßen die Korrelation mehrerer Qubits miteinander, das heißt sie hängen in einem besonderen Maße zusammen. \\
+Für einen erleichterten Einstieg soll ein Beispiel anhand zweier gewöhnlicher Münzen gemacht werden. Werden zwei gewöhnliche Münzen geworfen, hat man vier mögliche Ausgänge für den Münzwurf, bei denen H für Kopf und T für Zahl stehen sollen: HH, HT, TH, TT. \\
+Alle Varianten der Ausgänge haben hierbei eine identische Wahrscheinlichkeit von 25\%. Sind diese zwei Münzen jedoch in einem verschränkten Zustand  $\frac{1}{\sqrt{2}} \left( \lvert HH \rangle + \lvert TT \rangle \right)$, sind hierbei nur zwei Ausgänge möglich, die beide jeweils eine 50\%-Wahrscheinlichkeit haben, nämlich HH oder TT. \\
+Diese Verschränkung ist unabhängig von der räumlichen Nähe der Münzen und kann über große Distanzen hinweg wirken. Weiß man das Ergebnis der einen Münze, so weiß man automatisch auch immer das Ergebnis der anderen Münze. Im Bereich der Quantenmechanik ist genau dies bezogen auf diverse Teilchen anstelle der Münzen möglich. 
+Das Phänomen der Verschränkung ist jedoch ein reines Quantenphänomen, das keine Erklärung in der klassischen Physik besitzt. \\
+Eine Vermutung über die Natur der Verschränkung besteht aus der sofortigen Informationsübertragung zweier Teilchen, die über die Schnelligkeit der Lichtgeschwindigkeit hinausgeht, was jedoch als widerlegt gilt. Stattdessen teilen Teilchen nicht-klassische Information während der Verschränkung, die im Messprozess beobachtet werden kann. \\
+Eine weitere frühe Interpretation, bekannt unter dem Namen ``Hidden Variable Theory'', nahm an, dass Teilchen beim Erzeugen mit verbogenen Eigenschaften erschaffen werden, die Messergebnisse deterministisch bestimmen. Beispielsweise wäre hierfür der Zerfall eines Teilchens in zwei Teilchen. Auf Basis der Impulserhaltung kann man durch die Messung des Impuls des einen Teilchens auf den Impuls des anderen Teilchens schließen, da der Gesamtimpuls vorher bekannt ist. 
+\cite{hughes_quantum_2021}
+% Quantum Computing for the Quantum Curious - Hughes et al. - 2021
+\\
 
-Hidden Variable Theory (disproved)
-\begin{itemize}
-    \item keine Erklärung von Verschränkung in der klassischen Physik (reines Quantenphänomen)
-\end{itemize}
+Das Problem dieser Theorie findet sich jedoch in Bell's Theorem, das zeigt, dass wenn die Welt durch diese versteckten Variablen beschrieben wäre, gewisse mathematische Ungleichungen in Experimenten eingehalten werden müssten. 
+Diese gelten als Einschränkungen für alle lokal-realistischen Theorien, d.h. Theorien, die annehmen, dass Lokalität und Realismus gelten. \\
+Lokalität bedeutet hierbei, dass es keinen Einfluss gibt, der sich schneller als mit Lichtgeschwindigkeit ausbreiten kann. \\
+Realismus bezieht sich auf die Annahme, dass physikalische Größen zu jedem Zeitpunkt definierte Werte besitzen, unabhängig davon, ob diese gemessen werden. 
+Die quantenmechanische Verschränkung erfüllt diese Annahmen durch die ``spukhafte Fernwirkung'' jedoch nicht, da es eine scheinbar unmittelbare Verbindung über sehr große Distanz hinweg gibt. Dem Lokalitätsprinzip entsprechend, könnten zwei Systeme sich nur dann beeinflussen, wenn sie einen Kontakt oder ein physikalisches Feld haben, das sie verbindet. Quantenobjekte haben jedoch durch die mangelnde Lokalität keine klassische Kausalität, sondern nur die Beobachtung, dass die Ergebnisse immer korrelieren, auch wenn sie räumlich weit voneinander getrennt sind.
 
-Wie entsteht Verschränkung (kurz Prozess der Erzeugung von Entanglement)
+Da die Grenzen der Bell-Ungleichung also nicht auf gemessene Experimente zutreffen, kann keine lokal-realistische Theorie das quantenmechanische Phänomen der Verschränkung erklären. Die Resultate stimmen mit der Quantenmechanik überein, anstatt mit lokalen Theorien wie der Hidden Variable Theory. 
 
-Quantenteleportation und Spukhafte Fernwirkung
+Basierend hierauf ergibt sich das Dilemma, dass Realismus und Lokalität nicht beide gleichzeitig gelten können. Diese Schlussfolgerung führt jedoch zu tiefergehenden philosophischen Fragen über die Realität, die an dieser Stelle nicht weiter behandelt werden sollen.
+Unabhängig davon findet die Verschränkungen Anwendungen in moderner Quantentechnologie, wie in der Quantenkryptographie oder Quanten-Teleportation.  
+\cite{homeister_quantum_2022}
+% Quantum Computing verstehen: Grundlagen - Anwendungen - Perspektiven - Homeister - 2022
+\\
 
-Mathematische Erschließung vs. menschliches Bild der Realität
-\begin{itemize}
-    \item Problem der Kausalität und Lokalität in der klassischen Physik
-    \item Debatte über Interpretation der experimentellen Ergebnisse (lokal-realistische Theorien vs. Kopplung in Quantenmechanik)
-\end{itemize}
+Um ein Beispiel für die Quantenverschränkung in der Praxis zu machen, soll an dieser Stelle noch  die spontane parametrische Fluoreszenz (engl. ``spontaneous parametric down-conversion, SPDC'') genannt werden. Bei diesem Prozess trifft ein Photon aus einem Laser auf ein nichtlineares Kristallmaterial. Dadurch spaltet sich das Photon in zwei neue Photonen, wobei die Polarisation der neuen Photonen miteinander verschränkt sind, sodass man typischerweise folgenden Zustand erhält:
+$\frac{1}{\sqrt{2}} \left( \lvert H \rangle_A \lvert H \rangle_B + \lvert V \rangle_A \lvert V \rangle_B \right)$
+Misst man also die Polarisation des Photons A, kennt man ebenfalls die Polarisation des Photons B, jedoch ohne dass dies klassisch bereits festgelegt war.
+\cite{hughes_quantum_2021}
+% Quantum Computing for the Quantum Curious - Hughes et al. - 2021
 
-((Evtl. Bell-Zustand, Bell'sche Ungleichung)
+
 
 \section{Quantenmessung }
 \subsection{Grundlagen der Quantenmessung (projektive Messungen, Messoperatoren)}
@@ -77,14 +87,14 @@ Mathematische Erschließung vs. menschliches Bild der Realität
 Die Messung in der Quantenmechanik unterscheidet sich grundlegend von der Messung in der klassischen Physik, einerseits durch die Auffassung der Grundkonzepte der Quantenmechanik, andererseits durch die mathematische Beschreibung und Interpretation der Messergebnisse.
 In der klassischen Welt wird das Verhalten eines Systems nicht durch das alleinige Beobachten des Systems beeinflusst; ein Ball beispielsweise wird sein Verhalten und seine Flugkurve nach einem Schuss nicht verändern, unabhängig davon, ob jemand dabei zusieht oder nicht.
 In der Quantenwelt hingegen sind die gemessenen Objekte (z.B. Photonen) winzig klein und die entsprechenden Messgeräte verhältnismäßig groß, sodass schon alleine deshalb die Messung zwangsläufig den Zustand eines Quantensystems beeinflussen wird. 
-Dass eine Messung den Zustand des Quantensystems verändert und das Ergebnis dieser Messung zufällig ist, ist im Rahmen des zweiten Postulats der Quantenmechanik eine zentrale Annahme, die in diesem Kapitel weiter erörtert werden soll. 
-%was ist das zweite Postulat? Wie kommst du drauf bzw in welchem Rahmen wurden diese Postulate ausgearbeitet bzw von wem? Kurze Einführung
+Dass eine Messung den Zustand des Quantensystems verändert und das Ergebnis dieser Messung zufällig ist, ist im Rahmen des zweiten Postulats der Quantenmechanik eine zentrale Annahme, die in diesem Kapitel weiter erörtert werden soll. Als Observablen- oder Messwertpostulat ist es das zentrale Postulat für die Messung im gegebenen Rahmen.
+
 Das zweite Postulat besagt, dass eine Quantenmessung einer Projektion des Zustandes $\ket{\psi}$ auf eine Basis $\ket{|v_i|}$ entspricht. Mit der Wahrscheinlichkeit $|\braket{v_i|\psi}|^2$ erhalten wir das Ergebnis $v_i$. Das System befindet sich dann im Zustand $\ket{v_i}$. \cite{lvovsky_quantum_2018} 
 % Lvovsky - Quantum Physics - 2018 - Kapitel 1.4.1 The Measurement Postulate
 \newline Dieses Konzept wird auch 'projektive Messung' genannt, da die Messung des Zustandes auf einen Basiszustand projiziert wird, wobei die Begriffe der Projektion und der Basiszustände noch weiter erläutert werden sollen. \\
 \\
 
-Ein Quantensystem wird innerhalb einer bestimmten Basis gemessen.Der Begriff 'Basiszustand' bezieht sich hierbei auf die möglichen Zustände eines Systems, die insgesamt die Basis bilden (beispielsweise $\ket{v_1}$ oder $\ket{v_2}$) und bei der Messung angenommen werden können.
+Ein Quantensystem wird innerhalb einer bestimmten Basis gemessen.Der Begriff 'Basiszustand' bezieht sich hierbei auf die möglichen Zustände eines Systems, die insgesamt die Basis bilden (beispielsweise $\ket{v_1}$ oder $\ket{v_2}$) und bei der Messungen angenommen werden können.
 Beim Messen springt das System in einen der Basiszustände. 
 Wird hierbei der Wert $v_i$ gemessen, so springt das System in den Zustand $\ket{v_i}$. Das Messergebnis ist also der Zustand $\ket{v_i}$. 
 Dabei wird die Information, welche Zustände gemessen werden und welche entsprechenden Zahlenwerte ihnen zugeordnet werden, in einem 'Observable Operator' zusammengefasst. 
@@ -96,20 +106,19 @@ Dieser Observable Operator, der die Basis der Messungen beschreibt und die mögl
 \\ 
 \\
 Jeder Zustand $\ket{v_i}$ ist hierbei ein Eigenzustand dieses Operators. Der dazugehörige Eigenwert $v_i$ ist der Zahlenwert der Messung, den man bei der Messung des Zustandes erhält. 
-Die Zurdonung eines Wertes ist für einige Messgrößen (bspw. der Ort eines Teilchens im Raum) natürlich, für andere (z.B. die Polarisation eines Photons) weniger. Trotzdem wird auch in weniger natürlichen Fällen  eine Zahl zugeordnet, so beispielsweise
-+1 für eine horizontale $\ket{H}$ und -1 für eine vertikale $\ket{V}$ Polarisation. 
-Observable kann für jede messbare Größe (Ort, Energie, Puls, Spin, etc.) definiert werden. Eine Ausnahme bildet hierbei die Zeit, da diese in der Quantenmechanik nicht als Observable definiert und behandelt wird.
+Die Zuordnung eines Wertes ist für einige Messgrößen (bspw. der Ort eines Teilchens im Raum) natürlich, für andere (z.B. die Polarisation eines Photons) weniger. Trotzdem wird auch in weniger natürlichen Fällen  eine Zahl zugeordnet, so beispielsweise
++1 für eine horizontale $\ket{H}$ und -1 für eine vertikale $\ket{V}$ Polarisation. Eine Observable kann für jede messbare Größe (Ort, Energie, Puls, Spin, etc.) definiert werden. Eine Ausnahme bildet hierbei die Zeit, da diese in der Quantenmechanik nicht als Observable definiert und behandelt wird.
 Daher gibt es keinen Zeit-Operator oder Eigenzustände der Zeit. Die Zeit dient lediglich als kontinuierliche Variable zur Beschreibung der Entwicklung des Quantensystems. 
 \cite{lvosvsky_quantum_2018} 
 % Lvovsky - Quantum Physics - 2018 - Kapitel 1.9.1 Observable Operators
 \\
 \\
 
-Projektive Messungen werden also durch einen Observabler M beschrieben. Seien die Eigenwerte m die möglichen Ergebnisse der Messung und $P_m$ die zugehörigen Projektoren, kann M geschrieben werden als:
+Projektive Messungen werden also durch eine Observable M beschrieben. Seien die Eigenwerte m die möglichen Ergebnisse der Messung und $P_m$ die zugehörigen Projektoren, kann M geschrieben werden als:
 \begin{equation}
     M = \sum_m mP_m
 \end{equation}
-Hierbei sind $P_m$ die orthogonalen Projektoren auf den Eigenraum von M. Jeder Projektor projiziert auf einen Unterraum des Hilbertraums, der zu einem bestimmten Eigenwert m gehört. % Check & umschreiben
+Hierbei sind $P_m$ die orthogonalen Projektoren auf den Eigenraum von M. Jeder Projektor projiziert auf einen Unterraum des Hilbertraums, der zu einem bestimmten Eigenwert m gehört. Diese Formel bildet die verallgemeinerte Darstellung der zuvor genannten Formel zur Darstellung der Observablen. % Check & umschreiben
 Es gelten daraus folgende Grundregeln: \\ \\
 \begin{enumerate}
 \item Die Gesamtwahrscheinlichkeit aller Messungen (Projektoren) ergeben in Summe 1, d.h. sie decken den gesamten Zustandsraum ab. Jeder mögliche Zustand wird durch eine Kombination der Projektoren beschrieben und bildet in Summe den Einheitsoperator. \\
@@ -123,14 +132,14 @@ Es ist das Quadrat der Länge der Projektion von $\ket\psi$ auf den m-Unterraum.
 Da wiederholte Messungen jedoch im Bereich des Quantumcomputing geringe Relevanz hat, wird auf die wiederholte Messung nicht weiter eingegangen. \\ 
 \end{enumerate}
 
-In kurz greift man bei der Messung eines Zustandes $\ket\psi$ also nur den Teil aus dem Vektor heraus, den man misst. Um hieraus wieder einen gültigen Zsutand zu erhalten, muss dieser Vektor mit seiner eigenen Länge normiert werden. Da dies jedoch nur zur weiteren Arbeit mit demselben Quantensystem relevant ist, wird die Normierung nicht weiter berücksichtigt und es wird stattdessen auf wiederholte Messungen verwiesen.
+In kurz greift man bei der Messung eines Zustandes $\ket\psi$ also nur den Teil aus dem gesamten Zustandsvektor heraus, den man misst. Es wird der Anteil extrahiert, der zugehörig zum gemessenen Eigenwert ist, also die Projektion $P_m \ket\psi$. Der Zustand wird bei der Messung also in seine Bestandteile entsprechend der verschiedenen Eigenräume zerlegt. Um hieraus wieder einen gültigen und normierten Zustand zu erhalten, muss dieser Vektor mit seiner eigenen Länge normiert werden. Da dies jedoch nur zur weiteren Arbeit mit demselben Quantensystem relevant ist, wird die Normierung nicht weiter berücksichtigt und es wird stattdessen auf wiederholte Messungen verwiesen.
 \cite{kasirajan_fundamentals_2021} 
 %Fundamentals of Quantum Computing: Theory and Practice – Kasirajan (Kapitel zu Projective Measurements)
 
-Um ein Beispiel für den Messprozess und den Zerfall auf den Eigenzustand bei der projektiven Messung zu machen, soll ein Photon auf einen Polarizing Beam Splitter (PBS) treffen. Dieser lässt horizontal polarisiertes Licht, aber reflektiert vertikal polarisiertes Licht.
+Um ein Beispiel für den Messprozess und den Zerfall auf den Eigenzustand bei der projektiven Messung zu machen, soll ein Photon auf einen Polarizing Beam Splitter (PBS) treffen. Dieser lässt horizontal polarisiertes Licht passieren, aber reflektiert vertikal polarisiertes Licht.
 Betrachtet man einen Lichtstrahl aus der klassischen Physik, würde man erwarten, dass dieser sich teilt - ein Teil des Lichtes würde reflektiert werden, ein anderer Teil würde passieren. Ein Photon als kleinster Teil des Lichts kann jedoch nicht weiter geteilt werden.
 Dementsprechend ist das Ergebnis zufällig: das Photon wird mit einer gewissen Wahrscheinlichkeit passieren oder reflektiert werden. Das Photon entscheidet sich bei der Messung, ob es horizontal oder vertikal polarisiert sein wird und springt bei der Messung in den gewählten Zustand.
-Man könnte auch sagen durch die Messung wird der Superpositionszustand auf einen der möglichen Eigenzustände reduziert. Hierbei zerfällt der Ursprungszustand jedoch, sodass dies bei folgenden PBS nicht erneut vonstatten gehen könnte - das Photon wird den hierbei gewählten Zustand beibehalten.
+Man könnte auch sagen durch die Messung wird der Superpositionszustand auf einen der möglichen Eigenzustände reduziert. Die Superposition selbst liegt nicht im Eigenraum, sondern ist eine Überlagerung der Zustände aus den Eigenräumen, wobei ``horizontal'' und ``vertikal'' im Eigenraum mit ihrem jeweiligen Eigenwert liegen. Hierbei zerfällt der Ursprungszustand, sodass dies bei folgenden PBS nicht erneut vonstatten gehen könnte - das Photon wird den hierbei gewählten Zustand beibehalten.
 Es gibt ab diesem Punkt keine weiteren zufälligen Zustandsänderungen. 
 \cite{lvovsky_quantum_2018}
 % Quantum Physics – Lvovsky – 2018 (Kapitel 1.4.1 The Measurement Postulate)
@@ -156,7 +165,7 @@ Möchte man zwei Größen gleichzeitig messen, beispielsweise Ort und Energie od
 Ist dies der Fall, gibt es eine bestimmte Basis von Zuständen (Eigenbasis), in der beide Observablen gleichzeitig genau bestimmt werden können. Das System in diesem Zustand verändert seinen Zustand nicht, wenn beide Größen nacheinander gemessen werden, d.h. die Observablen sind kompatibel. \\
 Wenn die Observablen jedoch nicht kommutieren, so gibt es keinen Zustand, bei dem man beide Größen gleichzeitig exakt wissen kann. Misst man hierbei A, wird das Ergebnis von B zufällig sein, da die Messung von B durch die Information über A gestört ist.
 Das heißt bestimmte Paare von Größen können nicht gleichzeitig beliebig genau gemessen werden. 
-Zwei Größen, die nicht kommutieren, sind z.B. Ort und Impuls eines Teilchens. Je genauer man den Ort kennt, desto lässt sich der Impuls messen und umgekehrt. 
+Zwei Größen, die nicht kommutieren, sind z.B. Ort und Impuls eines Teilchens. Je genauer man den Ort kennt, desto ungenauer lässt sich der Impuls messen und umgekehrt. 
 \cite{kasirajan_fundamentals_2021}
 % Quantum Physics – Lyvovsky – 2018 (Kapitel 1.9.3 Uncertainty Principle)
 
@@ -177,7 +186,7 @@ Da die Messung nicht rückgängig gemacht werden kann, kann durch den Kollaps de
 \\
 
 Aus diesem Phänomen ergibt sich auch das No-Cloning-Theorem. Da das System selbst bei der Messung zerstört wird, kann das Qubit nicht erneut gemessen werden. Die Superposition selbst ist für dasselbe Qubit nicht mehr vorhanden. Die Messung kann entsprechend nur für ein identisches Qubit wiederholt werden.
-Folglich dieser Logik kann ein Qubit in einem unbekannten Zustand nicht kopiert werden. Dies hat wichtige Konsequenzen für die praktische Anwendung, da simple Kopien, wie sie auf klassischen Computern möglich sind, durch die zuvor notwendige Messung der bestehenden Zustände nicht ohne Weiteres auf quantenbasierten Systemen möglichen sind.
+Folglich dieser Logik kann ein Qubit in einem unbekannten Zustand nicht kopiert werden. Dies hat wichtige Konsequenzen für die praktische Anwendung, da simple Kopien, wie sie auf klassischen Computern möglich sind, durch die zuvor notwendige Messung der bestehenden Zustände nicht ohne Weiteres auf quantenbasierten Systemen ermöglicht werden.
 \cite{hughes_quantum_2021}
 % Quantum Computing for the Quantum Curious – Hughes et al. – 2021 – s. 36
 
@@ -197,7 +206,7 @@ Folglich dieser Logik kann ein Qubit in einem unbekannten Zustand nicht kopiert 
 
 \section*{Beschreibung des Hilbertraums}
 
-Die mathematische Grundlage zur Beschreibung von Qubits bildet der sogenannte \textit{Hilbertraum}. In der Quanteninformationstheorie beschreibt dieser einen abstrakten, komplexen Vektorraum, der mit einem Skalarprodukt ausgestattet ist. Er dient als Trägerraum für alle möglichen Zustände eines quantenmechanischen Systems. In diesem Kapitel beschränken wir uns auf den einfachsten Fall: den zweidimensionalen Hilbertraum $\mathcal{H}_2$, der zur Darstellung eines einzelnen Qubits verwendet wird.
+Die mathematische Grundlage zur Beschreibung von Qubits bildet der sogenannte \textit{Hilbertraum}. In der Quanteninformationstheorie beschreibt dieser einen abstrakten, komplexen Vektorraum, der mit einem Skalarprodukt ausgestattet ist. Er dient als Trägerraum für alle möglichen Zustände eines quantenmechanischen Systems. In diesem Kapitel wird sich auf den einfachsten Fall beschränkt: den zweidimensionalen Hilbertraum $\mathcal{H}_2$, der zur Darstellung eines einzelnen Qubits verwendet wird.
 
 Ein Hilbertraum ist per Definition ein vollständiger Vektorraum über dem Körper der komplexen Zahlen $\mathbb{C}$ mit einem inneren Produkt. Dieses \textit{Skalarprodukt} $\langle \psi | \phi \rangle$ ordnet jedem Paar von Vektoren eine komplexe Zahl zu und erfüllt dabei folgende Eigenschaften:
 
@@ -207,7 +216,7 @@ Ein Hilbertraum ist per Definition ein vollständiger Vektorraum über dem Körp
     \item Positivität: $\langle \psi | \psi \rangle \geq 0$ mit Gleichheit nur für $|\psi\rangle = 0$
 \end{itemize}
 
-Diese Struktur erlaubt es, geometrische Konzepte wie Länge (Norm), Winkel und Orthogonalität zwischen Zuständen sinnvoll zu definieren – essentielle Eigenschaften, um Informationsverarbeitung im quantenmechanischen Sinne zu modellieren \cite{nielsen2002quantum}.
+Diese Struktur erlaubt es, geometrische Konzepte wie Länge (Norm), Winkel und Orthogonalität zwischen Zuständen sinnvoll zu definieren. Das sind essentielle Eigenschaften, um Informationsverarbeitung im quantenmechanischen Sinne zu modellieren \cite{nielsen2002quantum}.
 
 \subsection*{Basiszustände und allgemeine Qubit-Zustände}
 Der Hilbertraum eines Qubits ist zweidimensional. Eine mögliche Orthonormalbasis dieses Raumes bilden die Zustände
@@ -317,12 +326,13 @@ Beide Beispiele zeigen, dass Zwei-Niveau-Systeme in der Physik exakt den mathema
     \item Measure the output result
 \end{enumerate}
 
-    \item \textbf{Robuste Darstellung von Quanteninformation:}
+\textbf{Robuste Darstellung von Quanteninformation:}
 
  Das System muss in der Lage sein, Quanteninformation zuverlässig in physikalischen Zuständen (Qubits) zu speichern, sodass sie ihre charakteristischen Quanteneigenschaften wie Superposition und Verschränkung ausreichend lange beibehalten. 
 
-Die Grundlage der Quanteninformationsverarbeitung ist die Transformation von Quantenzuständen. Die einfachsten Bausteine hierfür sind zwei-Niveau-Systeme, die als Qubits fungieren. Doch auch komplexere Systeme wie beispielsweise ein Teilchen mit Spin-3/2, das vier unterscheidbare Zustände besitzt (|m = +3/2〉, |m =
-+1/2〉, |m = −1/2〉, |m = −3/2〉),  können zur Darstellung von mehreren Qubits verwendet werden, indem man zwei der vier möglichen Zustände jeweils einem Qubit zuordnet.
+Die Grundlage der Quanteninformationsverarbeitung ist die Transformation von Quantenzuständen. Die einfachsten Bausteine hierfür sind zwei-Niveau-Systeme, die als Qubits fungieren. Doch auch komplexere Systeme wie beispielsweise ein Teilchen mit Spin-3/2, das vier unterscheidbare Zustände besitzt ($|m = +3/2\rangle, |m = +1/2\rangle, |m = -1/2\rangle, |m = -3/2\rangle$) 
+können zur Darstellung von mehreren Qubits verwendet werden, 
+indem man zwei der vier möglichen Zustände jeweils einem Qubit zuordnet.
 
 Für praktische Quantenberechnungen ist es entscheidend, dass das System nur eine \textbf{endliche Menge zugänglicher Zustände} besitzt. Systeme mit einem kontinuierlichen Zustandsraum, wie etwa die Position eines Teilchens auf einer Linie, sind ungeeignet. Auch wenn solche Systeme in der Theorie unendlich viele Zustände unterscheiden könnten (und damit unbegrenzt Information speichern würden), ist dies in der Praxis unrealistisch. Denn reale physikalische Systeme sind immer störanfällig: Rauschen begrenzt die Zahl der tatsächlich unterscheidbaren Zustände – und damit auch die Informationskapazität – auf ein endliches Maß.
 
@@ -330,18 +340,19 @@ Ein weiterer wichtiger Aspekt ist die \textbf{Symmetrie} des Systems. Symmetrisc
 
 Demgegenüber können \textbf{ungeeignete physikalische Repräsentationen} schnell zur Dekohärenz führen. Ein Beispiel ist ein Teilchen in einem flachen Potentialtopf, das nur gerade tief genug ist, um zwei gebundene Zustände zu enthalten. Solch ein System könnte zwar theoretisch als Qubit verwendet werden – es besteht jedoch die Gefahr, dass das Teilchen durch äußere Einflüsse in den ungebundenen Bereich des Kontinuums übergeht. Dadurch würde der Zustand aus dem definierten Zustandsraum „herausspringen“, was zur Zerstörung der Superposition und damit zu Informationsverlust führt.
 
-Zur quantitativen Bewertung der Qualität eines Qubits betrachtet man typischerweise die \textbf{Lebensdauer seiner Zustände}. Die sogenannte \textbf{T₂-Zeit} gibt an, wie lange eine Superposition (z. B. |0⟩ + |1⟩) stabil bleibt – sie ist ein Maß für die Kohärenzzeit. Im Vergleich dazu beschreibt die \textbf{T₁-Zeit} die Lebensdauer des angeregten klassischen Zustands |1⟩, und ist in vielen Systemen deutlich länger als T₂. Beide Größen sind zentrale Kenngrößen für die Praxistauglichkeit einer Qubit-Implementierung.
-
- 
+Zur quantitativen Bewertung der Qualität eines Qubits betrachtet man typischerweise die \textbf{Lebensdauer seiner Zustände}. Die sogenannte \textbf{$T_2$-Zeit} gibt an, wie lange eine Superposition (z.B. 
+$|0\rangle+|1\rangle$) 
+stabil bleibt – sie ist ein Maß für die Kohärenzzeit. Im Vergleich dazu beschreibt die \textbf{$T_1$-Zeit} die Lebensdauer des angeregten klassischen Zustands $|1\rangle$ 
+und ist in vielen Systemen deutlich länger als $T_2$. Beide Größen sind zentrale Kenngrößen für die Praxistauglichkeit einer Qubit-Implementierung.
 
 
 \subsubsection{ \textbf{Box 7.1 – Qubits im Potentialtopf}}
 
 \begin{itemize}
     \item Ein eindimensionales Teilchen im „square well“ hat diskrete Energieniveaus.
-    \item Wenn nur die zwei niedrigsten Zustände genutzt werden, kann daraus ein Qubit gebildet werden: |ψ⟩ = a|ψ₁⟩ + b|ψ₂⟩.
+    \item Wenn nur die zwei niedrigsten Zustände genutzt werden, kann daraus ein Qubit gebildet werden: $|\psi\rangle = a|\psi_1\rangle + b|\psi_2\rangle$.
     \item Zeitentwicklung erfolgt mit effektiver Hamilton-Funktion.
-    \item Durch gezielte Störung des Potentials (δV(x)) kann man \textbf{Quantenoperationen} (z.B. Drehung um x-Achse) ausführen.
+    \item Durch gezielte Störung des Potentials ($\delta V(x)$) kann man \textbf{Quantenoperationen} (z.B. Drehung um x-Achse) ausführen.
     \item In realen Systemen treten höhere Zustände und Kopplungseffekte auf → \textbf{Dekohärenz} entsteht.
 \end{itemize}
  
@@ -377,9 +388,9 @@ Quantenrauschen (auch \textit{Dekohärenz} genannt) ist entscheidend für die Be
 = Prozesse, die die gewünschte Entwicklung des Systems stören oder verfälschen.
 \textbf{Dauer sinnvoller Quantenberechnungen:}
  Bestimmt durch das Verhältnis von
-   • \textbf{τQ}: Kohärenzzeit (wie lange das System quantenmechanisch bleibt)
+ • \textbf{τQ}: Kohärenzzeit (wie lange das System quantenmechanisch bleibt)
 
-   • \textbf{τop}: Zeit für eine elementare unitäre Operation (mind. 2 Qubits)
+ • \textbf{τop}: Zeit für eine elementare unitäre Operation (mind. 2 Qubits)
 
  – Verhältnis: \textbf{λ = τop / τQ}
     \item \textbf{Beide Zeiten hängen} meist von der Kopplung des Systems zur Umwelt ab.
@@ -438,44 +449,27 @@ in einer sogenannten "relaxation time" T 1 . weitere methoden zb optical pumping
  
 \subsubsection{Einführung in Dekohärenz / Fehlerquellen}
 
-Def Quantencomputer (vs klassischer Computer): A quantum 
+\textbf{Dekohärenz als zentrales Problem}: 
 
-computer is one whose operation exploits certain very special transformations of its internal state 
-
-Für diese Transformationen müssen “carefully controlled conditions” herrschen 
-
-Physikalisches System darf keine physikalischen Interaktionen haben, die nicht unter der Kontrolle des Programms sind: \textit{All other interactions,} 
-
-\textit{however irrelevant they might be in an ordinary computer – which} we shall call classical – introduce potentially catastrophic disruptions
-
-\textit{into the operation of a quantum comput}er zB Interaktionen mit externer Welt (Luftmoleküle / minimale thermische Energie etc) 
-
--> führen zu Dekohärenz 
+Damit ein Quantencomputer zuverlässig funktionieren kann, müssen sorgfältig kontrollierte Bedingungen herrschen, die die Transformationen im Inneren des Computers nicht stören. Um als Quantencomputer zu fungieren, darf ein physikalisches System keine weiteren physikalischen Interaktionen haben, die nicht unter der Kontrolle des Programms sind. Der Begriff Dekohärenz beschreibt den Verlust von Quanteneigenschaften wie Superposition und Verschränkung durch ungewollte Wechselwirkungen mit der Umgebung, aber auch Störungen durch Interaktionen direkt innerhalb des Systems, zwischen den für die Berechnungen relevanten Merkmale der Qubits und den irrelevanten Aspekten. 
+Auch wenn derartige Wechselwirkungen für herkömmliche, "klassische" Computer komplett irrelevant sind, können diese Interaktionen starke Auswirkungen auf die Operationen eines Quantencomputers haben. 
 \cite{mermin_quantum_2012}
- 
 
-Nielsen 2010: Quantum Computation and Quantum information. S. 46 
-
-2 obstructions : noise as a fundamental barrier \& failed quantum mechanics (incorrect) 
-
-\textbf{Noise as a fundamental barrier -> Threshold Theorem}: noise (Umwelteinflüsse) kann unter einen Schwellenwert reduziert werden und mit error-correcting codes noch weiter reduziert werden 
-
-\textbf{failed / incorrect quantum mechanics:} ein Grund warum das Gebiet des Quantencomputing so interessant ist, ist um die Validität von Quantenmechanik zu beweisen (besonders large scale quantum systems) 
-
-\cite{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
+\textbf{Ursachen von Dekohärenz}
 Fraunhofer Quantum computing compact training program 2025, S. 58 
 
-Noise sources:
 
-• Thermal fluctuations 
+\begin{itemize}
+    \item Thermische Fluktuationen
+    \item Elektromagnetische Störungen
+    \item Imperfekte Quanten-Gates (z.B. durch fehlerhafte Pulssteuerung)
+    \item Wechselwirkungen mit der Umgebung (z.B. Vakuumfluktuationen, Gittervibrationen)
+    \item Wechselwirkungen mit benachbarten Qubits (cross-talk)
+\end{itemize}
+\cite{fraunhofer_iais_quantum_2023}
+\cite{mermin_quantum_2012}
 
-• Electromagnetic interference 
 
-• Imperfections in quantum gates 
-
-• Interactions with the environment 
-
-• Influence of neighboring qubits 
 
 \textbf{Consequences in computations:} 
 
@@ -489,23 +483,27 @@ properties
 
 • Limits the size and complexity of feasible 
 
-quantum algorithms 
 
------------------------------------------------
  
-Dekohärenz vermeiden: To avoid decoherence individual bits cannot in general be encoded
 
-in physical systems of macroscopic size,because such systems except} under very special circumstances) cannot be isolated from their own irrelevant internal properties.
+Nielsen 2010: Quantum Computation and Quantum information. S. 46 
 
-Deswegen: bits werden kodiert in wenigen Zuständen von\textit{\textbf{ systems of atomic size }}(interne features sind egal, weil sie nicht existieren oder sie zu hohe Energie erfordern, um relevant zu werden 
+2 obstructions : noise as a fundamental barrier \& failed quantum mechanics (incorrect) 
 
-Diese Systeme müssen decoupled from their surroundings sein; except for the completely controlled interactions that are associated with the computational process itself
+\textbf{Noise as a fundamental barrier -> Threshold Theorem}: noise (Umwelteinflüsse) kann unter einen Schwellenwert reduziert werden und mit error-correcting codes noch weiter reduziert werden 
 
-S.2 warum die Situation nicht hoffnungslos ist
+\textbf{failed / incorrect quantum mechanics:} ein Grund warum das Gebiet des Quantencomputing so interessant ist, ist um die Validität von Quantenmechanik zu beweisen (besonders large scale quantum systems) 
 
-Abstände zwischen diskreten Energieniveaus deutlich größer als bei makroskopischen Systemen -> dynamische Isolation auf atomarer Ebene einfacher zu erreichen (man  braucht einen größeren Einfluss um ein Atom aus dem Grundzustand zu bewegen) 
+\cite{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
 
-\textbf{Fehlerkorrektur ist möglich}, wenn Einflüsse der Umwelt ausreichend niedrig sind (bei klassischen Computern ist das Routine, bei Quantencompuern muss Fehlerkorrektur stattfinden, ohne den Status der Bits (weder original noch “disrupted”) zu kennen 
+ 
+\textbf{Dekohärenz vermeiden / Lösungsansätze: }
+
+Um Dekohärenz so gut wie möglich zu vermeiden, werden Quanteninformationen bevorzugt in einer kleinen Anzahl von Zuständen eines atomaren Systems kodiert. In diesen sind die Abstände der diskreten Energieniveaus deutlich größer als in makroskopischen Systemen, wodurch eine  Isolation auf atomarer Ebene einfacher zu erreichen ist. Das bedeutet, dass im Vergleich ein deutlich größerer Einfluss auf ein Atom ausgewirkt werden muss, um dieses aus dem Grundzustand zu bewegen. Zusätzlich spielen interne Wechselwirkungen bei atomaren Systemen keine Rolle, da sie entweder nicht existieren, oder sehr hohe Energien erforderlich sind, um sie zu aktivieren.
+Makroskopische Systeme hingegen könnten kaum gegen Umwelteinflüsse (und ihre eigenen irrelevanten internen Eigenschaften) isoliert werden. Die einzigen Interaktionen mit den Quantensystemen dürfen kontrollierte Interaktionen sein, die mit dem Computingprozess selbst zusammenhängen. 
+
+Die gute Nachricht ist, dass eine Fehlerkorrektur auch beim Quantencomputing prinzipiell möglich ist, solange die Einflüsse der Umwelt ausreichend niedrig sind. Das besagt das sogenannte "Treshold Theorem". Während eine Fehlerkorrektur bei klassischen Computern Routine ist, gestaltet sich der Prozess im Quantencomputing schwieriger: weder der ursprüngliche noch der fehlerhafte Zustand der Qbits ist dabei bekannt. 
+Weitere Informationen zur Fehlerkorrektur im Kapitel (?). 
  
 
  \cite{mermin_quantum_2012}
@@ -527,24 +525,28 @@ Abstände zwischen diskreten Energieniveaus deutlich größer als bei makroskopi
 \subsection{Ionenfallen-Qubits }
 \subsection{Photonenbasierte Qubits}
 
-Single Photons as Qubits 
+Photonen bieten eine Reihe an Vorteilen, die sie zu einem führenden Ansatz im Quantencomputing machen. 
 
-Single photons are largely free of the noise, or decoherence, that plagues other systems; can be easily manipulated to realize one-qubit logic gates; and enable encoding in any of several degrees of freedom, for example, polarization, time bin, or path. 
+Einzelne Photonen sind weitgehend frei von Dekohärenz, was bei anderen Ansätzen häufig zu Problemen führt. Da Photonen selbst keine Ladung besitzen, reagieren sie sehr schwach auf anderen Materialien oder sich selbst. Sie sind sozusagen schon von Natur aus gut von ihrer Umgebung isoliert. 
+Zusätzlich können sie einfach manipuliert werden, um Ein-Qubit-Logikgatter zu realisieren. 
+- Vielseitige Kodierung:Qubits können in verschiedenen Freiheitsgraden von Photonen kodiert werden wie zb Polarisation, Time-Bin-Encoding oder Path-Encoding
+- Geringe Verluste über Distanz: Photonen können über lange Distanzen mit geringem Verlust in optischen Fasern geführt werden 
+
+\textbf{Methoden zur Umsetzung von Photonen-Qubits}
+
+1. Polarisationskodierung
+Polarisation beschreibt die Schwingungsrichtung der elektromagnetischen Welle. In\textit{ Abbildung XX (Obrien)} wird ersichtlich, dass ein horizontal polarisiertes Photon (|H⟩) einen logischen "0"-Zustand darstellen und ein vertikal polarisiertes Photon (|V⟩) einen logischen "1"-Zustand. Eine Überlagerung der beiden Zustände, der die Quanteneigenschaft der Superposition repräsentiert, wäre beispielsweise eine diagonale Polarisierung. 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{Photonen_Polarisierung.png}
+    \caption{Enter Caption}
+    \label{fig:enter-label}
+\end{figure}
 \cite{obrien_optical_2007}
 
+2. Time-Bin-Encoding 
 
-
-Photons are chargeless particles, and do not interact very strongly with each other, or even 
-
-with most matter. They can be guided along long distances with low loss in optical fibers, 
-
-delayed efficiently using phase shifters, and combined easily using beamsplitters. Photons 
-
-exhibit signature quantum phenomena, such as the interference produced in two-slit ex- 
-
-periments. Furthermore, in principle, photons can be made to interact with each other, 
-
-using nonlinear optical media which mediate interactions 
+Photons are chargeless particles, and do not interact very strongly with each other, or even with most matter. They can be guided along long distances with low loss in optical fibers, delayed efficiently using phase shifters, and combined easily using beamsplitters. Photons exhibit signature quantum phenomena, such as the interference produced in two-slit ex- periments. Furthermore, in principle, photons can be made to interact with each other, using nonlinear optical media which mediate interactions 
 
 \textbf{In elektromagnetischem Resonator ist Energie nicht kontinuierlich sondern in units -> “Photonen” -> kleinste Einheiten von Licht / elektromagnetischer Strahlung. }
 
