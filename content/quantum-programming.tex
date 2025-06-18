@@ -44,15 +44,29 @@ Das gate-basierte Paradigma ist nicht nur ein theoretisches Modell, das man in d
 Dass Theorie und Praxis hier so eng zusammenhängen, zeigt, wie wichtig das gate-basierte Modell nicht nur für die Entwicklung von Algorithmen ist, sondern auch für den praktischen Einsatz auf echten Quantencomputern, wie denen von IBM oder Google.
 
 \subsection{Messungsbasiertes Paradigma}
-\begin{itemize}
-    \item Berechnung durch gezielte Messungen an verschränkten Zuständen (Cluster-States)
-    \item Algorithmus wird durch Reihenfolge und Auswahl der Messungen bestimmt
-    \item Beispiele:
-    \begin{itemize}
-        \item Teleportationsprotokoll
-        \item Messungsbasierte Varianten von Grover/Shor
-    \end{itemize}
-\end{itemize}
+Das messungsbasierte Paradigma, auch bekannt als Measurement-Based Quantum Computing (MBQC) oder one-way quantum computation, stellt eine alternative Architektur zur Implementierung von Quantenalgorithmen dar. Im Gegensatz zum weit verbreiteten Schaltkreis-Modell, bei dem Quanteninformationen durch sequenzielle Anwendung unitärer Gatter verarbeitet werden, basiert MBQC auf einer anderen Grundidee: Der eigentliche Rechenprozess erfolgt nicht durch Gatter, sondern ausschließlich durch gezielte Einzelqubit-Messungen an einem vorbereiteten, verschränkten Vielteilchenzustand – dem sogenannten Cluster-State.
+Diese Struktur eröffnet neue Perspektiven auf die Organisation und Steuerung von Quanteninformation. Die gesamte logische Verarbeitung geschieht dabei einseitig – also „one-way“ – da jede Messung irreversibel ist und den gemessenen Qubit-Zustand zerstört. Die Fähigkeit zur universellen Quantenberechnung wird dabei vollständig durch die Verschränkungseigenschaften des vorbereiteten Zustands sowie die geschickte Wahl und Abfolge der Messungen realisiert.
+\subsection*{Struktur und Erzeugung von Cluster-States}
+Zentrale Ressource des MBQC ist der Cluster-State, ein hochgradig verschränkter Quantenzustand mehrerer Qubits. Formal gehört der Cluster-State zur Klasse der Graphenzustände. Diese Zustände lassen sich durch mathematische Graphen beschreiben, in denen Knoten einzelnen Qubits entsprechen und Kanten die Verschränkungen zwischen ihnen darstellen.
+
+Die Erzeugung eines solchen Zustands erfolgt in zwei Schritten:
+\begin{enumerate}
+    \item 	Zunächst werden alle Qubits in den Zustand $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ gebracht.
+    \item 2.	Anschließend wird auf jedes benachbarte Qubitpaar (gemäß der Graphstruktur) ein kontrolliertes Phasengatter $U_{PG}=diag(1,1,1,-1)$ angewendet.
+\end{enumerate}
+Der so erzeugte Zustand $|G\rangle$, wobei G der zugrundeliegende Graph ist, besitzt die gewünschten Verschränkungseigenschaften, um ihn als Rechenressource im MBQC zu verwenden. Besonders der zweidimensionale (2D) Cluster-State hat sich hierbei als universell erwiesen, d.h. als hinreichend mächtig für die Implementierung beliebiger Quantenalgorithmen.
+\subsection*{Rechenmodell und Algorithmus Implementierung}
+Eine MBQC-Berechnung lässt sich in einem schematischen Ablauf darstellen, der vier grundlegende Schritte umfasst:
+\begin{enumerate}
+    \item \textbf{Initialisierung:} Vorbereitung eines ausreichend großen 2D-Cluster-States, der unabhängig vom konkreten Algorithmus erzeugt wird.
+    \item \textbf{Kodierung des Algorithmus durch Messmuster:} Die Berechnung wird durch eine Sequenz von Einzelqubit-Messungen in ausgewählten Basen realisiert. Dabei bestimmt das Muster der Messungen (also deren Reihenfolge und jeweilige Basis) die Art der durchgeführten logischen Operationen.
+    \item \textbf{Adaptive Steuerung:} Die Wahl der Messbasis für spätere Schritte kann von den Ergebnissen vorheriger Messungen abhängen. Diese Feedforward-Kontrolle wird durch eine klassische Recheneinheit übernommen.
+    \item \textbf{Ausgabezustand:} Das Endresultat der Quantenberechnung ist entweder in den verbleibenden nicht gemessenen Qubits codiert oder ergibt sich aus den Messergebnissen selbst. Die resultierenden Zustände unterscheiden sich höchstens durch lokale Pauli-Operationen.
+\end{enumerate}
+Ein bemerkenswertes Merkmal dieses Modells ist, dass trotz der inhärenten Zufälligkeit der einzelnen Messergebnisse (aufgrund des quantenmechanischen Messprozesses) der gesamte Rechenvorgang deterministisch kontrolliert und wiederholbar bleibt – vorausgesetzt, das Feedforward wird korrekt berücksichtigt 
+\subsection*{Exemplarische Anwendungen}
+Das Potential des MBQC lässt sich gut an ausgewählten Beispielen verdeutlichen. Eines der grundlegendsten Konzepte ist das Teleportationsprotokoll, das im Kontext des MBQC zeigt, wie Quanteninformation durch Messungen effektiv von einem Teil des Clusters zum anderen übertragen werden kann. Dieses Prinzip bildet die Basis für viele weiterführende Techniken, darunter auch die Realisierung effektiver logischer Gatter allein durch Messungen.
+Darüber hinaus lassen sich bekannte Algorithmen wie der Shor-Algorithmus zur Faktorisierung großer Zahlen oder der Grover-Algorithmus zur Datenbanksuche in messungsbasierten Varianten formulieren. Diese benötigen lediglich eine geeignete Struktur des zugrunde liegenden Cluster-States sowie eine korrekt gewählte Messstrategie, um dieselbe Funktionalität wie im Schaltkreis-Modell zu erreichen. Damit zeigt sich die formale Äquivalenz der beiden Paradigmen – bei grundlegend unterschiedlicher Umsetzung.
 
 \subsection{Adiabatisches Paradigma (Quantum Annealing)}
 Ein weiteres Modell zur Realisierung von Quantenalgorithmen ist das adiabatische Paradigma, welches auch als Quantum Annealing bezeichnet wird. Das Adiabatischen Modell basiert auf der Idee, ein Quantensystem durch eine langsame, kontinuierliche Änderung eines Hamiltonians gezielt in seinen Grundzustand zu führen. Die gesuchte Lösung des Modells ist in diesem Grundzustand markiert. Genau in dieser Art unterscheidet sich das Quantum Annealing auch vom Gate oder messungsbasierten Modell. 
@@ -77,28 +91,48 @@ Es gibt verschiedene Problemklassen, welche durch Quantum Annealing gelöst werd
 Quantum Annealing (QA) verwendet im Gegensatz zum klassischen Simulated Annealing (SA), bei der thermische Fluktuationen benutzt werden, Quantenfluktuationen, insbesondere Quanten-Tunnel, um Energiebarrieren zu überwinden. Das ist vor allem dann ein Vorteil, wenn die Energiebarrieren hoch, aber schmal sind. In genau diesen Fällen kann das Quantum Annealing schneller zu einer optimalen Lösung finden als sein klassischen Gegenstück Simulated Annealing. 
 Das adiabatische Paradigma wurde in der Praxis unter anderem durch die Firma D-Wave Systems in Hardware umgesetzt. Die Systeme von D-Wave Systems sind darauf spezialisiert Optimierungsprobleme durch Quantum Annealing zu lösen, also das adiabatische Paradigma technisch zu realisieren. 
 \subsection{Hybrid-Paradigma}
-\begin{itemize}
-    \item Kombination klassischer und quantenbasierter Teilalgorithmen
-    \item Klassischer Teil optimiert, evaluiert oder trainiert Quantenschaltungen
-    \item Beispiele:
-    \begin{itemize}
-        \item Variational Quantum Eigensolver (VQE)
-        \item Quantum Approximate Optimization Algorithm (QAOA)
-        \item Quantum Machine Learning (QML)
-    \end{itemize}
-\end{itemize}
+Das Hybrid-Paradigma stellt neben dem Gate basierten und adiabatischen Modell einen weiteren wichtigen Ansatz zur Realisierung von Quantenalgorithmen dar. Es ist aus dem Grund besonders interessant, da es sowohl klassische als auch quantenmechanische Bestandteile kombiniert. Konkret bedeutet das, dass die aufwendigen und hardwareintensiven Berechnungen, wie etwa die Manipulation und Messung von Quantenzuständen auf dem Quantencomputer laufen, während Aufgaben wie das Anpassen von Parametern oder das Auswerten von Messergebnissen klassisch bearbeitet werden. Aufgrund dieser Aufgabenteilung lassen sich viele Probleme bereits heutzutage auf existierender Hardware lösen. Das liegt vor allem daran, dass das Hybrid-Paradigma mit relativ kurzen Quantenschaltungen auskommt und keine langen kohärenten Entwicklungen benötigt.
+Das Grundprinzip im Hybrid-Paradigma ist immer gleich. Man startet zunächst mit einem Anfangszustand, der mithilfe einer parametrierten Quantenschaltung erzeugt wird. Anschließend wird ein Zielwert gemessen, das kann z.B. eine Energie sein und gibt dann diesen Messwert an den klassischen Computer zurück. Auf diesem wird dann ein Optimierungsalgorithmus ausgeführt, der neue Parameter vorschlägt, mit denen die Quantenschaltung beim nächsten Durchlauf verändert wird. Dieser Prozess wird so lange wiederholt, bis ein gewünschtes Ergebnis erreicht ist. Das erklärte Prinzip kommt in mehreren hybriden Algorithmen zum Einsatz. Im Folgenden werden nun drei bekannte hybride Algorithmen genauer vorgestellt. 
+\subsubsection*{1) Variationaler Quanten Eigenlöser (VQE)}
+Der variationale Quanten Eigenlöser (engl, variational quantum eigensolver), kurz VQE, ist ein hybrider Algorithmus der Berechnung von Eigenwerten, genauer gesagt zur Bestimmung des Grundzustands eines Hamiltonians verwendet wird. In der Quantenchemie ist das extrem wichtig, da sich damit die Energie eines Moleküls berechnen lässt. Die Idee hinter dem VQE-Algorithmus ist es einen Quantenzustand $|\psi(\theta)\rangle$ vorzubereiten, der von bestimmten Parametern $\theta$ abhängt. Für diesen Zustand wird dann der Erwartungswert einer Energie gemessen, was sich mathematisch durch folgende Formel ausdrücken lässt:
+$$
+\langle\psi(\theta)|H|\psi(\theta)\rangle
+$$
+Dieser Ausdruck wird als sogenannte Kostenfunktion verwendet. Das Ziel ist es die Parameter θ so zu verändern, dass die gemessene Energie möglichst klein wird und somit dem Grundzustand des Systems entspricht. Dieser Schritt passiert auf einem klassischen Rechner, der z.B. den Nelder-Mead-Algorithmus oder einen anderen Optimierer nutzt, nicht auf dem Quantencomputer selbst. 
+Ein großer Vorteil von VQE ist, dass die benötigten Quantenschaltungen relativ flach bleiben, sie kommen mit wenigen Gattern und kurzen Operationen aus. Diese Tatsache ist besonders für NISQ-Hardware praktisch, da bei dieser jede zusätzliche Operation das Risiko für Fehler erhöht. 
+2014 wurde der VQU bereits durch Peruzzo et al, erfolgreich auf einem photonischen Quantenprozessor umgesetzt. Dabei wurde die Bildungskurve des Moleküls He–H⁺ berechnet. Die Energie wurde dabei über ein klassisch-quantisches Zusammenspiel optimiert und das Ergebnis lag innerhalb der chemischen Genauigkeit. Das war bereits ein starker Beweis dafür, dass hybride Algorithmen schon vor über 10 Jahren auf damaliger Hardware praktikabel waren. 
+
+\subsubsection*{2) Quantum Approximate Optimization Algorithm (QAOA)}
+Der sogenannte Quantum Approximate Optimization Algorithm (QAOA) ist ein weiterer Algorithmus des Hybrid-Paradigmas und wurde dazu entwickelt, um kombinatorische Optimierungsprobleme zu lösen. Typische Beispiele hierfür sind Max-Cut, k-Clique oder andere Graph Probleme (siehe Kapitel…). Auch QAOA besteht aus einem parametrisierten Quantenschaltkreis und einer klassischen Optimierung, funktioniert jedoch deutlich anders als VQE.
+Das Verfahren nutzt zwei Hamiltonians. Einmal einen Probleme-Hamiltonian $H_C$, welcher das zu lösende Problem abbildet (z.B. ein Ising-Modell) und einmal einen sogenannten Mixer-Hamiltonian $H_B$, der typischerweise eine Summe von X-Gattern ist. Ausgehend vom Anfangszustand werden nun abwechselt die Hamiltonian $H_C$ und $H_B$ auf das System angewendet. Daraus ergibt sich dann für eine Schaltungstiefe p folgender QAOA-Zustand: 
+$$
+|\psi_p(\vec{\gamma}, \vec{\beta})\rangle = e^{-i\beta_p H_B}e^{-i\gamma_p H_C} \dots e^{-i\beta_1 H_B}e^{-i\gamma_1 H_C} |+\rangle^{\otimes N}
+$$
+Die Parameter $\gamma$ und $\beta$ werden dabei von einem klassischen Optimierer so angepasst, dass die gemessene Erwartung des Zieloperators optimiert wird. Das System bleibt hierbei anders als beim adiabatischen Paradigma nicht unbedingt im Grundzustand, sondern nutzt gezielt nicht-adiabatische Übergänge, um effizient zu besseren Lösungen zu kommen. Damit eignet sich der Algorithmus gut für NISQ-Geräte und kann mit relativ flachen Quantenschaltungen implementiert werden. 
+
+\subsubsection*{3) Quantum Machine Learning}
+Das letzte der drei genannten typischen Gebiete in dem hybride Quantenalgorithmen eine wichtige Rolle spielen, ist das sogenannte Quantum Machine Learning. Hierbei kommt es wie der Name schon vermuten lässt zur Verbindung von Quantencomputing und maschinellem Lernen. Auch in diesem Gebiet ist das Hybrid-Paradigma der Standard, weil klassische Daten verarbeitet und mit quantenmechanischen Methoden analysiert werden. 
+Hierbei läuft das typische Vorgehen wie folgt ab. Zunächst werden die Eingangsdaten, also z.B. Bilder oder numerische Werte, durch sogenannte Feature Maps in einen Quantenzustand umgewandelt. Anschließend wird dieser Zustand durch eine parametrisierte Quantenschaltung geschickt die als Klassifikator dient. Abschließend wird das Ergebnis auf einem klassischen Computer ausgewertet und der Fehler wird klassisch minimiert. 
+Ein Beispiel für Quantum Machine Learning ist der Variational Quantum Classifier (VQC), bei dem die Quantenschaltung so trainiert wird, dass sie zum Beispiel zwischen verschiedenen Klassen unterscheiden kann, wie z.B. zwischen verschiedenen Ziffern in einem Bild. Auch hier wird eine Kostenfunktion (z.B. der Klassifikationsfehler) iterativ durch einen klassischen Optimierer minimiert. 
+Ein großer Vorteil und damit eine Stärke des hybrides Ansatzes von Quantum Machine Learning liegt darin, dass man quantenmechanische Effekte wie die Superposition und Verschränkung nutzen kann, um komplexe Strukturen in Daten zu erkennen und dabei aufgrund des Machine Learning nicht auf eine vollständige Quantenhardware angewiesen ist. 
+\textbf{hier leerzeile}
+Das Hybrid-Paradigma ist ein zentraler Baustein moderner Quantenalgorithmen. Es ist besonders gut für aktuelle NISQ-Geräte geeignet und ermöglicht die Zusammenarbeit zwischen klassischem Rechner und Quantenprozessor. Hybride Verfahren zeigen bereits heute, egal ob in der Quantenchemie, bei Optimierungsproblemen oder in maschinellem Lernen, was auf echter Hardware möglich ist. Sie gelten als vielversprechender Weg in Richtung praktischer Quantenanwendungen. 
 
 \subsection{Funktionelles Paradigma}
-\begin{itemize}
-    \item Quantenprogramme als Funktionen (ähnlich funktionaler Programmierung)
-    \item Häufig genutzt in Theorie und formaler Verifikation
-    \item Beispiele: 
-    \begin{itemize}
-        \item Formalisierte Algorithmen (z.\,B. Shor, Grover)
-        \item Verifizierte Protokolle (z.\,B. Superdense Coding)
-        \item Einsatz linearer Typ-Systeme zur Abbildung von Quanteneigenschaften
-    \end{itemize}
-\end{itemize}
+
+\setlength{\parindent}{0pt} % Keine Einrückung am Absatzanfang
+\setlength{\parskip}{1em}   % Fügt einen vertikalen Abstand von 1em zwischen Absätzen ein
+
+Das funktionelle Paradigma im Quantencomputing verfolgt den Ansatz, Quantenprogramme als Funktionen zu modellieren, vergleichbar mit klassischen funktionalen Programmiersprachen. Es ermöglicht eine deklarative, abstrahierte und zugleich formal fundierte Beschreibung quantenmechanischer Prozesse und hebt sich damit deutlich von den herkömmlichen, zumeist schaltkreisorientierten Programmiersprachen ab. Ein zentrales Beispiel ist die Sprache QML (Quantum Meta Language), in der Programme als Ausdrücke formuliert werden, deren Bedeutung sich durch morphische Abbildungen innerhalb der Kategorie endlicher Quantenberechnungen (FQC) erschließt. Diese formale Semantik erlaubt es, sowohl reversible als auch irreversible Quantenoperationen in einer gemeinsamen Sprache zu erfassen (vgl. Altenkirch \& Grattage, S.\,1--2).
+
+Ein wesentliches Anliegen dieses Paradigmas ist die gezielte Kontrolle von Dekohärenz -- einem der kritischsten Probleme in der praktischen Umsetzung von Quantenalgorithmen. QML begegnet dieser Herausforderung mit einem strikt linearen Typ-System, das sicherstellt, dass jede Variable, insbesondere jeder Qubit, genau einmal verwendet wird. Dadurch wird die Einhaltung quantenmechanischer Prinzipien wie des No-Cloning-Theorems gewährleistet. Operationen, die eine Messung des Zustands erzwingen, wie etwa \texttt{if}, werden dabei syntaktisch von solchen unterschieden, die ohne Dekohärenz auskommen, wie \texttt{if\textsubscript{$\circ$}}. Letztere dürfen nur unter orthogonalitätsbasierten Bedingungen verwendet werden, was eine formale Absicherung gegen unbeabsichtigte Messprozesse bietet (S.\,3--4). Auf diese Weise lassen sich Superpositionen und Verschränkungen programmatisch erhalten und präzise steuern.
+
+Die Ausdrucksstärke des funktionellen Paradigmas zeigt sich besonders in der formalen Darstellung bekannter Quantenalgorithmen und -protokolle. Grundlegende Operationen wie das Hadamard-Gatter oder Variationen von Deutsch's Algorithmus lassen sich in QML nicht nur elegant formulieren, sondern auch direkt in Quanten-Schaltkreise überführen. Die Algorithmen von Shor und Grover, auf die in den Abschnitten \ref{sec:Shor-Algorithmus} und \ref{sec:grover-algorithm} eingegangen wird, können ebenfalls in diesem Rahmen abgebildet werden. Darüber hinaus eignet sich QML hervorragend zur Beschreibung komplexer Quantenprotokolle wie etwa Superdense Coding. Die Sprache erlaubt es, parallele Auswertungen mehrerer Qubits strukturell auszudrücken, was die zugrunde liegenden Prinzipien des Quantenparallelismus nicht nur sichtbar macht, sondern auch formal überprüfbar werden lässt (S.\,2--3).
+
+Eine der größten Stärken des funktionellen Paradigmas liegt schließlich in der Transparenz des Ressourcenmanagements. Da Weakenings -- also das bewusste Ignorieren oder Nicht-Nutzen von Variablen -- explizit gekennzeichnet werden müssen, lassen sich die Stellen im Programm eindeutig identifizieren, an denen Dekohärenz eintritt. Dies eröffnet die Möglichkeit einer gezielten Optimierung hinsichtlich der Informationssicherheit und der quantenmechanischen Integrität eines Programms (S.\,5--6).
+
+Insgesamt stellt das funktionelle Paradigma eine leistungsfähige und theoretisch fundierte Grundlage für die Entwicklung und Verifikation von Quantenprogrammen dar. Es verbindet formale Strenge mit praktischer Anwendbarkeit und erlaubt es, sowohl algorithmische als auch protokollbasierte Quantenoperationen in einem klar typisierten, kontrollierten und analysierbaren Rahmen zu formulieren.
+
 
 \section{Quanten-Programmiersprachen und -Frameworks}
 \label{sec:programming-languages}
@@ -530,64 +564,178 @@ Zu den wichtigsten Anbietern von Quantum Cloud Plattformen zählen aktuell IBM, 
 
 \begin{table}[ht!]
 \centering
-\begin{tabular}{|p{2.8cm}|p{2.5cm}|p{2.5cm}|p{4.5cm}|p{3.5cm}|}
+\begin{tabular}{|p{2.5cm}|p{4.8cm}|p{4cm}|}
 \hline
-\textbf{Plattform} & \textbf{Hardware} & \textbf{Sprachen / SDKs} & \textbf{Kernfeatures} & \textbf{Besonderheiten} \\
+\textbf{Plattform} & \textbf{Hardware} & \textbf{Unterstützte Sprachen / SDKs} \\
 \hline
-IBM Quantum & Falcon, Eagle (Supraleitende Qubits) & Qiskit & Hardware-agnostischer Code, Qiskit Runtime für containerisierte Near-time-Execution, integrierte Fehlerunterdrückung (z.\,B. ZNE, dynamical decoupling) & Sessions zur Reduktion klassisch-quantischer Latenz; optimiert für iterative Algorithmen \\
+IBM Quantum & Falcon, Eagle (Supraleitende Qubits) & Qiskit \\
 \hline
-Amazon Braket & IonQ (Ionenfallen), Rigetti (supraleitend), OQC (Photonik) & Braket SDK, PennyLane, Qiskit & Hybrid Jobs: Orchestrierung von QPU und EC2, Priorisierung, parametric compilation, CloudWatch Monitoring & Pay-as-you-go-Modell; lokale Debug-Modi; EC2-Integration für hybride Workflows \\
+Amazon Braket & IonQ (Ionenfallen), Rigetti (supraleitend), OQC (Photonik) & Braket SDK, PennyLane, Qiskit \\
 \hline
-Google Quantum AI & Sycamore (supraleitend) & Cirq & Integration mit Google-Infrastruktur, Fokus auf NISQ-Algorithmen und ML & Direkte ML-Pipeline-Anbindung; Forschungsfokus auf Skalierbarkeit \\
+Google Quantum AI & Sycamore (supraleitend) & Cirq \\
 \hline
 \end{tabular}
 \caption{Vergleich führender Quantum Cloud Plattformen}
 \label{tab:quantum-cloud-platforms}
 \end{table}
 
-Weitere Plattformen sind etwa \textit{Strangeworks}, \textit{Xanadu}, \textit{Quantinuum}, \textit{IonQ} (auch über Azure Quantum) und \textit{Microsoft Azure Quantum}. Diese bieten entweder eigene Hardwaretechnologien (wie photonische QPUs bei Xanadu oder trapped-ion Systeme bei Quantinuum) oder bündeln übergreifende Multi-Backend-Zugänge mit einheitlicher API. Microsoft ermöglicht zudem tiefe Integration in klassische Azure-Dienste, während Strangeworks auf eine benutzerfreundliche Multi-Vendor-Umgebung setzt.
+Alle drei Plattformen bieten Cloud-basierten Zugang zu Quantenprozessoren im Pay-as-you-go-Modell, wodurch Nutzer ohne hohe Einstiegskosten reale Quantenhardware nutzen können. Dabei unterstützen alle Anbieter hybride Workflows, bei denen klassische und quantenbasierte Berechnungen kombiniert werden. Angesichts der Fehleranfälligkeit heutiger Quantenhardware integrieren alle Plattformen Mechanismen zur Fehlermitigation. Zudem sind alle Plattformen gut in ihre jeweiligen Cloud-Ökosysteme integriert (IBM Cloud, AWS, Google Cloud), um Nutzern eine nahtlose Entwicklung und Verwaltung quantenbasierter Anwendungen zu ermöglichen.
 
+Die drei Plattformen unterscheiden sich vor allem in der Hardwareverfügbarkeit, Softwarearchitektur und ihrem Ausführungsmodell. IBM Quantum bietet exklusiv Zugang zu eigenen supraleitenden Quantenprozessoren, darunter fortschrittliche Geräte wie den 127-Qubit-Eagle. Amazon Braket hingegen fungiert als Meta-Plattform und stellt über eine einheitliche Schnittstelle Zugang zu verschiedenartigen QPUs bereit – z.B. Ionenfallen (IonQ) und supraleitende Systeme (Rigetti, OQC). Google Quantum AI verwendet ausschließlich eigene supraleitende Chips (z.B. Sycamore), die jedoch nur ausgewählten Partnern zugänglich sind. Damit bieten IBM und AWS aktuell breiteren öffentlichen Hardwarezugang, während Google auf forschungsorientierte Hardwareentwicklung mit begrenztem Zugriff setzt.
 
+Auch auf Softwareebene gibt es Unterschiede: IBM unterstützt mit Qiskit ein umfassendes Open-Source SDK. Braket erlaubt mehr Flexibilität, indem es neben dem eigenen SDK auch Drittanbieter-Frameworks wie PennyLane unterstützt. Google verwendet Cirq – ein eher Low-Level-orientiertes SDK, das präzise Kontrolle über qubit-spezifische Details ermöglicht, insbesondere im Kontext von Machine Learning mit TensorFlow Quantum. Bei den Ausführungsmodellen bietet IBM mit Qiskit Runtime ein latenzarmes Session-Modell inklusive dynamischer Schaltungen, während Braket hybride Jobs in AWS-Containern orchestriert. Google hingegen ermöglicht primär Batch-Ausführungen über das Quantum Engine API – ohne öffentliche Hybrid-Job-Funktionalität.
 
+Darüber hinaus gibt es weitere Plattformen wie etwa \textit{Strangeworks}, \textit{Xanadu}, \textit{Quantinuum}, \textit{IonQ} (auch über Azure Quantum) und \textit{Microsoft Azure Quantum}. Diese bieten entweder eigene Hardwaretechnologien (wie photonische QPUs bei Xanadu oder trapped-ion Systeme bei Quantinuum) oder bündeln übergreifende Multi-Backend-Zugänge mit einheitlicher API. Microsoft ermöglicht zudem tiefe Integration in klassische Azure-Dienste, während Strangeworks auf eine benutzerfreundliche Multi-Vendor-Umgebung setzt.
 
-
-
-
-
-
-
-\subsection{Praxisbeispiel: Grover-Suche mit Qiskit} (erledigt, nur noch beschreiben was passiert)
+\subsection{Tooling und Automatisierung}
 \begin{itemize}
-    \item Ziel: Implementierung einer Grover-Suche zum Finden eines markierten Eintrags
-    \item Problemformulierung und Zielzustand
-    \item Bezug zur Theorie: siehe Kapitel \textit{Quantenalgorithmen}
-    \item Auswahl: Gate-basiertes Modell mit Qiskit SDK
+    \item Transpiler: Anpassung an spezifisches Backend
+    \item Middleware: Warteschlange, Priorisierung, Job-IDs
+    \item Backend-Optimierung: z.\,B. minimale Tiefe, minimale Fehlerwahrscheinlichkeit
+    \item Möglichkeit automatisierter Testausführung mit Simulator
 \end{itemize}
 
+\subsection{Praxisbeispiel: Grover-Suche mit Qiskit} 
+Dieses Beispiel veranschaulicht die praktische Umsetzung des Grover-Algorithmus zur Lösung eines unstrukturierten Suchproblems. Der Algorithmus zielt darauf ab, in einem Zustandsraum mit $2^n$ Einträgen einen bestimmten, zuvor markierten Zustand mit signifikant weniger Abfragen zu identifizieren, als dies klassisch möglich wäre. Die Implementierung erfolgt auf Grundlage eines gate-basierten Quantenmodells, wobei zunächst einfache Systeme mit zwei und drei Qubits betrachtet werden.
+
+Ausgangspunkt ist jeweils ein Qubit-Register, das durch die Anwendung von Hadamard-Gattern in eine gleichmäßige Superposition aller möglichen Zustände überführt wird. Diese Phase der Initialisierung erzeugt einen quantenmechanischen Zustand, in dem jeder mögliche Eintrag des Suchraums mit gleicher Amplitude repräsentiert ist. Der nächste Schritt besteht in der Anwendung des sogenannten Orakels, das den gesuchten Zustand durch eine Phaseninversion markiert. In der hier realisierten Version wird im Fall von zwei Qubits der Zustand $|11\rangle$ als Zielzustand definiert und durch ein einfaches CZ-Gatter identifiziert. Für die Erweiterung auf drei Qubits wird entsprechend ein mehrfach kontrolliertes Z-Gatter eingesetzt, das gezielt den Zustand $|111\rangle$ anspricht.
+
+Im Anschluss an das Oracle kommt der sogenannte Diffusionsoperator zur Anwendung, der eine Spiegelung aller Amplituden um ihren Mittelwert bewirkt. Ziel dieses Schritts ist es, die Wahrscheinlichkeit des markierten Zustands zu verstärken, während die übrigen Zustände unterdrückt werden. Die Umsetzung erfolgt durch eine festgelegte Folge elementarer Gatter, darunter Hadamard-, X- und kontrollierte NOT-Gatter. Schon nach einer einzigen Iteration dieses Verfahrens – bei kleinen Registern in der Regel ausreichend – ist der Zielzustand in der quantenmechanischen Wahrscheinlichkeitsverteilung deutlich hervorgehoben.
+
+Die finale Messung der Qubits erfolgt am Ende des Algorithmus. Dabei zeigt sich, dass der zuvor markierte Zustand mit hoher Wahrscheinlichkeit detektiert wird. Die experimentelle Auswertung bestätigt die theoretische Erwartung: Der Grover-Algorithmus führt zu einer gezielten Verstärkung des gewünschten Ergebnisses. Dies wird insbesondere durch die grafische Darstellung der Messhäufigkeiten deutlich, bei der der Zielzustand als klar dominanter Messwert erscheint.
+
+Insgesamt zeigt dieses Beispiel, wie sich ein komplexer quantenmechanischer Algorithmus mit relativ einfachen Mitteln umsetzen lässt. Die Verbindung von Theorie und Praxis wird damit greifbar: Während im Kapitel Quantenalgorithmen die mathematische Grundlage gelegt wurde, bietet die hier vorgestellte Implementierung eine konkrete Anwendung und liefert gleichzeitig einen Einstieg in den praktischen Umgang mit modernen Quantenentwicklungstools.
+
 \subsection{Implementierung und Testing mit Qiskit}
-\subsubsection{Projektstruktur und Setup (Python-Umgebung, Qiskit-Installation)} (erledigt)
+\subsubsection{Projektstruktur und Setup (Python-Umgebung, Qiskit-Installation)}
+
+\setlength{\parindent}{0pt} % Keine Einrückung am Absatzanfang
+\setlength{\parskip}{1em}   % Fügt einen vertikalen Abstand von 1em zwischen Absätzen ein
+
+\subsubsection*{Systemanforderungen}
+Die Systemanforderungen für die Implementierung und das Testing mit Qiskit sind wie folgt:
 \begin{itemize}
-        \item Systemanforderungen
-        \begin{table}[h]
+    \item \textbf{Betriebssystem}: Windows 10 oder 11 (64-Bit)
+    \item \textbf{Python-Version}: Python 3.8 bis 3.11
+    \item \textbf{Arbeitsspeicher}: Mindestens 4 GB RAM (empfohlen: 8 GB oder mehr)
+    \item \textbf{Festplattenspeicher}: Ca. 1--2 GB freier Speicherplatz
+    \item \textbf{Internetverbindung}: Für Installation, Updates und IBM-Zugriff
+\end{itemize}
+
+\subsubsection*{Virtuelle Umgebung und Qiskit installieren}
+
+\begin{enumerate}
+    \item \textbf{Virtuelle Umgebung einrichten} 
+    
+Virtuelle Umgebungen helfen dabei, Abhängigkeiten eines Projekts zu isolieren und Konflikte mit anderen Projekten zu vermeiden.
+    \begin{verbatim}
+python -m venv C:\Users\deinBenutzername\Documents\quantum-env
+    \end{verbatim}
+\textit{Dieser Befehl erstellt eine neue virtuelle Python-Umgebung im angegebenen Verzeichnis, wodurch alle Projektabhängigkeiten lokal isoliert gespeichert werden. }
+    \begin{figure}
         \centering
-        \begin{tabular}{|l|l|}
-        \hline
-        \textbf{Komponente} & \textbf{Beschreibung} \\
-        \hline
-            Betriebssystem& Windows 10 oder 11 (64-Bit)\\\hline
-            Python-Verson& Python 3.8 bis 3.11\\\hline
-            Arbeitsspeicher& mind. 4 Gb RAM (empfohlen: 8GB oder mehr)\\
-        \hline
- Festplattenspeicher &ca. 1-2GB freier Speicherplatz\\\hline
- Internetverbindung&Für Installation, Updates und optionalen IBM-Zugriff\\ \hline
-        \end{tabular}
-        \caption{Systemsetup für Qiskit-Projekt}
-        \label{tab:setup}
-\end{table}
-        \item Virtuelle Umgebung einrichten und aktivieren
-        \item Qiskit installieren
-    \end{itemize}
-\subsubsection{Konstruktion des Circuits: Dennis}
+        \includegraphics[width=1\linewidth]{Virtuelle Umgebung einrichten.png}
+        \caption{Virtuelle Umgebung einrichten}
+        \label{fig:enter-label}
+    \end{figure}
+
+ \item \textbf{Virtuelle Umgebung aktivieren}
+    \begin{verbatim}
+cd C:\Users\deinBenutzername\Documents\quantum-env
+.\Scripts\activate
+    \end{verbatim}
+\textit{Diese Befehle wechseln in das Verzeichnis der virtuellen Umgebung und aktivieren sie.  Der Prompt zeigt danach den Namen der aktiven Umgebung an, was ein Zeichen dafür ist, dass alle weiteren Befehle lokal ausgeführt werden. }
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{Virtuelle Umgebung aktiviert.png}
+        \caption{Virtuelle Umgebung aktiviert}
+        \label{fig:enter-label}
+    \end{figure}
+
+    \item \textbf{pip-Version prüfen}
+    \begin{verbatim}
+pip --version
+    \end{verbatim}
+\textit{Dieser Befehl überprüft, ob der Python-Paketmanager \texttt{pip} korrekt installiert und aktiviert ist.  \texttt{pip} wird im nächsten Schritt zur Installation der Pakete verwendet. }
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{pip-version prüfen.png}
+        \caption{pip-Version prüfen}
+        \label{fig:enter-label}
+    \end{figure}
+\end{enumerate}
+
+\subsubsection*{Installation der benötigten Pakete}
+
+\begin{enumerate}
+    \setcounter{enumi}{3} % Zähler für fortlaufende Liste
+    \item \textbf{Qiskit installieren}
+    \begin{verbatim}
+pip install qiskit
+    \end{verbatim}
+\textit{Dieser Befehl installiert das Hauptpaket \texttt{qiskit}, das alle grundlegenden Funktionen zur Programmierung und Simulation von Quantencomputern enthält. }
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{Qiskit installieren.png}
+        \caption{Qiskit installieren}
+        \label{fig:enter-label}
+    \end{figure}
+
+    \item \textbf{Visualisierungsfunktionen hinzufügen (optional, empfohlen)}
+    \begin{verbatim}
+pip install qiskit[visualization]
+    \end{verbatim}
+\textit{Dieser Befehl installiert zusätzliche Bibliotheken zur grafischen Darstellung von Quanten-Schaltkreisen und Simulationsergebnissen, z.B. mit Matplotlib.  Dies ist notwendig bei Nutzung von Jupyter Notebook. }
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{Installation der Visualisierungsfunktion.png}
+        \caption{Installation der Visualisierungsfunktion}
+        \label{fig:enter-label}
+    \end{figure}
+
+    \item \textbf{IBM Runtime installieren (optional)}
+    \begin{verbatim}
+pip install qiskit-ibm-runtime
+    \end{verbatim}
+\textit{Dieser Befehl ermöglicht die Anbindung an echte Quantenhardware über IBMs Cloud-Umgebung.  Dies ist optional, aber hilfreich für fortgeschrittene Experimente. }
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{Installation IBM Runtime.png}
+        \caption{Installation IBM Runtime}
+        \label{fig:enter-label}
+    \end{figure}
+\end{enumerate}
+
+\subsubsection*{Jupyter Notebook nutzen}
+
+\begin{enumerate}
+    \setcounter{enumi}{6} % Zähler für fortlaufende Liste
+    \item \textbf{Jupyter installieren}
+    \begin{verbatim}
+pip install jupyter
+    \end{verbatim}
+\textit{Dieser Befehl installiert Jupyter Notebook -- eine interaktive Umgebung, in der Python-Code, Visualisierungen und Textelemente kombiniert werden können. }
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{Installation Jupyter Notebook.png}
+        \caption{Installation Jupyter Notebook}
+        \label{fig:enter-label}
+    \end{figure}
+
+    \item \textbf{Notebook starten}
+    \begin{verbatim}
+jupyter notebook
+    \end{verbatim}
+\textit{Dieser Befehl startet den Jupyter Notebook-Server und öffnet die Benutzeroberfläche im Webbrowser.  Hier können direkt interaktive Codebeispiele mit Qiskit ausgeführt werden. }
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{Notebook starten.png}
+        \caption{Notebook starten}
+        \label{fig:enter-label}
+    \end{figure}
+\end{enumerate}
+
+\subsubsection{Konstruktion des Grover Circuits:}
 
 
 Um den Grover Algorithmus praktisch auf eine Quantencomputer umzusetzen, wird eine konkrete Konstruktion der Schaltung benötigt. Der Algorithmus setzt sich dabei aus 4 wesentlichen Komponenten zusammen: 
@@ -620,6 +768,8 @@ qc.h([0, 1])
 
 
 \end{verbatim}
+
+
 Das gewählte Beispiel ist für 2 Qubits, kann jedoch, wie bereits erwähnt, für die Anzahl $n$ Qubits beliebig erweitert werden.
 
 \subsection*{Oracle}
@@ -668,49 +818,44 @@ Mit dieser Vorgehensweise können beliebige Zielzustände auf einfache Weise rea
 \subsection*{Diffusionsoperator}
 Der Diffusionsoperator, welcher auch häufig „Inversion about the mean“ genannt wird, verstärkt den im Oracle markierten Zielzustand, indem er alle Amplituden am Mittelwert reflektiert. Die Definition des Diffusionsoperators ist folgende:
 $$
-D = 2\ket{s}\bra{s} - I
+D = 2|\psi\rangle\langle\psi| - I
 $$
-Dabei steht der Parameter $\ket{s}$ für den gleichverteilten Zustand. Das entspricht aus geometrischer Sicht einer Spiegelung im Hilbertraum. Genau diese Operation ist für die Verstärkung des im Oracle markierten Zielzustands verantwortlich. Nach jeder Grover-Iteration bewirkt sie eine Rotation des Zustandsvektors um einen festen Winkel im Unterraum von markierten und unmarkierten Zuständen. (vgl. Grover 1996, Montanaro 2016).
+Dabei steht der Parameter $|\psi\rangle$ für den gleichverteilten Zustand. Das entspricht aus geometrischer Sicht einer Spiegelung im Hilbertraum. Genau diese Operation ist für die Verstärkung des im Oracle markierten Zielzustands verantwortlich. Nach jeder Grover-Iteration bewirkt sie eine Rotation des Zustandsvektors um einen festen Winkel im Unterraum von markierten und unmarkierten Zuständen. (vgl. Grover 1996, Montanaro 2016).
 
 In unserem gewählten Beispiel mit 2 Qubits kann der Diffusionsoperator in Qiskit wie folgt umgesetzt werden:
 \begin{verbatim}
-# Diffusionsoperator
-qc.h([0, 1])  # Hadamard-Gate auf alle Qubits
-qc.x([0, 1])  # X-Gate auf alle Qubits
-qc.cz(0, 1)  # CZ-Gate
-qc.x([0, 1])  # X-Gate auf alle Qubits
-qc.h([0, 1])  # Hadamard-Gate auf alle Qubits
-
-# Schaltung zeichnen (optional)
-# qc.draw('mpl')
+grover_circuit.h([0,1])   # Rücktransformation in H-Basis
+grover_circuit.z([0,1])   # Phaseninversion aller Zustände
+grover_circuit.cz([0,1])  # Inversion von |00> in H-Basis
+grover_circuit.h([0,1])   # Zurück in ursrüngliche Basis
 \end{verbatim}
 
 Optional kann das auch mit dem `GroverOperator` aus der Qiskit-Bibliothek gelöst werden. Dieser kapselt Oracle und Diffusion und wird wie folgt umgesetzt:
 \begin{verbatim}
-from qiskit.algorithms import GroverOperator
-
-# Ein Oracle definieren (hier als Beispiel für |01>)
-oracle_qc = QuantumCircuit(2)
-oracle_qc.x(0)
-oracle_qc.cz(0, 1)
-oracle_qc.x(0)
-
-# GroverOperator erstellen
-grover_op = GroverOperator(oracle=oracle_qc)
-
-# GroverOperator zur Hauptschaltung hinzufügen (optional, da er bereits die Iteration enthält)
-# qc.append(grover_op, [0, 1])
-
-# Schaltung zeichnen (optional)
-# grover_op.draw('mpl')
+from qiskit.circuit.library import GroverOperator
+grover_op = GroverOperator (oracle=oracle)
 \end{verbatim}
+
+\subsection*{Messung}
+Der abschließende Schritt im Grover Algorithmus ist die Messung. Diese folgt nach mehreren Iterationen von Oracle und Diffusion (typischerweise $\approx \frac{\pi}{4} \sqrt{2^n}$)
+\begin{verbatim}
+grover_circuit.measure_all()
+\end{verbatim}
+Diese überführt den quantenmechanischen Zustand in einen klassischen Bitstring. 
+Die Wahrscheinlichkeit, bei der Messung den markierten Zustand zu erhalten ist nun maximal. Bei Benutzung der Simulation erfolgt diese Messung häufig mehrfach in sogenannten „shots“, um eine Wahrscheinlichkeitsverteilung zu erhalten. So lässt sich die Dominanz des gesuchten Zustands gegenüber der anderen Zustände statistisch nachweisen.
+
+Die Konstruktion des Grover-Circuits ist modular und besteht wie beschrieben aus den genannten vier klar definierten Schritten. Mithilfe von Qiskit lassen sich diese Schritte präzise implementieren, debuggen und simulieren. Das kann sowohl für die theoretische Analyse als auch für praktische Experimente auf realen Quantencomputern verwendet werden.
 
 \subsubsection{Ausführung auf Simulator (Qiskit Aer)}
 \subsubsection{Visualisierung von Schaltkreis und Ergebnissen Konrad}
 
+\setlength{\parindent}{0pt} % Keine Einrückung am Absatzanfang
+\setlength{\parskip}{1em}   % Fügt einen vertikalen Abstand von 1em zwischen Absätzen ein
+
 Ein zentrales Anliegen beim Verständnis und bei der Vermittlung von Quantenalgorithmen ist die Möglichkeit, deren Funktionsweise nicht nur abstrakt-mathematisch, sondern auch visuell nachvollziehen zu können. Das folgende Kapitel widmet sich der Visualisierung des Grover-Algorithmus anhand zweier Implementierungen – einmal mit zwei, einmal mit drei Qubits – unter Verwendung des Qiskit-Frameworks. Sowohl der Aufbau des Quanten-Schaltkreises als auch die Messergebnisse werden grafisch dargestellt und interpretiert.
 
-\subsection*{Visualisierung des Quantenschaltkreises}
+\paragraph*{Visualisierung des Quantenschaltkreises}
+\mbox{}
 
 Für beide Varianten des Grover-Algorithmus wird der jeweilige Quanten-Schaltkreis mit der Methode QuantumCircuit.draw() visualisiert. Diese Darstellung erlaubt einen direkten Einblick in den logischen Aufbau des Algorithmus, insbesondere in die Abfolge und Wirkung der verschiedenen quantenmechanischen Operationen. Die Schaltkreise bestehen jeweils aus mehreren charakteristischen Abschnitten:
 \begin{itemize}
@@ -728,64 +873,105 @@ Varianten im Notebook erzeugt und angezeigt werden:
 circuit.draw()
 \end{verbatim}
 
-  \centering
   \begin{figure}
       \includegraphics[width=0.25\linewidth]{circuit_superposition.png}
       \caption{Visualisierung des Schaltkreises (Superposition)}
       \label{fig:enter-label}
 \end{figure}
 
-\subsubsection*{Visualisierung der Messergebnisse}
+\paragraph*{Visualisierung der Messergebnisse}
+\mbox{}
+
+Nach Ausführung des Algorithmus auf einem Quantensimulator – konkret dem QASM-Simulator von Qiskit – erfolgt die Analyse der Ergebnisse durch grafische Darstellung der Messausgänge.  Dabei wird die Methode \texttt{plot\_histogram()} verwendet, die ein Histogramm der gemessenen Zustände erzeugt.  Die Höhe der jeweiligen Balken repräsentiert die Häufigkeit (bzw. Wahrscheinlichkeit) eines bestimmten Bitmusters, das bei der Messung beobachtet wurde. 
+
+Im Idealfall – das heißt, bei korrekter Funktionsweise des Orakels und des Grover-Operators – zeigt das Histogramm einen klar dominanten Peak beim Zielzustand.  Die Wahrscheinlichkeiten für alle anderen Zustände bleiben deutlich geringer.  Der gesuchte Zustand hebt sich somit durch quantenmechanische Verstärkung deutlich ab.  Der entsprechende Code zur Ergebnisvisualisierung lautet: 
+\begin{verbatim}
+plot_histogram(counts)
+plt.show()
+plot_histogram(counts)
+plt.show()
+\end{verbatim}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{Visualisierung der Messergebnisse.png}
+    \caption{Visualisierung der Messergebnisse}
+    \label{fig:enter-label}
+\end{figure}
+
+Die Kombination aus Schaltkreisvisualisierung und Ergebnisdarstellung bietet einen idealen Zugang zum Verständnis von Grovers Algorithmus.  Sie macht die Wirkung der einzelnen quantenlogischen Schritte nachvollziehbar und veranschaulicht das Prinzip der amplitudenbasierten Suche auf anschauliche Weise.  Solche Visualisierungen sind nicht nur didaktisch wertvoll, sondern auch essenziell für die Entwicklung und Analyse komplexerer Quantenalgorithmen in der Praxis. 
+
+\clearpage % Fügt einen Seitenumbruch ein, um den nächsten Abschnitt auf einer neuen Seite zu beginnen
+
+\subsubsection{Tests und Debugging-Hilfsmittel (z.\,B. Histogramme, Counts)}
 
 
-\subsubsection{Tests und Debugging-Hilfsmittel (z.\,B. Histogramme, Counts) Konrad}
+\paragraph*{Tests und Debugging-Hilfsmittel}
+\mbox{}
 
+Bei der Entwicklung von Quantenalgorithmen spielt die systematische Überprüfung des Codes eine entscheidende Rolle, insbesondere im experimentellen Rahmen mit Frameworks wie Qiskit. Quantenprogramme sind nicht nur aufgrund ihrer Komplexität fehleranfällig, sondern verhalten sich auch häufig nicht intuitiv, da viele Zustände nicht direkt beobachtbar sind. Deshalb ist es essenziell, gezielt mit Tests, Zwischenergebnissen und Visualisierungen zu arbeiten, um Fehler zu erkennen und zu beheben.
 
+\paragraph*{Schrittweise Entwicklung und Visualisierung}
+\mbox{}
 
-\subsection{Cloud Deployment: Ausführung auf echter Quantenhardware}
+Im vorliegenden Notebook wurde der Grover-Algorithmus schrittweise aufgebaut, was eine erste Form des \enquote{Testens durch Design} darstellt. So wurden zunächst einzelne Operatoren und Zustände erzeugt, bevor sie in die Gesamtschaltung integriert wurden. Ein typisches Beispiel findet sich im Abschnitt zur 2-Qubit-Version:
+\begin{verbatim}
+def diffusion(circuit):
+    circuit.h([0, 1])
+    circuit.x([0, 1])
+    circuit.h(1)
+    circuit.cx(0, 1)
+    circuit.h(1)
+    circuit.x([0, 1])
+    circuit.h([0, 1])
+# Grover Circuit
+grover_circ = QuantumCircuit(2)
+grover_circ.h([0, 1])         # Superposition
+oracle(grover_circ)           # Oracle anwenden
+diffusion(grover_circ)        # Verstärkung
+grover_circ.measure_all()
+def diffusion(circuit):
+    circuit.h([0, 1])
+    circuit.x([0, 1])
+    circuit.h(1)
+    circuit.cx(0, 1)
+    circuit.h(1)
+    circuit.x([0, 1])
+    circuit.h([0, 1])
+# Grover Circuit
+grover_circ = QuantumCircuit(2)
+grover_circ.h([0, 1])         # Superposition
+oracle(grover_circ)           # Oracle anwenden
+diffusion(grover_circ)        # Verstärkung
+grover_circ.measure_all()
+\end{verbatim}
+Durch das schrittweise Ergänzen der Gates kann bereits in frühen Phasen kontrolliert werden, ob jede Transformation wie gewünscht wirkt. Dies entspricht einem iterativen Debugging-Verfahren.
 
-Überblick über Cloud-Plattformen für Quantenentwicklung
+\paragraph*{Visualisierung als Debugging-Werkzeug}
+\mbox{}
 
-\begin{itemize}
-    \item Vergleich führender Plattformen:
-    \begin{itemize}
-        \item IBM Quantum + Qiskit
-        \item Amazon Braket + Braket SDK
-        \item Google Quantum AI + Cirq
-    \end{itemize}
-    \item Zentrale Features:
-    \begin{itemize}
-        \item Abstraktion vom Hardware-Backend
-        \item Zugang zu Simulatoren und echten Chips
-        \item Ressourcenverwaltung, Warteschlangen, Fehlermitigation
-    \end{itemize}
-    \item Rolle innerhalb einer Entwicklungs-/Deploymentpipeline
-\end{itemize}
+Wie im vorherigen Kapitel gezeigt, wird mit \texttt{draw()} der Schaltkreis visualisiert. Dies erfüllt nicht nur dokumentarische, sondern auch diagnostische Zwecke. Es kann dadurch überprüft werden, ob etwa das Oracle korrekt umgesetzt oder die Anzahl der Grover-Iterationen richtig gewählt wurde.
+\subparagraph*{Beispiel:}
+\begin{verbatim}
+circuit.draw()
+circuit.draw()
+\end{verbatim}
+Fehlende oder falsch platzierte Gates werden so unmittelbar sichtbar. Besonders hilfreich ist dies bei komplexeren Operatorfolgen wie in der 3-Qubit-Version.
 
-\begin{itemize}
-    \item Motivation für cloudbasierte Ausführung:
-    \begin{itemize}
-        \item Kein lokaler Zugang zu Quantenhardware
-        \item Automatisierte Fehlerkorrektur und Abstraktion
-        \item Vergleich mit klassischem Cloud Deployment
-    \end{itemize}
-    \item IBM Quantum:
-    \begin{itemize}
-        \item Account und Zugriffstoken
-        \item Auswahl von Backends über Qiskit
-        \item Transpilierung und Job-Submission
-        \item Job-Monitoring und Ergebnisabruf
-    \end{itemize}
-\end{itemize}
+\paragraph*{Ergebnisanalyse durch Histogramme}
+\mbox{}
 
+Ein sehr effektives Mittel zur Fehlererkennung ist die statistische Analyse der Ausgaben. Die mit \texttt{plot\_histogram()} erzeugten Verteilungen lassen Rückschlüsse auf das Verhalten des Algorithmus zu:
+\begin{verbatim}
+plot_histogram(result.get_counts())
+plot_histogram(result.get_counts())
+\end{verbatim}
+Tritt der erwartete Peak beim Zielzustand nicht auf, kann dies auf einen Fehler im Oracle, in der Grover-Iteration oder in der Initialisierung hinweisen. Wurde beispielsweise ein falsches CZ-Gatter verwendet oder versehentlich eine falsche Qubit-Reihenfolge angesprochen, so verteilt sich die Wahrscheinlichkeitsmasse ungleichmäßig oder falsch.
 
-\subsection{Tooling und Automatisierung}
-\begin{itemize}
-    \item Transpiler: Anpassung an spezifisches Backend
-    \item Middleware: Warteschlange, Priorisierung, Job-IDs
-    \item Backend-Optimierung: z.\,B. minimale Tiefe, minimale Fehlerwahrscheinlichkeit
-    \item Möglichkeit automatisierter Testausführung mit Simulator
-\end{itemize}
+\paragraph*{Fazit}
+\mbox{}
+
+Die Arbeit mit Quantenalgorithmen erfordert sowohl eine sorgfältige Teststrategie, klassische Softwareentwicklung aber auch eine strukturiertere Herangehensweise. Im Notebook werden bereits einfache Mittel wie Visualisierung, gezielte Zwischenschritte und Histogrammanalyse genutzt und sind eine große Hilfe beim Debugging. Für komplexere Algorithmen empfiehlt sich darüber hinaus der gezielte Einsatz von Statevector-Simulationen, Barrieren zur Strukturierung und die Ausgabe von Zwischenzuständen.
 
 \subsection{Fazit und Ausblick}
 \begin{itemize}

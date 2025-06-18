@@ -256,27 +256,134 @@ a^x \equiv b \mod p
 \end{algorithmic}
 \end{algorithm}
 
+\subsection{Shor's Faktorisierung Algorithmus am Beispiel \( N = 15 \)}
+Finde einen nicht-trivialen Teiler von \( N = 15 \), also \( p = 3 \) oder \( q = 5 \), mithilfe von Shor's Algorithmus.
+
+\subsection*{Schritt 1: Wahl einer Zufallszahl}
+Wähle eine ganze Zahl \( a \) mit \( 1 < a < N \).  
+Wir wählen \( a = 2 \).
+
+Berechne den größten gemeinsamen Teiler:
+\[
+\gcd(2, 15) = 1
+\]
+Da \( \gcd(a, N) = 1 \), fahren wir fort.
+
+\subsection*{Schritt 2: Periodenbestimmung via Quantenalgorithmus}
+
+\subsubsection*{Teil a) Initialisierung}
+Verwende zwei Register:
+\begin{itemize}
+    \item Erster Register: \( n \)-Qubits mit \( 2^n \geq N^2 \). Für Demonstration genügt \( n = 4 \).
+    \item Zweiter Register: \( m = \lceil \log_2(N) \rceil = 4 \)
+\end{itemize}
+
+Anfangszustand:
+\[
+\ket{\psi_0} = \ket{0}^{\otimes 4} \otimes \ket{1}
+\]
+
+\subsubsection*{Teil b) Hadamard-Transformation}
+Wende auf jedes Qubit im ersten Register ein Hadamard-Gate an:
+\[
+\ket{\psi_1} = \frac{1}{\sqrt{16}} \sum_{x=0}^{15} \ket{x} \otimes \ket{1}
+\]
+
+\subsubsection*{Teil c) Modulare Exponentiation}
+Wende die unitäre Transformation \( U_f \) an, die definiert ist als:
+\[
+U_f: \ket{x}\ket{1} \mapsto \ket{x}\ket{2^x \mod 15}
+\]
+
+Beispiele:
+\begin{align*}
+2^0 \mod 15 &= 1 \\
+2^1 \mod 15 &= 2 \\
+2^2 \mod 15 &= 4 \\
+2^3 \mod 15 &= 8 \\
+2^4 \mod 15 &= 1 \\
+2^5 \mod 15 &= 2 \\
+2^6 \mod 15 &= 4 \\
+2^7 \mod 15 &= 8 \\
+&\vdots
+\end{align*}
+
+Periode \( r = 4 \).
+
+\subsubsection*{Teil d) Inverse Quanten-Fourier-Transformation (iQFT)}
+Wende die inverse QFT auf das erste Register an.
+
+Da wir wissen, dass die Periode $r = 4$ ist, erhalten wir nach idealer iQFT einen Superpositionszustand, bei dem die Amplituden auf den Vielfachen von $\frac{2^n}{r} = \frac{16}{4} = 4$ konzentriert sind (bei $n = 4$ Qubits im ersten Register):
+
+\[
+|\psi_3\rangle = \frac{1}{2} \sum_{k=0}^{3} |k \cdot 4\rangle \otimes |2^x \bmod 15\rangle
+\]
+
+Konkret also:
+
+\[
+|\psi_3\rangle = \frac{1}{2}\left( |0\rangle + |4\rangle + |8\rangle + |12\rangle \right) \otimes |2^x \bmod 15\rangle
+\]
+
+Die Messung des ersten Registers ergibt dann mit gleicher Wahrscheinlichkeit einen der Werte:
+
+\[
+\boxed{0,\ 4,\ 8,\ 12}
+\]
+
+Alle diese Werte sind Vielfache von $4$, was ein Hinweis auf die Periode $r$ ist. Nach der Messung verwenden wir eine Kettenbruchentwicklung auf den gemessenen Wert $s$ (z.B. $s = 4$) geteilt durch $2^n = 16$, um $r \approx \frac{2^n}{s}$ zu rekonstruieren.
+
+\subsubsection*{Teil e) Messung}
+Messe das erste Register. Angenommen, das Ergebnis ist \( x = 4 \).
+
+Damit gilt:
+\[
+\frac{x}{2^n} = \frac{4}{16} = \frac{1}{4} \Rightarrow r = 4
+\]
+
+\subsection*{Schritt 3: Klassischer Teil – Faktorenberechnung}
+
+\begin{itemize}
+    \item Prüfe, ob \( r \) gerade: \( r = 4 \Rightarrow \text{ja} \)
+    \item Berechne:
+    \[
+    a^{r/2} = 2^2 = 4
+    \]
+    \item Bestimme:
+    \[
+    \gcd(4 - 1, 15) = \gcd(3, 15) = 3
+    \]
+    \[
+    \gcd(4 + 1, 15) = \gcd(5, 15) = 5
+    \]
+\end{itemize}
+
+\subsection*{Schritt 4: Ergebnis}
+Wir haben erfolgreich die Primfaktoren gefunden:
+\[
+15 = 3 \times 5
+\]
 
 \section{Grover-Algorithmus: Quantum-Suche}
 \label{sec:grover-algorithm}
 In der Informatik zählt die Datenverarbeitung zu den gefragtesten Aufgaben. In der heutigen Zeit ist die Möglichkeit, große Datenmengen zu durchsuchen — insbesondere unstrukturierte Daten — ein wesentlicher Aspekt der Datenanalyse. Um dies zu veranschaulichen, betrachten wir folgendes Beispiel:\\ 
 
-\noindent Angenommen, wir möchten einen bestimmten Kunden in der Datenbank eines Online-Shops finden (unter der Annahme, dass die Datenbank nicht indexiert ist). Bei Verwendung eines klassischen Computers benötigen wir im schlechtesten Fall $N$ Iterationen, wobei $N$ die Anzahl der Zeilen in der Tabelle darstellt. Im durchschnittlichen Fall sind etwa $N/2$ Operationen erforderlich. Das bedeutet, dass alle Elemente der Tabelle durchlaufen werden müssen, sofern uns die genaue Position des gesuchten Kunden nicht bekannt ist — bis dieser schließlich gefunden wird.\\
+Angenommen, wir möchten einen bestimmten Kunden in der Datenbank eines Online-Shops finden (unter der Annahme, dass die Datenbank nicht indexiert ist). Bei Verwendung eines klassischen Computers benötigen wir im schlechtesten Fall $N$ Iterationen, wobei $N$ die Anzahl der Zeilen in der Tabelle darstellt. Im durchschnittlichen Fall sind etwa $N/2$ Operationen erforderlich. Das bedeutet, dass alle Elemente der Tabelle durchlaufen werden müssen, sofern uns die genaue Position des gesuchten Kunden nicht bekannt ist — bis dieser schließlich gefunden wird.\\
 
-\noindent Wenn jedoch unsere Datenbank auf Quantenberechnungen basiert, können wir Quanten-Suchalgorithmen wie den Grover-Algorithmus einsetzen. In diesem Fall lässt sich das gesuchte Element mit etwa $\sqrt{N}$ Operationen finden. Zwar führt dieser Algorithmus nicht zu einer exponentiellen Beschleunigung der Suche und muss häufig mehrfach iterativ aufgerufen werden, dennoch stellt die quadratische Laufzeit bereits eine bedeutende Optimierung dar.
+Wenn jedoch unsere Datenbank auf Quantenberechnungen basiert, können wir Quanten-Suchalgorithmen wie den Grover-Algorithmus einsetzen. In diesem Fall lässt sich das gesuchte Element mit etwa $\sqrt{N}$ Operationen finden. Zwar führt dieser Algorithmus nicht zu einer exponentiellen Beschleunigung der Suche und muss häufig mehrfach iterativ aufgerufen werden, dennoch stellt die quadratische Laufzeit bereits eine bedeutende Optimierung dar.
 
 \subsection{Grundlagen: Unstrukturiertes Suchproblem}
 Bevor wir uns dem Grover-Algorithmus zuwenden, betrachten wir folgendes Beispiel: Stellen wir uns vor, auf dem Tisch liegen vier Spielkarten verdeckt. Eine dieser vier Karten ist die Pik-Dame, und unsere Aufgabe besteht darin, sie zu finden. Wie viele Karten müssen wir im Durchschnitt aufdecken, um die Pik-Dame zu identifizieren? Im besten Fall finden wir die gesuchte Karte bereits beim ersten Versuch. Im schlechtesten Fall müssen wir drei Karten umdrehen — wenn keine von ihnen die Pik-Dame ist, dann bleibt nur noch die vierte, nicht aufgedeckte Karte als einzig mögliche Lösung. Im Durchschnitt müssen wir 2{,}25 Karten aufdecken, um die Pik-Dame zu finden.\\
 
-\noindent Formulieren wir nun das Beispiel um: Anstelle von Spielkarten betrachten wir eine binäre Reihenfolge natürlicher Zahlen — nämlich $00$, $01$, $10$ und $11$. Nehmen wir an, die Pik-Dame entspricht dabei der Zahl $11$. Wir definieren eine Funktion $f$, die den Wert $1$ zurückgibt, wenn das Eingabemuster $11$ ist, und $0$ in allen anderen Fällen. Somit lässt sich das Problem wie folgt formal ausdrücken:
+Formulieren wir nun das Beispiel um: Anstelle von Spielkarten betrachten wir eine binäre Reihenfolge natürlicher Zahlen — nämlich $00$, $01$, $10$ und $11$. Nehmen wir an, die Pik-Dame entspricht dabei der Zahl $11$. Wir definieren eine Funktion $f$, die den Wert $1$ zurückgibt, wenn das Eingabemuster $11$ ist, und $0$ in allen anderen Fällen. Somit lässt sich das Problem wie folgt formal ausdrücken:
 
 \begin{definition}[Unstrukturiertes Suchproblem]
 Sei $f\colon \{0, 1\}^n \rightarrow \{0, 1\}$ eine abstrakte Funktion mit $f(x) \in \{0, 1\}$. Gesucht ist ein Wert $x$, sodass $f(x) = 1$, falls ein solcher Wert existiert; andernfalls soll das Ergebnis $0$ sein.
 \end{definition}
 
-\noindent Die Komplexität des unstrukturierten Suchproblems ergibt sich daraus, wie viele Iterationen der Funktion erforderlich sind, um das gesuchte Element zu finden. Wir benötigen im schlechtesten Fall $N - 1$ Funktionsauswertungen, wobei $N = 2^n$ gilt. Auf diese Weise prüfen wir alle möglichen Eingaben. Ähnlich wie im Beispiel mit den Karten entspricht $N$ dem letzten Element, vorausgesetzt, die vorherigen wurden bereits geprüft. Der Grover-Algorithmus kann dieses Problem jedoch deutlich schneller lösen und erreicht dabei eine quadratische Laufzeitverbesserung.\\
+Die Komplexität des unstrukturierten Suchproblems ergibt sich daraus, wie viele Iterationen der Funktion erforderlich sind, um das gesuchte Element zu finden. Wir benötigen im schlechtesten Fall $N - 1$ Funktionsauswertungen, wobei $N = 2^n$ gilt. Auf diese Weise prüfen wir alle möglichen Eingaben. Ähnlich wie im Beispiel mit den Karten entspricht $N$ dem letzten Element, vorausgesetzt, die vorherigen wurden bereits geprüft. Der Grover-Algorithmus kann dieses Problem jedoch deutlich schneller lösen und erreicht dabei eine quadratische Laufzeitverbesserung.\\
 
-\noindent Jedoch repliziert der Grover-Algorithmus noch ein Suchproblem. Wie wir im Beispiel mit den Spielkarten gesehen haben, müssen wir Karte für Karte umdrehen, um zu prüfen, ob es die gesuchte Karte ist oder nicht. Dieser Prozess ist iterativ und wird durch das \textit{heuristische Suchproblem} beschrieben:
+Jedoch repliziert der Grover-Algorithmus noch ein Suchproblem. Wie wir im Beispiel mit den Spielkarten gesehen haben, müssen wir Karte für Karte umdrehen, um zu prüfen, ob es die gesuchte Karte ist oder nicht. Dieser Prozess ist iterativ und wird durch das \textit{heuristische Suchproblem} beschrieben:
 
 \begin{definition}[Heuristisches Suchproblem]
 Gegeben sei die Möglichkeit, einen probabilistischen „Rate“-Algorithmus \( A \) auszuführen, und eine „Prüf“-Funktion \( f \), sodass
@@ -286,19 +393,19 @@ Gegeben sei die Möglichkeit, einen probabilistischen „Rate“-Algorithmus \( 
 \]
 \end{definition}
 
-\noindent Eine Möglichkeit, das heuristische Suchproblem klassisch zu lösen, besteht darin, den Algorithmus \( A \) wiederholt auszuführen und jedes Ergebnis mit der Funktion \( f \) zu überprüfen. Dies führt zu durchschnittlich \( O\left(\frac{1}{\varepsilon}\right) \) Auswertungen von \( f \). In der nächsten Sektion werden wir sehen, wie der Grover-Algorithmus dieses Verfahren implementiert.
+Eine Möglichkeit, das heuristische Suchproblem klassisch zu lösen, besteht darin, den Algorithmus \( A \) wiederholt auszuführen und jedes Ergebnis mit der Funktion \( f \) zu überprüfen. Dies führt zu durchschnittlich \( O\left(\frac{1}{\varepsilon}\right) \) Auswertungen von \( f \). In der nächsten Sektion werden wir sehen, wie der Grover-Algorithmus dieses Verfahren implementiert.
 
 \subsection{Aufbau von dem Grover Algorithmus}
 
-\noindent Um den Grover-Algorithmus vollständig zu verstehen, ist es wichtig, zunächst die grundlegenden Quantenoperationen zu begreifen. Lov Grover führte die folgende Definition für eine bestimmte Klasse von Operationen ein.\cite[1-2]{grover-placeholder}
+Um den Grover-Algorithmus vollständig zu verstehen, ist es wichtig, zunächst die grundlegenden Quantenoperationen zu begreifen. Lov Grover führte die folgende Definition für eine bestimmte Klasse von Operationen ein.\cite[1-2]{grover-placeholder}
 
 \begin{definition}[Unitäre Operationen]
 Quantenmechanische Operationen, die in kontrollierter Weise ausgeführt werden können, sind \emph{unitäre Operationen}, welche in jedem Schritt auf eine kleine Anzahl von Qubits wirken.
 \end{definition}
 
-\noindent Der Grover-Algorithmus basiert auf einer Folge solcher unitären Operationen, die auf einen reinen Anfangszustand angewendet werden. Diese Operationen dienen dazu, die Wahrscheinlichkeit des gesuchten Ergebnisses zu verstärken. Am Ende des Algorithmus erfolgt eine Messung des resultierenden Zustands. Diese Messung projiziert das überlagerte Quantensystem auf einen klassischen Zustand, der mit hoher Wahrscheinlichkeit die Lösung des zugrunde liegenden Suchproblems enthält.\\
+Der Grover-Algorithmus basiert auf einer Folge solcher unitären Operationen, die auf einen reinen Anfangszustand angewendet werden. Diese Operationen dienen dazu, die Wahrscheinlichkeit des gesuchten Ergebnisses zu verstärken. Am Ende des Algorithmus erfolgt eine Messung des resultierenden Zustands. Diese Messung projiziert das überlagerte Quantensystem auf einen klassischen Zustand, der mit hoher Wahrscheinlichkeit die Lösung des zugrunde liegenden Suchproblems enthält.\\
 
-\noindent Lov Grover definierte die folgenden unitären Operationen als zentrale Bestandteile seines Algorithmus:
+Lov Grover definierte die folgenden unitären Operationen als zentrale Bestandteile seines Algorithmus:
 
 \begin{enumerate}
     \item \textbf{Initialisierung in einen Superpositionszustand:} 
@@ -352,15 +459,16 @@ $$
 
 \end{enumerate}
 
-\noindent Zusammenfassend lässt sich einfach sagen: Der Grover-Algorithmus verwendet diese Operationen, um pro Iteration zwei Schritte auszuführen:
+Zusammenfassend lässt sich einfach sagen: Der Grover-Algorithmus verwendet diese Operationen, um pro Iteration zwei Schritte auszuführen:
 \begin{enumerate}
   \item Vorzeichenumkehr der Wahrscheinlichkeitsamplitude des gesuchten Elements.
   \item Verstärkung der Wahrscheinlichkeitsamplitude.
 \end{enumerate}
 
-\noindent Mit dem Verständnis der oben genannten unitären Operationen lässt sich der Grover-Algorithmus durch die folgenden Schritte beschreiben:
+Mit dem Verständnis der oben genannten unitären Operationen lässt sich der Grover-Algorithmus durch die folgenden Schritte beschreiben:
 
 \begin{algorithm}[H]
+\label{alg:grover}
 \caption{Grover-Suchalgorithmus}
 \begin{algorithmic}[1]
 \State Erzeuge ein Register aus \( n \) Qubits im Zustand \( \ket{0}^{\otimes n} \).
@@ -382,13 +490,13 @@ $$
 \end{algorithmic}
 \end{algorithm}
 
-\noindent Ein entscheidender Schritt in diesem Algorithmus ist die \textit{Grover-Diffusionstransformation}, die wesentliche Änderungen an den Amplituden bewirkt. Nämlich, sie verstärkt gezielt die Amplitude des gesuchten Zustands. Um Diffusionstransformation zu verstehen, erwähnt Grover in seiner Arbeit das Konzept der \textit{lokalen Übergangsmatrizen} ein.
+Ein entscheidender Schritt in diesem Algorithmus ist die \textit{Grover-Diffusionstransformation}, die wesentliche Änderungen an den Amplituden bewirkt. Nämlich, sie verstärkt gezielt die Amplitude des gesuchten Zustands. Um Diffusionstransformation zu verstehen, erwähnt Grover in seiner Arbeit das Konzept der \textit{lokalen Übergangsmatrizen} ein.
 
 \begin{definition}[Lokale Übergangsmatrizen]
 Lokale Übergangsmatrizen sind Matrizen, in denen nur eine konstante Anzahl von Elementen in jeder Spalte ungleich null ist.
 \end{definition}
 
-\noindent Anschließend führt Grover den Begriff der Diffusionstransformation ein:
+Anschließend führt Grover den Begriff der Diffusionstransformation ein:
 
 \begin{definition}[Grover-Diffusionstransformation]
 \( D \) ist keine lokale Übergangsmatrix, da es Übergänge von jedem Zustand zu allen \( N \) Zuständen gibt:
@@ -410,21 +518,298 @@ Hierbei sind:
 \end{itemize}
 \end{definition}
 
-\noindent Alle für den Grover-Algorithmus nötigen Operationen bestehen aus nur zwei fundamentalen Bausteinen - \textbf{Hadamard-Gates} und \textbf{Phaseninversionen}. Dadurch ist der Grover-Algorithmus im Vergleich zu anderen Quantenalgorithmen – z.,B. solchen wie Shor's Algorithmus \ref{algorithm:shor}, die eine Quantum Fourier-Transformation(QFT) benötigen – relativ einfach zu implementieren. In der nächsten Sektion betrachten wir den Grover-Algorithmus Implementierung Schritt für Schritt anhand eines konkreten Beispiels.
+Alle für den Grover-Algorithmus nötigen Operationen bestehen aus nur zwei fundamentalen Bausteinen - \textbf{Hadamard-Gates} und \textbf{Phaseninversionen}. Dadurch ist der Grover-Algorithmus im Vergleich zu anderen Quantenalgorithmen – z.,B. solchen wie Shor's Algorithmus \ref{algorithm:shor}, die eine Quantum Fourier-Transformation(QFT) benötigen – relativ einfach zu implementieren. In der nächsten Sektion betrachten wir den Grover-Algorithmus Implementierung Schritt für Schritt anhand eines konkreten Beispiels.
 
 \subsection{Beispielanwendung von Grover-Algorithmus}
 
-\subsection{Geometrische Darstellung}
+Um ein Beispiel für die Funktionsweise des Grover-Algorithmus zu betrachten, ohne den Überblick zu verlieren, analysieren wir ein kleineres Beispiel – basierend auf drei Qubits. Wir greifen erneut auf das Beispiel mit den Karten zurück: Nehmen wir an, alle vier Karten sind mit Hilfe von zwei Qubits kodiert. Dann erhalten wir die folgenden Daten: 00, 01, 10 und 11. Den dritten Qubit werden wir als Hilfsqubit  verwenden – mit seiner Hilfe können wir die gesuchte Karte durch Multiplikation mit -1 markieren. Anschließend betrachten wir die Anwendung des Grover-Algorithmus auf dieses Beispiel.\\
+
+Das Quantenschaltbild sieht folgendermaßen aus:
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/3-qubits-grover.png}
+    \caption{Grover-Algorithmus für $n=2$ (das gesuchte Element - $11$)}
+    \label{fig:grover-three-bits}
+\end{figure}
+
+Zu Beginn, noch vor dem Start der Iterationen, müssen alle Qubits – einschließlich des Hilfsqubits – in eine Superposition gebracht werden. Dabei sollen sich zu Anfang alle Qubits im Zustand $0$ befinden, mit Ausnahme des Hilfsqubits, der vor der Hadamard-Operation in den Zustand $1$ gesetzt wird.\\
+
+Nach Anwendung des Hadamard-Gatters befindet sich das Hilfsqubit somit im Zustand $\frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$, während alle übrigen Qubits den Zustand $\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ annehmen.
+
+Anschließend beginnen die Iterationen. Jede Iteration besteht aus zwei Phasen. Die erste Phase ist die Anwendung der Orakelfunktion. Wie es in Grover-Algorithmus \ref{alg:grover} vorgestellt wurde, handelt es sich um eine Funktion, die effizient bestimmen kann, welcher Index dem gesuchten Element entspricht. Zwar kann diese Funktion den Index nicht direkt mitteilen, jedoch ist sie in der Lage, diesen Zustand mit einem Minuszeichen zu markieren.
+
+Um das Funktionsprinzip des Algorithmus in diesem Beispiel besser zu verstehen, definieren wir eine vereinfachte Orakelfunktion manuell. Dabei ist zu beachten, dass die tatsächliche Orakelfunktion in der Praxis spezifisch an die jeweilige Aufgabe angepasst ist und daher möglicherweise anders implementiert wird. Auf die konkrete technische Realisierung der Orakelfunktion zur Datensuche gehen wir hier nicht ein, da dies den grundlegenden Ablauf von Grovers Algorithmus nicht beeinflusst.
+
+Für das Verständnis des Grover-Algorithmus ist es entscheidend nachzuvollziehen, wie sich die Zustände der Qubits verändern, bis zum Zeitpunkt der Messung, die schließlich den gesuchten Index liefert.In diesem Beispiel haben wir als das gesuchte Index $11$ definiert - so wie es in dem Beispiel von Karten gab. Das bedeutet, dass die Messung am Ende genau dieses Ergebnis liefern soll. Wir modellieren daher ein Orakel, das genau diesen Index markiert. Als solche Orakelfunktion eignet sich das Toffoli-Gatter ($CCNOT$), das bei Ansteuerung beider Kontrollqubits mit dem Wert $1$ ein $X$-Gatter auf das Zielqubit – in diesem Fall das Hilfsqubit – anwendet:
+
+\begin{definition}[Toffoli-Gatter]
+\label{def:toffoli}
+Das Toffoli-Gatter, auch bekannt als $CCNOT$-Gatter (für „controlled-controlled-not“), ist eine Erweiterung des bekannten $CNOT$-Gatters mit zwei Steuerbits und einem Zielbit. Das bedeutet: Das Zielbit (das dritte Bit) wird genau dann invertiert, wenn sowohl das erste als auch das zweite Steuerbit den Wert $1$ haben.\ref{toffoli}
+\end{definition}
+
+Das Toffoli-Gatter sieht folgendermaßen aus:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{images/toffoli.png}
+    \caption{$CCNOT$ - Toffoli-Gatter}
+    \label{fig:toffoli-gate}
+\end{figure}
+
+ Für die Zustände der oberen Qubits, die die Indizes $00$, $01$ und $10$ codieren, bleibt das Toffoli-Gatter ohne Wirkung – der Hilfsqubit verbleibt in dem Zustand $\frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$.\\
+
+ Erst beim Index $11$ wird das Gatter aktiv: Es wendet das $X$-Gatter auf den Hilfsqubit an, wodurch dieser den Zustand $\frac{1}{\sqrt{2}}(|1\rangle - |0\rangle)$ annimmt\ref{def:toffoli}. Dieser lässt sich äquivalent als $-\frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$ schreiben – das Minuszeichen erscheint also vor dem gesamten Zustand.\\
+
+ Dieses Minuszeichen bezieht sich nicht nur auf den Hilfsqubit, sondern auf den gesamten Zustand, der dem Index $11$ entspricht. Daher kann man den Hilfsqubit als unverändert betrachten und das Vorzeichen dem Zustand der oberen Qubits zuordnen. Damit ist der Index $11$ als der gesuchte Zustand mit einem Minus gekennzeichnet. Anders ausgedrückt: Die Orakelfunktion transformiert den Zustand $|11\rangle\,|q_{\text{3}}\rangle$ in $-|11\rangle\,|q_{\text{3}}\rangle$, wobei $|q_{\text{3}}\rangle$ den Zustand des Hilfsqubits bezeichnet.
+
+Den Zustand des Quantensystems nach Anwendung des Orakels können wir folgendermaßen ausdrücken (der Hilfsqubit steht in der rechten Klammer):
+
+$$
+|\psi\rangle = \frac{1}{2\sqrt{2}} (|00\rangle + |01\rangle + |10\rangle - |11\rangle)(|0\rangle - |1\rangle)
+$$
+
+Damit ist der erste Teil der ersten Iteration abgeschlossen. Der gesuchte Index wurde markiert, aber eine sofortige Messung der Qubits würde keinen Nutzen bringen – das Minuszeichen zeigt sich im Messergebnis nicht. Außerdem würde der Index $11$ mit einer Wahrscheinlichkeit von nur $0{,}25$ erscheinen – genau wie alle anderen Indizes.
+
+Um die weiteren Schritte besser zu verstehen, stellen wir uns die erste Hälfte des Algorithmus grafisch als Zustandsvektor vor. Die horizontale Achse definieren wir als Einheitsvektor, der alle Zustände der Superposition enthält – mit Ausnahme des gesuchten Zustands. Die vertikale Achse steht für den gesuchten Basiszustand.
+
+Der Zustandsvektor $c$, also der Zustand des Systems vor der ersten Iteration, ist eine Linearkombination dieser beiden Basisvektoren entlang der horizontalen und vertikalen Achse.\ref{fig:initial-grover-three-qubits}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=2]
+    % Draw coordinate axes
+    \draw[->] (-1.2, 0) -- (1.2, 0); % x-axis
+    \draw[->] (0, -1.2) -- (0, 1.2); % y-axis
+
+    % Draw the unit circle
+    \draw (0,0) circle(1);
+
+    % Angle theta
+    \draw[->, thick] (0,0) -- (0.866,0.5); % hypotenuse (c)
+    \node at (0.95,0.35) {$c$};
+
+    % Projection on x-axis (a)
+    \draw[->, thick] (0,0) -- (1,0);
+    \node at (0.45,-0.08) {$a$};
+
+    % Projection on y-axis (b)
+    \draw[->, thick] (0,0) -- (0,1);
+    \node at (-0.1,0.75) {$b$};
+
+    % Angle label θ
+    \draw (0.25,0) arc[start angle=0,end angle=30,radius=0.25];
+    \node at (0.3,0.05) {$\theta$};
+\end{tikzpicture}
+    \caption{Der initiale Zustand des Systems}
+    \label{fig:initial-grover-three-qubits}
+\end{figure}
+
+Im Fall dieses Beispiels (ein System aus zwei Qubits mit dem gesuchten Index $11$) lässt sich der Zustandsvektor $c$ durch die Koordinaten $x$ und $y$ wie folgt darstellen:
+
+$$
+\frac{1}{2}(|00\rangle + |01\rangle + |10\rangle + |11\rangle) = x \cdot \frac{1}{\sqrt{3}}(|00\rangle + |01\rangle + |10\rangle) + y \cdot |11\rangle
+$$
+
+\noindent Aus dieser Gleichung ergibt sich: $x = \frac{\sqrt{3}}{2}$ und $y = \frac{1}{2}$.\\
+
+Anhand dieser Koordinaten erkennt man, dass der Winkel $\theta$ zwischen dem Vektor $c$ und der horizontalen Achse gleich $\frac{\pi}{6}$ ist. Vorausblickend lässt sich sagen: Unser Ziel ist es, diesen Winkel auf $\frac{\pi}{2}$ (oder zumindest in dessen Nähe) zu bringen – also den Zustand nahezu vollständig in Richtung des gesuchten Basiszustands zu drehen, sodass bei der anschließenden Messung mit hoher Wahrscheinlichkeit das gewünschte Ergebnis erscheint.
+
+Die Koordinaten des aktuellen Zustandsvektors lassen sich über den Winkel $\theta$ wie folgt beschreiben:
+
+$$
+x = \cos{\theta}
+$$
+$$
+y = \sin{\theta}
+$$
+
+Zur Klarstellung: Der Hilfsqubit wird in der Kreisdarstellung nicht berücksichtigt, da er nicht zur Codierung des Index dient, sondern lediglich zur Markierung des gesuchten Zustands verwendet wird.
+
+Nach Anwendung der Orakelfunktion spiegelt sich der Zustandsvektor an der horizontalen Achse. Dies liegt daran, dass seine vertikale Komponente (der Anteil des Vektors $|11\rangle$) negativ wird. Der resultierende Vektor $c_{1b}$ ist somit die Spiegelung des ursprünglichen Vektors $c$ um den Winkel $\theta$ nach unten relativ zur Horizontalen:
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=2.5]
+
+    % Draw coordinate axes
+    \draw[->] (-1.2, 0) -- (1.2, 0); % x-axis
+    \draw[->] (0, -1.2) -- (0, 1.2); % y-axis
+
+    % Draw the unit circle
+    \draw (0,0) circle(1);
+
+    % Main vector c (black)
+    \draw[->, thick] (0,0) -- (0.866,0.5);
+    \node at (0.95,0.35) {$c$};
+
+    % Projection on x-axis (a)
+    \draw[->, thick] (0,0) -- (1,0);
+    \node at (0.45,-0.08) {$a$};
+
+    % Projection on y-axis (b)
+    \draw[->, thick] (0,0) -- (0,1);
+    \node at (-0.1,0.75) {$b$};
+
+    % First angle theta
+    \draw (0.25,0) arc[start angle=0,end angle=30,radius=0.25];
+    \node at (0.3,0.05) {$\theta$};
+
+    % Second angle theta (for red vector)
+    \draw[gray, ->] (0.2,0) arc[start angle=0,end angle=-30,radius=0.2];
+    \node at (0.3,-0.08) {$\theta$};
+
+    % Red vector c_{1b}
+    \draw[->, thick, red] (0,0) -- (0.866,-0.5);
+    \node[red] at (1.0,-0.4) {$c_{1b}$};
+
+\end{tikzpicture}
+    \caption{Der Zustand des Systems nach der ersten Teil der erste Iteration}
+    \label{fig:after-first-part-grover-three-qubits}
+\end{figure}
+
+Diese Spiegelung erfolgt in diesem Beispiel durch die Anwendung des $CCNOT$-Gatters. Allgemein jedoch lässt sich dieser Schritt der Orakelfunktion durch folgende Operation beschreiben:
+
+$$
+U_{1b} = I - 2|b\rangle \langle b|
+$$
+
+Hier steht $U_{1b}$ für die Orakelfunktion. Diese Operation kehrt ausschließlich das Vorzeichen der vertikalen Komponente des Zustandsvektors um, was genau zur beschriebenen Spiegelung führt.
+
+Überprüfen wir nun die Wirkung dieser Formel anhand des Beispiels:
+
+\begin{align*}
+U_{1b} |c\rangle &= (I - 2|11\rangle \langle 11|) \cdot \frac{1}{2}(|00\rangle + |01\rangle + |10\rangle + |11\rangle) \\
+&= \frac{1}{2} \left( |00\rangle + |01\rangle + |10\rangle + |11\rangle - 2|11\rangle \right) \\
+&= \frac{1}{2} (|00\rangle + |01\rangle + |10\rangle - |11\rangle)
+\end{align*}
+
+Damit ist der erste Teil der Iteration abgeschlossen.
+
+Nun wenden wir uns dem zweiten Teil der ersten Iteration zu. In diesem Schritt erfolgt eine weitere Spiegelung – jedoch nicht mehr an der horizontalen Achse, sondern am ursprünglichen Zustandsvektor $c$. Es lässt sich leicht erkennen, dass der neue Zustandsvektor danach dem Ausdruck
+
+$$
+\cos(3\theta)|a\rangle + \sin(3\theta)|b\rangle
+$$
+
+\noindent entspricht. Das bedeutet, der Winkel zwischen dem Vektor und der horizontalen Achse ist nun $3\theta$. Der Zustand wurde also weiter in Richtung des gesuchten Basiszustands $|b\rangle$ gedreht.
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=2]
+
+    % Draw coordinate axes
+    \draw[->] (-1.2, 0) -- (1.2, 0); % x-axis
+    \draw[->] (0, -1.2) -- (0, 1.2); % y-axis
+
+    % Draw the unit circle
+    \draw (0,0) circle(1);
+
+    % Main vector c (black)
+    \draw[->, thick] (0,0) -- (0.866,0.5);
+    \node at (0.95,0.35) {$c$};
+
+    % Projection on x-axis (a)
+    \draw[->, thick] (0,0) -- (1,0);
+    \node at (0.45,-0.08) {$a$};
+
+    % Projection on y-axis (b)
+    \draw[->, thick] (0,0) -- (0,1);
+    \node at (-0.1,0.75) {$b$};
+
+    % First angle theta
+    \draw (0.25,0) arc[start angle=0,end angle=30,radius=0.25];
+    \node at (0.3,0.1) {$\theta$};
+
+    % Second angle theta (for red vector)
+    \draw[gray, ->] (0.2,0) arc[start angle=0,end angle=-30,radius=0.2];
+    \node at (0.3,-0.08) {$\theta$};
+
+    % Third angle theta (for red vector)
+    \draw[gray, ->] (0.2,0.15) arc[start angle=30,end angle=60,radius=0.2];
+    \node at (0.3,0.3) {$2\theta$};
+
+    \draw[gray, ->] (0.6,-0.35) arc[start angle=0,end angle=35,radius=1.55];
+
+    % Red vector c_{1b}
+    \draw[->, thick, red] (0,0) -- (0.866,-0.5);
+    \node[red] at (1.0,-0.4) {$c_{1b}$};
+
+    % Green vector c_{1c}
+    \draw[->, thick, green] (0,0) -- (0.5,0.866);
+    \node[green] at (0.5,0.6) {$c_{1c}$};
+
+\end{tikzpicture}
+    \caption{Der Zustand des Systems nach der zweiten Teil der erste Iteration}
+    \label{fig:after-second-part-grover-three-qubits}
+\end{figure}
+Die Operation zur Erzeugung des reflektierten Vektors $c_{1c}$ sieht wie folgt aus:
+
+$$
+U_{1c} = 2|c\rangle \langle c| - I
+$$
+
+Berechnen wir den resultierenden Vektor $c_{1c}$ für unser Beispiel:
+
+\begin{align*}
+U_{1c} |c_{1b}\rangle &= \left(2|c\rangle \langle c| - I\right) \cdot \frac{1}{2} (|00\rangle + |01\rangle + |10\rangle - |11\rangle) \\
+&= |11\rangle
+\end{align*}
+
+Es fand eine Spiegelung des Zustandsvektors $|c_{1b}\rangle$ an $|c\rangle$ statt. Wenn man den Vektor $|c_{1b}\rangle$ als Linearkombination $k_1 |c\rangle + k_2 |c_{\perp}\rangle$ schreiben kann, wobei $|c_{\perp}\rangle$ senkrecht auf $|c\rangle$ steht und $k_1$, $k_2$ reelle Koeffizienten sind, dann ergibt sich der gespiegelte Vektor zu:
+
+$$
+k_1 |c\rangle - k_2 |c_{\perp}\rangle
+$$
+
+Genau dies geschieht hier: Die Komponente entlang $|c\rangle$ bleibt erhalten, während die senkrechte Komponente ihr Vorzeichen ändert. In unserer Quantenschaltung wird dieser zweite Teil der Iteration folgendermaßen implementiert:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/grover-2-iteration.png}
+    \caption{Zweite Iteration - $U_{1c}$}
+    \label{fig:grover-second-iteration}
+\end{figure}
+
+Zunächst wird der Hadamard-Operator auf den ersten und zweiten Qubit angewendet. Dies vereinfacht unsere Aufgabe erheblich, da die Reflexion des Zustandsvektors nun nicht mehr relativ zum Superpositionszustand $\frac{1}{2}(|00\rangle + |01\rangle + |10\rangle + |11\rangle)$ erfolgen muss, sondern relativ zum Zustand $|00\rangle$.
+
+Um die Spiegelung durchzuführen, müssten wir eigentlich allen Zuständen außer dem Nullzustand ein negatives Vorzeichen zuweisen. Stattdessen nutzen wir jedoch einen Trick: Wir versehen lediglich den Zustand $|00\rangle$ mit einem Minuszeichen und lassen alle übrigen Superpositionszustände unverändert. Dies erreichen wir durch eine gezielte Abfolge von Gattern: zuerst $X$-Gatter, dann ein $CCNOT$-Gatter, und danach wird die Transformation durch Umkehr der Schritte rückgängig gemacht – also erneut $X$-Gatter und anschließend Hadamard-Gatter.
+
+Aufgrund dieses Tricks (Negation nur des Nullzustands) ergibt sich in unserem Beispiel mit zwei Qubits nicht $|11\rangle$, sondern $-|11\rangle$ als Ergebnis – abgesehen von einer globalen Phase. Dies ist jedoch unproblematisch, da sich die globale Phase beim Messen nicht auswirkt und wir den gesuchten Index trotzdem korrekt erhalten.
+
+Aus der Darstellung auf dem Einheitskreis, die den Zustand des Systems nach der zweiten Hälfte der ersten Iteration veranschaulicht, wird deutlich, dass der Zustandsvektor mit jeder weiteren Iteration der Vertikalen näherkommt. In unserem konkreten Fall beträgt der Winkel zwischen Zustandsvektor und Horizontaler nach Abschluss der ersten Iteration bereits $3\theta$, was genau dem gewünschten Winkel $\frac{\pi}{2}$ entspricht.
+
+Im allgemeinen Fall ergibt sich der Winkel nach $t$ Iterationen zu:
+
+$$
+(2t + 1)\theta \approx \frac{\pi}{2}
+$$
+
+Daraus lässt sich die erforderliche Anzahl an Iterationen für den Grover-Algorithmus bestimmen. Wenn $t$ groß ist und $K = 1$ (für $K > 1$ ist der Schluss analog), wird der Winkel $\theta$ sehr klein. Daher kann man $\theta$ durch $\sin{\theta}$ ersetzen, und es gilt näherungsweise:
+
+$$
+\theta \approx \sin{\theta} = \frac{1}{\sqrt{N}}
+$$
+
+Daraus folgt:
+
+$$
+(2t + 1) \cdot \frac{1}{\sqrt{N}} \approx \frac{\pi}{2}
+$$
+
+Wenn man die Eins im Term $(2t + 1)$ vernachlässigt (für große $t$ zulässig), erhält man:
+
+$$
+t \approx \frac{\pi \sqrt{N}}{4}
+$$
+
+Wie wir bereits gesehen haben, besteht jede Iteration aus zwei Schritten. Der erste Schritt ist die Reflexion nach unten an der Horizontalen. Der zweite Schritt ist die Reflexion nach oben an der ursprünglichen Richtung, also am Vektor $c$. Dabei wird der Zustandsvektor stets auf einen größeren Winkel nach oben reflektiert als der Winkel der vorherigen Spiegelung nach unten. Genau dadurch nähert sich der Vektor bei jeder Iteration schrittweise der Vertikalen.\\
+
+Wir haben ein Beispiel für die Anwendung des Grover-Algorithmus betrachtet. Im nächsten Kapitel werden wir uns mit der Zeitkomplexität beschäftigen und erläutern, warum dieser Algorithmus trotz der Anzahl an Iterationen dennoch schneller ist als klassische Suchalgorithmen.
+
+
 \subsection{Komplexitätsanalyse}
 Der Grover-Algorithmus (1996) führt eine quantengestützte Suche durch, indem er sukzessive die Amplitude des gesuchten Zustands verstärkt. Nach etwa $\sqrt{N}$ Iterationen erhält man das Ziel mit hoher Wahrscheinlichkeit.\\
 Dieser Algorithmus ist informationstheoretisch optimal für die unstrukturierte Suche. Er wird typischerweise durch eine Schleife aus Orakel-Abfrage (markiert das gesuchte Element) und Inversion der Amplituden um den Mittelwert realisiert.\\
 Grover findet Anwendungen als Subroutine in vielen Quantenalgorithmen (z.B. für Optimierung oder Simulation), etwa zur Stichprobensuche oder in hybriden Ansätzen.
-
-\subsection{Quantenlauf-Suchalgorithmen}
-
-Neben dem Grover-Ansatz gibt es Suchalgorithmen auf Basis von Quantenläufen (Quantum Walks). Hier wird die klassische zufällige Suche durch einen quantenmechanischen Spaziergang auf einem Graphen ersetzt.\\
-Solche Algorithmen können z.B. die Suche in speziellen Strukturen beschleunigen: Etwa wird auf einem zweidimensionalen Gitter in $O(\sqrt{N\log N})$ statt $O(N)$ Schritten gesucht. Weitere Anwendungen sind die Elementar-Unterscheidung oder die Suche in sozialen Netzwerken.\\
-Einführende Übersichten (z.B. Ambainis 2004) fassen die wichtigsten Suchalgorithmen anhand von Quantenläufen und ihre Komplexitäten zusammen.
 
 \subsection{Praxisanwendung und Stand der Technik}
 

@@ -8,7 +8,7 @@
 
 \abstract{some abstract}
 
-\section{Fehlertypen in Quantenrechnern}
+\section{Fehlertypen in Quantenrechnern}\label{chap:QEC1}
 
 \subsection{Relevanz von Fehlern in Quantenrechnern}
 \begin{itemize}
@@ -65,7 +65,7 @@
 \end{itemize}
 
 
-\section{Grundprinzipien in Quantenfehlerkorrektur}
+\section{Grundprinzipien in Quantenfehlerkorrektur}\label{chap:QEC2}
 \begin{itemize}
 \item Fehlererkennung ohne Zustandsmessung
 \item Redundanz durch Kodierung
@@ -76,27 +76,31 @@
 \end{itemize}
 
 
-\section{Praktische Realisierung der Fehlerkorrektur}
+\section{Praktische Realisierung der Fehlerkorrektur}\label{chap:QEC3}
 
-\subsection{Warum Fehlerkorrektur? Grundlagen und erste Ideen}
-\begin{itemize}
-    \item \textbf{Grundlagen der Fehlerkorrektur -- ein Überblick:} Notwendigkeit durch Fehlerquellen, Lösungsansatz durch Fehlerschwellen-Theorem, Kernideen von QECCs und das Beispiel der Oberflächencodes.
-    \item \textbf{Fehlerquellen und deren Limitierung (Kap. 6.1)}
-    \item Kurzer Recap zu 6.1
-    \item ...
-    \item \textbf{Das Fehlerschwellen-Theorem (Kernidee \& Bedeutung)}
-    \item Was ist das
-    \item Warum wichtig
-    \item ...
-    \item \textbf{Grundprinzipien von QECCs (z.B. Redundanz, No-Cloning)}
-    \item ...
-    \item \textbf{Stabilisator-Formalismus und Logische Operatoren}
-    \item ...
-    \item \textbf{Oberflächencodes als führender Kandidat (2D-Gitter, Distanz $d$, hohe Schwelle)}
-    \item ...
-\end{itemize}
+Dieses Kapitel konzentriert sich auf die praktische Umsetzung der Fehlerkorrektur (Quantum Error Correction, QEC).\\
+Zuerst betrachten wir einige grundlegende Code-Beispiele, die auf den in Kapitel 5.2 erläuterten Prinzipien aufbauen (Abschnitt 5.3.1). Anschließend wird der Fehlerkorrekturzyklus detailliert am Beispiel der vielversprechenden Oberflächencodes dargestellt (Abschnitt 5.3.2). Abschließend werden aktuelle Schwierigkeiten auf dem Weg zu fehlertoleranten Quantencomputern diskutiert und ein Ausblick auf zukünftige Entwicklungen gegeben (Abschnitt 5.3.3). Der Fokus liegt dabei auf Aspekten der praktischen Umsetzung sowie den damit verbundenen Problemen und Lösungen.
+
+\subsection{Anwendung von QEC-Prinzipien: Erste Code-Beispiele}
+
+Wie in Abschnitt 5.1 ausführlich dargestellt wurde, sind Qubits anfällig für diverse Fehler, und wie in Abschnitt 5.2 erläutert, erfordern die grundlegenden Prinzipien der Quantenmechanik (wie das No-Cloning-Theorem und das Messproblem) spezielle Strategien zur Fehlerkorrektur. Anstatt diese Prinzipien hier erneut zu vertiefen, konzentrieren wir uns darauf, wie sie in ersten, einfachen Fehlerkorrekturcodes praktisch angewendet werden. Diese Codes verdeutlichen die grundlegende Idee, logische Information durch Kodierung über mehrere physikalische Qubits und durch Syndrommessungen zu schützen.
+
+Um zu zeigen, wie die in Abschnitt 5.2 besprochenen Grundideen von Redundanz und Syndrommessung in der Praxis funktionieren, können wir uns einfache Fehlerkorrekturcodes ansehen. Der Drei-Qubit-Bitflip-Code ist so ein Beispiel. Hier wird ein logisches Qubit, z.B. $\alpha|0\rangle_L + \beta|1\rangle_L$, als $\alpha|000\rangle+\beta|111\rangle$ auf drei physikalischen Qubits gespeichert. Tritt beispielsweise ein Bitflip-Fehler auf einem der drei physikalischen Qubits auf (z.B. wird aus $|000\rangle$ der Zustand $|100\rangle$), kann dieser mittels spezifischer Prüfoperationen – der Messung von Stabilisatoroperatoren wie $Z_1Z_2$ und $Z_2Z_3$ – erkannt werden. Diese Messungen, deren Grundprinzip in Abschnitt 5.2 erläutert wurde, verraten, ob benachbarte Qubits gleich sind oder nicht, ohne den gespeicherten logischen Zustand selbst preiszugeben. Das Ergebnis dieser Syndrommessung identifiziert das fehlerhafte Qubit, woraufhin ein entsprechender X-Operator zur Fehlerkorrektur angewendet werden kann.\cite[Seite 427-430]{nielsen_quantum_2010}\\
+
+Analog dazu existiert der Drei-Qubit-Phasenflip-Code, der Phasenfehler korrigieren kann. Hierbei wird der Zustand beispielsweise als $\alpha\ket{+++}+\beta\ket{---}$ kodiert, wobei $\ket{+}=(\ket{0}+\ket{1})/\sqrt{2}$ und $\ket{-}=(\ket{0}-\ket{1})/\sqrt{2}$. Durch Anwendung von Hadamard-Transformationen vor und nach einem Kanal, der Phasenfehler verursacht, kann dieser Code Phasenfehler effektiv in Bitfehler umwandeln, die dann analog zum Bitflip-Code korrigiert werden können.\cite[Seite 430-431]{nielsen_quantum_2010}\\
+
+Diese einfachen Codes können jedoch jeweils nur einen spezifischen Fehlertyp (entweder Bitflip oder Phasenflip) auf einem einzelnen Qubit korrigieren. Um allgemeine Fehler, d.h. beliebige Kombinationen von Bit- und Phasenflips, auf mehreren Qubits zu korrigieren, sind komplexere Codes notwendig. Beispiele hierfür sind der von Peter Shor entwickelte Shor-Code, der ein logisches Qubit in neun physikalischen Qubits kodiert und einen beliebigen einzelnen Fehler korrigieren kann, oder die bereits erwähnten Oberflächencodes, die aufgrund ihrer praktischen Vorteile im nächsten Abschnitt detaillierter behandelt werden. Diese komplexeren Codes bauen auf den gleichen Grundprinzipien auf, nutzen aber weiter entwickelte Kodierungs- und Syndrommessverfahren.\cite[Seite 432ff]{nielsen_quantum_2010}\\
+Die Notwendigkeit spezifischer Quantenfehlerkorrekturverfahren und die Komplexität ihrer praktischen Umsetzung ergeben sich somit direkt aus den in Kapiteln ~\ref{chap:QEC1} und ~\ref{chap:QEC2} diskutierten quantenmechanischen Gegebenheiten. Die folgenden Abschnitte vertiefen die Realisierung anhand leistungsfähigerer Code-Familien
+
 
 \subsection{Der Fehlerkorrekturzyklus mit am Beispiel von Oberflächencodes}
+
+Oberflächencodes (Surface Codes) gelten aktuell als einer der besten Ansätze für die praktische Quantenfehlerkorrektur. Sie sind deshalb so interessant, weil sie relativ hohe Fehlerraten erlauben (wie durch das in \ref{chap:QEC2} erläuterte Threshold-Theorem vorhergesagt) und gut zu vielen gängigen Qubit-Bauweisen passen.\\
+
+\textbf{Einführung in Oberflächencodes (Surface Codes)}
+
+
+
 \begin{itemize}
     \item \textbf{Der QEC-Zyklus -- ein Überblick:} Kodieren $\rightarrow$ Fehler passieren $\rightarrow$ Fehler finden $\rightarrow$ Fehler deute $\rightarrow$ Fehler beheben.
     \item \textbf{1. Logische Qubits kodieren:}

@@ -13,6 +13,7 @@
 \usepackage{qcircuit}
 \usepackage{makeidx}         % allows index generation
 \usepackage{graphicx}        % standard LaTeX graphics tool
+\usepackage{tikz}
 \usetikzlibrary{angles,quotes} % for TikZ angle and quotes libraries
                              % when including figure files
 \usepackage{multicol}        % used for the two-column index
@@ -39,9 +40,10 @@
 \titlespacing*{\paragraph}{0pt}{0ex}{1em}
 
 \usepackage{hyperref}
-
+\usepackage{quantikz}
 \usepackage{suffix}
 \usepackage{tikz}
+\usepackage{quantikz}
 \usetikzlibrary[calc, decorations.pathreplacing]
 
 \makeatletter
@@ -59,6 +61,7 @@
     style=apa,
   ]{biblatex}
   
+%%\addbibresource{testref.bib} %Import the bibliography file
 \addbibresource{references.bib} %Import the bibliography file
 
 
@@ -87,7 +90,7 @@
 
 %%\include{content/dedication}
 %%\include{content/foreword}
-%%\include{content/preface}
+\include{content/preface}
 %%\include{content/acknowledgement}
 
 \tableofcontents
