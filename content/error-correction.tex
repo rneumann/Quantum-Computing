@@ -66,15 +66,90 @@
 
 
 \section{Grundprinzipien in Quantenfehlerkorrektur}\label{chap:QEC2}
-\begin{itemize}
-\item Fehlererkennung ohne Zustandsmessung
-\item Redundanz durch Kodierung
-\item Fehlerzustände müssen unterscheidbar sein
-\item Reversibilität
-\item Fehlerlokalisierung
-\item Fehlerschwelle (Threshhold Theorem)
-\end{itemize}
+\subsection{Fehlererkennung ohne Zustandsmessung}
+Eines der zentralen Konzepte der Quanten-Fehlerkorrektur ist, dass man Fehler erkennen kann, ohne die kodierte Quanteninformation zu messen und somit zu zerstören. In klassischen Systemen könnten wir etwa redundante Bitmuster verwenden, um Fehler aufgrund direkter Messung zu erkennen und zu korrigieren. In einem quantenmechanischen System ist es jedoch nicht so einfach möglich, eine Messung durchzuführen, da ein solcher Schritt den Superpositionszustand des Qubits kollabieren ließe und damit die gespeicherte Information unter Umständen irreversibel zerstören könnte. \cite{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
 
+Um das zu umgehen, führt man im Bereich der Quanten-Fehlerkorrektur sogenannte Syndrommessungen durch. Dabei handelt es sich um Messungen, bei denen nicht der Zustand des Qubits direkt gemessen wird, sondern nur Information über das Eintreten von Fehlern. Man misst dabei den sogenannten Stabilisator-Operator, der zu einem speziellen Quanten-Fehlerkorrekturcode gehört. Diese Operatoren definieren eine Menge erlaubter Zustände – sogenannte +1-Eigenzustände der Stabilizer-Gruppe . Tritt ein Fehler auf, so verändert sich die Eigenwertstruktur des Stabilisators. Ein Wechsel zwischen +1 und −1 ist zum Beispiel ein  Zeichen dafür, dass ein bestimmter Fehler passiert. \cite[Seite 444-446]{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
+
+Die Syndrommessung erfolgt in der Praxis meist so, dass man Hilfsqubits (Ancillae) einführt, auf denen man den Stabilisator wirken lässt und so Informationen darüber erhält, was der Stabilizer auf den gekodeten Zustand angewendet hätte, ohne hierbei den gekodeten Zustand zu verändern. So lassen sich ernsthaft Fehler zum Beispiel durch die sogenannten kontrollierten Operatoren auch zu dem Hilfs-Qubit "weiterleiten" und damit dort auslesen. Dabei bleibt die gekodete Quanteninformation erhalten. Man nutzt dies dazu, das sogenannte Fehlersyndrom zu bestimmen um dann gezielt unitäre Korrektur-Operatoren durchzuführen (siehe Kapitel \ref{chap:QEC3}.). \cite[Seite 444-446]{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
+
+Ein Schlüsselelement des fehlertoleranten Quantencomputings ist die Möglichkeit, einen Quantenzustand messen zu können, ohne dass er in seinen Ursprungszustand zu zwei Drittelwahrscheinlichkeit kollabiert. Dank dieser Fähigkeit können Codes konstruiert werden, welche die Integrität von Quanteninformation auch dann noch lange Zeit sicherstellen, wenn wiederkehrende Fehler laufend erkannt und ausgebessert werden.
+
+\subsection{Redundanz durch Kodierung}
+Quanten-Fehlerkorrektur beruht auf zentraler Idee, Quantenzustände vor Fehlern zu schützen, indem Redundanz eingefügt wird. Das bedeutet, ein einzelnes logisches Qubit wird nicht durch ein einziges physikalisches Qubit dargestellt, sondern auf mehrere physikalische Qubits verteilt. Genau durch diese zusätzliche Kodierungskapazität können Fehler eintreten, ohne dass dabei die logische Quanteninformation verloren geht.
+
+Im Unterschied zur klassischen Fehlerkorrektur, bei der Redundanz verwendet wird (z. B. dreifache Paritätsbits), muss in der Quantenwelt solch ein Ansatz jedoch mit Bedacht gewählt werden. Denn das No-Cloning-Theorem verhindert, dass man auch einfach unbekannte Quantenzustände duplizieren kann. \cite{nielsen_michael_a_and_isaac_l_chuang_quantum_2010} Stattdessen wird die Kodierung mithilfe einer kohärenten Verschränkung mehrerer Qubits erreicht, sodass die Quanteninformation nicht in einem einzelnen Qubit, sondern in einem höherdimensionalen Unterraum des Gesamtsystems gespeichert wird.
+
+Ein bekanntes Beispiel ist der Shor-Code, bei dem ein logisches Qubit auf neun physikalische Qubits abgebildet wird. Dieser Code schützt sowohl vor Bit-Flip- als auch vor Phase-Flip-Fehlern, indem er erst eine dreifache Kopie erstellt, um Bit-Flips zu entdecken, dann jede dieser Kopien nochmals mit einer Phase-Flip-Korrektur kodiert. \cite{shor_scheme_1995}
+Ebenso gut ist der Steane-Code, der sieben Qubits zum Darstellen eines logischen Qubits verwendet und den klassischen (7, 4, 3)-Hamming-Code verwendet. \cite{Steane}
+
+Mit Hilfe einer solchen Kodierung kann Quanteninformation in einem sogenannten Code-Raum abgelegt werden, der durch eine Gruppe von Stabilisator-Operatoren definiert ist. Tritt ein Fehler auf, so wird der Zustand in einen orthogonalen Unterraum verschoben, der außerhalb des Code-Raums liegt. Dieses Umschichten lässt sich über die Syndrommessung identifizieren – und zwar ohne, dass der ursprüngliche Zustand vermessen wird. Wesentlich ist, dass die Redundanz dabei hilft, Fehler zu lokalisieren und Korrekturoperationen durchzuführen, ohne die Quantenkohärenz zu stören.
+
+Die Redundanz durch Kodierung ist somit die Voraussetzung für alle Quanten-Fehlerkorrekturverfahren: Denn nur indem man Information auf viele Qubits verteilt, kann man dem System Fehler \(\)verzeihen, ohne dass es aus funktionalem Zerfallen lässt.
+
+\subsection{Fehlerzustände müssen unterscheidbar sein}
+Ein entscheidendes Konzept in der Quantenfehlerkorrektur ist, dass Fehler auf einfache Weise voneinander unterscheidbar sein müssen. Nur wenn Fehler Zustände auf unterschiedliche Weise beschädigen, hat man eine Chance, festzustellen welcher der Fehler aufgetreten ist, mit dem Ziel diesen gezielt zu korrigieren ohne die Quanteninformation zu verlieren.
+
+In der Sprache der Quanteninformatik bedeutet dies, dass die durch Fehler erstellten Zustände orthogonal zueinander sein müssen, beziehungsweise so aufgebaut, dass man durch Messung eines fehlerhaften Zustands auf den Code-Raum schließen kann. Andernfalls besteht die Gefahr, dass Fehler, die zu gleichem Messausgang führen, nicht unterschieden werden können und die Messung zu einer falschen Korrektur und dem Verlust von Information führt. \cite[Seite 449–451]{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
+
+Dieses Konzept wird durch das sogenannte Fehlerkorrekturkriterium mathematisch präzisiert. Für eine Menge von Fehlern \(\begin{equation}
+    \left\{E_{i}\right\}
+\end{equation}\) , die von einem Quantencode korrigiert werden sollen, gilt:
+\begin{equation}
+    \left\langle\psi_{a}\right| E_{i}^{\dagger} E_{j}\left|\psi_{b}\right\rangle=C_{i j} \delta_{a b}
+\end{equation}
+für alle Zustände \(
+    \left|\psi_{a}\right\rangle,\left|\psi_{b}\right\rangle
+\end)  im Code-Raum. Hierbei hängt die Konstante \(\begin{equation}
+    C_{i j}
+\end{equation}\) vom Fehler,  nicht jedoch vom kodierten Zustand ab. Dieses Kriterium ist notwendig um sicherzustellen, dass die Wirkung eines Fehlers unabhängig von der gespeicherten Information eindeutig bestimmbar ist.
+
+Aber aufgepasst: Wenn zwei unterschiedliche Fehler denselben Effekt auf den Code haben – also nicht unterscheidbar sind –, kann keine gezielte Korrektur erfolgen. Die Fähigkeit zur Unterscheidung solcher Fehlerzustände ist also die Voraussetzung für \textit{irgendeine} syndrombasierte Fehlerkorrektur. Nur dadurch können beispielsweise Look-Up-Tabellen oder automatische Fehlerkorrekturmechanismen sicher die \textit{einzig mögliche} Korrektur wählen.
+
+Das Prinzip hat übrigens eine Parallele zur Konstruktion von Stabilizer-Codes, bei denen unterschiedliche Fehler unterschiedliche Syndrommuster hinterlassen. Durch geschickte Wahl der Stabilisatorgruppe kann man erreichen, dass in einem Stabilizer-Code alle Fehler innerhalb der Toleranzgrenze eindeutige Syndrome haben. \cite{gottesmann Stabilizer Codes}
+
+\subsection{Reversibilität}
+Ein entscheidendes Prinzip der Quanten-Fehlerkorrektur ist es, dass sämtliche eingesetzten Operationen im Fehlerkorrekturprozess umkehrbar sein müssen. In der Quantenmechanik entsprechen sämtliche möglichen zeitlichen Entwicklungen von isolierten Systemen unitären Transformationen – also Operationen, die völlig umkehrbar sind und keine Information vernichten. Diese Forderung gilt es auch für die Fehlerkorrektur durchzusetzen, da eine unwiderrufliche Fehlerkorrektur notwendigerweise den kodierten Quantenzustand zerstören und die Kohärenz der Quanteninformation verlieren würde. \cite[Seite 450-451]{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
+
+Anders ausgedrückt: Wenn bei einer Kette von Ereignissen ein Fehler durch das Syndrom erkannt wurde, erfolgt ihre Korrektur durch eine bestimmte, unitäre Operation, welche uns den Fehlerzustand wieder ins Urteil des Codes zurückführt. Ist dieser Zustand erreicht, ist unser Fehler nicht nur korrigiert, sondern auch so, dass wir ihn\textbf{ kohärent rekonstruieren} können – und dies ist für weiteres Quantenrechnen und für fehlerresistente Quantenrechner notwendig.
+
+Dieses Erfordernis der Rückkehr zur Ausgangslage besitzt auch eine sehr klare und bequeme theoretische Beschreibung: Das sogenannte Nicht-Trivialitätskriterium für Fehlerkorrektur sagt uns, dass für jede nichttriviale Fehlerwirkung \(E 
+i
+​\) eine zugehörige Korrekturoperation \(R 
+i\) existiert, so dass 
+\begin{equation}
+    R_{i} E_{i}|\psi\rangle=|\psi\rangle \quad \text { für alle }|\psi\rangle \in \mathcal{C}
+\end{equation}
+Die Fehlererkennung und -korrektur insgesamt bildet somit einen Prozess, bei dem der Quanteninformationsträger lediglich entlang eines Umwegs durch Code-Hilfsraum entlanggeführt wird und die Logikqubit-Effektivität erhalten bleibt, um in der Lage zu sein, auch weitere Quantengatter auf diese anzuwenden.
+
+Darum unterscheidet sich die Quanten-Fehlerkorrektur deutlich z.B. von klassischen Korrekturverfahren, welche nicht unbedingt reversibel sein müssen. In der Quanteninformatik wiederum ist Reversibilität jedoch ein \textbf{fundamentales physikalisches Prinzip}, das sowohl theoretisch als auch bei der Praxis der Implementierung beachtet werden muss.
+
+\subsection{Fehlerlokalisierung}
+Ein weiteres wichtiges Konzept, das hinter der Quanten-Fehlerkorrektur steckt, ist das der Fehlerlokalisierung. Damit ist gemeint, dass ein aufgetretener Fehler am besten so gefunden und behandelt werden kann, dass er sowohl räumlich als auch logisch eng eingegrenzt ist, und dass seine Folgen sich nicht unkontrolliert über das gesamte System ausbreiten. Nur wenn ein Fehler örtlich identifiziert und korrigiert werden kann, ist eine skalierbare und robuste Fehlerkorrektur möglich. \cite[Seite 451-452]{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
+
+Fehler können in einem Quantencomputer verschiedene Ursprünge haben – z. B. Dekohärenz, Wechselwirkung mit der Umwelt oder Fehler bei Gates. Nach dem Prinzip der Fehlerlokalisierung sollte jeder dieser Fehler anfänglich lediglich eine begrenzte Anzahl physikalischer Qubits beeinflussen. Diese Voraussetzung soll es ermöglichen, mittels sogenannter Syndrommessungen zu erkennen, wo ein Fehler aufgetreten ist, ohne dabei den globalen Quantenzustand zu zerstören.
+
+Dieses Konzept ist eng mit der Verwendung sogenannter lokaler Fehlerkorrektur-Codes wie z. B. topologischen Codes wie dem Surface Code verbunden. Bei diesen Codes sind die Qubits in einer regelmäßigen, zweidimensionalen Gitteranordnung angeordnet, bei der jeder Stabilizer-Operator nur Qubits betrachtet, die benachbart sind. Ein auftretender Fehler produziert ein lokales Syndrom, das sich aus den Nachbarn des fehlerhaften Qubits ergibt. Dadurch kann der Fehler nicht nur gefunden, sondern auch eingegrenzt und so gezielt korrigiert werden. \cite{Fowler et al}
+
+Insbesondere für große, skalierbare Quantenrechner ist die Fähigkeit zur Fehlerlokalisierung essentiell: Denn ohne diese müssten sämtliche Qubits miteinander verschränkt und abgefragt werden, was einen exponentiellen Kontroll- und Ressourcenaufwand bedeuten würde. Bei lokalisierbaren Fehlern hingegen können lineare oder sogar konstante Skalierungsstrategien verfolgt werden – wodurch fehlertolerante Quantencomputer in greifbare Nähe rücken.
+
+Zusammengefasst: Fehlerlokalisierung sorgt dafür, dass weder einzelne Fehler den gesamten Code-Raum beeinträchtigen, noch langfristige Korrekturprozesse destabilisieren. Sie ist damit eine notwendige Voraussetzung für praktische, modulare und skalierbare Quanten-Architekturen.
+
+\subsection{Fehlerschwelle (Threshhold Theorem)}
+Ein fundamentaler Mechanismus, um fehlertolerante Quantencomputer auch technisch umsetzen zu können, ist das Fehlerschwellenprinzip. Dieses besagt, dass sich Quanten-Fehlerkorrektur auf lange Sicht nur dann lohnt, wenn bei den einzelnen Qubits und Operationen die Wahrscheinlichkeit eines physikalischen Fehlers unter einem bestimmten Schwellenwert liegt, der als Fehlerschwelle bezeichnet wird. Wird die Schwelle unterschritten, so können beliebig exakte Rechnungen dadurch durchgeführt werden, dass man die Fehlerkorrektur immer wieder einsetzt – selbst wenn fortwährend physikalische Fehler passieren. \cite[Seite 454-456]{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
+
+Dieses Prinzip wurde im Rahmen des Threshold Theorems auch rigoros bewiesen \cite{Aharonov und Ben-Or}. Das Theorem besagt, dass bei einer hinreichend kleinen Fehlerrate jedes Quanten-Computing mit beliebiger Genauigkeit durchgeführt werden kann – vorausgesetzt, es gibt genügend Redundanz und Korrekturschritte. Oder anders ausgedrückt: wenn Fehler selten genug und die Möglichkeit zur Fehlerkorrektur groß genug sind, dann können Fehler „überlebt“ werden.
+
+Der genaue Wert der Fehlerschwelle hängt vom gewählten Code, der Architektur und der Art der Fehler ab. Er beträgt typischerweise  Wert zwischen \(\begin{equation}
+    10^{-4}
+\end{equation}\)  und \(\begin{equation}
+    10^{-2}
+\end{equation}\) und zählt derzeit Surface Codes zu den robustesten Verfahren. Deren experimentelle Fehlerschwelle liegt bei etwa \(\begin{equation}
+    1 \%
+\end{equation}\) für 
+ein Gatemodell. \cite{Fowler et al.}
+
+Von zentraler Bedeutung ist das Fehlerschwellenprinzip für die Entwicklung von Quantenhardware und -architektur, da es ermöglicht Fehler unterhalb einer beherrschbaren Schwelle und nicht als absolutes Hindernis aufzufassen. Es ist damit im Grunde eine theoretische Grundlage für das fehlertolerante Quantencomputing: Man kann Rechner auch mit unzuverlässigen Bauteilen aufbauen, solange die Wahrscheinlichkeit von Fehlern unterhalb der Fehlerschwelle liegt.
 
 \section{Praktische Realisierung der Fehlerkorrektur}\label{chap:QEC3}
 
@@ -98,8 +173,34 @@ Die Notwendigkeit spezifischer Quantenfehlerkorrekturverfahren und die Komplexit
 Oberflächencodes (Surface Codes) gelten aktuell als einer der besten Ansätze für die praktische Quantenfehlerkorrektur. Sie sind deshalb so interessant, weil sie relativ hohe Fehlerraten erlauben (wie durch das in \ref{chap:QEC2} erläuterte Threshold-Theorem vorhergesagt) und gut zu vielen gängigen Qubit-Bauweisen passen.\\
 
 \textbf{Einführung in Oberflächencodes (Surface Codes)}
+Oberflächencodes gehören zu den topologischen Fehlerkorrekturcodes. Normalerweise sind die Qubits dabei ähnlich wie auf einem Schachbrett in einem 2D-Gitter angeordnet. Man unterscheidet Datenqubits, die auf den Knoten oder Kanten des Gitters sitzen und die eigentliche logische Quanteninformation tragen, und Messqubits (oder Ancilla-Qubits). Diese sitzen meist in der Mitte von Kacheln des Gitters und werden für die Syndrommessungen gebraucht.\cite{fowler_surface_2012} QUELLE: Kitaev Fault tolerant quantum computing
+\\
+Logische Operationen, also die Befehle, um den Zustand des gespeicherten logischen Qubits zu verändern (z.B. ein logisches X oder Z), sind bei Oberflächencodes nicht an einem einzelnen Qubit festgelegt, sondern erstrecken sich als Ketten von Operationen über das ganze Gitter. Ein Fehler im logischen Qubit entsteht erst, wenn eine Reihe von Fehlern so eine Kette von Operationen durchbricht oder eine ähnliche, wichtige Schleife bildet. Die kleinste Anzahl von physikalischen Fehlern, die zu einem logischen Fehler führt, nennt man Code-Distanz d. Je größer die Distanz, desto mehr Fehler kann der Code korrigieren (meist bis zu $\frac{d-1}{2}$ Fehler).\cite{fowler_surface_2012} QUELLE: Kitaev Fault tolerant quantum computing
+\\\\
+Dass Oberflächencodes in der Forschung so eine wichtige Rolle spielen, liegt nicht nur an ihren guten theoretischen Eigenschaften. Es ist die Mischung aus mehreren praktischen Vorteilen:
 
+\begin{itemize}
+    \item \textbf{Hoher Schwellenwert:} Oberflächencodes weisen im Vergleich zu anderen Codefamilien relativ hohe Fehlerschwellen auf. Für bestimmte realistische Fehlermodelle liegt dieser Schwellenwert bei etwa 1\% für die Fehlerrate der physikalischen Qubits und Gatter. Dies bedeutet, dass die Anforderungen an die Qualität der einzelnen Hardwarekomponenten zwar immer noch hoch, aber potenziell erreichbarer sind als bei Codes mit niedrigeren Schwellenwerten.\cite{fowler_surface_2012}
+    \item \textbf{Planare Anordnung:} Die flache, zweidimensionale Anordnung der Oberflächencodes passt sehr gut zu vielen wichtigen Qubit-Technologien, z.B. supraleitende Transmon-Qubits oder Halbleiter-Quantenpunkte. Diese werden oft auf flachen Chips hergestellt. Das macht die Herstellung und das Bauen größerer Systeme einfacher.\cite{fowler_surface_2012}
+    \item \textbf{Nur lokale Rechenschritte:} Die Quantengatter für die Syndrommessung (Stabilisatormessung) müssen nur zwischen direkt benachbarten Qubits im Gitter ausgeführt werden. Technisch schwierige Verbindungen über große Distanzen braucht man nicht. Das reduziert die Komplexität der Steuerung der Hardware und verringert mögliche Fehler durch gegenseitige Störungen (Crosstalk) zwischen weiter entfernten Qubits.\cite{fowler_surface_2012}
+    \item \textbf{Viel Forschung praktische Erfolge:} Wegen dieser Vorteile wird viel an Oberflächencodes geforscht. Es gibt schon beeindruckende Experimente, in denen logische Qubits mit Oberflächencodes gebaut und ihre Fehlerraten untersucht wurden – teilweise schon unter dem wichtigen Schwellenwert. QUELLE: "Google Quantum AI; Suppressing quantum errors by scaling a surface code logical qubit"
+\end{itemize}
+Dieses gute Zusammenspiel von theoretischen Vorteilen und praktischer Umsetzbarkeit ist ein Hauptgrund für die wichtige Rolle der Oberflächencodes. Die Anpassung an die echten Bedingungen und Grenzen aktueller Hardware zeigt, wie technische Überlegungen die Wahl und Entwicklung von QEC-Strategien stark beeinflussen. Diese praktische Herangehensweise bedeutet aber oft, dass man sehr viele zusätzliche physikalische Qubits für ein einziges logisches Qubit braucht. Das ist eine der großen Herausforderungen, die wir in Abschnitt 5.3.3 besprechen.
 
+\textbf{Der Fehlerkorrekturzyklus mit Oberflächencodes}
+\\
+Um ein logisches Qubit, das mit einem Oberflächencode gespeichert ist, intakt zu halten, muss ständig ein Fehlerkorrekturzyklus ablaufen. Dieser Zyklus besteht aus mehreren Schritten, die sehr oft (tausende oder millionenfach pro Sekunde) wiederholt werden. So sollen Fehler erkannt und korrigiert werden, bevor sie sich anhäufen und zu einem Fehler im logischen Qubit führen. QUELLE: "Devitt; Quantum Error Correction for Beginners";QUELLE: "Google Quantum AI; Suppressing quantum errors by scaling a surface code logical qubit"
+\\
+Die Schritte dieses Zyklus sind:
+
+\begin{enumerate}
+    \textbf{\item} \textbf{Start und Kodierung des logischen Qubits:} Am Anfang müssen die physikalischen Datenqubits und Messqubits in klare Startzustände gebracht werden. Dann wird durch eine genau geplante Abfolge von Quanten-Rechenschritten der gewünschte logische Zustand (z.B. das logische $\lvert 0 \rangle_L$) im Gitter der Datenqubits gespeichert. Dieser Prozess erzeugt den komplexen verschränkten Zustand, der das logische Qubit darstellt. Bei Oberflächencodes kann man einen logischen Zustand auch dadurch erzeugen, dass man alle Stabilisatoren (spezielle Prüfwerte) misst. Das System springt dann in einen passenden Zustand des Codes. QUELLE: TBD
+    \item
+    \item
+    \item
+    \item
+
+\end{enumerate}
 
 \begin{itemize}
     \item \textbf{Der QEC-Zyklus -- ein Überblick:} Kodieren $\rightarrow$ Fehler passieren $\rightarrow$ Fehler finden $\rightarrow$ Fehler deute $\rightarrow$ Fehler beheben.

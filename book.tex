@@ -14,8 +14,8 @@
 \usepackage{makeidx}         % allows index generation
 \usepackage{graphicx}        % standard LaTeX graphics tool
 \usepackage{tikz}
-\usetikzlibrary{angles,quotes} % for TikZ angle and quotes libraries
-                             % when including figure files
+%%\usepackage{quantikz}
+\usetikzlibrary{calc, decorations.pathreplacing,angles, quotes}
 \usepackage{multicol}        % used for the two-column index
 \usepackage[bottom]{footmisc}% places footnotes at page bottom
 
@@ -40,11 +40,7 @@
 \titlespacing*{\paragraph}{0pt}{0ex}{1em}
 
 \usepackage{hyperref}
-\usepackage{quantikz}
 \usepackage{suffix}
-\usepackage{tikz}
-\usepackage{quantikz}
-\usetikzlibrary[calc, decorations.pathreplacing]
 
 \makeatletter
 \newcommand{\chapterauthor}[1]{%
@@ -79,8 +75,6 @@
 
 \begin{document}
 
-\usetikzlibrary{angles, quotes}
-
 \author{Prof. Dr.-Ing. Rainer Neumann (Hrsg.)}
 \title{Quantencomputer -- Ein aktueller Überblick}
 \subtitle{Grundlagen, Hardware, Software, Anwendungen, Trends, Ethische Aspekte}
@@ -107,20 +101,20 @@
 
 \include{content/part2}
 
-\include{content/hardware}
-\include{content/basic-algorithms}
-\include{content/error-correction}
-\include{content/quantum-programming}
+%%\include{content/hardware}
+%%\include{content/basic-algorithms}
+%%\include{content/error-correction}
+%%\include{content/quantum-programming}
 
 \include{content/part3}
 
-\include{content/appl-it}
-\include{content/appl-medicine}
-\include{content/appl-pharma}
-\include{content/appl-material}
-\include{content/appl-finance}
+%%\include{content/appl-it}
+%%\include{content/appl-medicine}
+%%\include{content/appl-pharma}
+%%\include{content/appl-material}
+%%\include{content/appl-finance}
 
-\include{content/ethics}
+%%\include{content/ethics}
 
 %%\include{content/appendix}
 

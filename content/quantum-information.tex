@@ -50,7 +50,7 @@ Ein Qubit-Zustand lässt sich auch dreidimensional darstellen: als Punkt auf ein
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{images/bloch-sphere_quanteninformationen.png}
+  \includegraphics[width=0.7\textwidth]{images/quantum-information/bloch-sphere_quanteninformationen.png}
   \caption{Bloch-Kugel eines Qubits}\label{fig:bloch-sphere}
 \end{figure}
 
@@ -97,14 +97,77 @@ Aktuelle Experimente realisieren Tor‑Fidelitäten oberhalb von 99{.}999\%, sod
 (Vgl. \cite{PhysRevApplied.23.034052}) \\
 
 
+\subsection{Ein-Qubit-Gatter}
+
+
+\subsection{Ein-Qubit-Gatter}
+Ein klassisches \emph{Ein-Bit-Gatter} nimmt einen einzelnen Bitwert als Eingabe und liefert einen Bitwert als Ausgabe. Sein Verhalten lässt sich durch eine Wahrheitstabelle angeben – etwa flippt das NOT-Gatter Eingaben $0 \rightarrow 1$ und $1 \rightarrow 0$. Abgesehen von der Identität ist NOT das einzige nicht-triviale Ein-Bit-Logikgatter der klassischen Welt. (Vgl. \cite[S.17f.]{nielsen_quantum_2010}) Ein \emph{Ein-Qubit-Gatter} transformiert dagegen den Zustand eines einzelnen Qubits. Strukturell handelt es sich um eine lineare, unitäre Abbildung im zweidimensionalen Zustandsraum. Konkret wird ein Ein-Qubit-Gatter durch eine $2\times 2$-Unitärmatrix $U$ beschrieben, die den Zustandsvektor des Qubits auf einen neuen Zustand abbildet. (Vgl. ebd., S. 174)
+
+\begin{equation}
+U = \begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix}
+\end{equation}
+\\
+Die Unitarität ($U^{\dagger}U = I$) stellt sicher, dass die Transformation physikalisch zulässig ist und rückgängig gemacht werden kann. Im Gegensatz zum klassischen Fall – mit nur einer nicht-trivialen Ein-Bit-Operation – existiert eine unendliche Vielfalt möglicher Ein-Qubit-Gatter, da jede $2\times 2$-unitäre Matrix ein gültiges Quantengatter repräsentiert. (Vgl. ebd.)
+
 
 
 \subsubsection{Pauli-Gatter $X$, $Y$, $Z$}\label{sec:pauli_gatter}
 
+Die Pauli-Matrizen wurden erstmals 1927 von dem Physiker Wolfgang Pauli eingeführt, um den neu entdeckten Elektronenspin im Rahmen der Quantenmechanik zu beschreiben. Elektronen besitzen einen intrinsischen Drehimpuls (Spin ½), der keine klassische Entsprechung hat. (Vgl. \cite[S.312]{wekesa_sirengo_mathematical_2024}) Pauli entwickelte drei $2\times 2$-Matrizen (oft $\sigma_x, \sigma_y, \sigma_z$ bezeichnet), um die Spin-$x$-, Spin-$y$- und Spin-$z$-Operatoren des Elektrons darzustellen. Dies geschah im Kontext der Erklärung des anomalous Zeeman-Effekts, bei dem Spektrallinien in Magnetfeldern aufgespalten werden – ein Phänomen, das mit dem zusätzlichen Freiheitsgrad des Elektronenspins erklärt werden konnte. (Vgl. ebd.)\\
+\\
+Die Pauli-Gatter $X$, $Y$, $Z$ sind die meistverwendeten Ein-Qubit-Gatter. In der üblichen Darstellungsform (der sogenannten $Z$-Basis ${|0\rangle,|1\rangle}$) lauten sie:
+\\
 
-\paragraph{Hadamard und Superposition}
 
-\paragraph{Matrixdarstellung}
+\begin{equation}
+  X=\begin{pmatrix}0&1\\ 1&0\end{pmatrix},\qquad
+  Y=\begin{pmatrix}0&-i\\ i&0\end{pmatrix},\qquad
+  Z=\begin{pmatrix}1&0\\ 0&-1\end{pmatrix}.
+\end{equation}
+Jede Matrix ist dabei \emph{unitär}: Multipliziert man sie mit ihrer konjugiert-transponierten Version, erhält man wieder die Einheitsmatrix. (Vgl. \cite[S.71]{nielsen_quantum_2010}) Außerdem ist sie \emph{hermitesch}: Die Matrix ist ihr eigenes „Spiegelbild“. (Vgl. ebd., S.78) Beides zusammen heißt, wenn man ein Pauli-Gatter zweimal anwendet, steht das Qubit wieder da, wo es zuvor war ($U^2=I$). Es ergeben sich dabei ausschließlich die Eigenwerte $+1$ oder $-1$. Damit besitzt jeder Pauli-Operator genau zwei orthogonale Eigenzustände, was ihn zum einfachsten nicht-trivialen Messoperator macht. Weiterhin sind die Pauli-Matrizen spurlos, d.h. ihre Spur (die Summe der Diagonalelemente) ist Null. (Vgl. ebd., S.76)\\
+\\
+Jeder Qubit-Zustand lässt sich wie in Kapitel \pageref{subsec:blockkugel} als Punkt auf einer Einheitskugel darstellen. In diesem Bild wirken die Pauli-Gatter wie Halbumdrehungen um die drei Raumachsen: $X$ rotiert den Bloch-Vektor um $180^{\circ}$ um die $x$-Achse, $Y$ um die $y$-Achse und $Z$ um die $z$-Achse. (Vgl. \cite[S.215ff.]{rieffel_quantum_2011}) Die Eigenzustände von $Z$ liegen daher an Nord- und Südpol, während die Eigenzustände von $X$ und $Y$ entlang des Äquators auf den $x$- bzw.\ $y$-Achsen sitzen.\\
+\\
+Die Wirkung der Ein-Quibit-Gatter Pauli-$X$-, $Y$-, $Z$-Gatter wird folgendermaßen beschrieben:
+
+
+
+\begin{itemize}
+\item Pauli-$X$ (Bit-Flip-Gatter): Vertauscht die Basiszustände $|0\rangle$ und $|1\rangle$. Formal gilt $X|0\rangle = |1\rangle$ und $X|1\rangle = |0\rangle$. (Vgl. ebd., S.81-82) Dieses Gatter entspricht somit einem quantenmechanischen NOT-Operator – analog zum klassischen Inverter (NOT-Gatter) flipping eines Bits. Aufgrund dieser Wirkung wird $X$ auch als Bitflip-Operator bezeichnet. 
+
+\item Pauli-$Y$ (kombiniertes Gatter): $Y$ lässt sich als $Y = iZ \cdot X$ auffassen. Entsprechend kombiniert es eine Bit-Flip- und eine Phasenflip-Operation. Konkret gilt $Y|0\rangle = \mathrm{i},|1\rangle$ und $Y|1\rangle = -,\mathrm{i},|0\rangle$ (mit $\mathrm{i}=\sqrt{-1}$). Man sieht, dass $Y$ – ähnlich wie $X$ – $|0\rangle$ und $|1\rangle$ vertauscht, jedoch zusätzlich einen komplexen Phasenfaktor ($\pm,\mathrm{i}$) hinzufügt. (Vgl. ebd.) Im Ergebnis ist $Y$ somit ein Bit-Flip mit Phasendrehung und wird manchmal auch als kombiniertes Bit- und Phasenflip-Gatter bezeichnet.
+
+\item Pauli-$Z$ (Phase-Flip-Gatter): Lässt $|0\rangle$ invariant und kehrt die Phase von $|1\rangle$ um. Das heißt, $Z|0\rangle = |0\rangle$, aber $Z|1\rangle = -,|1\rangle$. In einem Superpositionszustand $a|0\rangle + b|1\rangle$ bewirkt $Z$ also einen Phasenfaktor $-1$ für den $|1\rangle$-Anteil. (Vgl. ebd.) Dieses Verhalten – ein Vorzeichenwechsel für einen der Basiszustände – erklärt die Bezeichnung Phasenflip-Gatter.
+\end{itemize}\\
+\\
+Die Pauli-Gatter sind in Quantenlogik-Schaltkreisen äußerst wichtig. (Vgl. ebd., S. 81) Sie gehören meist zur Grundmenge der verfügbaren elementaren Quantenoperationen auf einem Qubit. Zusammen mit dem Einheitsoperator $I$ bilden sie die sogenannte Pauli-Gruppe auf einem Qubit, welche eine Rolle in vielen Quantum-Circuit-Konstruktionen spielt. Komplexere Ein-Qubit-Gatter lassen sich oft durch Kombinationen der Pauli-Gatter darstellen. So ist etwa das weit verbreitete und im folgenden Unterkapitel \pageref{subsubsec:hadamard_superposition} beschriebenen Hadamard-Gatter eine von den Pauli-Matrizen abgeleitete Transformation (z.B. als $H = \frac{X+Z}{\sqrt{2}}$). Auch Kontrollgatter wie CNOT können unter Nutzung von Pauli-Operatoren konstruiert werden. (Vgl. \cite[S.312]{wekesa_sirengo_mathematical_2024})\\
+\\
+
+\subsubsection{Hadamard und Superposition}\label{subsubsec:hadamard_superposition}
+
+Das Hadamard-Gatter $H$ ist das wohl einfachste Mittel, um aus einem klassischen Qubit-Zustand eine echte Überlagerung (Superposition) zu erzeugen.  Während ein Bit nur entweder 0 oder 1 sein kann, vermischt $H$ die beiden Basiszustände so, dass das Qubit  „halb 0, halb 1“ wird. (Vgl. \cite[S.19f.]{nielsen_quantum_2010})\\
+\\
+Formal schreibt man (Vgl. \cite[S.76]{rieffel_quantum_2011}).
+\\
+\begin{equation}
+  H = \frac1{\sqrt2}\!
+  \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix},
+  \qquad
+  H|0\rangle=\frac{|0\rangle+|1\rangle}{\sqrt2},
+  \quad
+  H|1\rangle=\frac{|0\rangle-|1\rangle}{\sqrt2}.
+\end{equation}
+\\
+Die beiden resultierenden Zustände $|+\rangle$ und $|-\rangle$ liegen genau auf der Äquatorebene der Bloch-Kugel; $H$ entspricht dort einer $\pi$-Drehung um die Achse $\tfrac{x+z}{\sqrt2}$ (Vgl. ebd., S.22).\\
+\\
+Da $H$ involutorisch ist ($H^2=I$), kehrt eine zweite Hadamard-Operation den Prozess exakt um.  Dies erklärt die populäre Kurzformel „$H$ ist die \emph{square-root of NOT}“ (Vgl. \cite[S.19f.]{nielsen_quantum_2010}): einmal angewendet bewirkt es einen halben Bit-Flip (Superposition), zweimal angewendet ergibt sich der volle Flip zurück zum Ausgangszustand.\\
+\\
+Die Fähigkeit, Superpositionen mit nur einem Gate herzustellen, macht $H$ unverzichtbar für viele Quantenalgorithmen.  Im Deutsch-Jozsa-Algorithmus oder in Grovers Suche präpariert $H^{\otimes n}$ aus $|00\ldots0\rangle$ eine gleichgewichtige Überlagerung aller $2^{n}$ Eingabewerte und ermöglicht so Quantenparallelismus (Vgl. ebd., S. 250ff.).  Ohne ein solches Gate gäbe es keine Interferenzeffekte und folglich keinen Geschwindigkeitsvorteil gegenüber klassischer Berechnung.
+
+\subsection{Mehr-Qubit-Gatter}
 
 
 
@@ -117,7 +180,6 @@ Aktuelle Experimente realisieren Tor‑Fidelitäten oberhalb von 99{.}999\%, sod
 \mathrm{CNOT}=\begin{pmatrix}1&0&0&0\0&1&0&0\0&0&0&1\0&0&1&0\end{pmatrix}
 
 \paragraph{SWAP}
-
 
 
 
@@ -210,7 +272,7 @@ Die Wissenschaftler Daniel Gottesman und Isaac Chuang stellen eine Technik, eine
 Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. Ein CNOT gate ist eine Komponente, die zwei verschränkte Qubits in einem Bell-Zustand aufnimmt und den zweiten Qubit, den sog. „target“ Qubit dreht, wenn der erste Qubit, der sog. „control“ Qubit, einen Wert von \(\ket{1}\) hat. Beim Durchgang werden Pauli-Matrix Operationen durchgeführt, welche die Quanteninformationen, also den Quantenzustand, auf ein drittes Qubit übertragen.\\
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/quantenteleportation_cnot_1.png}
+    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_1.png}
     \caption{Zeitstrahl von links nach rechts. B = Bell-Zustand, X Y Z = Pauli Operatoren, \(\ket{\alpha}\) = Zustand des Sender-Qubits, der an den Empfänger-Qubit übertragen werden soll}
     \label{fig:meinbild}
 \end{figure}
@@ -218,7 +280,7 @@ Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. E
 \noindent Dieses Prinzip kann leicht modifiziert werden. Die modifizierte Variante erlaubt es, vier Qubits, wovon jeweils zwei verschränkt sind und sich in einem Bell-Zustand befinden, durchzulassen und anhand von Pauli-Matrix Operationen zu transformieren. Die zwei Bell-Zustand Paare sind vorerst getrennt. Eines beinhaltet den „target“ Qubit \(\ket{\alpha}\), das andere den „control“ Qubit \(\ket{\beta}\). Der „target“ Qubit wird gedreht, wenn der „control“ Qubit einen Wert von \(\ket{1}\) hat. Es stehen 4 Rechenoperationen (I, X, Y, Z) zur Verfügung. Welche Operationen auf die Qubits der Bell-Zustände angewendet werden, ist vom Zufall bestimmt. Was aus dem CNOT gate herauskommt, sind zwei Qubits \(\ket{out}\), welche die Quanteninformationen von \(\ket{\alpha}\) und \(\ket{\beta}\) enthalten, wobei \(\ket{out}\) = CNOT\(\ket{\beta}\)\(\ket{\alpha}\).\\
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/quantenteleportation_cnot_2.png}
+    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_2.png}
     \caption{Zeitstrahl von links nach rechts. B = Bell-Zustand, X Y Z = Pauli Operatoren, \(\ket{\chi}\) = Ausgangszustand für Operation}
     \label{fig:meinbild}
 \end{figure}
@@ -226,7 +288,7 @@ Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. E
 \noindent Eine andere modifizierte Variante ist eine, bei der ein CNOT gate zwischen zwei Qubits von zwei unterschiedlichen verschränkten Qubit Paaren geöffnet wird. Der Output von solch einem Gatter kann verwendet werden, um den Zustand \(\ket{\chi}\) der vorherigen Abbildung zu bilden, von dem in einer Quantenteleportation mit zwei Bell-Zuständen Gebrauch gemacht wird. \(\ket{\chi}\) kann so erzeugt werden, oder durch eine Quantenteleportation zwischen zwei GHZ (Greenberger Horne Zellinger) Zuständen. Ein GHZ Zustand ist eine Verschränkung von drei Quantenobjekten.\\
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/quantenteleportation_cnot_3.png}
+    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_3.png}
     \caption{Zeitstrahl von links nach rechts. \(\ket{\Upsilon}\) = GHZ Zustand, H = Hadamard gate (für Hadamard Transformation), B = Bell-Zustand, X Y Z = Pauli Operatoren}
     \label{fig:meinbild}
 \end{figure}
@@ -236,6 +298,9 @@ Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. E
 Wie Anhand der wissenschaftlichen Artikel von Bennett, Brassard et. al., sowie Gottesmann und Chuang gezeigt wurde, sind Quantenverschränkung und Quantenteleportation die Prinzipien, durch die es zu einem Quanteninformationstransfer kommen kann. Daraus kann man schließen, dass beide Prinzipien eine sehr wichtige Bedeutung für Quantenkommunikation haben.
 
 \section{Praxisbeispiel: Bell-Zustand und Quantenkorrelation}
+
+Um die theoretischen Grundlagen der Quanteninformation greifbarer zu machen, bietet sich der Bell-Zustand als anschauliches Beispiel an. Er veranschaulicht zentrale Konzepte wie Quantenverschränkung und Nichtlokalität und bildet die Grundlage für viele Anwendungen in der Quantenkommunikation und -verarbeitung. Im Folgenden wird der Bell-Zustand näher erläutert, seine mathematische Darstellung vorgestellt und seine Bedeutung anhand konkreter Experimente und Anwendungen verdeutlich
+
 \subsection{Was ist ein Bell-Zustand?}
 Bell-Zustände sind spezielle Zustände in der Quantenmechanik, in denen zwei Teilchen maximal miteinander verschränkt sind. Das bedeutet: Ihre Zustände hängen so stark zusammen, dass man sie nicht unabhängig voneinander beschreiben kann – selbst, wenn die Teilchen physisch weit voneinander entfernt sind. Benannt ist der Bell-Zustand nach dem Physiker John S. Bell. Dieser zeigte im Jahre 1964 auf, dass die Vorhersagen der Quantenmechanik im Widerspruch zu den Prinzipien des lokalen Realismus stehen – also der Vorstellung, dass Informationen nicht schneller als Licht übertragen werden können und physikalische Größen vor der Messung bereits festgelegt sind. (Vgl. \cite[S.195]{bell_einstein_1964})
 \\
@@ -286,12 +351,11 @@ Es resultiert die vollständige Quantenschaltung zur Erzeugung des Bell-Zustands
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.6\textwidth]{images/aaf.png}
+  \includegraphics[width=0.6\textwidth]{images/quantum-information/aaf.png}
   \caption{Quantenschaltung zur Erzeugung des Bell-Zustands}
 \end{figure}
 
 
-\\
 Es resultiert einer der zuvor vorgestellten Bell-Zustände – ein maximal verschränkter Zustand, in dem die Messungen der beiden Qubits perfekt korreliert sind. Wird in einem verschränkten Bell-Zustand das erste Qubit gemessen, so ergibt sich mit gleicher Wahrscheinlichkeit entweder der Zustand \( \ket{0} \) oder \( \ket{1} \). In beiden Fällen legt diese erste Messung sofort auch den Zustand des zweiten Qubits fest: Beobachtet man \( \ket{0} \) am ersten Qubit, ergibt sich insgesamt der Zustand \( \ket{00} \); misst man \( \ket{1} \), resultiert der Zustand \( \ket{11} \). Eine anschließende Messung des zweiten Qubits führt daher zwangsläufig zum gleichen Ergebnis wie beim ersten – entweder beide Qubits liefern 0 oder beide liefern 1. Je nach Eingangs-Zustand und der Reihenfolge der Gatter ergibt sich ein anderer Bell-Zustand. (Vgl. \cite[S.53-54]{homeister_quantum_2022})
 \\
 
@@ -316,7 +380,7 @@ Quantenbasierte Protokolle stehen daher im Zentrum aktueller Forschung zur Quant
 \\
 
 
-Ein zweiter praktischer Anwendungsfall des Bell-Zustands findet sich im Quantencomputing, genauer gesagt in der sogenannten Quanten-Teleportation. Dabei wird der Zustand eines Quantenbits (Qubit) von einem Ort zu einem anderen übertragen, ohne dass das Teilchen selbst physisch bewegt wird. Grundlage hierfür ist ein gemeinsam genutzter Bell-Zustand zwischen Sender (Alice) und Empfänger (Bob), der die nötige Verschränkung bereitstellt. Durch eine spezielle Messung auf Seiten von Alice und die Übermittlung zweier klassischer Bits kann Bob den ursprünglichen Zustand lokal wiederherstellen. (vgl. \cite{Teleporting}
+Ein zweiter praktischer Anwendungsfall des Bell-Zustands findet sich im Quantencomputing, genauer gesagt in der sogenannten Quantenteleportation. Dabei wird der Zustand eines Quantenbits (Qubit) von einem Ort zu einem anderen übertragen, ohne dass das Teilchen selbst physisch bewegt wird. Grundlage hierfür ist ein gemeinsam genutzter Bell-Zustand zwischen Sender (Alice) und Empfänger (Bob), der die nötige Verschränkung bereitstellt. Durch eine spezielle Messung auf Seiten von Alice und die Übermittlung zweier klassischer Bits kann Bob den ursprünglichen Zustand lokal wiederherstellen. (vgl. \cite{Teleporting})
 \\
 
 
@@ -324,26 +388,26 @@ Im Gegensatz zur Quantenkryptographie, bei der Sicherheit im Vordergrund steht, 
 
 
 \subsection{Simulation mit IBM Quantencomputer}
-Die Eigenschaften von Bell-Zuständen lassen sich mithilfe von Quantencomputern, wie denen von IBM, direkt auf Hardware simulieren und beobachten. In diesem Beispiel wurde ein einfacher Quantenschaltkreis aufgebaut, um einen Bell-Zustand zu erzeugen. Ausgangszustand waren zwei Qubits, die beide den Wert 0 hatten. Zunächst wurde auf das erste Qubit ein Hadamard-Gatter (rotes Gatter) angewendet. Dadurch ging es in eine Überlagerung aus „0“ und „1“ über. Anschließend folgte ein CNOT-Gatter (blaues Gatter), das die beiden Qubits miteinander verschränkte: Wenn das erste Qubit auf „1“ übergeht, kippt das zweite automatisch ebenfalls auf „1“. Das Ergebnis ist ein Zustand, in dem die Qubits perfekt miteinander verbunden sind – man spricht von einem verschränkten Zustand. 
+Die Eigenschaften von Bell-Zuständen lassen sich mithilfe von Quantencomputern, wie denen von IBM, direkt auf Hardware simulieren und beobachten. In diesem Beispiel wird ein einfacher Quantenschaltkreis in der IBM Quantum Learning Platform, gemäß der zuvor erläuterten Schritte zur Erzeugung eines Bell-Zustands, aufgebaut. Ausgangszustand sind zwei Qubits, die beide den Wert 0 haben. Zunächst wird auf das erste Qubit ein Hadamard-Gatter (rotes Gatter) angewendet. Dadurch ging es in eine Überlagerung aus „0“ und „1“ über. Anschließend folgt ein CNOT-Gatter (blaues Gatter), das die beiden Qubits miteinander verschränkt: Wenn das erste Qubit nun auf „1“ übergeht, kippt das zweite automatisch ebenfalls auf „1“. Das Ergebnis ist ein Zustand, in dem die Qubits perfekt miteinander verbunden sind – man spricht von einem verschränkten Zustand. 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/Schaltung_IBM.png}
+    \includegraphics[width=0.6\textwidth]{images/quantum-information/Schaltung_IBM.png}
     \caption{Quantenschaltung - IBM Quantum Learning Platform.}
     \label{fig:meinbild}
 \end{figure}
 
-Nach dem Aufbau der Schaltung wurden auf dem IBM-Quantencomputer Messungen durchgeführt. Das bedeutet, dass die Qubits im Z-Basiszustand ausgelesen werden um zu überprüfen, ob sie im Zustand „0“ oder „1“ sind. 
+Nach dem Aufbau der Schaltung können über die IBM Quantum Learning Platform Messungen durchgeführt. Das bedeutet, dass die Qubits im Z-Basiszustand ausgelesen werden um zu überprüfen, ob sie im Zustand „0“ oder „1“ sind. 
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=1\textwidth]{images/results_ibm.png}
+    \includegraphics[width=1\textwidth]{images/quantum-information/results_ibm.png}
     \caption{Wahrscheinlichkeitsverteilung - IBM Quantum Learning Platform.}
     \label{fig:meinbild}
 \end{figure}
 
 
-Wie das Histogramm zeigt, wurden ausschließlich die Zustände „00“ und „11“ beobachtet - und zwar mit jeweils rund 50\% Wahrscheinlichkeit. Die Zustände „01“ oder „10“, bei denen sich die beiden Qubits unterscheiden würden, traten gar nicht auf. Dies ist ein typisches Verhalten eines Bell-Zustands und belegt, dass die Qubits verschränkt sind. Bemerkenswert ist dabei: Diese Quantenkorrelation bleibt bestehen, selbst wenn die Qubits räumlich voneinander getrennt wären. Die Messergebnisse des einen beeinflussen scheinbar sofort das andere – ein Verhalten, das mit klassischer Physik nicht erklärbar ist. (Vgl. \cite{Bell State ZZ-Measurement}) 
+Wie das Histogramm zeigt, werden ausschließlich die Zustände „00“ und „11“ beobachtet - und zwar mit jeweils rund 50\% Wahrscheinlichkeit. Die Zustände „01“ oder „10“, bei denen sich die beiden Qubits unterscheiden würden, treten gar nicht auf. Dies ist ein typisches Verhalten eines Bell-Zustands und belegt, dass die Qubits verschränkt sind. Bemerkenswert ist dabei: Diese Quantenkorrelation bleibt bestehen, selbst wenn die Qubits räumlich voneinander getrennt wären. Die Messergebnisse des einen beeinflussen scheinbar sofort das andere – ein Verhalten, das mit klassischer Physik nicht erklärbar ist. (Vgl. \cite{Bell State ZZ-Measurement}) 
 
 
 \printbibliography

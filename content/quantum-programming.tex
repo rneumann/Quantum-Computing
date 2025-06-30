@@ -9,6 +9,7 @@
 \abstract{some abstract}
 
 \section{Programmiermodelle in der Quanteninformatik}
+\label{programming-models}
 
 \subsection{Gate-basiertes Paradigma (Quantum Circuit Model)}
 Das Gate basierte Paradigma oder auch Quantenschaltkreis Modell (engl. Quantum Circuit Model) genannt, ist das Standardmodell für die Programmierung von Quantenprogrammen. Daher wird es auch häufig als das am weitesten verbreitete Paradigma in der Quanteninformatik zur Beschreibung und Realisierung von Quantenalgorithmen bezeichnet. In diesem Modell werden die Quantenprogramme als Schaltkreise (engl. Quantum circuits) dargestellt. Diese bestehen aus einer Sequenz von unitären Quanten Gattern, welche auf Qubits angewendet werden. 
@@ -98,9 +99,9 @@ Der variationale Quanten Eigenlöser (engl, variational quantum eigensolver), ku
 $$
 \langle\psi(\theta)|H|\psi(\theta)\rangle
 $$
-Dieser Ausdruck wird als sogenannte Kostenfunktion verwendet. Das Ziel ist es die Parameter θ so zu verändern, dass die gemessene Energie möglichst klein wird und somit dem Grundzustand des Systems entspricht. Dieser Schritt passiert auf einem klassischen Rechner, der z.B. den Nelder-Mead-Algorithmus oder einen anderen Optimierer nutzt, nicht auf dem Quantencomputer selbst. 
+Dieser Ausdruck wird als sogenannte Kostenfunktion verwendet. Das Ziel ist es die Parameter \θ so zu verändern, dass die gemessene Energie möglichst klein wird und somit dem Grundzustand des Systems entspricht. Dieser Schritt passiert auf einem klassischen Rechner, der z.B. den Nelder-Mead-Algorithmus oder einen anderen Optimierer nutzt, nicht auf dem Quantencomputer selbst. 
 Ein großer Vorteil von VQE ist, dass die benötigten Quantenschaltungen relativ flach bleiben, sie kommen mit wenigen Gattern und kurzen Operationen aus. Diese Tatsache ist besonders für NISQ-Hardware praktisch, da bei dieser jede zusätzliche Operation das Risiko für Fehler erhöht. 
-2014 wurde der VQU bereits durch Peruzzo et al, erfolgreich auf einem photonischen Quantenprozessor umgesetzt. Dabei wurde die Bildungskurve des Moleküls He–H⁺ berechnet. Die Energie wurde dabei über ein klassisch-quantisches Zusammenspiel optimiert und das Ergebnis lag innerhalb der chemischen Genauigkeit. Das war bereits ein starker Beweis dafür, dass hybride Algorithmen schon vor über 10 Jahren auf damaliger Hardware praktikabel waren. 
+2014 wurde der VQU bereits durch Peruzzo et al, erfolgreich auf einem photonischen Quantenprozessor umgesetzt. Dabei wurde die Bildungskurve des Moleküls He–H\⁺ berechnet. Die Energie wurde dabei über ein klassisch-quantisches Zusammenspiel optimiert und das Ergebnis lag innerhalb der chemischen Genauigkeit. Das war bereits ein starker Beweis dafür, dass hybride Algorithmen schon vor über 10 Jahren auf damaliger Hardware praktikabel waren. 
 
 \subsubsection*{2) Quantum Approximate Optimization Algorithm (QAOA)}
 Der sogenannte Quantum Approximate Optimization Algorithm (QAOA) ist ein weiterer Algorithmus des Hybrid-Paradigmas und wurde dazu entwickelt, um kombinatorische Optimierungsprobleme zu lösen. Typische Beispiele hierfür sind Max-Cut, k-Clique oder andere Graph Probleme (siehe Kapitel…). Auch QAOA besteht aus einem parametrisierten Quantenschaltkreis und einer klassischen Optimierung, funktioniert jedoch deutlich anders als VQE.
@@ -136,122 +137,164 @@ Insgesamt stellt das funktionelle Paradigma eine leistungsfähige und theoretisc
 
 \section{Quanten-Programmiersprachen und -Frameworks}
 \label{sec:programming-languages}
+(In Klammern Quellen die ergänzt werden müssen und ggf. Fragen)
 
+Die Entwicklung von Quantencomputern hat zur Entstehung spezialisierter Programmiersprachen und Frameworks geführt, die die besonderen Eigenschaften des Quantencomputings berücksichtigen. Diese Sprachen und Frameworks ermöglichen es Entwicklern, Quantenalgorithmen zu implementieren und zu testen, ohne sich mit den komplexen physikalischen Details der Quantenhardware auseinandersetzen zu müssen. 
 
-Die Entwicklung von Quantencomputern hat zur Entstehung spezialisierter Programmiersprachen und Frameworks geführt, die die besonderen Eigenschaften des Quantencomputings berücksichtigen. Diese Sprachen und Frameworks ermöglichen es Entwicklern, Quantenalgorithmen zu implementieren und zu testen, ohne sich mit den komplexen physikalischen Details der Quantenhardware auseinandersetzen zu müssen.
+Im Gegensatz zu klassischen Computern, die auf binären Bits basieren, verwenden Quantencomputer Qubits, die in mehreren Zuständen gleichzeitig existieren können. Dies ermöglicht es, bestimmte komplexe Berechnungen exponentiell schneller durchzuführen als klassische Computer. (A Survey on Available Tools and Technologies Enabling Quantum Computing)
 
-Im Gegensatz zu klassischen Programmiersprachen müssen Quanten-Programmiersprachen spezielle Konzepte wie Superposition, Verschränkung und Messung unterstützen. Sie müssen auch die Interaktion zwischen klassischen und Quantenberechnungen ermöglichen, da die meisten Quantenalgorithmen sowohl klassische als auch Quantenkomponenten enthalten.
+Die Prorammierung von Quantumcomputern besteht in der Regel darin, eine Quantenschaltung wie in Abbildung \ref{fig:quantum-circuit} zu definieren. 
+Diese grafische Notation ist für Prototypen nützlich, wird jedoch für größere Schaltungen nicht mehr praktikabel. Quantenprogrammiersprachen erleichtern die Spezifikation dieser Quantenalgorithmen, indem sie die Quantenschaltkreise in Code übersetzen. (Quantum Software Components and Platforms: Overview andQuality Assessment)
 
-Dieses Kapitel gibt einen Überblick über die verschiedenen Arten von Quanten-Programmiersprachen und ordnet sie den vorangegangenen Programmierparadigmen zu. Anschließend werden drei wichtige Frameworks - Qiskit von IBM, Cirq von Google und Q\# von Microsoft - detailliert betrachtet.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{images/quantum-programming/Quantum-Circuit-Example.png}
+    \caption{Eine Beispiel Quantenschaltung (Quantum Software Components and Platforms: Overview andQuality Assessment)}
+    \label{fig:quantum-circuit}
+\end{figure}
+
+Im Vergleich zu klassischen Programmiersprachen müssen Quanten-Programmiersprachen spezielle Konzepte wie Superposition und Verschränkung unterstützen. Quantenalgorithmen auf einem Quantenprozessor ausführbar zu machen und dabei von Hardware-Details zu abstrahieren ist dabei eine anspruchsvolle Aufgabe. Zunächst sollte eine Quantenprogrammiersprache eine intuitive Programmierschnittstelle zur Beschreibung dieser Algorithmen bieten.
+Dann muss ein Compiler das Programm in eine Quantenschaltung umwandeln, sie optimieren
+und sie auf den Ziel-Quantenprozessor abbilden, wobei Hardware
+Einschränkungen zu beachten sind. (OpenQL: A PortableQuantum Programming Framework for
+Quantum Accelerators)
+
+Nach (Qrisp: A Framework for Compilable High-Level Programming of Gate-Based Quantum Computers) (2024) mangelt es derzeit jedoch weiterhin an Programmiersprachen zur Beschreibung von Quantenberechnungen. Während auf der Hardwareseite des Quantencomputers erhebliche Fortschritte erzielt wurden, ist die Unterstützung für high-level Abstraktionen der Quantenprogrammierung noch unterentwickelt.
+
+Dieses Kapitel gibt einen Überblick über die verschiedenen Arten von Quanten-Programmiersprachen, klassifiziert und ordnet sie den vorangegangenen Programmierparadigmen zu. Anschließend werden drei wichtige Frameworks - Qiskit von IBM, Cirq von Google und Q\# von Microsoft - detaillierter betrachtet.
 
 \subsection{Übersicht über Sprachen und Frameworks}
+Quanten-Programmiersprachen lassen sich nach unterschiedlichen Dimensionen systematisch klassifizieren. Diese betreffen die Abstraktionsebene, das Programmierparadigma, die Hardwarebindung sowie das zugrundeliegende Quantenmodell. Eine klare Trennung dieser Dimensionen erleichtert die Einordnung und den Vergleich der verschiedenen Ansätze. 
+
+\paragraph{Abstraktionsebenen} 
+Die Abstraktionsebene einer Quantenprogrammiersprache oder eines entsprechenden Frameworks definiert den Grad der Nähe des Codes zur physikalischen Quantenhardware beziehungsweise die Höhe der konzeptionellen Abstraktionsebene, auf der die Programmierung erfolgt.
+Man unterscheidet zwischen High-Level- und Low-Level-Sprachen. 
+
+Low-Level-Sprachen ermöglichen die Kontrolle über einzelne Qubits und Quantengatter. Sie orientieren sich stärker an konkreten Schaltkreisen und hardware-nahen Operationen. Ein Beispiel hierfür ist OpenQASM, das als Assemblersprache für Quantencomputer dient. Es ermöglicht eine präzise Steuerung der Quantenschaltkreise, erfordert jedoch auch ein tiefes Verständnis der Quantenmechanik und Hardware-Architektur. (Open Quantum Assembly Language)
+
+High-Level-Sprachen hingegen bieten eine größere Abstraktion, die es Entwicklern ermöglicht, sich auf die Logik des Quantenalgorithmus zu konzentrieren und Algorithmen unabhängig von konkreten Schaltkreisen zu beschreiben. Sie ähneln klassischen Programmiersprachen und sind intuitiver zu bedienen, indem sie die Komplexität von Quantenoperationen abstrahieren. Beispiele hierfür sind Q\#, Qiskit oder Cirq, die im späteren Verlauf dieses Kapitels genauer betrachtet werden. (Quellen der 3 Paper)
+
+\paragraph{Programmierparadigmen} 
+Das Programmierparadigma beschreibt den stilistischen und konzeptionellen Ansatz der Formulierung und Organisation von Programmen.
+
+Imperative Programmiersprachen, auch prozedurale Sprachen genannt, sind von klassischen imperativen Sprachen wie C oder Java inspiriert und verwenden das QRAM-Modell.(Quantum Programming Language: A Systematic Review of Research Topic and Top Cited Languages) Sie basieren auf Anweisungen, die den globalen Zustand eines Programms ändern. Das Quanten-Schaltkreismodell gilt als treibende Kraft der Quantenprogrammierung. Um dieses in eine Sprache einzubauen, wurde ein Pseudocode für die Quantenprogrammierung vorgeschlagen, der in der Sprache QCL mündete. Als erste imperative Quantum-Programmiersprache wurde sie im Jahr 1998 an der technischen Universität in Wien veröffentlicht. QCL verwendet hierbei eine von C abgeleitete Syntax und bietet einen vollständigen Quantensimulator für die Codeentwicklung auf einem klassischen Computer (A Survey of Quantum Programming Languages: History, Methods, and Tools). 
+Quantum Guarded Command Language (qGCL) basiert auf Dijkstras Semantik der Programmiersprache und hat verschiedene Konzepte wie das Quantenregister in Form eines Vektors eingeführt. LanQ ist eine high-level, imperative Quantenprogrammiersprache, deren Syntax ebenfalls der Sprache C ähnelt. Sie führt Quantenberechnungen unter Verwendung der klassischen Steuerung auf Quantendaten durch. LanQ wurde entwickelt, da QCL und qGCL keine Interprozesskommunikation und Mehrparteienprotokolle unterstützen. Bei LanQ gehört jede Quantenressource höchstens einem Prozess an, während der Kanal von Sender- und Empfängerprozess gemeinsam genutzt werden kann. Darüber hinaus bietet LanQ Werkzeuge für die parallele Ausführung von Programmen. (Quantum Programming Language: A Systematic Review of Research Topic and Top Cited Languages)
+
+In funktionalen, deklarativen Sprachen werden Berechnungen mit Hilfe mathematischer Funktionen durchgeführt, die auf Konzepten wie dem Lambda-Kalkül und der linearen Logik zurückgreifen. Lambda-Kalküle sind Konstruktionen aus der mathematischen Logik und können als die kleinsten universellen Programmiersprachen betrachtet werden. Sie bestehen aus einer einzigen Transformationsregel (Variablensubstitution) und einem einzigen Funktionsschema. Jede berechenbare Funktion kann mit diesem Formaulismus ausgedrückt werden.
+Quantum ML (QML) ist eine funktionale Quantensprache aus dem Jahr 2006. QML Programme sind frei von Dekohärenz(Solche Begriffe erklären oder voraussetzen?) und gewährleisten Quantenparallelität durch Superposition und Verschränkung. (Quantum Programming Language: A Systematic Review of Research Topic and Top Cited Languages) Quipper ist eine weitere high-level, skalierbare und funktionale Quantenprogrammiersprache. Sie wurde zur Programmierung einer Reihe von nicht-trivialen Quantenalgorithmen verwendet und kann Darstellungen mit Billionen von Gattern erzeugen. Quipper ist auf ein Berechnungsmodell ausgerichtet, das einen klassischen Computer zur Steuerung eines Quantengeräts verwendet und ist dabei nicht von einer bestimmten Quantenhardware abhängig. (Quipper: A Scalable Quantum Programming Language) Eine vergleichbare klassische Programmiersprache ist Haskell.
+
+Hybride, multi-Paradigmen Sprachen und Frameworks kombinieren imperative Programmierung und deklarative Schaltungen. Sie integrieren sowohl klassische als auch Quantenprogrammierkonzepte, um komplexe Interaktionen zwischen verschiedenen Algorithmen zu ermöglichen und beide Berechnungsarten zu kombinieren. Dies ist in der heutigen NISQ-Ära von hoher Relevanz. Diese Ära beschreibt den aktuellen technologischen Übergangszeitraum der Quanteninformatik, in der erste Quantenalgorithmen zwar auf realen Geräten ausführbar, aber noch fehlerhaft, klein und begrenzt sind. (muss in vorherigen Kapiteln noch genauer beschrieben sein, wenn zuvor erwähnt hier nochmal genau definieren und zitieren???) Eine hybride, domänenspezifische Quantenprogrammiersprache ist Q\# als Teil des Microsoft Quantum Development Kits. Sie besteht aus einem kleinen Satz von primitiven Datentypen, Arrays und Tupeln zur Erstellung neuer strukturierter Datentypen und unterstützt if-then Anweisungen und Schleifen. Weitere Merkmale umfassen die Interoperabilität mit der Python-Programmierung sowie die Unterstützung des Verschränkungs- und Überlagerungskonzepts. 
+(Quantum Programming Language: A Systematic Review of Research Topic and Top Cited Languages)
+
+In Abbildung \ref{fig:quantum-landscape} ist eine Übersicht über diverse Programmiersprachen nach Abstraktionsebene und Programmierparadigmen (Type of language) zu sehen. Die Abbildung zeigt aber auch, dass es bislang keine einheitlich standardisierte Klassifikation von Quantenprogrammiersprachen gibt und diese je nach Quellen variiert. Während (Quantum Programming Language: A Systematic Review of Research Topic and Top Cited Languages) Q\# als eine hybride Programmiersprache hervorgehoben haben, ordnet (Quelle Quantum Software Components and Platforms: Overview and Quality Assessment) sie dem imperativen Paradigma zu. Unterschiedliche Autoren setzen dabei teils unterschiedliche Schwerpunkte, was zu divergierenden Einordnungen führen kann. Angesichts der uneinheitlichen Einordnungen in der Literatur erscheint die Erarbeitung eines standardisierten Klassifikationsschemas als eine relevante Aufgabe für zukünftige Forschungsarbeiten.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{images/quantum-programming/Quantum-Programming-Landscape.png}
+    \caption{Übersicht über Quanten-Programmiersprachen nach Abstraktionsebenen und Programmierparadigmen. (Quantum Software Components and Platforms: Overview and Quality Assessment)}
+    \label{fig:quantum-landscape}
+\end{figure}
+
+\paragraph{Hardwarebindung}
+Die Hardwarebindung einer Quanten-Programmiersprache oder eines Frameworks beschreibt, inwieweit sie an eine bestimmte Quantenhardware-Plattform gebunden ist. Man unterscheidet zwischen Hardware-spezifisch und Hardware-unabhängig.
+
+Hardware-Spezifische Frameworks sind für die Optimierung und Ausführung auf einer bestimmten Architektur konzipiert und optimiert. Sie nutzen die spezifischen Eigenschaften und Einschränkungen der Hardware zur Maximierung der Leistung. Beispiele hierfür sind Cirq, optimiert für Google Sycamore Hardware (https://quantumai.google/cirq) oder PyQuil, optimiert für Rigetti´s Quantum Cloud Service. (https://www.rigetti.com/what-we-build).
+
+Hardware-unabhängige Sprachen und Frameworks sind so konzipiert, dass sie auf einer Vielzahl von Hardware-Plattformen ausgeführt werden können, oft durch die Verwendung von Zwischenrepräsentationen wie OpenQASM. Sie bieten eine große Flexibilität und Portabilität. Zu ihnen gehören unter anderem Qiskit von IBM sowie Q\# von Microsoft.
+
+\paragraph{Quantenmodell} 
+Eine weitere wesentliche Klassifikationsdimension ergibt sich aus dem zugrunde liegenden Quantenmodell. Quantencomputer können auf verschiedenen physikalischen Prinzipien und Berechnungsmodellen basieren, die sich auch in den Programmiersprachen widerspiegeln. Hierfür werden Programmiersprachen den Modellen aus \ref{programming-models} zugeordnet.
+
+Das Gate-basierte Modell ist das dominanteste und am weitesten verbreitete Modell, bei dem Quantenalgorithmen durch Schaltkreise aus Quantengattern auf Qubits dargestellt werden. Ein Großteil der aktuellen Quantencomputer und Frameworks basieren auf diesem Modell. Beispiele für Sprachen und Frameworks sind die bereits erwähnten Qiskit, Cirq oder OpenQASM. 
+
+Das messungsbasierte Paradigma (MBQC) führt Berechnungen durch eine Sequenz von Einzel-Qubit-Messungen auf einem vorbereiteten hochgradig verschränkten Anfangs-Cluster-Zustand durch. Die Wahl der Messbasis für jedes Qubit hängt hierbei von den Ergebnissen früherer Messungen ab. Bisher gibt es wenige produktive Frameworks, ein prominentes Beispiel ist jedoch der One-Way Quantum Computer. One-way (Einweg) ergibt sich daraus, dass jede Messung den Zustand eines Qubits zerstört und die Ressource verbraucht. Raussendorf et al. bewiesen, dass mithilfe eines zweidimensionalen Cluster-Zustands beliebige Quantenalgorithmen realisiert werden können, wodurch dieses Modell formal als äquivalent zum Schaltkreis-Modell zu sehen ist. (Measurement-based quantum computation)
+
+Das adiabatische Paradigma nutzt Annealing zur Lösung komplexer Optimierungs- und Sampling-Probleme. Das bekannteste Beispiel hierfür ist das D-Wave Ocean SDK, das speziell für adiabatische Quantencomputer entwickelt wurde. Annealing übertrifft das Gate-Modell bei Optimierungsproblemen, da es den erheblichen Vorverarbeitungsaufwand vermeidet, der mit Gate-basierten Ansätzen verbunden ist. Darüber hinaus ist es deutlich toleranter gegenüber Fehlern und Rauschen und auf die Größe von Unternehmensproblemen skalierbar. (Optimization Performance of QA and QAOA D-Wave)
 
 
-\begin{itemize}
-    \item Quanten-Programmiersprachen lassen sich in verschiedene Kategorien einteilen:
-    \begin{itemize}
-        \item \textbf{Imperative Quanten-Programmiersprachen}
-        \begin{itemize}
-            \item Basieren auf Statements, die den globalen Zustand eines Programms ändern
-            \item Verwenden das QRAM-Modell (Quantum Random Access Machine)
-            \item Beispiele: QCL, LanQ, qGCL
-        \end{itemize}
-        
-        \item \textbf{Funktionale Quanten-Programmiersprachen}
-        \begin{itemize}
-            \item Basieren auf mathematischen Transformationen durch Ausführung von Abbildungen
-            \item Verwenden Lambda-Kalkül und oft lineare Logik
-            \item Beispiele: QFC, QPL, QML
-        \end{itemize}
-        
-        \item \textbf{Hybride Ansätze}
-        \begin{itemize}
-            \item Kombinieren klassische und Quantenprogrammierung
-            \item Ermöglichen komplexe Interaktionen zwischen klassischen und Quantenalgorithmen
-            \item Beispiele: Q\#, Qiskit, Cirq
-        \end{itemize}
-    \end{itemize}
-\end{itemize}
+\paragraph{Zusammenfassung} 
+In dieser Arbeit wurden bisher unter dem Begriff „Quanten-Programmiersprachen und -Frameworks“ sowohl formale, eigenständige Programmiersprachen als auch softwareseitige Entwicklungsumgebungen und Bibliotheken zusammengefasst, die die Programmierung, Ausführung und Analyse von Quantenalgorithmen ermöglichen.
 
-\begin{itemize}
-    \item \textbf{Industriegetriebene Frameworks}
-    \begin{itemize}
-        \item \textbf{Qiskit (IBM)}
-        \begin{itemize}
-            \item Open-Source-SDK für Quanteninformatik
-            \item Python-basiert
-            \item Unterstützt IBM Quantum Experience Hardware
-            \item Umfangreiches Ökosystem von Tools und Plugins
-        \end{itemize}
-        
-        \item \textbf{Cirq (Google)}
-        \begin{itemize}
-            \item Open-Source-Framework für Quantencomputing
-            \item Python-basiert
-            \item Optimiert für Google's Quantenprozessoren
-            \item Fokus auf rauschbewusste Simulationen
-        \end{itemize}
-        
-        \item \textbf{Q\# (Microsoft)}
-        \begin{itemize}
-            \item Eigenständige domänenspezifische Sprache
-            \item Teil des Microsoft Quantum Development Kit
-            \item Fokus auf Algorithmusdefinition statt Schaltkreisdarstellung
-            \item Starke Typisierung und symbolische Codemanipulation
-        \end{itemize}
-        
-        \item \textbf{PyQuil (Rigetti)}
-        \begin{itemize}
-            \item Python-Bibliothek für Quantenprogrammierung
-            \item Zugriff auf Rigetti's Quantum Cloud Services
-            \item Basiert auf Quil (Quantum Instruction Language)
-        \end{itemize}
-    \end{itemize}
-    
-    \item \textbf{Akademische und Open-Source-Frameworks}
-    \begin{itemize}
-        \item \textbf{Quipper}
-        \begin{itemize}
-            \item Eingebettet in Haskell
-            \item Stark typisierte, funktionale Quantenprogrammiersprache
-        \end{itemize}
-        
-        \item \textbf{Scaffold/ScaffCC}
-        \begin{itemize}
-            \item Eingebettet in C/C++
-            \item Nutzt die LLVM-Infrastruktur
-        \end{itemize}
-        
-        \item \textbf{QWire}
-        \begin{itemize}
-            \item Eingebettet in das Beweissystem Coq
-        \end{itemize}
-        
-        \item \textbf{ProjectQ}
-        \begin{itemize}
-            \item Open-Source-Framework in Python
-            \item Fokus auf Schaltkreisoptimierung und -manipulation
-        \end{itemize}
-    \end{itemize}
-\end{itemize}
+Obwohl sich diese Systeme in Aufbau und Fokus teilweise unterscheiden, verfolgen sie das gemeinsame Ziel der Bildung einer Schnittstelle zwischen Quantenalgorithmen und deren Ausführung auf Quantenhardware oder Simulationen. Um eine systematische Vergleichbarkeit zu gewährleisten, wurden sie gemeinsam betrachtet und entsprechend ihrer funktionalen Eigenschaften klassifiziert. (Sollte ich den Teil lieber an den Anfang schreiben???)
 
-\begin{itemize}
-    \item \textbf{Gate-basiert:} Qiskit (IBM), Cirq (Google)
-    \item \textbf{Adiabatisch:} D-Wave Ocean SDK
-    \item \textbf{Hybrid:} PennyLane, TensorFlow Quantum, Qiskit (Variational Circuits)
-    \item \textbf{Funktionell / Linear:} Quipper, Q\#, Proto-Quipper, QML
-\end{itemize}
--> Ergänzung um weitere und Darstellung als Tabelle
+Die folgende Tabelle fasst die Klassifizierungen verschiedener beispielhafter Quanten-Programmiersprachen und Frameworks zusammen. Die Einordnung beruht hierbei auf verschiedenen Arbeiten von (Quellen: A Survey on Available Tools and Technologies Enabling Quantum Computing | An exploratory study on the usage of quantum programming | Quantum Programming Language: A Systematic Review of Research Topic and Top Cited Languages | Quantum Software Components and Platforms: Overview and Quality Assessment)
 
-\subsection{Vertiefung ausgewählter Frameworks}
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|p{1cm}|p{3cm}|p{2cm}|l|l|p{2cm}|p{2cm}|}
+\hline
+\textbf{Jahr} & 
+\textbf{Quantum-Programmiersprache / Framework} & 
+\textbf{Abstraktions-level} & 
+\textbf{Paradigma} & 
+\textbf{Hardwarebindung} & 
+\textbf{Quantenmodell} & 
+\textbf{Hostsprache} \\
+\hline
+2017 & Qiskit & High-Level & Hybrid & IBM Q & Gate-basiert & Python \\
+\hline
+2018 & Cirq & High-Level & Hybrid & Google Sycamore & Gate-basiert & Python \\
+\hline
+2018 & Q\# & High-Level & Hybrid & ... & ...& C\# \\
+\hline
+1998 & QCL & Low-Level & Imperativ & ... & ... & C \\
+\hline
+2000 & qGCL & High-Level & Imperativ & ... & ... & Pascal \\
+\hline
+2003 & Q & High-Level & Imperativ & ... & ... & C++ \\
+\hline
+2006 & LanQ & Low-Level & Imperativ & ... & ... & C \\
+\hline
+2012 & Scaffold & Low-Level & Imperativ & ... & ... & C / C++ \\
+\hline
+2017 & OpenQASM & Low-Level & Imperativ & ... & ... & Assembly Lanaguage \\
+\hline
+2016 & pyQuil & High-Level & Imperativ & ... & ... & Python \\
+\hline
+2018 & Strawberry Fields & High-Level & Hybrid & ... & ... & Python \\
+\hline
+2020 & Silq & High-Level & Hybrid & ... & ... & Python \\
+\hline
+2020 & OpenQL & High-Level & Imperativ & ... & ... & Python, C++ \\
+\hline
+2022 & OpenQASM3 & Low-Level & Imperativ & ... & ... & Assembly Lanaguage \\
+\hline
+1996 & Quantum Lambda Calculi & High-Level & Funktional & ... & ... & Lambda Calculus \\
+\hline
+2005 & QML & High-Level & Funktional & ... & ... & Haskell \\
+\hline
+2013 & Quipper & High-Level & Funktional & ... & ... & Haskell \\
+\hline
+2020 & Braket SDK & High-Level & Hybrid & Amazon & ... & Python \\
+
+
+
+
+\hline
+\end{tabular}
+\caption{Erweiterter Vergleich von Quantum-Programmiersprachen und Frameworks}
+\label{tab:quantum_languages_full}
+\end{table}
+tbd
+
+\subsection{Vertiefung ausgewählter Frameworks / QISKIT}
+
+\textbf{Wie ausführlich soll ich diesen Teil machen? Alle drei Sprachen/Frameworks oder nur eins davon (Qiskit als Grundlage für nachfolgenden Teil und am weitesten verbreitete)? Wie detailliert?}
 \begin{itemize}
     \item \textbf{Qiskit SDK:} Umfangreiche Bibliotheken, Simulator, Backendsteuerung
     \item \textbf{Cirq:} Framework von Google für Schaltungsdesign und Simulation
     \item \textbf{Q\#:} Domänenspezifische Sprache von Microsoft
-    \item (\textbf{Quipper, Qrisp, OpenQL, Sliq:} Alternativen für High-Level- oder domänenspezifisches Design)
 \end{itemize}
 
 \subsubsection{Qiskit}
+\begin{itemize}
+            \item Open-Source-SDK für Quanteninformatik
+            \item Python-basiert
+            \item Unterstützt IBM Quantum Experience Hardware
+            \item Umfangreiches Ökosystem von Tools und Plugins
+            
+        \end{itemize}
 Architktur
 \begin{itemize}
     \item \textbf{Mehrschichtige Architektur}
@@ -344,142 +387,7 @@ Besonderheiten und Anwendung
     \end{itemize}
 \end{itemize}
 
-\subsubsection{Cirq}
-Achitektur
-\begin{itemize}
-    \item \textbf{Grundlegende Abstraktionen}
-    \begin{itemize}
-        \item \texttt{Qubit}: Repräsentation eines Quantenbits
-        \item \texttt{Gate}: Quantenoperationen auf Qubits
-        \item \texttt{Circuit}: Sequenz von Quantenoperationen
-        \item \texttt{Moment}: Sammlung von Operationen, die parallel ausgeführt werden können
-    \end{itemize}
-    
-    \item \textbf{Hardware-spezifische Optimierung}
-    \begin{itemize}
-        \item Speziell für Google's Quantenprozessoren optimiert
-        \item Berücksichtigt Hardware-Topologie und -Einschränkungen
-        \item Unterstützt aber auch andere Hardware-Plattformen
-    \end{itemize}
-    
-    \item \textbf{Rauschmodellierung}
-    \begin{itemize}
-        \item Fortschrittliche Werkzeuge zur Simulation von Rauschen
-        \item Verschiedene Rauschmodelle für realistische Simulationen
-        \item Ermöglicht die Untersuchung der Auswirkungen von Rauschen auf Quantenalgorithmen
-    \end{itemize}
-    
-    \item \textbf{Python-Integration}
-    \begin{itemize}
-        \item Tiefe Integration mit dem Python-Ökosystem
-        \item Kompatibel mit NumPy, SciPy und anderen wissenschaftlichen Bibliotheken
-        \item Ermöglicht die Nutzung bestehender Python-Tools für Datenanalyse und Visualisierung
-    \end{itemize}
-\end{itemize}
 
-Besonderheiten
-\begin{itemize}
-    \item \textbf{Kalibrierungswerkzeuge}
-    \begin{itemize}
-        \item Werkzeuge zur Kalibrierung von Quantenhardware
-        \item Optimierung der Gateoperationen für spezifische Hardware
-        \item Wichtig für die praktische Implementierung von Quantenalgorithmen
-    \end{itemize}
-    
-    \item \textbf{Fokus auf NISQ-Ära}
-    \begin{itemize}
-        \item Optimiert für Noisy Intermediate-Scale Quantum (NISQ) Computer
-        \item Unterstützt Algorithmen, die mit begrenzter Qubit-Anzahl und Fehlerraten arbeiten können
-        \item Variational Quantum Eigensolver (VQE)
-        \item Quantum Approximate Optimization Algorithm (QAOA)
-    \end{itemize}
-    
-    \item \textbf{Visualisierungswerkzeuge}
-    \begin{itemize}
-        \item Umfangreiche Werkzeuge zur Visualisierung von Quantenschaltkreisen
-        \item Analyse von Simulationsergebnissen
-        \item Darstellung von Quantenzuständen und -operationen
-    \end{itemize}
-    
-    \item \textbf{Anwendungsgebiete}
-    \begin{itemize}
-        \item Quantenmaschinelles Lernen
-        \item Quantenchemie
-        \item Optimierungsprobleme
-        \item Grundlagenforschung in der Quanteninformatik
-    \end{itemize}
-\end{itemize}
-
-\subsubsection{Q\#}
-Architektur
-\begin{itemize}
-    \item \textbf{Eigenständige domänenspezifische Sprache}
-    \begin{itemize}
-        \item Nicht eingebettet in eine klassische Sprache
-        \item Speziell für Quantencomputing entwickelt
-        \item Teil des Microsoft Quantum Development Kit
-    \end{itemize}
-    
-    \item \textbf{Typsystem}
-    \begin{itemize}
-        \item Starke Typisierung
-        \item Betont klassischen Determinismus
-        \item First-Class-Callables (Funktionen als Werte)
-        \item Opazität von Qubit-Typen (keine direkten Zugriffe auf Qubit-Zustände)
-    \end{itemize}
-    
-    \item \textbf{Kontrollstrukturen}
-    \begin{itemize}
-        \item Klassische Kontrollstrukturen: if/else, for, while
-        \item Quantenspezifische Kontrollstrukturen: repeat-until-success
-        \item Unterstützung für rekursive Algorithmen
-    \end{itemize}
-    
-    \item \textbf{Symbolische Codemanipulation}
-    \begin{itemize}
-        \item Automatische Generierung des Adjungierten (konjugiert transponierte) einer Operation
-        \item Kontrollierte Versionen von Operationen
-        \item Funktioniert auf Typ-Ebene, nicht nur auf Wert-Ebene
-    \end{itemize}
-\end{itemize}
-Besonderheiten
-\begin{itemize}
-    \item \textbf{Klare Trennung von Quantencode und klassischem Code}
-    \begin{itemize}
-        \item Quantencode wird in Q\# geschrieben
-        \item Klassischer Treibercode kann in C\#, Python oder anderen Sprachen geschrieben werden
-        \item Saubere Schnittstelle zwischen beiden Welten
-    \end{itemize}
-    
-    \item \textbf{Fokus auf Algorithmusdefinition}
-    \begin{itemize}
-        \item Q\# ist eine Algorithmusdefinitionssprache, keine Schaltkreisbeschreibungssprache
-        \item Natürliche Darstellung der Komposition von klassischen und Quantenalgorithmen
-        \item Kein explizites Konzept eines "Schaltkreises"
-    \end{itemize}
-    
-    \item \textbf{Unterstützung für komplexe Algorithmen}
-    \begin{itemize}
-        \item Besonders geeignet für Phasenabschätzung und Quantenchemie-Algorithmen
-        \item Unterstützt reichhaltige Quantenklassische Interaktionen
-        \item Ermöglicht die Erstellung von Algorithmen mit nicht-trivialem Branching
-    \end{itemize}
-    
-    \item \textbf{Simulation und Ressourcenschätzung}
-    \begin{itemize}
-        \item Verschiedene Simulatoren für unterschiedliche Zwecke
-        \item Werkzeuge zur Schätzung der benötigten Ressourcen (Qubits, Gates)
-        \item Wichtig für die Entwicklung skalierbarer Quantenalgorithmen
-    \end{itemize}
-    
-    \item \textbf{Anwendungsgebiete}
-    \begin{itemize}
-        \item Quantenkryptographie
-        \item Quantenchemie
-        \item Optimierungsprobleme
-        \item Fehlerkorrektur und fehlertolerantes Quantencomputing
-    \end{itemize}
-\end{itemize}
 
 \section{Entwicklung von Quantenalgorithmen}
 
