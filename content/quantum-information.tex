@@ -4,9 +4,10 @@
 % use \chaptermark{}
 % to alter or adjust the chapter heading in the running head
 
-\chapterauthor{Burak Demirtas, Dominik Neumaier, Thilo Prünte, Hannes Ringswald, Marvin Rothmann}
+\chapterauthor{Burak Demirtas, Dominik Neumaier, Hannes Ringswald, Marvin Rothmann, Thilo Prünte}
 
-\abstract{some abstract}
+\abstract{}
+Dieses Kapitel führt in die Grundlagen der Quanteninformation ein und beschreibt den fundamentalen Unterschied zwischen klassischen Bits und Qubits. Es erklärt die Superposition von Qubits, deren Darstellung auf der Bloch-Kugel sowie die mathematische Dirac-Notation zur effizienten Formulierung quantenmechanischer Zustände und Operatoren. Anschließend werden wesentliche Quanten-Gatter wie die Pauli- und Hadamard-Gatter vorgestellt, die Transformationen von Qubit-Zuständen ermöglichen und Grundlage für Quantenalgorithmen sind. Das Kapitel beschreibt erste Quantenalgorithmen, darunter den Deutsch- und Deutsch-Josza-Algorithmus, die die Effizienzvorteile quantenmechanischer Berechnungen demonstrieren. Weiterhin werden Konzepte der Quantenverschränkung und Quantenteleportation erläutert, inklusive deren Protokolle, Anwendungen in der Quantenkommunikation sowie ihre Realisierung auf Basis von Bell-Zuständen. Abschließend wird die Bedeutung der Bell-Zustände als Basis maximaler Verschränkung und ihre Nutzung in Quantencomputing, Kryptographie und Netzwerken behandelt. Das Kapitel bietet somit einen umfassenden Überblick über zentrale theoretische und praktische Prinzipien der Quanteninformation als Grundlage für weiterführende Quantencomputeranwendungen.
 
 \section{Der Qubit als Informationsträger}
 \subsection{Klassisches Bit vs.\ Qubit}
@@ -45,7 +46,7 @@ Man kann sich ein Qubit auch als Pfeil in einem Kreis vorstellen. Der Pfeil zeig
   \caption{Qubit als Pfeil im Einheitskreis}
 \end{figure}
 
-\subsection{Bloch-Kugel}
+\subsection{Bloch-Kugel}\label{subsec:blockkugel}
 Ein Qubit-Zustand lässt sich auch dreidimensional darstellen: als Punkt auf einer Kugel, der \emph{Bloch-Kugel}. Jeder Punkt auf der Oberfläche steht für eine bestimmte Superposition.
 
 \begin{figure}[H]
@@ -95,9 +96,6 @@ Aktuelle Experimente realisieren Tor‑Fidelitäten oberhalb von 99{.}999\%, sod
 
 \\
 (Vgl. \cite{PhysRevApplied.23.034052}) \\
-
-
-\subsection{Ein-Qubit-Gatter}
 
 
 \subsection{Ein-Qubit-Gatter}
@@ -169,17 +167,12 @@ Die Fähigkeit, Superpositionen mit nur einem Gate herzustellen, macht $H$ unver
 
 \subsection{Mehr-Qubit-Gatter}
 
-
-
-\subsection{Mehr-Qubit-Gatter}
-
-\paragraph{CNOT}
+\subsubsection{CNOT}
+%Das Controlled-NOT-Gatter (CNOT) ist ein fundamentales zweiqubit-Quantengatter und wird häufig auch als Controlled-X, kontrollierter Bitflip oder Feynman-Gatter bezeichnet. Es wirkt auf zwei Qubits gleichzeitig: das Steuerqubit bestimmt, was mit einem Zielqubit geschieht. Dabei operiert das CNOT-Gatter im zweidimensionalen Zustandsraum von zwei Qubits (Hilbertraum $\mathbb{C}^2 \otimes \mathbb{C}^2$) und lässt sich formal definieren durch seine Wirkung auf die Rechenbasis ${|00⟩, |01⟩, |10⟩, |11⟩}$. Wenn das Steuerqubit den Wert $|1⟩$ hat, wendet CNOT eine NOT-Operation (Pauli-$X$) auf das Zielqubit an; hat das Steuerqubit den Wert $|0⟩$, bleibt das Zielqubit unverändert
 
 
 
-\mathrm{CNOT}=\begin{pmatrix}1&0&0&0\0&1&0&0\0&0&0&1\0&0&1&0\end{pmatrix}
-
-\paragraph{SWAP}
+\subsubsection{SWAP}
 
 
 
@@ -196,9 +189,96 @@ Die Fähigkeit, Superpositionen mit nur einem Gate herzustellen, macht $H$ unver
 
 
 
+\section{TBD: Erste Algorithmen}
+Algorithmen in der klassischen Informatik basieren alle auf einer linearen, schrittweisen Verarbeitung von Daten. So kann ein Bit, mit dem Wert 1 in einem folgenden Rechenschritt entweder den Wert 0 annehmen oder seinen aktuellen Wert 1 behalten. In einem Quantencomputer hingegen, kann das QBit nach einer Transformation unendlich viele verschiedene Werte annehmen.\\
+\\
+Mit dem Wissen aus vorherigen Kapitel lassen sich bereits die ersten, einfachen Quantenalgorithmen entwerfen, welche theoretisch schneller auf Quantencomputer ausgeführt werden können oder sogar für klassische Computer unmöglich sind zu lösen. \\
+\\
+Dazu beleuchten wir die Herkunft moderner Quantencomputer und die ersten Quantenalgorithmen.
 
+\subsection{TBD: Touring Complete} 
+In einem Paper von 1985 stellt der Physiker David Deutsch die Idee eines universellen Quantencomputers vor. Dabei verbindet er Quantenmechanik mit der theoretischen Informatik und kritisiert die klassische Church-Turing-These, da sie physikalisch nicht vollständig sei. Er schlägt stattdessen die Church–Turing–Deutsch-These vor: Alles, was physikalisch berechenbar ist, kann von einem Quantencomputer simuliert werden.\\
+\\
+Zentral im Paper ist der Vorschlag eines konkreten Quantenalgorithmus, welcher heute als der Deutsch-Algorithmus bekannt ist. Dieser zeigt, dass Quantencomputer Probleme effizienter lösen können als klassische Rechner.  (Vgl. \cite{deutsch_quantum_1985})\\
 
+\subsection{Algorithmus von Deutsch} 
+Gegeben ist eine binäre Funktion $f:\{0,1\} \rightarrow \{0,1\}$. Man möchte herausfinden, ob $f$ konstant (d.h. $f(0)=f(0)$) oder balanciert (d.h. $f(0)\neq f(0)$) ist.\\
+\\
+Klassisch muss man beide Werte $f(0)$ und $f(1)$ abfragen. Deutsch zeigt, dass ein Quantencomputer mit nur einer Abfrage an ein Quanten-Orakel die Antwort liefern kann. Ein Quantenorakel ist dabei eine unbelichtete Funktion, welche $n$-Bits als Eingabe und $m$-Bits als Ausgabe liefert. Man könnte das Orakel auch als "Black Box" bezeichnen, deren Funktionsweise nicht nachvollziehbar ist. \\
+\\
+Um das Problem von Deutsch zu lösen, müssen wir eines der Quantenbits in eine Superposition über beide möglichen Eingaben von $f$ versetzten.\\
+\\
+Alle Rechenschritte müssen umkehrbar sein. Da $f$ in dem konstanten Fall nicht reversible ist muss ein zweites Quantenbit für den Algorithmus verwenden. Daraus ergibt sich folgender Funktionsaufruf. 
 
+$$
+U_f: \left|x\right\rangle\left|, y\right\rangle \rightarrow  \left|x, y \oplus f(x)\right\rangle
+$$\\
+\\
+Jetzt kann auf das Problem der Algorithmus von Deutsch angewendet werden. Dieser löst das Problem in folgenden 4 Schritten:
+
+\begin{enumerate}
+    \item Initialzustand: Zwei QBits im Zustand
+$$\left|x\right\rangle\left|y\right\rangle \leftarrow  \left|0\right\rangle \left|1\right\rangle$$
+\item Anwenden des Hadamard-Gatters auf beide QBits erzeugt Superposition:
+$$
+\left|x\right\rangle\left|y\right\rangle \leftarrow  H\left|x\right\rangle H\left|y\right\rangle
+$$
+\item Anwendung des Orakels $U_f$:
+ $$
+\left|x\right\rangle\left|y\right\rangle \leftarrow  U_f\left|x\right\rangle\left|y\right\rangle
+$$
+	Durch die vorbereitete Superposition des Zielregisters wird die Funktion $f(x)$ in die Phase codiert.
+\item Nach erneuter Hadamard-Transformation misst man:
+	- Hat $\left|x\right\rangle\left|y\right\rangle$ den Wert $\left|0\right\rangle\left|1\right\rangle$: Funktion ist konstant
+	- Hat $\left|x\right\rangle\left|y\right\rangle$ den Wert $\left|1\right\rangle\left|1\right\rangle$: Funktion ist balanciert
+
+\end{enumerate}
+
+Daraus folgt der Schaltkreis in Abbildung \ref{fig:deutsch-schaltkreis}.
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{images//quantum-information/deutsch schaltkreis.png}
+    \caption{Schaltkreis: Deutsch-Algorithmus}
+    \label{fig:deutsch-schaltkreis}
+\end{figure}
+
+Somit liefert Deutsch den ersten Beweis für Quantenparallelität durch Superpositionen in einem konkreten Algorithmus. Der von Deutsch vorgeschlagene Algorithmus ermöglicht es jedoch nur Probleme mit einem einzigen Eingabe Bit zu verarbeiten. Eine verallgemeinerte Version des Deutsch-Algorithmus lieferte David Deutsch zusammen mit Richard Jozsa ein paar Jahre später in dem Paper "Rapid solution of problems by quantum computation". (Vgl. \cite[S.33-37]{homeister_quantum_2022})
+
+\subsection{Deutsch-Josza Algorithmus}
+Reale Probleme haben meist deutlich komplexere Strukturen und benötigen mehr Eingabebits als eines. Um diesem Umstand gerecht zu werden, entwickelten David Deutsch und Richard Jozsa eine Verallgemeinerung, welche als Deutsch-Jozsa-Algorithmus bekannt ist. Dieser erlaubt es, Funktionen mit beliebig vielen Eingabebits zu untersuchen und demonstriert erstmals einen exponentiellen Vorteil gegenüber klassischen Computern.\\
+\\
+Genau wie bei dem Deutsch-Algorihmus ist eine Funktion $f:\{0,1\}^n \rightarrow \{0,1\}$ gegeben. Dieses mal aber mit $n$-Bits als Eingabe. $f$ ist entweder konstant oder balancier. Da es nun jedoch mehrere Eingabebits gibt, bedeutet Balanciert, dass genau die Hälfte aller möglichen Ausgaben $0$ und die andere Hälfte $1$ als Ergebnis liefert. (Vgl. \cite{deutsch_rapid_1992})\\
+\\
+Das Ziel bleibt unverändert. Es soll mit möglichst wenig Abfragen bestimmt werden, welcher der beiden Fälle vorliegt. Klassische Algorithmen benötigen für das Problem im schlimmsten Fall $2^{n-1}+1$ Abfragen, um Gewissheit zu erlangen. \\
+
+Der Algorithmus läuft in folgenden Schritten ab:
+
+\begin{enumerate}
+\item Initialzustand:  Ein Register mit $n$ QBits im Zustand $\left|0\right\rangle^{\otimes n}$ und ein Hilfs-QBit im Zustand $\left|1\right\rangle$
+\item Hadamard-Transformation auf alle QBits erzeugt eine Superposition:
+$$
+\left|x\right\rangle\left|y\right\rangle \leftarrow  H^{\otimes n}\left|0\right\rangle^{\otimes n} \otimes H\left|1\right\rangle
+$$
+\item Anwendung des Orakels $U_f$, das kohärent alle $2^n$ Eingaben verarbeitet:
+$$
+U_f \left|x\right\rangle\left|y\right\rangle = \left|x\right\rangle\left|y \oplus f(x)\right\rangle
+$$
+    Wie beim Deutsch-Algorithmus wird $f(x)$ in die Phase des Zustands eingeschrieben.
+\item Erneute Hadamard-Transformation auf die ersten $n$ QBits.
+\item Messung:
+    - Ergebnis $\left|0\right\rangle^{\oplus n}$ bedeutet die Funktion ist konstant
+    - Jedes andere Ergebnisbedeutet Funktion ist balanciert
+\end{enumerate}
+\\
+Abbildung \ref{fig:deutsch-jozsa-schaltung} zeigt einen entsprechenden Quantenschaltkreis mit 4 QBits. 
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{images//quantum-information/deutsch-jozsa schaltkreis.png}
+    \caption{Schaltkreis: Deutsch-Jozsa Algorithmus}
+    \label{fig:deutsch-jozsa-schaltung}
+\end{figure}
+
+Das Besondere an dem Algorithmus ist, dass er das Ergebnis deterministisch und ohne Wahrscheinlichkeiten nach nur einer einzigen Orakelabfrage liefert. Durch Interferenz löschen sich bei balancierter Funktion die Amplituden für $\left|0\right\rangle^{\oplus n}$ vollständig aus. Nur im konstanten Fall bleibt sie erhalten. Somit liefert Deutsch und Jozsa den ersten theoretischen Beweis, dass Quantencomputer bei bestimmten Problemen klassischen Computern exponentiell überlegen sein können. (Vgl. \cite[S.62-66]{homeister_quantum_2022})
 
 
 
@@ -297,7 +377,7 @@ Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. E
 \subsection{Bedeutung für Quantenkommunikation und als Demonstration von Quanteninformationstransfer}
 Wie Anhand der wissenschaftlichen Artikel von Bennett, Brassard et. al., sowie Gottesmann und Chuang gezeigt wurde, sind Quantenverschränkung und Quantenteleportation die Prinzipien, durch die es zu einem Quanteninformationstransfer kommen kann. Daraus kann man schließen, dass beide Prinzipien eine sehr wichtige Bedeutung für Quantenkommunikation haben.
 
-\section{Praxisbeispiel: Bell-Zustand und Quantenkorrelation}
+\section{Bell-Zustand und Quantenkorrelation}
 
 Um die theoretischen Grundlagen der Quanteninformation greifbarer zu machen, bietet sich der Bell-Zustand als anschauliches Beispiel an. Er veranschaulicht zentrale Konzepte wie Quantenverschränkung und Nichtlokalität und bildet die Grundlage für viele Anwendungen in der Quantenkommunikation und -verarbeitung. Im Folgenden wird der Bell-Zustand näher erläutert, seine mathematische Darstellung vorgestellt und seine Bedeutung anhand konkreter Experimente und Anwendungen verdeutlich
 
@@ -351,7 +431,7 @@ Es resultiert die vollständige Quantenschaltung zur Erzeugung des Bell-Zustands
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.6\textwidth]{images/quantum-information/aaf.png}
+  \includegraphics[width=0.5\textwidth]{images/quantum-information/bell_circuit.png}
   \caption{Quantenschaltung zur Erzeugung des Bell-Zustands}
 \end{figure}
 
@@ -362,9 +442,18 @@ Es resultiert einer der zuvor vorgestellten Bell-Zustände – ein maximal versc
 
 Ein anschauliches Beispiel für die Eigenschaften verschränkter Zustände liefert auch ein Gedankenexperiment mit zwei beispielhaften Personen, Alice und Bob. Angenommen die beiden erzeugten gemeinsam entsprechend der vorhergehenden Ausführungen folgenden Bell-Zustand:
 \[
-\frac{1}{\sqrt{2}} (|00\rangle + |11\rangle).
+\frac{1}{\sqrt{2}} (|00\rangle + |11\rangle)
 \]
-Alice erhält nun das erste Qubit, Bob das zweite Qubit. Angenommen die beiden befinden sich ursprünglich in einem Haus im gleichen Raum. Bob nimmt nun sein Qubit mit in ein anderes Zimmer. Solange keine Messung erfolgt und die Qubits vor äußeren Einflüssen geschützt sind, bleibt die Verschränkung erhalten – unabhängig von der räumlichen Trennung. Führt nun einer der beiden eine Messung durch, so ist das Ergebnis zufällig: Mit einer Wahrscheinlichkeit von 50\,\% wird $|0\rangle$ gemessen, mit 50\,\% $|1\rangle$. Erst wenn Alice und Bob ihre Ergebnisse miteinander vergleichen, zeigt sich die Besonderheit: Ihre Messergebnisse stimmen stets überein. Es resultiert eine perfekte Korrelation, unabhängig von Raum und Zeit. (Vgl. \cite[S.54]{homeister_quantum_2022})
+Alice erhält nun das erste Qubit, Bob das zweite Qubit. Angenommen die beiden befinden sich, wie nachfolgend abgebildet, ursprünglich in einem Haus in verschiedenen Räumen. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/quantum-information/Bell_Alice_Bob.png}
+  \caption{Bell-Zustand: Alice und Bob}
+\end{figure}
+
+
+Solange nun keine Messung erfolgt und die Qubits vor äußeren Einflüssen geschützt sind, bleibt die Verschränkung erhalten – unabhängig von der räumlichen Trennung. Führen Alice oder Bob eine Messung durch, so ist das Ergebnis zufällig: Mit einer Wahrscheinlichkeit von 50\,\% wird $|0\rangle$ gemessen, mit 50\,\% $|1\rangle$. Erst wenn Alice und Bob ihre Ergebnisse miteinander vergleichen, zeigt sich die Besonderheit: Ihre Messergebnisse stimmen stets überein. Es resultiert eine perfekte Korrelation, unabhängig von Raum und Zeit. (Vgl. \cite[S.54]{homeister_quantum_2022})
 \\
 
 
@@ -372,19 +461,19 @@ Genau darin zeigt sich der Informationsgehalt eines verschränkten Zustands: Die
 
 \subsection{Bell-Zustand in der Praxis}
 
-Bell-Zustände bilden das Fundament für viele Anwendungsfälle. Ein praktischer Anwendungsfall ist die Quantenkryptographie. Besonders bekannt ist insbesondere das sogenannte E91-Protokoll, welches auf dem Konzept der Quantenverschränkung beruht. Dabei erzeugt eine zentrale Quelle verschränkte Teilchenpaare und schickt je eines an zwei weit entfernte Personen – wie in unserem Beispiel etwa Alice und Bob. Wenn beide ihre Teilchen messen, erhalten sie stets perfekt korrelierte Ergebnisse. Dieser Effekt lässt sich nutzen, um einen gemeinsamen geheimen Schlüssel zu erzeugen. Ein Abhörversuch durch eine dritte Person würde diese Korrelation stören und könnte über einen Bell-Test erkannt werden. So kann mit Hilfe der Quantenmechanik sichergestellt werden, dass keine unbemerkte Informationsweitergabe stattgefunden hat – eine Grundlage für absolut sichere Kommunikation. (vgl. \cite[S. 3841 f.]{state-of-the-art-survey})
+Bell-Zustände bilden das Fundament für viele Anwendungsfälle. Ein praktischer Anwendungsfall ist die Quantenkryptographie. Besonders bekannt ist insbesondere das sogenannte E91-Protokoll, welches auf dem Konzept der Quantenverschränkung beruht. Dabei erzeugt eine zentrale Quelle verschränkte Teilchenpaare und schickt je eines an zwei weit entfernte Personen – wie in unserem Beispiel etwa Alice und Bob. Wenn beide ihre Teilchen messen, erhalten sie stets perfekt korrelierte Ergebnisse. Dieser Effekt lässt sich nutzen, um einen gemeinsamen geheimen Schlüssel zu erzeugen. Ein Abhörversuch durch eine dritte Person würde diese Korrelation stören und könnte über einen Bell-Test erkannt werden. So kann mit Hilfe der Quantenmechanik sichergestellt werden, dass keine unbemerkte Informationsweitergabe stattgefunden hat – eine Grundlage für absolut sichere Kommunikation. (Vgl. \cite[S. 3841 f.]{kumar_state---art_2021})
 \\
 
 
-Quantenbasierte Protokolle stehen daher im Zentrum aktueller Forschung zur Quantenkryptographie und wurden bereits in ersten praktischen Experimenten erprobt. Besonders eindrucksvoll ist das Experiment mit dem chinesischen Micius-Satelliten: Er übermittelte verschränkte Photon-Bell-Paare an zwei Bodenstationen, die über eine Entfernung von rund 1200 Kilometern verteilt waren. Die gemessenen Korrelationen verletzten dabei deutlich die Bell-Ungleichung – ein klares Zeichen dafür, dass die beobachteten Effekte nicht durch klassische Physik erklärbar sind, sondern echte Quantenverschränkung vorliegt. Auf dieser Grundlage könnten über Kontinente hinweg geheime Schlüssel erzeugt und die Kommunikation verschlüsselt werden. (vgl. \cite{Entanglement Distribution})
+Quantenbasierte Protokolle stehen daher im Zentrum aktueller Forschung zur Quantenkryptographie und wurden bereits in ersten praktischen Experimenten erprobt. Besonders eindrucksvoll ist das Experiment mit dem chinesischen Micius-Satelliten: Er übermittelte verschränkte Photon-Bell-Paare an zwei Bodenstationen, die über eine Entfernung von rund 1200 Kilometern verteilt waren. Die gemessenen Korrelationen verletzten dabei deutlich die Bell-Ungleichung – ein klares Zeichen dafür, dass die beobachteten Effekte nicht durch klassische Physik erklärbar sind, sondern echte Quantenverschränkung vorliegt. Auf dieser Grundlage könnten über Kontinente hinweg geheime Schlüssel erzeugt und die Kommunikation verschlüsselt werden. (Vgl. \cite{ivezic_entanglement_2022})
 \\
 
 
-Ein zweiter praktischer Anwendungsfall des Bell-Zustands findet sich im Quantencomputing, genauer gesagt in der sogenannten Quantenteleportation. Dabei wird der Zustand eines Quantenbits (Qubit) von einem Ort zu einem anderen übertragen, ohne dass das Teilchen selbst physisch bewegt wird. Grundlage hierfür ist ein gemeinsam genutzter Bell-Zustand zwischen Sender (Alice) und Empfänger (Bob), der die nötige Verschränkung bereitstellt. Durch eine spezielle Messung auf Seiten von Alice und die Übermittlung zweier klassischer Bits kann Bob den ursprünglichen Zustand lokal wiederherstellen. (vgl. \cite{Teleporting})
+Ein zweiter praktischer Anwendungsfall des Bell-Zustands findet sich im Quantencomputing, genauer gesagt in der sogenannten Quantenteleportation. Dabei wird der Zustand eines Quantenbits (Qubit) von einem Ort zu einem anderen übertragen, ohne dass das Teilchen selbst physisch bewegt wird. Grundlage hierfür ist ein gemeinsam genutzter Bell-Zustand zwischen Sender (Alice) und Empfänger (Bob), der die nötige Verschränkung bereitstellt. Durch eine spezielle Messung auf Seiten von Alice und die Übermittlung zweier klassischer Bits kann Bob den ursprünglichen Zustand lokal wiederherstellen. (Vgl. \cite{bennett_teleporting_1993})
 \\
 
 
-Im Gegensatz zur Quantenkryptographie, bei der Sicherheit im Vordergrund steht, dient die Quanten-Teleportation der fehlerfreien Übertragung von Quanteninformation. Dies ist eine essenzielle Voraussetzung für die Vernetzung räumlich verteilter Quantencomputer. Sie gilt daher als Schlüsselfunktion zukünftiger Quantencomputer-Netzwerke, etwa im Rahmen eines „Quanteninternets“. (vgl. \cite{Entanglement Distribution}) Erste praktische Umsetzungen konnten dies bereits demonstrieren: 2017 gelang es ein Qubit über 1.400 km mit dem zuvor bereits erwähnten Satellit Micius erfolgreich zu teleportieren. (vgl. \cite{Ground-to-satellite })
+Im Gegensatz zur Quantenkryptographie, bei der Sicherheit im Vordergrund steht, dient die Quanten-Teleportation der fehlerfreien Übertragung von Quanteninformation. Dies ist eine essenzielle Voraussetzung für die Vernetzung räumlich verteilter Quantencomputer. Sie gilt daher als Schlüsselfunktion zukünftiger Quantencomputer-Netzwerke, etwa im Rahmen eines „Quanteninternets“. (Vgl. \cite{ivezic_entanglement_2022}) Erste praktische Umsetzungen konnten dies bereits demonstrieren: 2017 gelang es ein Qubit über 1.400 km mit dem zuvor bereits erwähnten Satellit Micius erfolgreich zu teleportieren. (Vgl. \cite{ren_ground--satellite_2017})
 
 
 \subsection{Simulation mit IBM Quantencomputer}
@@ -407,7 +496,9 @@ Nach dem Aufbau der Schaltung können über die IBM Quantum Learning Platform Me
 \end{figure}
 
 
-Wie das Histogramm zeigt, werden ausschließlich die Zustände „00“ und „11“ beobachtet - und zwar mit jeweils rund 50\% Wahrscheinlichkeit. Die Zustände „01“ oder „10“, bei denen sich die beiden Qubits unterscheiden würden, treten gar nicht auf. Dies ist ein typisches Verhalten eines Bell-Zustands und belegt, dass die Qubits verschränkt sind. Bemerkenswert ist dabei: Diese Quantenkorrelation bleibt bestehen, selbst wenn die Qubits räumlich voneinander getrennt wären. Die Messergebnisse des einen beeinflussen scheinbar sofort das andere – ein Verhalten, das mit klassischer Physik nicht erklärbar ist. (Vgl. \cite{Bell State ZZ-Measurement}) 
+Wie das Histogramm zeigt, werden ausschließlich die Zustände „00“ und „11“ beobachtet - und zwar mit jeweils rund 50\% Wahrscheinlichkeit. Die Zustände „01“ oder „10“, bei denen sich die beiden Qubits unterscheiden würden, treten gar nicht auf. Dies ist ein typisches Verhalten eines Bell-Zustands und belegt, dass die Qubits verschränkt sind. Bemerkenswert ist dabei: Diese Quantenkorrelation bleibt bestehen, selbst wenn die Qubits räumlich voneinander getrennt wären. Die Messergebnisse des einen beeinflussen scheinbar sofort das andere – ein Verhalten, das mit klassischer Physik nicht erklärbar ist. (Vgl. \cite{noauthor_bell_nodate}) 
 
+\section{Zusammenfassung}
+Dieses Kapitel hat gezeigt, dass Quanteninformation weit über das hinausgeht, was klassische Informatikmodelle leisten können. Durch die Einführung des Qubits als Informationsträger wurde deutlich, wie Superposition und Verschränkung völlig neue Rechenparadigmen ermöglichen. Die behandelten Quanten-Gatter, insbesondere die Pauli- und Hadamard-Gatter, bilden die Grundlage für alle quantenlogischen Operationen und Algorithmen. Mit den Beispielen des Deutsch- und Deutsch-Josza-Algorithmus wurde verdeutlicht, dass Quantencomputer bestimmte Probleme wesentlich effizienter lösen können als klassische Rechner. Außerdem wurde die Quantenverschränkung nicht nur als theoretisches Phänomen, sondern auch als praktisches Werkzeug für Teleportation, Kommunikation und Kryptographie vorgestellt. Die Bell-Zustände illustrierten dabei, wie stark verschränkte Systeme als Basis für sichere Kommunikation und Quantencomputing genutzt werden. Insgesamt bietet dieses Kapitel eine Grundlage, um die Funktionsweise und das Potenzial von Quantencomputern zu verstehen und bereitet darauf vor, in den kommenden Kapiteln tiefer in Hardware, Software und konkrete Anwendungen einzutauchen.
 
 \printbibliography
