@@ -807,56 +807,46 @@ Wir haben ein Beispiel für die Anwendung des Grover-Algorithmus betrachtet. Im 
 
 
 \subsection{Komplexitätsanalyse}
-Der Grover-Algorithmus (1996) führt eine quantengestützte Suche durch, indem er sukzessive die Amplitude des gesuchten Zustands verstärkt. Nach etwa $\sqrt{N}$ Iterationen erhält man das Ziel mit hoher Wahrscheinlichkeit.\\
-Dieser Algorithmus ist informationstheoretisch optimal für die unstrukturierte Suche. Er wird typischerweise durch eine Schleife aus Orakel-Abfrage (markiert das gesuchte Element) und Inversion der Amplituden um den Mittelwert realisiert.\\
-Grover findet Anwendungen als Subroutine in vielen Quantenalgorithmen (z.B. für Optimierung oder Simulation), etwa zur Stichprobensuche oder in hybriden Ansätzen.
+Der Grover‐Algorithmus durchsucht eine unstrukturierte Datenbank der Größe \(N\) mithilfe eines Quantenorakels in \(\Theta(N)\) Orakelaufrufen. Anders ausgedrückt: Während die klassische Vollsuche im Mittel \(\Theta(N)\) Prüfungen erfordert, reduziert Grover die Zahl der notwendigen Prüfungen auf etwa $\frac{\pi}{4}\,\sqrt{N}\ $ das heißt auf die Quadratwurzel der Datenbankgröße.
 
-\subsection{Praxisanwendung und Stand der Technik}
+Aus Sicht der Komplexitätstheorie bezeichnet man die Eingangsgröße mit \(n\), so dass $N = 2^n$.
+Die Laufzeit des Grover‐Algorithmus lässt sich daher durch  
+$O\bigl(2^{n/2}\bigr)$ beschreiben. Obwohl dies gegenüber dem klassischen \(O(2^n)\) einen erheblichen quadratischen Gewinn darstellt, wächst der Algorithmus bei zunehmender Zahl der Suchbits weiterhin exponentiell.
 
-Grover’s Algorithmus wurde bereits auf ersten Quantenrechnern experimentell getestet. So implementierte IBM mit einem 127-Qubit-Supersystem eine 3-Qubit-Grover-Schaltung und untersuchte deren Leistung.\\
-Der praktische Einsatz ist derzeit wegen begrenzter Qubit-Zahlen, niedriger Kohärenzzeiten und Fehlerraten noch eingeschränkt. Meist dienen kleine Grover-Experimente als Benchmark für Hardware.\\
-Zukünftige Anwendungen könnten in Bereichen wie Datenbankrecherche, Kryptanalyse (Brute-Force-Angriffe) oder NISQ-nahe Optimierungsaufgaben liegen; der Fortschritt in Hardware-Fehlerkorrektur wird entscheidend sein.
+Die untere Schranke aus der Arbeit von Bennett–Bernstein–Brassard–Vazirani (BBBV96 referenz) zeigt, dass kein Quantenalgorithmus im Black‐Box‐Modell mit weniger als  
+\[
+\Omega(\sqrt{N})
+\]  
+Orakelaufrufen auskommen kann. Damit ist der Grover‐Algorithmus in diesem Modell asymptotisch optimal: Ohne zusätzliche Struktur in der Datenbank lässt sich kein suprakquadratischer (etwa exponentieller) Vorteil erzielen.  
 
-\section{Quantumoptimierung}
-Quantum-Optimierungsalgorithmen zielen darauf ab, kombinatorische und numerische Optimierungsprobleme schneller zu lösen oder mindestens gute Approximationslösungen zu finden. Typische Ansätze sind der Quanten-Aiabatischer Algorithmus (Quantenannealing) für NP-Probleme, hybride Algorithmen wie VQE und QAOA für Optimierung mit Quanten-Schaltkreisen, sowie Algorithmen zur Lösung linearer Gleichungssysteme (etwa HHL), die in Optimierungs- und Datenanalyseanwendungen münden.
 
-\subsection{Adiabatische Optimierung}
+\section{Klassifikation von Algorithmen nach Zeitkomplexität}
 
-Der Quanten-adiabatische Algorithmus (Farhi et al., 2000) übersetzt kombinatorische Probleme wie 3-SAT in die Suche nach dem Grundzustand eines zeitabhängigen Hamiltonians.\\
-Man beginnt im Grundzustand eines einfachen Anfangs-Hamiltonians und ändert langsam zum Zielfall, dessen Grundzustand die Lösung enthält. Nach dem adiabatischen Theorem landet man bei entsprechender Langsamkeit im gewünschten Zustand.\\
-Die benötigte Laufzeit hängt vom Energieabstand (Gap) zwischen dem Grund- und dem ersten angeregten Zustand ab. In allgemeinen Fällen ist dieser Abstand schwer abzuschätzen, weshalb eine polynomielle Laufzeit nur für spezielle Problemklassen nachgewiesen wurde.\\
+Im Rahmen der theoretischen Informatik werden Entscheidungsprobleme nach der zur Lösung benötigten Zeit in verschiedene Klassen eingeordnet. Dabei interessiert insbesondere, welche Probleme auf einem klassischen bzw. quantenmechanischen Modell in polynomieller Zeit lösbar sind, und wie sich diese Klassen zueinander verhalten.\\
 
-\subsection{Variationaler Quanten-Eigenlöser (VQE)}
+Zunächst versteht man unter der Klasse \(\mathbf{P}\) jene Probleme, für die es deterministische Algorithmen gibt, die auf einem klassischen Computer in polynomieller Zeit laufen. Formal heißt das: Ein Problem liegt in \(\mathbf{P}\), wenn es einen Algorithmus gibt, dessen Laufzeit durch einen Polynomausdruck \(O(n^k)\) für eine feste Konstante \(k\) beschränkt ist, wobei \(n\) die Eingabegröße bezeichnet. Probleme aus \(\mathbf{P}\) gelten als praktisch effizient lösbar, sofern der Exponent \(k\) nicht zu groß wird.\\
 
-Der VQE-Algorithmus (Peruzzo et al., 2014) nutzt das Variationsprinzip auf Quantencomputern: Ein parametrisiertes Quantenschaltkreis $\ket{\psi(\vec\theta)}$ wird auf einen Hamiltonian angewandt, dessen Erwartungswert energetisch bewertet wird. Ein klassischer Optimierer passt die Parameter $\vec\theta$ an, um die Energie zu minimieren.\\
-VQE eignet sich insbesondere zur Berechnung von Grundzustandsenergien in Quantenchemie und Festkörperphysik. Dieser hybride Ansatz kann komplexe Vielteilchensysteme in polynomialer Zeit simulieren und ist wegen geringer Quantenressourcen auch für Noisy Intermediate-Scale Quantum (NISQ) Geräte vielversprechend.\\
-Trotz der theoretisch guten Skalierung müssen in der Praxis Laufzeit und Güte (sogenannte Pre-Faktoren) sorgfältig abgeschätzt werden; Rauschresistenz ist ein weiterer Vorteil von VQE.
+Die Klasse \(\mathbf{NP}\) (nondeterministic polynomial time) umfasst diejenigen Entscheidungsprobleme, bei denen eine etwaige Lösung auf einem klassischen Computer in polynomieller Zeit verifizierbar ist, auch wenn ein deterministischer polynomieller Lösungsalgorithmus bislang unbekannt ist. Ein typisches Beispiel ist das Teilmengen-Summen-Problem: Legt man dem Algorithmus als „Zertifikat“ eine vermutete Teilmenge vor, so kann man in \(O(n)\) bzw. \(O(n\log n)\) Zeit nachprüfen, ob die Summe den Zielwert ergibt.\\
 
-\subsection{Quanten-Algorithmus zur näherungsweisen Optimierung (QAOA)}
+Innerhalb von \(\mathbf{NP}\) existieren die \(\mathbf{NP}\)-\emph{vollständigen} Probleme (\(\mathbf{NP}\)\emph{-complete}), die zu den schwierigsten \(\mathbf{NP}\)-Problemen zählen. Ein Problem \(L\) ist genau dann \(\mathbf{NP}\)-vollständig, wenn \(L\in\mathbf{NP}\) und jedes andere Problem aus \(\mathbf{NP}\) in polynomieller Zeit auf \(L\) reduziert werden kann. Die berühmte \textsc{Clique}-Frage oder das \textsc{3-SAT}-Problem sind klassische Vertreter dieser Klasse. Gelingt es, eines dieser Probleme in polynomieller Zeit zu lösen, so hätte man damit einen polynomiellen Algorithmus für alle \(\mathbf{NP}\)-Probleme.\\
 
-QAOA (Farhi et al., 2014) ist ein hybrider Ansatz zur kombinatorischen Optimierung: Er wechselt zwischen „Kosten“- und „Mixer“-Hamiltonians mit tunbaren Parametern in $p$ Schritten.\\
-Durch Abstimmung dieser Parameter mithilfe eines klassischen Optimierers können gute Näherungslösungen für Probleme wie MaxCut oder andere NP-harte Optimierungsaufgaben gefunden werden. Die Qualität der Lösung verbessert sich mit zunehmendem $p$.\\
-Die Schaltkreustiefe wächst linear mit $p$ und der Problemgröße; wenn $p$ fest ist, kann man den Algorithmus effizient klassisch vorprozessieren. Die Frage, ob QAOA für bestimmte Probleme gegenüber klassischen Algorithmen Vorteile bietet, wird intensiv erforscht.\\
+Die Klasse der \(\mathbf{NP}\)-\emph{harten} Probleme (\(\mathbf{NP}\)\emph{-hard}) enthält solche Probleme, auf die sich beliebige \(\mathbf{NP}\)-Probleme in polynomieller Zeit reduzieren lassen. Im Gegensatz zu \(\mathbf{NP}\)-vollständigen Problemen müssen \(\mathbf{NP}\)-harte Probleme selbst nicht in \(\mathbf{NP}\) liegen und können etwa gar nicht entscheidbar sein oder nur in exponentieller Zeit verifizierbar sein.\\
 
-\subsection{Quantum Data Fitting: Lineare Gleichungssysteme lösen}
+Wenn man zusätzlich zur deterministischen Rechenmaschine Zufallsbits zulässt und die Wahrscheinlichkeit, die richtige Entscheidung zu treffen, für positive und negative Instanzen jeweils oberhalb eines festen Schwellwerts (typischerweise \(>1/2\)) liegt, definiert man die Klasse \(\mathbf{BPP}\) (bounded‑error probabilistic polynomial time). Probleme in \(\mathbf{BPP}\) lassen sich mit Monte‑Carlo‑Algorithmen in polynomieller Zeit mit beliebig kleiner Fehlerrate lösen.\\
 
-Quantum Data Fitting bezieht sich darauf, lineare Regressions- oder Ausgleichsaufgaben mithilfe von Quantenalgorithmen durchzuführen. Kern ist meist der HHL-Algorithmus (Harrow, Hassidim, Lloyd 2009), der lineare Gleichungen $Ax=b$ in Logarithmus-Zeit löst.\\
-Beispielsweise kann man Parameter für ein lineares Modell auf einem großen Datensatz bestimmen oder die Qualität einer Kleinste-Quadrate-Anpassung untersuchen.\\
-Ein neuer Quantenalgorithmus berechnet effizient die Güte einer linearen Regression über ein exponentiell großes Datenset, indem er das lineare Gleichungssystem quantenmechanisch löst.
- 
+Der quantenmechanische Gegenpart zu \(\mathbf{BPP}\) ist die Klasse \(\mathbf{BQP}\) (bounded‑error quantum polynomial time). Hierbei kann ein Quantenalgorithmus für ein Problem in polynomieller Zeit auf einem Quantencomputer mit hoher Wahrscheinlichkeit das korrekte Ergebnis liefern. Ein bekanntes Beispiel ist die Ganzzahlfaktorzerlegung großer Zahlen mittels Shor’s Algorithmus, der das hierfür klassische \(\mathbf{NP}\)-Problem in polynomieller Zeit auf einem Quantencomputer löst.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{images/basic-algorithms/problem-classes.png}
+  \caption{Übersicht der wichtigsten Zeitkomplexitätsklassen: \(\mathbf{P}\subseteq \mathbf{BQP}\subseteq \mathbf{NP}\subseteq \mathbf{NP}\text{-hard}\) und die Lage von \(\mathbf{NP}\)-complete Problemen innerhalb von \(\mathbf{NP}\).}
+  \label{fig:problem_classes}
+\end{figure}
+
+Abschließend lässt sich festhalten, dass die Frage, ob \(\mathbf{P}=\mathbf{NP}\) gilt, zu den bedeutendsten offenen Problemen der Informatik zählt. Auch der Vergleich zwischen klassischen und quantenmechanischen Modellen, speziell die Vermutung \(\mathbf{P}\subsetneq \mathbf{BQP}\subseteq \mathbf{NP}\), prägt die Forschung im Bereich effizienter Algorithmen maßgeblich.
 
 \section{Quantum-safe Algorithmen in Kryptographie}
 \subsection{Aktuelle Stand der Kryptographie}
 \subsection{Vektoren in der asymmetrischen Verschlüsselung}
 
-\section{Grover-Algorithmus für Fine-tuning von LLM}
-\subsection{Idee: Transformer Architektur}
-Transformer-Architekturen (Vaswani et al., 2017) bilden die Grundlage moderner großer Sprachmodelle (LLMs). Sie verwenden Self-Attention-Mechanismen, um in einem Eingabesequenz-Kontext relevante Zusammenhänge zu gewichten.\\
-Ein Nachteil ist die quadratische Rechenkomplexität in der Sequenzlänge: Standard-Self-Attention erfordert $O(n^2)$ Operationen für eine Sequenz der Länge $n$. Das limitiert die Effizienz bei langen Eingaben.\\
-Dieses Kapitel bietet einen Überblick über Transformer und Attention-Blöcke und ihre Rolle in LLMs, um die Ausgangsbasis für quantenbeschleunigte Ansätze zu erklären.
-
-\subsection{Berechnung der Attention}
-Gao et al. (2023) zeigten kürzlich, wie man Grover’s Suche nutzen kann, um die Attention-Matrix in Transformers effizienter zu berechnen. Sie betrachten insbesondere spärliche Attention-Matrizen und erreichen einen polynomialen Quantenvorteil gegenüber klassischen Methoden.\\
-Ihr Algorithmus berechnet die relativ kleinen (sparse) Einträge der Attention-Matrix schneller, indem er Suche statt vollständiger Matrixmultiplikation verwendet.\\
-Solche Quanten-Transformer sind ein aktives Forschungsthema: Sie könnten zukünftig helfen, die Rechenzeit von LLMs zu reduzieren, indem sie die Aufmerksamkeitsschichten quantenbeschleunigt umsetzen.
 \printbibliography
