@@ -124,7 +124,6 @@ Diese enorme Zustandsvielfalt ist nicht einfach direkt auslesbar – bei einer M
 
 \section{Quanten-Gatter}\label{sec:quanten_gatter}
 
-
 \subsection{Ein-Qubit-Gatter}
 Ein klassisches \emph{Ein-Bit-Gatter} nimmt einen einzelnen Bitwert als Eingabe und liefert einen Bitwert als Ausgabe. Sein Verhalten lässt sich durch eine Wahrheitstabelle angeben – etwa flippt das NOT-Gatter Eingaben $0 \rightarrow 1$ und $1 \rightarrow 0$. Abgesehen von der Identität ist NOT das einzige nicht-triviale Ein-Bit-Logikgatter der klassischen Welt. (Vgl. \cite[S.17f.]{nielsen_quantum_2010}) Ein \emph{Ein-Qubit-Gatter} transformiert dagegen den Zustand eines einzelnen Qubits. Strukturell handelt es sich um eine lineare, unitäre Abbildung im zweidimensionalen Zustandsraum. Konkret wird ein Ein-Qubit-Gatter durch eine $2\times 2$-Unitärmatrix $U$ beschrieben, die den Zustandsvektor des Qubits auf einen neuen Zustand abbildet. (Vgl. ebd., S. 174)
 
@@ -211,21 +210,14 @@ Da $H$ involutorisch ist ($H^2=I$), kehrt eine zweite Hadamard-Operation den Pro
 \\
 Die Fähigkeit, Superpositionen mit nur einem Gate herzustellen, macht $H$ unverzichtbar für viele Quantenalgorithmen.  Im Deutsch-Jozsa-Algorithmus oder in Grovers Suche präpariert $H^{\otimes n}$ aus $|00\ldots0\rangle$ eine gleichgewichtige Überlagerung aller $2^{n}$ Eingabewerte und ermöglicht so Quantenparallelismus (Vgl. ebd., S. 250ff.).  Ohne ein solches Gate gäbe es keine Interferenzeffekte und folglich keinen Geschwindigkeitsvorteil gegenüber klassischer Berechnung.
 
-\subsection{Phase-Shift-Gatter}\label{subsubsec:phase_shift_gatter}
-
-
 \subsection{Mehr-Qubit-Gatter}
 
-
-\subsection{SWAP}
-
-
-
-\subsection{CNOT}
+\subsubsection{CNOT}
+%Das Controlled-NOT-Gatter (CNOT) ist ein fundamentales zweiqubit-Quantengatter und wird häufig auch als Controlled-X, kontrollierter Bitflip oder Feynman-Gatter bezeichnet. Es wirkt auf zwei Qubits gleichzeitig: das Steuerqubit bestimmt, was mit einem Zielqubit geschieht. Dabei operiert das CNOT-Gatter im zweidimensionalen Zustandsraum von zwei Qubits (Hilbertraum $\mathbb{C}^2 \otimes \mathbb{C}^2$) und lässt sich formal definieren durch seine Wirkung auf die Rechenbasis ${|00⟩, |01⟩, |10⟩, |11⟩}$. Wenn das Steuerqubit den Wert $|1⟩$ hat, wendet CNOT eine NOT-Operation (Pauli-$X$) auf das Zielqubit an; hat das Steuerqubit den Wert $|0⟩$, bleibt das Zielqubit unverändert
 
 
-\subsection{CU-Gatter}
-? Notwendig ?
+
+\subsubsection{SWAP}
 
 
 
