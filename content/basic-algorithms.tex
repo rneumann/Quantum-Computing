@@ -849,4 +849,17 @@ Abschließend lässt sich festhalten, dass die Frage, ob \(\mathbf{P}=\mathbf{NP
 \subsection{Aktuelle Stand der Kryptographie}
 \subsection{Vektoren in der asymmetrischen Verschlüsselung}
 
+\section{Grover-Algorithmus für Fine-tuning von LLM}
+\subsection{Idee: Transformer Architektur}
+Transformer-Architekturen (Vaswani et al., 2017) bilden die Grundlage moderner großer Sprachmodelle (LLMs). Sie verwenden Self-Attention-Mechanismen, um in einem Eingabesequenz-Kontext relevante Zusammenhänge zu gewichten.\\
+Ein Nachteil ist die quadratische Rechenkomplexität in der Sequenzlänge: Standard-Self-Attention erfordert $O(n^2)$ Operationen für eine Sequenz der Länge $n$. Das limitiert die Effizienz bei langen Eingaben.\\
+Dieses Kapitel bietet einen Überblick über Transformer und Attention-Blöcke und ihre Rolle in LLMs, um die Ausgangsbasis für quantenbeschleunigte Ansätze zu erklären.
+
+\subsection{Berechnung der Attention}
+Gao et al. (2023) zeigten kürzlich, wie man Grover’s Suche nutzen kann, um die Attention-Matrix in Transformers effizienter zu berechnen. Sie betrachten insbesondere spärliche Attention-Matrizen und erreichen einen polynomialen Quantenvorteil gegenüber klassischen Methoden.\\
+Ihr Algorithmus berechnet die relativ kleinen (sparse) Einträge der Attention-Matrix schneller, indem er Suche statt vollständiger Matrixmultiplikation verwendet.\\
+Solche Quanten-Transformer sind ein aktives Forschungsthema: Sie könnten zukünftig helfen, die Rechenzeit von LLMs zu reduzieren, indem sie die Aufmerksamkeitsschichten quantenbeschleunigt umsetzen.
+
+
+
 \printbibliography

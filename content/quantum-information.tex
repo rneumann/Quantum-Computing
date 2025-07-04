@@ -15,88 +15,114 @@ Ein \emph{Bit} ist die kleinste Informationseinheit in klassischen Computern. Es
 \[
 \text{Bit}\,\in\{0,1\}.
 \]
-Physikalisch bedeutet das zum Beispiel: Strom an = 1, Strom aus = 0.
+Physikalisch bedeutet das zum Beispiel: Strom an = 1, Strom aus = 0. Durch Schaltkreise, die verschiedene logische Operatoren abbilden, können so Berechnungen durchgeführt werden oder durch spezielle Kodierungen (zum Beispiel Ascii) Daten repräsentiert werden.
 
-Ein \emph{Qubit} ist das Gegenstück im \emph{Quantencomputer}. Anders als ein Bit kann ein Qubit beide Zustände „gleichzeitig“ innehaben – man spricht von \emph{Superposition}. Mathematisch schreiben wir:
-\[
-\ket{\psi} = \alpha\,\ket{0} \;+\; \beta\,\ket{1}, \quad \alpha, \beta \in \mathbb{C},
-\]
-wobei \(\alpha\) und \(\beta\) so gewählt werden, dass
-\[
+Ein \emph{Qubit} ist das Gegenstück im \emph{Quantencomputer}. Zunächst wird ein Qubit hier als abstraktes mathematisches Objekt betrachtet. Im späteren Teil dieses Buches wird ein Qubit durchaus auch als konkretes physikalisches Objekt betrachtet, an dieser Stelle soll aber das abstrakte Konzept beschrieben werden, welches auf alle konkreten Umsetzungen zutrifft. 
+
+Wie ein klassisches Bit hat auch auch ein Qubit zwei mögliche Zustände: $\ket{0}$ und $\ket{1}$. Diese Zustände können analog zu $0$ und $1$ in einem klassischen Bit gesehen werden. Die Notation, die zur Beschreibung verwendet wird, heißt \emph{Dirac-Notation} (vgl. Kabitel \ref{subsec:dirac}). Der entscheidende Unterschied zu einem konventionellen Bit ist, dass ein Qubit auch andere Zustände als $\ket{0}$ und $\ket{1}$ annehmen kann. Konkret kann eine lineare Kombination der beiden Zustände, eine sogenannte Superposition (vgl. Kapitel irgendwas in physikalische Grundlagen), einnehmen kann. Dies wird so beschrieben: 
+\begin{equation}
+    \ket{\psi} = \alpha\,\ket{0} \;+\; \beta\,\ket{1}, \quad \alpha, \beta \in \mathbb{C},
+\end{equation}
+
+wobei für \(\alpha\) und \(\beta\) gilt, dass
+
+\begin{equation}
+\label{equ:propa}
 |\alpha|^2 + |\beta|^2 = 1.
-\]
-Die Werte \(|\alpha|^2\) und \(|\beta|^2\) sind die Wahrscheinlichkeiten, das Qubit bei einer Messung in Zustand \(\ket{0}\) bzw.\ \(\ket{1}\) zu finden.
+\end{equation}
 
-\subsubsection*{Anschaulich als Vektor}
-Man kann sich ein Qubit auch als Pfeil in einem Kreis vorstellen. Der Pfeil zeigt auf einen Punkt zwischen „0“ und „1“:
+Die Werte \(|\alpha|^2\) und \(|\beta|^2\) sind die Wahrscheinlichkeiten, das Qubit bei einer Messung in Zustand \(\ket{0}\) bzw.\ \(\ket{1}\) zu finden. In dieser Tatsache erklärt sich auch Formel \ref{equ:propa}: Die Wahrscheinlichkeit, dass das Qubit bei einer Messung einen der beiden Zustände annimmt ist immer 1. 
 
-\begin{figure}[H]
-  \centering
-  \begin{tikzpicture}[scale=2]
-    % Achsen
-    \draw[->] (0,0) -- (1.2,0) node[right]{$\ket{0}$};
-    \draw[->] (0,0) -- (0,1.2) node[above]{$\ket{1}$};
-    % Qubit-Pfeil
-    \draw[->, thick, blue] (0,0) -- (0.8,0.6)
-      node[above right]{$\ket{\psi}$};
-    % Hilfslinien
-    \draw[dashed, gray] (0.8,0) -- (0.8,0.6);
-    \draw[dashed, gray] (0,0.6) -- (0.8,0.6);
-  \end{tikzpicture}
-  \caption{Qubit als Pfeil im Einheitskreis}
-\end{figure}
+Als Beispiel soll hier folgender Qubit Zustand dienen, welcher im Verlauf des Buches häufiger als Beispiel verwendet wird:
+
+\begin{equation}
+\label{equ:basicZustand}
+    \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}
+\end{equation}
+
+Um zu überprüfen, ob dies ein gültiger Qubit Zustand ist, werden die Werte in Formel \ref{equ:propa} eingesetzt:
+
+\begin{equation}
+    |\frac{1}{\sqrt{2}}|^2 + |\frac{1}{\sqrt{2}}|^2 = 0.5 + 0.5 = 1
+\end{equation}
+
+Damit ist festgestellt, dass es sich um einen gültigen Qubit Zustand handelt und die Wahrscheinlichkeit einen der beiden Zustände zu messen jeweils $0.5$ beträgt.
+
+Wie diese Beschreibung zeigt, kann ein einzelnes Qubit zunächst auch nur zwei Zustände repräsentieren und ist damit als einzelnes nicht mächtiger als ein einzelnes Bit. Die Stärke von Qubits wird dann sichtbar, wenn mehrere kombiniert werden (siehe Kapitel \ref{subsec:verschraenkungQubits}).
 
 \subsection{Bloch-Kugel}\label{subsec:blockkugel}
-Ein Qubit-Zustand lässt sich auch dreidimensional darstellen: als Punkt auf einer Kugel, der \emph{Bloch-Kugel}. Jeder Punkt auf der Oberfläche steht für eine bestimmte Superposition.
+Ein Qubit-Zustand lässt sich auch dreidimensional in einer anschaulichen Art und Weise darstellen: Als Punkt auf der Einheitssphäre $ \mathbb{R}^ 3 $. Dabei wird von einer \emph{Bloch-Kugel} gesprochen. Jeder Zustand
+kann durch zwei Winkel $\phi$ und $\theta$ beschrieben werden:
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{images/quantum-information/bloch-sphere_quanteninformationen.png}
+  \includegraphics[width=0.7\textwidth]{images/quantum-information/bloch.pdf}
   \caption{Bloch-Kugel eines Qubits}\label{fig:bloch-sphere}
 \end{figure}
 
-Dabei gelten:
-\begin{itemize}
-  \item Nordpol \(\equiv \ket{0}\)
-  \item Südpol \(\equiv \ket{1}\)
-  \item Alle anderen Punkte \(\equiv\) Mischzustände aus \(\ket{0}\) und \(\ket{1}\).
-\end{itemize}
+Der Zustand des Qubits kann folgendermaßen berechnet werden:
 
-\subsection{Dirac-Notation kurz erklärt}
-In der Quantenmechanik wird die \emph{Dirac-Notation} verwendet:
-\begin{itemize}
-  \item \(\ket{\psi}\) („Ket“) steht für einen Zustand.
-  \item \(\bra{\psi}\) („Bra“) ist die zugehörige Zeile (das „Gegenstück“).
-  \item \(\braket{\phi|\psi}\) beschreibt den Überlapp („Skalarprodukt“) zweier Zustände.
-\end{itemize}
+\begin{equation}
+  \ket{\psi} = \cos\frac{\theta}{2} \ket{0} + e^{i\phi} \sin\frac{\theta}{2} \ket{1}
+\end{equation}
 
-Beispiele für wichtige Operatoren sind die \emph{Pauli-Matrizen}, die auf ein Qubit wirken:
-\[
-X=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
-Y=\begin{pmatrix}0&-i\\i&0\end{pmatrix},\quad
-Z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
-\]
+Ein Qubit kann also eine unendliche Anzahl an Zuständen annehmen.\footnote{Genaugenommen ist die Anzahl sogar \emph{überabzählbar}, also in einer höheren Unendlichkeisstufe als die natürlichen Zahlen.} Das ließe die die Vermutung zu, dass ein Qubit auch unendlich viele Informationen speichern kann. Dies ist jedoch nicht der Fall, weil beim Messen des Zustandes die Superposition zusammenfällt und das Qubit dann entweder den Wert $\ket{0}$ oder $\ket{1}$ hat.
 
-Diese Schreibweise hilft, Rechenregeln in der Quantenmechanik übersichtlich zu formulieren
 
 \subsection{Codierung von Informationen}
 \subsubsection{Verschränkung von Qubits}
+
+Die eigentliche Stärke von Quantencomputern zeigt sich erst bei der Kombination mehrerer Qubits. Während ein einzelnes Qubit sich in einer Überlagerung der Zustände \(0\) und \(1\) befinden kann, erweitert sich der gesamte Zustandsraum beim Hinzufügen weiterer Qubits nicht nur additiv, sondern \emph{exponentiell}.
+
+In klassischen Computern führen \(n\) Bits zu \(2^n\) möglichen Kombinationen von festen Zuständen, wobei sich zu jedem Zeitpunkt aber immer nur \emph{eine} dieser Kombinationen im Arbeitsspeicher befindet. Ein klassisches 3-Bit-System kann zum Beispiel genau einen dieser Zustände darstellen: \(000\), \(001\), ..., \(111\).
+
+Ein Quantensystem aus \(n\) Qubits hingegen befindet sich in einer Superposition all dieser Zustände gleichzeitig. Es existieren also \(2^n\) sogenannte \emph{Basiszustände}, die gleichzeitig in der Beschreibung des Gesamtzustands mit bestimmten Gewichtungen (Wahrscheinlichkeitsamplituden) vorkommen. Der Gesamtzustand eines Qubit-Systems mit \(n\) Qubits kann somit als Superposition aller \(2^n\) möglichen klassischen Kombinationen dargestellt werden.
+
+\[
+\text{Zustandsraumdimension} = 2^n
+\]
+
+Zur Veranschaulichung:
+
+\begin{itemize}
+  \item Ein einzelnes Qubit: 2 Basiszustände (\(0\), \(1\))
+  \item Zwei Qubits: 4 Basiszustände (\(00\), \(01\), \(10\), \(11\))
+  \item Drei Qubits: 8 Basiszustände (\(000\), \(001\), ..., \(111\))
+\end{itemize}
+
+Jeder dieser Zustände kann gleichzeitig im Gesamtzustand des Systems enthalten sein – mit je einer komplexen Amplitude. Dies bedeutet nicht, dass der Quantencomputer alle Lösungen gleichzeitig kennt, aber dass er während der Berechnung in gewisser Weise mit vielen Möglichkeiten \emph{parallel} arbeiten kann. Dies ist ein wesentlicher Grund, warum manche Algorithmen auf Quantencomputern eine exponentielle Beschleunigung ermöglichen.
+
+Je mehr Qubits man miteinander verschaltet, desto größer wird also der Zustandsraum. Schon mit wenigen Qubits lassen sich gewaltige Mengen an Zuständen darstellen:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Anzahl Qubits} & \textbf{Mögliche Basiszustände} \\
+\hline
+1 & 2 \\
+2 & 4 \\
+3 & 8 \\
+5 & 32 \\
+10 & 1\,024 \\
+20 & 1\,048\,576 \\
+50 & \(\approx 1{,}13 \times 10^{15}\) \\
+\hline
+\end{tabular}
+\caption{Exponentielles Wachstum der Zustandsanzahl mit zunehmender Qubit-Zahl}
+\end{table}
+
+Diese enorme Zustandsvielfalt ist nicht einfach direkt auslesbar – bei einer Messung kollabiert das Qubit-System zu genau einem dieser \(2^n\) Basiszustände. Dennoch erlaubt die gleichzeitige Verarbeitung dieser vielen Möglichkeiten innerhalb eines Algorithmus ein grundsätzlich neues Rechenparadigma.
+
+\label{subsec:verschraenkungQubits}
+
 \subsubsection{Fehlerkorrektur}
 \subsubsection{Dense Coding}
-%Die fundamentale Funktionsweise klassischer Computer basiert auf einzelnen Bits, welche jeweils den Zustand $0$ (kein Strom) oder $1$ (Strom) annehmen können. Für Berechnungen werden dann Schaltkreise mit Logikgattern verwendet, die zu einer Ausgabe führen. 
 
-%Im Kontext von Quantencomputing ist die kleinste Informationseinheit ein Quantenbit (Qubit). Ein Qubit ist in einer Superposition und kann somit mehr Zustände Annehmen als ein klassisches Bit. %
 
 
 
 \section{Quanten-Gatter}\label{sec:quanten_gatter}
-Ein Quanten‑Gatter ist eine unitäre Abbildung $U$ auf dem Hilbertraum $\mathcal H \cong (\mathbb C^2)^{\otimes n}$, die - im Gegensatz zu klassischen logischen Operationen - reversibel ist. Da jeder Algorithmus schlussendlich auf eine Folge solcher Unitaries zerlegt werden kann, ist die Auswahl eines
-\emph{universellen} Gattersatzes von zentraler Bedeutung.
-Aktuelle Experimente realisieren Tor‑Fidelitäten oberhalb von 99{.}999\%, sodass die Schwelle für fehlerkorrigierte Quantenrechnung teilweise bereits überschritten wird.\\
-
-\\
-(Vgl. \cite{PhysRevApplied.23.034052}) \\
-
 
 \subsection{Ein-Qubit-Gatter}
 Ein klassisches \emph{Ein-Bit-Gatter} nimmt einen einzelnen Bitwert als Eingabe und liefert einen Bitwert als Ausgabe. Sein Verhalten lässt sich durch eine Wahrheitstabelle angeben – etwa flippt das NOT-Gatter Eingaben $0 \rightarrow 1$ und $1 \rightarrow 0$. Abgesehen von der Identität ist NOT das einzige nicht-triviale Ein-Bit-Logikgatter der klassischen Welt. (Vgl. \cite[S.17f.]{nielsen_quantum_2010}) Ein \emph{Ein-Qubit-Gatter} transformiert dagegen den Zustand eines einzelnen Qubits. Strukturell handelt es sich um eine lineare, unitäre Abbildung im zweidimensionalen Zustandsraum. Konkret wird ein Ein-Qubit-Gatter durch eine $2\times 2$-Unitärmatrix $U$ beschrieben, die den Zustandsvektor des Qubits auf einen neuen Zustand abbildet. (Vgl. ebd., S. 174)
@@ -108,11 +134,30 @@ c & d
 \end{pmatrix}
 \end{equation}
 \\
-Die Unitarität ($U^{\dagger}U = I$) stellt sicher, dass die Transformation physikalisch zulässig ist und rückgängig gemacht werden kann. Im Gegensatz zum klassischen Fall – mit nur einer nicht-trivialen Ein-Bit-Operation – existiert eine unendliche Vielfalt möglicher Ein-Qubit-Gatter, da jede $2\times 2$-unitäre Matrix ein gültiges Quantengatter repräsentiert. (Vgl. ebd.)
+Die Unitarität ($U^{\dagger}U = I$) stellt sicher, dass die Transformation physikalisch zulässig ist und rückgängig gemacht werden kann. Im Gegensatz zum klassischen Fall – mit nur einer nicht-trivialen Ein-Bit-Operation – existiert eine unendliche Vielfalt möglicher Ein-Qubit-Gatter, da jede $2\times 2$-unitäre Matrix ein gültiges Quantengatter repräsentiert. (Vgl. ebd.)\\
+\\
+In den folgenden Unterkapiteln \ref{subsec:pauli_gatter}, \ref{subsubsec:hadamard_gatter}, \ref{subsubsec:phase_shift_gatter} werden die in der folgenden Abbildung dargestellten Ein-Qubit-Gatter näher erläutert:
 
 
+%https://www.tfp.kit.edu/downloads/lehre_2013_ss/aaa_HSS13_Grundlagen.pdf, Folie 13 --> Nur inspiriert, denke, dass kein Zitat notwendig ist
 
-\subsubsection{Pauli-Gatter $X$, $Y$, $Z$}\label{sec:pauli_gatter}
+\newcommand{\gatterbox}[1]{%
+  \tikz[baseline=-0.5ex]{
+    \draw[-] (-1,0) -- (-0.3,0);
+    \draw[thick] (-0.3,-0.4) rectangle (0.3,0.4);
+    \node at (0,0) {\( #1 \)};
+    \draw[-] (0.3,0) -- (1,0);
+  }%
+}
+\[
+\begin{array}{c@{\hspace{1cm}}c@{\hspace{1cm}}c}
+\textbf{Pauli-X/Y/Z-Gatter} & \textbf{Hadamard-Gatter} & \textbf{Phase-Shift-Gatter} \\
+\gatterbox{X} & \gatterbox{H} & \gatterbox{R_\Theta}
+\end{array}
+\]
+
+
+\subsection{Pauli-Gatter $X$, $Y$, $Z$}\label{subsec:pauli_gatter}
 
 Die Pauli-Matrizen wurden erstmals 1927 von dem Physiker Wolfgang Pauli eingeführt, um den neu entdeckten Elektronenspin im Rahmen der Quantenmechanik zu beschreiben. Elektronen besitzen einen intrinsischen Drehimpuls (Spin ½), der keine klassische Entsprechung hat. (Vgl. \cite[S.312]{wekesa_sirengo_mathematical_2024}) Pauli entwickelte drei $2\times 2$-Matrizen (oft $\sigma_x, \sigma_y, \sigma_z$ bezeichnet), um die Spin-$x$-, Spin-$y$- und Spin-$z$-Operatoren des Elektrons darzustellen. Dies geschah im Kontext der Erklärung des anomalous Zeeman-Effekts, bei dem Spektrallinien in Magnetfeldern aufgespalten werden – ein Phänomen, das mit dem zusätzlichen Freiheitsgrad des Elektronenspins erklärt werden konnte. (Vgl. ebd.)\\
 \\
@@ -127,7 +172,7 @@ Die Pauli-Gatter $X$, $Y$, $Z$ sind die meistverwendeten Ein-Qubit-Gatter. In de
 \end{equation}
 Jede Matrix ist dabei \emph{unitär}: Multipliziert man sie mit ihrer konjugiert-transponierten Version, erhält man wieder die Einheitsmatrix. (Vgl. \cite[S.71]{nielsen_quantum_2010}) Außerdem ist sie \emph{hermitesch}: Die Matrix ist ihr eigenes „Spiegelbild“. (Vgl. ebd., S.78) Beides zusammen heißt, wenn man ein Pauli-Gatter zweimal anwendet, steht das Qubit wieder da, wo es zuvor war ($U^2=I$). Es ergeben sich dabei ausschließlich die Eigenwerte $+1$ oder $-1$. Damit besitzt jeder Pauli-Operator genau zwei orthogonale Eigenzustände, was ihn zum einfachsten nicht-trivialen Messoperator macht. Weiterhin sind die Pauli-Matrizen spurlos, d.h. ihre Spur (die Summe der Diagonalelemente) ist Null. (Vgl. ebd., S.76)\\
 \\
-Jeder Qubit-Zustand lässt sich wie in Kapitel \pageref{subsec:blockkugel} als Punkt auf einer Einheitskugel darstellen. In diesem Bild wirken die Pauli-Gatter wie Halbumdrehungen um die drei Raumachsen: $X$ rotiert den Bloch-Vektor um $180^{\circ}$ um die $x$-Achse, $Y$ um die $y$-Achse und $Z$ um die $z$-Achse. (Vgl. \cite[S.215ff.]{rieffel_quantum_2011}) Die Eigenzustände von $Z$ liegen daher an Nord- und Südpol, während die Eigenzustände von $X$ und $Y$ entlang des Äquators auf den $x$- bzw.\ $y$-Achsen sitzen.\\
+Jeder Qubit-Zustand lässt sich wie in Kapitel \ref{subsec:blockkugel} als Punkt auf einer Einheitskugel darstellen. In diesem Bild wirken die Pauli-Gatter wie Halbumdrehungen um die drei Raumachsen: $X$ rotiert den Bloch-Vektor um $180^{\circ}$ um die $x$-Achse, $Y$ um die $y$-Achse und $Z$ um die $z$-Achse. (Vgl. \cite[S.215ff.]{rieffel_quantum_2011}) Die Eigenzustände von $Z$ liegen daher an Nord- und Südpol, während die Eigenzustände von $X$ und $Y$ entlang des Äquators auf den $x$- bzw.\ $y$-Achsen sitzen.\\
 \\
 Die Wirkung der Ein-Quibit-Gatter Pauli-$X$-, $Y$-, $Z$-Gatter wird folgendermaßen beschrieben:
 
@@ -141,10 +186,10 @@ Die Wirkung der Ein-Quibit-Gatter Pauli-$X$-, $Y$-, $Z$-Gatter wird folgenderma�
 \item Pauli-$Z$ (Phase-Flip-Gatter): Lässt $|0\rangle$ invariant und kehrt die Phase von $|1\rangle$ um. Das heißt, $Z|0\rangle = |0\rangle$, aber $Z|1\rangle = -,|1\rangle$. In einem Superpositionszustand $a|0\rangle + b|1\rangle$ bewirkt $Z$ also einen Phasenfaktor $-1$ für den $|1\rangle$-Anteil. (Vgl. ebd.) Dieses Verhalten – ein Vorzeichenwechsel für einen der Basiszustände – erklärt die Bezeichnung Phasenflip-Gatter.
 \end{itemize}\\
 \\
-Die Pauli-Gatter sind in Quantenlogik-Schaltkreisen äußerst wichtig. (Vgl. ebd., S. 81) Sie gehören meist zur Grundmenge der verfügbaren elementaren Quantenoperationen auf einem Qubit. Zusammen mit dem Einheitsoperator $I$ bilden sie die sogenannte Pauli-Gruppe auf einem Qubit, welche eine Rolle in vielen Quantum-Circuit-Konstruktionen spielt. Komplexere Ein-Qubit-Gatter lassen sich oft durch Kombinationen der Pauli-Gatter darstellen. So ist etwa das weit verbreitete und im folgenden Unterkapitel \pageref{subsubsec:hadamard_superposition} beschriebenen Hadamard-Gatter eine von den Pauli-Matrizen abgeleitete Transformation (z.B. als $H = \frac{X+Z}{\sqrt{2}}$). Auch Kontrollgatter wie CNOT können unter Nutzung von Pauli-Operatoren konstruiert werden. (Vgl. \cite[S.312]{wekesa_sirengo_mathematical_2024})\\
+Die Pauli-Gatter sind in Quantenlogik-Schaltkreisen äußerst wichtig. (Vgl. ebd., S. 81) Sie gehören meist zur Grundmenge der verfügbaren elementaren Quantenoperationen auf einem Qubit. Zusammen mit dem Einheitsoperator $I$ bilden sie die sogenannte Pauli-Gruppe auf einem Qubit, welche eine Rolle in vielen Quantum-Circuit-Konstruktionen spielt. Komplexere Ein-Qubit-Gatter lassen sich oft durch Kombinationen der Pauli-Gatter darstellen. So ist etwa das weit verbreitete und im folgenden Unterkapitel \ref{subsubsec:hadamard_superposition} beschriebenen Hadamard-Gatter eine von den Pauli-Matrizen abgeleitete Transformation (z.B. als $H = \frac{X+Z}{\sqrt{2}}$). Auch Kontrollgatter wie CNOT können unter Nutzung von Pauli-Operatoren konstruiert werden. (Vgl. \cite[S.312]{wekesa_sirengo_mathematical_2024})\\
 \\
 
-\subsubsection{Hadamard und Superposition}\label{subsubsec:hadamard_superposition}
+\subsection{Hadamard-Gatter}\label{subsubsec:hadamard_gatter}
 
 Das Hadamard-Gatter $H$ ist das wohl einfachste Mittel, um aus einem klassischen Qubit-Zustand eine echte Überlagerung (Superposition) zu erzeugen.  Während ein Bit nur entweder 0 oder 1 sein kann, vermischt $H$ die beiden Basiszustände so, dass das Qubit  „halb 0, halb 1“ wird. (Vgl. \cite[S.19f.]{nielsen_quantum_2010})\\
 \\
@@ -177,16 +222,7 @@ Die Fähigkeit, Superpositionen mit nur einem Gate herzustellen, macht $H$ unver
 
 
 
-\subsection{Quantenschaltungen}
-
-
-
-
-
-
-
-
-
+%\subsection{Quantenschaltungen}
 
 
 \section{TBD: Erste Algorithmen}
@@ -266,10 +302,12 @@ $$
     Wie beim Deutsch-Algorithmus wird $f(x)$ in die Phase des Zustands eingeschrieben.
 \item Erneute Hadamard-Transformation auf die ersten $n$ QBits.
 \item Messung:
-    - Ergebnis $\left|0\right\rangle^{\oplus n}$ bedeutet die Funktion ist konstant
-    - Jedes andere Ergebnisbedeutet Funktion ist balanciert
+    \begin{itemize}
+      \item Ergebnis $\left|0\right\rangle^{\oplus n}$ bedeutet die Funktion ist konstant
+      \item Jedes andere Ergebnis bedeutet Funktion ist balanciert
+    \end{itemize}
 \end{enumerate}
-\\
+
 Abbildung \ref{fig:deutsch-jozsa-schaltung} zeigt einen entsprechenden Quantenschaltkreis mit 4 QBits. 
 \begin{figure}
     \centering

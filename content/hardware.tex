@@ -1,4 +1,6 @@
 %\motto{Use the template \emph{chapter.tex} to style the various elements of your chapter content.}
+
+
 \chapter{Quantenhardware}
 \label{hardware} % Always give a unique label
 % use \chaptermark{}
@@ -53,34 +55,172 @@ Supraleitende Quantencomputer nutzen die Prinzipien der Quantenmechanik und die 
 \subsubsection{Grundlegende Prinzipien und Typen}
 Die fundamentalen Einheiten der Quanteninformation in supraleitenden Systemen sind supraleitende Qubits, die als künstliche Atome mit quantisierten Energieniveaus fungieren. Diese Qubits werden typischerweise aus supraleitenden Schaltkreisen gefertigt, die Materialien wie Aluminium oder Niob verwenden und bei extrem niedrigen Temperaturen, nahe dem absoluten Nullpunkt (ca. 15 Millikelvin), betrieben werden(The ultimate Guide to Superconducting Quantum Computers, 2025). Die Supraleitung, die bei diesen Temperaturen erreicht wird, gewährleistet einen widerstandslosen Stromfluss, was für die Aufrechterhaltung der Kohärenz der Qubits und ihrer Quantenzustände unerlässlich ist.
 \\\\
-Ein supraleitendes Qubit besteht häufig aus einem Induktor und einem Kondensator (LC-Oszillator), die durch einen Josephson-Kontakt verbunden sind. Der Josephson-Kontakt ist ein entscheidendes nichtlineares Element, das eine Anharmonizität in das Energiespektrum des Schaltkreises einführt. Diese Anharmonizität ist von größter Bedeutung, da sie sicherstellt, dass nur die beiden niedrigsten Energiezustände - der Grundzustand 0 and der erste angeregte Zustand 1 - als Qubit-Zustände dienen. Ohne diese Nichtlinearität würde der Quanten-LC-Schaltkreis als einfacher harmonischer Oszillator mit äquidistanten Energieniveaus fungieren, wodurch eine isolierte Zwei-Niveau-System-Nutzung als Qubit unmöglich wäre. Die präzise technische Gestaltung des Josephson-Kontakts und die Auswahl des supraleitenden Materials sind daher nicht nur Fertigungsdetails, sondern grundlegend für die Schaffung eines stabilen und adressierbaren Zwei-Niveau-Systems. Sie bestimmen die grundlegenden Eigenschaften des Qubits wie Anharmonizität, Kohärenzzeit und Rauschresistenz, die für zuverlässige Quantenoperationen unerlässlich sind.
+Ein supraleitendes Qubit besteht häufig aus einem Induktor und einem Kondensator (LC-Oszillator), die durch einen Josephson-Kontakt verbunden sind. Der Josephson-Kontakt ist ein entscheidendes nichtlineares Element, das eine Anharmonizität in das Energiespektrum des Schaltkreises einführt. Diese Anharmonizität ist von größter Bedeutung, da sie sicherstellt, dass nur die beiden niedrigsten Energiezustände - der Grundzustand 0 and der erste angeregte Zustand 1 - als Qubit-Zustände dienen. Ohne diese Nichtlinearität würde der Quanten-LC-Schaltkreis als einfacher harmonischer Oszillator mit äquidistanten Energieniveaus fungieren, wodurch eine isolierte Zwei-Niveau-System-Nutzung als Qubit unmöglich wäre. Die präzise technische Gestaltung des Josephson-Kontakts und die Auswahl des supraleitenden Materials sind daher nicht nur Fertigungsdetails, sondern grundlegend für die Schaffung eines stabilen und adressierbaren Zwei-Niveau-Systems. Sie bestimmen die grundlegenden Eigenschaften des Qubits wie Anharmonizität, Kohärenzzeit und Rauschresistenz, die für zuverlässige Quantenoperationen unerlässlich sind. Die Betriebsumgebung von supraleitenden Quantencomputern erfordert extrem niedrige Temperaturen, typischerweise im Bereich von 10 bis 20 Millikelvin(mK). Um diese Temperaturen zu erreichen, werden komplexe Kühlsysteme, meist Dilution Refridgerators, benötigt. Um eine solch extreme Kühlung zu ermöglichen, wird die Phasenmischung von Helium-3 und Helium-4 verwendet. Eine genauere Beschreibung zum Aufbau der Kühlsysteme und deren Funktionsweise sowie aktuelle Modelle, sind im Kapitel 1.2.4 zu finden.
+\\\\
+Der am häufigsten verwendete Qubit-Typ, bei supraleitenden Quantencomputern, ist das Transmon-Qubit. Dieser Transmon-Qubit weißt einen spezifische Hardwareaufbau auf. Er ist eine Weiterentwicklung des Cooper-Pair-Box-Qubits und besteht im Wesentlichen aus einem Josephson-Kontakt, der parallel zu einem relativ großen Shunt-Kondensator geschaltet ist. Dieser Kondensator, oft in einer "Kreuz"-Form (bekannt als Xmon), ist entscheidend, da er die Empfindlichkeit des Qubits gegenüber Ladungsrauschen drastisch reduziert und somit längere Kohärenzzeiten ermöglicht. Die typischen Betriebsfrequenzen von Transmonen liegen um 5 GHz, können aber in-situ zwischen etwa 4 und 6 GHz abgestimmt werden. Für die Frequenzabstimmung werden häufig zwei Josephson-Kontakte parallel in einer SQUID-Schleife (Superconducting QUantum Interference Device) angeordnet. Das Anlegen eines externen Magnetflusses an diese Schleife ermöglicht die dynamische Anpassung der effektiven Josephson-Energie und damit der Resonanzfrequenz des Qubits. (Roth Thomas, 04.2023). Ein alternativer Qubit-Typ ist das Fluxonium-Qubit. Dieses Qubit gewinnt aktuell an Interesse, da es durch einen leicht abgeänderten Aufbau höhere Kohärenzzeiten und hohe Gatter-Fidelitäten erreichen kann. Der Herstellungsprozess dieser Qubits umfasst mehrere Schritte, darunter lithographische Strukturierung, Metallabscheidung, Nass- oder Trockenätzen und die kontrollierte Oxidation von Supraleiterfilmen zur Bildung der Josephson-Kontakte. Fortschritte in der industriellen Halbleiterfertigung, wie optische Lithographie und reaktives Ionenätzen auf großen 300-mm-Siliziumwafern, zeigen vielversprechende Wege zur Skalierung mit hohen Ausbeuten an funktionsfähigen Qubits auf. (Kady Bentley, 2025)
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{images/quanten-hardware/Transmon Qubit.jpg}
+    \caption{(a) vollständiges Qubit, (b) Zoom auf die SQUID-Schleife, (c) Josephson-Kontakt}
+    \label{fig:transom_image}
+    \end{figure}
+
+\subsubsection{Ein-Qubit-Gatter}
+Ein-Qubit-Gatter sind die grundlegendsten Operationen in einem Quantencomputer und ermöglichen die gezielte Manipulation des Zustands eines einzelnen Qubits.Diese Gatter, die Rotationen auf der Bloch-Kugel darstellen (z.B. X-, Y- und Z-Rotationen), werden in supraleitenden Quantencomputern durch die präzise Anwendung von Mikrowellenpulsen realisiert.
+\\\\
+Ein-Qubit-Gatter werden durch das Anlegen von Mikrowellenpulsen realisiert, die auf die Übergangsfrequenz des Qubits abgestimmt sind. Diese Pulse induzieren kohärente Oszillationen, sogenannte Rabi-Oszillationen, zwischen den \big \vert0⟩ und \big \vert1⟩ Zuständen des Qubits. Die Dauer und Phase dieser Pulse bestimmen die Art der Rotation auf der Bloch-Kugel. Beispielsweise können X- und Y-Rotationen durch entsprechend phasenverschobene Mikrowellenpulse erzeugt werden. Z-Rotationen können oft virtuell durch Software implementiert werden, indem die Phase der nachfolgenden Mikrowellenanregungen angepasst wird, was keine physische Pulsdauer erfordert (Characterizing Superconductiong Qubits).\\\\Der Signalpfad für die Qubit-Steuerung ist eine komplexe Kette, die von Raumtemperatur-Elektronik bis zum Qubit im Dilutionskühler reicht. Die Erzeugung der präzisen Mikrowellenpulse beginnt bei Raumtemperatur mit Arbitrary Waveform Generators (AWGs) und Digital-Analog-Wandlern (DACs), die die Basisband-Pulswellenformen erzeugen. Diese Basisband-Signale werden dann mittels Mischer mit einem lokalen Oszillator (LO) zu Mikrowellenfrequenzen (typischerweise 2-10 GHz) hochkonvertiert (Bao Zenghui, 2024). Die Mikrowellensignale werden über Koaxialkabel durch die verschiedenen Temperaturstufen des Kryostaten (z.B. 3K, 1K, 100mK, 10mK) zum Qubit geleitet. Entlang dieses Pfades sind Dämpfungsglieder und Filter angebracht, die an den jeweiligen Temperaturstufen thermisch verankert sind. Ihre Funktion ist es, das von Raumtemperatur eindringende Rauschen zu reduzieren und unerwünschte Frequenzen zu unterdrücken, die die Qubit-Kohärenz stören könnten. Am kältesten Punkt (mK-Stufe) erreichen die Signale den Qubit-Chip über On-Chip-Drive-Lines, die kapazitiv oder induktiv mit den Qubits gekoppelt sind. Die Skalierung dieser Verkabelung stellt eine erhebliche Herausforderung dar, da jede zusätzliche Leitung Wärme in den Kryostaten einbringt und die Kühlleistung begrenzt ist. Dies treibt die Forschung an monolithisch integrierter Steuerungselektronik direkt auf dem Qubit-Chip voran, um den Verkabelungsaufwand und die Wärmelast zu reduzieren (Bao Zenghui, 2024).
+
+\subsubsection{Zwei-Qubit-Gatter}
+Zwei-Qubit-Gatter sind für die Durchführung komplexer Quantenalgorithmen unerlässlich, da sie die Verschränkung von Qubits ermöglichen. Ihre Implementierung erfordert eine kontrollierte Wechselwirkung zwischen den Qubits, die auf verschiedene Weisen hardwareseitig realisiert werden kann. Die Entwicklung der Zwei-Qubit-Kopplung hat sich von direkten zu vermittelten, dynamisch steuerbaren Interaktionen entwickelt, um Skalierungs- und Fehlerreduktionsanforderungen zu erfüllen.\\\\
+\textbf{Kapazitive Kopplung:}\\
+Die kapazitive Kopplung ist eine grundlegende Methode zur Realisierung von Zwei-Qubit-Gattern. Sie wird physisch durch die Platzierung von leitenden Strukturen (Pads oder \grqq{}Coupler Arms\grqq{} ) in unmittelbarer Nähe der Qubits auf dem Chip erreicht, wodurch eine elektrische Kopplung entsteht. Häufig werden hierfür interdigitierte Kondensatoren oder direkte Pads verwendet, die eine effektive Kapazität zwischen den Qubits herstellen.\\
+Eine Herausforderung bei der direkten kapazitiven Kopplung in größeren Systemen ist das unerwünschte Übersprechen (Crosstalk) zwischen nicht benachbarten Qubits, das die Gatter-Fidelität beeinträchtigen kann. Um dies zu mindern, wurden fortgeschrittene Designs entwickelt, die \grqq{}Waveguide Extenders\grqq{} oder \grqq{}Coupler Arms\grqq{} mit interdigitierten oder Gap-Kondensatoren nutzen, um die Kopplung über größere physische Distanzen zu vermitteln und gleichzeitig das Übersprechen zu reduzieren. Diese Extender ermöglichen eine flexiblere Platzierung der Qubits auf dem Chip und schaffen Raum für zusätzliche Komponenten wie Ausleseresonatoren und Purcell-Filter.
+\\\\
+\textbf{Resonatorbasierte Kopplung (Quantenbus):}\\
+Eine weit verbreitete und skalierbare Technik zur Kopplung mehrerer Qubits ist die Verwendung eines Mikrowellenresonators als "Quantenbus". Dieser Resonator fungiert als Vermittler und ermöglicht es Qubits, miteinander zu interagieren, selbst wenn sie nicht direkt benachbart sind. Die Interaktion erfolgt über den Austausch virtueller Photonen mit dem Resonator. Dieses Konzept wird als "Circuit QED" (Quantenelektrodynamik in Schaltkreisen) bezeichnet, analog zur optischen Kavität-QED.\\
+Durch gezieltes Abstimmen der Qubits in und aus der Resonanz mit dem Bus können verschränkende Zwei-Qubit-Gatter wie Controlled-NOT (CNOT) oder iSWAP implementiert werden. Der Quantenbus bietet eine effektive All-to-All-Konnektivität zwischen einer Gruppe von Qubits, was für bestimmte Algorithmen vorteilhaft ist. Die "Quantum Bus"-Architektur ist nicht nur ein Kopplungsmechanismus, sondern eine grundlegende architektonische Wahl, die flexible und höhergradige Konnektivität zwischen Qubits ermöglicht. Diese Modularität ist entscheidend für die Entwicklung von Quantenprozessoren, die an spezifische Algorithmen und Fehlerkorrekturcodes angepasst werden können, wodurch die Einschränkungen von festen Topologien und spärlicher Konnektivität in größeren Quantensystemen direkt angegangen werden.
+
+\subsection{Beispiele supraleitende Qubits}
+** geplant ist hier die Prozessoren Google Scaymore und IBM Eagle vorzustellen. Muss nochmal abgesprochen werden mit Kapitel 1.7, dass dort keine Überschneidungen entstehen**
+\subsection{Herausforderungen supraleitende Qubits}
+**Einleitungsabsatz zu den Herausforderungen von supraleitenden Quantencomputern**
 \\\\
 Der Betrieb supraleitender Qubits erfordert extrem niedrige Temperaturen, typischerweise unter 15 Millikelvin (mK), um die Kohärenz aufrechtzuerhalten und die Supraleitung zu ermöglichen.(The ultimate Guide to Superconducting Quantum Computers, 2025). Diese Bedingungen werden durch spezialisierte Kühlsysteme, hauptsächlich Verdünnungskryostate, erreicht. Innerhalb eines Verdünnungskryostat befinden sich die Qubits auf der kältesten Stufe (~10 mK), während die Mikrowellenelektronik auf höheren Temperaturstufen (1 K, 4 K) angeordnet ist. (What Is Cryogenic Quantum Computing and Why It Matters, 2025). Umfassende Abschirmung und Filterung sind entscheidend, um elektromagnetische Interferenzen zu verhindern und thermisches Rauschen zu unterdrücken, das die fragilen Quantenzustände stören und Dekohärenz verursachen kann. Die kryogene Umgebung ist somit nicht nur ein passives Kühlsystem, sondern eine aktive und komplexe Infrastruktur, die die empfindlichen Quantenzustände grundlegend ermöglicht und schützt. Ihre Rolle geht über die reine Kühlung hinaus, da sie aktiv die notwendige Quantenkohärenz aufrechterhält, indem sie verschiedene Formen von Umgebungsrauschen (thermisch, elektromagnetisch) mindert. Verdünnungskryostate sind spezialisierte kryogene Geräte, die die einzigartigen Eigenschaften eines Gemischs aus den Helium-Isotopen Helium-3 und Helium-4 nutzen, um kontinuierlich Temperaturen von bis zu 2 mK zu erreichen. Historisch gesehen wurden "nasse" Verdünnungskryostate verwendet, die eine kontinuierliche Versorgung mit flüssigem Helium zur Vorkühlung benötigten. Diese Systeme waren effektiv, aber mit hohen Betriebskosten und logistischem Aufwand verbunden. Seit etwa 2010 hat sich ein signifikanter Wandel hin zu kryogenfreien ("trockenen") Systemen vollzogen. Diese trockenen Systeme verwenden geschlossene Pulskühlröhren (Pulse Tube Refrigerators, PTRs) zur Vorkühlung auf etwa 4 K, wodurch die Notwendigkeit einer externen Flüssigheliumversorgung entfällt. Der Übergang zu kryokogenfreien Verdünnungskryostaten ist nicht nur im Trend sondern auch strategisch notwendig für die Skalierung von Quantencomputern. Trockene Systeme bieten kontinuierlichen Betrieb und eliminieren die Notwendigkeit des Nachfüllens von Flüssighelium, was längere und unterbrechungsfreie Quantenexperimente ermöglicht und die Betriebseffizienz erhöht. Allerdings geht dieser Vorteil oft mit erhöhten mechanischen Vibrationen von den Pulskühlern einher. Trotz dieser Vibrationsherausforderung ist der Wechsel zu trockenen Systemen für die Skalierbarkeit unerlässlich, da er längere, unterbrechungsfreie Experimente ermöglicht und die Betriebseffizienz für größere Quantensysteme verbessert. Die Hersteller investieren daher stark in Vibrationsdämpfungstechniken, um diesen Nachteil zu mindern(J.Rothe, 2025).
 \\\\
 Aktuelle Branchenführer verwenden unterschiedliche Kühlsysteme von verschiedenen Anbietern um die individuellen Anforderungen zu erfüllen. IBM hat sich für das im Dezember 2023 erste modulare Quantencomputer System für das Kühlsystem "KIDE Cryogenic Platform" von dem finnischen Unternehmen Bluefors entschieden. Dieses System ist ein kroykogenfreies System, dass auf die Verbindung mehrere Prozessoren ausgelegt ist. Hier wird der von IBM gesetzte Fokus auf skalierbare und modulare Systeme deutlich. Um die reißige Anzahl an Qubits kühlen zu können werden hier neun Pulskühlröhren verwendet, die dafür sorgen verschiedene Temperaturstufen versorgen zu können (Bluefors, 2023). Durch die Nutzung von Pulskühlröhren anstelle von flüssigem Helium können dabei Kühlzeiten von bis zu 3 Jahren realisiert werden. Um modular zu bleiben, wurde KIDE als hexagonale Kammer mit Zugangstüren für Wartung und Möglichkeiten mehrere Cryostat-Einheiten zu koppeln konzipiert. (IBM Quantum, 2024). Ergänzend arbeitet IBM aktuell an dem Goldeye-Projekt mit dem Ziel eine "Super-Kühlschrank" mit 1,7 Kubikmetern Volumen zu entwickeln um zukünftig größere Quantensysteme kühlen zu können. (Pat Gumann, Jerry Chow, 2022) 
 
-Google und Intel setzen ebenfalls auf kryogene Plattformen von Bluefors um ihre supraleitenden zu betreiben (Cryogenic Quantum Hardware: The Cold Engine of Quantum Tech, 2025). Google setzt den Fokus bei der 
-
-
-\subsection{Beispiele supraleitende Qubits}
-\subsection{Herausforderungen supraleitende Qubits}
+Google und Intel setzen ebenfalls auf kryogene Plattformen von Bluefors um ihre supraleitenden zu betreiben \cite{noauthor_cryogenic_2025}(Cryogenic Quantum Hardware: The Cold Engine of Quantum Tech, 2025). **Weiteres Ausführen zu Google und Intel **
+\\\\
+** Hier muss noch auf Verkabelung und Skalierbarkeit eingegangen werden**
 \subsection{Ausblick und Weiterentwicklung}
 
-\section{Quantencomputer aus Ionenfallen-Qubits}
-\subsection{Gatterimplementierung}
+**Hier kommen inhaltlich Punkte zur Verbesserung von Kohärenzzeiten und Gatterfidelity sowie Miniaturisierung
 
-    - Wie funktioniert ein Logischer Gatter bei Ionenfallen-Quantencomputern?
-    - Ein-Qubit-Gatter
-    - Zwei-Qubit-Gatter
-    - Cirac-Zoller-Gatter
-    - Mølmer-Sørensen-Gatter
-\subsection{Verwendungsbereiche und Merkmale der Ionenfallen-Qubits}
-    - Stand der Technologie
-    - Ionenfallen in Quantensimulation und Metrologie
-    - Ionenfallen in Quantencomputer
-    - Wie ist ein Ionenfallen Quantencomputer aufgebaut?
-    - Wie und unter welchen Bedingungen wird ein Ionenfallen Quantencomputer benutzt/verwaltet?
+\section{Quantencomputer aus Ionenfallen-Qubits}
+\subsection{Logische Gatter in Ionenfallencomputer}
+
+In einer Ionenfalle werden geladene Atome (meist \( ^{40}\mathrm{Ca}^+ \), \( ^{171}\mathrm{Yb}^+ \) oder \( ^{9}\mathrm{Be}^+ \)) durch elektrische Felder in einem räumlich fixierten Gitter gehalten. Die internen elektronischen Zustände dieser Ionen dienen als Basiszustände \( \lvert 0 \rangle \) und \( \lvert 1 \rangle \) eines Qubits. 
+
+Dabei sind die Eigenschaften der Laserstrahlung – insbesondere Ausbreitungsrichtung, Wellenlänge, Frequenz, Polarisation sowie die Dauer der Bestrahlung – entscheidend, um gezielt Überlagerungszustände (Superpositionen) und Verschränkungen für das Quantencomputing zu erzeugen (Baumann, 2024). 
+
+Es existieren verschiedene Typen von Quantengattern in Ionenfallen, die je nach Art eine unterschiedliche Anzahl an Qubits beeinflussen. Diese Gatter unterscheiden sich sowohl in ihrer Komplexität als auch in ihrem Einsatzbereich.
+
+Das folgende Kapitel stellt exemplarisch mehrere dieser Quantengatter vor – beginnend mit Ein-Qubit-Gattern bis hin zu Zwei-Qubit-Gattern wie dem Mølmer-Sørensen-Gatter – um deren jeweilige Funktionsweise und Unterschiede vorzustellen.
+
+\subsubsection{Ein-Qubit-Gatter}
+
+Ein gängiges physikalisches Modell zur Beschreibung eines Ein-Qubit-Gatters in Ionenfallencomputern ist der sogenannte \glqq Starre Rotor\grqq. Dabei wird ein einzelnes Ion betrachtet, das aus einem positiv geladenen Atomkern und einem oder mehreren Elektronen besteht. In einem stark vereinfachten Zwei-Niveau-System kann das Elektron als Teilchen angesehen werden, das den Kern in einer festen Kreisbahn umkreist, wodurch die beiden Qubit-Zustände \( \lvert 0 \rangle \) und \( \lvert 1 \rangle \) realisiert werden.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/quanten-hardware/Rotor.png}
+    \caption{Schematische Darstellung eines Rotors nach Baumann (2024)}
+    \label{fig:meinbild}
+\end{figure}
+
+Ein Laserstrahl mit passender Wellenlänge wird genutzt, um Übergänge zwischen diesen Zuständen zu induzieren. Liegt die Frequenz des Lasers genau im Resonanzbereich der Energiedifferenz der beiden Zustände, so kann das Ion durch sogenannte Rabi-Oszillationen in eine beliebige Superposition gebracht werden. Die Dynamik des Übergangs lässt sich mathematisch durch die Rabi-Frequenz \( \Omega \) beschreiben, welche sowohl von der Intensität des Lasers als auch von der Stärke des Dipolmoments des Übergangs abhängt.
+
+Die Kontrolle über Pulsdauer, Polarisation und Phase erlaubt die Realisierung verschiedener logischer Operationen wie beispielsweise das Hadamard-Gatter oder das Pauli-\( X \)-Gatter. Visualisiert wird der Zustand eines Qubits in der Praxis häufig durch die sogenannte Bloch-Kugel, in welcher jede mögliche Superposition von \( \lvert 0 \rangle \) und \( \lvert 1 \rangle \) einem Punkt auf der Kugeloberfläche entspricht.
+
+Im Experiment werden zur Umsetzung meist extrem präzise, kurze Laserpulse verwendet, die eine hohe Adressiergenauigkeit einzelner Ionen gewährleistet (Baumann, 2024).
+
+\subsubsection{Zwei-Qubit-Gatter}
+
+Zwei-Qubit-Gatter ermöglichen es, Korrelationen zwischen Qubits herzustellen und bilden zusammen mit Ein-Qubit-Gattern eine universelle Menge an logischen Operationen. Die wohl bekannteste Zwei-Qubit-Operation ist das bereits vorgestellte CNOT-Gatter (Controlled-NOT-Gatter), das auf zwei Qubits wirkt: ein Kontroll- und ein Ziel-Qubit. Ist das Kontroll-Qubit im Zustand \( \lvert 1 \rangle \), wird ein NOT-Gatter auf das Ziel-Qubit angewendet; andernfalls bleibt es unverändert. Diese logische Verknüpfung bildet die Grundlage für viele quantenlogische Algorithmen und Verschlüsselungsverfahren.
+
+In Ionenfallen wird ein solches Gatter durch die gemeinsame Kopplung der Ionen an die quantisierten Schwingungsmoden realisiert. Dabei dienen diese kollektiven Moden als ein „Phonon-Bus“, über den Zustände zwischen den Ionen ausgetauscht werden können (Baumann, 2025).
+
+Zu den bedeutendsten realisierten Zwei-Qubit-Gattermodellen gehört das Cirac-Zoller- und das Mølmer-Sørensen-Gatter, welche im folgenden Abschnitt vorgestellt werden:
+
+\newpage
+\textbf{Cirac-Zoller-Gatter} 
+
+Das von Cirac und Zoller im Jahr 1995 vorgeschlagene Gatter gilt als eines der ersten theoretisch und experimentell realisierten Modelle für ein entanglierendes Zwei-Qubit-Gatter in Ionenfallen. Hierbei wird ein drittes, sogenanntes Bus-Qubit über gezielte Laserpulse angeregt und zwischen zwei speichernden Ionen als Vermittler genutzt. Die Gatteroperation nutzt eine präzise definierte Sequenz aus Resonanzanregungen und kontrollierten Phasenverschiebungen, um über den Schwingungszustand gezielt einen Quantenbit-Zustand auf das andere zu übertragen.
+
+Der Zustand \( \lvert 0 \rangle \lvert 1 \rangle \) kann beispielsweise durch das Gatter in eine Überlagerung mit \( \lvert 1 \rangle \lvert 0 \rangle \) überführt werden, wobei die Phononen nur temporär real angeregt werden. Die präzise Steuerung der Frequenzdifferenz, Laserstärke und Phasenlage ist essenziell. In der Praxis ist die Methode allerdings experimentell aufwendig, da sie eine sehr hohe Kontrolle über den Grundzustand der Ionen erfordert. Dennoch wurde sie erfolgreich in Experimenten mit Kalziumionen demonstriert(Cirac and Zoller, 1995; Baumann, 2025). 
+
+\textbf{Mølmer-Sørensen-Gatter} 
+
+
+Das Mølmer-Sørensen-Gatter (MS-Gatter) ist eine Weiterentwicklung, die sich in modernen Ionenfallen-Architekturen durchgesetzt hat. Anders als das Cirac-Zoller-Gatter benötigt es kein Bus-Qubit, sondern nutzt kollektive Schwingungsmoden zur gleichzeitigen Adressierung mehrerer Qubits.
+
+Ein typisches MS-Gatter basiert auf einem bichromatischen Laserpuls, welcher symmetrisch zwei Seitenbänder ober- und unterhalb der Qubit-Resonanzfrequenz anspricht. Dabei wird die Schwingung nur virtuell angeregt, was die Robustheit gegenüber thermischen Zuständen erhöht. Durch diese Wechselwirkung entsteht eine effektive Spin-Spin-Kopplung, mit der sich verschränkte Zustände, wie z.\,B. Bell-Zustände, effizient erzeugen lassen. Das Gatter benötigt dabei nur minimale Kontrolle über die Bewegungszustände der Ionen, was es besonders fehlerresistent und skalierbar macht. Zudem kann es gleichzeitig mehrere Qubit-Paare verschränken (Mølmer and Sørensen, 2000; Baumann, 2025).
+
+\begin{table}[ht]
+    \centering
+    \caption{Vergleich zwischen Cirac-Zoller- und Mølmer-Sørensen-Gatter WIP}
+    \label{tab:vergleich_gatter}
+    \begin{tabular}{p{4.5cm} p{5.5cm} p{5.5cm}}
+        \textbf{Eigenschaft} & \textbf{Cirac-Zoller-Gatter} & \textbf{Mølmer-Sørensen-Gatter} \\
+        Jahr & 1995 & ~2000 \\
+        Vermittlung & Bus-Qubit notwendig & Keine zusätzlichen Qubits \\
+        Schwingungsmoden & Echt angeregt & Virtuell angeregt \\
+        Robustheit & Gering (gegenüber thermischen Zuständen) & Hoch \\
+        Skalierbarkeit & Eingeschränkt & Gut skalierbar \\
+        Experimentelle Anforderungen & Hohe Präzision & Weniger streng \\
+        Anwendungsbereich & Proof-of-Concept & Industrielle Prototypen \\
+    \end{tabular}
+\end{table}
+
+
+\subsection{Aufbau und Betriebsweise eines Ionenfallencomputers}
+
+Während theoretische Betrachtungen von Ionenfallen-Qubits sich stark auf die physikalischen Prinzipien konzentrieren, wie in Abschnitt 1.6.3 beschrieben, unterscheidet sich der tatsächliche Aufbau eines Ionenfallen-Quantencomputers in der Praxis erheblich durch seine technische Komplexität. Moderne Systeme verbinden physikalisch hochpräzise Komponenten mit klassischer Computertechnik und Softwareintegration, welche im folgenden Kapitel genauer vorgestellt werden.
+\subsubsection{Beispiele in Reale Systemen}
+
+Ein anschauliches Beispiel für die Realisierung eines kommerziellen Ionenfallen-Quantencomputers liefert das österreichische Unternehmen Alpine Quantum Technologies (AQT). Der Quantenprozessor von AQT ist vollständig in ein standardisiertes 19-Zoll-Gehäuse integriert, das äußerlich kaum von einem klassischen Serverschrank unterscheidbar ist. Im Inneren befinden sich jedoch Hochvakuumkammern, mikrostrukturierte Paul-Fallen, Lasermodule, modulare Optiksysteme und eine komplexe Steuerungseinheit. Die Quantenhardware wird durch klassische Komponenten ergänzt, die für Temperaturkontrolle, Impulssteuerung, Datenausgabe und externe Kommunikation zuständig sind (Bischoff et al., 2024).
+
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{images/quanten-hardware/AQT.jpg}
+    \caption{Bild eines AQT Ionenfallencomputers}
+    \label{fig:meinbild}
+    \end{figure}
+
+AQT entwickelt seine Systeme auf der Grundlage langjähriger Forschung an der Universität Innsbruck, insbesondere in Kooperation mit dem Experimentalphysiker Rainer Blatt, Mitgründer von AQT, der als einer der Pioniere der Ionenfallenplattform gilt (Blatt and Wineland, 2008). Die Geräte verwenden typischerweise linear angeordnete Ionenketten aus Kalziumionen, die in einer mikrochip-basierten Paul-Falle fixiert werden. Diese Chips sind modular aufgebaut und lassen sich bei Bedarf austauschen oder erweitern. Die Laseransteuerung, die Ioneninitialisierung, das Auslesen der Zustände und die zeitlich exakte Koordination der Gatteroperationen erfolgen über eine integrierte Steuerelektronik, meist in Form von FPGA-gestützter Signalverarbeitung .
+
+Auch andere Systeme wie Quantinuum (ehemals Honeywell Quantum) oder IonQ verfolgen vergleichbare Ansätze: Der eigentliche Quantenprozessor wird in eine vollständig abgeschirmte Umgebung eingebettet, kombiniert mit photonischer Signalverarbeitung und einem modularen optischen Kontrollsystem. So wurde etwa 2024 an der Universität Innsbruck erstmals eine Verschränkung von 56 Ionen auf einem einzigen Chip demonstriert, ein Rekord für die Ionenfallenplattform (Bischoff et al., 2024). 
+
+Neben AQT existieren heute weltweit mehrere Firmen, die Ionenfallen-Quantencomputer entwickeln oder bereits kommerziell anbieten, darunter eQtron in Siegen, Universal Quantum in Sussex, IonQ in Maryland (USA) sowie Quantumium in Colorado. 
+Trotz des unterschiedlichen Designs verfolgen alle diese Plattformen einen ähnlichen Architekturansatz: Die Trennung von quantenphysikalischem Kernsystem (Ionenchip, Lasermodule, Vakuum) und klassischer Steuerungseinheit, die die Verbindung zur Außenwelt und Benutzersteuerung herstellt. Diese einzelnen Komponenten werden in den nächsten Kapiteln genauer erläutert.
+
+\subsubsection{Ionenchips}
+
+Der Ionenchip bildet das zentrale Bauteil eines Ionenfallen-Quantencomputers. Auf ihm wird die tatsächliche Quanteninformation gespeichert und verarbeitet. Die Aufgabe des Chips besteht darin, einzelne Ionen präzise in einer räumlich fixierten Anordnung zu halten und gleichzeitig eine kontrollierte Wechselwirkung zwischen ihnen zu ermöglichen. Technisch wird dies durch eine sogenannte mikrostrukturierte Paul-Falle realisiert, die auf dem Prinzip oszillierender elektrischer Felder basiert – wie bereits in Abschnitt 1.6.3 beschrieben. Während klassische Paul-Fallen in Form von makroskopischen Elektroden in einer Vakuumkammer realisiert wurden, kommt in modernen Quantencomputern eine mikrochipbasierte Realisierung zum Einsatz.
+
+Um den Betrieb bei hoher Stabilität zu ermöglichen, wird der Chip in eine Ultrahochvakuumkammer (UHV) integriert. Das Vakuum schützt vor Stößen mit Luftmolekülen und reduziert unerwünschte elektrische Entladungen. Zusätzlich wird die Umgebungstemperatur konstant gehalten, um thermische Drift im Chipmaterial zu minimieren. Da geladene Ionen empfindlich auf äußere Felder reagieren, ist die gesamte Kammer elektromagnetisch abgeschirmt.
+
+\subsubsection{Optische Systeme}
+
+Das optische System ist ein weiteres zentrales Element der Quantenhardware in Ionenfallen-Quantencomputern. Es übernimmt alle Aufgaben der Qubit-Manipulation, Kühlung und Zustandsmessung, indem es kontrollierte Laserimpulse gezielt auf einzelne Ionen in der Falle richtet. Hierzu werden hochpräzise Laserquellen verwendet, die über modulare optische Systeme mit den gespeicherten Ionen interagieren. 
+
+Die Lichtquellen bestehen typischerweise aus frequenzstabilisierten Laserdioden, deren Wellenlänge exakt auf die atomaren Übergänge der verwendeten Ionen abgestimmt ist. Die Stabilität der Frequenz ist dabei essenziell, da kleine Abweichungen von wenigen Megahertz bereits zu fehlerhaften Zustandsänderungen führen können. Aus diesem Grund werden die Laserdioden häufig mithilfe von Referenzkavitäten frequenzstabilisiert oder über nichtlineare Kristalle frequenzverdoppelt, um schwer zugängliche UV-Wellenlängen zu erreichen.
+
+Ein entscheidender Aspekt ist die Kontrolle der optischen Pulsparameter, da diese direkt die Quantengatteroperationen bestimmen. Für eine vollständige Kontrolle müssen vier Parameter in Echtzeit gesteuert werden:
+
+\begin{itemize}
+    \item die Pulsdauer (bestimmt die Rotation auf der Bloch-Kugel),
+    \item die Intensität (beeinflusst die Rabi-Frequenz),
+    \item die exakte Frequenzlage (z.\,B. für detuning-sensitives Targeting),
+    \item und die Phasenlage der Welle (wichtig für kohärente Operationen und Verschränkungsgatter).
+\end{itemize}
+
+Diese Steuerung erfolgt über ein klassisches Kontrollsystem bestehend aus FPGAs, Taktgebern und Analogwandlern, welches die Laserpulse auf Nanosekundenebene formt und synchronisiert.
+
+Das optische System stellt deshalb insgesamt einen der empfindlichsten und kritischsten Bausteine ionenbasierter Quantencomputer dar. Seine Qualität bestimmt direkt die erreichbare Gate-Fidelity, die Kohärenzzeit und die Skalierbarkeit des Gesamtsystems.
+
+\subsubsection{Kühlung und Abschirmung}
+WIP
+\subsubsection{Elektronik}
+WIP
+\subsubsection{Modularität und Skalierbarkeit}
+WIP
+
+
+
 \subsection{Herausforderungen und technische Limitationen}
+WIP
     - Warum gibt es die aktuellen Probleme?
     - Skalierbarkeit
     - Gatterzeit
@@ -108,40 +248,7 @@ Google und Intel setzen ebenfalls auf kryogene Plattformen von Bluefors um ihre 
     - Potenzial und Ansätze:
 
 
-
-\section{Titel tbd}
-\subsection{Photonische Quantencomputer}
-    - Grundlegende Prinzipien und Qubit-Kodierung
-    - Schlüsselkomponenten: Photonenerzeugung, -manipulation und -detektion
-    - Vorteile und spezifische Herausforderungen
-    - Aktueller Stand, jüngste Fortschritte (2024-2025) und Ausblick
-    - Engineering- und Skalierungslösungen
-    - Quantenfehlerkorrektur
-
-\subsection{Halbleiterbasierte Qubits: Spin qubits}
-    - Physikalische Realisierung in Halbleitern
-    - Kontroll- und Auslesemechanismen
-    - Vorteile und spezifische Herausforderungen
-    - Aktueller Stand, jüngste Fortschritte (2024-2025) und Ausblick
-    - Engineering- und Skalierungslösungen
-    - Quantenfehlerkorrektur
-
-\subsection{Neutralatom-Quantencomputer}
-    - Prinzipien: Atomkühlung, Fallen und Qubit-Kodierung
-    - Steuerung und Auslesung mittels Lasertechnologie
-    - Vorteile und spezifische Herausforderungen
-    - Aktueller Stand, jüngste Fortschritte (2024-2025) und Ausblick
-    - Engineering- und Skalierungslösungen
-    - Quantenfehlerkorrektur
-
-\subsection{Topologische Qubits}
-    - Theoretische Konzepte: Nichtabelsche Anyonen und Majorana-Fermionen
-    - Ansätze zur Realisierung und Manipulation
-    - Potenzial für inhärente Fehlertoleranz und aktuelle Herausforderungen
-    - Aktueller Stand, jüngste Fortschritte (2024-2025) und Ausblick
-    - Engineering- und Skalierungslösungen
-    - Quantenfehlerkorrektur (über den inhärenten Schutz hinaus)
-
+\input{content/jakob/mainfile}
 
 
 \section{Quantencomputer-Architekturen und Vernetzung}
@@ -194,6 +301,7 @@ Dieser Abschnitt beschreibt die physikalische Struktur eines typischen supraleit
 Foto-Illustration: Kaltes Verdünnungskryostat mit hängender Chip-Ebene (Gold-Coax-Kabel zu Qubits)
 Hier wird mithilfe eines Bildes gezeigt, wie ein realer Kryostat aufgebaut ist, in dem der Qubit-Chip „hängt“. Die goldfarbenen Koaxialkabel, die an den Chip führen, dienen der Steuerung und Auslesung der Qubits mit hochfrequenten Mikrowellensignalen. Das Bild veranschaulicht die aufwendige technische Infrastruktur, die notwendig ist, um Quantenoperationen durchzuführen.
 
+
 \subsection{Erläuterung eines einzelnen supraleitenden Qubits (Transmon)}
 Erläuterung eines einzelnen supraleitenden Qubits (Transmon) und wie ein Zwei-Qubit-Gatter durch kapazitive Kopplung realisiert wird
 Ein Transmon-Qubit ist ein spezieller supraleitender Schaltkreis, der zur Stabilisierung gegen Ladungsrauschen designt wurde. In diesem Teil wird erklärt, wie durch gezielte Mikrowellenpulse Zustände manipuliert und gelesen werden können. Zusätzlich wird gezeigt, wie zwei Transmon-Qubits über kapazitive Kopplung ein kontrolliertes Quantenlogikgatter bilden – ein zentrales Element zur Realisierung von Quantenalgorithmen.
@@ -211,6 +319,9 @@ Das IBM Quantum System Two weist eine deutlich veränderte äußere Erscheinungs
 
 \subsubsection{Kryogene Infrastruktur und QPU-Umgebung}
 Die Notwendigkeit, eine steigende Anzahl von Qubits bei extrem tiefen Temperaturen – typischerweise im Bereich von 10 bis 20 Millikelvin für supraleitende Qubits – zu betreiben, stellt hohe Anforderungen an die kryogene Infrastruktur. Im Hinblick auf eine skalierbare Kühlung müssen, obgleich die fundamentalen Prinzipien der Dilutionsrefrigeration beibehalten werden, die Kühlleistung und die interne Kapazität der Kryostaten für das Quantum System Two signifikant erhöht werden. Dies ist erforderlich, um multiple oder größere QPUs sowie die damit assoziierte Verkabelung und Komponenten, wie beispielsweise Verstärker, adäquat zu versorgen. In diesem Kontext hat IBM auch den „Goldeneye“-Kryostaten erwähnt, einen Dilutionsrefrigerator mit einer besonders großen Kühlkapazität, welcher für die Kühlung zukünftiger Generationen von Multi-Chip-Prozessoren ausgelegt ist (SpinQ, 2025). Die Integration von Prozessoren ist ein weiteres Kernelement; Quantum System Two ist dafür konzipiert, mehrere Quantenprozessoren, beispielsweise drei IBM Heron Prozessoren, in einem einzelnen Kryostaten zu beherbergen und zu betreiben (arXiv, 2024). Eine solche Integration erfordert eine präzise Planung der internen Verkabelung, der thermischen Anbindung und der elektromagnetischen Abschirmung. Das Vibrationsmanagement und die Stabilität gewinnen in einem modularen und potenziell sehr ausgedehnten System zusätzlich an Komplexität und Kritikalität im Vergleich zum System One, um die Kohärenz der Quantenzustände sicherzustellen.
+
+\includepdf[pages=1, fitpaper=true]{GrafikKühlungDeutsch.pdf}
+
 
 \subsubsection{Signalübertragung, Steuerungselektronik und Konnektivität}
 Mit der Zunahme der Anzahl von Qubits und Prozessoren steigen die Anforderungen an die Steuerungs- und Ausleseelektronik sowie an die Verbindungen zwischen den Systemkomponenten exponentiell. IBM hat eine Steuerungselektronik der dritten Generation entwickelt, die sich durch eine höhere Kompaktheit, gesteigerte Leistungsfähigkeit und eine engere Integration mit den QPUs auszeichnet. Diese Elektronik ist darauf ausgelegt, eine größere Anzahl von Qubits effizient zu steuern und auszulesen (IBM News Room, 2023). Die Erhöhung der Qubit-Dichte und -Anzahl macht zudem innovative Lösungen für eine hochdichte kryogene Verkabelung notwendig, um die Wärmelast gering zu halten und gleichzeitig eine hohe Signalintegrität zu gewährleisten. Flexible kryogene Hochfrequenzleitungen (CryoFlex) spielen hierbei eine wichtige Rolle. Für die Koordination und das sogenannte „Circuit Knitting“ – ein Verfahren, das große Quantenschaltkreise auf mehrere QPUs aufteilt und klassische Kommunikation von Zwischenergebnissen erfordert – sind leistungsfähige klassische Kommunikationslinks zwischen den Prozessoren und den Steuerungseinheiten unerlässlich. Langfristig verfolgt IBM das Ziel, auch direkte quantenkohärente Verbindungen (Quantum Links) zwischen QPUs zu realisieren, um echte verteilte Quantenberechnungen über mehrere Chips hinweg zu ermöglichen (IBM Quantum Roadmap).
