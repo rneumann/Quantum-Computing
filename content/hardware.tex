@@ -10,19 +10,19 @@
 
 \section{Die verschiedenen Quanten Hardwareplattformen}
 Die Realisierung von Quantencomputern basiert wie beschrieben auf verschiedenen physikalischen Plattformen, die sich durch ihre spezifischen Qubit-Implementierungen, Steuerungsmechanismen und Anwendungsbereiche unterscheiden. Es wird zwischen zwei verschiedenen übergeordneten Hardwareplattformen unterschieden:
-
-
-\textbf{    - Festkörperplattformen, welche meistens aus Supraleiter oder Diamant basierte NV-Zentren bestehen } 
-
-\textbf{    - Atomare Plattformen, welche auf Ionen oder Photonen basieren} 
-
+\begin{itemize}
+    \item Festkörperplattformen, welche meistens aus Supraleiter oder Diamant basierte NV-Zentren bestehen
+    \item Atomare Plattformen, welche auf Ionen oder Photonen basieren
+\end{itemize}
 Diese Unterschiede in Plattformen wirken sich erheblich auf die Skalierbarkeit, die Kohärenzzeiten und die potenziellen Anwendungsfelder bei Quantencomputer aus. Für beide Hauptplattformen existieren weitere Plattformen, wie z. B. Neutralatom-fallen oder Quanten-Punkte, sind jedoch aktuell nicht so forschungsrelevant wie die vorgestellten Plattformen.
 
 \subsection{Unterschied atomare und Festkörper Plattformen}
 
 Wie im vorherigen Kapitel vorgestellt, existieren in der Benutzung der Hauptplattformen Unterschiede.
-- Genaue Vorstellung Atomare Plattformen
-- Genaue Vorstellung Festkörper Plattformen
+\begin{itemize}
+    \item Genaue Vorstellung Atomare Plattformen
+    \item Genaue Vorstellung Festkörper Plattformen
+\end{itemize}
 
 Die folgende Tabelle gibt einen kompakten Überblick über die wichtigsten Eigenschaften beider Plattformarten:
 
@@ -57,7 +57,7 @@ Ein supraleitendes Qubit besteht häufig aus einem Induktor und einem Kondensato
 \\\\
 Der Betrieb supraleitender Qubits erfordert extrem niedrige Temperaturen, typischerweise unter 15 Millikelvin (mK), um die Kohärenz aufrechtzuerhalten und die Supraleitung zu ermöglichen.(The ultimate Guide to Superconducting Quantum Computers, 2025). Diese Bedingungen werden durch spezialisierte Kühlsysteme, hauptsächlich Verdünnungskryostate, erreicht. Innerhalb eines Verdünnungskryostat befinden sich die Qubits auf der kältesten Stufe (~10 mK), während die Mikrowellenelektronik auf höheren Temperaturstufen (1 K, 4 K) angeordnet ist. (What Is Cryogenic Quantum Computing and Why It Matters, 2025). Umfassende Abschirmung und Filterung sind entscheidend, um elektromagnetische Interferenzen zu verhindern und thermisches Rauschen zu unterdrücken, das die fragilen Quantenzustände stören und Dekohärenz verursachen kann. Die kryogene Umgebung ist somit nicht nur ein passives Kühlsystem, sondern eine aktive und komplexe Infrastruktur, die die empfindlichen Quantenzustände grundlegend ermöglicht und schützt. Ihre Rolle geht über die reine Kühlung hinaus, da sie aktiv die notwendige Quantenkohärenz aufrechterhält, indem sie verschiedene Formen von Umgebungsrauschen (thermisch, elektromagnetisch) mindert. Verdünnungskryostate sind spezialisierte kryogene Geräte, die die einzigartigen Eigenschaften eines Gemischs aus den Helium-Isotopen Helium-3 und Helium-4 nutzen, um kontinuierlich Temperaturen von bis zu 2 mK zu erreichen. Historisch gesehen wurden "nasse" Verdünnungskryostate verwendet, die eine kontinuierliche Versorgung mit flüssigem Helium zur Vorkühlung benötigten. Diese Systeme waren effektiv, aber mit hohen Betriebskosten und logistischem Aufwand verbunden. Seit etwa 2010 hat sich ein signifikanter Wandel hin zu kryogenfreien ("trockenen") Systemen vollzogen. Diese trockenen Systeme verwenden geschlossene Pulskühlröhren (Pulse Tube Refrigerators, PTRs) zur Vorkühlung auf etwa 4 K, wodurch die Notwendigkeit einer externen Flüssigheliumversorgung entfällt. Der Übergang zu kryokogenfreien Verdünnungskryostaten ist nicht nur im Trend sondern auch strategisch notwendig für die Skalierung von Quantencomputern. Trockene Systeme bieten kontinuierlichen Betrieb und eliminieren die Notwendigkeit des Nachfüllens von Flüssighelium, was längere und unterbrechungsfreie Quantenexperimente ermöglicht und die Betriebseffizienz erhöht. Allerdings geht dieser Vorteil oft mit erhöhten mechanischen Vibrationen von den Pulskühlern einher. Trotz dieser Vibrationsherausforderung ist der Wechsel zu trockenen Systemen für die Skalierbarkeit unerlässlich, da er längere, unterbrechungsfreie Experimente ermöglicht und die Betriebseffizienz für größere Quantensysteme verbessert. Die Hersteller investieren daher stark in Vibrationsdämpfungstechniken, um diesen Nachteil zu mindern(J.Rothe, 2025).
 \\\\
-Aktuelle Branchenführer verwenden unterschiedliche Kühlsysteme von verschiedenen Anbietern um die individuellen Anforderungen zu erfüllen. IBM hat sich für das im Dezember 2023 erste modulare Quantencomputer System für das Kühlsystem "KIDE Cryogenic Platform" von dem finnischen Unternehmen Bluefors entschieden. Dieses System ist ein kroykogenfreies System, dass auf die Verbindung mehrere Prozessoren ausgelegt ist. Hier wird der von IBM gesetzte Fokus auf skalierbare und modulare Systeme deutlich. Um die reißige Anzahl an Qubits kühlen zu können werden hier neun Pulskühlröhren verwendet, die dafür sorgen verschiedene Temperaturstufen versorgen zu können (Bluefors, 2023). Durch die Nutzung von Pulskühlröhren anstelle von flüssigem Helium können dabei Kühlzeiten von bis zu 3 Jahren realisiert werden. Um modular zu bleiben, wurde KIDE als hexagonale Kammer mit Zugangstüren für Wartung und Möglichkeiten mehrere Cryostat-Einheiten zu koppeln konzipiert. (IBM Quantum, 2024). Ergänzend arbeitet IBM aktuell an dem Goldeye-Projekt mit dem Ziel eine "Super-Kühlschrank" mit 1,7 Kubikmetern Volumen zu entwickeln um zukünftig größere Quantensysteme kühlen zu können. (Pat Gumann, Jerry Chow, 2022) 
+Aktuelle Branchenführer verwenden unterschiedliche Kühlsysteme von verschiedenen Anbietern um die individuellen Anforderungen zu erfüllen. IBM hat sich für das im Dezember 2023 erste modulare Quantencomputer System für das Kühlsystem "KIDE Cryogenic Platform" von dem finnischen Unternehmen Bluefors entschieden. Dieses System ist ein kroykogenfreies System, dass auf die Verbindung mehrere Prozessoren ausgelegt ist. Hier wird der von IBM gesetzte Fokus auf skalierbare und modulare Systeme deutlich. Um die reißige Anzahl an Qubits kühlen zu können werden hier neun Pulskühlröhren verwendet, die dafür sorgen verschiedene Temperaturstufen versorgen zu können (Bluefors, 2023). Durch die Nutzung von Pulskühlröhren anstelle von flüssigem Helium können dabei Kühlzeiten von bis zu 3 Jahren realisiert werden. Um modular zu bleiben, wurde KIDE als hexagonale Kammer mit Zugangstüren für Wartung und Möglichkeiten mehrere Cryostat-Einheiten zu koppeln konzipiert. (IBM Quantum, 2024). Ergänzend arbeitet IBM aktuell an dem Goldeye-Projekt mit dem Ziel eine "Super-Kühlschrank" mit 1,7 Kubikmetern Volumen zu entwickeln um zukünftig größere Quantensysteme kühlen zu können. (Pat Gumann, Jerry Chow, 2022) \cite{gumann_ibm_2022}
 
 Google und Intel setzen ebenfalls auf kryogene Plattformen von Bluefors um ihre supraleitenden zu betreiben (Cryogenic Quantum Hardware: The Cold Engine of Quantum Tech, 2025). Google setzt den Fokus bei der 
 
@@ -69,78 +69,100 @@ Google und Intel setzen ebenfalls auf kryogene Plattformen von Bluefors um ihre 
 \section{Quantencomputer aus Ionenfallen-Qubits}
 \subsection{Gatterimplementierung}
 
-    - Wie funktioniert ein Logischer Gatter bei Ionenfallen-Quantencomputern?
-    - Ein-Qubit-Gatter
-    - Zwei-Qubit-Gatter
-    - Cirac-Zoller-Gatter
-    - Mølmer-Sørensen-Gatter
+    \begin{itemize}
+        \item Wie funktioniert ein Logischer Gatter bei Ionenfallen-Quantencomputern?
+        \item Ein-Qubit-Gatter
+        \item Zwei-Qubit-Gatter
+        \item Cirac-Zoller-Gatter
+        \item Mølmer-Sørensen-Gatter
+    \end{itemize}
 \subsection{Verwendungsbereiche und Merkmale der Ionenfallen-Qubits}
-    - Stand der Technologie
-    - Ionenfallen in Quantensimulation und Metrologie
-    - Ionenfallen in Quantencomputer
-    - Wie ist ein Ionenfallen Quantencomputer aufgebaut?
-    - Wie und unter welchen Bedingungen wird ein Ionenfallen Quantencomputer benutzt/verwaltet?
+    \begin{itemize}
+        \item Stand der Technologie
+        \item Ionenfallen in Quantensimulation und Metrologie
+        \item Ionenfallen in Quantencomputer
+        \item Wie ist ein Ionenfallen Quantencomputer aufgebaut?
+        \item Wie und unter welchen Bedingungen wird ein Ionenfallen Quantencomputer benutzt/verwaltet?
+    \end{itemize}
 \subsection{Herausforderungen und technische Limitationen}
-    - Warum gibt es die aktuellen Probleme?
-    - Skalierbarkeit
-    - Gatterzeit
-    - Potenzial
-    - Ansätze zur Lösung aktueller Limitationen: z. B. Quantum Networking 
+    \begin{itemize}
+        \item Warum gibt es die aktuellen Probleme?
+        \item Skalierbarkeit
+        \item Gatterzeit
+        \item Potenzial
+        \item Ansätze zur Lösung aktueller Limitationen: z. B. Quantum Networking
+    \end{itemize}
 
 \section{Quantencomputer auf Basis diamantbasierter Qubits (NV-Zentren)}
 \subsection{Physikalisches Prinzip}
-    - Zwei-Niveau-System: Elektronenspins von Stickstoff-Fehlstellen (NV-Zentren) im Diamantgitter
-    - Optische Kontrolle
-    - Mikrowellensteuerung
-    - Kernspins
+    \begin{itemize}
+        \item Zwei-Niveau-System: Elektronenspins von Stickstoff-Fehlstellen (NV-Zentren) im Diamantgitter
+        \item Optische Kontrolle
+        \item Mikrowellensteuerung
+        \item Kernspins
+    \end{itemize}
 \subsection{Gatterimplementierung}
-    - Ein-Qubit-Gatter
-    - Zwei-Qubit-Gatter
+    \begin{itemize}
+        \item Ein-Qubit-Gatter
+        \item Zwei-Qubit-Gatter
+    \end{itemize}
 \subsection{Verwendungsbereiche und Merkmale der diamantbasierten Qubits}
-    - Stand der Technologie
-    - Anwendungen
-    - Systemaufbau
-    - Betriebsbedingungen
+    \begin{itemize}
+        \item Stand der Technologie
+        \item Anwendungen
+        \item Systemaufbau
+        \item Betriebsbedingungen
+    \end{itemize}
 \subsection{Herausforderungen und technische Limitationen}
-    - Warum gibt es die aktuellen Probleme?
-    - Skalierbarkeit
-    - Gatterzeiten:
-    - Potenzial und Ansätze:
+    \begin{itemize}
+        \item Warum gibt es die aktuellen Probleme?
+        \item Skalierbarkeit
+        \item Gatterzeiten:
+        \item Potenzial und Ansätze:
+    \end{itemize}
 
 
 
 \section{Titel tbd}
 \subsection{Photonische Quantencomputer}
-    - Grundlegende Prinzipien und Qubit-Kodierung
-    - Schlüsselkomponenten: Photonenerzeugung, -manipulation und -detektion
-    - Vorteile und spezifische Herausforderungen
-    - Aktueller Stand, jüngste Fortschritte (2024-2025) und Ausblick
-    - Engineering- und Skalierungslösungen
-    - Quantenfehlerkorrektur
+    \begin{itemize}
+        \item Grundlegende Prinzipien und Qubit-Kodierung
+        \item Schlüsselkomponenten: Photonenerzeugung, -manipulation und -detektion
+        \item Vorteile und spezifische Herausforderungen
+        \item Aktueller Stand, jüngste Fortschritte (2024-2025) und Ausblick
+        \item Engineering- und Skalierungslösungen
+        \item Quantenfehlerkorrektur
+    \end{itemize}
 
 \subsection{Halbleiterbasierte Qubits: Spin qubits}
-    - Physikalische Realisierung in Halbleitern
-    - Kontroll- und Auslesemechanismen
-    - Vorteile und spezifische Herausforderungen
-    - Aktueller Stand, jüngste Fortschritte (2024-2025) und Ausblick
-    - Engineering- und Skalierungslösungen
-    - Quantenfehlerkorrektur
+    \begin{itemize}
+        \item Physikalische Realisierung in Halbleitern
+        \item Kontroll- und Auslesemechanismen
+        \item Vorteile und spezifische Herausforderungen
+        \item Aktueller Stand, jüngste Fortschritte (2024-2025) und Ausblick
+        \item Engineering- und Skalierungslösungen
+        \item Quantenfehlerkorrektur
+    \end{itemize}
 
 \subsection{Neutralatom-Quantencomputer}
-    - Prinzipien: Atomkühlung, Fallen und Qubit-Kodierung
-    - Steuerung und Auslesung mittels Lasertechnologie
-    - Vorteile und spezifische Herausforderungen
-    - Aktueller Stand, jüngste Fortschritte (2024-2025) und Ausblick
-    - Engineering- und Skalierungslösungen
-    - Quantenfehlerkorrektur
+    \begin{itemize}
+        \item Prinzipien: Atomkühlung, Fallen und Qubit-Kodierung
+        \item Steuerung und Auslesung mittels Lasertechnologie
+        \item Vorteile und spezifische Herausforderungen
+        \item Aktueller Stand, jüngste Fortschritte (2024-2025) und Ausblick
+        \item Engineering- und Skalierungslösungen
+        \item Quantenfehlerkorrektur
+    \end{itemize}
 
 \subsection{Topologische Qubits}
-    - Theoretische Konzepte: Nichtabelsche Anyonen und Majorana-Fermionen
-    - Ansätze zur Realisierung und Manipulation
-    - Potenzial für inhärente Fehlertoleranz und aktuelle Herausforderungen
-    - Aktueller Stand, jüngste Fortschritte (2024-2025) und Ausblick
-    - Engineering- und Skalierungslösungen
-    - Quantenfehlerkorrektur (über den inhärenten Schutz hinaus)
+    \begin{itemize}
+        \item Theoretische Konzepte: Nichtabelsche Anyonen und Majorana-Fermionen
+        \item Ansätze zur Realisierung und Manipulation
+        \item Potenzial für inhärente Fehlertoleranz und aktuelle Herausforderungen
+        \item Aktueller Stand, jüngste Fortschritte (2024-2025) und Ausblick
+        \item Engineering- und Skalierungslösungen
+        \item Quantenfehlerkorrektur (über den inhärenten Schutz hinaus)
+    \end{itemize}
 
 
 
@@ -223,7 +245,8 @@ Die praktische Umsetzung der Prinzipien von Modularität und Skalierbarkeit stel
 
 \subsubsection{Relevante Designentscheidungen aus Ingenieursperspektive}
 Mehrere zentrale Designentscheidungen prägen die ingenieurtechnische Ausrichtung des IBM Quantum System Two. Die Priorisierung der Modularität stellt hierbei die fundamentalste und weitreichendste Entscheidung dar, welche die Skalierbarkeit und Zukunftsfähigkeit des Systems gewährleisten soll. Parallel dazu wurde ein starker Fokus auf die Interkonnektivität gelegt; die Fähigkeit, Prozessoren und Systeme miteinander zu verbinden, ist entscheidend, um die Limitierungen einzelner QPUs zu überwinden. Die Entwicklung des Systems folgt einem integrierten Ansatz, bei dem Hardware, Software (einschließlich Qiskit und Middleware), Steuerung und klassische Computerressourcen als eine kohärente Einheit betrachtet und entwickelt werden. Schließlich schafft die Architektur des Quantum System Two, obwohl sie selbst noch nicht die Ära der vollständigen Fehlertoleranz einläutet, die notwendige Skalierbarkeit und Komplexität, um fortgeschrittene Fehlerminderungs- und Quantenfehlerkorrekturcodes zu implementieren und zu testen.
-\\\\
+\\
+
 Das IBM Quantum System Two stellt somit einen entscheidenden Evolutionsschritt dar. Es legt die technologischen Grundlagen für Quantencomputer, die potenziell in der Lage sein werden, Probleme von praktischer Relevanz zu lösen, welche für klassische Supercomputer als unlösbar gelten. Die Realisierung dieser Vision ist maßgeblich von der erfolgreichen Bewältigung der komplexen ingenieurtechnischen Herausforderungen in den Bereichen Skalierung, Konnektivität und Systemintegration abhängig.
 
 
