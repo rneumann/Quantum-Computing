@@ -34,8 +34,11 @@ Ein Zustand beschreibt in der Physik die Menge aller physikalisch relevanten Inf
 In der klassischen Mechanik wird der Zustand eines Objektes, im einfachsten Fall eines einzelnen Teilchens, über den Ort und Impuls des Objektes beschrieben. Aus diesen Informationen lassen sich alle physisch messbaren Eigenschaften des Teilchens berechnen. Dieses Modell zur Zustandsbeschreibung reicht aufgrund von Quantenmechanischen Phänomenen allerdings nicht mehr aus, um auch Quantenobjekte und -systeme vollständig zu beschreiben.\\
 
 Der Zustand eines Quantenobjektes ist über die Wellenfunktion mit dem Symbol $\Psi$ (Psi) vollständig definiert. Die Wellenfunktion ist eine komplexe Funktion, ihre Funktionswerte stammen also aus dem Zahlenraum $\mathbb{C}$.\\
-Die Wellenfunktion sagt aus, dass in einem durch sie beschriebenen Quantensystem die Wahrscheinlichkeitsdichte $P(x)$ das untersuchte Teilchen in dem Zustand $\Psi(x)$ an der Stelle $x$ zu finden $|\Psi(x)|^2$ beträgt.\\
-Dies ist notwendig, damit man als Ergebnis für die Wahrscheinlichkeit eine reale nicht negative Zahl erhält. Die Wellenfunktion wird immer normalisiert. Dies ist der Fall, da die Summe der Wahrscheinlichkeiten das Teilchen zu finden zusammengerechnet 1 ergeben muss.\\
+Die Wellenfunktion sagt aus, dass in einem durch sie beschriebenen Quantensystem die Wahrscheinlichkeitsdichte $P(x)$ das untersuchte Teilchen in dem Zustand $\Psi(x)$ an der Stelle $x$ zu finden $|\Psi(x)|^2$ beträgt. Es gilt also:\\
+\begin{equation*}
+P(x) = |\Psi(x)|^2
+\end{equation*}
+Dies ist notwendig, damit man als Ergebnis für die Wahrscheinlichkeit eine reale nicht negative Zahl erhält. Die Wellenfunktion wird immer normalisiert. Dies ist der Fall, da die Summe der Wahrscheinlichkeiten das Teilchen an irgendeinem Ort zu finden zusammengerechnet 1 ergeben muss.\\
 Dieser Zusammenhang wird als erstes Postulat der Quantenmechanik bezeichnet.
 
 \subsubsection*{\textit{Observable und Messung}}
@@ -74,7 +77,7 @@ Ein anderes, sehr stark vereinfachtes, Gedankenexperiment zur Darstellung ist ei
 
 \subsection{Quanteninterferenz}
 
-Wellen haben einige besondere Eigenschaften, da wie im Doppelspaltexperiment bewiesen, auch Quantenobjekte Welleneigenschaften haben sind diese relevant. An bestimmten Stellen kommt es bei Wellen zur überlagerung, man spricht hierbei vob Interferenz.\\
+Wellen haben einige besondere Eigenschaften, da wie im Doppelspaltexperiment bewiesen, auch Quantenobjekte Welleneigenschaften haben sind diese relevant. An bestimmten Stellen kommt es bei Wellen zur Überlagerung, man spricht hierbei von Interferenz.\\
 An diesen Punkten ist die Amplitude der Welle die Summe der Amplituden der vorherigen Wellen. Es wird zwischen konstruktiver und destruktiver Interferenz unterschieden. Bei konstruktiver kommt es zur Verstärkung der Welle und bei destruktiver zu einer Abschwächung. Es ist sogar möglich, dass eine Welle durch destruktive Interferenz komplett zerstört wird.\\
 Das Muster, dass beim Aufeinandertreffen von zwei Wellen entsteht bezeichnet man als Interferenzmuster. Dieses war beim Doppelspaltexperiment vom besonderer Bedeutung.\\
 Mathematisch überlagern sich durch Quanteninterferenz die Wahrscheinlichkeitsamplituden von Wellenfunktionen. Die Quanteninterferenz kann damit einen Einfluss auf die berechnete Wahrscheinlichkeit haben.
@@ -83,6 +86,7 @@ Mathematisch überlagern sich durch Quanteninterferenz die Wahrscheinlichkeitsam
 !!Bild mit Wellen kommt noch
 
 \subsection{Verschränkung }
+\label{sec: Verschränkung}
 
 Das Konzept der Verschränkung (engl. ``entanglement'') beschreibt gewissermaßen die Korrelation mehrerer Qubits miteinander, das heißt sie hängen in einem besonderen Maße zusammen. \\
 Für einen erleichterten Einstieg soll ein Beispiel anhand zweier gewöhnlicher Münzen gemacht werden. Werden zwei gewöhnliche Münzen geworfen, hat man vier mögliche Ausgänge für den Münzwurf, bei denen H für Kopf und T für Zahl stehen sollen: HH, HT, TH, TT. \\
@@ -91,7 +95,7 @@ Diese Verschränkung ist unabhängig von der räumlichen Nähe der Münzen und k
 Das Phänomen der Verschränkung ist jedoch ein reines Quantenphänomen, das keine Erklärung in der klassischen Physik besitzt. \\ \\
 Eine Vermutung über die Natur der Verschränkung besteht aus der sofortigen Informationsübertragung zweier Teilchen, die über die Schnelligkeit der Lichtgeschwindigkeit hinausgeht, was jedoch als widerlegt gilt. Stattdessen teilen Teilchen nicht-klassische Information während der Verschränkung, die im Messprozess beobachtet werden kann. \\ \\
 Eine weitere frühe Interpretation, bekannt unter dem Namen ``Hidden Variable Theory'', nahm an, dass Teilchen beim Erzeugen mit verbogenen Eigenschaften erschaffen werden, die Messergebnisse deterministisch bestimmen. Beispielsweise wäre hierfür der Zerfall eines Teilchens in zwei Teilchen. Auf Basis der Impulserhaltung kann man durch die Messung des Impuls des einen Teilchens auf den Impuls des anderen Teilchens schließen, da der Gesamtimpuls vorher bekannt ist. 
-\cite{hughes_quantum_2021}
+(vgl. \cite[Ch. 7]{hughes_quantum_2021})
 % Quantum Computing for the Quantum Curious - Hughes et al. - 2021
 \\ 
 
@@ -105,7 +109,7 @@ Die quantenmechanische Verschränkung erfüllt diese Annahmen durch die ``spukha
 Da die Grenzen der Bell-Ungleichung also nicht auf gemessene Experimente zutreffen, kann keine lokal-realistische Theorie das quantenmechanische Phänomen der Verschränkung erklären. Die Resultate stimmen mit der Quantenmechanik überein, anstatt mit lokalen Theorien wie der Hidden Variable Theory. 
 \\ \\
 Basierend hierauf ergibt sich das Dilemma, dass Realismus und Lokalität nicht beide gleichzeitig gelten können. Diese Schlussfolgerung führt jedoch zu tiefergehenden philosophischen Fragen über die Realität, die an dieser Stelle nicht weiter behandelt werden sollen. Unabhängig davon findet die Verschränkungen Anwendungen in moderner Quantentechnologie, wie in der Quantenkryptographie oder Quanten-Teleportation.  
-\cite{homeister_quantum_2022-1}
+(vgl. \cite[Ch. 2.11]{homeister_quantum_2022-1})
 %% Quantum Computing verstehen: Grundlagen - Anwendungen - Perspektiven - Homeister - 2022
 \\
 
@@ -116,14 +120,16 @@ Um ein Beispiel für die Quantenverschränkung in der Praxis zu machen, soll an 
 \]
 
 Misst man also die Polarisation des Photons A, kennt man ebenfalls die Polarisation des Photons B, jedoch ohne dass dies klassisch bereits festgelegt war.
-\cite{hughes_quantum_2021}
+(vgl. \cite[Ch. 7]{hughes_quantum_2021})
 % Quantum Computing for the Quantum Curious - Hughes et al. - 2021
 
 \section{Mathematische Beschreibung von Qubits}
+\label{Mathematische Beschreibung von Qubits}
 
 Die mathematische Beschreibung eines Qubits bildet das Fundament der quantenmechanischen Informationsverarbeitung. Während ein klassisches Bit stets in genau einem von zwei diskreten Zuständen vorliegt, kann ein Qubit eine lineare Überlagerung dieser beiden Zustände einnehmen. Diese Eigenschaft, die als Superposition bezeichnet wird, verlangt nach einer mathematischen Struktur, die solche Kombinationen zulässt und konsistent interpretierbar macht.
 
 \subsection{Der Hilbertraum des Qubits}
+\label{subsec: Der Hilbertraum des Qubits}
 
 Ein Qubit wird als Vektor in einem zweidimensionalen komplexen Vektorraum beschrieben, der mit einem Skalarprodukt ausgestattet ist. Dieser Raum wird als Hilbertraum bezeichnet und durch \( \mathcal{H} = \mathbb{C}^2 \) dargestellt. Er enthält alle linearen Kombinationen zweier orthonormaler Basisvektoren, die mit \( |0\rangle \) und \( |1\rangle \) bezeichnet werden. Diese sogenannten Basiszustände werden üblicherweise in Form von Spaltenvektoren geschrieben:
 
@@ -150,6 +156,7 @@ Ein vollständiges System orthonormaler Basiszustände bildet eine Basis des Hil
 Um physikalisch sinnvoll zu sein, fordert man zusätzlich zur Vollständigkeit oft auch die Separabilität des Hilbertraums. Ein separabler Hilbertraum enthält eine abzählbare dichte Teilmenge, wodurch gewährleistet ist, dass der Raum mithilfe einer zählbaren Basis „erreichbar“ ist. Diese Eigenschaft ist für die mathematische und physikalische Handhabbarkeit entscheidend \cite{nolting_springer_2013}.  %% RN: Hier war eine Referenz auf Greiner2001???
 
 \subsection{Mathematische Struktur und Operatoren im Hilbertraum}
+\label{subsec:Mathematische Struktur und Operatoren im Hilbertraum}
 
 Ein Hilbertraum ist ein Vektorraum mit einem Skalarprodukt, der vollständig in Bezug auf die durch das Skalarprodukt induzierte Norm ist. Vollständigkeit bedeutet, dass jede sogenannte Cauchy-Folge von Vektoren in diesem Raum gegen einen Vektor desselben Raumes konvergiert \cite{nolting_springer_2013}.
 
@@ -188,7 +195,10 @@ Der Qubit-Zustand ist ein normierter Vektor in einem komplexen Hilbertraum. Die 
 
 
 \section{Quantenmessung }
+\label{sec: Quantenmessung}
+Im folgenden Kapitel wird die Messung eines quantenmechanischen Systems betrachtet. Es wird genauer auf Observablen und ihre Rolle in der Messung, den Effekt einer Messung auf das Quantensystem, den Zerfall der Wellenfunktion, den Nichtdeterminismus einer quantenmechanischen Messung und das Messergebnis eingegangen. 
 \subsection{Grundlagen der Quantenmessung}
+\label{subsec: Grundlagen der Quantenmessung}
 
 Die Messung in der Quantenmechanik unterscheidet sich grundlegend von der Messung in der klassischen Physik, einerseits durch die Auffassung der Grundkonzepte der Quantenmechanik, andererseits durch die mathematische Beschreibung und Interpretation der Messergebnisse.
 In der klassischen Welt wird das Verhalten eines Systems nicht durch das alleinige Beobachten des Systems beeinflusst; ein Ball beispielsweise wird sein Verhalten und seine Flugkurve nach einem Schuss nicht verändern, unabhängig davon, ob jemand dabei zusieht oder nicht. \\
@@ -196,7 +206,8 @@ In der klassischen Welt wird das Verhalten eines Systems nicht durch das alleini
 In der Quantenwelt hingegen sind die gemessenen Objekte (z.B. Photonen) winzig klein und die entsprechenden Messgeräte verhältnismäßig groß, sodass schon alleine deshalb die Messung zwangsläufig den Zustand eines Quantensystems beeinflussen wird. \\
 Dass eine Messung den Zustand des Quantensystems verändert und das Ergebnis dieser Messung zufällig ist, ist im Rahmen des zweiten Postulats der Quantenmechanik eine zentrale Annahme, die in diesem Kapitel weiter erörtert werden soll. Als Observablen- oder Messwertpostulat ist es das zentrale Postulat für die Messung im gegebenen Rahmen. \\
 \\
-Das zweite Postulat besagt, dass eine Quantenmessung einer Projektion des Zustandes $\ket{\psi}$ auf eine Basis $\ket{|v_i|}$ entspricht. Mit der Wahrscheinlichkeit $|\braket{v_i|\psi}|^2$ erhalten wir das Ergebnis $v_i$. Das System befindet sich dann im Zustand $\ket{v_i}$. \cite{lvovsky_quantum_2018} 
+Das zweite Postulat besagt, dass eine Quantenmessung einer Projektion des Zustandes $\ket{\psi}$ auf eine Basis $\ket{|v_i|}$ entspricht. Mit der Wahrscheinlichkeit $|\braket{v_i|\psi}|^2$ erhalten wir das Ergebnis $v_i$. Das System befindet sich dann im Zustand $\ket{v_i}$. 
+(vgl. \cite[Ch. 1.4.1]{lvovsky_quantum_2018}) 
 % Lvovsky - Quantum Physics - 2018 - Kapitel 1.4.1 The Measurement Postulate
 \newline Dieses Konzept wird auch 'projektive Messung' genannt, da die Messung des Zustandes auf einen Basiszustand projiziert wird, wobei die Begriffe der Projektion und der Basiszustände noch weiter erläutert werden sollen. \\
 \\
@@ -217,7 +228,7 @@ Die Zuordnung eines Wertes ist für einige Messgrößen (bspw. der Ort eines Tei
 \\
 Eine Observable kann für jede messbare Größe (Ort, Energie, Puls, Spin, etc.) definiert werden. Eine Ausnahme bildet hierbei die Zeit, da diese in der Quantenmechanik nicht als Observable definiert und behandelt wird.
 Daher gibt es keinen Zeit-Operator oder Eigenzustände der Zeit. Die Zeit dient lediglich als kontinuierliche Variable zur Beschreibung der Entwicklung des Quantensystems. 
-\cite{lvosvsky_quantum_2018} 
+(vgl. \cite[Ch. 1.9.1]{lvosvsky_quantum_2018})
 % Lvovsky - Quantum Physics - 2018 - Kapitel 1.9.1 Observable Operators
 \\
 \\
@@ -240,8 +251,8 @@ Es ist das Quadrat der Länge der Projektion von $\ket\psi$ auf den m-Unterraum.
 Da wiederholte Messungen jedoch im Bereich des Quantumcomputing geringe Relevanz hat, wird auf die wiederholte Messung nicht weiter eingegangen. \\ 
 \end{enumerate}
 
-In kurz greift man bei der Messung eines Zustandes $\ket\psi$ also nur den Teil aus dem gesamten Zustandsvektor heraus, den man misst. Es wird der Anteil extrahiert, der zugehörig zum gemessenen Eigenwert ist, also die Projektion $P_m \ket\psi$. Der Zustand wird bei der Messung also in seine Bestandteile entsprechend der verschiedenen Eigenräume zerlegt. Um hieraus wieder einen gültigen und normierten Zustand zu erhalten, muss dieser Vektor mit seiner eigenen Länge normiert werden. Da dies jedoch nur zur weiteren Arbeit mit demselben Quantensystem relevant ist, wird die Normierung nicht weiter berücksichtigt und es wird stattdessen auf wiederholte Messungen verwiesen.
-\cite{kasirajan_fundamentals_2021} 
+In kurz greift man bei der Messung eines Zustandes $\ket\psi$ also nur den Teil aus dem gesamten Zustandsvektor heraus, den man misst. Es wird der Anteil extrahiert, der zugehörig zum gemessenen Eigenwert ist, also die Projektion $P_m \ket\psi$. Der Zustand wird bei der Messung also in seine Bestandteile entsprechend der verschiedenen Eigenräume zerlegt. Um hieraus wieder einen gültigen und normierten Zustand zu erhalten, muss dieser Vektor mit seiner eigenen Länge normiert werden. Da wir in diesem Kontext jedoch keine wiederholte Messung identischer Qubits betrachten, wird die Normierung an dieser Stelle nicht weiter berücksichtigt und es wird stattdessen auf wiederholte Messungen verwiesen. 
+(vgl. \cite[Ch. 3.9]{kasirajan_fundamentals_2021})
 %Fundamentals of Quantum Computing: Theory and Practice – Kasirajan (Kapitel zu Projective Measurements)
 \\ \\
 Um ein Beispiel für den Messprozess und den Zerfall auf den Eigenzustand bei der projektiven Messung zu machen, soll ein Photon auf einen Polarizing Beam Splitter (PBS) treffen. Dieser lässt horizontal polarisiertes Licht passieren, aber reflektiert vertikal polarisiertes Licht.
@@ -249,10 +260,11 @@ Betrachtet man einen Lichtstrahl aus der klassischen Physik, würde man erwarten
 Dementsprechend ist das Ergebnis zufällig: das Photon wird mit einer gewissen Wahrscheinlichkeit passieren oder reflektiert werden. Das Photon entscheidet sich bei der Messung, ob es horizontal oder vertikal polarisiert sein wird und springt bei der Messung in den gewählten Zustand. \\ \\
 Man könnte auch sagen durch die Messung wird der Superpositionszustand auf einen der möglichen Eigenzustände reduziert. Die Superposition selbst liegt nicht im Eigenraum, sondern ist eine Überlagerung der Zustände aus den Eigenräumen, wobei ``horizontal'' und ``vertikal'' im Eigenraum mit ihrem jeweiligen Eigenwert liegen. Hierbei zerfällt der Ursprungszustand, sodass dies bei folgenden PBS nicht erneut vonstatten gehen könnte - das Photon wird den hierbei gewählten Zustand beibehalten.
 Es gibt ab diesem Punkt keine weiteren zufälligen Zustandsänderungen. 
-\cite{lvovsky_quantum_2018}
+(vgl. \cite[Ch. 1.4.1]{lvovsky_quantum_2018})
 % Quantum Physics – Lvovsky – 2018 (Kapitel 1.4.1 The Measurement Postulate)
 
 \subsection{Nichtdeterminismus}
+\label{subsec: Nichtdeterminismus}
 
 Das oben beschrieben Phänomen der zufälligen Messung ist auf den Nichtdeterminismus der Quantenmessung zurückzuführen. Das bedeutet, dass das Ergebnis der Messung zufällig ist. Man erhält den Wert $\ket v_i$ mit einer gewissen Wahrscheinlichkeit.
 Je besser der Zustand $\ket \psi$ zu einem Messzustand $\ket v_i$ passt, desto wahrscheinlicher ist das Ergebnis $v_i$. \\
@@ -267,10 +279,10 @@ Die Varianz entspricht einem Wert von 1, da die Messung immer um +1 oder -1 vom 
 In der klassischen Physik sind solche Messungen deterministisch vorhersehbar. Für einzelne Photonen gibt es den Zufall, für eine Vielzahl von Photonen als Licht gibt es jedoch feste Erwartungen und Regeln.
 Entsprechend ist es auch im Quantensystem. Mit einer Vielzahl an Photonen wird die relative Unsicherheit sehr klein und das Verhalten erscheint klassisch und stabil, obwohl die Photonen im Kleinen in Form der Einzelphotonen vom Zufall beherrscht sind.
 Die Quantenfluktuationen verschwindend relativ gesehen also im großen Maßstab durch die wiederholte Messung und eine klare Wahrscheinlichkeitsverteilung.
-\cite{kasirajan_fundamentals_2021}
+(vgl. \cite[Ch. 1.9.2]{kasirajan_fundamentals_2021})
 % Quantum Physics – Lyvovsky – 2018 (Kapitel 1.9.2 Observable Operators)
 \\ \\
-Erwähnenswert im Rahmen der Messung ist weiterhin das 'Heisenberg Uncertainty Principle'. In der klassischen Physik ist eine Unsicherheit im Rahmen der Messung Folge eines ungenauen Messapparates, die durch eine Verbesserung des Apparates selbst verringert werden kann. \\
+Erwähnenswert im Rahmen der Messung ist weiterhin das 'Heisenbergsche Unschärfeprinzip'. In der klassischen Physik ist eine Unsicherheit im Rahmen der Messung Folge eines ungenauen Messapparates, die durch eine Verbesserung des Apparates selbst verringert werden kann. \\
 \\
 Dies gilt jedoch im Kontext der Quantenmechanik nicht. Hierbei kann ein Apparat präzise auf die Messung eines Observablen abgestimmt sein, jedoch bei der Messung einer anderen Observablen durchweg schlecht abschneiden. \\ 
 \\
@@ -279,31 +291,33 @@ Ist dies der Fall, gibt es eine bestimmte Basis von Zuständen (Eigenbasis), in 
 Wenn die Observablen jedoch nicht kommutieren, so gibt es keinen Zustand, bei dem man beide Größen gleichzeitig exakt wissen kann. Misst man hierbei A, wird das Ergebnis von B zufällig sein, da die Messung von B durch die Information über A gestört ist.
 Das heißt bestimmte Paare von Größen können nicht gleichzeitig beliebig genau gemessen werden. 
 Zwei Größen, die nicht kommutieren, sind z.B. Ort und Impuls eines Teilchens. Je genauer man den Ort kennt, desto ungenauer lässt sich der Impuls messen und umgekehrt. 
-\cite{kasirajan_fundamentals_2021}
+(vgl. \cite[Ch. 1.9.3]{kasirajan_fundamentals_2021})
 % Quantum Physics – Lyvovsky – 2018 (Kapitel 1.9.3 Uncertainty Principle)
 
 \subsection{Messprozess}
+\label{subsec: Messprozess}
 
 Ein Prozess, der im Rahmen der Messung bereits mehrfach erwähnt, jedoch bisweilen noch nicht konkret benannt wurde, ist der Kollaps der Wellenfunktion. Dieser Prozess ist zentral für die Messung. 
 Unter dem Kollaps der Wellenfunktion versteht man den Vorgang, bei dem der Zustand eines Quantensystems auf einen Basiszustand 'springt', das heißt der Zustand des Systems kollabiert auf einen der möglichen Messzustände. Die Wahrscheinlichkeit für den Wert, den man beim Kollaps erhält, ist durch die bereits genannte Bornsche Regel beschrieben. \\
 Dies zeigt die Annahme der Quantenmechanik des Nichtdeterminismus, dass der Zufall grundlegend ist. Selbst mit perfekten Geräten kann der Zustand entsprechend nicht exakt vorhergesagt werden. 
-\cite{lvovsky_quantum_2018}
+(vgl. \cite[Ch. 1.4.1]{lvovsky_quantum_2018})
 % Quantum Physics – Lyvovsky – 2018 (Kapitel 1.4.1 The Measurement Postulate)
 \\
 \\
 Ein Quantenzustand ist also nur in abgeschottetem Zustand stabil. Um aus Perspektive der Außenwelt etwas über den Zustand des Systems zu erfahren, ist jedoch eine Messung nötig, wobei der genaue Zustand nicht ermittelt werden kann.
 Die Superposition selbst wird durch die Messung zerstört und ein klassischer Zustand wird angenommen und beobachtet. Da diese Messung für verschiedene Basen möglich ist, jedoch nur der Zustand bzgl. einer Basis gemessen werden kann, ist die folgende Messung durch den Zerfall nicht weiter möglich.
 Da die Messung nicht rückgängig gemacht werden kann, kann durch den Kollaps der Wellenfunktion dieselbe Messung im gleichen System nicht wiederholt werden.
-\cite{homeister_quantum_2022}
+(vgl. \cite[Ch. 2.8]{homeister_quantum_2022})
 % Quantum Computing verstehen: Grundlagen – Anwendungen – Perspektiven – Homeister – 2022 (Kapitel 2.8 Das Messen von Quantenregistern)
 \\
 \\
-Aus diesem Phänomen ergibt sich auch das No-Cloning-Theorem. Da das System selbst bei der Messung zerstört wird, kann das Qubit nicht erneut gemessen werden. Die Superposition selbst ist für dasselbe Qubit nicht mehr vorhanden. Die Messung kann entsprechend nur für ein identisches Qubit wiederholt werden.
+Aus diesem Phänomen ergibt sich auch das No-Cloning-Theorem. Da das System selbst bei der Messung zerstört wird, kann das Qubit nicht erneut gemessen werden. Die Superposition selbst ist für dasselbe Qubit nicht mehr vorhanden. Die Messung kann entsprechend nur für ein gleiches Qubit wiederholt werden.
 Folglich dieser Logik kann ein Qubit in einem unbekannten Zustand nicht kopiert werden. Dies hat wichtige Konsequenzen für die praktische Anwendung, da simple Kopien, wie sie auf klassischen Computern möglich sind, durch die zuvor notwendige Messung der bestehenden Zustände nicht ohne Weiteres auf quantenbasierten Systemen ermöglicht werden.
-\cite{hughes_quantum_2021}
+(vgl. \cite[Ch. 4.4]{hughes_quantum_2021})
 % Quantum Computing for the Quantum Curious – Hughes et al. – 2021 – s. 36
 
 \section{Zwei-Niveau-Systeme}
+\label{Zwei-Niveau-Systeme}
 
 Zwei-Niveau-Systeme bilden das elementarste Modell der Quantenmechanik und sind gleichzeitig von grundlegender Bedeutung für die Quanteninformatik. Sie beschreiben physikalische Systeme, die sich ausschließlich in einem von zwei möglichen Energiezuständen befinden können oder in einer Überlagerung dieser beiden. Beispiele sind Elektronenspin-Zustände, Polarisationsrichtungen von Photonen oder vereinfachte atomare Übergänge.
 
@@ -312,7 +326,7 @@ Trotz ihrer mathematischen Einfachheit erlauben Zwei-Niveau-Systeme die Beschrei
 In den folgenden Abschnitten werden wir die Zustände dieser Systeme formal beschreiben, deren Interpretation erarbeiten und zeigen, wie man sie sowohl algebraisch als auch geometrisch fassen kann. Ziel ist es, eine konzeptionelle Brücke zwischen den mathematischen Grundlagen aus \textcolor{red}{Kapitel 1.3} und den algorithmischen Anwendungen in \textcolor{red}{Kapitel 2} zu schlagen.
 
 \subsection{Darstellung von Zuständen: Bra-Ket-Notation}
-
+\label{Darstellung von Zuständen: Bra-Ket-Notation}
 Zur Darstellung von Zuständen in Zwei-Niveau-Systemen verwendet man die sogenannte Bra-Ket-Notation, die auf Paul Dirac zurückgeht. Zustände werden durch sogenannte Kets $\ket{\psi}$ dargestellt – das sind Vektoren im komplexen Hilbertraum. Das adjungierte Objekt ist das Bra $\langle \psi|$, ein linearer Funktional, der jedem Vektor einen komplexen Skalar zuordnet.
 
 Das Skalarprodukt zweier Zustände $\ket{\phi}$ und $\ket{\psi}$ wird in dieser Notation als $\langle \phi | \psi \rangle$ geschrieben. Es ist linear im zweiten und semilinear im ersten Argument und erfüllt die Bedingungen eines inneren Produkts.
@@ -334,12 +348,14 @@ Das Skalarprodukt $\langle \phi | \psi \rangle$ kann daher auch als die Anwendun
 Die Bra-Ket-Notation erlaubt eine elegante Darstellung linearer Operatoren: Ein Projektionsoperator beispielsweise wird als $|\psi\rangle\langle\psi|$ geschrieben und projiziert auf den Zustand $|\psi\rangle$. Diese Notation ist nicht nur formal nützlich, sondern auch konzeptionell bedeutsam, um Zustände, Operatoren und Messprozesse mathematisch zu trennen.
 
 \subsection{Globale Phasen und der projektive Hilbertraum}
+\label{subsec:Globale Phasen und der projektive Hilbertraum }
 
 Ein zentrales Konzept in der Quantenmechanik ist die Äquivalenz von Zuständen, die sich nur durch einen globalen Phasenfaktor unterscheiden. Zwei Vektoren $|\psi\rangle$ und $e^{i\theta} |\psi\rangle$, wobei $\theta \in \mathbb{R}$, repräsentieren denselben physikalischen Zustand. Alle beobachtbaren Größen hängen nur von relativen Phasen ab.
 
 Diese Eigenschaft motiviert die Einführung des projektiven Hilbertraums, der alle physikalisch äquivalenten Zustände zusammenfasst. Formal handelt es sich um die Quotientenmenge $\mathbb{P}(\mathcal{H}) = \mathcal{H} \setminus \{0\} \,/\, \sim$, wobei $|\psi\rangle \sim e^{i\theta}|\psi\rangle$. Dies stellt sicher, dass nur physikalisch unterscheidbare Zustände getrennt behandelt werden.
 
 \subsection{Geometrische Darstellung: Die Bloch-Kugel}
+\label{subsec:Geometrische Darstellung: Die Bloch-Kugel }
 
 Im Fall eines einzelnen Qubits lassen sich alle reinen Zustände geometrisch als Punkte auf der Oberfläche einer Einheitssphäre im $\mathbb{R}^3$ darstellen – der sogenannten Bloch-Kugel. Diese Darstellung entsteht, da jeder normierte Zustand (bis auf globale Phase) durch zwei Winkel eindeutig beschrieben werden kann:
 
@@ -352,6 +368,7 @@ mit $\theta \in [0, \pi]$ und $\phi \in [0, 2\pi)$.
 Der Nordpol entspricht dem Zustand $|0\rangle$, der Südpol dem Zustand $|1\rangle$, und alle anderen Punkte entsprechen Superpositionen. Die geometrische Darstellung hilft, den Zustand eines Qubits anschaulich zu visualisieren insbesondere im Hinblick auf die Konzepte der Superposition und Orthogonalität. Dabei wird bewusst noch auf die dynamische Interpretation (wie sie in \textcolor{red}{Kapitel 2.1.2} erfolgt) verzichtet, um Dopplungen zu vermeiden.
 
 \subsection{Mathematische Struktur von Messungen}
+\label{subsec: Mathematische Struktur von Messungen}
 
 Statt auf technische Realisierungen einzugehen, liegt der Fokus dieses Abschnitts auf der abstrakten Beschreibung von Messprozessen. Eine Messung in einem Zwei-Niveau-System wird durch einen Satz orthonormaler Projektionsoperatoren beschrieben, die auf den Zustandsraum wirken. Das Messergebnis ist mit der Wahrscheinlichkeit $|\langle\phi|\psi\rangle|^2$ verbunden, wenn $\ket{\phi}$ der gemessene Eigenzustand ist.
 
@@ -518,46 +535,52 @@ Flux-Qubits haben gegenüber Charge-Qubits den Vorteil, dass sie eine deutlich h
 \subsection{Ionenfallen-Qubits }
 
 Ionen sind elektrisch geladene Moleküle, die mit Hilfe von elektromagnetischen Feldern an einem festen Ort platziert werden können. Dieses Vorgehen bezeichnet man als Ionenfallen. Sie stammen aus der Spektrometrie und wurden erstmals 1995 zum Bau von Quantencomputern vorgeschlagen. Hierbei soll dem Grundzustand eines gefangenen Ions der Zustand $\ket0$ und einem energetisch angeregten Zustand der Zustand $\ket1$ zugeordnet werden. Es sind auch Zwei-Qubit-Systeme möglich, wobei verschiedene Schwingungszustände die Werte des zweiten Quantenbits darstellen. 
-\cite{homeister_quantum_2022-1}
+(vgl. \cite[Ch. 10.4]{homeister_quantum_2022-1})
 % Homeister - Quantum Computing verstehen: Grundlagen - Anwendungen - Perspektiven
 \\
 \\
 Zur Erzeugung und Vorbereitung von Ionenfallen müssen zunächst die entsprechenden Ionen erzeugt werden. Hierzu wird eine kleine Menge Kalzium in einem Vakuum geschmolzen und der entstandene Dampf wird mit einem hochenergetischen Elektronenstrahl beschossen. Dadurch wird ein Elektron aus jedem Kalziumatom entfernt und es entstehen ${}^{43}\mathrm{Ca}^+$-Ionen. 
-\cite{kasirajan_fundamentals_2021} %Kasirajan - S. 114 ff.
-Alternativ kann die Ionisierung durch Laserpulse oder hohe elektrische Felder erfolgen. \cite{lapierre_getting_2022} %La Pierre S. 211 ff.
-Um die spätere Quanteninformation zu schützen, ist ein Hochvakuum erforderlich, sodass es nicht zu Störungen durch Gase oder thermische Wechselwirkungen kommt \cite{kasirajan_fundamentals_2021}
+(vgl. \cite[Ch. 4.6.1]{kasirajan_fundamentals_2021}) %Kasirajan - S. 114 ff.
+Alternativ kann die Ionisierung durch Laserpulse oder hohe elektrische Felder erfolgen. (vgl. \cite[Ch. 21.1]{lapierre_getting_2022}) %La Pierre S. 211 ff.
+Um die spätere Quanteninformation zu schützen, ist ein Hochvakuum erforderlich, sodass es nicht zu Störungen durch Gase oder thermische Wechselwirkungen kommt (vgl. \cite[Ch. 4.6.1]{kasirajan_fundamentals_2021})
 \\
 \\
-Zur Realisierung einer Ionenfalle wird in der Regel eine sogenannte ``Paul-Falle'' genutzt. Entsprechend dem Earnshaw-Theorem ist es nicht möglich eine elektrische Ladung durch statische Felder in allen drei Raumrichtungen einzuschließen. Es gibt hierbei immer mindestens eine Richtung, in der Ionen flüchten können. Daher nutzt man in Paul-Fallen eine Kombination aus statischen und oszillierenden elektromagnetischen Feldern, um die Ladung einzuschließen. \cite{lapierre_getting_2022} %S. 211 ff.
+Zur Realisierung einer Ionenfalle wird in der Regel eine sogenannte ``Paul-Falle'' genutzt. Entsprechend dem Earnshaw-Theorem ist es nicht möglich eine elektrische Ladung durch statische Felder in allen drei Raumrichtungen einzuschließen. Es gibt hierbei immer mindestens eine Richtung, in der Ionen flüchten können. Daher nutzt man in Paul-Fallen eine Kombination aus statischen und oszillierenden elektromagnetischen Feldern, um die Ladung einzuschließen. (vgl. \cite[Ch. 21.1]{lapierre_getting_2022}) %S. 211 ff.
 \\ \\
-In einer Paul-Falle agieren hierzu Radiofrequenz-Elektroden für die Konfinierung in der x- und y-Achse, wobei statische DC-Elektroden (Gleichstrom) die Ionen in der z-Achse festhalten. Das Radiofrequenz-Feld alterniert also zwischen der X- und Y-Achsen, sodass die oszillierende Kraft im Zentrum der Falle minimal ist. Entsprechend ist die totale Energie im Zentrum der Falle minimal, wodurch die Ionen in diesem verbleiben. \cite{kasirajan_fundamentals_2021} \\
+In einer Paul-Falle agieren hierzu Radiofrequenz-Elektroden für die Konfinierung in der x- und y-Achse, wobei statische DC-Elektroden (Gleichstrom) die Ionen in der z-Achse festhalten. Das Radiofrequenz-Feld alterniert also zwischen der X- und Y-Achsen, sodass die oszillierende Kraft im Zentrum der Falle minimal ist. Entsprechend ist die totale Energie im Zentrum der Falle minimal, wodurch die Ionen in diesem verbleiben. (vgl. \cite[Ch. 4.6.1]{kasirajan_fundamentals_2021}) \\
 \\
-Das alternierende Potential, das auf die RF-Elektroden angewandt wird, resultiert in einem sattelförmigen Potential, das periodisch zwischen den Raumachsen wechselt. Die Paul-Falle kann jedoch aufgrund ihrer elektromagnetischen Natur nur Ionen konfinieren, nicht jedoch neutrale Atome, für die z.B. magneto-optische Fallen nötig wären. Wir konzentrieren uns im Weiteren jedoch auf die reinen Ionenfallen. \cite{lapierre_getting_2022} %S. 211ff.
-\\
-\\
-Um unerwünschte elektronische und vibrierende Übergänge zu vermeiden, müssen die Ionen in einer Paul-Falle auf Temperaturen nahe dem absoluten Nullpunkt gekühlt werden. Dies geschieht meist über Laserkühlung oder Dopplerkühlung. \cite{lapierre_introduction_2021} %S. 275 - 282
-Da auch die geladenen Teilchen selbst sich abstoßen, müssen diese ohnehin stark gekühlt werden, damit diese sich in einer Ruheposition befinden. \cite{homeister_quantum_2022}
-Um die quantenmechanische Stabilität der Zustände zu gewährleisten, muss außerdem die zusätzliche thermische Energie aus der Umgebung deutlich geringer sein als die kinetische Energie der Ionen. Ansonsten wäre das Ion nicht stabil und der Bloch-Vektor würde sich verstreuen. \cite{kasirajan_fundamentals_2021} %S. 114 ff. 
+Das alternierende Potential, das auf die RF-Elektroden angewandt wird, resultiert in einem sattelförmigen Potential, das periodisch zwischen den Raumachsen wechselt. Die Paul-Falle kann jedoch aufgrund ihrer elektromagnetischen Natur nur Ionen konfinieren, nicht jedoch neutrale Atome, für die z.B. magneto-optische Fallen nötig wären. Wir konzentrieren uns im Weiteren jedoch auf die reinen Ionenfallen. (vgl. \cite[Ch. 21.1]{lapierre_getting_2022}) %S. 211ff.
 \\
 \\
-Die Qubit-Zustände $\ket0$ und $\ket1$ werden im Rahmen der Ionenfalle durch die Hyperfeinstruktur von Atomen definiert. Diese besteht aus der Wechselwirkung zwischen dem Magnetfeld der Elektronenbewegung in einem Atom und dem Kernspin des Atoms. Die Hyperfeinzustände sind hierbei weit genug voneinander entfernt, dass sie nicht anfällig für Magnetfeldschwankungen sind. \cite{kasirajan_fundamentals_2021} %S. 114ff.
-Der Qubit-Zustand kann hierbei vorbereitet werden, indem man bekannte Radiofrequenz-Pulse durch die RF-Elektroden erzeugt. Diese müssen jedoch zuvor gemessen und bekannt sein, um den gewünschten Zustand (eine bestimmte Superposition oder Basiszustand) auf einem gewünschten Ion erzeugen zu können.\cite{kasirajan_fundamentals_2021}%S. 114 ff.
+Um unerwünschte elektronische und vibrierende Übergänge zu vermeiden, müssen die Ionen in einer Paul-Falle auf Temperaturen nahe dem absoluten Nullpunkt gekühlt werden. Dies geschieht meist über Laserkühlung oder Dopplerkühlung. (vgl. \cite[Ch. 21.1]{lapierre_introduction_2021}) %S. 275 - 282
+Da auch die geladenen Teilchen selbst sich abstoßen, müssen diese ohnehin stark gekühlt werden, damit diese sich in einer Ruheposition befinden. (vgl. \cite[Ch 10.4]{homeister_quantum_2022})
+Um die quantenmechanische Stabilität der Zustände zu gewährleisten, muss außerdem die zusätzliche thermische Energie aus der Umgebung deutlich geringer sein als die kinetische Energie der Ionen. Ansonsten wäre das Ion nicht stabil und der Bloch-Vektor würde sich verstreuen. (vgl. \cite[Ch. 4.6.1]{kasirajan_fundamentals_2021}) %S. 114 ff. 
 \\
 \\
-Einzelne Ionen können außerdem durch präzise Laserpulse adressiert werden. Beleuchtet man ein Ion mit einem gepulsten Laserstrahl, kommt es zur sogenannten Rabi-Oszillation zwischen den beiden Qubit-Zuständen. Diese Oszillation lässt das Qubit zwischen den Zuständen auf der Bloch-Kugel oszillieren und behält den Zustand, den es hat, sobald der Puls stoppt. Entsprechend ist die Frequenz und Dauer des Impulses entscheidend für den letztlichen Quantenzustand des Systems. \cite{lapierre_introduction_2021} %S. 275 - 282
+Die Qubit-Zustände $\ket0$ und $\ket1$ werden im Rahmen der Ionenfalle durch die Hyperfeinstruktur von Atomen definiert. Diese besteht aus der Wechselwirkung zwischen dem Magnetfeld der Elektronenbewegung in einem Atom und dem Kernspin des Atoms. Die Hyperfeinzustände sind hierbei weit genug voneinander entfernt, dass sie nicht anfällig für Magnetfeldschwankungen sind. (vgl. \cite[Ch. 4.6.1]{kasirajan_fundamentals_2021}) %S. 114ff.
+Der Qubit-Zustand kann hierbei vorbereitet werden, indem man bekannte Radiofrequenz-Pulse durch die RF-Elektroden erzeugt. Diese müssen jedoch zuvor gemessen und bekannt sein, um den gewünschten Zustand (eine bestimmte Superposition oder Basiszustand) auf einem gewünschten Ion erzeugen zu können. (vgl. \cite[Ch.4.6.1]{kasirajan_fundamentals_2021}) %S. 114 ff.
 \\
 \\
-Im Rahmen von Zwei-Qubit-Operationen bilden die enthaltenen Ionen in der linearen Kette ein kollektives Schwingungssystem. Sie oszillieren um ihre Gleichgewichts-Positionen. Zwei-Qubit-Operationen werden durch die Coulomb-Wechselwirkung zwischen den Ionen vermittelt. Interaktionen zwischen zwei Ionen wird hierdurch ermöglicht. \cite{lapierre_introduction_2021} %S. 275-282
+Einzelne Ionen können außerdem durch präzise Laserpulse adressiert werden. Beleuchtet man ein Ion mit einem gepulsten Laserstrahl, kommt es zur sogenannten Rabi-Oszillation zwischen den beiden Qubit-Zuständen. Diese Oszillation lässt das Qubit zwischen den Zuständen auf der Bloch-Kugel oszillieren und behält den Zustand, den es hat, sobald der Puls stoppt. Entsprechend ist die Frequenz und Dauer des Impulses entscheidend für den letztlichen Quantenzustand des Systems. (vgl. \cite[Ch 21.1]{lapierre_introduction_2021}) %S. 275 - 282
 \\
 \\
-Um den Zustand in einem klassischen Ionenfallen-System auszulesen, wird ein Laser auf die Frequenz des Grundzustandes $\ket0$ des jeweiligen Ions kalibriert, der eine Anregung des Grundzustandes, jedoch nicht vom angeregten Zustand $\ket1$ ermöglicht. Entsprechend wird mit dem Laser eine Fluoreszenzmessung durchgeführt. \cite{lapierre_introduction_2021}
-Durch die Kalibrierung des Lasers, führt nur der $\ket0$-Zustand zu der Aussendung eines Photons (Fluoreszenz), das mit einem normalen Photonendetektor gemessen werden kann. Der Zustand $\ket1$ hingegen liefert kein Photon und nichts geschieht. \cite{lapierre_introduction_2021} %S. 275 - 282
+Im Rahmen von Zwei-Qubit-Operationen bilden die enthaltenen Ionen in der linearen Kette ein kollektives Schwingungssystem. Sie oszillieren um ihre Gleichgewichts-Positionen. Zwei-Qubit-Operationen werden durch die Coulomb-Wechselwirkung zwischen den Ionen vermittelt. Interaktionen zwischen zwei Ionen wird hierdurch ermöglicht. (vgl. \cite[Ch. 21.1]{lapierre_introduction_2021}) %S. 275-282
 \\
 \\
-Die Vorteile von Ionenfallen sind die relativ lange Kohärenzzeit der Ionen von ~50s und einer Fehlerquote von nur 0,03\% in 150.000 Operationen, wodurch sie gut für Quantenalgorithmen geeignet sind. \cite{kasirajan_fundamentals_2021}
-Außerdem haben die Qubits eine Bestehenszeit im Sekundenbereich, da einzelne Ionen gut getrennt und von der Umwelt isoliert vorliegen. \cite{lapierre_introduction_2021}
-Problematisch sind jedoch die Vielzahl an sehr präzisen Lasern und das technisch komplizierte Koppeln von Qubits. Weitere Störquellen sind thermische Erwärmung der Qubits, Umweltrauschen oder Instabilität der Laserfelder. \cite{kasirajan_fundamentals_2021} %S. 275-282
-
+Um den Zustand in einem klassischen Ionenfallen-System auszulesen, wird ein Laser auf die Frequenz des Grundzustandes $\ket0$ des jeweiligen Ions kalibriert, der eine Anregung des Grundzustandes, jedoch nicht vom angeregten Zustand $\ket1$ ermöglicht. Entsprechend wird mit dem Laser eine Fluoreszenzmessung durchgeführt. (vgl. \cite[Ch 21.1]{lapierre_introduction_2021})
+Durch die Kalibrierung des Lasers, führt nur der $\ket0$-Zustand zu der Aussendung eines Photons (Fluoreszenz), das mit einem normalen Photonendetektor gemessen werden kann. Der Zustand $\ket1$ hingegen liefert kein Photon und nichts geschieht. (vgl. \cite[Ch 21.1]{lapierre_introduction_2021}) %S. 275 - 282
+\\
+\\
+Die Vorteile von Ionenfallen sind die relativ lange Kohärenzzeit der Ionen von ~50s und einer Fehlerquote von nur 0,03\% in 150.000 Operationen, wodurch sie gut für Quantenalgorithmen geeignet sind. (vgl. \cite[Ch. 4.6.1]{kasirajan_fundamentals_2021})
+Außerdem haben die Qubits eine Bestehenszeit im Sekundenbereich, da einzelne Ionen gut getrennt und von der Umwelt isoliert vorliegen. (vgl. \cite[Ch 21.1]{lapierre_introduction_2021})
+Problematisch sind jedoch die Vielzahl an sehr präzisen Lasern und das technisch komplizierte Koppeln von Qubits. Weitere Störquellen sind thermische Erwärmung der Qubits, Umweltrauschen oder Instabilität der Laserfelder. (vgl. \cite[Ch. 4.6.1]{kasirajan_fundamentals_2021}) 
+\\
+\\
+Dementsprechend erfüllen ionenfallenbasierte quantenmechanische Systeme die DiVincenzo-Kriterien an funktionsfähige Quantencomputer.
+Es werden einzelne Ionen als Qubits verwendet, die mit ihren internen Zuständen (Hyperfeinzustände) die primären Qubits bilden. Sie sind prinzipiell skalierbar, da man grundsätzlich beliebig viele Ionen in einer linearen Kette fangen kann, auch wenn dies einen vor erhebliche technische Herausforderungen stellt. Trotzdem ist bereits eine gewisse Ionenanzahl realisierbar.
+Der Startzustand kann über Laser sehr effizient initialisiert werden. Auch lange Kohärenzzeiten sind durch die Hyperfeinzustände gewährleistet, wodurch die Kohärenzzeit weit über der Gatterzeit liegt.
+Die einzelnen Transformationen der Zustände sind mit Hilfe von Laser- oder Mikrowellenpulsen realisierbar und sind entsprechend kontrolliert veränderbar.
+Auch das Messkriterium ist durch die Fluoreszenzmessung erfüllt. Somit entsprechen Ionenfallen größtenteils den DiVincenzo-Kriterien und eignen sich entsprechend gut als ein grundlegendes System für Quantencomputer. 
 
 \subsection{Photonenbasierte Qubits}
 

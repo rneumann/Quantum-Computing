@@ -10,44 +10,107 @@
 
 \section{Fehlertypen in Quantenrechnern}\label{chap:QEC1}
 
-\subsection{Relevanz von Fehlern in Quantenrechnern}
-\begin{itemize}
-\item Überblick
-\item Woher kommen Fehler
-\item Wie wirken diese sich aus
-\item Wo passieren sie
-\end{itemize}
+\subsection{Die Herausforderung von Fehlern in Quantencomputern}
+Quantencomputer gelten als vielversprechende Technologie der Zukunft, da sie bestimmte Probleme deutlich effizienter lösen können als klassische Rechner. Ihre praktische Realisierung steht jedoch vor einer grundlegenden Hürde. Die Fehler. Diese treten in Quantensystemen häufiger auf als in klassischen Rechnern. Zudem sind sie viel schwerer zu kontrollieren.
+
+Während klassische Systeme mit extrem niedrigen Fehlerraten arbeiten (unter 10⁻¹⁷), liegen diese bei heutigen Quantenprozessoren um Größenordnungen zwischen 10⁻³ und 10⁻¹. Der Grund dafür liegt unteranderem in der hohen Empfindlichkeit von Qubits gegenüber Umwelteinflüssen wie elektromagnetischen Feldern, Temperaturfluktuationen oder Strahlungen. Hinzu kommen Fehler durch ungenaue Hardware, Crosstalk zwischen benachbarten Qubits und unzuverlässige Mess- oder Initialisierungsprozessen.
+
+Die Auswirkungen dieser Fehler sind tiefgreifend. Schon ein einzelner Fehler kann sich durch Verschränkung auf das gesamte System ausbreiten. Besonders kritisch sind Phasenfehler, da sie die Interferenzmuster zerstören können, auf denen viele Quantenalgorithmen beruhen.
+
+Deshalb ist die Entwicklung effektiver Fehlerkorrekturmethoden zentral für die Zukunft des Quantencomputings. Nur wenn solche Mechanismen greifen, kann der theoretische Nutzen in der Praxis ausgeschöpft werden.
+
 
 \subsection{Physikalische Fehlerursachen in Quantenrechnern}
-\begin{itemize}
-\item Dekohärenz
-\item Phasendekohärenz
-\item Amplitudendekohärenz 
-\item Rauschen
-\item Unvollständige Isolation 
-\item Vibration-
-\item Umwelteinflüsse
-\end{itemize}
+Quantencomputer arbeiten nicht mit Bits sondern mit Qubits, die sich gleichzeitig in mehreren Zuständen befinden können. Dies ist ein Phänomen, das man als Superposition bezeichnet. Diese Superpositionen und die damit verbundenen quantenmechanischen Effekte machen Quantencomputer so deutlich leistungsstärker als normale Rechner. Gleichzeitig machen sie die Systeme aber auch äußerst empfindlich gegenüber äußeren Einflüssen.
+
+Der bedeutendste physikalische Fehlermechanismus ist dabei die sogenannte Dekohärenz. Diese wird so beschreiben, dass in dem ein Qubit durch den Kontakt mit seiner Umgebung „gestört“ wird. Dabei verliert das Qubit seine Fähigkeit, in einem Überlagerungszustand zu bleiben, und verhält sich mehr wie ein klassisches Bit. Dies hat zur Folge, dass Informationen, welche eigentlich im Zustand des Qubits gespeichert waren, verloren gehen. Diese Art von Fehler entsteht nicht durch eine bestimmte Fehlbedienung, sondern ist ein ganz natürlicher Effekt, sobald ein Quantensystem mit seiner Umgebung in Kontakt tritt (Nielsen & Chuang, 2010, Kap. 8.3).
+
+Man unterscheidet dabei zwei Hauptarten von Dekohärenz. Zum einen die Phasendekohärenz und die Amplitudendekohärenz. Bei der Phasendekohärenz bleibt das Qubit grundsätzlich im selben Zustand. Zum Beispiel 
+∣0⟩ oder ∣1⟩,
+aber die sogenannte Phase zwischen den Zuständen verändert sich. Das hat  weitreichende Folgen. Die Phase ist entscheidend dafür, ob Quanteninterferenzen funktionieren, also ob die verschiedenen Zustände eines Qubits sinnvoll zusammenwirken können. Ist die Phase gestört, kann der Quantencomputer falsche oder gar keine Ergebnisse mehr liefern.
+
+Amplitudendekohärenz dagegen beschreibt eine Veränderung des Energiezustands des Qubits. Das tritt häufig dann auf, wenn das Qubit aus einem angeregten Zustand wieder in seinen Grundzustand „zurückfällt“. Dieser Vorgang entspricht einem Energieverlust. Dies passiert zum Beispiel durch spontane Emission von Strahlung oder durch Wärmeabgabe an die Umgebung. In vielen physischen Systemen, etwa bei supraleitenden Qubits oder bei Ionenfallen, ist dieser Prozess besonders häufig zu beobachten (Rieffel & Polak, 2011, Kap. 10.4.4).
+
+Doch Dekohärenz ist nicht die einzige Fehlerquelle in Quantencomputern. Weitere Ursachen liegen in verschiedenen Rauschprozessen, also zufälligen oder unkontrollierten Störungen aus der Umgebung. Dazu zählen zum Beispiel thermisches Rauschen, das durch Temperaturunterschiede entstehen kann, oder elektromagnetische Fluktuationen, etwa von Stromleitungen, elektronischen Geräten oder sogar Mobilfunkstrahlung. Auch mechanische Vibrationen. Diese können unteranderem durch Pumpen oder Bewegungen im Kühlapparat entstehen. Diese können sich auf die empfindlichen Qubits übertragen.
+
+Ein besonderes Problem ist die unzureichende Isolation der Qubits. Idealerweise sollte ein Qubit vollständig von seiner Umgebung abgeschottet sein. In der Realität ist das kaum möglich. Selbst im Vakuum oder bei extrem tiefen Temperaturen gibt es noch mikroskopisch kleine Wechselwirkungen mit anderen Teilchen, Materialien oder Defekten. Manche Materialien enthalten zum Beispiel sogenannte Zwei-Niveau-Systeme, die mit den Qubits interagieren können und als zusätzliche Störquellen fungieren. Auch kosmische Strahlung oder Magnetfelder aus der Umgebung können Störungen verursachen (Tutschku et al., 2023).
+
+Aus all diesen Gründen ist es extrem wichtig, die Quantenhardware so gut wie möglich gegen äußere Einflüsse zu schützen. Das geschieht zum Beispiel durch ultratiefe Temperaturen im Millikelvin-Bereich, durch spezielle Abschirmungen gegen elektromagnetische Wellen, durch mechanische Entkopplung der Geräte und durch den Einsatz besonders reiner Materialien ohne Defekte. Trotzdem lässt sich nie ganz vermeiden, dass äußere Einflüsse auf das System wirken. Daher ist es essenziell, zusätzlich auf softwareseitige Verfahren zur Fehlerkorrektur zu setzen – etwa durch den Einsatz logischer Qubits oder redundanter Kodierungen.
+
+Quantenfehler sind also ein Zusammenspiel aus unvermeidbaren physikalischen Prozessen, technologischen Grenzen und Umwelteinflüssen. Sie zu verstehen und zu kontrollieren ist eine der größten Herausforderungen beim Bau und Betrieb eines funktionierenden Quantencomputers.
 
 \subsection{Klassifizierung von Quantenfehlern}
-\begin{itemize}
-\item Bit-Flip
-\item Phase-Flip
-\item Bit und Phasenflip
-\item Amplitudendämpfung
-\item Phasendämpfung
-\end{itemize}
+Die Klassifikation von Quantenfehlern stellt eine essenzielle Grundlage für die Entwicklung robuster Fehlerkorrekturverfahren im Quantencomputing dar. Aufgrund der Superposition können Fehler nicht nur den Zustand selbst, sondern auch die relative Phase, Amplitude oder die Kohärenzeigenschaften eines Qubits beeinflussen. Die gebräuchlichste Einteilung unterscheidet zwischen diskreten, kontinuierlichen, zufälligen und systematischen Fehlern sowie zwischen Einzelqubit- und Mehrqubitfehlern.
 
+Die Diskrete Fehlerarten sind die Pauli-Fehler. Die einfachste und zugleich mathematisch fundamentale Klasse von Quantenfehlern basiert auf den sogenannten Pauli-Fehlern, benannt nach den drei Pauli-Matrizen 
+X, Y und Z. Diese Operatoren stellen Basisoperationen im zweidimensionalen Qubit-Zustandsraum dar und bilden eine vollständige Fehlerbasis für beliebige Ein-Qubit-Störungen
+
+Der Bit-Flip-Fehler (X-Fehler): Ein Bit-Flip entspricht einer Umkehrung des Qubitzustands von ∣0⟩ nach ∣1⟩ oder umgekehrt. Dieser Fehler kann zum Beispiel durch thermische Anregung entstehen, etwa wenn ein Qubit spontan aus dem Grundzustand in einen angeregten Zustand übergeht. In Formeln entspricht dies der Anwendung des X-Operators: 
+X∣0⟩=∣1⟩ (Nielsen & Chuang, 2010, S. 449).
+
+Der Phase-Flip-Fehler (Z-Fehler): Beim Phase-Flip verändert sich die relative Phase eines Qubits. So wird etwa der Zustand 
+∣+⟩=(∣0⟩+∣1⟩)/ 
+2
+​	
+  durch einen Z-Operator in  ∣−⟩=(∣0⟩−∣1⟩)/ 2
+​	
+ überführt. Dieser Fehler beeinträchtigt Interferenzeffekte und ist besonders kritisch für Algorithmen, die auf kohärenter Phasenevolution basieren (ebd., S.449).
+ 
+Kombinierte Bit- und Phase-Fehler (Y-Fehler): Der Y-Operator kombiniert Bit- und Phase-Flip gleichzeitig: Y=iXZ. Solche Fehler treten häufig bei komplexeren physikalischen Störungen auf, wie zum Beispiel durch Crosstalk zwischen Qubits oder bei nichtlokalen Umwelteinflüssen (Rieffel & Polak, 2011, S.375).
+
+Diese drei Operatoren bilden eine vollständige Fehlerbasis für Ein-Qubit-Störungen. Jeder beliebige Fehler auf einem Qubit kann mathematisch als Linearkombination von 
+I, X, Y und Z dargestellt werden. Diese Eigenschaft ist von zentraler Bedeutung für den Aufbau von Quantenfehlerkorrekturcodes wie dem Shor-Code oder dem Steane-Code, welche gezielt auf Pauli-Fehler reagieren (Nielsen & Chuang, 2010, S.449–451).
+
+
+Neben diskreten Fehlern gibt es auch kontinuierliche Fehlerprozesse, die sich nicht durch einzelne Pauli-Operatoren darstellen lassen, sondern über sogenannte Quantenkanäle modelliert werden. Die zwei wichtigsten Beispiele sind Amplitudendämpfung und die Phasendämpfung.
+
+Amplitudendämpfung: Diese beschreibt den Verlust von Energie durch das Qubit, etwa infolge spontaner Emission oder thermischer Relaxation. Der Zustand ∣1⟩ relaxiert dabei mit einer gewissen Wahrscheinlichkeit 
+γ in den Grundzustand ∣0⟩. Die Kraus-Darstellung des Amplitudendämpfungskanals lautet:
+ BILD EINFÜGEN 
+(Nielsen & Chuang, 2010, S.376–377)
+
+Phasendämpfung (Dephasing): Hierbei geht keine Energie verloren, aber Kohärenz. Die Off-Diagonal-Elemente der Dichtematrix, also die, die Superpositionen erzeugen, werden gedämpft. Dies geschieht durch Umwelteinflüsse wie Fluktuationen elektromagnetischer Felder. In der Praxis ist Phasendämpfung oft die dominante Dekohärenzquelle (Rieffel & Polak, 2011, S.374–375).
+Die Modellierung dieser kontinuierlichen Prozesse ist entscheidend für die realistische Simulation von Quantensystemen und wird durch Kraus-Operatoren und Lindblad-Gleichungen mathematisch beschrieben.
+
+Quantenfehler lassen sich nicht nur nach ihrer physikalischen Form, sondern auch nach ihrer Entstehungsart klassifizieren. Hierzu zählen zufällige Fehler und systematische Fehler.
+
+Zufällige Fehler (stochastisch): Diese Fehler entstehen unvorhersehbar durch thermisches Rauschen, Photonen-Einfälle, kosmische Strahlung oder spontane Kopplungen an die Umgebung. Sie sind oft kurzzeitig, unkorreliert und lassen sich statistisch modellieren, z. B. über Randomized Benchmarking (Tutschku et al., 2023, S. 50).
+Systematische Fehler: Diese beruhen auf wiederholbaren, deterministischen Einflüssen, wie falscher Kalibrierung von Pulssequenzen, ungenauen Gatterzeiten oder falsch modellierter Kopplung. Solche Fehler summieren sich über Zeit auf und können ganze Rechenprozesse verfälschen. Sie sind schwerer zu korrigieren, da sie nicht durch Mittelwertbildung „herausrauschen“ (Google Quantum AI, 2024, S. 3–4).
+Die Unterscheidung ist für die Architekturplanung essenziell, da systematische Fehler oft durch verbesserte Hardware, kontrollierte Steuerungen oder modellgestützte Korrektur vermieden werden können.
+
+Ein wachsendes Problem in größeren Quantenprozessoren ist das Auftreten von korrelierten Fehlern. Solche Fehler beeinflussen mehrere Qubits gleichzeitig und können durch gemeinsame Störquellen oder durch ungewollte Kopplungen entstehen. Anders als unabhängige Fehler breiten sie sich nicht lokal aus, sondern erzeugen komplexe Fehlerbilder, die von klassischen Fehlerkorrekturmodellen oft nicht erfasst werden.
 
 
 \subsection{Hardwarebedingte Fehler und Systematische Grenzen}
-\begin{itemize}
-\item Gatteroperationen
-\item Messung falsch
-\item Qubitinitalisierung
-\item Konnektivität
-\item Kalibrierfehler
-\end{itemize}
+Neben den oben beschriebenen Fehlermechanismen spielen auch hardwarebedingte Fehler eine zentrale Rolle in der Fehlertheorie des Quantencomputings. Diese entstehen durch Unzulänglichkeiten in der technischen Umsetzung der Steuerung, der Auslese und der physikalischen Qubit-Architektur. In realen Quantenprozessoren, wie supraleitenden Schaltkreisen, Ionenfallen oder spinbasierten Systemen, sind diese Fehlerquellen ein wesentlicher limitierender Faktor für die Skalierbarkeit und Zuverlässigkeit der Systeme.
+
+Ein wesentliches Problem sind fehlerhafte Gatteroperationen. Idealerweise sollen Quantenlogikgatter wie das CNOT- oder Hadamard-Gate eine definierte unitäre Transformation auf den Zustand der Qubits ausführen. In der Praxis weichen die implementierten Operationen von diesem Ideal ab. Ursachen dafür sind unter anderem folgende Fehler:
+
+Timing-Fehler: Ungenauigkeiten in der Pulslänge oder -frequenz führen zu nicht vollständig abgeschlossenen Rotationen.
+Crosstalk: Eine ungewollte Kopplung zwischen benachbarten Qubits oder Steuerleitungen kann zu Störungen führen, die nicht auf das Zielqubit beschränkt bleiben.
+Nichtlinearitäten in der Pulselektronik, die insbesondere bei stark skalierten Systemen auftreten.
+Diese Gatterfehler akkumulieren sich über tiefe Schaltkreise hinweg und führen dazu, dass die logische Fehlerrate mit zunehmender Schaltungstiefe exponentiell ansteigt (Nielsen & Chuang, 2010, S.390–391; Tutschku et al., 2023, S.51). Selbst bei modernen Quantenprozessoren liegt die mittlere Gatterfidelität, also die Wahrscheinlichkeit, mit der ein Gatter korrekt ausgeführt wird, typischerweise nur bei 99–99,9% (Google Quantum AI, 2024, S.3).
+
+Ein weiterer kritischer Punkt sind Messfehler. Die Messung eines Qubits erfolgt meist über eine Verstärkung und Auswertung eines quantenmechanischen Signals (z.B. dispersive Kopplung an einen Resonator bei supraleitenden Qubits oder Fluoreszenz in Ionenfallen). Dabei kann es zu Fehlern kommen durch:
+
+Rauschen in der Verstärkerschaltung
+Überlappung von Signalverteilungen für 
+∣0⟩ und ∣1⟩
+Verzögerungen oder Sättigungseffekte in der Ausleseelektronik
+Diese Fehler können zu falscher Interpretation des Qubit-Zustands führen und beeinträchtigen damit die Zuverlässigkeit von Algorithmen und insbesondere von Fehlerkorrekturcodes, die sich auf korrektes Auslesen von Syndromen verlassen (Nielsen & Chuang, 2010, S.414; Tutschku et al., 2023, S.50).
+
+Die Initialisierung von Qubits ist ein notwendiger erster Schritt jeder Quantenberechnung. Ziel ist es, alle Qubits zuverlässig in den Grundzustand ∣0⟩ zu setzen. In der Praxis gelingt dies nicht immer mit perfekter Genauigkeit. Ursachen sind unter anderem:
+
+Thermische Anregung bei unzureichender Kühlung
+Unvollständiges Relaxieren aus dem angeregten Zustand
+Restkopplungen an Resonatoren oder Nachbarqubits
+Fehlerhafte Initialisierungen wirken sich direkt auf die korrekte Ausführung der ersten Gatteroperationen aus und können sich durch den Schaltkreis fortpflanzen (Rieffel & Polak, 2011, S.378; Google Quantum AI, 2024, S.3).
+
+In skalierbaren Architekturen, vor allem in zweidimensionalen Gittern supraleitender Qubits, sind nicht alle Qubits direkt miteinander verbunden. Diese eingeschränkte Konnektivität führt dazu, dass logische Operationen, die Qubits an weit entfernten Positionen betreffen, durch zusätzliche SWAP-Gatter oder Relaisoperationen realisiert werden müssen. Diese zusätzlichen Schritte erhöhen nicht nur die Rechenzeit, sondern fügen dem System zusätzliche Fehlerquellen hinzu. Besonders kritisch ist dies in tiefen Schaltkreisen oder bei komplexen Algorithmen wie QAOA oder QFT (Tutschku et al., 2023, S.49).
+
+Alle oben genannten Fehlerarten werden zusätzlich durch Kalibrierfehler verstärkt. Diese entstehen, wenn die physikalischen Parameter des Systems, wie Frequenzen, Kopplungsstärken, Pulsamplituden oder Dämpfungsraten nicht exakt bekannt oder nicht stabil sind. Selbst kleine Abweichungen in der Kalibrierung können über viele Rechenzyklen hinweg zu signifikanten Abweichungen im Endergebnis führen.
+
+Studien zeigen, dass Kalibrierfehler insbesondere bei nicht regelmäßig durchgeführten Rekalibrierungszyklen zu systematischer Fehlentwicklung der Qubit-Zustände führen (Google Quantum AI, 2024, S.4–5).
 
 \subsection{Quantifizierung und Modellierung von Quantenfehlern}
 \begin{itemize}
