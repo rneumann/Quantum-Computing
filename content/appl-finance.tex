@@ -37,7 +37,6 @@ Damit befindet sich der Finanzsektor an einem Wendepunkt: Auf der einen Seite bi
 
 
 \section{Top 3 Anwendungsfelder (Praxis \& Theorie)}
-Die konkrete Anwendbarkeit von Quantencomputern im Finanzsektor kann anhand von drei zentralen Bereichen veranschaulicht werden: Portfoliooptimierung, Monte-Carlo-Simulation und Risikomessung. Aufgrund ihrer hohen rechnerischen Komplexität und datenintensiven Anforderungen gelten diese Felder als besonders geeignet für quantenbasierte Verfahren. Im nachfolgenden Abschnitt wird untersucht, in welchem Ausmaß Quantenalgorithmen klassische Methoden in diesen Bereichen ergänzen oder ersetzen können.
 
 \subsection{Portfoliooptimierung}
 
@@ -109,7 +108,7 @@ Quantencomputer verwenden grundlegende quantenmechanische Prinzipien wie Superpo
 Die derzeit marktführenden quantenbasierten Technologien im Finanzsektor umfassen insbesondere:
 Quantum Amplitude Estimation (QAE), Quantum Approximate Optimization Algorithm (QAOA), Quantum Annealing (QA), Variational Quantum Algorithms (VQE, VQA) sowie Quantum Machine Learning (QML). Im Folgenden werden diese Technologien im Detail beschrieben, wobei ihre Stärken und Schwächen sowie mögliche Anwendungen im Finanzbereich behandelt werden.
 
-\subsection{Quantum Amplitude Estimation (QAE)}
+\subsubsection{Quantum Amplitude Estimation (QAE)}
 
 Der Quantenalgorithmus Quantum Amplitude Estimation (QAE), der von Brassard et al. entwickelt wurde, ist speziell für Monte-Carlo-basierte Verfahren relevant \cite{quantumjournal2020,rebentrost2018}.
 
@@ -119,21 +118,21 @@ Der QAE findet Anwendung bei der Bewertung von Finanzderivaten, der Modellierung
 
 Die praktische Umsetzung von QAE steht derzeit noch vor Herausforderungen. Vor allem die Einschränkungen der Quantenhardware, wie die Stabilität der Qubits und die begrenzte Skalierbarkeit, machen eine großflächige Implementierung schwierig \cite{bouland2020,martin2022}. Dennoch deuten Forschungsprojekte und Partnerschaften zwischen Banken und Technologieunternehmen (wie etwa IBM und JPMorgan) darauf hin, dass eine realistische Anwendung von QAE in der nahen Zukunft möglich ist \cite{egger2020}.
 
-\subsection{Quantum Approximate Optimization Algorithm (QAOA)}
+\subsubsection{Quantum Approximate Optimization Algorithm (QAOA)}
 
 Um kombinatorische Probleme zu lösen \cite{orus2019,bouland2020}, kombiniert der Quantum Approximate Optimization Algorithm (QAOA) quantenbasierte Berechnungen mit klassischen Optimierungsschritten in einem hybriden Ansatz.
 
 Im Finanzbereich könnten beispielsweise Portfoliooptimierung, Asset Allocation und das Clustering finanzieller Daten zum Einsatz kommen. Der QAOA hat das Potenzial, schnellere und genauere Ergebnisse als rein klassische Methoden zu liefern \cite{orus2019}.
 
-\subsection{Quantum Annealing (QA)}
+\subsubsection{Quantum Annealing (QA)}
 
 Quantum Annealing, repräsentiert durch D-Wave-Systeme, stellt eine quantenbasierte Methode zur Optimierung dar. Es ist besonders geeignet für quadratische Optimierungsprobleme (QUBO – Quadratic Unconstrained Binary Optimization). Im Finanzsektor kann Quantum Annealing für die Portfolioauswahl, Arbitrage oder Optimierungsaufgaben eingesetzt werden \cite{orus2019,bouland2020}.
 
-\subsection{Variational Quantum Algorithms (VQE, VQA)}
+\subsubsection{Variational Quantum Algorithms (VQE, VQA)}
 
 Hybride Algorithmen, die sowohl auf klassischen als auch auf quantenbasierten Schritten basieren, sind Variational Quantum Algorithms, insbesondere der Variational Quantum Eigensolver (VQE). Anwendungsfälle im Finanzbereich umfassen komplexe Bewertungen von Optionen sowie Risikoanalysen, für die herkömmliche Methoden nicht effizient genug sind \cite{bouland2020,martin2022}.
 
-\subsection{Quantum Machine Learning (QML)}
+\subsubsection{Quantum Machine Learning (QML)}
 
 Quantenalgorithmen werden im Quantum Machine Learning (QML) für Mustererkennung und Vorhersagen verwendet. Im Finanzsektor kann es bei der Bewertung von Krediten, der Aufdeckung von Betrug und der Analyse des Marktsentiments genutzt werden. QML kann dazu beitragen, die Verarbeitung komplexer Daten effizienter zu gestalten \cite{bouland2020,martin2022}.
 
@@ -143,7 +142,7 @@ Der Einsatz von Quantencomputing im Finanzwesen wird derzeit durch Partnerschaft
 IBM gehört zu den Spitzenreitern im Bereich des Quantencomputings. Das Unternehmen stellt mit der Plattform „IBM Quantum“ Cloud-Zugänge bereit, die eine praktische Nutzung von Quantenhardware ermöglichen. Zudem führt IBM unter dem Namen „IBM Research“ eigene anwendungsbezogene Forschungsprojekte in Zusammenarbeit mit Finanzinstitutionen durch. Ein Fokus liegt auf der Entwicklung und dem Test quantenbasierter Algorithmen zur Portfoliooptimierung, Risikomodellierung und Generierung zertifizierter Zufallszahlen, wie sie zur Absicherung stochastischer Verfahren im Risikomanagement benötigt werden [\cite{jpmorgan_certified}]. Daniel Egger [\cite{ibm_egger}] ist einer der forschenden Wissenschaftler, die in diesem Gebiet publizieren.
 Eines der ersten Finanzinstitute, das systematisch mit IBM an quantenbezogener Forschung arbeitet, ist JPMorgan Chase. Das Unternehmen gehört zum IBM-Quantum-Netzwerk und erforscht unter anderem die Nutzung der Quantum Random Number Generation (QRNG) zur Verfeinerung von Simulationsmethoden. Die Arbeiten werden in die „Applied Research“-Initiative von JPMorgan integriert, die Fortschritte in Bereichen wie Simulation, Pricing und Risikoanalyse dokumentiert [\cite{jpmorgan_certified}, \cite{jpmorgan_applied}]. Ein Schwerpunkt der Forschung ist die Anwendung von Quantum-Amplitude-Estimation, um den Rechenaufwand bei Monte-Carlo-Simulationen zu verringern.
 Mit „Quantum AI“ verfolgt Alphabet (Google) einen forschungsorientierten Ansatz, der sich hauptsächlich auf die Weiterentwicklung supraleitender Quantenprozessoren konzentriert. Bisher wurden keine Projekte mit finanziellem Bezug veröffentlicht. Die Infrastruktur von Google bietet potenzielle Anknüpfungspunkte für zukünftige Anwendungen im Finanzbereich, wie der Bewertung komplexer Derivate oder dem maschinellen Lernen.
-Mit „Azure Quantum“ arbeitet Microsoft an einer cloudbasierten Plattform, die den Zugang zu unterschiedlichen Quantenhardware-Backends bietet. Microsoft verfolgt neben eigenen Entwicklungsansätzen auch einen hybriden Architekturansatz, der es ermöglicht, klassische und quantenbasierte Berechnungsschritte zu kombinieren. Zwar wurden im Finanzbereich Anwendungsbeispiele vorgeführt, jedoch sind konkrete Zusammenarbeiten mit Finanzinstituten bisher nicht ausführlich dokumentiert.
+Mit „Azure Quantum“ arbeitet Microsoft an einer cloud basierten Plattform, die den Zugang zu unterschiedlichen Quantenhardware-Backends bietet. Microsoft verfolgt neben eigenen Entwicklungsansätzen auch einen hybriden Architekturansatz, der es ermöglicht, klassische und quantenbasierte Berechnungsschritte zu kombinieren. Zwar wurden im Finanzbereich Anwendungsbeispiele vorgeführt, jedoch sind konkrete Zusammenarbeiten mit Finanzinstituten bisher nicht ausführlich dokumentiert.
 Die jüngsten Entwicklungen verdeutlichen, dass die Realisierung quantenbasierter Finanzanwendungen in hohem Maße von der interdisziplinären Kooperation zwischen Technologieanbietern und Finanzinstitutionen abhängt. Während einige Firmen bereits öffentlich dokumentierte Pilotprojekte haben, befinden sich andere Akteure noch in der Erprobungs- oder Infrastrukturphase.
 
 
