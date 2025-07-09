@@ -10,43 +10,58 @@
 
 \abstract{some abstract}
 
-\section{Die verschiedenen Quanten Hardwareplattformen}
-Die Realisierung von Quantencomputern basiert wie beschrieben auf verschiedenen physikalischen Plattformen, die sich durch ihre spezifischen Qubit-Implementierungen, Steuerungsmechanismen und Anwendungsbereiche unterscheiden. Es wird zwischen zwei verschiedenen übergeordneten Hardwareplattformen unterschieden:
-\begin{itemize}
-    \item Festkörperplattformen, welche meistens aus Supraleiter oder Diamant basierte NV-Zentren bestehen
-    \item Atomare Plattformen, welche auf Ionen oder Photonen basieren
-\end{itemize}
-Diese Unterschiede in Plattformen wirken sich erheblich auf die Skalierbarkeit, die Kohärenzzeiten und die potenziellen Anwendungsfelder bei Quantencomputer aus. Für beide Hauptplattformen existieren weitere Plattformen, wie z. B. Neutralatom-fallen oder Quanten-Punkte, sind jedoch aktuell nicht so forschungsrelevant wie die vorgestellten Plattformen.
+\section{Einführung in Quantenhardwareplattformen}
+Die physikalische Realisierung eines Quantencomputers ist maßgeblich durch die Wahl der zugrunde liegenden Hardwareplattform bestimmt. Quantenhardware bildet das technische Fundament für alle quantenlogischen Operationen und beeinflusst entscheidend die Skalierbarkeit, Robustheit und Anwendungsdomänen heutiger und zukünftiger Quantencomputer. Der Begriff „Plattform“ bezeichnet hierbei die physikalischen Systeme, mit denen Qubits realisiert, kontrolliert und gemessen werden. Zwei übergeordnete Klassen haben sich als besonders relevant herausgestellt: Festkörperbasierte und atomare Plattformen \cite{schmaltz2025, homeister2020}.
 
-\subsection{Unterschied atomare und Festkörper Plattformen}
-
-Wie im vorherigen Kapitel vorgestellt, existieren in der Benutzung der Hauptplattformen Unterschiede.
+\subsection{Überblick über Plattformtypen}
 \begin{itemize}
-    \item Genaue Vorstellung Atomare Plattformen
-    \item Genaue Vorstellung Festkörper Plattformen
+\item \textbf{Festkörperplattformen} nutzen mikroskopische Strukturen in festen Materialien – typischerweise Halbleiter oder supraleitende Metalle, um Qubits durch elektrische, magnetische oder optische Eigenschaften zu realisieren. Bekannte Beispiele sind supraleitende Transmon-Qubits, Quantenpunkte und diamantbasierte NV-Zentren.
+\item \textbf{Atomare Plattformen} beruhen auf der Manipulation einzelner Atome oder Ionen, die mithilfe elektromagnetischer Felder in Fallen gespeichert und durch Laser- oder Mikrowellenpulse angeregt werden. Dazu zählen Ionenfallen, Neutralatomfallen und photonische Systeme.
 \end{itemize}
 
-Die folgende Tabelle gibt einen kompakten Überblick über die wichtigsten Eigenschaften beider Plattformarten:
+Diese Plattformen unterscheiden sich signifikant hinsichtlich ihrer technologischen Reife, Kohärenzeigenschaften und praktischen Einsatzmöglichkeiten. Tabelle \ref{tab:plattformvergleich} stellt zentrale Merkmale beider Klassen gegenüber:
 
-\begin{tabular}{ |p{4cm}|p{5cm}|p{5cm}|  }
- \hline
- \textbf{Aspekt}& \textbf{Atomare Plattformen} & \textbf{Festkörperplattformen}\\
- \hline
- \textbf{Beispiele}   & Ionenfallen-Qubits, neutrale Atome    &Supraleitende Qubits, Halbleiter-Spin-Qubits, NV-Zentren\\
- \textbf{Qubit-Implementierung}&   Nutzung einzelner Atome oder Ionen als Qubits	  & Nutzung elektronischer oder magnetischer Zustände
-\\
- \textbf{Kohärenzzeiten} &Sehr lang (Sekunden bis Minuten)	 & Kürzer (Mikrosekunden bis Millisekunden)
-\\
- \textbf{Steuerung}    &Laser- und Mikrowellensteuerung	 & Mikrowellen- oder elektrischer Steuerung
-\\
- \textbf{Herstellung}&   Aufwändige atomare Präparation und Kühlung	  & Integration in Halbleiterfertigung
-\\
- \textbf{Skalierbarkeit}& Schwierig durch komplexe Fallen- oder Lasersysteme	  & Gut integrierbar, skalierbar
-   \\
- \textbf{Anwendungen}& Präzise Quantenlogik, Metrologie, Quantensimulationen	  & Algorithmische Anwendungen, Quantenchemie, Optimierung
-\\
- \hline
+\begin{table}[h]
+\centering
+\caption{Vergleich atomarer und festkörperbasierter Quantenhardwareplattformen}
+\label{tab:plattformvergleich}
+\begin{tabular}{|p{4cm}|p{5cm}|p{5cm}|}
+\hline
+\textbf{Aspekt} & \textbf{Atomare Plattformen} & \textbf{Festkörperplattformen} \\
+\hline
+Beispiele & Ionenfallen, Rydberg-Atome & Transmon-Qubits, NV-Zentren, Quantenpunkte \\
+Qubit-Implementierung & Einzelatome oder Ionen in Fallen & Elektronen-/Spinzustände in Materialien \\
+Kohärenzzeiten & Sehr lang (bis zu Minuten) & Kürzer (µs–ms) \\
+Steuerung & Laser- und Mikrowellenfelder & Elektrische/optische Signale, Mikrowellen \\
+Herstellung & Komplexe atomare Präparation & Standardisierte Halbleiterfertigung \\
+Skalierbarkeit & Eingeschränkt durch optische Systeme & Gute Integrationsmöglichkeiten \\
+Anwendungen & Metrologie, Quantensimulation & Algorithmische Anwendungen, Optimierung \\
+\hline
 \end{tabular}
+\end{table}
+
+
+\subsection{Technologischer Reifegrad und Herausforderungen}
+Laut der „Schwerpunktstudie Quantenökosysteme“ des Fraunhofer ISI befinden sich supraleitende Systeme (v.a. Transmon-Qubits) sowie Ionenfallen derzeit auf dem höchsten technologischen Entwicklungsstand. Beide Plattformen konnten bereits fehlerkorrigierte Gatter demonstrieren, wenngleich unter hohem technologischem Aufwand \cite{schmaltz2025}.
+
+Andere Ansätze wie photonische Qubits oder NV-Zentren bieten teils attraktive Eigenschaften (z.B. Raumtemperaturbetrieb oder geringe Dekohärenzanfälligkeit), sind jedoch noch mit praktischen Limitierungen bei Skalierung, Adressierbarkeit oder Gatterqualität konfrontiert \cite{homeister2020}.
+
+Die derzeit gängigen Quantencomputer zählen zur Klasse der sogenannten \textit{Noisy Intermediate-Scale Quantum}-Systeme (NISQ). Diese verfügen über 50–150 Qubits, erlauben jedoch keine vollumfängliche Fehlerkorrektur. Anwendungen beschränken sich auf experimentelle Algorithmen mit begrenzter Komplexität \cite{schmaltz2025, homeister2020}.
+
+Ein Durchbruch in Richtung großskaliger, universeller Quantencomputer wird eine massive Erhöhung der Qubit-Zahl, Schätzungen gehen von $10^5$ bis $10^6$ Qubits aus, sowie Fortschritte bei Fehlertoleranz und Architektur erfordern \cite{schmaltz2025}.
+
+\subsection{Ausblick auf die Kapitelstruktur}
+Die folgende Gliederung dieser Arbeit orientiert sich an den bedeutendsten physikalischen Plattformen des aktuellen Forschungsstandes. Jede Plattform wird hinsichtlich ihrer physikalischen Grundlagen, technischer Implementierung, Herausforderungen und Perspektiven systematisch analysiert. Die Kapitel im Überblick:
+
+\begin{itemize}
+\item \textbf{Kapitel 1.2: Supraleitende Qubits}
+\item \textbf{Kapitel 1.3: Ionenfallen-Qubits}
+\item \textbf{Kapitel 1.4: Diamantbasierte Qubits (NV-Zentren)}
+\item \textbf{Kapitel 1.5: Weitere Plattformen} 
+\item \textbf{Kapitel 1.6: Praxisbeispiel IBM Q}
+\end{itemize}
+
+Dieses Einführungskapitel legt somit den Grundstein für ein vertieftes Verständnis der komplexen und heterogenen Hardwarelandschaft im Quantencomputing. Es zeigt, dass die Wahl der Plattform nicht nur technische, sondern auch strategische Bedeutung für den weiteren Fortschritt in Forschung und Anwendung besitzt.
 
 \section{Supraleitende Qubits}
 Supraleitende Quantencomputer nutzen die Prinzipien der Quantenmechanik und die einzigartigen Eigenschaften von Supraleitern, um Quantenberechnungen durchzuführen. Diese Systeme sind darauf ausgelegt, komplexe Aufgaben in Bereichen wie Quantenchemie, Simulation, Kryptographie und Optimierung zu bewältigen, was ihnen potenzielle Vorteile gegenüber klassischen Systemen verschafft. Die Realisierung dieser Rechenvorteile hängt jedoch von der effizienten und skalierbaren Ausführung von Quantenprogrammen auf robuster Hardware ab, die für Quantenoperationen konzipiert ist.
@@ -88,7 +103,7 @@ Durch gezieltes Abstimmen der Qubits in und aus der Resonanz mit dem Bus können
 \\\\
 Der Betrieb supraleitender Qubits erfordert extrem niedrige Temperaturen, typischerweise unter 15 Millikelvin (mK), um die Kohärenz aufrechtzuerhalten und die Supraleitung zu ermöglichen.(The ultimate Guide to Superconducting Quantum Computers, 2025). Diese Bedingungen werden durch spezialisierte Kühlsysteme, hauptsächlich Verdünnungskryostate, erreicht. Innerhalb eines Verdünnungskryostat befinden sich die Qubits auf der kältesten Stufe (~10 mK), während die Mikrowellenelektronik auf höheren Temperaturstufen (1 K, 4 K) angeordnet ist. (What Is Cryogenic Quantum Computing and Why It Matters, 2025). Umfassende Abschirmung und Filterung sind entscheidend, um elektromagnetische Interferenzen zu verhindern und thermisches Rauschen zu unterdrücken, das die fragilen Quantenzustände stören und Dekohärenz verursachen kann. Die kryogene Umgebung ist somit nicht nur ein passives Kühlsystem, sondern eine aktive und komplexe Infrastruktur, die die empfindlichen Quantenzustände grundlegend ermöglicht und schützt. Ihre Rolle geht über die reine Kühlung hinaus, da sie aktiv die notwendige Quantenkohärenz aufrechterhält, indem sie verschiedene Formen von Umgebungsrauschen (thermisch, elektromagnetisch) mindert. Verdünnungskryostate sind spezialisierte kryogene Geräte, die die einzigartigen Eigenschaften eines Gemischs aus den Helium-Isotopen Helium-3 und Helium-4 nutzen, um kontinuierlich Temperaturen von bis zu 2 mK zu erreichen. Historisch gesehen wurden "nasse" Verdünnungskryostate verwendet, die eine kontinuierliche Versorgung mit flüssigem Helium zur Vorkühlung benötigten. Diese Systeme waren effektiv, aber mit hohen Betriebskosten und logistischem Aufwand verbunden. Seit etwa 2010 hat sich ein signifikanter Wandel hin zu kryogenfreien ("trockenen") Systemen vollzogen. Diese trockenen Systeme verwenden geschlossene Pulskühlröhren (Pulse Tube Refrigerators, PTRs) zur Vorkühlung auf etwa 4 K, wodurch die Notwendigkeit einer externen Flüssigheliumversorgung entfällt. Der Übergang zu kryokogenfreien Verdünnungskryostaten ist nicht nur im Trend sondern auch strategisch notwendig für die Skalierung von Quantencomputern. Trockene Systeme bieten kontinuierlichen Betrieb und eliminieren die Notwendigkeit des Nachfüllens von Flüssighelium, was längere und unterbrechungsfreie Quantenexperimente ermöglicht und die Betriebseffizienz erhöht. Allerdings geht dieser Vorteil oft mit erhöhten mechanischen Vibrationen von den Pulskühlern einher. Trotz dieser Vibrationsherausforderung ist der Wechsel zu trockenen Systemen für die Skalierbarkeit unerlässlich, da er längere, unterbrechungsfreie Experimente ermöglicht und die Betriebseffizienz für größere Quantensysteme verbessert. Die Hersteller investieren daher stark in Vibrationsdämpfungstechniken, um diesen Nachteil zu mindern(J.Rothe, 2025).
 \\\\
-Aktuelle Branchenführer verwenden unterschiedliche Kühlsysteme von verschiedenen Anbietern um die individuellen Anforderungen zu erfüllen. IBM hat sich für das im Dezember 2023 erste modulare Quantencomputer System für das Kühlsystem "KIDE Cryogenic Platform" von dem finnischen Unternehmen Bluefors entschieden. Dieses System ist ein kroykogenfreies System, dass auf die Verbindung mehrere Prozessoren ausgelegt ist. Hier wird der von IBM gesetzte Fokus auf skalierbare und modulare Systeme deutlich. Um die reißige Anzahl an Qubits kühlen zu können werden hier neun Pulskühlröhren verwendet, die dafür sorgen verschiedene Temperaturstufen versorgen zu können (Bluefors, 2023). Durch die Nutzung von Pulskühlröhren anstelle von flüssigem Helium können dabei Kühlzeiten von bis zu 3 Jahren realisiert werden. Um modular zu bleiben, wurde KIDE als hexagonale Kammer mit Zugangstüren für Wartung und Möglichkeiten mehrere Cryostat-Einheiten zu koppeln konzipiert. (IBM Quantum, 2024). Ergänzend arbeitet IBM aktuell an dem Goldeye-Projekt mit dem Ziel eine "Super-Kühlschrank" mit 1,7 Kubikmetern Volumen zu entwickeln um zukünftig größere Quantensysteme kühlen zu können. (Pat Gumann, Jerry Chow, 2022) \cite{gumann_ibm_2022}
+Aktuelle Branchenführer verwenden unterschiedliche Kühlsysteme von verschiedenen Anbietern um die individuellen Anforderungen zu erfüllen. IBM hat sich für das im Dezember 2023 erste modulare Quantencomputer System für das Kühlsystem "KIDE Cryogenic Platform" von dem finnischen Unternehmen Bluefors entschieden. Dieses System ist ein kroykogenfreies System, dass auf die Verbindung mehrere Prozessoren ausgelegt ist. Hier wird der von IBM gesetzte Fokus auf skalierbare und modulare Systeme deutlich. Um die reißige Anzahl an Qubits kühlen zu können werden hier neun Pulskühlröhren verwendet, die dafür sorgen verschiedene Temperaturstufen versorgen zu können (Bluefors, 2023). Durch die Nutzung von Pulskühlröhren anstelle von flüssigem Helium können dabei Kühlzeiten von bis zu 3 Jahren realisiert werden. Um modular zu bleiben, wurde KIDE als hexagonale Kammer mit Zugangstüren für Wartung und Möglichkeiten mehrere Cryostat-Einheiten zu koppeln konzipiert. (IBM Quantum, 2024). Ergänzend arbeitet IBM aktuell an dem Goldeye-Projekt mit dem Ziel eine "Super-Kühlschrank" mit 1,7 Kubikmetern Volumen zu entwickeln um zukünftig größere Quantensysteme kühlen zu können. (Pat Gumann, Jerry Chow, 2022) 
 
 Google und Intel setzen ebenfalls auf kryogene Plattformen von Bluefors um ihre supraleitenden zu betreiben \cite{noauthor_cryogenic_2025}(Cryogenic Quantum Hardware: The Cold Engine of Quantum Tech, 2025). **Weiteres Ausführen zu Google und Intel **
 \\\\
@@ -98,103 +113,206 @@ Google und Intel setzen ebenfalls auf kryogene Plattformen von Bluefors um ihre 
 **Hier kommen inhaltlich Punkte zur Verbesserung von Kohärenzzeiten und Gatterfidelity sowie Miniaturisierung
 
 \section{Quantencomputer aus Ionenfallen-Qubits}
-\subsection{Gatterimplementierung}
+\subsection{Logische Gatter in Ionenfallencomputer}
 
-    \begin{itemize}
-        \item Wie funktioniert ein Logischer Gatter bei Ionenfallen-Quantencomputern?
-        \item Ein-Qubit-Gatter
-        \item Zwei-Qubit-Gatter
-        \item Cirac-Zoller-Gatter
-        \item Mølmer-Sørensen-Gatter
-    \end{itemize}
-\subsection{Verwendungsbereiche und Merkmale der Ionenfallen-Qubits}
-    \begin{itemize}
-        \item Stand der Technologie
-        \item Ionenfallen in Quantensimulation und Metrologie
-        \item Ionenfallen in Quantencomputer
-        \item Wie ist ein Ionenfallen Quantencomputer aufgebaut?
-        \item Wie und unter welchen Bedingungen wird ein Ionenfallen Quantencomputer benutzt/verwaltet?
-    \end{itemize}
+In einer Ionenfalle werden geladene Atome (meist \( ^{40}\mathrm{Ca}^+ \), \( ^{171}\mathrm{Yb}^+ \) oder \( ^{9}\mathrm{Be}^+ \)) durch elektrische Felder in einem räumlich fixierten Gitter gehalten. Die internen elektronischen Zustände dieser Ionen dienen als Basiszustände \( \lvert 0 \rangle \) und \( \lvert 1 \rangle \) eines Qubits. 
+
+Dabei sind die Eigenschaften der Laserstrahlung – insbesondere Ausbreitungsrichtung, Wellenlänge, Frequenz, Polarisation sowie die Dauer der Bestrahlung – entscheidend, um gezielt Überlagerungszustände (Superpositionen) und Verschränkungen für das Quantencomputing zu erzeugen (Baumann, 2024). 
+
+Es existieren verschiedene Typen von Quantengattern in Ionenfallen, die je nach Art eine unterschiedliche Anzahl an Qubits beeinflussen. Diese Gatter unterscheiden sich sowohl in ihrer Komplexität als auch in ihrem Einsatzbereich.
+
+Das folgende Kapitel stellt exemplarisch mehrere dieser Quantengatter vor – beginnend mit Ein-Qubit-Gattern bis hin zu Zwei-Qubit-Gattern wie dem Mølmer-Sørensen-Gatter – um deren jeweilige Funktionsweise und Unterschiede vorzustellen.
+
+\subsubsection{Ein-Qubit-Gatter}
+
+Ein gängiges physikalisches Modell zur Beschreibung eines Ein-Qubit-Gatters in Ionenfallencomputern ist der sogenannte \glqq Starre Rotor\grqq. Dabei wird ein einzelnes Ion betrachtet, das aus einem positiv geladenen Atomkern und einem oder mehreren Elektronen besteht. In einem stark vereinfachten Zwei-Niveau-System kann das Elektron als Teilchen angesehen werden, das den Kern in einer festen Kreisbahn umkreist, wodurch die beiden Qubit-Zustände \( \lvert 0 \rangle \) und \( \lvert 1 \rangle \) realisiert werden.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/quanten-hardware/Rotor.png}
+    \caption{Schematische Darstellung eines Rotors nach Baumann (2024)}
+    \label{fig:meinbild}
+\end{figure}
+
+Ein Laserstrahl mit passender Wellenlänge wird genutzt, um Übergänge zwischen diesen Zuständen zu induzieren. Liegt die Frequenz des Lasers genau im Resonanzbereich der Energiedifferenz der beiden Zustände, so kann das Ion durch sogenannte Rabi-Oszillationen in eine beliebige Superposition gebracht werden. Die Dynamik des Übergangs lässt sich mathematisch durch die Rabi-Frequenz \( \Omega \) beschreiben, welche sowohl von der Intensität des Lasers als auch von der Stärke des Dipolmoments des Übergangs abhängt.
+
+Die Kontrolle über Pulsdauer, Polarisation und Phase erlaubt die Realisierung verschiedener logischer Operationen wie beispielsweise das Hadamard-Gatter oder das Pauli-\( X \)-Gatter. Visualisiert wird der Zustand eines Qubits in der Praxis häufig durch die sogenannte Bloch-Kugel, in welcher jede mögliche Superposition von \( \lvert 0 \rangle \) und \( \lvert 1 \rangle \) einem Punkt auf der Kugeloberfläche entspricht.
+
+Im Experiment werden zur Umsetzung meist extrem präzise, kurze Laserpulse verwendet, die eine hohe Adressiergenauigkeit einzelner Ionen gewährleistet (Baumann, 2024).
+
+\subsubsection{Zwei-Qubit-Gatter}
+
+Zwei-Qubit-Gatter ermöglichen es, Korrelationen zwischen Qubits herzustellen und bilden zusammen mit Ein-Qubit-Gattern eine universelle Menge an logischen Operationen. Die wohl bekannteste Zwei-Qubit-Operation ist das bereits vorgestellte CNOT-Gatter (Controlled-NOT-Gatter), das auf zwei Qubits wirkt: ein Kontroll- und ein Ziel-Qubit. Ist das Kontroll-Qubit im Zustand \( \lvert 1 \rangle \), wird ein NOT-Gatter auf das Ziel-Qubit angewendet; andernfalls bleibt es unverändert. Diese logische Verknüpfung bildet die Grundlage für viele quantenlogische Algorithmen und Verschlüsselungsverfahren.
+
+In Ionenfallen wird ein solches Gatter durch die gemeinsame Kopplung der Ionen an die quantisierten Schwingungsmoden realisiert. Dabei dienen diese kollektiven Moden als ein „Phonon-Bus“, über den Zustände zwischen den Ionen ausgetauscht werden können (Baumann, 2025).
+
+Zu den bedeutendsten realisierten Zwei-Qubit-Gattermodellen gehört das Cirac-Zoller- und das Mølmer-Sørensen-Gatter, welche im folgenden Abschnitt vorgestellt werden:
+
+\newpage
+\textbf{Cirac-Zoller-Gatter} 
+
+Das von Cirac und Zoller im Jahr 1995 vorgeschlagene Gatter gilt als eines der ersten theoretisch und experimentell realisierten Modelle für ein entanglierendes Zwei-Qubit-Gatter in Ionenfallen. Hierbei wird ein drittes, sogenanntes Bus-Qubit über gezielte Laserpulse angeregt und zwischen zwei speichernden Ionen als Vermittler genutzt. Die Gatteroperation nutzt eine präzise definierte Sequenz aus Resonanzanregungen und kontrollierten Phasenverschiebungen, um über den Schwingungszustand gezielt einen Quantenbit-Zustand auf das andere zu übertragen.
+
+Der Zustand \( \lvert 0 \rangle \lvert 1 \rangle \) kann beispielsweise durch das Gatter in eine Überlagerung mit \( \lvert 1 \rangle \lvert 0 \rangle \) überführt werden, wobei die Phononen nur temporär real angeregt werden. Die präzise Steuerung der Frequenzdifferenz, Laserstärke und Phasenlage ist essenziell. In der Praxis ist die Methode allerdings experimentell aufwendig, da sie eine sehr hohe Kontrolle über den Grundzustand der Ionen erfordert. Dennoch wurde sie erfolgreich in Experimenten mit Kalziumionen demonstriert(Cirac and Zoller, 1995; Baumann, 2025). 
+
+\textbf{Mølmer-Sørensen-Gatter} 
+
+
+Das Mølmer-Sørensen-Gatter (MS-Gatter) ist eine Weiterentwicklung, die sich in modernen Ionenfallen-Architekturen durchgesetzt hat. Anders als das Cirac-Zoller-Gatter benötigt es kein Bus-Qubit, sondern nutzt kollektive Schwingungsmoden zur gleichzeitigen Adressierung mehrerer Qubits.
+
+Ein typisches MS-Gatter basiert auf einem bichromatischen Laserpuls, welcher symmetrisch zwei Seitenbänder ober- und unterhalb der Qubit-Resonanzfrequenz anspricht. Dabei wird die Schwingung nur virtuell angeregt, was die Robustheit gegenüber thermischen Zuständen erhöht. Durch diese Wechselwirkung entsteht eine effektive Spin-Spin-Kopplung, mit der sich verschränkte Zustände, wie z.\,B. Bell-Zustände, effizient erzeugen lassen. Das Gatter benötigt dabei nur minimale Kontrolle über die Bewegungszustände der Ionen, was es besonders fehlerresistent und skalierbar macht. Zudem kann es gleichzeitig mehrere Qubit-Paare verschränken (Mølmer and Sørensen, 2000; Baumann, 2025).
+
+\begin{table}[ht]
+    \centering
+    \caption{Vergleich zwischen Cirac-Zoller- und Mølmer-Sørensen-Gatter WIP}
+    \label{tab:vergleich_gatter}
+    \begin{tabular}{p{4.5cm} p{5.5cm} p{5.5cm}}
+        \textbf{Eigenschaft} & \textbf{Cirac-Zoller-Gatter} & \textbf{Mølmer-Sørensen-Gatter} \\
+        Jahr & 1995 & ~2000 \\
+        Vermittlung & Bus-Qubit notwendig & Keine zusätzlichen Qubits \\
+        Schwingungsmoden & Echt angeregt & Virtuell angeregt \\
+        Robustheit & Gering (gegenüber thermischen Zuständen) & Hoch \\
+        Skalierbarkeit & Eingeschränkt & Gut skalierbar \\
+        Experimentelle Anforderungen & Hohe Präzision & Weniger streng \\
+        Anwendungsbereich & Proof-of-Concept & Industrielle Prototypen \\
+    \end{tabular}
+\end{table}
+
+
+\subsection{Aufbau und Betriebsweise eines Ionenfallencomputers}
+
+Während theoretische Betrachtungen von Ionenfallen-Qubits sich stark auf die physikalischen Prinzipien konzentrieren, wie in Abschnitt 1.6.3 beschrieben, unterscheidet sich der tatsächliche Aufbau eines Ionenfallen-Quantencomputers in der Praxis erheblich durch seine technische Komplexität. Moderne Systeme verbinden physikalisch hochpräzise Komponenten mit klassischer Computertechnik und Softwareintegration, welche im folgenden Kapitel genauer vorgestellt werden.
+\subsubsection{Beispiele in Reale Systemen}
+
+Ein anschauliches Beispiel für die Realisierung eines kommerziellen Ionenfallen-Quantencomputers liefert das österreichische Unternehmen Alpine Quantum Technologies (AQT). Der Quantenprozessor von AQT ist vollständig in ein standardisiertes 19-Zoll-Gehäuse integriert, das äußerlich kaum von einem klassischen Serverschrank unterscheidbar ist. Im Inneren befinden sich jedoch Hochvakuumkammern, mikrostrukturierte Paul-Fallen, Lasermodule, modulare Optiksysteme und eine komplexe Steuerungseinheit. Die Quantenhardware wird durch klassische Komponenten ergänzt, die für Temperaturkontrolle, Impulssteuerung, Datenausgabe und externe Kommunikation zuständig sind (Bischoff et al., 2024).
+
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{images/quanten-hardware/AQT.jpg}
+    \caption{Bild eines AQT Ionenfallencomputers}
+    \label{fig:meinbild}
+    \end{figure}
+
+AQT entwickelt seine Systeme auf der Grundlage langjähriger Forschung an der Universität Innsbruck, insbesondere in Kooperation mit dem Experimentalphysiker Rainer Blatt, Mitgründer von AQT, der als einer der Pioniere der Ionenfallenplattform gilt (Blatt and Wineland, 2008). Die Geräte verwenden typischerweise linear angeordnete Ionenketten aus Kalziumionen, die in einer mikrochip-basierten Paul-Falle fixiert werden. Diese Chips sind modular aufgebaut und lassen sich bei Bedarf austauschen oder erweitern. Die Laseransteuerung, die Ioneninitialisierung, das Auslesen der Zustände und die zeitlich exakte Koordination der Gatteroperationen erfolgen über eine integrierte Steuerelektronik, meist in Form von FPGA-gestützter Signalverarbeitung .
+
+Auch andere Systeme wie Quantinuum (ehemals Honeywell Quantum) oder IonQ verfolgen vergleichbare Ansätze: Der eigentliche Quantenprozessor wird in eine vollständig abgeschirmte Umgebung eingebettet, kombiniert mit photonischer Signalverarbeitung und einem modularen optischen Kontrollsystem. So wurde etwa 2024 an der Universität Innsbruck erstmals eine Verschränkung von 56 Ionen auf einem einzigen Chip demonstriert, ein Rekord für die Ionenfallenplattform (Bischoff et al., 2024). 
+
+Neben AQT existieren heute weltweit mehrere Firmen, die Ionenfallen-Quantencomputer entwickeln oder bereits kommerziell anbieten, darunter eQtron in Siegen, Universal Quantum in Sussex, IonQ in Maryland (USA) sowie Quantumium in Colorado. 
+Trotz des unterschiedlichen Designs verfolgen alle diese Plattformen einen ähnlichen Architekturansatz: Die Trennung von quantenphysikalischem Kernsystem (Ionenchip, Lasermodule, Vakuum) und klassischer Steuerungseinheit, die die Verbindung zur Außenwelt und Benutzersteuerung herstellt. Diese einzelnen Komponenten werden in den nächsten Kapiteln genauer erläutert.
+
+\subsubsection{Quantenarchitekturen von Ionenfallencomputern}
+Die genaue Funktionsweise eines Ionenfallen-Quantencomputers, also die Architektur, beschreibt das physikalische und logische Zusammenspiel seiner Komponenten – insbesondere, wie Ionen gespeichert, bewegt und miteinander verschränkt werden. Während erste Systeme auf starren linearen Anordnungen basierten, sind moderne Architekturen zunehmend modular, rekonfigurierbar und auf Skalierbarkeit ausgelegt. Es lassen sich grundlegende Architekturen unterscheiden, die in der Praxis aktuell Anwendung finden.
+\\\\
+\paragraph{Paul-Falle}
+
+Die bekannteste Realisierungsform stellt die lineare Paul-Falle dar, wie sie beispielsweise von AQT verwendet wird \cite{bischoff2024}. Diese wurde im vorherigen Kapitel bereits vorgestellt. AQT hält die Ionen in einer eindimensionalen Kette, wobei eine X-förmige Elektrodengeometrie hohe Fallenfrequenzen bei gleichzeitig guter optischer Zugänglichkeit ermöglicht \cite{frisch2024, strohm2024}. In diesen sogenannten Surface Traps erlaubt die Chip-Architektur die präzise Adressierung einzelner Ionen sowie das Auslesen durch seitlich einfallende Laserstrahlen, um Gatteroperationen auszuführen \cite{strohm2024}.
+
+\medskip
+
+\paragraph{QCCD-Architektur}
+
+Eine skalierbare Architektur ist das sogenannte \textit{Quantum Charge-Coupled Device} (QCCD), das 2002 von Kielpinski et al.\ erstmals vorgestellt wurde \cite{kielpinski2002}. Sie basiert auf der Trennung von Rechen-, Speicher- und Transportzonen. In dieser Architektur, wie sie beispielsweise von Quantinuum verfolgt wird, werden Ionen gezielt zwischen verschiedenen Zonen bewegt, um dort Gatteroperationen auszuführen oder für spätere Nutzung zu speichern. Um diese Parallelisierung zu ermöglichen, muss die Architektur folgende Anforderungen erfüllen: schnelle und verlustarme Transporte, Synchronisation über viele Kontrollzonen, Phasenstabilität sowie ggf. die Kombination unterschiedlicher Ionenarten zur Kühlung \cite{strohm2024}.
+
+\medskip
+
+\paragraph{Race-Track-Architektur}
+
+Ein alternativer Vorschlag zur QCCD-Struktur ist die sogenannte \textit{Race-Track-Architektur}. Dabei handelt es sich um eine ringförmige Anordnung von Rechen- und Speicherzonen, die einer Rennbahn ähneln. In aktiven Zonen finden dabei Gatteroperationen statt, während ruhende Ionen in den sogenannten Parking-Zonen mit optimierter Kohärenzzeit gelagert werden. Dieses Layout erlaubt eine fortlaufende Umverteilung der Ionen bei gleichzeitig geringer Kreuzkopplung zwischen den Operationen und minimierter Störanfälligkeit \cite{strohm2024}.
+
+\medskip
+
+\paragraph{Photonische Interkonnekte}
+
+Ein weiterer Schritt zur Skalierung über die Chipgrenzen hinaus besteht in der Verbindung mehrerer Ionenfallenmodule über photonische Interkonnekte. Hierbei werden einzelne Ionen über Lichtteilchen (Photonen) miteinander verschränkt, die durch Faseroptiksysteme aus zwei verschiedenen Fallen in einen Strahlteiler gelenkt und dort überlagert werden \cite{strohm2024}. Dieser als photon-mediated entanglement bekannte Mechanismus erlaubt es, logische Qubits über große Distanzen hinweg zu koppeln, beispielsweise im Rahmen verteilter Quantenrechner \cite{strohm2024}.
+\\\\
+Wie die vorgestellten Architekturen verdeutlichen, stellt insbesondere die Skalierung eine zentrale Herausforderung bei der Weiterentwicklung von Ionenfallen-Quantencomputern dar – ein Aspekt, der in Kapitel (Insert Kapitel) vertiefend im Kontext der technischen Limitationen behandelt wird.
+
+\subsubsection{Hardwareinfrastruktur von Ionenfallencomputern}
+Jede Quantenarchitektur ist abhängig von ihrer eingebauten Hardwareinfrastruktur innerhalb eines Ionenfallen-Quantencomputers und stellt gleichzeitig ein hochkomplexes Zusammenspiel verschiedener Subsysteme dar. Um den stabilen Betrieb zu gewährleisten, müssen zahlreiche technische Anforderungen erfüllt werden. Die folgenden Abschnitte beleuchten die zentralen Komponenten im Überblick: \\
+
+\textbf{Vakuum- und Kühlungstechnik} \\
+Eine der zentralen Voraussetzungen für den stabilen Betrieb von Ionenfallen-Quantencomputern ist ein Ultrahochvakuum (UHV) mit Drücken im Bereich von etwa $10^{-11}$~Torr. Bereits einzelne Kollisionen mit Restgasmolekülen – etwa Wasserstoff – können zu Qubit-Verlust, Ionenketten-Umsortierung oder vollständigem Herausfallen aus der Falle führen. Daher müssen Störungen durch Gasmoleküle nahezu vollständig ausgeschlossen werden \cite{ionq2025}. \\
+Aikyo et al.\ \cite{aikyo2020} beschreiben, dass die Qualität des Vakuums nicht nur durch direkte Messung, sondern auch experimentell über Beobachtungen von z.\,B.\ Ketten-Rekonfigurationen quantifiziert wurde. Diese erlauben Rückschlüsse auf die effektive Kollisionsrate mit Hintergrundgas – typischerweise ein Ereignis alle 16 bis 30 Minuten –, was für stabile Quantengatter ausreichend ist. Die mittlere freie Weglänge eines Moleküls im UHV beträgt mehrere tausend Kilometer, im Vergleich zu wenigen Nanometern bei Normaldruck. \\
+Alternativ nutzen manche Anbieter kryogene Kühlung, um bei tiefen Temperaturen (< 12 K) eine noch höhere Vakuumqualität zu erreichen. Bei solchen Temperaturen fungieren kalte Oberflächen zusätzlich als effektive Getterflächen und verringern die Heizrate der Ionen. \\
+Die Vakuum- und Kühlungstechnik ist somit nicht nur passives Mittel zur Isolation, sondern ein integraler Bestandteil der Qubit-Lebensdauer, Gate-Fidelity und Skalierbarkeit von Ionenfallen-basierten Quantencomputern. \\
+
+\textbf{Optische Systeme} \\
+Optische Systeme übernehmen zentrale Aufgaben in der Strahlführung für Laserkühlung, Zustandsmanipulation und Messung. Laser werden meist extern erzeugt und über fasergekoppelte Optiken in die Nähe der Ionenfalle geleitet. Dort erfolgt die Fokussierung auf einzelne Ionen mithilfe von Hoch-NA-Objektiven oder mikrostrukturierten Linsenarrays. \\
+Traditionell wird die Fluoreszenzdetektion bei Ionen mit Kameras, Photomultipliern oder Avalanche-Photodioden durchgeführt. Neuerdings kommen jedoch auch CMOS-kompatible Einzelphotonen-Avalanchedioden zum Einsatz, welche bei Raumtemperatur betrieben werden können und für spezifische Wellenlängen optimiert sind. In Kombination mit mikrostrukturierten Fresnel-Zonenplatten lassen sich so kompakte Detektionssysteme realisieren, die skalierbar sind und sich auch für Ionenfallen eignen \cite{chatterjee2023}. \\
+
+\textbf{Steuerungselektronik} \\
+Die Steuerungselektronik stellt das zentrale Bindeglied zwischen Quantenhardware und klassischer Kontrolle dar. Sie umfasst alle Systeme zur Erzeugung und Modulation von Spannungen, Frequenzen und Pulsen, die zum Betrieb der Falle, zur Qubit-Manipulation und für Messprozesse erforderlich sind. Moderne Ionenfallen-Quantencomputer verwenden hierzu hochpräzise FPGA-basierte Sequenzcontroller in Kombination mit digitaler Signalverarbeitung (DSP) direkt auf Hardwareebene \cite{keysight2024}. \\
+Für die Lasersteuerung kommen modulierte Signale zum Einsatz, die über Acousto-Optic Modulatoren (AOMs) und Electro-Optic Modulatoren (EOMs) kontrolliert werden. Diese modulieren Frequenz, Phase und Intensität der Laserstrahlen präzise. Die Steuerung dieser Modulatoren erfolgt typischerweise über Arbitrary Waveform Generators (AWGs) mit FPGA-Unterstützung, die flexible Pulsgestaltung, Echtzeit-Phasenkontrolle und latenzoptimierte Parameter-Scans erlauben \cite{keysight2024}. \\
+Auch Mikrowellenquellen spielen eine Rolle, insbesondere bei Qubits mit Hyperfeinübergängen. Diese dienen nicht nur als Ansteuerung für direkte Rotationen, sondern auch als Lokaloszillatoren in Kombination mit optischen Trägern \cite{keysight2024}. \\
+
+Die vorgestellten Subsysteme bilden das technologische Rückgrat ionenbasierter Quantencomputer. Dabei entscheidet nicht nur die Wahl der physikalischen Komponenten über die Leistungsfähigkeit des Systems – auch ihre Integration und Synchronisation sind entscheidend für die spätere Nutzung.
+
+\subsubsection{Anwendungen mit Ionenfallencomputern}
+Trotz der noch begrenzten Qubit-Zahlen konnten Ionenfallen-Quantencomputer bereits erfolgreich in verschiedenen Bereichen praktisch erprobt werden. Der Vorteil dieser Plattform liegt insbesondere in ihren hardwarebedingten Stärken: hohe Gatterfidelitäten, lange Kohärenzzeiten sowie eine flexible All-to-All-Konnektivität, wodurch viele Algorithmen besonders effizient umgesetzt werden können \cite{strohm2024}. \\
+
+In den letzten Jahren wurden reale Ionenfallensysteme u.\,a.\ für chemische Simulationen (etwa von Molekülen wie H\textsubscript{2}O oder LiH), kombinatorische Optimierungsprobleme (z.\,B.\ MaxCut mittels QAOA) sowie Ansätze im Quantum Machine Learning genutzt. Hierbei konnten trotz begrenzter physischer Qubit-Zahl durch Reuse- und Zerlegungsmethoden auch größere Probleme adressiert werden \cite{strohm2024}. \\
+
+Mehrere vorgestellte Unternehmen stellen ihre Systeme bereits Forschungs- und Industriepartnern zur Verfügung. Damit bilden Ionenfallen-Quantencomputer schon heute eine Plattform mit unmittelbarem Anwendungspotenzial. Eine vertiefte Betrachtung konkreter Anwendungsfelder in Chemie, Medizin, Industrie und Finanzwesen erfolgt in den Kapiteln~7 bis~10.
+
 \subsection{Herausforderungen und technische Limitationen}
-    \begin{itemize}
-        \item Warum gibt es die aktuellen Probleme?
-        \item Skalierbarkeit
-        \item Gatterzeit
-        \item Potenzial
-        \item Ansätze zur Lösung aktueller Limitationen: z. B. Quantum Networking
-    \end{itemize}
+\subsubsection{Herausforderung bei der Skalierung}
+Die Skalierung ist eine der zentralen Herausforderungen beim Bau großflächiger Ionenfallen-Quantencomputer. Während sich Ionen als nahezu identische und stabil manipulierbare Qubits eignen, stoßen heutige Architekturen bei mehr als 56~Qubits an technische Grenzen \cite{strohm2024, bischoff2024}. \\
+
+Grundsätzlich lassen sich nach Strohm et al.\ \cite{strohm2024} zwei fundamentale Skalierungsprobleme in Ionenfallen identifizieren:
+\begin{enumerate}
+    \item Das \textit{Wiring-Problem} beschreibt die Schwierigkeit, jedem Qubit individuell steuerbare elektrische und optische Signale zuzuführen, insbesondere bei steigender Qubitanzahl. Je mehr Ionen adressierbar sein sollen, desto mehr digitale/analoge Kanäle, Laserlinien und Modulationspfade werden benötigt.
+    \item Das \textit{Sorting-Problem} bezieht sich auf die Notwendigkeit, Qubits für Gatteroperationen physisch zueinander zu bewegen, da direkte Zwei-Qubit-Gatter in verschiedenen Fallenregionen nicht möglich sind.
+\end{enumerate}
+
+Ein wesentliches Hindernis ist der physikalische Aufbau linearer Paul-Fallen. In diesen Architekturen erhöht sich mit wachsender Ionenanzahl die Komplexität der Modenstruktur und die Anfälligkeit gegenüber Heizprozessen, was sich negativ auf die Gattertreue und Fehlerraten auswirkt. Zudem nimmt der Abstand der Ionen ab, was das gezielte Ansprechen einzelner Teilchen durch fokussierte Laserstrahlen erschwert. \\
+
+Alternative Architekturen wie die vorgestellte QCCD-Struktur stellen eine bessere Option zur Hochskalierung dar, sind jedoch ebenfalls vom Wiring-Problem betroffen: Jeder Segmentbereich der Falle benötigt dedizierte Spannungs- und Taktsignale, wodurch die Anzahl der benötigten Leitungen stark ansteigt. Dies stellt hohe Anforderungen an das Packaging und die Steuerelektronik \cite{strohm2024}. \\
+
+Auch das Sorting-Problem wird durch QCCD zwar strukturell adressiert, bleibt aber ein zeitkritischer Engpass. Denn das \textit{Shuttling}, also der physische Transport eines Ions über die Falle, verursacht zusätzliche Dekohärenz und verlängert die Gesamtausführungszeit eines Quantenprogramms. Strohm et al.\ \cite{strohm2024} berichten, dass der typische Zeitverbrauch in einem Algorithmus bei etwa 58\,\% für Transport, 41\,\% für Kühlung und nur 1\,\% für eigentliche Gatteroperationen liegt. Der Transport eines Ions über 200\,$\upmu$m dauert dabei rund 10\,$\upmu$s, was sich bei komplexen Programmen schnell aufsummiert. \\
+
+\textbf{Lösungsansätze} \\
+Zur Verbesserung der Skalierbarkeit von Ionenfallen-Quantencomputern wurden verschiedene Ansätze entwickelt, die sowohl auf der Hardware- als auch auf der Steuerungsebene ansetzen. Ein Schwerpunkt liegt auf der Optimierung der Ionentransporte: Effizientere Shuttling-Protokolle, etwa durch adiabatische Rampen oder fein segmentierte Steuerstrukturen, können unerwünschte Heizprozesse minimieren und gleichzeitig die Gatterfidelität bei bewegten Ionen verbessern. \\
+
+Beim \textit{Qubit-Recycling} werden Ionen nach einer Zwischenauslesung durch schnelles Resetting erneut für Berechnungen genutzt. Dadurch lässt sich die effektive Anzahl nutzbarer Qubits erhöhen, ohne die physische Ionenanzahl zu vergrößern \cite{strohm2024}. \\
+
+Auch der Einsatz sogenannter \textit{Qudits}, also Ionen, die mehr als zwei logisch adressierbare Energiezustände besitzen, kann zur Effizienzsteigerung beitragen. In ersten Experimenten wurden bereits achtstufige Qudits auf Basis von $^{40}\mathrm{Ca}^{+}$-Ionen realisiert. Diese erlauben native Qudit-Gatter, ohne dass die Systeme auf binäre Qubit-Logik beschränkt sind \cite{strohm2024}.
+
+\subsubsection{Herausforderung bei Fehlertoleranz und Fehlerkorrektur}
+Die Implementierung von fehlertoleranten Quantenoperationen ist eine weitere Herausforderung auf dem Weg zu skalierbaren und zuverlässigen Quantencomputern. Obwohl Ionenfallen-Systeme im Vergleich zu anderen Plattformen bereits von Natur aus über lange Kohärenzzeiten und hohe Gatterfidelitäten verfügen – 98{,}5\,\% bis 99{,}82\,\% bei Zwei-Qubit-Gattern \cite{strohm2024} –, reichen diese Werte für fehlerfreies Rechnen im großen Maßstab nicht aus. Daher ist der Einsatz von Quantenfehlertoleranz und Quantenfehlerkorrektur unverzichtbar. \\
+
+Grundvoraussetzung für fehlertolerantes Quantencomputing ist die Möglichkeit, einen logischen Qubit-Zustand über mehrere physikalische Qubits hinweg so zu kodieren, dass Fehler erkannt und korrigiert werden können, ohne dabei den logischen Zustand selbst zu gefährden. Dazu müssen zunächst sogenannte Fehlerkorrekturcodes implementiert werden, wie etwa der \textit{Steane-Code}, bei dem ein logisches Qubit durch sieben physikalische Qubits repräsentiert wird. Entscheidend ist hierbei, dass sowohl die Initialisierung des logischen Zustands, die Messung potenzieller Fehler als auch die eigentliche Fehlerkorrektur selbst fehlertolerant durchgeführt werden, um keine weiteren Fehler in das System einzuführen \cite{strohm2024}. \\
+
+Die technische Umsetzung dieser Konzepte bringt jedoch erhebliche Herausforderungen mit sich. Zum einen erfordert der Einsatz von Fehlerkorrekturverfahren einen hohen Qubit-Overhead: Für ein einziges logisches Qubit werden je nach Verfahren typischerweise sieben bis über hundert physikalische Qubits benötigt. Damit steigt nicht nur der Platzbedarf, sondern auch die Komplexität in der Steuerung und Kalibrierung exponentiell an. \\
+
+Zum anderen ist die fehlerfreie und echtzeitfähige Messung von Syndromen technisch anspruchsvoll, da jede Messung selbst fehleranfällig ist und wiederum durch zusätzliche Kontrollqubits abgesichert werden muss. Hinzu kommen reale physikalische Fehlerquellen, die in heutigen Modellen oft nicht vollständig abgebildet sind – wie etwa positionsabhängiges Laserdetuning oder systematische Rauschquellen \cite{strohm2024}. \\
+
+\textbf{Lösungsansätze} \\
+Trotz dieser Herausforderungen wurden in Ionenfallen-Systemen bereits beachtliche Fortschritte erzielt. So konnte in mehreren Studien demonstriert werden, dass sich ein logisches Qubit erfolgreich gemäß dem Steane-Code kodieren lässt \cite{strohm2024}. Auch die fehlerresistente Messung von Fehler-Syndromen wurde erfolgreich mithilfe von \textit{Flag-Qubits} umgesetzt, die sogenannte \textit{Hook-Fehler} detektieren können – Fehler, die sich über Kontrollstrukturen auf Datenqubits ausbreiten würden. \\
+
+Besonders hervorzuheben sind experimentelle Demonstrationen vollständiger Fehlerkorrekturzyklen, etwa für Phasenfehler in Drei-Ionen-Systemen oder für kombinierte Bit- und Phasenfehler im Rahmen des Sieben-Qubit-Steane-Codes. Darüber hinaus wurden erste logische Gatter auf Basis von \textit{Lattice Surgery} gezeigt, bei denen logische Qubits durch gezieltes Verschmelzen und Trennen von physikalischen Qubit-Verbänden verarbeitet werden \cite{strohm2024}.
 
 \section{Quantencomputer auf Basis diamantbasierter Qubits (NV-Zentren)}
 \subsection{Physikalisches Prinzip}
-    \begin{itemize}
-        \item Zwei-Niveau-System: Elektronenspins von Stickstoff-Fehlstellen (NV-Zentren) im Diamantgitter
-        \item Optische Kontrolle
-        \item Mikrowellensteuerung
-        \item Kernspins
-    \end{itemize}
+    - Zwei-Niveau-System: Elektronenspins von Stickstoff-Fehlstellen (NV-Zentren) im Diamantgitter
+    - Optische Kontrolle
+    - Mikrowellensteuerung
+    - Kernspins
 \subsection{Gatterimplementierung}
-    \begin{itemize}
-        \item Ein-Qubit-Gatter
-        \item Zwei-Qubit-Gatter
-    \end{itemize}
+    - Ein-Qubit-Gatter
+    - Zwei-Qubit-Gatter
 \subsection{Verwendungsbereiche und Merkmale der diamantbasierten Qubits}
-    \begin{itemize}
-        \item Stand der Technologie
-        \item Anwendungen
-        \item Systemaufbau
-        \item Betriebsbedingungen
-    \end{itemize}
+    - Stand der Technologie
+    - Anwendungen
+    - Systemaufbau
+    - Betriebsbedingungen
 \subsection{Herausforderungen und technische Limitationen}
-    \begin{itemize}
-        \item Warum gibt es die aktuellen Probleme?
-        \item Skalierbarkeit
-        \item Gatterzeiten:
-        \item Potenzial und Ansätze:
-    \end{itemize}
+    - Warum gibt es die aktuellen Probleme?
+    - Skalierbarkeit
+    - Gatterzeiten:
+    - Potenzial und Ansätze:
 
 
-
-\section{Titel tbd}
-\subsection{Photonische Quantencomputer}
-    \begin{itemize}
-        \item Grundlegende Prinzipien und Qubit-Kodierung
-        \item Schlüsselkomponenten: Photonenerzeugung, -manipulation und -detektion
-        \item Vorteile und spezifische Herausforderungen
-        \item Aktueller Stand, jüngste Fortschritte (2024-2025) und Ausblick
-        \item Engineering- und Skalierungslösungen
-        \item Quantenfehlerkorrektur
-    \end{itemize}
-
-\subsection{Halbleiterbasierte Qubits: Spin qubits}
-    \begin{itemize}
-        \item Physikalische Realisierung in Halbleitern
-        \item Kontroll- und Auslesemechanismen
-        \item Vorteile und spezifische Herausforderungen
-        \item Aktueller Stand, jüngste Fortschritte (2024-2025) und Ausblick
-        \item Engineering- und Skalierungslösungen
-        \item Quantenfehlerkorrektur
-    \end{itemize}
-
-\subsection{Neutralatom-Quantencomputer}
-    \begin{itemize}
-        \item Prinzipien: Atomkühlung, Fallen und Qubit-Kodierung
-        \item Steuerung und Auslesung mittels Lasertechnologie
-        \item Vorteile und spezifische Herausforderungen
-        \item Aktueller Stand, jüngste Fortschritte (2024-2025) und Ausblick
-        \item Engineering- und Skalierungslösungen
-        \item Quantenfehlerkorrektur
-    \end{itemize}
-
-\subsection{Topologische Qubits}
-    \begin{itemize}
-        \item Theoretische Konzepte: Nichtabelsche Anyonen und Majorana-Fermionen
-        \item Ansätze zur Realisierung und Manipulation
-        \item Potenzial für inhärente Fehlertoleranz und aktuelle Herausforderungen
-        \item Aktueller Stand, jüngste Fortschritte (2024-2025) und Ausblick
-        \item Engineering- und Skalierungslösungen
-        \item Quantenfehlerkorrektur (über den inhärenten Schutz hinaus)
-    \end{itemize}
-
+\input{content/jakob/mainfile}
 
 
 \section{Quantencomputer-Architekturen und Vernetzung}
@@ -280,8 +398,7 @@ Die praktische Umsetzung der Prinzipien von Modularität und Skalierbarkeit stel
 
 \subsubsection{Relevante Designentscheidungen aus Ingenieursperspektive}
 Mehrere zentrale Designentscheidungen prägen die ingenieurtechnische Ausrichtung des IBM Quantum System Two. Die Priorisierung der Modularität stellt hierbei die fundamentalste und weitreichendste Entscheidung dar, welche die Skalierbarkeit und Zukunftsfähigkeit des Systems gewährleisten soll. Parallel dazu wurde ein starker Fokus auf die Interkonnektivität gelegt; die Fähigkeit, Prozessoren und Systeme miteinander zu verbinden, ist entscheidend, um die Limitierungen einzelner QPUs zu überwinden. Die Entwicklung des Systems folgt einem integrierten Ansatz, bei dem Hardware, Software (einschließlich Qiskit und Middleware), Steuerung und klassische Computerressourcen als eine kohärente Einheit betrachtet und entwickelt werden. Schließlich schafft die Architektur des Quantum System Two, obwohl sie selbst noch nicht die Ära der vollständigen Fehlertoleranz einläutet, die notwendige Skalierbarkeit und Komplexität, um fortgeschrittene Fehlerminderungs- und Quantenfehlerkorrekturcodes zu implementieren und zu testen.
-\\
-
+\\\\
 Das IBM Quantum System Two stellt somit einen entscheidenden Evolutionsschritt dar. Es legt die technologischen Grundlagen für Quantencomputer, die potenziell in der Lage sein werden, Probleme von praktischer Relevanz zu lösen, welche für klassische Supercomputer als unlösbar gelten. Die Realisierung dieser Vision ist maßgeblich von der erfolgreichen Bewältigung der komplexen ingenieurtechnischen Herausforderungen in den Bereichen Skalierung, Konnektivität und Systemintegration abhängig.
 
 

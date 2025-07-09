@@ -12,6 +12,7 @@
 
 
 \section{Top 3 Anwendungsfelder (Praxis \& Theorie)}
+\label{med:applicationFields}
 Die potenziellen Einsatzmöglichkeiten von Quantencomputern im Gesundheitswesen sind vielfältig, wie Abbildung \ref{fig:use-cases-medicine} verdeutlicht. Sie reichen von molekularer Simulation über Krebsbehandlung bis hin zu Bildanalyseverfahren. In diesem Abschnitt liegt der Fokus auf den drei Anwendungsfeldern, die aktuell sowohl in der Forschung als auch in der industriellen Entwicklung eine herausragende Rolle spielen: Wirkstoffentwicklung , Proteinstrukturvorhersage und Personalisierte Medizin.\\
 
 \begin{figure}[ht]
@@ -87,15 +88,18 @@ Personalisierte Medizin & Mustererkennung in hochdimensionalen Daten & QML, QNN 
 
 
 \section{Top Technologien \& Algorithmen}
+Die in diesem Abschnitt vorgestellten technologischen Frameworks orientieren sich an den in Kapitel \ref{med:applicationFields} beschriebenen Anwendungsfeldern. Ziel ist es, die eingesetzten Softwarestacks und Entwicklungstools entlang ihrer praktischen Einsatzbereiche in der Wirkstoffentwicklung, der Proteinstrukturvorhersage und der personalisierten Medizin systematisch darzustellen. Auf diese Weise wird deutlich, wie spezifische Quantenalgorithmen in den jeweiligen medizinischen Kontexten technologisch implementiert werden.\\
 
 \subsection{Technologische Frameworks}
 
 \subsubsection*{Wirkstoffentwicklung}
-Die praktische Umsetzung der Quantenalgorithmen für medizinische Anwendungen erfordert leistungsfähige Software"=Stacks, die Quanten-Hardware und klassische Algorithmen verbinden. Für die Wirkstoffentwicklung werden vor allem Frameworks genutzt, die komplexe \textit{Molekül"=Hamilton"=Operatoren} bearbeiten und Verfahren wie VQE oder QPE effizient implementieren. Dabei handelt es sich um mathematische Ausdrücke, die alle relevanten physikalischen Eigenschaften eines Moleküls quantenmechanisch beschreiben. Der Hamilton-Operator bildet somit die Grundlage für die Simulation von Molekülzuständen, da er die Energieverteilung eines Systems vollständig bestimmt (Vgl. \cite{mcardle}). So bietet IBM Qiskit mit dem Qiskit Nature"=Modul spezialisierte Werkzeuge zur Darstellung chemischer Systeme und zum Lösen von Grundzustandsproblemen in Molekülen. (Vgl. \cite{noauthor_qiskit_2022})\\
+Die praktische Umsetzung der Quantenalgorithmen für medizinische Anwendungen erfordert leistungsfähige Software"=Stacks, die Quanten-Hardware und klassische Algorithmen verbinden. Für die Wirkstoffentwicklung werden vor allem Frameworks genutzt, die komplexe \textit{Molekül"=Hamilton"=Operatoren} bearbeiten und Verfahren wie VQE oder QPE effizient implementieren. Bei den Operatoren handelt es sich um mathematische Ausdrücke, die alle relevanten physikalischen Eigenschaften eines Moleküls quantenmechanisch beschreiben. Der Hamilton"=Operator bildet somit die Grundlage für die Simulation von Molekülzuständen, da er die Energieverteilung eines Systems vollständig bestimmt (Vgl. \cite{mcardle}).\\
+
+So bietet IBM Qiskit mit dem Qiskit Nature"=Modul spezialisierte Werkzeuge zur Darstellung chemischer Systeme und zum Lösen von Grundzustandsproblemen in Molekülen. (Vgl. \cite{noauthor_qiskit_2022})\\
 
 Microsofts Q\# Quantum Development Kit (QDK) enthält ebenfalls eine Chemie-Bibliothek mit qubitisierten Fermionen-Operatoren sowie Implementierungen von Hamilton-Simulatoren (Trotterisierung, Qubitierung). (Vgl. \cite{msazure}) \\
 
-Zudem erlaubt Amazon Braket als Cloud-Service den Zugriff auf unterschiedliche Quantenprozessoren (z.B. Rigetti"=Supraleiter, IonQ-Ionenfallen) und Simulationsengines über ein einheitliches SDK. (Vgl. \cite{aws})\\
+Amazon Braket ist ein vollständig verwalteter Cloud-Dienst von AWS, der es Forscherinnen und Forschern ermöglicht, Quantenalgorithmen zu entwerfen, auf verschiedenen Simulatoren zu testen und auf realen Quantencomputern auszuführen. Damit bietet Braket eine flexible Entwicklungsumgebung für hybride quantenklassische Workflows in der Arzneimittelforschung. Besonders relevant für medizinische Anwendungen ist der Zugriff auf unterschiedliche Hardwareplattformen innerhalb eines einheitlichen SDK. Braket unterstützt unter anderem gatterbasierte Quantencomputer von IonQ, IQM und Rigetti sowie einen Analog Hamiltonian Simulator (AHS) von QuEra. Letzterer erlaubt die direkte Simulation physikalischer Systeme auf Basis kontinuierlicher Hamilton-Operatoren, was für bestimmte molekulare Strukturberechnungen von Vorteil sein kann. (Vgl. \cite{amazonbraket})\\
 
 Dieser flexible Ansatz wird beispielsweise im AWS-Toolkit QCEDD genutzt, das eingebaute Beispiele für Aufgaben wie molekulares Docking und Faltungsprobleme in der Wirkstoffforschung enthält. (Vgl. \cite{amazonscience})\\ %evtl. git repo zitieren
 
