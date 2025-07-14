@@ -10,211 +10,20 @@
 
 \abstract{some abstract}
 
-\section{Shor-Algorithmus: Faktorisierung und diskreter Logarithmus}
-\label{first:shor-algorithm}
-Die klassische Kryptografie basiert auf der Annahme, dass bestimmte mathematische Probleme – wie die Zerlegung großer Zahlen in Primfaktoren – selbst für moderne Supercomputer unlösbar bleiben. Genau hier setzt Shor’s Algorithmus an: 1994 entwickelte der Mathematiker Peter Shor einen Quantenalgorithmus, der dieses Problem effizient lösen kann. Damit stellte er nicht nur eine der zentralen Säulen klassischer Verschlüsselungsverfahren in Frage, sondern zeigte auch das enorme Potenzial von Quantencomputern für konkrete Anwendungen.\\
+\section{Shor's Algorithmus zur Faktorisierung}
 
-\noindent In diesem Kapitel erklären wir die Grundidee von Shor’s Algorithmus, zeigen, wie er die periodische Struktur von Funktionen mithilfe der Quanten-Fourier-Transformation nutzt, und machen deutlich, warum seine Effizienz klassisch nicht erreichbar ist. Ziel ist es, die mathematischen Grundlagen verständlich zu machen und Schritt für Schritt zur Quantenlösung des Faktorisierungsproblems zu führen.\\
+In der Informatik und insbesondere in der Kryptografie spielt die Sicherheit digitaler Kommunikation eine zentrale Rolle. Ein wesentliches Prinzip moderner Verschlüsselungsverfahren — etwa des RSA-Algorithmus — beruht auf der Annahme, dass die Zerlegung großer Zahlen in ihre Primfaktoren auf klassischen Computern mit exponentiellem Aufwand verbunden ist. Für ausreichend große Zahlen ist dieser Aufwand so gewaltig, dass selbst modernste Supercomputer über Jahre hinweg rechnen müssten, um einen privaten Schlüssel zu entschlüsseln.\\
 
-\subsection{Mathematische Grundlagen}
+Stellen wir uns vor, wir kennen lediglich eine große zusammengesetzte Zahl $N$, von der wir wissen, dass sie das Produkt zweier unbekannter Primzahlen $p$ und $q$ ist. Die klassische Faktorisierung würde in diesem Fall im schlimmsten Fall exponentiell viele Operationen erfordern. Genau hier setzt der Shor-Algorithmus an, der das Problem aus quantenmechanischer Sicht betrachtet.\\
 
-\subsubsection*{Euklidischer Algorithmus}
-Der Euklidische Algorithmus berechnet den größten gemeinsamen Teiler (ggT) zweier Zahlen effizient:
-\[
-\gcd(a, b) = \gcd(b, a \bmod b)
-\]
-Dies ist notwendig zur Validierung in Shor's Algorithmus und zur Auswahl der Basis \( a \).
+Peter Shor entwickelte 1994 einen Algorithmus, der das Faktorisierungsproblem mithilfe eines Quantencomputers in polynomieller Zeit lösen kann — genauer gesagt in $\mathcal{O}((\log N)^3)$. Dies stellt eine exponentielle Beschleunigung gegenüber den besten bekannten klassischen Verfahren dar. Die zentrale Idee des Algorithmus liegt in der Reduktion des Faktorisierungsproblems auf das Periodenfindungsproblem, das sich durch Quanten-Phasenschätzung effizient lösen lässt.\\
 
-\subsubsection*{Modulare Arithmetik}
-In Shor's Algorithmus wird exponentielle modularer Arithmetik verwendet:
-\[
-f(x) = a^x \bmod N
-\]
-Die Funktion ist periodisch, was die Grundlage für die Periodenfindung darstellt.
+Mit anderen Worten: Während klassische Computer für große $N$ praktisch keine Chance auf eine schnelle Faktorisierung haben, kann ein ausreichend großer Quantencomputer dieses Problem in überschaubarer Zeit lösen — mit drastischen Konsequenzen für die heute eingesetzten kryptografischen Verfahren.\\
 
-\subsubsection*{Periodizität und Ordnung}
-Die Ordnung \( r \) von \( a \bmod N \) ist die kleinste positive ganze Zahl, für die gilt:
-\[
-a^r \equiv 1 \mod N
-\]
-Diese Ordnung entspricht der Periode der Funktion \( f(x) \).
-
-\subsubsection*{Kettenbruchentwicklung}
-Um aus einer gemessenen Näherung \( j/Q \) eine rationale Zahl \( s/r \) zu finden, verwendet man die Kettenbruchentwicklung:
-\[
-\frac{j}{Q} \approx \frac{s}{r}
-\]
-Dabei wird ein Näherungsbruch mit möglichst kleinem Nenner gesucht.
-
-\subsection{Idee: Primfaktorzerlegung}
-Ziel ist es, eine zusammengesetzte Zahl \( N = pq \) effizient zu faktorisieren. Klassische Algorithmen benötigen dazu exponentielle Laufzeit. Shor's Algorithmus nutzt die Periodenstruktur der Funktion
-\[
-f(x) = a^x \bmod N
-\]
-um über einen quantenmechanischen Mechanismus – insbesondere die Quanten-Phasenschätzung (QPE) – die Periode \( r \) dieser Funktion effizient zu bestimmen.
-
-\noindent Dabei kommt **Quanteninterferenz** als zentrales Werkzeug zum Einsatz: Im Quantenalgorithmus wird ein Superpositionszustand über viele mögliche Werte \( x \) erzeugt und durch die Funktion \( f(x) \) moduliert. Dies geschieht durch Anwendung einer Einheitär-Operation \( U_f \), die \( |x\rangle \mapsto |f(x)\rangle \) abbildet. Anschließend wird durch die Quanten-Phasenschätzung in Kombination mit einer inversen Quanten-Fourier-Transformation (iQFT) eine Interferenz zwischen den Zuständen herbeigeführt, die bestimmte periodische Anteile konstruktiv verstärkt und andere destruktiv auslöscht.\\
-
-\noindent Diese Interferenz sorgt dafür, dass bei der anschließenden Messung mit hoher Wahrscheinlichkeit ein Ergebnis nahe einer rationalen Näherung \( s/r \) (mit \( r \) = Periode) beobachtet wird. Der Bruch \( s/r \) wird schließlich mithilfe der Kettenbruchentwicklung in den exakten Wert von \( r \) umgewandelt. Sobald \( r \) bekannt ist und gewisse Bedingungen erfüllt (insbesondere: \( r \) gerade und \( a^{r/2} \not\equiv -1 \bmod N \)), kann man die Teiler von \( N \) effizient mit dem Euklidischen Algorithmus bestimmen:\\
-\[
-\gcd(a^{r/2} \pm 1, N)
-\]
-
-\noindent So ermöglicht die **Quanteninterferenz**, zusammen mit der Fourier-Analyse, die entscheidende Extraktion der verborgenen Periodenstruktur, was die Grundlage der Faktorisierung bildet.
+Im Folgenden wird der Ablauf von Shors Algorithmus detailliert dargestellt und anhand eines konkreten Beispiels veranschaulicht. Dabei zeigen wir, wie Quantenregister, Quanten-Fourier-Transformation und die klassische Nachbearbeitung zusammenwirken, um die verborgenen Primfaktoren einer gegebenen Zahl zu enthüllen.\\
 
 
-\subsection{Diskreter Logarithmus}
-Shor’s Algorithmus kann auch auf das Problem des diskreten Logarithmus angewendet werden. Dieses besteht darin, für eine gegebene Gruppe \( G \), ein Element \( g \in G \) und ein weiteres Element \( h \in G \), die Zahl \( x \) zu finden, sodass:
-\[
-g^x = h
-\]
-Auch dieses Problem lässt sich durch Reduktion auf eine Periodensuche effizient mit einem Quantenalgorithmus lösen.
-
-\subsection{Quanten Fourier Transformation}
-
-\subsubsection*{Definition}
-Die Quanten-Fourier-Transformation (QFT) auf einem \( n \)-Qubit-System transformiert einen Basiszustand \( \ket{x} \) wie folgt:
-\[
-\text{QFT}(\ket{x}) = \frac{1}{\sqrt{2^n}} \sum_{k=0}^{2^n-1} e^{2\pi i xk / 2^n} \ket{k}
-\]
-mit
-\begin{itemize}
-    \item \( n \): Anzahl der Qubits im Quantenregister, also die Größe des Systems.
-    \item \( \ket{x} \): Ein Basiszustand des \( n \)-Qubit-Systems, wobei \( x \in \{0, 1, \ldots, 2^n - 1\} \) eine ganze Zahl ist, die den Basiszustand beschreibt.
-    \item \( 2^n \): Die Dimension des Hilbertraums, also die Gesamtanzahl aller Basiszustände für das \( n \)-Qubit-System.
-    \item \( k \): Laufindex in der Summe, der ebenfalls von 0 bis \( 2^n - 1 \) reicht und die möglichen Basiszustände nach der Transformation angibt.
-    \item \( e^{2 \pi i x k / 2^n} \): Die komplexe Phase, die im Überlagerungszustand die Interferenzmuster erzeugt und so Frequenzinformationen kodiert.
-\end{itemize}
-
-\noindent Sie ist zentral für die Phasenerkennung bei der Periodensuche.
-
-\subsubsection*{Komplexität}
-Die QFT kann auf einem Quantencomputer effizient in \( \mathcal{O}(n^2) \) durchgeführt werden, im Gegensatz zur klassischen Fourier-Transformation mit \( \mathcal{O}(n 2^n) \).
-
-\subsection{Quanten-Phasenabschätzung}
-
-\noindent Die Quanten-Phasenabschätzung ermöglicht die Bestimmung der Phase \( \phi \) eines Eigenwerts \( e^{2\pi i \phi} \) einer unitären Matrix \( U \), wobei:
-\[
-U \ket{u} = e^{2\pi i \phi} \ket{u}
-\]
-Sie ist ein zentrales Werkzeug zur Ermittlung der Periode \( r \) im Shor-Algorithmus, da man damit die Periode indirekt über eine Phase ablesen kann.
-
-\subsection{Ablauf des Shor-Algorithmus zur Faktorisierung}
-
-\noindent
-Ziel ist es, eine zusammengesetzte Zahl \( N = pq \) in ihre Primfaktoren \( p \) und \( q \) zu zerlegen. Dazu nutzt Shor's Algorithmus einen Quantencomputer zur Berechnung der Periode einer bestimmten Funktion. Der Algorithmus gliedert sich in einen klassischen und einen quantenmechanischen Teil.
-
-\subsubsection*{Schritt 1: Auswahl einer zufälligen Basis}
-Wähle eine ganze Zahl \( a \) mit:
-\[
-1 < a < N \quad \text{und} \quad \gcd(a, N) = 1
-\]
-Falls \( \gcd(a, N) > 1 \), wurde bereits ein echter Teiler von \( N \) gefunden.
-
-\subsubsection*{Schritt 2: Reduktion auf das Periodenproblem}
-Definiere die Funktion
-\[
-f(x) = a^x \bmod N
-\]
-Die Funktion \( f(x) \) ist periodisch mit einer Periode \( r \), sodass:
-\[
-a^r \equiv 1 \mod N
-\]
-Die Suche nach der kleinsten solchen Zahl \( r \) ist das zentrale Problem, das der Quantencomputer löst.
-
-\subsubsection*{Schritt 3: Periodenfindung mit einem Quantencomputer}
-
-\begin{enumerate}
-  \item[3.1] \textbf{Initialisierung:}  
-  Zwei Register werden initialisiert mit dem Zustand:
-  \[
-  \ket{0}^{\otimes n} \otimes \ket{1}
-  \]
-
-  \item[3.2] \textbf{Hadamard-Transformation:}  
-  Auf das erste Register wird die Hadamard-Transformation angewendet, um eine Superposition zu erzeugen:
-  \[
-  \frac{1}{\sqrt{Q}} \sum_{x=0}^{Q-1} \ket{x} \otimes \ket{1}
-  \]
-  
-  Dabei ist:
-  \begin{itemize}
-    \item \( n \): Anzahl der Qubits im ersten Register.
-    \item \( Q = 2^n \): Anzahl der möglichen Zustände im ersten Register
-    \item \( x \): Laufvariable über alle Basiszustände von \( \ket{0} \) bis \( \ket{Q-1} \).
-    \item \( \ket{1} \): Anfangszustand des zweiten Registers, auf das später die modulare Exponentiation angewendet wird.
-  \end{itemize}
-
-  Durch die Hadamard-Gates wird das Register in eine Superposition gebracht, in der alle \( Q \) Basiszustände gleichwahrscheinlich sind. Diese Superposition ist notwendig, um später durch die Phaseninterferenz Information über die Periode der Funktion zu extrahieren.\\
-
-  \item[3.3] \textbf{Modulare Exponentiation:}  
-  Eine kontrollierte Operation berechnet:
-  \[
-  \ket{x} \otimes \ket{1} \rightarrow \ket{x} \otimes \ket{a^x \bmod N}
-  \]
-
-  \item[3.4] \textbf{Inverse Quanten-Fourier-Transformation (iQFT):}  
-  Auf das erste Register wird die iQFT angewendet, um Periodeninformationen in der Amplitudenverteilung zu kodieren.\\
-
-  \item[3.5] \textbf{Messung:}  
-  Das erste Register wird gemessen und ergibt einen Wert \( j \), der näherungsweise gilt:
-  \[
-  \frac{j}{Q} \approx \frac{s}{r}
-  \]
-
-  \item[3.6] \textbf{Klassische Kettenbruchentwicklung:}  
-  Die rationale Näherung \( \frac{j}{Q} \approx \frac{s}{r} \) wird mithilfe einer Kettenbruchentwicklung bestimmt.  
-  Dabei sucht man nach einem Bruch \( \frac{s}{r} \), der \( \frac{j}{Q} \) mit kleinem Nenner \( r \) gut approximiert.\\
-
-  \item[3.7] \textbf{Validierung des Kandidaten:}  
-  Überprüfe, ob:
-  \[
-  a^r \equiv 1 \mod N
-  \]
-  Falls nicht, versuche eine andere Näherung oder starte mit anderem \( a \) neu.
-\end{enumerate}
-
-\subsubsection*{Schritt 4: Klassischer Abschluss}
-Wenn eine gültige Periode \( r \) gefunden wurde (und \( r \) gerade ist), berechne:
-\[
-\gcd\left(a^{r/2} - 1,\; N\right) \quad \text{und} \quad \gcd\left(a^{r/2} + 1,\; N\right)
-\]
-Diese Werte liefern mit hoher Wahrscheinlichkeit echte Teiler von \( N \). Ist das nicht der Fall, beginnt der Algorithmus erneut mit einer anderen Basis \( a \).
-
-\subsubsection*{Zusammenfassung des Verfahrens}
-Der Shor-Algorithmus zeigt, wie Quantencomputer periodische Strukturen in Funktionen aufdecken können, die klassisch nur mit exponentiellem Aufwand zu finden wären. Die Kombination aus Quanten-Phasenabschätzung, Fourier-Transformation und Kettenbruchentwicklung ermöglicht eine effiziente Faktorisierung großer Zahlen – ein fundamentaler Angriff auf die Sicherheit klassischer Verschlüsselung.\\
-
-\noindent Die Operationen des Shor's Algorithmus zur Faktorisierung lassen sich wie folgt darstellen:
-
-\begin{algorithm}
-\label{algorithm:shor}
-\caption{Shor's Algorithmus zur Faktorisierung einer Zahl \( N \)}
-\begin{algorithmic}[1]
-\Require Eine zusammengesetzte Zahl \( N \) aus zwei unbekannten Primzahlen \( p \) und \( q \)
-\Ensure Ein nicht-trivialer Teiler von \( N \)
-\State Wähle zufällig eine ganze Zahl \( a \) mit \( 1 < a < N \)
-\If{\( \gcd(a, N) \neq 1 \)}
-    \State \Return \( \gcd(a, N) \) \Comment{Zufällig gewähltes \( a \) war schon ein Teiler}
-\EndIf
-\State Bestimme die Periode \( r \) der Funktion \( f(x) = a^x \bmod N \) mittels Quanten-Phasenschätzung:
-    \begin{enumerate}
-        \item Initialisiere zwei Register: Eins mit Superposition aller \( x \), eins mit Zustand \( |1\rangle \)
-        \item Wende die Einheitäre Operation \( U_f \colon |x\rangle|1\rangle \mapsto |x\rangle|a^x \bmod N\rangle \) an
-        \item Wende die inverse Quanten-Fourier-Transformation (iQFT) auf das erste Register an
-        \item Miss das erste Register → erhalte Näherung \( s/r \)
-        \item Berechne \( r \) durch Kettenbruchentwicklung
-    \end{enumerate}
-\If{\( r \) ungerade oder \( a^{r/2} \equiv -1 \bmod N \)}
-    \State \Return \textbf{Fehlschlag, wähle anderes \( a \)} und wiederhole
-\EndIf
-\State Berechne \( \gcd(a^{r/2} \pm 1, N) \)
-\State \Return Einer der berechneten Teiler ist eine Primzahl \( p \) oder \( q \)
-\end{algorithmic}
-\end{algorithm}
-
-\subsection{Anwendung auf den RSA-Algorithmus}
-
-\noindent
+\subsection{Grundlagen: Primfaktorzerlegung und RSA}
 Der RSA-Algorithmus basiert auf der Schwierigkeit, eine große Zahl \( N = pq \) zu faktorisieren. Shor’s Algorithmus bricht diese Sicherheit, indem er in polynomialer Zeit die Faktoren \( p \) und \( q \) bestimmt. Hat ein Angreifer Zugriff auf einen leistungsfähigen Quantencomputer, kann er aus dem öffentlichen Schlüssel die privaten Schlüsselparameter rekonstruieren:
 \begin{itemize}
   \item Berechne \( p \) und \( q \) mit Shor.
@@ -226,143 +35,325 @@ Der RSA-Algorithmus basiert auf der Schwierigkeit, eine große Zahl \( N = pq \)
 \end{itemize}
 Dies zeigt, dass RSA bei hinreichend großen Quantencomputern als unsicher gelten muss.
 
-\subsection{Anwendung auf das diskrete Logarithmusproblem}
+Ziel ist es also, eine zusammengesetzte Zahl \( N = pq \) effizient zu faktorisieren. Klassische Algorithmen benötigen dafür im Allgemeinen exponentielle Laufzeit. Shor's Algorithmus nutzt die Periodizität der Funktion
 
-Shor’s Algorithmus kann nicht nur die Primfaktorzerlegung beschleunigen, sondern auch das diskrete Logarithmusproblem effizient lösen. Dieses Problem ist die Grundlage vieler kryptografischer Verfahren wie Diffie-Hellman oder ElGamal. \\
-
-\noindent Das Ziel ist, für gegebenes \( a, b \) in einer Gruppe \( \mathbb{Z}_p^* \) den Exponenten \( x \) zu finden, sodass:
+\begin{definition}[Modulare Arithmetik] 
 \[
-a^x \equiv b \mod p
+f(a) = x^a \bmod N
+\]
+ist definiert als der Rest bei der Division von \(x^a\) durch \(N\).
+
+\begin{itemize}
+    \item \(x \in \mathbb{Z}\) ist eine Basiszahl, die kleiner als \(N\) und teilerfremd zu \(N\) sein sollte (d.h. \(\gcd(x, N) = 1\)).
+    \item \(a \in \mathbb{N}_0\) ist der Exponent, eine natürliche Zahl (inkl. 0).
+    \item \(N \in \mathbb{N}\) ist die zusammengesetzte Zahl, deren Primfaktorzerlegung wir bestimmen wollen.
+    \item \(f(a)\) gibt den Rest an, wenn \(x^a\) durch \(N\) geteilt wird, also den Wert modulo \(N\).
+\end{itemize}
+\end{definition}
+um mithilfe eines quantenmechanischen Verfahrens – konkret der Quanten-Phasenschätzung (QPE) – die Periode \( r \) dieser Funktion effizient zu bestimmen.
+
+Im Algorithmus wird zunächst ein Superpositionszustand über viele Werte \( a \) erzeugt und anschließend durch eine unitäre Operation \( U_f \), die \( |a\rangle \mapsto |f(a)\rangle \) abbildet, mit den Funktionswerten moduliert.\\
+
+Im nächsten Schritt erfolgt eine Quanten-Fouriertransformation (QFT) auf das Register, das die Werte von \( a \) enthält. Durch diese Fouriertransformation wird die Periodizität in der Amplitudenverteilung als charakteristische Spitzen (Peaks) sichtbar gemacht: Interferenzen zwischen den Zuständen führen dazu, dass bestimmte Frequenzanteile, die Vielfache von \( q/r \) (wobei \( q \) die Dimension des Registers ist) entsprechen, verstärkt werden, während andere ausgelöscht werden.\\
+
+Je nach Konvention und Betrachtung kann man die QFT oder auch die inverse QFT (iQFT) verwenden; beide führen zur Hervorhebung der Periodizität im Zustandsraum, nur der genaue Ablauf der Transformation unterscheidet sich.\\
+
+Nach der Fouriertransformation wird eine Messung durchgeführt, die mit hoher Wahrscheinlichkeit einen Wert \( c \) liefert, der näherungsweise in einem rationalen Verhältnis  
+\[
+\frac{c}{Q} \approx \frac{d}{r}
+\]
+zu \( r \) steht. Mithilfe der Kettenbruchentwicklung kann daraus die Periode \( r \) bestimmt werden.
+
+Ist \( r \) bekannt und erfüllt sie bestimmte Voraussetzungen (z.B. \( r \) ist gerade und \( x^{r/2} \not\equiv -1 \bmod N \)), so lassen sich mit dem Euklidischen Algorithmus die Primfaktoren von \( N \) berechnen:  
+\begin{definition}[Größter gemeinsamer Teiler (gcd)]
+Der größte gemeinsame Teiler zweier Zahlen \(m, n \in \mathbb{N}\), bezeichnet als \(\gcd(m,n)\), ist die größte natürliche Zahl, die sowohl \(m\) als auch \(n\) ohne Rest teilt.\\
+
+Im Kontext von Shor's Algorithmus verwenden wir
+\[
+\gcd\left(x^{r/2} \pm 1, N\right),
+\]
+wobei
+\begin{itemize}
+    \item \(x \in \mathbb{Z}\) eine Zahl ist, die teilerfremd zu \(N\) ist,
+    \item \(r \in \mathbb{N}\) die Periode der Funktion \(f(a) = x^a \bmod N\) darstellt,
+    \item \(N \in \mathbb{N}\) die zu faktorisierende zusammengesetzte Zahl ist,
+    \item und \(x^{r/2} \pm 1\) eine Zahl ist, mit der wir durch die Berechnung des \(\gcd\) potenzielle Teiler von \(N\) finden.
+\end{itemize}
+\end{definition}
+
+So nutzt Shor's Algorithmus die Quanteninterferenz und Fourier-Analyse, um versteckte Periodenstrukturen zu extrahieren und damit die Faktorisierung effizient zu ermöglichen.
+
+\subsection{Aufbau des Shor Algorithmus}
+
+Im folgenden Abschnitt werden wir alle notwendigen Methoden, Definitionen und Schritte beschreiben, die erforderlich sind, um den Shor-Algorithmus auszuführen. Dabei erklären wir Methode für Methode und wenden diese stets auf ein konkretes Beispiel an, um den Algorithmus möglichst präzise und anschaulich zu veranschaulichen. Anstelle einer sehr großen Zahl \( N \), wie sie in der Praxis als Schlüssel verwendet wird, wählen wir hier eine deutlich kleinere Zahl. \\
+
+Der konkrete Fall, den wir betrachten, ist die Primfaktorzerlegung der Zahl \( N = 15 \). Natürlich kennen wir bereits die Primfaktoren \( 3 \) und \( 5 \). Es gilt somit \( N = q \cdot p \) mit \( q, p \in \mathbb{Z} \). \\
+
+Zunächst muss festgelegt werden, wie groß der Hilbertraum \( Q = 2^n \) mit \( n \) Qubits sein muss, also die Gesamtanzahl aller Basiszustände des \( n \)-Qubit-Systems. Dies bestimmt, wie viele mögliche Zustände \( a \) betrachtet werden sollen. Dabei gilt die Bedingung
+\[
+2^n \geq N^2.
 \]
 
-\noindent Shor’s Algorithmus reduziert das Problem auf die Periodensuche einer geeigneten Funktion durch Quanten-Phasenabschätzung, ähnlich wie bei der Faktorisierung. Dabei wird aus der Überlagerung von Zuständen und anschließender Quanten-Fourier-Transformation die gesuchte Periode extrahiert, die Rückschlüsse auf den Exponenten \( x \) erlaubt.\\
+Für unser Beispiel mit \( N = 15 \) ist \( N^2 = 225 \). Somit muss \( Q = 2^n \geq 225 \) gelten. Das entspricht mindestens \( n = 8 \) Qubits, da \( 2^8 = 256 \geq 225 \) ist. \\
 
-\begin{algorithm}
-\caption{Quantenalgorithmus zur Bestimmung des diskreten Logarithmus \( x \) aus \( g^x \equiv h \bmod p \)}
+Damit ergibt sich für das erste Register eine Größe von \( 8 \) Qubits. Das zweite Register benötigt
+\[
+m = \lceil \log_2(N) \rceil = \lceil \log_2(15) \rceil = 4
+\]
+Qubits.\\
+
+Nun sind alle grundlegenden Variablen definiert und anhand eines konkreten Beispiels veranschaulicht. 
+Bevor wir das Beispiel vollständig durchrechnen, formulieren wir zunächst die allgemeinen Schritte des Shor‑Algorithmus:
+
+\begin{enumerate}
+    \item \textbf{Initialisierung in einen Superpositionszustand:} 
+    Die erste Operation besteht darin, zwei Quantenregister entsprechend der berechneten Qubit-Größen als Eingabe und Ausgaberegister zu erzeugen, welche sich alle in den Basiszuständen befinden, also mit der gleichen Wahrscheinlichkeit auftreten:
+\[
+\ket{\psi_0} = \ket{0}^{\otimes n} \otimes \ket{0}^{\otimes m}
+\]
+    Die \textit{Gleichverteilung} wird dadurch erreicht, dass die Amplituden aller Zustände gleich sind. Wenn das System anfangs im Zustand $\ket{0}^{\otimes n}$ ist (alle Qubits auf 0), dann erzeugen wir durch Anwendung der Hadamard-Transformation auf jedes Qubit die Superposition - aber nur auf das erste Register:
+
+$$
+\ket{\psi_1} = \frac{1}{\sqrt{Q}} \sum_{a=0}^{Q-1} \ket{a}
+$$
+Dabei ist:
+  \begin{itemize}
+    \item \( n \): Anzahl der Qubits im ersten Register.
+    \item \( Q = 2^n \): Anzahl der möglichen Zustände im ersten Register
+    \item \( x \): Laufvariable über alle Basiszustände von \( \ket{0} \) bis \( \ket{Q-1} \).
+    \item \( 1 \): Anfangszustand des zweiten Registers, auf das später die modulare Exponentiation angewendet wird.
+  \end{itemize}
+
+  Durch die Hadamard-Gates wird das Register in eine Superposition gebracht, in der alle \( Q \) Basiszustände gleichwahrscheinlich sind. Diese Superposition ist notwendig, um später durch die Phaseninterferenz Information über die Periode der Funktion zu extrahieren.\\
+ \item \textbf{Unitäre Funktion anwenden} 
+\[
+U_f \colon |a\rangle|1\rangle \mapsto |a\rangle|x^a \bmod N\rangle
+\]
+\begin{itemize}
+    \item \textbf{\( a \)}: Wert im ersten Register (Index der Superposition), typischerweise \( a \in \{0, 1, \dotsc, Q-1\} \) mit \( Q = 2^n \), wobei \( n \) die Anzahl der Qubits im ersten Register ist.
+    \item \textbf{\( x \)}: Eine zufällig gewählte ganze Zahl mit \( 1 < x < N \), die zu \( N \) teilerfremd ist.
+    \item \textbf{\( N \)}: Die zusammengesetzte Zahl, deren Primfaktoren bestimmt werden sollen.
+    \item \textbf{\( U_f \)}: Eine unitäre Transformation, die auf beiden Registern wirkt. Sie berechnet im zweiten Register die Funktion \( f(a) = x^a \bmod N \), wobei das erste Register \( |a\rangle \) als Steuerregister dient.
+\end{itemize}
+
+Nach Anwendung von \( U_f \) ergibt sich der verschränkte Zustand
+\[
+\ket{\psi_2} = \frac{1}{\sqrt{Q}} \sum_{a=0}^{Q-1} \ket{a} \otimes \ket{x^a \bmod N}
+\]
+Dieser Zustand ist eine Superposition über alle möglichen Paare \( (a, f(a)) \), wobei \( f(a) = x^a \bmod N \) die periodische Struktur trägt, die später durch die Quanten-Fourier-Transformation im ersten Register erkennbar gemacht wird.\\
+
+\item \textbf{Quanten-Fourier-Transformation (QFT) auf das erste Register anwenden}
+
+\noindent Die Quanten-Fourier-Transformation wird nun auf das erste Register angewendet. Diese transformiert den Zustand \( |a\rangle \) gemäß:
+
+\[
+\mathrm{QFT}(|a\rangle) = \frac{1}{\sqrt{Q}} \sum_{c=0}^{Q-1} e^{2\pi i \frac{a c}{Q}} |c\rangle
+\]
+
+\begin{itemize}
+    \item \( Q = 2^n \): Anzahl der Basiszustände im ersten Register.
+    \item \( a \): Index im ersten Register vor der QFT.
+    \item \( c \): Index nach der Fouriertransformation – potenzieller Messwert.
+\end{itemize}
+
+\noindent Daraus ergibt sich der Gesamtzustand nach Anwendung der QFT:
+\[
+\ket{\psi_3} = \frac{1}{Q} \sum_{a=0}^{Q-1} \sum_{c=0}^{Q-1} e^{2\pi i \frac{a c}{Q}} \ket{c} \otimes \ket{x^a \bmod N}
+\]
+
+\noindent In der Quanten-Fourier-Transformation entsteht in jedem Summand der Ausdruck
+\[
+e^{2\pi i \frac{a c}{Q}},
+\]
+der eine komplexe \(Phasenrotation\) beschreibt.
+
+\begin{itemize}
+    \item \textbf{\( a \)}: Index des ursprünglichen Zustands im Superpositionsregister.
+    \item \textbf{\( c \)}: Index des Zielzustands nach der Fouriertransformation.
+    \item \textbf{\( Q \)}: Anzahl möglicher Zustände im Register (meist \( Q = 2^n \)).
+\end{itemize}
+
+\noindent Diese Phasenfaktoren lassen sich mit Hilfe der Euler-Formel interpretieren:
+\[
+e^{2\pi i \frac{a c}{Q}} = \cos\left(2\pi \frac{a c}{Q}\right) + i \cdot \sin\left(2\pi \frac{a c}{Q}\right)
+\]
+
+\noindent Es handelt sich also um eine \(Rotation\) \(im\) \(komplexen\) \(Raum\) – die komplexe Zahl liegt auf dem Einheitskreis und rotiert je nach Kombination von \( a \) und \( c \) um einen bestimmten Winkel. Dadurch ergibt sich:
+
+\begin{itemize}
+    \item Jeder Zustand \( |a\rangle \) trägt mit einer anderen Phase zur Superposition bei.
+    \item Bei periodischer Struktur der Funktion \( f(a) = x^a \bmod N \) interferieren die komplexen Phasen systematisch.
+    \item Dies führt dazu, dass bei der Messung des ersten Registers nur bestimmte Werte \( c \) mit hoher Wahrscheinlichkeit auftreten – die sogenannten \(Fourier-Peaks\).
+    \item Andere Zustände löschen sich durch destruktive Interferenz aus.
+\end{itemize}
+
+\noindent Genau diese Interferenzstruktur erlaubt es, verborgene Perioden zu extrahieren – und damit den entscheidenden quantenmechanischen Vorteil zur Faktorisierung auszunutzen.\\
+
+\item \textbf{Periodenbestimmung durch Kettenbruchentwicklung}
+
+\noindent Nach der Fouriertransformation wird eine Messung durchgeführt, die mit hoher Wahrscheinlichkeit einen Wert \( c \) liefert, der näherungsweise in einem rationalen Verhältnis steht:
+\[
+\frac{c}{Q} \approx \frac{d}{r}
+\]
+
+\begin{itemize}
+    \item \( c \): Messwert aus dem ersten Register nach Anwendung der QFT.
+    \item \( Q \): Anzahl möglicher Zustände im ersten Register (typischerweise \( Q = 2^n \), mit \( Q > N^2 \)).
+    \item \( d \): unbekannter ganzzahliger Zähler.
+    \item \( r \): die Periode der Funktion \( f(a) = x^a \bmod N \), die bestimmt werden soll.
+\end{itemize}
+
+\noindent Ziel ist es, aus dem gemessenen Bruch \( \frac{c}{Q} \) eine möglichst genaue Näherung \( \frac{d}{r} \) zu finden, wobei \( r \) möglichst klein ist. Dies gelingt über die sogenannte \(Kettenbruchentwicklung\):
+
+\begin{enumerate}
+    \item Entwickle den Bruch \( \frac{c}{Q} \) in einen Kettenbruch.
+    \item Brich die Entwicklung an mehreren Stellen ab und bilde die entsprechenden Konvergenten \( \frac{d_i}{r_i} \).
+    \item Prüfe für jedes \( r_i \), ob \( x^{r_i} \equiv 1 \mod N \) gilt.
+    \item Der kleinste passende \( r_i \) ist dann mit hoher Wahrscheinlichkeit die gesuchte Periode \( r \).
+\end{enumerate}
+
+\noindent Sobald die Periode \( r \) gefunden wurde, kann man im nächsten Schritt durch Berechnung des größten gemeinsamen Teilers (siehe \texttt{gcd}-Definition) mögliche Faktoren von \( N \) bestimmen:
+\[
+\gcd(x^{r/2} \pm 1, N)
+\]
+
+\noindent Damit ist der zentrale algorithmische Teil von Shor abgeschlossen – die restlichen Schritte sind rein klassisch.\\
+\end{enumerate}
+
+Der Shor-Algorithmus zeigt, wie Quantencomputer periodische Strukturen in Funktionen aufdecken können, die klassisch nur mit exponentiellem Aufwand zu finden wären. Die Kombination aus Quanten-Phasenabschätzung, Fourier-Transformation und Kettenbruchentwicklung ermöglicht eine effiziente Faktorisierung großer Zahlen – ein fundamentaler Angriff auf die Sicherheit klassischer Verschlüsselung.\\
+
+\noindent
+Alle Operationen lassen sich im wesentlichen wie folgt zusammenfassen: Zunächst erfolgt die Initialisierung von zwei Quantenregistern, wobei das erste in eine Superposition aller möglichen Werte gebracht wird und das zweite den Ausgangszustand \( |1\rangle \) erhält. Durch Anwendung der unitären Funktion \( U_f \) wird eine Kopplung zwischen den Registern hergestellt, die die periodische Struktur der Funktion \( f(a) = x^a \bmod N \) abbildet. Anschließend findet die Quanten-Fourier-Transformation (QFT) auf dem ersten Register statt, wodurch mittels Interferenzinformation über die Periode \( r \) gewonnen wird. Die Messung des ersten Registers liefert eine Näherung an einen Bruch \( d/r \), aus dem mit der Kettenbruchentwicklung die Periode bestimmt wird. Auf Basis dieser Periode können die Teiler von \( N \) berechnet werden. \\
+
+\noindent Die Operationen des Shor's Algorithmus zur Faktorisierung lassen sich wie folgt darstellen:
+
+\begin{algorithm}[H] % <-- [H] erzwingt Platzierung an dieser Stelle
+\caption{Shor's Algorithmus zur Faktorisierung einer Zahl \( N \)}
+\label{algorithm:shor}
 \begin{algorithmic}[1]
-\Require Eine Primzahl \( p \), eine erzeugende Basis \( g \in \mathbb{Z}_p^* \) und ein Element \( h \in \mathbb{Z}_p^* \), sodass \( h = g^x \bmod p \)
-\Ensure Der Exponent \( x \)
-\State Setze eine ausreichend große Zahl \( Q = 2^n \) mit \( Q > p^2 \)
-\State Bestimme die Periode \( r \) der Funktion \( f(x) = g^x \bmod p \) mittels Quanten-Phasenschätzung:
-    \begin{enumerate}
-        \item Initialisiere zwei Register: Erstes Register in Superposition über \( x = 0, \ldots, Q-1 \), zweites Register in Zustand \( |1\rangle \)
-        \item Wende die unitäre Operation \( U_g \colon |x\rangle|1\rangle \mapsto |x\rangle|g^x \bmod p\rangle \) an
-        \item Wende die inverse Quanten-Fourier-Transformation (iQFT) auf das erste Register an
-        \item Miss das erste Register → erhalte eine Näherung des Bruchs \( s/r \)
-        \item Berechne \( r \) mittels Kettenbruchentwicklung
-    \end{enumerate}
-\State Nutze \( r \), \( s \) und \( h \) mit klassischer Nachbearbeitung, um den diskreten Logarithmus \( x \) zu bestimmen
-\State \Return \( x \)
+\Require Eine zusammengesetzte Zahl \( N \) aus zwei unbekannten Primzahlen \( p \) und \( q \)
+\Ensure Ein nicht-trivialer Teiler von \( N \)
+\State Wähle zufällig eine ganze Zahl \( x \) mit \( 1 < x < N \)
+\If{\( \gcd(x, N) \neq 1 \)}
+    \State \Return \( \gcd(x, N) \) \Comment{Zufällig gewähltes \( x \) war schon ein Teiler}
+\EndIf
+\State Bestimme die Periode \( r \) der Funktion \( f(x) = x^a \bmod N \) mittels Quanten-Phasenschätzung:
+\State Initialisiere zwei Register: Eins mit Superposition aller \( x \), eins mit Zustand \( |1\rangle \)
+\State Wende die unitäre Operation \( U_f \colon |a\rangle|1\rangle \mapsto |a\rangle|x^a \bmod N\rangle \) an
+\State Wende die Quanten-Fourier-Transformation (QFT) auf das erste Register an
+\State Miss das erste Register → erhalte Näherung \( d/r \)
+\State Berechne \( r \) durch Kettenbruchentwicklung
+\If{\( r \) ungerade oder \( x^{r/2} \equiv -1 \bmod N \)}
+    \State \Return \textbf{Fehlschlag, wähle anderes \( a \)} und wiederhole
+\EndIf
+\State Berechne \( \gcd(x^{r/2} \pm 1, N) \)
+\State \Return Einer der berechneten Teiler ist eine Primzahl \( p \) oder \( q \)
 \end{algorithmic}
 \end{algorithm}
 
-\subsection{Shor's Faktorisierung Algorithmus am Beispiel \( N = 15 \)}
-Finde einen nicht-trivialen Teiler von \( N = 15 \), also \( p = 3 \) oder \( q = 5 \), mithilfe von Shor's Algorithmus.
+\subsection{Rechenbeispiel – Shor's-Algorithmus}
 
-\subsection*{Schritt 1: Wahl einer Zufallszahl}
-Wähle eine ganze Zahl \( a \) mit \( 1 < a < N \).  
-Wir wählen \( a = 2 \).
+Im folgenden Abschnitt wird das zu Beginn beschriebene Beispiel \( N = 15 \) vollständig durchgerechnet:
 
-Berechne den größten gemeinsamen Teiler:
-\[
-\gcd(2, 15) = 1
-\]
-Da \( \gcd(a, N) = 1 \), fahren wir fort.
+Wir wählen \( N = 15 \) und \( x = 2 \). Für den Algorithmus benötigen wir ein erstes Register mit mindestens \( n = 8 \) Qubits, sodass \( Q = 2^n = 256 > N^2 = 225 \) gilt. Das zweite Register benötigt nur \( m = \lceil \log_2 N \rceil = 4 \) Qubits, da es die Werte von \( f(a) = 2^a \bmod 15 \) aufnehmen muss.
 
-\subsection*{Schritt 2: Periodenbestimmung via Quantenalgorithmus}
+\begin{enumerate}
+    \item \textbf{Initialisierung in einen Superpositionszustand} \\
+    Der Anfangszustand ist:
 
-\subsubsection*{Teil a) Initialisierung}
-Verwende zwei Register:
-\begin{itemize}
-    \item Erster Register: \( n \)-Qubits mit \( 2^n \geq N^2 \). Für Demonstration genügt \( n = 4 \).
-    \item Zweiter Register: \( m = \lceil \log_2(N) \rceil = 4 \)
-\end{itemize}
-
-Anfangszustand:
-\[
-\ket{\psi_0} = \ket{0}^{\otimes 4} \otimes \ket{1}
-\]
-
-\subsubsection*{Teil b) Hadamard-Transformation}
-Wende auf jedes Qubit im ersten Register ein Hadamard-Gate an:
-\[
-\ket{\psi_1} = \frac{1}{\sqrt{16}} \sum_{x=0}^{15} \ket{x} \otimes \ket{1}
-\]
-
-\subsubsection*{Teil c) Modulare Exponentiation}
-Wende die unitäre Transformation \( U_f \) an, die definiert ist als:
-\[
-U_f: \ket{x}\ket{1} \mapsto \ket{x}\ket{2^x \mod 15}
-\]
-
-Beispiele:
-\begin{align*}
-2^0 \mod 15 &= 1 \\
-2^1 \mod 15 &= 2 \\
-2^2 \mod 15 &= 4 \\
-2^3 \mod 15 &= 8 \\
-2^4 \mod 15 &= 1 \\
-2^5 \mod 15 &= 2 \\
-2^6 \mod 15 &= 4 \\
-2^7 \mod 15 &= 8 \\
-&\vdots
-\end{align*}
-
-Periode \( r = 4 \).
-
-\subsubsection*{Teil d) Inverse Quanten-Fourier-Transformation (iQFT)}
-Wende die inverse QFT auf das erste Register an.
-
-Da wir wissen, dass die Periode $r = 4$ ist, erhalten wir nach idealer iQFT einen Superpositionszustand, bei dem die Amplituden auf den Vielfachen von $\frac{2^n}{r} = \frac{16}{4} = 4$ konzentriert sind (bei $n = 4$ Qubits im ersten Register):
-
-\[
-|\psi_3\rangle = \frac{1}{2} \sum_{k=0}^{3} |k \cdot 4\rangle \otimes |2^x \bmod 15\rangle
-\]
-
-Konkret also:
-
-\[
-|\psi_3\rangle = \frac{1}{2}\left( |0\rangle + |4\rangle + |8\rangle + |12\rangle \right) \otimes |2^x \bmod 15\rangle
-\]
-
-Die Messung des ersten Registers ergibt dann mit gleicher Wahrscheinlichkeit einen der Werte:
-
-\[
-\boxed{0,\ 4,\ 8,\ 12}
-\]
-
-Alle diese Werte sind Vielfache von $4$, was ein Hinweis auf die Periode $r$ ist. Nach der Messung verwenden wir eine Kettenbruchentwicklung auf den gemessenen Wert $s$ (z.B. $s = 4$) geteilt durch $2^n = 16$, um $r \approx \frac{2^n}{s}$ zu rekonstruieren.
-
-\subsubsection*{Teil e) Messung}
-Messe das erste Register. Angenommen, das Ergebnis ist \( x = 4 \).
-
-Damit gilt:
-\[
-\frac{x}{2^n} = \frac{4}{16} = \frac{1}{4} \Rightarrow r = 4
-\]
-
-\subsection*{Schritt 3: Klassischer Teil – Faktorenberechnung}
-
-\begin{itemize}
-    \item Prüfe, ob \( r \) gerade: \( r = 4 \Rightarrow \text{ja} \)
-    \item Berechne:
     \[
-    a^{r/2} = 2^2 = 4
+    \ket{\psi_0} = \ket{0}^{\otimes 8} \otimes \ket{0}^{\otimes 4}
     \]
-    \item Bestimme:
-    \[
-    \gcd(4 - 1, 15) = \gcd(3, 15) = 3
-    \]
-    \[
-    \gcd(4 + 1, 15) = \gcd(5, 15) = 5
-    \]
-\end{itemize}
 
-\subsection*{Schritt 4: Ergebnis}
-Wir haben erfolgreich die Primfaktoren gefunden:
-\[
-15 = 3 \times 5
-\]
+    Nach Anwendung von Hadamard-Gattern auf alle 8 Qubits des ersten Registers entsteht die Gleichverteilung (Superposition) über alle \( Q = 256 \) Zustände:
+
+    \[
+    \ket{\psi_1} = \frac{1}{\sqrt{256}} \sum_{a=0}^{255} \ket{a} \otimes \ket{0}
+    \]
+
+    Diese Superposition ermöglicht es, alle Werte \( a \) gleichzeitig zu verarbeiten.\\
+
+    \item \textbf{Anwendung der unitären Funktion \( U_f \)} \\
+
+    Die Funktion \( f(a) = 2^a \bmod 15 \) wird auf das zweite Register angewandt, ohne das erste Register zu verändern. Die Transformation lautet:
+
+    \[
+    U_f: \ket{a} \ket{0} \mapsto \ket{a} \ket{2^a \bmod 15}
+    \]
+
+    Der Zustand nach Anwendung von \( U_f \) ist:
+
+    \[
+    \ket{\psi_2} = \frac{1}{\sqrt{256}} \sum_{a=0}^{255} \ket{a} \ket{2^a \bmod 15}
+    \]
+
+    Um das Verhalten der Funktion \( f(a) = 2^a \bmod 15 \) besser zu verstehen, berechnen wir die ersten Funktionswerte:
+
+    \[
+    \begin{array}{c|c}
+    a & f(a) = 2^a \bmod 15 \\
+    \hline
+    0 & 1 \\
+    1 & 2 \\
+    2 & 4 \\
+    3 & 8 \\
+    4 & 1 \\
+    5 & 2 \\
+    6 & 4 \\
+    7 & 8 \\
+    8 & 1 \\
+    \end{array}
+    \]
+
+    Wir erkennen: Die Funktionswerte wiederholen sich mit einer Periode \( r = 4 \), also \( 2^4 \bmod 15 = 1 \).
+
+    Der verschränkte Zustand besteht also aus Gruppen gleicher Ausgabewerte:
+
+    \[
+    \ket{\psi_2} = \frac{1}{\sqrt{256}} \left( \ket{0} \ket{1} + \ket{4} \ket{1} + \ket{8} \ket{1} + \dots + \ket{252} \ket{1} + \dots \right) + \dots
+    \]
+
+    Dabei erscheinen alle \( a \)-Werte, die den gleichen Funktionswert liefern, gemeinsam mit dem jeweiligen \( \ket{f(a)} \).\\
+
+    \item \textbf{Quanten-Fourier-Transformation (QFT)} \\
+
+    Jetzt wenden wir auf das erste Register die QFT an. Die QFT transformiert die Basiszustände wie folgt:
+
+    \[
+    \mathrm{QFT}(\ket{a}) = \frac{1}{\sqrt{256}} \sum_{c=0}^{255} e^{2\pi i a c / 256} \ket{c}
+    \]
+
+    Die QFT wirkt linear auf jeden Summanden, sodass sich der Gesamtzustand ergibt als:
+
+    \[
+    \ket{\psi_3} = \frac{1}{256} \sum_{a=0}^{255} \sum_{c=0}^{255} e^{2\pi i a c / 256} \ket{c} \ket{2^a \bmod 15}
+    \]
+
+    Die Periode \( r = 4 \) der Funktion \( f(a) = 2^a \bmod 15 \) sorgt dafür, dass bei der Messung des ersten Registers besonders häufig Vielfache von \( \frac{Q}{r} = \frac{256}{4} = 64 \) auftreten. Erwartbare Messwerte sind also \( c \in \{0, 64, 128, 192\} \).\\
+
+    \item \textbf{Messung und Kettenbruchentwicklung} \\
+
+    Nehmen wir an, bei der Messung des ersten Registers erhalten wir \( c = 64 \). Daraus ergibt sich:
+
+    \[
+    \frac{c}{Q} = \frac{64}{256} = \frac{1}{4}
+    \]
+
+    Dies ist in diesem Beispiel bereits vollständig gekürzt – in der Praxis verläuft dies jedoch nicht immer so glatt. Über die Kettenbruchentwicklung von \( \frac{1}{4} \) folgt sofort \( r = 4 \) als vermutete Periode.\\
+
+    \item \textbf{Faktoren berechnen} \\
+
+    Mit der gefundenen Periode \( r = 4 \) testen wir, ob sich damit die Faktoren von \( N = 15 \) bestimmen lassen. Dafür prüfen wir:
+
+    \[
+    \gcd(x^{r/2} - 1, N) = \gcd(2^2 - 1, 15) = \gcd(3, 15) = 3
+    \]
+    \[
+    \gcd(x^{r/2} + 1, N) = \gcd(2^2 + 1, 15) = \gcd(5, 15) = 5
+    \]
+
+    Wir erhalten die nicht-trivialen Faktoren 3 und 5 von \( N = 15 \). Die Faktorisierung ist damit erfolgreich abgeschlossen.
+\end{enumerate}
 
 \section{Grover-Algorithmus: Quantum-Suche}
 \label{sec:grover-algorithm}
@@ -395,7 +386,7 @@ Gegeben sei die Möglichkeit, einen probabilistischen „Rate“-Algorithmus \( 
 
 Eine Möglichkeit, das heuristische Suchproblem klassisch zu lösen, besteht darin, den Algorithmus \( A \) wiederholt auszuführen und jedes Ergebnis mit der Funktion \( f \) zu überprüfen. Dies führt zu durchschnittlich \( O\left(\frac{1}{\varepsilon}\right) \) Auswertungen von \( f \). In der nächsten Sektion werden wir sehen, wie der Grover-Algorithmus dieses Verfahren implementiert.
 
-\subsection{Aufbau von dem Grover Algorithmus}
+\subsection{Aufbau des Grover Algorithmus}
 
 Um den Grover-Algorithmus vollständig zu verstehen, ist es wichtig, zunächst die grundlegenden Quantenoperationen zu begreifen. Lov Grover führte die folgende Definition für eine bestimmte Klasse von Operationen ein.\cite[1-2]{grover-placeholder}
 
@@ -807,43 +798,148 @@ Wir haben ein Beispiel für die Anwendung des Grover-Algorithmus betrachtet. Im 
 
 
 \subsection{Komplexitätsanalyse}
-Der Grover-Algorithmus (1996) führt eine quantengestützte Suche durch, indem er sukzessive die Amplitude des gesuchten Zustands verstärkt. Nach etwa $\sqrt{N}$ Iterationen erhält man das Ziel mit hoher Wahrscheinlichkeit.\\
-Dieser Algorithmus ist informationstheoretisch optimal für die unstrukturierte Suche. Er wird typischerweise durch eine Schleife aus Orakel-Abfrage (markiert das gesuchte Element) und Inversion der Amplituden um den Mittelwert realisiert.\\
-Grover findet Anwendungen als Subroutine in vielen Quantenalgorithmen (z.B. für Optimierung oder Simulation), etwa zur Stichprobensuche oder in hybriden Ansätzen.
+Der Grover‐Algorithmus durchsucht eine unstrukturierte Datenbank der Größe \(N\) mithilfe eines Quantenorakels in \(\Theta(N)\) Orakelaufrufen. Anders ausgedrückt: Während die klassische Vollsuche im Mittel \(\Theta(N)\) Prüfungen erfordert, reduziert Grover die Zahl der notwendigen Prüfungen auf etwa $\frac{\pi}{4}\,\sqrt{N}\ $ das heißt auf die Quadratwurzel der Datenbankgröße.
 
-\subsection{Praxisanwendung und Stand der Technik}
+Aus Sicht der Komplexitätstheorie bezeichnet man die Eingangsgröße mit \(n\), so dass $N = 2^n$.
+Die Laufzeit des Grover‐Algorithmus lässt sich daher durch  
+$O\bigl(2^{n/2}\bigr)$ beschreiben. Obwohl dies gegenüber dem klassischen \(O(2^n)\) einen erheblichen quadratischen Gewinn darstellt, wächst der Algorithmus bei zunehmender Zahl der Suchbits weiterhin exponentiell.
 
-Grover’s Algorithmus wurde bereits auf ersten Quantenrechnern experimentell getestet. So implementierte IBM mit einem 127-Qubit-Supersystem eine 3-Qubit-Grover-Schaltung und untersuchte deren Leistung.\\
-Der praktische Einsatz ist derzeit wegen begrenzter Qubit-Zahlen, niedriger Kohärenzzeiten und Fehlerraten noch eingeschränkt. Meist dienen kleine Grover-Experimente als Benchmark für Hardware.\\
-Zukünftige Anwendungen könnten in Bereichen wie Datenbankrecherche, Kryptanalyse (Brute-Force-Angriffe) oder NISQ-nahe Optimierungsaufgaben liegen; der Fortschritt in Hardware-Fehlerkorrektur wird entscheidend sein.
+Die untere Schranke aus der Arbeit von Bennett–Bernstein–Brassard–Vazirani (BBBV96 referenz) zeigt, dass kein Quantenalgorithmus im Black‐Box‐Modell mit weniger als  
+\[
+\Omega(\sqrt{N})
+\]  
+Orakelaufrufen auskommen kann. Damit ist der Grover‐Algorithmus in diesem Modell asymptotisch optimal: Ohne zusätzliche Struktur in der Datenbank lässt sich kein suprakquadratischer (etwa exponentieller) Vorteil erzielen.  
 
-\section{Quantumoptimierung}
-Quantum-Optimierungsalgorithmen zielen darauf ab, kombinatorische und numerische Optimierungsprobleme schneller zu lösen oder mindestens gute Approximationslösungen zu finden. Typische Ansätze sind der Quanten-Aiabatischer Algorithmus (Quantenannealing) für NP-Probleme, hybride Algorithmen wie VQE und QAOA für Optimierung mit Quanten-Schaltkreisen, sowie Algorithmen zur Lösung linearer Gleichungssysteme (etwa HHL), die in Optimierungs- und Datenanalyseanwendungen münden.
 
-\subsection{Adiabatische Optimierung}
+\section{Klassifikation von Algorithmen nach Zeitkomplexität}
 
-Der Quanten-adiabatische Algorithmus (Farhi et al., 2000) übersetzt kombinatorische Probleme wie 3-SAT in die Suche nach dem Grundzustand eines zeitabhängigen Hamiltonians.\\
-Man beginnt im Grundzustand eines einfachen Anfangs-Hamiltonians und ändert langsam zum Zielfall, dessen Grundzustand die Lösung enthält. Nach dem adiabatischen Theorem landet man bei entsprechender Langsamkeit im gewünschten Zustand.\\
-Die benötigte Laufzeit hängt vom Energieabstand (Gap) zwischen dem Grund- und dem ersten angeregten Zustand ab. In allgemeinen Fällen ist dieser Abstand schwer abzuschätzen, weshalb eine polynomielle Laufzeit nur für spezielle Problemklassen nachgewiesen wurde.\\
+Im Rahmen der theoretischen Informatik werden Entscheidungsprobleme nach der zur Lösung benötigten Zeit in verschiedene Klassen eingeordnet. Dabei interessiert insbesondere, welche Probleme auf einem klassischen bzw. quantenmechanischen Modell in polynomieller Zeit lösbar sind, und wie sich diese Klassen zueinander verhalten.\\
 
-\subsection{Variationaler Quanten-Eigenlöser (VQE)}
+Zunächst versteht man unter der Klasse \(\mathbf{P}\) jene Probleme, für die es deterministische Algorithmen gibt, die auf einem klassischen Computer in polynomieller Zeit laufen. Formal heißt das: Ein Problem liegt in \(\mathbf{P}\), wenn es einen Algorithmus gibt, dessen Laufzeit durch einen Polynomausdruck \(O(n^k)\) für eine feste Konstante \(k\) beschränkt ist, wobei \(n\) die Eingabegröße bezeichnet. Probleme aus \(\mathbf{P}\) gelten als praktisch effizient lösbar, sofern der Exponent \(k\) nicht zu groß wird.\\
 
-Der VQE-Algorithmus (Peruzzo et al., 2014) nutzt das Variationsprinzip auf Quantencomputern: Ein parametrisiertes Quantenschaltkreis $\ket{\psi(\vec\theta)}$ wird auf einen Hamiltonian angewandt, dessen Erwartungswert energetisch bewertet wird. Ein klassischer Optimierer passt die Parameter $\vec\theta$ an, um die Energie zu minimieren.\\
-VQE eignet sich insbesondere zur Berechnung von Grundzustandsenergien in Quantenchemie und Festkörperphysik. Dieser hybride Ansatz kann komplexe Vielteilchensysteme in polynomialer Zeit simulieren und ist wegen geringer Quantenressourcen auch für Noisy Intermediate-Scale Quantum (NISQ) Geräte vielversprechend.\\
-Trotz der theoretisch guten Skalierung müssen in der Praxis Laufzeit und Güte (sogenannte Pre-Faktoren) sorgfältig abgeschätzt werden; Rauschresistenz ist ein weiterer Vorteil von VQE.
+Die Klasse \(\mathbf{NP}\) (nondeterministic polynomial time) umfasst diejenigen Entscheidungsprobleme, bei denen eine etwaige Lösung auf einem klassischen Computer in polynomieller Zeit verifizierbar ist, auch wenn ein deterministischer polynomieller Lösungsalgorithmus bislang unbekannt ist. Ein typisches Beispiel ist das Teilmengen-Summen-Problem: Legt man dem Algorithmus als „Zertifikat“ eine vermutete Teilmenge vor, so kann man in \(O(n)\) bzw. \(O(n\log n)\) Zeit nachprüfen, ob die Summe den Zielwert ergibt.\\
 
-\subsection{Quanten-Algorithmus zur näherungsweisen Optimierung (QAOA)}
+Innerhalb von \(\mathbf{NP}\) existieren die \(\mathbf{NP}\)-\emph{vollständigen} Probleme (\(\mathbf{NP}\)\emph{-complete}), die zu den schwierigsten \(\mathbf{NP}\)-Problemen zählen. Ein Problem \(L\) ist genau dann \(\mathbf{NP}\)-vollständig, wenn \(L\in\mathbf{NP}\) und jedes andere Problem aus \(\mathbf{NP}\) in polynomieller Zeit auf \(L\) reduziert werden kann. Die berühmte \textsc{Clique}-Frage oder das \textsc{3-SAT}-Problem sind klassische Vertreter dieser Klasse. Gelingt es, eines dieser Probleme in polynomieller Zeit zu lösen, so hätte man damit einen polynomiellen Algorithmus für alle \(\mathbf{NP}\)-Probleme.\\
 
-QAOA (Farhi et al., 2014) ist ein hybrider Ansatz zur kombinatorischen Optimierung: Er wechselt zwischen „Kosten“- und „Mixer“-Hamiltonians mit tunbaren Parametern in $p$ Schritten.\\
-Durch Abstimmung dieser Parameter mithilfe eines klassischen Optimierers können gute Näherungslösungen für Probleme wie MaxCut oder andere NP-harte Optimierungsaufgaben gefunden werden. Die Qualität der Lösung verbessert sich mit zunehmendem $p$.\\
-Die Schaltkreustiefe wächst linear mit $p$ und der Problemgröße; wenn $p$ fest ist, kann man den Algorithmus effizient klassisch vorprozessieren. Die Frage, ob QAOA für bestimmte Probleme gegenüber klassischen Algorithmen Vorteile bietet, wird intensiv erforscht.\\
+Die Klasse der \(\mathbf{NP}\)-\emph{harten} Probleme (\(\mathbf{NP}\)\emph{-hard}) enthält solche Probleme, auf die sich beliebige \(\mathbf{NP}\)-Probleme in polynomieller Zeit reduzieren lassen. Im Gegensatz zu \(\mathbf{NP}\)-vollständigen Problemen müssen \(\mathbf{NP}\)-harte Probleme selbst nicht in \(\mathbf{NP}\) liegen und können etwa gar nicht entscheidbar sein oder nur in exponentieller Zeit verifizierbar sein.\\
 
-\subsection{Quantum Data Fitting: Lineare Gleichungssysteme lösen}
+Wenn man zusätzlich zur deterministischen Rechenmaschine Zufallsbits zulässt und die Wahrscheinlichkeit, die richtige Entscheidung zu treffen, für positive und negative Instanzen jeweils oberhalb eines festen Schwellwerts (typischerweise \(>1/2\)) liegt, definiert man die Klasse \(\mathbf{BPP}\) (bounded‑error probabilistic polynomial time). Probleme in \(\mathbf{BPP}\) lassen sich mit Monte‑Carlo‑Algorithmen in polynomieller Zeit mit beliebig kleiner Fehlerrate lösen.\\
 
-Quantum Data Fitting bezieht sich darauf, lineare Regressions- oder Ausgleichsaufgaben mithilfe von Quantenalgorithmen durchzuführen. Kern ist meist der HHL-Algorithmus (Harrow, Hassidim, Lloyd 2009), der lineare Gleichungen $Ax=b$ in Logarithmus-Zeit löst.\\
-Beispielsweise kann man Parameter für ein lineares Modell auf einem großen Datensatz bestimmen oder die Qualität einer Kleinste-Quadrate-Anpassung untersuchen.\\
-Ein neuer Quantenalgorithmus berechnet effizient die Güte einer linearen Regression über ein exponentiell großes Datenset, indem er das lineare Gleichungssystem quantenmechanisch löst.
- 
+Der quantenmechanische Gegenpart zu \(\mathbf{BPP}\) ist die Klasse \(\mathbf{BQP}\) (bounded‑error quantum polynomial time). Hierbei kann ein Quantenalgorithmus für ein Problem in polynomieller Zeit auf einem Quantencomputer mit hoher Wahrscheinlichkeit das korrekte Ergebnis liefern. Ein bekanntes Beispiel ist die Ganzzahlfaktorzerlegung großer Zahlen mittels Shor’s Algorithmus, der das hierfür klassische \(\mathbf{NP}\)-Problem in polynomieller Zeit auf einem Quantencomputer löst.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{images/basic-algorithms/problem-classes.png}
+  \caption{Übersicht der wichtigsten Zeitkomplexitätsklassen: \(\mathbf{P}\subseteq \mathbf{BQP}\subseteq \mathbf{NP}\subseteq \mathbf{NP}\text{-hard}\) und die Lage von \(\mathbf{NP}\)-complete Problemen innerhalb von \(\mathbf{NP}\).}
+  \label{fig:problem_classes}
+\end{figure}
+
+Abschließend lässt sich festhalten, dass die Frage, ob \(\mathbf{P}=\mathbf{NP}\) gilt, zu den bedeutendsten offenen Problemen der Informatik zählt. Auch der Vergleich zwischen klassischen und quantenmechanischen Modellen, speziell die Vermutung \(\mathbf{P}\subsetneq \mathbf{BQP}\subseteq \mathbf{NP}\), prägt die Forschung im Bereich effizienter Algorithmen maßgeblich.
+
+\section{Quantum Safe Algorithmen}
+
+\subsection*{Einleitung}
+
+Mit der rasanten Entwicklung von Quantencomputern stehen klassische Verschlüsselungsverfahren vor einer existenziellen Bedrohung. Während heutige Systeme auf der Annahme beruhen, dass bestimmte mathematische Probleme schwer zu lösen sind, können Quantenalgorithmen wie \textit{Shor’s Algorithmus} oder \textit{Grover’s Algorithmus} diese Probleme effizient berechnen – und damit die Sicherheit brechen, auf die heutige digitale Kommunikation angewiesen ist.
+
+Diese Bedrohung macht sogenannte \textbf{Quantum Safe Algorithmen} notwendig – kryptographische Verfahren, die auch gegen Angriffe durch leistungsfähige Quantencomputer resistent sind. Zwei Hauptansätze stehen im Zentrum der Forschung:
+
+\begin{itemize}
+  \item \textbf{Quantum Key Distribution (QKD)} – ein Verfahren, das physikalische Gesetze der Quantenmechanik nutzt, um absolut sichere Schlüsselverteilungen zu ermöglichen.
+  \item \textbf{Post-Quantum Cryptography (PQC)} – klassische, quantenresistente Algorithmen, die auf heutigen Geräten ausgeführt werden können.
+\end{itemize}
+
+In diesem Kapitel werfen wir einen Blick auf beide Ansätze – und erläutern insbesondere die jüngsten Fortschritte durch das NIST (National Institute of Standards and Technology), das 2022 erste standardisierungsreife Algorithmen bekannt gegeben hat.
+
+\subsection{Quantum Key Distribution}
+
+Quantum Key Distribution (QKD) ermöglicht es, kryptografische Schlüssel über unsichere Kanäle zu übertragen – mit einem entscheidenden Vorteil: Jeder Abhörversuch verändert unweigerlich den Zustand der übertragenen Quanteninformation und kann somit erkannt werden.
+
+Ein klassisches Beispiel für ein QKD-Protokoll ist das \textbf{BB84-Protokoll}, das 1984 von Bennett und Brassard entwickelt wurde und später, im Jahr 2000, von Peter W. Shor and John Preskill geprüft wurde. Es nutzt die Polarisation von Photonen, um binäre Informationen zu codieren. Der Ablauf besteht aus drei Phasen:
+
+\begin{itemize}
+  \item \textbf{Key Exchange:} Alice sendet zufällig polarisierte Photonen an Bob, der sie in zufällig gewählten Basen misst.
+  \item \textbf{Key Sifting:} Über einen klassischen Kanal gleichen beide ihre verwendeten Basen ab und behalten nur die Werte, bei denen die Basen übereinstimmten.
+  \item \textbf{Key Distillation:} Durch Stichproben wird geprüft, ob Abhörversuche stattfanden. Die finale Schlüssellänge ergibt sich nach dieser Bereinigung.
+\end{itemize}
+
+\noindent Neben BB84 existieren weitere bedeutende Protokolle:
+
+\begin{itemize}
+  \item \textbf{B92} (reduzierte Variante mit zwei Zuständen)
+  \item \textbf{E91} (nutzte erstmals Quantenverschränkung)
+  \item \textbf{BBM92}, \textbf{SARG04}, \textbf{DPS}, \textbf{COW}, \textbf{GG02} (verschiedene Weiterentwicklungen)
+\end{itemize}
+
+Für eine detaillierte Übersicht der Protokolle und deren Unterschiede siehe das Paper:
+\textit{An Overview of Quantum-Safe Approaches: Quantum Key Distribution and Post-Quantum Cryptography} von Guobin Xu et al.
+
+\subsection{Post-Quantum Cryptographie Algorithmen}
+
+Da QKD mit hohen technischen und infrastrukturellen Anforderungen verbunden ist, setzt sich in der Praxis vor allem die \textbf{Post-Quantum Cryptography (PQC)} durch. Sie nutzt klassische Rechenverfahren, basiert jedoch auf mathematischen Problemen, die auch für Quantencomputer als schwierig gelten.
+
+Das US-amerikanische \textbf{NIST} hat im Rahmen eines mehrjährigen Wettbewerbs Verfahren für zwei Hauptkategorien gesucht:
+
+\begin{itemize}
+  \item \textbf{Public-Key Encryption and Key Establishment (KEM)}
+  \item \textbf{Digitale Signaturverfahren}
+\end{itemize}
+
+\noindent Nach mehreren Runden wählte NIST im Juli 2022 vier Algorithmen aus, die als erste Quantum Safe Standards empfohlen werden.
+
+\noindent Für Verschlüsselung und Schlüsselaustausch nominierte NIST:
+
+\begin{itemize}
+  \item \textbf{CRYSTALS-Kyber} – 2017, J. Bos et al.
+\end{itemize}
+
+\vspace{0.5em} % optionaler vertikaler Abstand
+
+\noindent Für digitale Signaturen nominierte NIST:
+
+\begin{itemize}
+  \item \textbf{CRYSTALS-Dilithium} – 2018, L. Ducas et al.
+
+  \item \textbf{Falcon} – 2018, P.-A. Fouque et al.
+
+  \item \textbf{SPHINCS+} – 2019, D. J. Bernstein et al.
+\end{itemize}
+
+\subsubsection*{CRYSTALS-Kyber}
+
+\textbf{CRYSTALS-Kyber} ist ein \textit{lattice-basiertes Key Encapsulation Mechanism (KEM)}. Es basiert auf dem sogenannten \textit{Module Learning with Errors (MLWE)}-Problem, das auch von Quantencomputern bislang nicht effizient gelöst werden kann.
+
+Der Algorithmus nutzt Polynomarithmetik und besteht aus drei Hauptschritten:
+
+\begin{enumerate}
+  \item \textbf{Schlüsselerzeugung:} Öffentlicher und privater Schlüssel werden erzeugt.
+  \item \textbf{Encapsulation:} Ein gemeinsamer Schlüssel wird erzeugt und verschlüsselt übertragen.
+  \item \textbf{Decapsulation:} Der Empfänger entschlüsselt den Schlüssel mit seinem privaten Schlüssel.
+\end{enumerate}
+
+\noindent Kyber bietet drei Sicherheitsniveaus, die sich durch unterschiedliche Parametergrößen unterscheiden und an klassische AES-Sicherheitsstufen angelehnt sind:
+
+\begin{itemize}
+  \item \textbf{Kyber-512} – Sicherheitsniveau 1 (vergleichbar mit AES-128)
+  \item \textbf{Kyber-768} – Sicherheitsniveau 3 (vergleichbar mit AES-192)
+  \item \textbf{Kyber-1024} – Sicherheitsniveau 5 (vergleichbar mit AES-256)
+\end{itemize}
+
+\subsubsection*{CRYSTALS-Dilithium}
+
+\textbf{CRYSTALS-Dilithium} ist ein digitaler Signaturalgorithmus, ebenfalls basierend auf \textit{MLWE} und \textit{MSIS} (Module Short Integer Solution). Die Signaturerzeugung verwendet die \textit{Fiat-Shamir-Transformation}, die aus einem interaktiven Zero-Knowledge-Protokoll eine nicht-interaktive Signatur macht.
+
+Dilithium bietet drei Sicherheitsniveaus:
+
+\begin{itemize}
+  \item \textbf{Dilithium2}
+  \item \textbf{Dilithium3}
+  \item \textbf{Dilithium5}
+\end{itemize}
+
+Die Vorteile liegen in der schnellen Verifikation, der Robustheit gegen Seitenkanalangriffe und der guten Performance. Diese Eigenschaften machen Dilithium zu einem führenden Kandidaten im Bereich der quantensicheren digitalen Signaturen.
+
+
 
 \section{Quantum-safe Algorithmen in Kryptographie}
 \subsection{Aktuelle Stand der Kryptographie}
