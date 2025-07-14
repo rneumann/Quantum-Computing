@@ -113,19 +113,79 @@ Alle oben genannten Fehlerarten werden zusätzlich durch Kalibrierfehler verstä
 Studien zeigen, dass Kalibrierfehler insbesondere bei nicht regelmäßig durchgeführten Rekalibrierungszyklen zu systematischer Fehlentwicklung der Qubit-Zustände führen (Google Quantum AI, 2024, S.4–5).
 
 \subsection{Quantifizierung und Modellierung von Quantenfehlern}
-\begin{itemize}
-\item Fehlerkanäle
-\item Krausoperation
-\item Fehlerrate
-\item wie werden Fehler gemessen
-\end{itemize}
+Die präzise Modellierung und Quantifizierung von Fehlern in Quantencomputern ist essenziell, um deren Auswirkungen auf die Informationsverarbeitung zu verstehen und wirksame Fehlerkorrekturstrategien zu entwickeln. Aufgrund der Besonderheiten quantenmechanischer Systeme, insbesondere Superposition, Nichtklassikalität und Unitarität, ist eine adäquate Beschreibung von Fehlerprozessen nur durch formalisierte mathematische Modelle möglich, die über klassische Störmodelle weit hinausgehen. In der Theorie offener Quantensysteme werden solche Fehler durch Quantenkanäle beschrieben, deren Wirkung über sogenannte Krausoperatoren modelliert wird.
+
+Fehlerkanäle und Krausoperatoren
+
+Ein Quantenkanal beschreibt die Wirkung eines Umgebungseinflusses auf ein Quantensystem, das sich dadurch in einen neuen Zustand überführt. Formal wird ein Quantenkanal (E) durch eine completely positive, trace-preserving (CPTP) Abbildung auf dem Raum der Dichtematrizen definiert. Die Wirkung eines solchen Kanals auf einen Zustand ρ wird durch die Kraus-Zerlegung beschrieben:
+
+FORMEL BILD EINFÜGEN
+Hierbei sind  E k E  k die Krausoperatoren, die jeweils eine mögliche Fehlerwirkung modellieren. Diese Darstellung ist besonders mächtig, da sie sowohl diskrete als auch kontinuierliche Fehlermechanismen integriert. Je nach Art des Rauschprozesses ergeben sich unterschiedliche konkrete Kanalformen:
+Amplitudendämpfungskanal: Modelliert Energieverluste wie spontane Emission. Dabei relaxiert das Qubit mit Wahrscheinlichkeit 
+γ vom angeregten Zustand ∣1⟩ in den Grundzustand ∣0⟩. Die zugehörigen Krausoperatoren lauten:
+
+(BILD EINFÜGEN DER FORMEL)
+(Nielsen & Chuang, 2010, S.377)
+Depolarisationskanal: Beschreibt symmetrisches Rauschen, bei dem mit Wahrscheinlichkeit p ein zufälliger Pauli-Fehler (X, Y, Z) auftritt:
+(BILD VOPN FORMEL EINFÜGEN)
+ (XρX+YρY+ZρZ)
+(ebd., S.376)
+Diese Modelle bilden die Grundlage für theoretische Fehleranalysen und sind integraler Bestandteil moderner Simulationen von Quantenalgorithmen.
+
+Fehlerraten
+
+Neben der qualitativen Modellierung von Fehlerprozessen ist deren quantitative Beschreibung durch Fehlerraten entscheidend. Die Fehlerrate gibt an, mit welcher Wahrscheinlichkeit eine Operation – z.B. ein Quanten-Gatter oder eine Messung, fehlerhaft ausgeführt wird. Sie stellt eine wichtige Benchmarkgröße dar, insbesondere im Kontext der Skalierbarkeit und Fehlerkorrektur.
+
+Typische Fehlerraten in heutigen NISQ-Systemen (Noisy Intermediate-Scale Quantum):
+
+Ein-Qubit-Gatterfehler: ca. 10−4 bis 10−3
+ 
+Zwei-Qubit-Gatterfehler: ca. 
+10−3 bis 10−2
+ 
+Messfehler: typischerweise zwischen  0.5% und 1% je nach Architektur (Tutschku et al., 2023, S. 51–52)
+Eine häufig verwendete Metrik ist die average gate fidelity, welche angibt, wie nahe die tatsächlich implementierte Gatteroperation im Mittel an der idealen, unitären Operation liegt.
+
+Fehlervermessung: Methoden zur Fehlerquantifizierung
+
+Um Fehlermodelle nicht nur theoretisch anzusetzen, sondern empirisch zu validieren und zu quantifizieren, kommen in der experimentellen Quanteninformatik verschiedene Messverfahren zum Einsatz:
+
+Quantum Process Tomography (QPT): Ermöglicht die vollständige Rekonstruktion des Quantenkanals durch systematische Zustandsvorbereitungen und Messungen. Aufgrund des exponentiellen Aufwands bei wachsender Qubit-Anzahl ist QPT auf wenige Qubits beschränkt (Nielsen & Chuang, 2010, S.388).
+Randomized Benchmarking (RB): Verwendet zufällig gewählte Gatterfolgen aus einer Gruppe (typischerweise Clifford-Gruppenoperationen), um statistisch robuste Aussagen über mittlere Fehlerraten zu treffen. Der Vorteil von RB liegt in seiner Unempfindlichkeit gegenüber SPAM-Fehlern (State Preparation and Measurement) (Tutschku et al., 2023, S.52).
+Cross-Entropy Benchmarking (XEB): Ein Verfahren, das besonders bei großen supraleitenden Qubit-Systemen wie Sycamore oder Bristlecone zum Einsatz kommt. Es vergleicht die gemessene Ausgabeverteilung eines komplexen Quantenkreises mit der theoretisch erwarteten Verteilung aus klassischer Simulation. Die Übereinstimmung (Cross-Entropy) gibt Rückschluss auf die Gesamteffizienz und Fehlerhäufigkeit des Systems (Google Quantum AI, 2024, S.3–4)
 
 \subsection{Auswirkungen von Fehlern auf Quantenalgorithmen und Systemarchitektur}
-\begin{itemize}
-\item Rechenabbrüche
-\item Bedarf an Fehlertoleranz
-\item Fehlerbudget
-\end{itemize}
+Fehler in Quantencomputern wirken sich nicht isoliert auf einzelne Operationen aus, sondern haben umfassende Konsequenzen für die Stabilität, Zuverlässigkeit und Effizienz ganzer Quantenalgorithmen. Aufgrund der spezifischen Eigenschaften von Quanteninformation, vor allem der Verwendung von Superposition und Interferenz, kann bereits ein einziger Fehler in einem Quantenregister dazu führen, dass das Rechenergebnis vollständig verfälscht oder unbrauchbar wird. Das No-Cloning-Theorem schließt zusätzlich aus, dass fehleranfällige Quanteninformationen einfach dupliziert oder redundant gespeichert werden können (Nielsen & Chuang, 2010, S.466). Damit sind Fehlerkorrektur und Systemtoleranz nicht nur Ergänzungen, sondern fundamentale Voraussetzungen für zuverlässige Quantenverarbeitung.
+
+Rechenabbrüche und Fehlerakkumulation
+
+In praktisch ausgeführten Algorithmen, wie bei Grover’s Algorithmus, Shor’s Faktorisierungsverfahren oder variationalen Methoden wie VQE (Variational Quantum Eigensolver), kann ein einzelner Fehler eine Verkettung von Folgefehlern auslösen. Dies führt dazu, dass die Zustandsamplituden falsche Interferenzen erzeugen oder sich logisch fehlerhafte Zustände im System ausbreiten. Besonders problematisch ist dabei die Akkumulation von Fehlern über viele Rechenzyklen hinweg. Bei jedem Gatteraufruf, jeder Qubit-Wechselwirkung und jeder Messung steigt die Wahrscheinlichkeit, dass sich ein Fehler einschleicht (Tutschku et al., 2023, S.53).
+
+Rechenabbrüche treten dann auf, wenn die Fehlerzahl oder ihre Art eine erfolgreiche Fortsetzung oder Interpretation des Algorithmus unmöglich macht. Ursachen hierfür sind unter anderem:
+
+Timing-Fehler oder falsche Pulslängen bei Zwei-Qubit-Gattern, wodurch die beabsichtigte Kopplung nicht korrekt implementiert wird.
+Überschreiten der Kohärenzzeiten T1 (Relaxation) und T2 (Dephasierung), was in tief verschachtelten Algorithmen fast unausweichlich ist, wenn keine Fehlerkorrektur erfolgt.
+Leckagefehler, bei denen ein Qubit aus dem definierten Zustandsraum (z.B. ∣0⟩, ∣1⟩) in einen höheren Energiezustand übergeht, oder Crosstalk, bei dem Qubit A durch das Ansteuern von Qubit B unbeabsichtigt beeinflusst wird (Tutschku et al., 2023, S.53; Google Quantum AI, 2024, S.3).
+
+Fehlerbudget und Fehlertoleranz
+Zur planvollen Kontrolle dieser Risiken wird in der Architekturentwicklung ein sogenanntes Fehlerbudget verwendet. Dieses definiert, wie viele und welche Arten von Fehlern ein System in einer gegebenen Operationstiefe oder Zeitdauer tolerieren kann, ohne dass die logische Konsistenz der Berechnung verloren geht. Entscheidend dafür ist die Fehlerschwelle (fault-tolerance threshold), also die maximale physikalische Fehlerrate, bei der eine effektive Fehlerkorrektur noch möglich ist.
+
+Liegt die effektive Fehlerrate pro Gatteroperation oder Qubit unterhalb dieser Schwelle, so kann durch wiederholte Korrekturzyklen ein logisch fehlerfreier Zustand aufrechterhalten werden. Wird sie überschritten, kann auch ein noch so ausgeklügelter Fehlerkorrekturcode das System nicht mehr retten (Nielsen & Chuang, 2010, S.452; Preskill, 1998, S.226).
+
+Beispiele für Fehlerschwellen:
+
+Surface Codes: Schwelle bei ca. 1% pro Gatteroperation, gelten als besonders robust, da sie nur lokale Interaktionen benötigen (Google Quantum AI, 2024, S.2–4).
+Steane- und Bacon-Shor-Codes: Schwelle bei etwa 10 −3, dafür mit höherem logischem Overhead (Rieffel & Polak, 2011, S.393–395).
+Um unterhalb dieser Schwelle zu operieren, ist ein signifikanter Hardware-Overhead erforderlich. Für ein einziges logisch geschütztes Qubit werden, je nach verwendetem Code und Fehlertoleranz, zwischen 50 und über 1.000 physikalische Qubits benötigt (Tutschku et al., 2023, S.53). Diese Relation bestimmt maßgeblich die Skalierungsgrenzen aktueller Quantenprozessoren.
+
+Architekturstrategien für Fehlertoleranz
+
+Die Gestaltung der Quantenhardware und -architektur muss daher darauf ausgerichtet sein, mit einer begrenzten Anzahl physikalischer Qubits möglichst effektive Fehlerresistenz zu gewährleisten. Dazu gehören:
+
+Fehlertolerante Layouts, z.B. zweidimensionale Qubit-Gitter mit lokaler Nachbarschaftsstruktur (wie im Surface Code), die einfache Syndrome-Messung und Korrektur ermöglichen.
+On-Chip-Feedbacksysteme, die Fehler während der Berechnung in Echtzeit detektieren und sofort korrigierend eingreifen können – etwa durch Mikrocontroller oder FPGA-Logik in der Steuerungselektronik.
+Adaptives Routing, das es erlaubt, defekte oder fehlerhafte Qubits dynamisch zu umgehen, ohne die gesamte Berechnung zu unterbrechen (Google Quantum AI, 2024, S.3–5).
+Zukünftige Entwicklungen konzentrieren sich zudem auf intelligente Dekodierer, die mithilfe maschinellen Lernens in der Lage sind, nicht nur klassische, sondern auch korrelierte und systematische Fehler zu erkennen und zu kompensieren.
 
 
 \section{Grundprinzipien in Quantenfehlerkorrektur}\label{chap:QEC2}
