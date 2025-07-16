@@ -390,13 +390,12 @@ Mit dem Wissen aus vorherigen Kapitel lassen sich bereits die ersten, einfachen 
 \\
 Dazu beleuchten wir die Herkunft moderner Quantencomputer und die ersten Quantenalgorithmen.
 
-\subsection{TBD: Touring Complete} 
-In einem Paper von 1985 stellt der Physiker David Deutsch die Idee eines universellen Quantencomputers vor. Dabei verbindet er Quantenmechanik mit der theoretischen Informatik und kritisiert die klassische Church-Turing-These, da sie physikalisch nicht vollständig sei. Er schlägt stattdessen die Church–Turing–Deutsch-These vor: Alles, was physikalisch berechenbar ist, kann von einem Quantencomputer simuliert werden.\\
-\\
-Zentral im Paper ist der Vorschlag eines konkreten Quantenalgorithmus, welcher heute als der Deutsch-Algorithmus bekannt ist. Dieser zeigt, dass Quantencomputer Probleme effizienter lösen können als klassische Rechner.  (Vgl. \cite{deutsch_quantum_1985}) 
-
 \subsection{Algorithmus von Deutsch} 
 
+In einem Paper von 1985 stellt der Physiker David Deutsch die Idee eines universellen Quantencomputers vor. Dabei verbindet er Quantenmechanik mit der theoretischen Informatik und kritisiert die klassische Church-Turing-These, da sie physikalisch nicht vollständig sei. Er schlägt stattdessen die Church–Turing–Deutsch-These vor: Alles, was physikalisch berechenbar ist, kann von einem Quantencomputer simuliert werden.\\
+\\
+Zentral im Paper ist der Vorschlag eines konkreten Quantenalgorithmus, welcher heute als der Deutsch-Algorithmus bekannt ist. Dieser zeigt, dass Quantencomputer Probleme effizienter lösen können als klassische Rechner.  (Vgl. \cite{deutsch_quantum_1985}) \\
+\\
 Wir wollen herausfinden ob ein Münze echt oder gefälscht ist. Bei einer echten Münze zeigen beide Seiten unterschiedliche Motive. Ist die Münze eine Fälschung, sind die Seiten gleich. Um eine echte Münze von einer Fälschung unterscheiden zu können, muss zuerst die Vorderseite und danach die Rückseite überprüft werden. In einem Quantencomputer können wir beide Seiten gleichzeitig prüfen. Das Überprüfen der Münze können wir als folgende binäre Funktion darstellen.
 
 $$f:\{0,1\} \rightarrow \{0,1\}$$. 
@@ -481,12 +480,12 @@ Daraus folgt der Schaltkreis in Abbildung \ref{fig:deutsch-schaltkreis}.
     \label{fig:deutsch-schaltkreis}
 \end{figure}
 
-Somit liefert Deutsch den ersten Beweis für Quantenparallelität durch Superpositionen in einem konkreten Algorithmus. Der von Deutsch vorgeschlagene Algorithmus ermöglicht es jedoch nur Probleme mit einem einzigen Eingabebit zu verarbeiten. Eine verallgemeinerte Version des Deutsch-Algorithmus lieferte David Deutsch zusammen mit Richard Jozsa ein paar Jahre später in dem Paper "Rapid solution of problems by quantum computation". (Vgl. \cite[S.33-37]{homeister_quantum_2022})
+Somit liefert Deutsch den ersten konkreten Algorithmus, welcher Quantenparallelität durch Superpositionen ausnutzt. Der von Deutsch vorgeschlagene Algorithmus ermöglicht es jedoch nur Probleme mit einem einzigen Eingabebit zu verarbeiten. Eine verallgemeinerte Version des Deutsch-Algorithmus lieferte David Deutsch zusammen mit Richard Jozsa ein paar Jahre später in dem Paper "Rapid solution of problems by quantum computation". (Vgl. \cite[S.33-37]{homeister_quantum_2022})
 
 \subsection{Deutsch-Josza Algorithmus}\label{subsec_jasza}
 Reale Probleme haben meist deutlich komplexere Strukturen und benötigen mehrere Eingabebits. Dazu entwickelten David Deutsch und Richard Jozsa eine Verallgemeinerung, welche als Deutsch-Jozsa-Algorithmus bekannt ist. Dieser erlaubt es, Funktionen mit beliebig vielen Eingabebits zu untersuchen und demonstriert erstmals einen exponentiellen Vorteil gegenüber klassischen Computern.\\
 \\
-Genau wie bei dem Deutsch-Algorithmus ist eine Funktion $f:\{0,1\}^n \rightarrow \{0,1\}$ gegeben. Dieses mal aber mit $n$-Bits als Eingabe. $f$ ist entweder konstant oder balanciert. Da es nun jedoch mehrere Eingabebits gibt bedeutet Balanciert, dass genau die Hälfte aller möglichen Ausgaben $0$ und die andere Hälfte $1$ als Ergebnis liefert. (Vgl. \cite{deutsch_rapid_1992})\\
+Genau wie bei dem Deutsch-Algorithmus ist eine Funktion $f:\{0,1\}^n \rightarrow \{0,1\}$ gegeben. Dieses mal aber mit $n$-Bits als Eingabe. $f$ ist entweder konstant oder balanciert. Im balancierten Fall sind genau die Hälfte aller Ausgaben $0$ und die andere Hälfte $1$. (Vgl. \cite{deutsch_rapid_1992})\\
 \\
 Das Ziel bleibt unverändert. Es soll mit möglichst wenig Abfragen bestimmt werden, welcher der beiden Fälle vorliegt. Klassische Algorithmen benötigen für das Problem im schlimmsten Fall $2^{n-1}+1$ Abfragen, um Gewissheit zu erlangen. \\
 
