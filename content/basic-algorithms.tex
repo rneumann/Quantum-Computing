@@ -24,18 +24,42 @@ Im Folgenden wird der Ablauf von Shors Algorithmus detailliert dargestellt und a
 
 
 \subsection{Grundlagen: Primfaktorzerlegung und RSA}
-Der RSA-Algorithmus basiert auf der Schwierigkeit, eine große Zahl \( N = pq \) zu faktorisieren. Shor’s Algorithmus bricht diese Sicherheit, indem er in polynomialer Zeit die Faktoren \( p \) und \( q \) bestimmt. Hat ein Angreifer Zugriff auf einen leistungsfähigen Quantencomputer, kann er aus dem öffentlichen Schlüssel die privaten Schlüsselparameter rekonstruieren:
-\begin{itemize}
-  \item Berechne \( p \) und \( q \) mit Shor.
-  \item Berechne \( \phi(N) = (p-1)(q-1) \).
-  \item Berechne den privaten Schlüssel \( d \) durch:
-  \[
-  d \equiv e^{-1} \mod \phi(N)
-  \]
-\end{itemize}
-Dies zeigt, dass RSA bei hinreichend großen Quantencomputern als unsicher gelten muss.
+Der RSA-Algorithmus basiert auf der Schwierigkeit, eine große Zahl \( N = pq \) zu faktorisieren. Shor’s Algorithmus bricht diese Sicherheit, indem er in polynomialer Zeit die Faktoren \( p \) und \( q \) bestimmt. Hat ein Angreifer Zugriff auf einen leistungsfähigen Quantencomputer, kann er aus dem öffentlichen Schlüssel die privaten Schlüsselparameter rekonstruieren. Shor's Algorithmus beschleunigt einen entscheidenen Schritt im klassischen Teil der Primfaktorzerlegung:
 
-Ziel ist es also, eine zusammengesetzte Zahl \( N = pq \) effizient zu faktorisieren. Klassische Algorithmen benötigen dafür im Allgemeinen exponentielle Laufzeit. Shor's Algorithmus nutzt die Periodizität der Funktion
+\begin{itemize}
+  \item[a)] Wähle eine ganze Zahl \(x\) mit \(1 < x < N\).
+  
+  \item[b)] Berechne den größten gemeinsamen Teiler \(\gcd(x, N)\), z.\,B. mit dem Euklidischen Algorithmus.  
+  \begin{itemize}
+    \item Ist \(\gcd(x, N) \ne 1\), so gib \(\gcd(x, N)\) als nichttrivialen Teiler von \(N\) zurück und beende das Verfahren.
+    \item Ist \(\gcd(x, N) = 1\), fahre mit Schritt c) fort.
+  \end{itemize}
+  
+  \item[c)] Bestimme mit Hilfe des Quantenteils von Shor's Algorithmus die Ordnung \(r\) von \(x\) in der multiplikativen Gruppe \((\mathbb{Z}/N\mathbb{Z})^\times\), also das kleinste \(r \in \mathbb{N}\), sodass
+  \[
+  x^r \equiv 1 \mod N.
+  \]
+  
+  \item[d)] Beginne erneut bei Schritt a), falls eine der folgenden Bedingungen zutrifft:
+  \begin{itemize}
+    \item \(r\) ist ungerade, oder
+    \item \(x^{r/2} \equiv -1 \mod N\).
+  \end{itemize}
+  
+  \item[e)] Berechne anschließend
+  \[
+  \gcd(x^{r/2} \pm 1, N)
+  \]
+  und gib mindestens einen der beiden Werte als nichttrivialen Teiler von \(N\) zurück.\\
+  \[
+  \]
+  \textit{Hinweis:} Die so gefundenen Teiler müssen nicht direkt den gesuchten Primfaktoren \(p\) oder \(q\) entsprechen. Sie teilen jedoch \(N\) und können mit Hilfe des Euklidischen Algorithmus weiterverarbeitet werden, um auf die Primfaktoren zu schließen.
+\end{itemize}
+
+
+Shor's Algorithmus setzt bei Schritt c) ein und beschleunigt diesen massiv. Für einen klassischen Computer dauert es exponentiell lange diesen Schritt zu lösen. Dies zeigt, dass RSA bei hinreichend großen Quantencomputern als unsicher gelten muss.
+
+Ziel ist es also, eine zusammengesetzte Zahl \( N = pq \) effizient zu faktorisieren. Um diese Faktorisierung zu beschleunigen nutzt Shor's Algorithmus die Periodizität der Funktion
 
 \begin{definition}[Modulare Arithmetik] 
 \[
@@ -220,8 +244,6 @@ e^{2\pi i \frac{a c}{Q}} = \cos\left(2\pi \frac{a c}{Q}\right) + i \cdot \sin\le
 \noindent Damit ist der zentrale algorithmische Teil von Shor abgeschlossen – die restlichen Schritte sind rein klassisch.\\
 \end{enumerate}
 
-Der Shor-Algorithmus zeigt, wie Quantencomputer periodische Strukturen in Funktionen aufdecken können, die klassisch nur mit exponentiellem Aufwand zu finden wären. Die Kombination aus Quanten-Phasenabschätzung, Fourier-Transformation und Kettenbruchentwicklung ermöglicht eine effiziente Faktorisierung großer Zahlen – ein fundamentaler Angriff auf die Sicherheit klassischer Verschlüsselung.\\
-
 \noindent
 Alle Operationen lassen sich im wesentlichen wie folgt zusammenfassen: Zunächst erfolgt die Initialisierung von zwei Quantenregistern, wobei das erste in eine Superposition aller möglichen Werte gebracht wird und das zweite den Ausgangszustand \( |1\rangle \) erhält. Durch Anwendung der unitären Funktion \( U_f \) wird eine Kopplung zwischen den Registern hergestellt, die die periodische Struktur der Funktion \( f(a) = x^a \bmod N \) abbildet. Anschließend findet die Quanten-Fourier-Transformation (QFT) auf dem ersten Register statt, wodurch mittels Interferenzinformation über die Periode \( r \) gewonnen wird. Die Messung des ersten Registers liefert eine Näherung an einen Bruch \( d/r \), aus dem mit der Kettenbruchentwicklung die Periode bestimmt wird. Auf Basis dieser Periode können die Teiler von \( N \) berechnet werden. \\
 
@@ -306,6 +328,12 @@ Wir wählen \( N = 15 \) und \( x = 2 \). Für den Algorithmus benötigen wir ei
     \]
 
     Wir erkennen: Die Funktionswerte wiederholen sich mit einer Periode \( r = 4 \), also \( 2^4 \bmod 15 = 1 \).
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth,height=6cm,keepaspectratio]{images/basic-algorithms/shor_mod15_frequenz_graustufen.png}
+    \caption{Visualisierung von $f(a) = 2^a \bmod 15$ mit Periode $r$ = 4}
+    \label{fig:Visualisierung von $f(a) = 2^a \bmod 15$ mit Periode $r$ = 4}
+\end{figure}
 
     Der verschränkte Zustand besteht also aus Gruppen gleicher Ausgabewerte:
 
@@ -345,15 +373,24 @@ Wir wählen \( N = 15 \) und \( x = 2 \). Für den Algorithmus benötigen wir ei
 
     Mit der gefundenen Periode \( r = 4 \) testen wir, ob sich damit die Faktoren von \( N = 15 \) bestimmen lassen. Dafür prüfen wir:
 
-    \[
-    \gcd(x^{r/2} - 1, N) = \gcd(2^2 - 1, 15) = \gcd(3, 15) = 3
-    \]
-    \[
-    \gcd(x^{r/2} + 1, N) = \gcd(2^2 + 1, 15) = \gcd(5, 15) = 5
-    \]
+\[
+\gcd(x^{r/2} - 1, N) = \gcd(2^2 - 1, 15) = \gcd(3, 15) = 3
+\]
+\[
+\gcd(x^{r/2} + 1, N) = \gcd(2^2 + 1, 15) = \gcd(5, 15) = 5
+\]
 
-    Wir erhalten die nicht-trivialen Faktoren 3 und 5 von \( N = 15 \). Die Faktorisierung ist damit erfolgreich abgeschlossen.
+    Wir erhalten die nicht-trivialen Faktoren 3 und 5 von \( N = 15 \). Die Faktorisierung ist damit erfolgreich abgeschlossen.\\
+
+\textit{Hinweis:} Dass hier direkt beide Primfaktoren von \( N \) ermittelt werden, ist ein Glücksfall dieses kleinen Beispiels. In realistischen Anwendungen des Shor-Algorithmus ist es üblich, dass einer oder beide der berechneten Werte lediglich einen gemeinsamen Teiler mit dem ursprünglichen \( N \) ergeben. Diese Teiler führen aber dennoch – eventuell nach mehreren Wiederholungen von Euklids Algorithmus– zuverlässig zur vollständigen Faktorisierung, da der Algorithmus mit hoher Wahrscheinlichkeit mindestens einen nicht-trivialen Teiler liefert.
+
 \end{enumerate}
+
+Der Shor-Algorithmus zeigt, wie Quantencomputer periodische Strukturen in Funktionen aufdecken können, die klassisch nur mit exponentiellem Aufwand zu finden wären. Die Kombination aus Quanten-Phasenabschätzung, Fourier-Transformation und Kettenbruchentwicklung ermöglicht eine effiziente Faktorisierung großer Zahlen – ein fundamentaler Angriff auf die Sicherheit klassischer Verschlüsselung.\\
+
+Damit stellt der Shor-Algorithmus einen Meilenstein in der Quanteninformatik dar: Er demonstriert das Potenzial quantenmechanischer Algorithmen, bestimmte Probleme deutlich schneller zu lösen als klassische Verfahren. Besonders betroffen ist dabei die auf der Faktorisierung großer Zahlen basierende Kryptographie, wie etwa RSA, deren Sicherheitsversprechen durch die Existenz effizienter Quantenalgorithmen grundlegend in Frage gestellt wird.\\
+
+Obwohl praktische Quantencomputer mit ausreichend vielen stabilen Qubits derzeit noch in der Entwicklung sind, verdeutlicht Shors Algorithmus bereits jetzt die Notwendigkeit, langfristig auf quantensichere Verschlüsselungsverfahren umzusteigen. Die theoretischen Grundlagen, wie sie in diesem Kapitel erarbeitet wurden, schaffen ein tiefes Verständnis für die Funktionsweise und Tragweite dieses Algorithmus und bilden die Basis für weitere Forschung im Bereich der Quantenalgorithmen und der Post-Quanten-Kryptographie.
 
 \section{Grover-Algorithmus: Quantum-Suche}
 \label{sec:grover-algorithm}
