@@ -190,21 +190,21 @@ Zukünftige Entwicklungen konzentrieren sich zudem auf intelligente Dekodierer, 
 
 \section{Grundprinzipien in Quantenfehlerkorrektur}\label{chap:QEC2}
 \subsection{Fehlererkennung ohne Zustandsmessung}
-Eines der zentralen Konzepte der Quanten-Fehlerkorrektur ist, dass man Fehler erkennen kann, ohne die kodierte Quanteninformation zu messen und somit zu zerstören. In klassischen Systemen könnten wir etwa redundante Bitmuster verwenden, um Fehler aufgrund direkter Messung zu erkennen und zu korrigieren. In einem quantenmechanischen System ist es jedoch nicht so einfach möglich, eine Messung durchzuführen, da ein solcher Schritt den Superpositionszustand des Qubits kollabieren ließe und damit die gespeicherte Information unter Umständen irreversibel zerstören könnte. \cite{nielsen_quantum_2010}\\
+Eines der zentralen Konzepte der Quanten-Fehlerkorrektur ist, dass man Fehler erkennen kann, ohne die kodierte Quanteninformation zu messen und somit zu zerstören. In klassischen Systemen könnten wir etwa redundante Bitmuster verwenden, um Fehler aufgrund direkter Messung zu erkennen und zu korrigieren. In einem quantenmechanischen System ist es jedoch nicht so einfach möglich, eine Messung durchzuführen, da ein solcher Schritt den Superpositionszustand des Qubits kollabieren ließe und damit die gespeicherte Information unter Umständen irreversibel zerstören könnte. \cite{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
 
-Um das zu umgehen, führt man im Bereich der Quanten-Fehlerkorrektur sogenannte Syndrommessungen durch. Dabei handelt es sich um Messungen, bei denen nicht der Zustand des Qubits direkt gemessen wird, sondern nur Information über das Eintreten von Fehlern. Man misst dabei den sogenannten Stabilisator-Operator, der zu einem speziellen Quanten-Fehlerkorrekturcode gehört. Diese Operatoren definieren eine Menge erlaubter Zustände – sogenannte +1-Eigenzustände der Stabilizer-Gruppe. Tritt ein Fehler auf, so verändert sich die Eigenwertstruktur des Stabilisators. Ein Wechsel zwischen \(+1\) und \(-1\) ist zum Beispiel ein  Zeichen dafür, dass ein bestimmter Fehler passiert. \cite[Seite 444-446]{nielsen_quantum_2010}\\
+Um das zu umgehen, führt man im Bereich der Quanten-Fehlerkorrektur sogenannte Syndrommessungen durch. Dabei handelt es sich um Messungen, bei denen nicht der Zustand des Qubits direkt gemessen wird, sondern nur Information über das Eintreten von Fehlern. Man misst dabei den sogenannten Stabilisator-Operator, der zu einem speziellen Quanten-Fehlerkorrekturcode gehört. Diese Operatoren definieren eine Menge erlaubter Zustände – sogenannte +1-Eigenzustände der Stabilizer-Gruppe. Tritt ein Fehler auf, so verändert sich die Eigenwertstruktur des Stabilisators. Ein Wechsel zwischen \(+1\) und \(-1\) ist zum Beispiel ein  Zeichen dafür, dass ein bestimmter Fehler passiert. \cite[Seite 444-446]{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
 
-Die Syndrommessung erfolgt in der Praxis meist so, dass man Hilfsqubits (Ancillae) einführt, auf denen man den Stabilisator wirken lässt und so Informationen darüber erhält, was der Stabilizer auf den gekodeten Zustand angewendet hätte, ohne hierbei den gekodeten Zustand zu verändern. So lassen sich ernsthaft Fehler zum Beispiel durch die sogenannten kontrollierten Operatoren auch zu dem Hilfs-Qubit "weiterleiten" und damit dort auslesen. Dabei bleibt die gekodete Quanteninformation erhalten. Man nutzt dies dazu, das sogenannte Fehlersyndrom zu bestimmen um dann gezielt unitäre Korrektur-Operatoren durchzuführen (siehe Kapitel \ref{chap:QEC3}.). \cite[Seite 444-446]{nielsen_quantum_2010}\\
+Die Syndrommessung erfolgt in der Praxis meist so, dass man Hilfsqubits (Ancillae) einführt, auf denen man den Stabilisator wirken lässt und so Informationen darüber erhält, was der Stabilizer auf den gekodeten Zustand angewendet hätte, ohne hierbei den gekodeten Zustand zu verändern. So lassen sich ernsthaft Fehler zum Beispiel durch die sogenannten kontrollierten Operatoren auch zu dem Hilfs-Qubit "weiterleiten" und damit dort auslesen. Dabei bleibt die gekodete Quanteninformation erhalten. Man nutzt dies dazu, das sogenannte Fehlersyndrom zu bestimmen um dann gezielt unitäre Korrektur-Operatoren durchzuführen (siehe Kapitel \ref{chap:QEC3}.). \cite[Seite 444-446]{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
 
 Ein Schlüsselelement des fehlertoleranten Quantencomputings ist die Möglichkeit, einen Quantenzustand messen zu können, ohne dass er in seinen Ursprungszustand zu zwei Drittelwahrscheinlichkeit kollabiert. Dank dieser Fähigkeit können Codes konstruiert werden, welche die Integrität von Quanteninformation auch dann noch lange Zeit sicherstellen, wenn wiederkehrende Fehler laufend erkannt und ausgebessert werden.
 
 \subsection{Redundanz durch Kodierung}
 Quanten-Fehlerkorrektur beruht auf zentraler Idee, Quantenzustände vor Fehlern zu schützen, indem Redundanz eingefügt wird. Das bedeutet, ein einzelnes logisches Qubit wird nicht durch ein einziges physikalisches Qubit dargestellt, sondern auf mehrere physikalische Qubits verteilt. Genau durch diese zusätzliche Kodierungskapazität können Fehler eintreten, ohne dass dabei die logische Quanteninformation verloren geht.
 
-Im Unterschied zur klassischen Fehlerkorrektur, bei der Redundanz verwendet wird (z.B. dreifache Paritätsbits), muss in der Quantenwelt solch ein Ansatz jedoch mit Bedacht gewählt werden. Denn das No-Cloning-Theorem verhindert, dass man auch einfach unbekannte Quantenzustände duplizieren kann. \cite{nielsen_quantum_2010}\\ Stattdessen wird die Kodierung mithilfe einer kohärenten Verschränkung mehrerer Qubits erreicht, sodass die Quanteninformation nicht in einem einzelnen Qubit, sondern in einem höherdimensionalen Unterraum des Gesamtsystems gespeichert wird.
+Im Unterschied zur klassischen Fehlerkorrektur, bei der Redundanz verwendet wird (z.B. dreifache Paritätsbits), muss in der Quantenwelt solch ein Ansatz jedoch mit Bedacht gewählt werden. Denn das No-Cloning-Theorem verhindert, dass man auch einfach unbekannte Quantenzustände duplizieren kann. \cite{nielsen_michael_a_and_isaac_l_chuang_quantum_2010} Stattdessen wird die Kodierung mithilfe einer kohärenten Verschränkung mehrerer Qubits erreicht, sodass die Quanteninformation nicht in einem einzelnen Qubit, sondern in einem höherdimensionalen Unterraum des Gesamtsystems gespeichert wird.
 
-Ein bekanntes Beispiel ist der Shor-Code, bei dem ein logisches Qubit auf neun physikalische Qubits abgebildet wird. Dieser Code schützt sowohl vor Bit-Flip- als auch vor Phase-Flip-Fehlern, indem er erst eine dreifache Kopie erstellt, um Bit-Flips zu entdecken, dann jede dieser Kopien nochmals mit einer Phase-Flip-Korrektur kodiert. \cite{shor_scheme_1995}\\
-Ebenso gut ist der Steane-Code, der sieben Qubits zum Darstellen eines logischen Qubits verwendet und den klassischen (7, 4, 3)-Hamming-Code verwendet. \cite{Steane}\\
+Ein bekanntes Beispiel ist der Shor-Code, bei dem ein logisches Qubit auf neun physikalische Qubits abgebildet wird. Dieser Code schützt sowohl vor Bit-Flip- als auch vor Phase-Flip-Fehlern, indem er erst eine dreifache Kopie erstellt, um Bit-Flips zu entdecken, dann jede dieser Kopien nochmals mit einer Phase-Flip-Korrektur kodiert. \cite{shor_scheme_1995}
+Ebenso gut ist der Steane-Code, der sieben Qubits zum Darstellen eines logischen Qubits verwendet und den klassischen (7, 4, 3)-Hamming-Code verwendet. \cite{Steane}
 
 Mit Hilfe einer solchen Kodierung kann Quanteninformation in einem sogenannten Code-Raum abgelegt werden, der durch eine Gruppe von Stabilisator-Operatoren definiert ist. Tritt ein Fehler auf, so wird der Zustand in einen orthogonalen Unterraum verschoben, der außerhalb des Code-Raums liegt. Dieses Umschichten lässt sich über die Syndrommessung identifizieren – und zwar ohne, dass der ursprüngliche Zustand vermessen wird. Wesentlich ist, dass die Redundanz dabei hilft, Fehler zu lokalisieren und Korrekturoperationen durchzuführen, ohne die Quantenkohärenz zu stören.
 
@@ -213,7 +213,7 @@ Die Redundanz durch Kodierung ist somit die Voraussetzung für alle Quanten-Fehl
 \subsection{Fehlerzustände müssen unterscheidbar sein}
 Ein entscheidendes Konzept in der Quantenfehlerkorrektur ist, dass Fehler auf einfache Weise voneinander unterscheidbar sein müssen. Nur wenn Fehler Zustände auf unterschiedliche Weise beschädigen, hat man eine Chance, festzustellen welcher der Fehler aufgetreten ist, mit dem Ziel diesen gezielt zu korrigieren ohne die Quanteninformation zu verlieren.
 
-In der Sprache der Quanteninformatik bedeutet dies, dass die durch Fehler erstellten Zustände orthogonal zueinander sein müssen, beziehungsweise so aufgebaut, dass man durch Messung eines fehlerhaften Zustands auf den Code-Raum schließen kann. Andernfalls besteht die Gefahr, dass Fehler, die zu gleichem Messausgang führen, nicht unterschieden werden können und die Messung zu einer falschen Korrektur und dem Verlust von Information führt. \cite[Seite 449–451]{nielsen_quantum_2010}\\
+In der Sprache der Quanteninformatik bedeutet dies, dass die durch Fehler erstellten Zustände orthogonal zueinander sein müssen, beziehungsweise so aufgebaut, dass man durch Messung eines fehlerhaften Zustands auf den Code-Raum schließen kann. Andernfalls besteht die Gefahr, dass Fehler, die zu gleichem Messausgang führen, nicht unterschieden werden können und die Messung zu einer falschen Korrektur und dem Verlust von Information führt. \cite[Seite 449–451]{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
 
 Dieses Konzept wird durch das sogenannte Fehlerkorrekturkriterium mathematisch präzisiert. Für eine Menge von Fehlern \(\left\{E_{i}\right\}\) , die von einem Quantencode korrigiert werden sollen, gilt:
 \begin{equation}
@@ -227,10 +227,10 @@ für alle Zustände \(
 
 Aber aufgepasst: Wenn zwei unterschiedliche Fehler denselben Effekt auf den Code haben – also nicht unterscheidbar sind –, kann keine gezielte Korrektur erfolgen. Die Fähigkeit zur Unterscheidung solcher Fehlerzustände ist also die Voraussetzung für \textit{irgendeine} syndrombasierte Fehlerkorrektur. Nur dadurch können beispielsweise Look-Up-Tabellen oder automatische Fehlerkorrekturmechanismen sicher die \textit{einzig mögliche} Korrektur wählen.
 
-Das Prinzip hat übrigens eine Parallele zur Konstruktion von Stabilizer-Codes, bei denen unterschiedliche Fehler unterschiedliche Syndrommuster hinterlassen. Durch geschickte Wahl der Stabilisatorgruppe kann man erreichen, dass in einem Stabilizer-Code alle Fehler innerhalb der Toleranzgrenze eindeutige Syndrome haben. \cite{gottesmann Stabilizer Codes}\\
+Das Prinzip hat übrigens eine Parallele zur Konstruktion von Stabilizer-Codes, bei denen unterschiedliche Fehler unterschiedliche Syndrommuster hinterlassen. Durch geschickte Wahl der Stabilisatorgruppe kann man erreichen, dass in einem Stabilizer-Code alle Fehler innerhalb der Toleranzgrenze eindeutige Syndrome haben. \cite{gottesmann Stabilizer Codes}
 
 \subsection{Reversibilität}
-Ein entscheidendes Prinzip der Quanten-Fehlerkorrektur ist es, dass sämtliche eingesetzten Operationen im Fehlerkorrekturprozess umkehrbar sein müssen. In der Quantenmechanik entsprechen sämtliche möglichen zeitlichen Entwicklungen von isolierten Systemen unitären Transformationen – also Operationen, die völlig umkehrbar sind und keine Information vernichten. Diese Forderung gilt es auch für die Fehlerkorrektur durchzusetzen, da eine unwiderrufliche Fehlerkorrektur notwendigerweise den kodierten Quantenzustand zerstören und die Kohärenz der Quanteninformation verlieren würde. \cite[Seite 450-451]{nielsen_quantum_2010}\\
+Ein entscheidendes Prinzip der Quanten-Fehlerkorrektur ist es, dass sämtliche eingesetzten Operationen im Fehlerkorrekturprozess umkehrbar sein müssen. In der Quantenmechanik entsprechen sämtliche möglichen zeitlichen Entwicklungen von isolierten Systemen unitären Transformationen – also Operationen, die völlig umkehrbar sind und keine Information vernichten. Diese Forderung gilt es auch für die Fehlerkorrektur durchzusetzen, da eine unwiderrufliche Fehlerkorrektur notwendigerweise den kodierten Quantenzustand zerstören und die Kohärenz der Quanteninformation verlieren würde. \cite[Seite 450-451]{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
 
 Anders ausgedrückt: Wenn bei einer Kette von Ereignissen ein Fehler durch das Syndrom erkannt wurde, erfolgt ihre Korrektur durch eine bestimmte, unitäre Operation, welche uns den Fehlerzustand wieder ins Urteil des Codes zurückführt. Ist dieser Zustand erreicht, ist unser Fehler nicht nur korrigiert, sondern auch so, dass wir ihn\textbf{ kohärent rekonstruieren} können – und dies ist für weiteres Quantenrechnen und für fehlerresistente Quantenrechner notwendig.
 
@@ -243,20 +243,20 @@ Die Fehlererkennung und -korrektur insgesamt bildet somit einen Prozess, bei dem
 Darum unterscheidet sich die Quanten-Fehlerkorrektur deutlich z.B. von klassischen Korrekturverfahren, welche nicht unbedingt reversibel sein müssen. In der Quanteninformatik wiederum ist Reversibilität jedoch ein \textbf{fundamentales physikalisches Prinzip}, das sowohl theoretisch als auch bei der Praxis der Implementierung beachtet werden muss.
 
 \subsection{Fehlerlokalisierung}
-Ein weiteres wichtiges Konzept, das hinter der Quanten-Fehlerkorrektur steckt, ist das der Fehlerlokalisierung. Damit ist gemeint, dass ein aufgetretener Fehler am besten so gefunden und behandelt werden kann, dass er sowohl räumlich als auch logisch eng eingegrenzt ist, und dass seine Folgen sich nicht unkontrolliert über das gesamte System ausbreiten. Nur wenn ein Fehler örtlich identifiziert und korrigiert werden kann, ist eine skalierbare und robuste Fehlerkorrektur möglich. \cite[Seite 451-452]{nielsen_quantum_2010}\\
+Ein weiteres wichtiges Konzept, das hinter der Quanten-Fehlerkorrektur steckt, ist das der Fehlerlokalisierung. Damit ist gemeint, dass ein aufgetretener Fehler am besten so gefunden und behandelt werden kann, dass er sowohl räumlich als auch logisch eng eingegrenzt ist, und dass seine Folgen sich nicht unkontrolliert über das gesamte System ausbreiten. Nur wenn ein Fehler örtlich identifiziert und korrigiert werden kann, ist eine skalierbare und robuste Fehlerkorrektur möglich. \cite[Seite 451-452]{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
 
 Fehler können in einem Quantencomputer verschiedene Ursprünge haben – z. B. Dekohärenz, Wechselwirkung mit der Umwelt oder Fehler bei Gates. Nach dem Prinzip der Fehlerlokalisierung sollte jeder dieser Fehler anfänglich lediglich eine begrenzte Anzahl physikalischer Qubits beeinflussen. Diese Voraussetzung soll es ermöglichen, mittels sogenannter Syndrommessungen zu erkennen, wo ein Fehler aufgetreten ist, ohne dabei den globalen Quantenzustand zu zerstören.
 
-Dieses Konzept ist eng mit der Verwendung sogenannter lokaler Fehlerkorrektur-Codes wie z. B. topologischen Codes wie dem Surface Code verbunden. Bei diesen Codes sind die Qubits in einer regelmäßigen, zweidimensionalen Gitteranordnung angeordnet, bei der jeder Stabilizer-Operator nur Qubits betrachtet, die benachbart sind. Ein auftretender Fehler produziert ein lokales Syndrom, das sich aus den Nachbarn des fehlerhaften Qubits ergibt. Dadurch kann der Fehler nicht nur gefunden, sondern auch eingegrenzt und so gezielt korrigiert werden. \cite{Fowler et al}\\
+Dieses Konzept ist eng mit der Verwendung sogenannter lokaler Fehlerkorrektur-Codes wie z. B. topologischen Codes wie dem Surface Code verbunden. Bei diesen Codes sind die Qubits in einer regelmäßigen, zweidimensionalen Gitteranordnung angeordnet, bei der jeder Stabilizer-Operator nur Qubits betrachtet, die benachbart sind. Ein auftretender Fehler produziert ein lokales Syndrom, das sich aus den Nachbarn des fehlerhaften Qubits ergibt. Dadurch kann der Fehler nicht nur gefunden, sondern auch eingegrenzt und so gezielt korrigiert werden. \cite{Fowler et al}
 
 Insbesondere für große, skalierbare Quantenrechner ist die Fähigkeit zur Fehlerlokalisierung essentiell: Denn ohne diese müssten sämtliche Qubits miteinander verschränkt und abgefragt werden, was einen exponentiellen Kontroll- und Ressourcenaufwand bedeuten würde. Bei lokalisierbaren Fehlern hingegen können lineare oder sogar konstante Skalierungsstrategien verfolgt werden – wodurch fehlertolerante Quantencomputer in greifbare Nähe rücken.
 
 Zusammengefasst: Fehlerlokalisierung sorgt dafür, dass weder einzelne Fehler den gesamten Code-Raum beeinträchtigen, noch langfristige Korrekturprozesse destabilisieren. Sie ist damit eine notwendige Voraussetzung für praktische, modulare und skalierbare Quanten-Architekturen.
 
 \subsection{Fehlerschwelle (Threshhold Theorem)}
-Ein fundamentaler Mechanismus, um fehlertolerante Quantencomputer auch technisch umsetzen zu können, ist das Fehlerschwellenprinzip. Dieses besagt, dass sich Quanten-Fehlerkorrektur auf lange Sicht nur dann lohnt, wenn bei den einzelnen Qubits und Operationen die Wahrscheinlichkeit eines physikalischen Fehlers unter einem bestimmten Schwellenwert liegt, der als Fehlerschwelle bezeichnet wird. Wird die Schwelle unterschritten, so können beliebig exakte Rechnungen dadurch durchgeführt werden, dass man die Fehlerkorrektur immer wieder einsetzt – selbst wenn fortwährend physikalische Fehler passieren. \cite[Seite 454-456]{nielsen_quantum_2010}\\
+Ein fundamentaler Mechanismus, um fehlertolerante Quantencomputer auch technisch umsetzen zu können, ist das Fehlerschwellenprinzip. Dieses besagt, dass sich Quanten-Fehlerkorrektur auf lange Sicht nur dann lohnt, wenn bei den einzelnen Qubits und Operationen die Wahrscheinlichkeit eines physikalischen Fehlers unter einem bestimmten Schwellenwert liegt, der als Fehlerschwelle bezeichnet wird. Wird die Schwelle unterschritten, so können beliebig exakte Rechnungen dadurch durchgeführt werden, dass man die Fehlerkorrektur immer wieder einsetzt – selbst wenn fortwährend physikalische Fehler passieren. \cite[Seite 454-456]{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
 
-Dieses Prinzip wurde im Rahmen des Threshold Theorems auch rigoros bewiesen \cite{Aharonov und Ben-Or}\\. Das Theorem besagt, dass bei einer hinreichend kleinen Fehlerrate jedes Quanten-Computing mit beliebiger Genauigkeit durchgeführt werden kann – vorausgesetzt, es gibt genügend Redundanz und Korrekturschritte. Oder anders ausgedrückt: wenn Fehler selten genug und die Möglichkeit zur Fehlerkorrektur groß genug sind, dann können Fehler „überlebt“ werden.
+Dieses Prinzip wurde im Rahmen des Threshold Theorems auch rigoros bewiesen \cite{Aharonov und Ben-Or}. Das Theorem besagt, dass bei einer hinreichend kleinen Fehlerrate jedes Quanten-Computing mit beliebiger Genauigkeit durchgeführt werden kann – vorausgesetzt, es gibt genügend Redundanz und Korrekturschritte. Oder anders ausgedrückt: wenn Fehler selten genug und die Möglichkeit zur Fehlerkorrektur groß genug sind, dann können Fehler „überlebt“ werden.
 
 Der genaue Wert der Fehlerschwelle hängt vom gewählten Code, der Architektur und der Art der Fehler ab. Er beträgt typischerweise  Wert zwischen \(
     10^{-4}
@@ -269,57 +269,159 @@ Von zentraler Bedeutung ist das Fehlerschwellenprinzip für die Entwicklung von 
 
 \section{Praktische Realisierung der Fehlerkorrektur}\label{chap:QEC3}
 
-Dieses Kapitel konzentriert sich auf die praktische Umsetzung der Fehlerkorrektur (Quantum Error Correction, QEC).\\
+Dieses Kapitel konzentriert sich auf die praktische Umsetzung der Fehlerkorrektur.
 Zuerst betrachten wir einige grundlegende Code-Beispiele, die auf den in Kapitel 5.2 erläuterten Prinzipien aufbauen (Abschnitt 5.3.1). Anschließend wird der Fehlerkorrekturzyklus detailliert am Beispiel der vielversprechenden Oberflächencodes dargestellt (Abschnitt 5.3.2). Abschließend werden aktuelle Schwierigkeiten auf dem Weg zu fehlertoleranten Quantencomputern diskutiert und ein Ausblick auf zukünftige Entwicklungen gegeben (Abschnitt 5.3.3). Der Fokus liegt dabei auf Aspekten der praktischen Umsetzung sowie den damit verbundenen Problemen und Lösungen.
 
 \subsection{Anwendung von QEC-Prinzipien: Erste Code-Beispiele}
 
-Wie in Abschnitt 5.1 ausführlich dargestellt wurde, sind Qubits anfällig für diverse Fehler, und wie in Abschnitt 5.2 erläutert, erfordern die grundlegenden Prinzipien der Quantenmechanik (wie das No-Cloning-Theorem und das Messproblem) spezielle Strategien zur Fehlerkorrektur. Anstatt diese Prinzipien hier erneut zu vertiefen, konzentrieren wir uns darauf, wie sie in ersten, einfachen Fehlerkorrekturcodes praktisch angewendet werden. Diese Codes verdeutlichen die grundlegende Idee, logische Information durch Kodierung über mehrere physikalische Qubits und durch Syndrommessungen zu schützen.
+Wie in Abschnitt 1.1 ausführlich dargestellt wurde, sind Qubits anfällig für diverse
+Fehler, und wie in Abschnitt 1.2 erläutert, erfordern die grundlegenden Prinzipien der
+Quantenmechanik (wie das No-Cloning-Theorem und das Messproblem) spezielle
+Strategien zur Fehlerkorrektur. Anstatt diese Prinzipien hier erneut zu vertiefen,
+konzentrieren wir uns darauf, wie sie in ersten, einfachen Fehlerkorrekturcodes
+praktisch angewendet werden. Diese Codes verdeutlichen die grundlegende Idee,
+logische Information durch Kodierung über mehrere physikalische Qubits und durch
+Syndrommessungen zu schützen.
+Erste historische Codes demonstrieren diese Prinzipien exemplarisch. Insbesondere betrachten wir den Shor-Code (9-Qubit-Code) und den Steane-Code (7-Qubit-Code) als frühe Beispiele, sowie die einfachen 3-Qubit-Codes, um die Funktionsweise und mathematischen Grundlagen der QEC zu verdeutlichen.
+\cite[Seite 427-430]{nielsen_quantum_2010}\\
 
-Um zu zeigen, wie die in Abschnitt 5.2 besprochenen Grundideen von Redundanz und Syndrommessung in der Praxis funktionieren, können wir uns einfache Fehlerkorrekturcodes ansehen. Der Drei-Qubit-Bitflip-Code ist so ein Beispiel. Hier wird ein logisches Qubit, z.B. $\alpha|0\rangle_L + \beta|1\rangle_L$, als $\alpha|000\rangle+\beta|111\rangle$ auf drei physikalischen Qubits gespeichert. Tritt beispielsweise ein Bitflip-Fehler auf einem der drei physikalischen Qubits auf (z.B. wird aus $|000\rangle$ der Zustand $|100\rangle$), kann dieser mittels spezifischer Prüfoperationen – der Messung von Stabilisatoroperatoren wie $Z_1Z_2$ und $Z_2Z_3$ – erkannt werden. Diese Messungen, deren Grundprinzip in Abschnitt 5.2 erläutert wurde, verraten, ob benachbarte Qubits gleich sind oder nicht, ohne den gespeicherten logischen Zustand selbst preiszugeben. Das Ergebnis dieser Syndrommessung identifiziert das fehlerhafte Qubit, woraufhin ein entsprechender X-Operator zur Fehlerkorrektur angewendet werden kann.\cite[Seite 427-430]{nielsen_quantum_2010}\\
+\paragraph{3-Qubit-Wiederholungscode (Bit-Flip Code):}
+Als einfachstes Beispiel dient der 3-Qubit-Wiederholungscode, der gegen Bit-Flips schützt. Hier wird ein logisches Qubit auf drei physische Qubits verteilt, z.\,B.
+\[
+\lvert 0_L \rangle = \lvert 000 \rangle, \quad \lvert 1_L \rangle = \lvert 111 \rangle.
+\]
+Durch diese Redundanz kann ein einzelner Bitfehler erkannt werden, ohne den Logikzustand direkt zu messen. Man misst dazu sogenannte Paritätsoperatoren (Stabilisatoren), die nur verraten, ob unter den drei Qubits ein Ungleichgewicht vorliegt, aber nicht, was das logische Bit ist. Konkret prüft man, ob alle drei Qubits gleich sind (\(\lvert 000 \rangle\) oder \(\lvert 111 \rangle\)) oder ob eines abweicht. Diese Syndrommessungen liefern einen Fehlerindikator (z.\,B. welches Qubit anders ist), ohne die Superposition zu zerstören. Anschließend kann durch eine entsprechende Pauli-\(X\)-Operation der Fehler rückgängig gemacht werden.
 
-Analog dazu existiert der Drei-Qubit-Phasenflip-Code, der Phasenfehler korrigieren kann. Hierbei wird der Zustand beispielsweise als $\alpha\ket{+++}+\beta\ket{---}$ kodiert, wobei $\ket{+}=(\ket{0}+\ket{1})/\sqrt{2}$ und $\ket{-}=(\ket{0}-\ket{1})/\sqrt{2}$. Durch Anwendung von Hadamard-Transformationen vor und nach einem Kanal, der Phasenfehler verursacht, kann dieser Code Phasenfehler effektiv in Bitfehler umwandeln, die dann analog zum Bitflip-Code korrigiert werden können.\cite[Seite 430-431]{nielsen_quantum_2010}\\
+Der 3-Qubit-Code illustriert somit die Prinzipien der Fehlererkennung und -korrektur: Die Fehler sind durch orthogonale Syndrome unterscheidbar, und die Korrekturoperation (Bit-Flip auf dem identifizierten fehlerhaften Qubit) stellt den ursprünglichen Zustand wieder her (Reversibilität). Allerdings kann dieser einfache Code nur einen Bit-Flip-Fehler korrigieren und versagt, falls zwei oder mehr Qubits gleichzeitig flippen.
+\cite[Seite 430-431]{nielsen_quantum_2010}\\
 
-Diese einfachen Codes können jedoch jeweils nur einen spezifischen Fehlertyp (entweder Bitflip oder Phasenflip) auf einem einzelnen Qubit korrigieren. Um allgemeine Fehler, d.h. beliebige Kombinationen von Bit- und Phasenflips, auf mehreren Qubits zu korrigieren, sind komplexere Codes notwendig. Beispiele hierfür sind der von Peter Shor entwickelte Shor-Code, der ein logisches Qubit in neun physikalischen Qubits kodiert und einen beliebigen einzelnen Fehler korrigieren kann, oder die bereits erwähnten Oberflächencodes, die aufgrund ihrer praktischen Vorteile im nächsten Abschnitt detaillierter behandelt werden. Diese komplexeren Codes bauen auf den gleichen Grundprinzipien auf, nutzen aber weiter entwickelte Kodierungs- und Syndrommessverfahren.\cite[Seite 432ff]{nielsen_quantum_2010}\\
-Die Notwendigkeit spezifischer Quantenfehlerkorrekturverfahren und die Komplexität ihrer praktischen Umsetzung ergeben sich somit direkt aus den in Kapiteln ~\ref{chap:QEC1} und ~\ref{chap:QEC2} diskutierten quantenmechanischen Gegebenheiten. Die folgenden Abschnitte vertiefen die Realisierung anhand leistungsfähigerer Code-Familien
+\paragraph{3-Qubit-Phasenwiederholungscode (Phase-Flip Code):}
+Analog dazu existiert der Drei-Qubit-Phasenflip-Code, der Phasenfehler korrigieren kann. Hierbei wird der Zustand beispielsweise als
+\[
+\alpha \lvert{+++}\rangle + \beta \lvert{---}\rangle
+\]
+kodiert, wobei
+\[
+\lvert + \rangle = \frac{1}{\sqrt{2}}(\lvert 0 \rangle + \lvert 1 \rangle), \quad
+\lvert - \rangle = \frac{1}{\sqrt{2}}(\lvert 0 \rangle - \lvert 1 \rangle).
+\]
+Durch Anwendung von Hadamard-Transformationen vor und nach einem Kanal, der Phasenfehler verursacht, kann dieser Code Phasenfehler effektiv in Bitfehler umwandeln, die dann analog zum Bitflip-Code korrigiert werden können.
+\cite[Seite 430-431]{nielsen_quantum_2010}\\
 
+\paragraph{Shor-Code (9-Qubit-Code):}
 
-\subsection{Der Fehlerkorrekturzyklus mit am Beispiel von Oberflächencodes}
+Peter Shor entwickelte 1995 den ersten Quantenfehlerkorrekturcode, der beliebige Ein-Qubit-Fehler – Bit-Flip (\(X\)), Phasen-Flip (\(Z\)) oder eine Kombination daraus (\(Y = iXZ\)) – korrigieren kann. Der Code kombiniert zwei einfache Schutzmechanismen: einen gegen Bitflips und einen gegen Phasenflips.
 
-Oberflächencodes (Surface Codes) gelten aktuell als einer der besten Ansätze für die praktische Quantenfehlerkorrektur. Sie sind deshalb so interessant, weil sie relativ hohe Fehlerraten erlauben (wie durch das in \ref{chap:QEC2} erläuterte Threshold-Theorem vorhergesagt) und gut zu vielen gängigen Qubit-Bauweisen passen.\\
+Ein logisches Qubit wird dabei auf neun physikalische Qubits verteilt. Zuerst wird der Zustand dreifach wiederholt, um Bitfehler erkennen zu können. Danach wird jede dieser drei Gruppen so angepasst, dass auch Phasenfehler erkennbar werden. Dadurch entsteht ein codierter Zustand wie:
+\[
+\lvert 0_L \rangle = \frac{1}{2\sqrt{2}} \left( ( \lvert 000 \rangle + \lvert 111 \rangle )^{\otimes 3} \right),
+\quad
+\lvert 1_L \rangle = \frac{1}{2\sqrt{2}} \left( ( \lvert 000 \rangle - \lvert 111 \rangle )^{\otimes 3} \right).
+\]
 
-\textbf{Einführung in Oberflächencodes (Surface Codes)}
+Der Code nutzt sogenannte Stabilizer – das sind spezielle Messungen, die anzeigen, ob und wo ein Fehler passiert ist, ohne die gespeicherte Information zu zerstören. So kann man z.\,B. erkennen, auf welchem der neun Qubits ein Fehler aufgetreten ist, und ihn gezielt mit einem Pauli-Operator (\(X\) oder \(Z\)) korrigieren. Da \(Y\)-Fehler eine Kombination aus \(X\) und \(Z\) sind, genügt es, beide einzeln zu korrigieren.
 
+Der Shor-Code hat die Parameter \([[9,1,3]]\): Er speichert ein logisches Qubit in neun physischen und hat eine Distanz von 3. Das bedeutet: Solange nicht mehr als zwei Qubits gleichzeitig fehlerhaft sind, kann man den ursprünglichen Zustand eindeutig erkennen und im Fall eines einzelnen Fehlers korrekt wiederherstellen.
 
+Auch wenn der Code in der Praxis aufwendig ist, war er ein Meilenstein: Er zeigte erstmals, dass sich Quanteninformation durch geschickte Kodierung und Messung zuverlässig schützen lässt.\\
 
+\paragraph{Steane-Code (7-Qubit-Code):}
+
+Andrew Steane entwickelte einen effizienteren Quantenfehlerkorrekturcode, der wie der Shor-Code beliebige Ein-Qubit-Fehler korrigieren kann – jedoch mit nur 7 physikalischen Qubits. Der Steane-Code ist ein Beispiel eines CSS-Codes (Calderbank-Shor-Steane), der zwei klassische Codes kombiniert: einen gegen Bitfehler (\(X\)) und einen gegen Phasenfehler (\(Z\)).
+
+Der Steane-Code ist dem Shor-Code in der Fehlerkorrektur gleichwertig, benötigt aber weniger Qubits. Außerdem lassen sich viele logische Operationen direkt auf den einzelnen Qubits ausführen, was die Umsetzung fehlertoleranter Quantenschaltungen erleichtert. Er ist damit ein kompaktes und praxisnahes Beispiel für die Prinzipien der Quantenfehlerkorrektur.\\
+
+\paragraph{Ausblick auf fortgeschrittene Codes:}
+
+Die bisher vorgestellten Codes – wie der Drei-Qubit-Code, der Shor-Code und der Steane-Code – zeigen, wie sich einzelne Bit- oder Phasenfehler gezielt erkennen und korrigieren lassen. Während sie bereits vollständige Quantenfehlerkorrektur auf einem logischen Qubit ermöglichen, stoßen sie bei wachsender Qubit-Anzahl und praktischer Realisierung an ihre Grenzen.
+
+Für den Aufbau skalierbarer Quantencomputer werden daher weiterentwickelte Codefamilien benötigt, die neben der Korrektur beliebiger Fehler auch architektonische Vorteile bieten – etwa durch lokale Wechselwirkungen und effiziente Layouts. Ein prominentes Beispiel dafür sind die Oberflächencodes, die im folgenden Abschnitt behandelt werden. Sie beruhen auf denselben Grundprinzipien, setzen jedoch auf topologische Strukturen und fehlertolerante Operationen im Gitter.
+
+Die Notwendigkeit solcher Verfahren ergibt sich unmittelbar aus den quantenmechanischen Eigenschaften, die in den Abschnitten 1.1 und 1.2 beschrieben wurden – insbesondere der Fehleranfälligkeit von Qubits und den Einschränkungen bei direkten Messungen.
+
+\subsection{Der Fehlerkorrekturzyklus am Beispiel von Oberflächencodes}
+
+Der Oberflächencode basiert auf einem zweidimensionalen Gitter aus physikalischen Qubits, typischerweise in Form eines rechteckigen Flächenstücks (\emph{Patch}). Dabei unterscheidet man zwei Arten von Qubits: \emph{Daten-Qubits}, welche die eigentliche logische Quanteninformation tragen, und \emph{Mess-Qubits} (auch \emph{Ancilla-Qubits} genannt), die zur Fehlererkennung verwendet werden.
+
+Man kann sich die Struktur wie ein Schachbrett vorstellen: Die Daten-Qubits liegen auf Kanten des Gitters, während die Mess-Qubits zwischen ihnen positioniert sind. Diese Mess-Qubits überwachen jeweils vier benachbarte Daten-Qubits. Dabei gibt es zwei Typen von Stabilizer-Operatoren:
 \begin{itemize}
-    \item \textbf{Der QEC-Zyklus -- ein Überblick:} Kodieren $\rightarrow$ Fehler passieren $\rightarrow$ Fehler finden $\rightarrow$ Fehler deute $\rightarrow$ Fehler beheben.
-    \item \textbf{1. Logische Qubits kodieren:}
-    \item ...
-    \item \textbf{2. Fehler aufspüren (Syndrommessung):}
-    \item ...
-    \item \textbf{3. Fehler interpretieren (Dekodierung):}
-    \item ...
-    \item \textbf{4. Fehler beheben (Korrekturoperation):}
-    \item ...
+  \item \textbf{\(Z\)-Stabilizer} (auch \emph{Plaquette-Operatoren}\footnote{Plaquettes bezeichnen kleine quadratische Flächen im Gitter. Ein \(Z\)-Stabilizer wirkt auf die vier Daten-Qubits an den Ecken einer solchen Plaquette und erkennt Bitfehler.}) überprüfen die Parität in Bezug auf Bit-Flip-Fehler.
+  \item \textbf{\(X\)-Stabilizer} (auch \emph{Stern-Operatoren}\footnote{Stern-Operatoren wirken auf die vier Daten-Qubits, die an einem Gitterpunkt zusammenlaufen, und erkennen Phasenfehler.}) erkennen Phasenfehler.
 \end{itemize}
 
-\subsection{Aktuelle Hürden und was die Zukunft bringt}
+\paragraph{Syndrommessung und Fehlererkennung:}
+
+Die Fehlerkorrektur erfolgt zyklisch. In jedem Zyklus werden alle \(X\)- und \(Z\)-Stabilizer gemessen. Dazu wird jedes Mess-Qubit mit den vier zugehörigen Daten-Qubits durch eine Reihe kontrollierter Gatter verschränkt, z.\,B. mit CNOT-Operationen. Nach dieser Verschaltung enthält das Mess-Qubit die Paritätsinformation: Bei \(Z\)-Stabilizern etwa, ob eine gerade oder ungerade Anzahl von \( |1\rangle \)-Zuständen in der Gruppe vorliegt. Anschließend wird das Mess-Qubit gemessen – in der \(Z\)-Basis für \(Z\)-Stabilizer und in der \(X\)-Basis für \(X\)-Stabilizer.
+
+Das Ergebnis der Messung – 0 (Eigenwert \(+1\)) oder 1 (Eigenwert \(-1\)) – wird als \emph{Syndrom-Bit} bezeichnet. Es zeigt an, ob sich seit der letzten Messung ein Fehler ereignet hat. Wichtig ist: Diese Messungen beeinflussen den logischen Zustand nicht. Sie liefern nur Informationen über potenzielle Fehler, ohne die kodierte Quanteninformation direkt zu zerstören.
+
+\paragraph{Decodierung und Fehlerlokalisierung:}
+
+Die Menge aller Syndrom-Bits ergibt ein \emph{Syndrommuster}, aus dem auf die wahrscheinlichsten Fehler geschlossen werden kann. Ein einzelner Bitfehler an einem Daten-Qubit führt typischerweise dazu, dass zwei benachbarte \(Z\)-Stabilizer von 0 auf 1 wechseln. Analog dazu führt ein Phasenfehler zu Abweichungen bei zwei benachbarten \(X\)-Stabilizern.
+
+Diese lokalen Muster bilden die Grundlage für die sogenannte \emph{Decodierung}: Ein Algorithmus analysiert die Verteilung der Fehlerhinweise und rekonstruiert den wahrscheinlichsten Fehlerpfad. Häufig wird dazu ein Graph aufgebaut, in dem Syndromabweichungen als Knoten erscheinen. Der Decoder sucht dann eine möglichst kurze Verbindung dieser Knoten – z.\,B. mithilfe eines Minimum-Weight-Perfect-Matching-Algorithmus. Auch modernere Verfahren wie Union-Find oder maschinelles Lernen kommen zum Einsatz.
+
+Da auch Messungen fehlerhaft sein können, betrachtet man oft mehrere Zyklen hintereinander und baut einen 3D-Graphen mit der Zeitachse als dritter Dimension. Inkonstistente Syndrome über die Zeit hinweg deuten dann auf Messfehler hin.
+
+\paragraph{Korrekturoperation:}
+
+Nach der Decodierung steht eine Hypothese über die Art und Position der Fehler zur Verfügung. Man könnte nun direkt eine Pauli-Korrekturoperation auf das betroffene Qubit anwenden – etwa ein weiteres \(X\), um einen Bitflip rückgängig zu machen.
+
+In der Praxis verwendet man häufig stattdessen ein sogenanntes \emph{Pauli-Frame}\footnote{Ein Pauli-Frame ist ein rein klassisches Register, in dem alle erkannten Fehler notiert werden. Die tatsächliche physische Korrektur wird dadurch vermieden und stattdessen bei der Interpretation der Messdaten berücksichtigt. So spart man potenziell fehleranfällige Operationen.}. Dabei wird die Fehlerinformation nicht physisch korrigiert, sondern nur logisch „mitgeführt“ und am Ende beim Auslesen berücksichtigt. Das spart Ressourcen und reduziert zusätzliche Fehlerquellen.
+
+Nach Abschluss eines Fehlerkorrekturzyklus beginnt sofort der nächste – denn in einem realen Quantencomputer können ständig neue Fehler auftreten. Die kontinuierliche Wiederholung des Zyklus ermöglicht daher langfristig stabile und fehlertolerante Quanteninformation.\\
+
+\paragraph{Einfacher Überblick: So funktioniert ein Fehlerkorrekturzyklus im Oberflächencode}Damit ein Quantencomputer trotz fehleranfälliger Qubits zuverlässig funktioniert, wird in kurzen Abständen automatisch überprüft, ob Fehler aufgetreten sind. Der Ablauf sieht dabei so aus:
+
+\begin{enumerate}
+  \item \textbf{Start:}  
+  Alle Qubits werden in bekannte Anfangszustände gebracht. Die sogenannten Mess-Qubits sind bereit, nach Fehlern zu suchen.
+
+  \item \textbf{Fehlersuche:}  
+  Die Mess-Qubits „fragen“ ihre Nachbarn (die Daten-Qubits), ob alles in Ordnung ist. Aus ihren Antworten entsteht ein Muster aus Nullen und Einsen – das sogenannte \emph{Syndrom}.
+
+  \item \textbf{Auswertung:}  
+  Ein klassischer Computer schaut sich das Syndrom an und erkennt daraus, wo wahrscheinlich ein Fehler passiert ist.
+
+  \item \textbf{Reaktion:}  
+  Der Computer entscheidet, ob und wie ein Fehler korrigiert werden muss. Oft merkt man sich den Fehler einfach und berücksichtigt ihn später automatisch.
+
+  \item \textbf{Neustart:}  
+  Der nächste Zyklus beginnt sofort. So werden ständig neue Fehler früh erkannt – auch während der Quantencomputer rechnet.
+\end{enumerate}
+
+\subsection{Aktuelle H\"urden und was die Zukunft bringt}
+
+Trotz erster erfolgreicher Implementierungen steht die Quantenfehlerkorrektur (QEC) noch am Anfang ihrer praktischen Nutzbarkeit. Der Weg zu einem fehlertoleranten Quantencomputer ist gepflastert mit technischen und konzeptionellen Herausforderungen. In diesem Abschnitt beleuchten wir die zentralen H\"urden und geben einen Ausblick auf vielversprechende Entwicklungen.\\
+
+\paragraph{Qubit-Qualit\"at und Fehlerschwellen} 
+Ein zentrales Problem ist die Qualit\"at der physikalischen Qubits selbst. Quantenfehlerkorrektur wirkt nur, wenn die zugrunde liegenden Fehlerraten hinreichend niedrig sind. Theoretisch existiert eine Fehlerschwelle, unterhalb derer Redundanz die Zuverl\"assigkeit erh\"oht\footnote{Siehe das Threshold-Theorem in Abschnitt~\ref{chap:QEC2}}. Praktisch liegt diese Schwelle typischerweise bei Fehlerraten $\lesssim 10^{-3}$. Viele Architekturen, wie supraleitende Qubits oder Ionenfallen, erreichen in Labordemonstrationen bereits zweiqubit-Gates mit Fehlerraten im niedrigen Promillebereich, was vielversprechend ist. Doch um lange Quantenalgorithmen (z.B. Faktorisierung mit Shor bei $n=2048$) fehlerfrei auszuf\"uhren, m\"ussen logische Qubits \emph{stundenlang} koh\"arent bleiben -- ein Ziel, das nur mit sehr stabilen physikalischen Qubits erreichbar ist. Korrelierte Fehler, Leakage und seltene St\"orereignisse (z.B. kosmische Teilchen) stellen dabei zus\"atzliche Risiken dar.
+
+\paragraph{Massiver Qubit-Overhead}
+Fehlerkorrektur ist teuer: Selbst einfache Codes wie der Oberfl\"achencode ben\"otigen $O(d^2)$ physikalische Qubits f\"ur ein logisches Qubit mit Distanz $d$. Realistische Anwendungen erfordern daher \emph{Millionen} physikalischer Qubits. Derzeitige Systeme bewegen sich im Bereich von wenigen Hundert bis Tausend Qubits -- die Skalenl\"ucke ist also noch immens. Jeder weitere Qubit bringt nicht nur Nutzen, sondern auch neue Herausforderungen: Verkabelung, Kalibrierung und thermische Isolation m\"ussen f\"ur jedes Qubit mitgedacht werden.
+
+\paragraph{Technische Limitierungen bei Kryogenik und Auslese}
+Besonders supraleitende Systeme m\"ussen bei 10--20\,mK betrieben werden. Hier stoßen Forscher schnell an Grenzen: Die K\"uhlung gro\ss er Quantenprozessoren erfordert aufw\"andige Verd\"unnungsk\"uhler, und die Zahl der nach innen f\"uhrenden Kabel wird schnell zum Flaschenhals. Auch die Kontrolle \"uber klassische Elektronik ist herausfordernd: Steuereinheiten befinden sich oft au\ss erhalb des K\"uhlsystems und m\"ussen mit tausenden Kan\"alen kommunizieren -- ein thermisches und technisches Problem. Ans\"atze wie Cryo-CMOS (Steuerelektronik bei tiefen Temperaturen) werden intensiv erforscht.
+
+\paragraph{Dekodierung: Komplex und latenzkritisch}
+Selbst wenn alle Syndromdaten vorliegen, ist die Decodierung (Fehlerdiagnose und Korrekturvorschlag) ein nichttriviales Problem. Bei QEC-Zyklen im Mikrosekundenbereich und Millionen von Qubits entstehen Datenraten im Bereich hunderter Terabyte pro Sekunde. Diese m\"ussen in Echtzeit verarbeitet werden, idealerweise mit Latenzen $<1\,\mu$s. Daher ben\"otigt man spezialisierte Hardware-Decoder\footnote{Siehe z.B. Riverlane's Decodierchips oder FPGA-basierte Systeme.} und ausgekl\"ugelte Algorithmen wie Minimum Weight Matching oder Machine-Learning-gest\"utzte Ans\"atze.
+
+\paragraph{Nicht-ideale Fehler und Modellabweichungen}
+Die meisten QEC-Codes beruhen auf idealisierten Fehlermodellen (z.B. unkorrelierte, Pauli-artige Fehler). In realen Systemen treten jedoch korrelierte Fehler, Kaskadeneffekte und Leakage auf, die nicht leicht mit bestehenden Codes zu behandeln sind. Solche Abweichungen senken die effektive Fehlerschwelle und machen eine robuste Fehlerkorrektur schwieriger.\\
+
+\paragraph{Ausblick und neue Ans\"atze}
+Die Forschung reagiert mit vielf\"altigen Strategien:
 \begin{itemize}
-    \item \textbf{Herausforderungen \& Ausblick -- ein Überblick:} Großer Qubit-Bedarf, Zeitaufwand, interne Fehlertoleranz des QEC-Prozesses, Dekoder-Performance, reale Fehlermodelle und die Suche nach besseren Lösungen.
-    \item \textbf{Hürde: Massiver Qubit-Overhead (z.B. $O(d^2)$)}
-    \item ...
-    \item \textbf{Hürde: Zeitlicher Overhead und Latenz der Zyklen}
-    \item ...
-    \item \textbf{Hürde: Fehlertoleranz des Fehlerkorrekturprozesses selbst}
-    \item ...
-    \item \textbf{Hürde: Komplexität und Geschwindigkeit der Dekoder}
-    \item ...
-    \item \textbf{Hürde: Korrelierte Fehler und Abweichungen von idealen Fehlermodellen}
-    \item ...
-    \item \textbf{Ausblick: Entwicklung effizienterer Codes, Hardware-Verbesserungen, Co-Design, Fortschritte bei fehlertoleranten Gattern}
-    \item ...
+    \item \textbf{Hardwareverbesserung:} Längere Kohärenzzeiten, stabilere Qubits und besseres Materialdesign sind zentrale Entwicklungsziele.
+    \item \textbf{Topologische Qubits:} Systeme wie Majorana-Moden versprechen inhärente Fehlerresistenz, sind aber noch experimentell.
+    \item \textbf{Modulare Architekturen:} Mehrere kleine Qubit-Module könnten vernetzt werden, um skalierbare Systeme aufzubauen.
+    \item \textbf{Neue Codes:} Quantum-LDPC-Codes, Floquet-Codes oder Color Codes bieten bessere Raten und Flexibilität, sind aber schwerer umzusetzen.
+    \item \textbf{Ko-Design:} Eine enge Verzahnung von Hardware, Software und Fehlermodellen ist notwendig, um das Gesamtsystem zu optimieren.
 \end{itemize}
+
+\paragraph{Fazit} 
+Die Quantenfehlerkorrektur hat sich in den letzten Jahren von einem theoretischen Konzept zu einem praktischen Forschungsfeld mit greifbaren Fortschritten entwickelt. Dennoch sind viele zentrale Herausforderungen ungel\"ost. Die kommenden Jahre werden entscheidend sein, um aus den heutigen Demonstratoren robuste, fehlertolerante Quantencomputer zu formen. Dabei ist klar: Ohne QEC ist skalierbares Quantencomputing unm\"oglich -- mit ihr aber wird es eines Tages m\"oglich sein, Probleme zu l\"osen, die klassisch unzug\"anglich bleiben.
+
 
 \section{Praxisbeispiel: Ein einfacher Quantenfehlerkorrekturcode}
 \begin{itemize}
