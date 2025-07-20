@@ -88,9 +88,22 @@ Personalisierte Medizin & Mustererkennung in hochdimensionalen Daten & QML, QNN 
 
 
 \section{Top Technologien \& Algorithmen}
-Die in diesem Abschnitt vorgestellten technologischen Frameworks orientieren sich an den in Kapitel \ref{med:applicationFields} beschriebenen Anwendungsfeldern. Ziel ist es, die eingesetzten Softwarestacks und Entwicklungstools entlang ihrer praktischen Einsatzbereiche in der Wirkstoffentwicklung, der Proteinstrukturvorhersage und der personalisierten Medizin systematisch darzustellen. Auf diese Weise wird deutlich, wie spezifische Quantenalgorithmen in den jeweiligen medizinischen Kontexten technologisch implementiert werden.\\
+
+\subsection{Variational Quantum Eigensolver (VQE)}
+Der Variational Quantum Eigensolver (VQE) ist ein Algorithmus zur Lösung quantenchemischer Probleme und findet zunehmend Anwendung im medizinischen Kontext. In der quantenchemischen Simulation kann VQE genutzt werden, um Molekülenergien, Bindungsaffinitäten und Reaktionspfade zu berechnen. Diese Größen sind entscheidend für die Beurteilung chemischer Stabilität und Reaktivität und spielen eine wichtige Rolle bei der frühen Identifikation potenzieller Wirkstoffe (Vgl. \cite{palFuturePotentialQuantum2024}; \cite{cao_quantum_2019}). Darüber hinaus wird VQE auch in der Strukturbiologie erforscht. Er kann eingesetzt werden, um die Energie von Proteinbausteinen oder Ligand-Protein-Komplexen abzuschätzen, was dazu beiträgt, molekulare Wechselwirkungen besser zu verstehen (\cite{marchettiQuantumComputingAlgorithms2022}). Studien deuten zudem darauf hin, dass VQE künftig auch für die Simulation individueller Stoffwechselprozesse genutzt werden könnte. Dies betrifft beispielsweise Anwendungen in der personalisierten Medizin, etwa zur Vorhersage individueller Therapieerfolge oder bei der Entwicklung neuer Kontrastmittel für bildgebende Verfahren (\cite{palFuturePotentialQuantum2024}).
+
+\subsection{Quantum Phase Estimation (QPE)}
+
+\subsection{Quantum Approximate Optimization Algorithm (QAOA)}
+
+\subsection{Hybride Quantenklassische Algorithmen}
+
+\subsection{Quantum Machine Learning (QML)}
+
+\subsection{Quantum Neural Networks (QNN)}
 
 \subsection{Technologische Frameworks}
+Die in diesem Abschnitt vorgestellten technologischen Frameworks orientieren sich an den in Kapitel \ref{med:applicationFields} beschriebenen Anwendungsfeldern. Ziel ist es, die eingesetzten Softwarestacks und Entwicklungstools entlang ihrer praktischen Einsatzbereiche in der Wirkstoffentwicklung, der Proteinstrukturvorhersage und der personalisierten Medizin systematisch darzustellen. Auf diese Weise wird deutlich, wie spezifische Quantenalgorithmen in den jeweiligen medizinischen Kontexten technologisch implementiert werden.\\
 
 \subsubsection*{Wirkstoffentwicklung}
 Die praktische Umsetzung der Quantenalgorithmen für medizinische Anwendungen erfordert leistungsfähige Software"=Stacks, die Quanten-Hardware und klassische Algorithmen verbinden. Für die Wirkstoffentwicklung werden vor allem Frameworks genutzt, die komplexe \textit{Molekül"=Hamilton"=Operatoren} bearbeiten und Verfahren wie VQE oder QPE effizient implementieren. Bei den Operatoren handelt es sich um mathematische Ausdrücke, die alle relevanten physikalischen Eigenschaften eines Moleküls quantenmechanisch beschreiben. Der Hamilton"=Operator bildet somit die Grundlage für die Simulation von Molekülzuständen, da er die Energieverteilung eines Systems vollständig bestimmt (Vgl. \cite{mcardle}).\\
@@ -101,7 +114,7 @@ Microsofts Q\# Quantum Development Kit (QDK) enthält ebenfalls eine Chemie-Bibl
 
 Amazon Braket ist ein vollständig verwalteter Cloud-Dienst von AWS, der es Forscherinnen und Forschern ermöglicht, Quantenalgorithmen zu entwerfen, auf verschiedenen Simulatoren zu testen und auf realen Quantencomputern auszuführen. Damit bietet Braket eine flexible Entwicklungsumgebung für hybride quantenklassische Workflows in der Arzneimittelforschung. Besonders relevant für medizinische Anwendungen ist der Zugriff auf unterschiedliche Hardwareplattformen innerhalb eines einheitlichen SDK. Braket unterstützt unter anderem gatterbasierte Quantencomputer von IonQ, IQM und Rigetti sowie einen Analog Hamiltonian Simulator (AHS) von QuEra. Letzterer erlaubt die direkte Simulation physikalischer Systeme auf Basis kontinuierlicher Hamilton-Operatoren, was für bestimmte molekulare Strukturberechnungen von Vorteil sein kann. (Vgl. \cite{amazonbraket})\\
 
-Dieser flexible Ansatz wird beispielsweise im AWS-Toolkit QCEDD genutzt, das eingebaute Beispiele für Aufgaben wie molekulares Docking und Faltungsprobleme in der Wirkstoffforschung enthält. (Vgl. \cite{amazonscience})\\ %evtl. git repo zitieren
+Dieser flexible Ansatz wird beispielsweise im AWS"=Toolkit QCEDD genutzt, das eingebaute Beispiele für Aufgaben wie molekulares Docking und Faltungsprobleme in der Wirkstoffforschung enthält. (Vgl. \cite{amazonscience})\\ %evtl. git repo zitieren
 
 %besonders beim virtuellen screening relevant 
 

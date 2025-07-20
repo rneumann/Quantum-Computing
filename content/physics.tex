@@ -388,17 +388,15 @@ Zwei-Niveau-Systeme sind das einfachste, aber zugleich zentrale Modell der Quant
 Diese Konzepte sind nicht nur grundlegend für das Verständnis der Quantenmechanik, sondern auch zentrale Bausteine für die Beschreibung und Entwicklung von Quantenalgorithmen und Quantenhardware.
 
 \section{Physikalische Realisierung von Qubits }
+\label{sec: Physikalische Realisierung}
 \subsection{Anforderungen an physikalische Systeme }
+\label{subsec: Anforderungen (Allgemein, Divincenzo-Kriterien, Dekohärenz)}
 \subsubsection{Allgemeine Voraussetzungen}
 
 \textbf{Robuste Darstellung von Quanteninformation:}
 
 Damit ein physikalisches System für die Realisierung von Qubits infrage kommt, müssen verschiedene Voraussetzungen erfüllt sein. Im ersten Teil dieses Kapitels werden diese Voraussetzungen erläutert, während der zweite Teil eine Einführung in geeignete physikalische Systeme gibt.\\
-
  
-Die Grundlage der Quanteninformationsverarbeitung ist die Transformation von Quantenzuständen. Die einfachsten Bausteine hierfür sind zwei-Niveau-Systeme, die als Qubits fungieren. Doch auch komplexere Systeme wie beispielsweise ein Teilchen mit Spin-3/2, das vier unterscheidbare Zustände besitzt ($|m = +3/2\rangle, |m = +1/2\rangle, |m = -1/2\rangle, |m = -3/2\rangle$) 
-können zur Darstellung von mehreren Qubits verwendet werden, 
-indem man zwei der vier möglichen Zustände jeweils einem Qubit zuordnet.\\
 
 Für praktische Quantenberechnungen ist es entscheidend, dass das System nur eine \textbf{endliche Menge zugänglicher Zustände} besitzt. Systeme mit einem kontinuierlichen Zustandsraum, wie etwa die Position eines Teilchens auf einer Linie, sind ungeeignet. \\
 Auch wenn solche Systeme in der Theorie unendlich viele Zustände unterscheiden könnten (und damit unbegrenzt Information speichern würden), ist dies in der Praxis unrealistisch. Denn reale physikalische Systeme sind störanfällig, da das sogenannte Rauschen die Zahl unterscheidbarer Zustände und die damit zusammenhängende Informationskapazität begrenzt. \\
@@ -415,17 +413,26 @@ Im Vergleich dazu beschreibt die \textbf{$T_1$-}Zeit die Lebensdauer des angereg
 Die Dauer sinnvoller Quantenberechnungen wird vor allem durch das Verhältnis von Kohärenzzeit (\(\tau_Q\)) zu Operationszeit (\(\tau_{op}\)) bestimmt. Dieses Verhältnis 
 \(\lambda = \frac{\tau_{op}}{\tau_Q}\) zeigt, wie viele Rechenschritte möglich sind, bevor Dekohärenz einsetzt. Sowohl \(\tau_Q\) als auch \(\tau_{op}\) hängen stark von der Kopplung des Systems zur Umgebung ab, wodurch \(\lambda\) je nach physikalischem System stark variieren kann. \\
 
-Eine Übersicht der verschiedenen Kohärenzzeiten für unterschiedliche physikalische Systeme wird in Abb. XX aufgezeigt. 
+Eine Übersicht der verschiedenen Kohärenzzeiten für unterschiedliche physikalische Systeme wird in Tabelle 1.1 aufgezeigt. Grobe Schätzwerte für Dekohärenzzeiten \(\tau_Q\), Operationszeiten \(\tau_{op}\) und die maximale Anzahl möglicher Operationen  $n_{\text{op}} = \frac{T_Q}{T_{\text{op}}}$  für verschiedene physikalische Realisierungen von Qubits. Trotz der Vielzahl an Einträgen basieren sie auf nur drei grundlegenden Qubit-Typen: Spin, Ladung und Photon. 
 
-\textbf{\textit{----eigentlich soll Abbildung hier sein----}}
 
-\begin{figure}
+\begin{table}[h]
     \centering
-    \includegraphics[width=0.5\linewidth]{images/physics/uebersicht_physikalische_realisierung.png}
-    \caption{Enter Caption}
-    \label{fig:enter-label}
-\end{figure}
- 
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \textbf{System} & $\tau_Q$ & $\tau_{op}$ & $n_{op} = \lambda^{-1}$ \\
+        \hline
+        Kernspin& $10^{-2} - 10^8$ & $10^{-3} - 10^{-6}$ & $10^5 - 10^{14}$ \\
+        Elektronenspin& $10^{-3}$ & $10^{-7}$ & $10^4$ \\
+        Ionenfalle& $10^{-1}$ & $10^{-14}$ & $10^{13}$ \\
+        Elektron - Galliumarsenid (GaAs)& $10^{-10}$ & $10^{-13}$ & $10^3$ \\
+        Optischer Resonator& $10^{-5}$ & $10^{-4}$ & $10^4$ \\
+        Mikrowellenresonator& $10^{0}$ & $10^{-4}$ & $10^4$ \\
+        \hline
+    \end{tabular}
+    \caption{Grobe Schätzwerte für Dekohärenzzeiten}
+    \label{tab:quantum_systems}
+\end{table}
 
  Eine weitere Voraussetzung für die physikalische Realisierung von Qubits ist die Möglichkeit, eine Vielzahl kontrollierter Quantenoperationen durchzuführen, die jede beliebige quantenlogische Berechnung ermöglichen (Universalität).\\
  
@@ -434,9 +441,7 @@ Eine Übersicht der verschiedenen Kohärenzzeiten für unterschiedliche physikal
 Die große Herausforderung dabei ist, dass diese Voraussetzungen häufig nur teilweise erfüllt werden können, da sie gegensätzlich sind: ein Quantencomputer muss gut isoliert sein, um die Quanteneigenschaften beizubehalten; aber gleichzeitig müssen die Qubits so zugänglich sein, dass man sie für eine Computation manipulieren kann und die Ergebnisse messen kann. \\
 Als Beispiel kann ein Münzwurf betrachtet werden: Eine Münze repräsentiert während eines Münzwurfes ein gutes Bit, weil sie zwei States hat (Kopf und Zahl), aber ein schlechtes Qubit, weil sie nicht lange im Status der Superposition bleibt. Ein einzelner Nuklear-Spin hingegen wäre ein sehr gutes Qubit, weil eine Superposition lange beibehalten werden kann, jedoch ist die Messbarkeit sehr schwierig, was es wiederum zu einem schlechten Quantencomputer macht.  \\
 
-%% TODO - Rainer - irgendwas stimmt mit der Quelle nicht....
-\cite{nielsen_quantum_2010}
-
+\cite{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
 
 \subsubsection{DiVincenzo Kriterien}
 
@@ -517,6 +522,7 @@ Weitere Informationen zur Fehlerkorrektur im Kapitel (?). \\
 \cite{mermin_quantum_2012}
 
 \subsection{Supraleitende Qubits }
+\label{subsec: Supraleitende Qubits}
 
 Supraleitende Qubits sind über den kollektiven Zustand einer großen Anzahl an Elektronen codiert.
 Sie gelten als vielversprechende Möglichkeit für den Bau kommerziell erfolgreicher Quantencomputer.
@@ -541,6 +547,7 @@ Flux-Qubits haben gegenüber Charge-Qubits den Vorteil, dass sie eine deutlich h
 
 
 \subsection{Ionenfallen-Qubits }
+\label{subsec: Ionenfallen}
 
 Ionen sind elektrisch geladene Moleküle, die mit Hilfe von elektromagnetischen Feldern an einem festen Ort platziert werden können. Dieses Vorgehen bezeichnet man als Ionenfallen. Sie stammen aus der Spektrometrie und wurden erstmals 1995 zum Bau von Quantencomputern vorgeschlagen. Hierbei soll dem Grundzustand eines gefangenen Ions der Zustand $\ket0$ und einem energetisch angeregten Zustand der Zustand $\ket1$ zugeordnet werden. Es sind auch Zwei-Qubit-Systeme möglich, wobei verschiedene Schwingungszustände die Werte des zweiten Quantenbits darstellen. 
 (vgl. \cite[Ch. 10.4]{homeister_quantum_2022-1})
@@ -591,7 +598,7 @@ Die einzelnen Transformationen der Zustände sind mit Hilfe von Laser- oder Mikr
 Auch das Messkriterium ist durch die Fluoreszenzmessung erfüllt. Somit entsprechen Ionenfallen größtenteils den DiVincenzo-Kriterien und eignen sich entsprechend gut als ein grundlegendes System für Quantencomputer. 
 
 \subsection{Photonenbasierte Qubits}
-
+\label{subsec: Photonenbasierte Qubits}
 Photonen bieten eine Reihe an Vorteilen, die sie zu einem führenden Ansatz im Quantencomputing machen. Ein zentraler Vorteil ist die vielseitige Kodierbarkeit: Qubits können in verschiedenen Freiheitsgraden von Photonen kodiert werden. Darunter fallen beispielsweise Polarisation, Time-Bin-Kodierung und Pfad-Kodierung, die nachgehend noch näher betrachtet werden. \\
 Zudem eignen sich Photonen sehr gut für die Übertragung von Quanteninformationen über große Entfernungen, da sie sich in optischen Fasern mit geringem Verlust auch über weite Distanzen transportieren lassen. \\
 Einzelne Photonen sind zusätzlich weitgehend frei von Dekohärenz, was bei anderen Ansätzen häufig zu Problemen führt. Da Photonen selbst keine Ladung besitzen und somit elektrisch neutral sind, reagieren sie sehr schwach auf anderen Materialien oder sich selbst. Sie sind sozusagen schon von Natur aus gut von ihrer Umgebung isoliert. \\
@@ -618,13 +625,19 @@ Bei der Pfad-Kodierung wird ein Qubit durch ein einzelnes Photon dargestellt, da
 
 Um logische Operationen auf solchen Qubits durchzuführen, nutzt man optische Elemente wie Strahlteiler (Beamsplitter), die das Photon auf beide Pfade verteilen können, sowie Phasenverschiebungselemente, die die relative Phase verändern. \\
 
-Pfad- und Polarisationskodierung lassen sich außerdem mithilfe von Polarisations-Strahlteilern ineinander umwandeln, was eine flexible Nutzung beider Kodierungsarten erlaubt.  \cite{nielsen_quantum_2010}\\\\
+Pfad- und Polarisationskodierung lassen sich außerdem mithilfe von Polarisations-Strahlteilern ineinander umwandeln, was eine flexible Nutzung beider Kodierungsarten erlaubt.  \cite{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}\\\\
 
 \subsubsection{Herausforderungen}
 Die Herausforderung liegt bei der Realisierung effizienter Zwei-Qubit-Gatter, die für viele Quantenalgorithmen benötigt werden. Bei diesen Gattern hängt der Zustand eines Qubits von dem eines anderen ab, was eine starke Wechselwirkung zwischen den einzelnen Qubits erfordert. Wie zu Beginn dieses Abschnitts erwähnt, wechselwirken Photonen kaum - weder untereinander noch mit der Umwelt. \\
 Ein gegenseitiger Wechselwirkungseffekt kann technisch zwar erreicht werden, jedoch ist dieser in allen bekannten Materialien extrem schwach, sodass für eine ausreichend hohe Wechselwirkung etwa 50 Photonen absorbiert werden würden. Da Quanteninformation bereits durch den Verlust einzelner Photonen zerstört wird, ist dieser Ansatz für Quantencomputer nicht geeignet. \\
 
 Eine weitere Schwierigkeit bei der Umsetzung komplexer Quantenalgorithmen ist die Notwendigkeit einer großen Anzahl stabiler optischer Interferometer. Diese werden benötigt, um die Phasenzustände der Photonen und damit die gespeicherten Informationen gezielt zu verändern und auszulesen. Das Zusammenschalten von vielen Interferometern, sodass die Phasen stabil gehalten werden können, erfordert sehr viel Aufwand. \\
+
+
+Abgesehen von den Herausforderungen der Realisierung von Zwei-Qubit-Gatter und der Skalierbarkeit des Zustandsraum erfüllen photonenbasierte Qubits die DiVincenzo-Kriterien sehr gut. Sie können zuverlässig in einen definierten Anfangszustand gebracht werden, sind nahezu ideal isoliert und können Ein-Qubit-Gatter einfach umsetzen. Mit geeigneten Strahlteilern und Polarisationsfiltern ist auch eine eindeutige Messung möglich. \\
+Trotz der genannten Einschränkungen gelten photonische Systeme als vielversprechend. 
+
+
 
 \cite{nielsen_michael_a_and_isaac_l_chuang_quantum_2010}
 
@@ -637,6 +650,7 @@ Eine weitere Schwierigkeit bei der Umsetzung komplexer Quantenalgorithmen ist di
 
 
 \subsection{Spin-Qubits}
+\label{subsec: Spin-Qubits}
 Spin-Qubits gehören zu den vielversprechendsten physikalischen Realisierungsformen von Qubits. Sie basieren auf dem quantenmechanischen Eigendrehimpuls, dem Spin, von Elektronen oder Atomkernen. Die beiden möglichen Orientierungen des Spins, üblicherweise als $\ket{\uparrow}$ (Spin-up) und $\ket{\downarrow}$ (Spin-down) bezeichnet, bilden die Basiszustände eines Qubits.
 
 Die gezielte Kontrolle dieser Zustände erfolgt durch äußere Einflüsse, meist in Form elektromagnetischer Felder. Hierbei werden Mikrowellenimpulse oder lokal angelegte Magnetfelder genutzt, um mithilfe von Spinresonanz Zustandsänderungen zu induzieren.
@@ -650,6 +664,7 @@ Die Wechselwirkung zwischen mehreren Spin-Qubits wird typischerweise durch Austa
 Forschungsschwerpunkte liegen aktuell auf der Verbesserung von Kohärenzzeiten, der Entwicklung effizienter Fehlerkorrekturverfahren und der Skalierung zu größeren Systemen. Ziel ist es, auf dieser Grundlage robuste Quantenprozessoren zu realisieren.
 
 \subsection{Neutralatom-Qubits}
+\label{subsec: Neutralatom-Qubits}
 Neutralatom-Qubits verwenden einzelne, elektrisch neutrale Atome als Träger von Quanteninformation. Diese Atome werden durch optische Fallen oder optische Gitter eingefangen und lassen sich auf engstem Raum präzise anordnen. Als Qubit-Zustände dienen dabei zwei ausgewählte hyperfeine Energieniveaus, die durch Kopplung zwischen Elektronen- und Kernspin entstehen.
 
 Die Manipulation dieser Zustände erfolgt durch kohärente Laserpulse. Diese ermöglichen sowohl Zustandsübergänge als auch kontrollierte Wechselwirkungen zwischen benachbarten Atomen. Besonders relevant sind Rydberg-Zustände, bei denen sich ein Elektron in einem stark angeregten Zustand befindet.
@@ -667,13 +682,11 @@ Neutralatom-Qubits ergänzen bestehende Plattformen sinnvoll. Ihre Kombination a
 
 
 \subsection{Diamantbasierte Qubits}
+\label{subsec: Diamantbasierte Qubits}
 
 Diamant bietet hervorragende physikalische Eigenschaften für Quantenanwendungen: das extrem steife Kristallgitter reduziert atomare Vibrationen, was das Material sehr robust macht. \\
 Zusätzlich sorgt die große Bandlücke von 5,5 eV für das transparente Erscheinungsbild von Diamant, da fast das gesamte sichtbare Lichtspektrum nicht absorbiert wird. Das führt zu einer Reduktion von Störprozessen. \\
-Darüber hinaus besteht natürlicher Kohlenstoff zu 98,9\% aus dem Isotop ${}^{12}C$, welches keinen Kernspin besitzt und damit zu das magnetische Rauschen besonders niedrig hält. Dadurch werden außergewöhnlich lange Spin-Kohärenzzeiten ermöglicht. 
-
-
-
+Darüber hinaus besteht natürlicher Kohlenstoff zu 98,9\% aus dem Isotop ${}^{12}C$, welches keinen Kernspin besitzt und damit zu das magnetische Rauschen besonders niedrig hält. Dadurch werden außergewöhnlich lange Spin-Kohärenzzeiten ermöglicht. \\
 
 Diamantbasierte Qubits beruhen auf sogenannten Farbzentren, also winzigen Fehlstellen oder Verunreinigungen im Kristallgitter, die als stabile Elektronenspin-Systeme fungieren und sich dadurch gut als Qubits einsetzen lassen. Diese Farbzentren sind optisch aktive Defekte innerhalb der Bandlücke von Diamant und speichern Information typischerweise in der Spinprojektion entlang einer Kristallachse. \\
 
@@ -687,7 +700,9 @@ Durch die Manipulation des Zustands mit einem magnetischen Feld mit der Mikrowel
 
 Herausforderungen  bei diamantbasierten Qubits sind die zuverlässige Herstellung hochkohärenter Qubits sowie die Skalierbarkeit der benötigten photonischen Strukturen. Zusätzlich begrenzt der hohe Brechungsindex von Diamant die Photoneneinfangrate außerhalb des Kristalls, was die Verbindung der Qubits mit optischen Netzwerken erschwert. Auch der Mangel an ultra-hochwertigen Diamant-Dünnschichten erschwert die Fertigung. \\
 
-Trotz dieser Herausforderungen sind die langen Kohärenzzeiten der Qubits in Diamant, die deutlich länger ist als die für eine verlässliche Quanteninformationsverarbeitung notwendige Operationsdauer, sehr vielversprechend für die Quantenforschung. 
+Diamantbasierte Qubits, insbesondere auf Basis von NV-Zentren, erfüllen die DiVincenzo-Kriterien in weiten Teilen sehr gut. Sie bieten einen klar definierbaren und optisch adressierbaren Zustandsraum, ermöglichen durch optisches Pumpen einen reproduzierbaren Startzustand und zeichnen sich durch außergewöhnlich lange Kohärenzzeiten aus, was einen entscheidender Vorteil gegenüber vielen anderen Qubit-Plattformen darstellt. Ein-Qubit-Operationen lassen sich präzise über Mikrowellensteuerung realisieren, und auch die Messung einzelner Qubits ist über Fluoreszenzkontraste zuverlässig möglich.  \\
+Trotz der Herausforderungen der Skalierbarkeit und Herstellung identischer NV-Zentren sowie der Implementierung effizienter Zwei-Qubit-Gatter gilt Diamant als vielversprechende Plattform für Quanteninformationsverarbeitung, vor allem in Bereichen mit Fokus auf Langzeitstabilität und Kohärenz. 
+
 
 \cite{ulanov_diamantbasierte_2025}
 

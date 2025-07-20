@@ -29,7 +29,7 @@ Für die Amplituden \(\alpha\) und \(\beta\) gilt:
 \end{equation}
 Die Betragsquadrate \(|\alpha|^2\) und \(|\beta|^2\) repräsentieren die Wahrscheinlichkeiten, das Qubit bei einer Messung in den Zuständen \(\ket{0}\) beziehungsweise \(\ket{1}\) zu finden. Die Normierungsbedingung \ref{equ:propa} gewährleistet, dass die Gesamtwahrscheinlichkeit für alle möglichen Messergebnisse eins beträgt, was der fundamentalen Anforderung der Wahrscheinlichkeitstheorie entspricht.
 
-Die komplexe Natur der Amplituden ermöglicht es, dass Qubits nicht nur klassische Überlagerungen von Zuständen darstellen, sondern auch komplexe Phasenbeziehungen zwischen den Basiszuständen kodieren können. Diese Eigenschaft bildet die Grundlage für die charakteristischen Quanteneffekte, die Quantencomputer von klassischen Computern unterscheiden.
+Die komplexe Natur der Amplituden ermöglicht es, dass Qubits nicht nur klassische Überlagerungen von Zuständen darstellen, sondern auch komplexe Phasenbeziehungen zwischen den Basiszuständen kodieren können. Diese Eigenschaft bildet die Grundlage für die charakteristischen Quanteneffekte, die Quantencomputer von klassischen Computern unterscheiden. (vgl. \cite[13 ff.]{nielsen_quantum_2010}, \cite[13 ff.]{rieffel_quantum_2011}, \cite{matuschak_quantum_2019})
 
 Als Beispiel soll hier folgender Qubit-Zustand dienen, welcher im Verlauf des Buches häufiger als Beispiel verwendet wird:
 \begin{equation}
@@ -41,7 +41,7 @@ Um zu überprüfen, ob dies ein gültiger Qubit-Zustand ist, werden die Werte in
     \left|\frac{1}{\sqrt{2}}\right|^2 + \left|\frac{1}{\sqrt{2}}\right|^2 = 0{,}5 + 0{,}5 = 1
 \end{equation}
 Damit ist gezeigt, dass die Normierungsbedingung erfüllt ist und die Wahrscheinlichkeit, einen der beiden Zustände zu messen, jeweils $0{,}5$ beträgt.
-Wie diese Beschreibung zeigt, kann ein einzelnes Qubit nach einer Messung zunächst auch nur zwei Zustände repräsentieren und ist damit als einzelnes nicht mächtiger als ein einzelnes Bit. Die Stärke von Qubits wird dann sichtbar, wenn mehrere kombiniert werden (siehe Kapitel \ref{subsec:verschraenkungQubits}).
+Wie diese Beschreibung zeigt, kann ein einzelnes Qubit nach einer Messung zunächst auch nur zwei Zustände repräsentieren und ist damit als einzelnes nicht mächtiger als ein einzelnes Bit. Die Stärke von Qubits wird dann sichtbar, wenn mehrere kombiniert werden (siehe Kapitel \ref{subsec:verschraenkungQubits}). (vgl. \cite[14]{nielsen_quantum_2010})
 
 \subsection{Bloch-Kugel}\label{subsec:blockkugel}
 Ein Qubit-Zustand lässt sich dreidimensional in einer anschaulichen Art darstellen: Als Punkt auf der Einheitssphäre $ \mathbb{R}^ 3 $. Dabei wird von einer \emph{Bloch-Kugel} gesprochen. Jeder Zustand
@@ -50,7 +50,7 @@ kann durch zwei Winkel $\phi$ und $\theta$ beschrieben werden:
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.7\textwidth]{images/quantum-information/bloch.pdf}
-  \caption{Bloch-Kugel (Darstellung nach \cite{riebesell_scientific_2022})}\label{fig:bloch-sphere}
+  \caption{Bloch-Kugel (Darstellung angelehnt an \cite{riebesell_scientific_2022})}\label{fig:bloch-sphere}
 \end{figure}
 
 Der Zustand des Qubits kann folgendermaßen berechnet werden:
@@ -59,7 +59,7 @@ Der Zustand des Qubits kann folgendermaßen berechnet werden:
   \ket{\psi} = \cos\frac{\theta}{2} \ket{0} + e^{i\phi} \sin\frac{\theta}{2} \ket{1}
 \end{equation}
 
-Ein Qubit kann also eine unendliche Anzahl an Zuständen annehmen. Das ließe die Vermutung zu, dass ein Qubit auch unendlich viele Informationen speichern kann. Dies ist jedoch nicht der Fall, weil beim Messen des Zustandes die Superposition zusammenfällt und das Qubit dann entweder den Wert $\ket{0}$ oder $\ket{1}$ hat.
+Ein Qubit kann also eine unendliche Anzahl an Zuständen annehmen. Das ließe die Vermutung zu, dass ein Qubit auch unendlich viele Informationen speichern kann. Dies ist jedoch nicht der Fall, weil beim Messen des Zustandes die Superposition zusammenfällt und das Qubit dann entweder den Wert $\ket{0}$ oder $\ket{1}$ hat. (vgl. [5 ff.]\cite{pattanayak_quantum_2017}, \cite[15 f.]{nielsen_quantum_2010}
 
 \subsection{Verschränkung von Qubits}
 \label{subsec:verschraenkungQubits}
@@ -99,121 +99,7 @@ Es ist wichtig zu beachten, dass diese theoretische Parallelität in der praktis
 
 Diese enorme Zustandsvielfalt ist nicht einfach direkt auslesbar – bei einer Messung kollabiert das Qubit-System zu genau einem dieser \(2^n\) Basiszustände. Dennoch erlaubt die gleichzeitige Verarbeitung dieser vielen Möglichkeiten innerhalb eines Algorithmus ein grundsätzlich neues Rechenparadigma. Probleme, deren Rechenzeit auf konventionellen Computern exponentiell wächst können deshalb von Quantencomputern in angemessenen Zeiten gelöst werden. 
 
-Es ist sehr wichtig Quantenparallelismus nicht mit dem parallelen Ausführen von Programmen in klassischen Computern gleichzusetzen. Quantenparallelismus nutzt die fundamentalen Eigenschaften der Quantenmechanik, insbesondere die Superposition und die Interferenz von Wahrscheinlichkeitsamplituden. Das heißt, dass es bei Quantenalgorithmen darum geht die Amplituden der Zustände so zu manipulieren, dass sich die Amplituden der Zustände, die korrekte Lösungen repräsentieren, durch konstruktive Interferenz verstärken, während sich die Amplituden der Zustände mit falschen Lösungen durch destruktive Interferenz abschwächen oder sogar vollständig auslöschen (vgl. Kapitel irgenwas mit algorithmen). 
-
-\subsection{Fehlerkorrektur}
-Qubits sind sehr fehleranfällig (mehr dazu ggf im Kapitel über physikalische Realisierung?). Im Gegensatz zu konventionellen Bits gestaltet sich die Fehlerkorrektur als schwieriger. Während konventionelle Bits kopiert und ausgelesen werden können, ist das bei Qubits nicht möglich, weil deren Superposition kollabieren würde, wenn man sie liest. Deshalb werden spezielle Quantenfehlerkorrekturverfahren entwickelt, die Fehler erkennen und beheben, ohne den Zustand der Qubits direkt zu messen. Diese Verfahren nutzen dabei die Verschränkung mehrerer Qubits, um Fehler zu detektieren und zu korrigieren, was allerdings einen erheblichen Mehraufwand an Qubits und Rechenressourcen erfordert.
-
-In der Fehlerkorrektur sind insbesondere \emph{logische Qubits} wichtig. Ein logisches Qubit ist eine fehlerkorrigierte Version eines Qubits, die durch die Kodierung mehrerer physikalischer Qubits entsteht. Während ein physikalisches Qubit die tatsächliche quantenmechanische Implementierung darstellt, bildet ein logisches Qubit eine abstrakte Einheit, die durch redundante Kodierung vor Fehlern geschützt ist.
-
-Die Funktionsweise basiert auf der Verteilung der Quanteninformation auf mehrere physikalische Qubits. Durch diese Redundanz können Fehler in einzelnen physikalischen Qubits erkannt und korrigiert werden, ohne die im logischen Qubit gespeicherte Information zu zerstören. 
-
-Der Aufwand für die Implementierung logischer Qubits ist erheblich. Je nach verwendetem Fehlerkorrekturverfahren können hunderte oder sogar tausende physikalische Qubits erforderlich sein, um ein einzelnes logisches Qubit zu realisieren. Dieser Mehraufwand führt jedoch zu einer drastischen Verbesserung der Fehlerrate. Aktuelle Forschungsergebnisse zeigen, dass logische Qubits Fehlerarten aufweisen können, die um mehrere Größenordnungen niedriger sind als die ihrer physikalischen Komponenten.
-
-Ein klassisches Beispiel für einen Fehler ist ein \emph{Bit-Flip}. Ein Bit-Flip liegt vor, wenn sich der Zustand eines Bits durch zum Beispiel kosmische Strahlung ungewollt ändert. Zur Fehlerkorrektur kann im Quantencomputing dann der sogenannte \emph{Bit-Flip-Code} verwendet werden. Dieser demonstriert hier das Grundprinzip logischer Qubits. Hierbei wird ein einzelnes logisches Qubit durch drei physikalische Qubits kodiert. Die Basiszustände werden dabei wie folgt abgebildet:
-
-\begin{align}
-\ket{0}_\text{logisch} &\rightarrow \ket{000}, \\
-\ket{1}_\text{logisch} &\rightarrow \ket{111}.
-\end{align}
-Ein allgemeiner Qubit-Zustand
-\begin{equation}
-\ket{\psi} = \alpha \ket{0} + \beta \ket{1}
-\end{equation}
-wird somit als logischer Zustand kodiert zu:
-\begin{equation}
-\ket{\psi}_\text{logisch} = \alpha \ket{000} + \beta \ket{111}.
-\end{equation}
-
-Tritt ein Bit-Flip-Fehler auf einem der drei Qubits auf, entstehen fehlerhafte Zustände wie $\ket{001}$, $\ket{010}$ oder $\ket{100}$. Diese können durch eine \emph{Paritätsmessungen} erkannt und anschließend korrigiert werden, ohne die Amplituden $\alpha$ und $\beta$ zu zerstören.
-
-Parität beschreibt in diesem Kontext, ob zwei Qubits denselben Zustand haben (also beide $\ket{0}$ oder beide $\ket{1}$) oder verschieden sind. Formal misst man die Parität zweier Qubits $i$ und $j$ durch den Operator:
-
-\begin{equation}
- Z_i \cdot Z_j   
- \label{equ:parität_qubits}
-\end{equation}
-
-
-wobei $Z$ der Pauli-Z-Operator ist:
-
-\begin{equation}  
-Z = \begin{pmatrix}
-1 & 0 \\
-0 & -1
-\end{pmatrix}.
-\label{equ:pauli_matrix}
-\end{equation}
-
-In der Praxis verwendet man ein Hilfsqubit (Ancilla), um diese Paritätsinformation indirekt zu messen. Der Ablauf ist wie folgt:
-
-\begin{enumerate}
-    \item Initialisiere das Ancilla-Qubit in Zustand $\ket{0}$.
-    \item Wende zwei CNOT-Gatter an (vgl. Kapitel CNOT): 
-    \begin{itemize}
-        \item CNOT von Qubit $i$ auf das Ancilla-Qubit,
-        \item CNOT von Qubit $j$ auf dasselbe Ancilla-Qubit.
-    \end{itemize}
-    \item Messe das Ancilla-Qubit in der Computational-Basis.
-\end{enumerate}
-
-Das Messergebnis liefert die Parität:
-\begin{itemize}
-    \item Ergebnis $\ket{0}$: Qubits $i$ und $j$ haben gleiche Parität ($\ket{00}$ oder $\ket{11}$),
-    \item Ergebnis $\ket{1}$: Qubits haben unterschiedliche Parität ($\ket{01}$ oder $\ket{10}$).
-\end{itemize}
-
-Durch zwei Paritätsmessungen (z.B. zwischen Qubit 1–2 und 2–3) lässt sich ein einzelner Fehler eindeutig lokalisieren:
-
-\begin{table}[h]
-    \centering
-\begin{tabular}{|c|c|c|}
-\hline
-Parität 1–2 & Parität 2–3 & Fehler in Qubit \\
-\hline
-gleich      & gleich      & keiner \\
-ungleich    & gleich      & Qubit 1 \\
-gleich      & ungleich    & Qubit 3 \\
-ungleich    & ungleich    & Qubit 2 \\
-\hline
-\end{tabular}
-   \label{tab:felherkorrektur}
-\caption{Lokalisierung eines Fehlers in einem 3-Qubit-Sytems}
-\end{table}
-
-
-Das folgende Schaltbild zeigt die Paritätsmessung zwischen zwei Qubits mithilfe eines Ancilla-Qubits:
-
-Sobald durch die Paritätsmessungen das fehlerhafte Qubit eindeutig identifiziert wurde (siehe Tabelle), wird der Fehler durch Anwendung eines Pauli-X-Gatters (Bit-Flip) auf das betroffene Qubit korrigiert. Das X-Gatter ist definiert als:
-
-\[
-X = \begin{pmatrix}
-0 & 1 \\
-1 & 0
-\end{pmatrix},
-\]
-
-und wirkt auf die Basiszustände wie folgt:
-\[
-X\ket{0} = \ket{1}, \qquad X\ket{1} = \ket{0}.
-\]
-
-Beispielsweise:
-\begin{itemize}
-    \item Wenn Qubit 1 als fehlerhaft erkannt wurde (z.\,B. Zustand $\ket{100}$), wendet man $X$ auf Qubit 1 an:
-    \[
-    X_1\left( \alpha\ket{100} + \beta\ket{011} \right) = \alpha\ket{000} + \beta\ket{111}.
-    \]
-    \item Entsprechend für Qubit 2 oder 3.
-\end{itemize}
-
-Nach der Korrektur ist der logische Zustand wiederhergestellt:
-\[
-\ket{\psi}_\text{logisch} = \alpha\ket{000} + \beta\ket{111}.
-\]
-
-Die ursprüngliche Quanteninformation bleibt somit erhalten, obwohl ein physikalischer Fehler aufgetreten ist. Der Bit-Flip-Code demonstriert damit, wie Quantenfehler durch Redundanz und geeignete Messprotokolle erkannt und korrigiert werden können – ein grundlegendes Prinzip aller Quantenfehlerkorrekturverfahren.
-
+Es ist sehr wichtig Quantenparallelismus nicht mit dem parallelen Ausführen von Programmen in klassischen Computern gleichzusetzen. Quantenparallelismus nutzt die fundamentalen Eigenschaften der Quantenmechanik, insbesondere die Superposition und die Interferenz von Wahrscheinlichkeitsamplituden. Das heißt, dass es bei Quantenalgorithmen darum geht die Amplituden der Zustände so zu manipulieren, dass sich die Amplituden der Zustände, die korrekte Lösungen repräsentieren, durch konstruktive Interferenz verstärken, während sich die Amplituden der Zustände mit falschen Lösungen durch destruktive Interferenz abschwächen oder sogar vollständig auslöschen (vgl. Kapitel irgenwas mit algorithmen). (vgl. \cite[16 f.]{nielsen_quantum_2010}
 
 \section{Quanten-Gatter}\label{sec:quanten_gatter}
 ***Blablabla***
@@ -262,6 +148,7 @@ Die Pauli-Matrizen wurden 1927 von dem Physiker Wolfgang Pauli eingeführt, um d
 In der üblichen Darstellungsform (der sogenannten $Z$-Basis ${|0\rangle,|1\rangle}$) lauten sie:
 \\
 \begin{equation}
+\label{equ:pauli_matrizen}
   X=\begin{pmatrix}0&1\\ 1&0\end{pmatrix},\qquad
   Y=\begin{pmatrix}0&-i\\ i&0\end{pmatrix},\qquad
   Z=\begin{pmatrix}1&0\\ 0&-1\end{pmatrix}.
@@ -362,20 +249,107 @@ U_{\text{SWAP}} =
 \\
 Diese Matrix vertauscht $|01\rangle$ und $|10\rangle$, während $|00\rangle$ und $|11\rangle$ unverändert bleiben. (Vgl. \cite[S.79]{rieffel_quantum_2011}) Der Gatter ist unitär, selbstinvers ($U^2 = I$) und hermitesch ($U = U^\dagger$). Damit erfüllt er alle Bedingungen für eine physikalisch zulässige Quantenoperation. (Vgl. \cite[S.2]{gheorghiu_standard_2011})\\
 \\
-Eine direkte Realisierung des SWAP-Gatters ist auf vielen Hardwareplattformen nicht vorgesehen. Stattdessen lässt es sich durch eine Folge von drei CNOT-Gattern konstruieren:
+Eine direkte Realisierung des SWAP-Gatters ist auf vielen Hardwareplattformen nicht vorgesehen. Stattdessen lässt es sich durch eine Folge von drei CNOT-Gattern konstruieren:\\
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[line width=0.8pt, scale=1.2,
+    control/.style={fill=black, draw=black, shape=circle, minimum size=4pt, inner sep=0pt},
+    target/.style={draw, shape=circle, minimum size=10pt, inner sep=0pt},
+    cross/.style={line width=0.8pt}
+]
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.6\textwidth]{images/quantum-information/Zerlegung_SWAP.png}
-  \caption{Zerlegung des SWAP-Gatters in drei CNOT-Gatter (aus \cite[S.23]{rieffel_quantum_2011})}
-\end{figure}\\
+% --- Linien links ---
+\draw (0,1) -- (3.5,1); % obere Leitung
+\draw (0,0) -- (3.5,0); % untere Leitung
+
+% --- CNOT 1 (oben kontrolliert) ---
+\node[control] (c1) at (0.5,1) {};
+\node[target]  (t1) at (0.5,0) {};
+\draw (c1) -- (t1);
+\draw (0.5,0) -- ++(-0.15,0);
+\draw (0.5,0) -- ++(0.15,0);
+\draw (0.5,-0.15) -- (0.5,0.15);
+
+% --- CNOT 2 (unten kontrolliert) ---
+\node[control] (c2) at (1.75,0) {};
+\node[target]  (t2) at (1.75,1) {};
+\draw (c2) -- (t2);
+\draw (1.75,1) -- ++(-0.15,0);
+\draw (1.75,1) -- ++(0.15,0);
+\draw (1.75,0.85) -- (1.75,1.15);
+
+% --- CNOT 3 (oben kontrolliert) ---
+\node[control] (c3) at (3,1) {};
+\node[target]  (t3) at (3,0) {};
+\draw (c3) -- (t3);
+\draw (3,0) -- ++(-0.15,0);
+\draw (3,0) -- ++(0.15,0);
+\draw (3,-0.15) -- (3,0.15);
+
+% --- Gleichheitszeichen ---
+\node at (4.1,0.5) {\LARGE $\equiv$};
+
+% --- Linien rechts (SWAP) ---
+\draw (5,1) -- (6.2,1);
+\draw (5,0) -- (6.2,0);
+
+% --- SWAP Gatter (gekreuzte X) ---
+\draw[cross] (5.6,1.15) -- (5.8,0.85);
+\draw[cross] (5.6,0.85) -- (5.8,1.15);
+\draw[cross] (5.6,-0.15) -- (5.8,0.15);
+\draw[cross] (5.6,0.15) -- (5.8,-0.15);
+\draw (5.7,1) -- (5.7,0);
+
+\end{tikzpicture}
+\caption{Zerlegung des SWAP-Gatters in drei CNOT-Gatter (nach \cite[S.~23]{rieffel_quantum_2011})}
+\end{figure}
 \\
 Ein zentrales Einsatzgebiet ergibt sich in Systemen mit begrenzter Konnektivität. Wenn zwei Qubits, die miteinander interagieren sollen, nicht direkt gekoppelt sind, werden SWAP-Gatter eingesetzt, um Zustände über benachbarte Qubits hinweg zu verschieben. Dieses Vorgehen ist unter dem Begriff \emph{Qubit-Routing} bekannt. (Vgl. \cite[S.2f.]{molavi_qubit_2022}) Auch in der Quanten-Fourier-Transformation wird das SWAP-Gatter verwendet. Am Ende der Transformation wird die spiegelverkehrte Reihenfolge der Qubits mithilfe von SWAP-Gattern wiederhergestellt, indem jeweils Paare symmetrisch zur Mitte des Registers vertauscht werden. (Vgl. \cite[S.219]{nielsen_quantum_2010})
 
 %(Qubit Mapping and Routing via MaxSAT, S.2f.)
 
-\subsection{CNOT}
-Text 123
+\subsection{CNOT}\label{subsec:cnot_gatter}
+Das Controlled-NOT Gatter (CNOT) besitzt ein Kontroll- und ein Zielqubit und bewirkt, dass der Zustand des Zielqubits genau dann mit einem Pauli-X (Bitflipping, dem klassischen NOT) invertiert wird, wenn das Kontrollqubit im Zustand $|1\rangle$ ist. Ist das Kontrollqubit $|0\rangle$, bleibt das Ziel unverändert.(Vgl. \cite[S.20f., 177f.]{nielsen_quantum_2010}) Der CNOT-Gatter ist unitär und invertierbar und lässt sich in der $4\times 4$-Matrix wie folgt darstellen: (Vgl. ebd.) \\
+\begin{equation}
+\text{CNOT} = \begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0
+\end{pmatrix}
+\end{equation} \\
+In der Standardbasis der zwei Qubits ${|00\rangle, |01\rangle, |10\rangle, |11\rangle}$ transformiert ein CNOT-Gatter die Basiszustände folgendermaßen:
+$|00\rangle ;\to; |00\rangle$
+$|01\rangle ;\to; |01\rangle$
+$|10\rangle ;\to; |11\rangle$
+$|11\rangle ;\to; |10\rangle$
+Das Kontrollqubit bleibt also unverändert, währenddessen das Zielqubit genau dann seinen Zustand wechselt, wenn dieses $|1\rangle$ war. (Vgl. \cite[S.21]{nielsen_quantum_2010})
+\\
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[line width=0.8pt,
+    control/.style={fill=black, draw=black, shape=circle, minimum size=6pt, inner sep=0pt},
+    target/.style={draw, shape=circle, minimum size=12pt, inner sep=0pt}
+]
+% --- Qubit-Leitungen ---
+\draw (-0.6,1) -- (1.6,1);  % obere Leitung
+\draw (-0.6,0) -- (1.6,0);  % untere Leitung
+% --- CNOT: Kontrollpunkt ---
+\node[control] (ctrl) at (0.5,1) {};
+% --- CNOT: Zielkreis mit Pluszeichen ---
+\node[target] (targ) at (0.5,0) {};
+\draw (0.5,-0.2) -- (0.5,0.2);   % vertikale Linie im Plus
+\draw (0.3,0) -- (0.7,0);        % horizontale Linie im Plus
+% --- Verbindungslinie zwischen Control und Target ---
+\draw (ctrl) -- (targ);
+% --- Untertitel ---
+%\node at (0.5,-0.8) {\small Darstellung eines CNOT-Gatters (Controlled-NOT-Gatter)};
+\end{tikzpicture}
+\caption{Darstellung des CNOT-Gatters (nach \cite[S.178]{nielsen_quantum_2010})}
+\end{figure} \\
+CNOT-Gatter spielt eine zentrale Rolle in der Quantenlogik, da es im Zusammenspiel mit Ein-Qubit-Gattern ein universelles Gate-Set für die Quantenberechnung bildet. (Vgl. ebd. S.191)
+
+
 
 %\subsection{CU-Gatter}
 
@@ -666,8 +640,115 @@ Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. E
 \subsection{Bedeutung für Quantenkommunikation}
 Wie Anhand der wissenschaftlichen Artikel von Bennett, Brassard et. al., sowie Gottesmann und Chuang gezeigt wurde, sind Quantenverschränkung und Quantenteleportation die Prinzipien, durch die es zu einem Quanteninformationstransfer kommen kann. Daraus kann man schließen, dass beide Prinzipien eine sehr wichtige Bedeutung für Quantenkommunikation haben.
 
+\section{Fehlerkorrektur}
+Qubits sind sehr fehleranfällig (mehr dazu ggf im Kapitel über physikalische Realisierung?). Im Gegensatz zu konventionellen Bits gestaltet sich die Fehlerkorrektur als schwieriger. Während konventionelle Bits kopiert und ausgelesen werden können, ist das bei Qubits nicht möglich, weil deren Superposition kollabieren würde, wenn man sie liest. Deshalb werden spezielle Quantenfehlerkorrekturverfahren entwickelt, die Fehler erkennen und beheben, ohne den Zustand der Qubits direkt zu messen. Diese Verfahren nutzen dabei die Verschränkung mehrerer Qubits, um Fehler zu detektieren und zu korrigieren, was allerdings einen erheblichen Mehraufwand an Qubits und Rechenressourcen erfordert.
+
+In der Fehlerkorrektur sind insbesondere \emph{logische Qubits} wichtig. Ein logisches Qubit ist eine fehlerkorrigierte Version eines Qubits, die durch die Kodierung mehrerer physikalischer Qubits entsteht. Während ein physikalisches Qubit die tatsächliche quantenmechanische Implementierung darstellt, bildet ein logisches Qubit eine abstrakte Einheit, die durch redundante Kodierung vor Fehlern geschützt ist.
+
+Die Funktionsweise basiert auf der Verteilung der Quanteninformation auf mehrere physikalische Qubits. Durch diese Redundanz können Fehler in einzelnen physikalischen Qubits erkannt und korrigiert werden, ohne die im logischen Qubit gespeicherte Information zu zerstören. 
+
+Der Aufwand für die Implementierung logischer Qubits ist erheblich. Je nach verwendetem Fehlerkorrekturverfahren können hunderte oder sogar tausende physikalische Qubits erforderlich sein, um ein einzelnes logisches Qubit zu realisieren. Dieser Mehraufwand führt jedoch zu einer drastischen Verbesserung der Fehlerrate. Aktuelle Forschungsergebnisse zeigen, dass logische Qubits Fehlerarten aufweisen können, die um mehrere Größenordnungen niedriger sind als die ihrer physikalischen Komponenten. (vgl. \cite{divincenzo_topics_1996}, \cite[426 ff.]{nielsen_quantum_2010}, \cite{ibm_quantum_error}).
+
+
+\subsection{Beispiel: Bit-Flip}
+Ein klassisches Beispiel für einen Fehler ist ein \emph{Bit-Flip}. Ein Bit-Flip liegt vor, wenn sich der Zustand eines Bits durch zum Beispiel kosmische Strahlung ungewollt ändert. Zur Fehlerkorrektur kann im Quantencomputing dann der sogenannte \emph{Bit-Flip-Code} verwendet werden. Dieser demonstriert hier das Grundprinzip logischer Qubits. Hierbei wird ein einzelnes logisches Qubit durch drei physikalische Qubits kodiert. Die Basiszustände werden dabei wie folgt abgebildet:
+
+\begin{align}
+\ket{0}_\text{logisch} &\rightarrow \ket{000}, \\
+\ket{1}_\text{logisch} &\rightarrow \ket{111}.
+\end{align}
+Ein allgemeiner Qubit-Zustand
+\begin{equation}
+\ket{\psi} = \alpha \ket{0} + \beta \ket{1}
+\end{equation}
+wird somit als logischer Zustand kodiert zu:
+\begin{equation}
+\ket{\psi}_\text{logisch} = \alpha \ket{000} + \beta \ket{111}.
+\end{equation}
+
+Tritt ein Bit-Flip-Fehler auf einem der drei Qubits auf, entstehen fehlerhafte Zustände wie $\ket{001}$, $\ket{010}$ oder $\ket{100}$. Diese können durch eine \emph{Paritätsmessungen} erkannt und anschließend korrigiert werden, ohne die Amplituden $\alpha$ und $\beta$ zu zerstören.
+
+Parität beschreibt in diesem Kontext, ob zwei Qubits denselben Zustand haben (also beide $\ket{0}$ oder beide $\ket{1}$) oder verschieden sind. Formal misst man die Parität zweier Qubits $i$ und $j$ durch den Operator:
+
+\begin{equation}
+ Z_i \cdot Z_j   
+ \label{equ:parität_qubits}
+\end{equation}
+
+
+wobei $Z$ der Pauli-Z-Operator ist (vgl. Formel \ref{equ:pauli_matrizen}.
+
+In der Praxis verwendet man ein Hilfsqubit (Ancilla), um diese Paritätsinformation indirekt zu messen. Der Ablauf ist wie folgt:
+
+\begin{enumerate}
+    \item Initialisiere das Ancilla-Qubit in Zustand $\ket{0}$.
+    \item Wende zwei CNOT-Gatter an (vgl. Kapitel \ref{subsec:cnot_gatter}): 
+    \begin{itemize}
+        \item CNOT von Qubit $i$ auf das Ancilla-Qubit,
+        \item CNOT von Qubit $j$ auf dasselbe Ancilla-Qubit.
+    \end{itemize}
+    \item Messe das Ancilla-Qubit in der Computational-Basis.
+\end{enumerate}
+
+Das Messergebnis liefert die Parität:
+\begin{itemize}
+    \item Ergebnis $\ket{0}$: Qubits $i$ und $j$ haben gleiche Parität ($\ket{00}$ oder $\ket{11}$),
+    \item Ergebnis $\ket{1}$: Qubits haben unterschiedliche Parität ($\ket{01}$ oder $\ket{10}$).
+\end{itemize}
+
+Durch zwei Paritätsmessungen (z.B. zwischen Qubit 1–2 und 2–3) lässt sich ein einzelner Fehler eindeutig lokalisieren:
+
+\begin{table}[h]
+    \centering
+\begin{tabular}{|c|c|c|}
+\hline
+Parität 1–2 & Parität 2–3 & Fehler in Qubit \\
+\hline
+gleich      & gleich      & keiner \\
+ungleich    & gleich      & Qubit 1 \\
+gleich      & ungleich    & Qubit 3 \\
+ungleich    & ungleich    & Qubit 2 \\
+\hline
+\end{tabular}
+   \label{tab:felherkorrektur}
+\caption{Lokalisierung eines Fehlers in einem 3-Qubit-Sytems}
+\end{table}
+
+
+Das folgende Schaltbild zeigt die Paritätsmessung zwischen zwei Qubits mithilfe eines Ancilla-Qubits:
+
+Sobald durch die Paritätsmessungen das fehlerhafte Qubit eindeutig identifiziert wurde (siehe Tabelle), wird der Fehler durch Anwendung eines Pauli-X-Gatters (Bit-Flip) auf das betroffene Qubit korrigiert. Das X-Gatter ist definiert als:
+
+\[
+X = \begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix},
+\]
+
+und wirkt auf die Basiszustände wie folgt:
+\[
+X\ket{0} = \ket{1}, \qquad X\ket{1} = \ket{0}.
+\]
+
+Beispielsweise:
+\begin{itemize}
+    \item Wenn Qubit 1 als fehlerhaft erkannt wurde (z.\,B. Zustand $\ket{100}$), wendet man $X$ auf Qubit 1 an:
+    \[
+    X_1\left( \alpha\ket{100} + \beta\ket{011} \right) = \alpha\ket{000} + \beta\ket{111}.
+    \]
+    \item Entsprechend für Qubit 2 oder 3.
+\end{itemize}
+
+Nach der Korrektur ist der logische Zustand wiederhergestellt:
+\[
+\ket{\psi}_\text{logisch} = \alpha\ket{000} + \beta\ket{111}.
+\]
+
+Die ursprüngliche Quanteninformation bleibt somit erhalten, obwohl ein physikalischer Fehler aufgetreten ist. Der Bit-Flip-Code demonstriert damit, wie Quantenfehler durch Redundanz und geeignete Messprotokolle erkannt und korrigiert werden können – ein grundlegendes Prinzip aller Quantenfehlerkorrekturverfahren. (vgl. \cite[426 ff.]{nielsen_quantum_2010})
+
 \section{Bell-Zustand}
-Um die theoretischen Grundlagen der Quanteninformation greifbarer zu machen, bietet sich der Bell-Zustand als anschauliches Beispiel an. Er veranschaulicht zentrale Konzepte wie Quantenverschränkung und Nichtlokalität und bildet die Grundlage für viele Anwendungen in der Quantenkommunikation und -verarbeitung. Im Folgenden wird der Bell-Zustand näher erläutert, seine mathematische Darstellung vorgestellt und seine Bedeutung anhand konkreter Experimente und Anwendungen verdeutlich
+Um die theoretischen Grundlagen der Quanteninformation greifbarer zu machen, bietet sich der Bell-Zustand als anschauliches Beispiel an. Er veranschaulicht zentrale Konzepte wie Quantenverschränkung und Nichtlokalität und bildet die Grundlage für viele Anwendungen in der Quantenkommunikation und -verarbeitung. Im Folgenden wird der Bell-Zustand näher erläutert, seine mathematische Darstellung vorgestellt und seine Bedeutung anhand konkreter Experimente und Anwendungen verdeutlicht.
 
 \subsection{Was ist ein Bell-Zustand?}
 Bell-Zustände sind spezielle Zustände in der Quantenmechanik, in denen zwei Teilchen maximal miteinander verschränkt sind. Das bedeutet: Ihre Zustände hängen so stark zusammen, dass man sie nicht unabhängig voneinander beschreiben kann – selbst, wenn die Teilchen physisch weit voneinander entfernt sind. Benannt ist der Bell-Zustand nach dem Physiker John S. Bell. Dieser zeigte im Jahre 1964 auf, dass die Vorhersagen der Quantenmechanik im Widerspruch zu den Prinzipien des lokalen Realismus stehen – also der Vorstellung, dass Informationen nicht schneller als Licht übertragen werden können und physikalische Größen vor der Messung bereits festgelegt sind. (Vgl. \cite[S.195]{bell_einstein_1964})
@@ -689,16 +770,26 @@ Insgesamt existieren vier verschiedene Bell-Zustände, die eine Situation maxima
 \end{aligned}
 \]
 
+Mathematisch gibt es genau vier dieser Zustände, weil ein System aus zwei Qubits einen vierdimensionalen Zustandsraum besitzt. Die Bell-Zustände bilden darin eine vollständige Basis aller maximal verschränkten Zustände. Das heißt: Jede mögliche maximale Verschränkung zwischen zwei Qubits lässt sich als Kombination dieser vier Zustände ausdrücken.
+
+Die theoretischen Eigenschaften dieser Zustände lassen sich nicht nur mathematisch beschreiben, sondern auch ganz konkret auf Quantencomputern beobachten. In einer Simulation mit der IBM Quantum Learning Platform wurden hierfür zwei Qubits gezielt in einen verschränkten Zustand überführt. Das anschließende Messergebnis zeigt deutlich das charakteristische Verhalten eines Bell-Zustands: Es treten ausschließlich die Zustände \(\ket{00}\) und \(\ket{11}\) auf – jeweils mit 50\,\% Wahrscheinlichkeit. Die Kombinationen \(\ket{01}\) und \(\ket{10}\), bei denen sich die Qubits unterscheiden würden, wurden hingegen nicht beobachtet. Bemerkenswert ist dabei: Diese Quantenkorrelation bleibt bestehen, selbst wenn die Qubits räumlich voneinander getrennt sind. Die Messergebnisse des einen beeinflussen scheinbar sofort das andere – ein Verhalten, das mit klassischer Physik nicht erklärbar ist.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{images/quantum-information/results_ibm.png}
+    \caption{Wahrscheinlichkeitsverteilung - IBM Quantum Learning Platform.}
+    \label{fig:meinbild}
+\end{figure}
+
+
 \subsection{Erzeugung eines Bell-Zustands}
 Für die Erzeugung eines Bell-Zustands werden zwei grundlegende Quantengatter benötigt: das Hadamard-Gatter und das CNOT-Gatter. Mithilfe dieser beiden Gatter kann eine Quantenschaltung realisiert werden, die jeden einfachen Zwei-Qubit-Eingangszustand (\(\ket{00}, \ket{01}, \ket{10}, \ket{11}\)) in einen Bell-Zustand überführt.
 
-
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.5\textwidth]{images/quantum-information/bell_circuit.png}
+  \includegraphics[width=0.4\textwidth]{images/quantum-information/bell_circuit.png}
   \caption{Quantenschaltung zur Erzeugung des Bell-Zustands}
 \end{figure}
-
 
 Die Erzeugung eines Bell-Zustands basiert auf zwei Schritten. Zu Beginn wird eine Superposition erzeugt, anschließend muss die Verschränkung zwischen den Qubits hergestellt werden. Diese Schritte werden nachfolgend erläutert.
 \\
@@ -725,11 +816,16 @@ Es resultiert einer der zuvor vorgestellten Bell-Zustände – ein maximal versc
 \\
 
 
-Ein anschauliches Beispiel für die Eigenschaften verschränkter Zustände liefert auch ein Gedankenexperiment mit zwei beispielhaften Personen, Alice und Bob. Angenommen die beiden erzeugten gemeinsam entsprechend der vorhergehenden Ausführungen folgenden Bell-Zustand:
+Ein anschauliches Beispiel für die Eigenschaften verschränkter Zustände liefert ein Gedankenexperiment mit Alice und Bob. Angenommen die beiden erzeugten gemeinsam entsprechend der vorhergehenden Ausführungen folgenden Bell-Zustand:
+
 \[
-\frac{1}{\sqrt{2}} (|00\rangle + |11\rangle)
+\begin{aligned}
+\ket{\Phi^+} &= \frac{1}{\sqrt{2}} (\ket{00} + \ket{11}),
+\end{aligned}
 \]
-Alice erhält nun das erste Qubit, Bob das zweite Qubit. Angenommen die beiden befinden sich, wie nachfolgend abgebildet, ursprünglich in einem Haus in verschiedenen Räumen. 
+
+Alice erhält nun das erste Qubit, Bob das zweite Qubit. Angenommen die beiden bewegen sich, wie nachfolgend abgebildet, anschließend in einem Haus in verschiedene Räume. Solange nun keine Messung erfolgt und die Qubits vor äußeren Einflüssen geschützt sind, bleibt die Verschränkung erhalten. Führen Alice oder Bob eine Messung durch, so ist das Ergebnis: Mit einer Wahrscheinlichkeit von 50\,\% wird $|0\rangle$ gemessen, mit 50\,\% $|1\rangle$. Erst wenn Alice und Bob ihre Ergebnisse miteinander vergleichen, zeigt sich die Besonderheit: Ihre Messergebnisse stimmen stets überein. Es resultiert eine perfekte Korrelation, unabhängig von Raum und Zeit. (Vgl. \cite[S.54]{homeister_quantum_2022})
+
 
 \begin{figure}[h]
   \centering
@@ -738,11 +834,8 @@ Alice erhält nun das erste Qubit, Bob das zweite Qubit. Angenommen die beiden b
 \end{figure}
 
 
-Solange nun keine Messung erfolgt und die Qubits vor äußeren Einflüssen geschützt sind, bleibt die Verschränkung erhalten – unabhängig von der räumlichen Trennung. Führen Alice oder Bob eine Messung durch, so ist das Ergebnis zufällig: Mit einer Wahrscheinlichkeit von 50\,\% wird $|0\rangle$ gemessen, mit 50\,\% $|1\rangle$. Erst wenn Alice und Bob ihre Ergebnisse miteinander vergleichen, zeigt sich die Besonderheit: Ihre Messergebnisse stimmen stets überein. Es resultiert eine perfekte Korrelation, unabhängig von Raum und Zeit. (Vgl. \cite[S.54]{homeister_quantum_2022})
-\\
 
-
-Genau darin zeigt sich der Informationsgehalt eines verschränkten Zustands: Die Information liegt nicht in einem einzelnen Qubit, sondern nur in ihrer gemeinsamen Beziehung. Diese Simulation macht das abstrakte Konzept der Quantenverschränkung greifbar und bietet einen intuitiven Zugang zu den Grundlagen der Quanteninformation. Es zeigt anschaulich, wie Quantencomputer fundamentale Prinzipien der Quantenmechanik sichtbar und messbar machen. 
+Genau darin zeigt sich der Informationsgehalt eines verschränkten Zustands: Die Information liegt nicht in einem einzelnen Qubit, sondern in ihrer gemeinsamen Beziehung. Diese Simulation macht das abstrakte Konzept der Quantenverschränkung greifbar und bietet einen intuitiven Zugang zu den Grundlagen der Quanteninformation. Es zeigt anschaulich, wie Quantencomputer fundamentale Prinzipien der Quantenmechanik sichtbar und messbar machen. 
 
 \subsection{Bell-Zustand in der Praxis}
 
@@ -760,28 +853,6 @@ Ein zweiter praktischer Anwendungsfall des Bell-Zustands findet sich im Quantenc
 
 Im Gegensatz zur Quantenkryptographie, bei der Sicherheit im Vordergrund steht, dient die Quanten-Teleportation der fehlerfreien Übertragung von Quanteninformation. Dies ist eine essenzielle Voraussetzung für die Vernetzung räumlich verteilter Quantencomputer. Sie gilt daher als Schlüsselfunktion zukünftiger Quantencomputer-Netzwerke, etwa im Rahmen eines „Quanteninternets“. (Vgl. \cite{ivezic_entanglement_2022}) Erste praktische Umsetzungen konnten dies bereits demonstrieren: 2017 gelang es ein Qubit über 1.400 km mit dem zuvor bereits erwähnten Satellit Micius erfolgreich zu teleportieren. (Vgl. \cite{ren_ground--satellite_2017})
 
-
-\subsection{Simulation mit IBM Quantencomputer}
-Die Eigenschaften von Bell-Zuständen lassen sich mithilfe von Quantencomputern, wie denen von IBM, direkt auf Hardware simulieren und beobachten. In diesem Beispiel wird ein einfacher Quantenschaltkreis in der IBM Quantum Learning Platform, gemäß der zuvor erläuterten Schritte zur Erzeugung eines Bell-Zustands, aufgebaut. Ausgangszustand sind zwei Qubits, die beide den Wert 0 haben. Zunächst wird auf das erste Qubit ein Hadamard-Gatter (rotes Gatter) angewendet. Dadurch ging es in eine Überlagerung aus „0“ und „1“ über. Anschließend folgt ein CNOT-Gatter (blaues Gatter), das die beiden Qubits miteinander verschränkt: Wenn das erste Qubit nun auf „1“ übergeht, kippt das zweite automatisch ebenfalls auf „1“. Das Ergebnis ist ein Zustand, in dem die Qubits perfekt miteinander verbunden sind – man spricht von einem verschränkten Zustand. 
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.6\textwidth]{images/quantum-information/Schaltung_IBM.png}
-    \caption{Quantenschaltung - IBM Quantum Learning Platform.}
-    \label{fig:meinbild}
-\end{figure}
-
-Nach dem Aufbau der Schaltung können über die IBM Quantum Learning Platform Messungen durchgeführt. Das bedeutet, dass die Qubits im Z-Basiszustand ausgelesen werden um zu überprüfen, ob sie im Zustand „0“ oder „1“ sind. 
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=1\textwidth]{images/quantum-information/results_ibm.png}
-    \caption{Wahrscheinlichkeitsverteilung - IBM Quantum Learning Platform.}
-    \label{fig:meinbild}
-\end{figure}
-
-
-Wie das Histogramm zeigt, werden ausschließlich die Zustände „00“ und „11“ beobachtet - und zwar mit jeweils rund 50\% Wahrscheinlichkeit. Die Zustände „01“ oder „10“, bei denen sich die beiden Qubits unterscheiden würden, treten gar nicht auf. Dies ist ein typisches Verhalten eines Bell-Zustands und belegt, dass die Qubits verschränkt sind. Bemerkenswert ist dabei: Diese Quantenkorrelation bleibt bestehen, selbst wenn die Qubits räumlich voneinander getrennt wären. Die Messergebnisse des einen beeinflussen scheinbar sofort das andere – ein Verhalten, das mit klassischer Physik nicht erklärbar ist. (Vgl. \cite{noauthor_bell_nodate}) 
 
 \section{Zusammenfassung}
 Dieses Kapitel hat gezeigt, dass Quanteninformation weit über das hinausgeht, was klassische Informatikmodelle leisten können. Durch die Einführung des Qubits als Informationsträger wurde deutlich, wie Superposition und Verschränkung völlig neue Rechenparadigmen ermöglichen. Die behandelten Quanten-Gatter, insbesondere die Pauli- und Hadamard-Gatter, bilden die Grundlage für alle quantenlogischen Operationen und Algorithmen. Mit den Beispielen des Deutsch- und Deutsch-Josza-Algorithmus wurde verdeutlicht, dass Quantencomputer bestimmte Probleme wesentlich effizienter lösen können als klassische Rechner. Außerdem wurde die Quantenverschränkung nicht nur als theoretisches Phänomen, sondern auch als praktisches Werkzeug für Teleportation, Kommunikation und Kryptographie vorgestellt. Die Bell-Zustände illustrierten dabei, wie stark verschränkte Systeme als Basis für sichere Kommunikation und Quantencomputing genutzt werden. Insgesamt bietet dieses Kapitel eine Grundlage, um die Funktionsweise und das Potenzial von Quantencomputern zu verstehen und bereitet darauf vor, in den kommenden Kapiteln tiefer in Hardware, Software und konkrete Anwendungen einzutauchen.
