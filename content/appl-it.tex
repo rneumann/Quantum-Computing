@@ -9,6 +9,15 @@ Lola Bankai, Mareike Rennebaum, Siri Wandel, Hüma Yilmaz}
 
 \abstract{some abstract}
 
+\section{Quantum Machine Learning: Anwendungen und Perspektiven}
+\subsection{Einordnung, Motivation und Relevanz}
+\subsection{Technologische Grundlagen}
+\subsubsection{Stand der Technik und Forschungsprojekte}
+\subsubsection{Chancen, Risiken und technologische Herausforderungen}
+\subsection{Fazit}
+
+\vspace{2em}
+
 \section{Kryptographie}
 \subsection{Einleitung}
 Kryptographische Verfahren sind integraler Bestandteil moderner digitaler Infrastrukturen. Insbesondere asymmetrische Kryptosysteme wie RSA, Diffie-Hellman und elliptische Kurvenkryptographie basieren auf der angenommenen Schwierigkeit mathematischer Probleme wie der ganzzahligen Faktorisierung oder der Berechnung diskreter Logarithmen. Diese Probleme gelten im klassischen Rechenmodell als nur mit exponentiellem Aufwand lösbar, wodurch die genannten Verfahren als sicher eingestuft werden. Symmetrische Kryptographie, beispielsweise AES, bietet hingegen Sicherheitsgarantien auf Basis der Schlüsselraumgröße und ist gegenwärtig gegenüber klassischen Angriffen hinreichend resistent.
@@ -23,10 +32,202 @@ Das vorliegende Kapitel analysiert diese Entwicklung aus kryptographischer Persp
 
 \subsection{Technologische Grundlagen}
 \subsubsection{Post-Quantum-Cryptography}
+\noindent\textbf{Einleitung und Motivation}
 
+\noindent
+Die Sicherheit klassischer kryptographischer Verfahren basiert auf Problemen wie der Faktorisierung großer Zahlen oder der Berechnung diskreter Logarithmen – Aufgaben, die für klassische Rechner schwer, aber für zukünftige Quantencomputer effizient lösbar sind. Insbesondere Shors Algorithmus (1994) kann sowohl RSA als auch elliptische Kurven in polynomialer Zeit brechen, während Grovers Algorithmus (1996) symmetrische Verfahren wie AES durch quadratische Beschleunigung schwächt. Diese Entwicklungen bedrohen die langfristige Vertraulichkeit digitaler Kommunikation – besonders in Bereichen, in denen Daten über Jahrzehnte hinweg sicher bleiben müssen, etwa im Gesundheits- oder Militärwesen.
+ (Chen et al., 2016, Sec. 1–2; Mosca, 2018, S. 38–39)
+Post-Quantum Cryptography (PQK) verfolgt daher das Ziel, neue kryptographische Verfahren zu entwickeln, deren Sicherheit auch gegenüber leistungsfähigen Quantencomputern erhalten bleibt. Dabei handelt es sich um rein klassische Algorithmen, die auf mathematischen Problemen beruhen, für die bislang keine effizienten quantenbasierten Angriffe bekannt sind. Die zentrale Motivation hinter PQK liegt also nicht in kurzfristigen Leistungsverbesserungen, sondern in der Absicherung digitaler Infrastrukturen gegen zukünftige Bedrohungen – ein Paradigmenwechsel von „komplexitätsbasierter“ zu „quantenresistenter“ Sicherheit.
+ (Bernstein et al., 2009, Kap. 1; Chen et al., 2016, Sec. 3; Mosca, 2018, S. 39–40)
+
+
+\vspace{1em}
+\noindent\textbf{Abgrenzung und Einordnung}
+
+\noindent
+Post-Quantum Cryptography (PQK) darf nicht mit Quantenkryptographie verwechselt werden. Während Quantenkryptographie wie Quantum Key Distribution (QKD) physikalische Quanteneffekte und spezielle Hardware (z. B. Photonenkanäle) nutzt, ist PQK vollständig klassisch: Die Verfahren laufen auf herkömmlichen Computern und beruhen auf mathematischen Problemstellungen, die auch Quantencomputer voraussichtlich nicht effizient lösen können.
+ (Chen et al., 2016, Sec. 2.2; Mosca, 2018, S. 39)
+PQK verfolgt somit einen softwarebasierten Ansatz, der sich weitgehend in bestehende Infrastrukturen integrieren lässt – etwa durch Austausch von Schlüsselaustausch- oder Signaturalgorithmen in Protokollen wie TLS, SSH oder S/MIME. Im Gegensatz zu QKD, das lediglich den Schlüsselaustausch absichert, können PQK-Verfahren alle Aufgaben moderner Kryptographie abdecken: Vertraulichkeit, Authentizität und Integrität.
+ (Bernstein et al., 2009, Kap. 1; Chen et al., 2016, Sec. 4; National Academies, 2019, S. 95–97)
+Die beiden Ansätze – PQK und Quantenkryptographie – gelten daher nicht als Konkurrenz, sondern als komplementär: PQK bietet eine pragmatische Übergangslösung mit globaler Skalierbarkeit, während QKD auf langfristige physikalische Sicherheit zielt, aber hohe infrastrukturelle Anforderungen stellt.
+ (Mosca, 2018, S. 40; National Academies, 2019, S. 97–98)
+
+
+\vspace{1em}
+\noindent\textbf{Grundlagen der PQK}
+
+\noindent
+Im Kern zielt Post-Quantum Cryptography darauf ab, kryptographische Verfahren zu entwickeln, die auch durch Quantencomputer nicht effizient gebrochen werden können. Dabei basieren PQK-Verfahren auf mathematischen Problemstellungen wie Gitterproblemen, Code-Fehlerkorrektur oder Hashfunktionen, für die es bislang weder klassische noch quantenbasierte effiziente Algorithmen gibt. Diese Probleme sind in vielen Fällen sogar NP-schwer oder lassen sich auf solche reduzieren.
+ (Chen et al., 2016, Sec. 3; Bernstein et al., 2009, Kap. 1)
+Ein großer Vorteil von PQK liegt darin, dass keine neue Hardware erforderlich ist. Die Algorithmen können als Software auf bestehenden Systemen laufen und sind dadurch schnell skalierbar und kosteneffizient einsetzbar. Das macht PQK besonders attraktiv für Szenarien, in denen langfristige Datensicherheit gewährleistet sein muss – etwa im Kontext von Cloud-Infrastrukturen, öffentlicher Verwaltung oder medizinischer Archivierung.
+ (Mosca, 2018, S. 39–40; National Academies, 2019, S. 92–93)
+Insgesamt ermöglicht PQK einen schrittweisen Übergang von heute verbreiteten Verfahren zu quantensicheren Alternativen – ohne Brüche in Protokollen oder Softwarearchitekturen. Dies ist entscheidend, um Sicherheitssysteme rechtzeitig vor dem breiten Einsatz von Quantencomputern zu schützen.
+ (Chen et al., 2016, Sec. 4; Bernstein et al., 2009, Kap. 1)
+
+\vspace{1em}
+\noindent\textbf{Problemklassen und Verfahren}
+\subparagraph{Gitterbasierte Verfahren}
+Gitterbasierte Kryptographie basiert auf geometrischen Problemen im mehrdimensionalen Raum, insbesondere auf dem Learning-With-Errors-Problem (LWE) und dem Shortest Vector Problem (SVP). Diese gelten sowohl für klassische als auch für Quantencomputer als hart. Die Verfahren zeichnen sich durch Effizienz, breite Anwendbarkeit (z. B. Signaturen, Schlüsselaustausch) und gute Sicherheitsnachweise aus. Prominente Vertreter sind Kyber (Key Encapsulation Mechanism) und Dilithium (Signaturverfahren), die von NIST standardisiert wurden.
+ (Regev, 2005; Alagic et al., 2023; NIST, 2024 – FIPS 203)
+ 
+\subparagraph{Codebasierte Verfahren}
+Diese Ansätze nutzen die Schwierigkeit, zufällige lineare Fehlerkorrekturcodes zu dekodieren. Das klassische McEliece-System, das bereits 1978 vorgestellt wurde, ist bis heute gegen bekannte Angriffe – einschließlich quantenbasierter – resistent. Neuere Varianten wie MDPC-McEliece verringern den Speicherbedarf und ermöglichen effizientere Implementierungen. Hauptvorteil: extrem lange kryptographische Erfahrung; Nachteil: große Schlüssellängen.
+ (Misoczki et al., 2013; Bernstein et al., 2009, Kap. 10)
+ 
+\subparagraph{Hashbasierte Verfahren}
+Diese Verfahren stützen sich allein auf die Sicherheit kryptographischer Hashfunktionen. Bekannteste Vertreter sind Lamport-Signaturen, Merkle-Bäume und darauf basierende Standards wie SPHINCS+. Da sie keine algebraische Struktur ausnutzen, gelten sie als sehr robust gegen strukturelle Angriffe – allerdings sind die Signaturen oft lang und benötigen komplexes Management für Schlüsselzustände.
+ (Lamport, 1979; Bernstein et al., 2009, Kap. 5; Chen et al., 2016, Sec. 3.2)
+
+
+\vspace{1em}
+\noindent\textbf{Standardisierung und Status quo}
+
+\noindent
+Im Jahr 2016 startete das National Institute of Standards and Technology (NIST) einen mehrstufigen Auswahlprozess zur Standardisierung quantenresistenter Kryptographie. Ziel war es, aus Hunderten international eingereichter Vorschläge robuste, breit einsetzbare und quantensichere Verfahren für digitale Signaturen und Schlüsselaustausch zu identifizieren.
+ (Alagic et al., 2023, S. 1–2)
+Nach drei Wettbewerbsrunden wurden 2022 drei Verfahren für die Standardisierung ausgewählt: Kyber (Key Encapsulation), Dilithium (digitale Signaturen) und SPHINCS+ (hashbasiertes Signatursystem). Im März 2024 veröffentlichte NIST den ersten offiziellen PQC-Standard – FIPS 203, der Kyber spezifiziert. Die Standards zu Dilithium und SPHINCS+ folgen zeitnah.
+ (NIST, 2024 – FIPS 203)
+Die Relevanz für Wirtschaft und Staat ist hoch: Durch die Softwarekompatibilität dieser Verfahren ist ein schrittweiser Migrationspfad möglich – etwa in TLS, VPNs, Firmware-Updates oder digitaler Kommunikation in Verwaltung und Industrie. Unternehmen wie IBM, Cloudflare oder Amazon Web Services haben erste PQK-Pilotprojekte in Betrieb genommen.
+ (Alagic et al., 2023, S. 3–5)
+ 
 
 \subsubsection{Quantum-Key-Distribution}
+\noindent\textbf{Einleitung und Motivation}
+
+\noindent
+Die Verteilung kryptographischer Schlüssel zählt zu den zentralen Herausforderungen moderner Informationssicherheit. Klassische Verfahren stützen sich auf die angenommene Schwierigkeit mathematischer Probleme wie der Faktorisierung großer Zahlen oder diskreter Logarithmen. Diese gelten zwar aktuell als sicher, könnten jedoch durch leistungsfähige Quantencomputer kompromittiert werden.
+Quantum Key Distribution (QKD) verfolgt einen grundlegend anderen Ansatz: Sie nutzt nicht mathematische Komplexität, sondern quantenmechanische Prinzipien wie die Unschärferelation, Verschränkung und das No-Cloning-Theorem, um Sicherheit zu garantieren (Scarani et al., 2009).
+Ein QKD-Protokoll erlaubt es zwei Parteien – klassisch Alice und Bob –, über einen Quantenkanal einen gemeinsamen geheimen Schlüssel zu erzeugen. Dieser beruht darauf, dass jede Messung durch einen Angreifer (Eve) zwangsläufig den Quantenzustand verändert und damit erkennbar stört (Bennett & Brassard, 1984).
+Der Schlüssel wird anschließend über einen klassischen Kanal authentifiziert und genutzt. Da jeder Abhörversuch Spuren hinterlässt, gilt QKD theoretisch als informationstheoretisch sicher – unabhängig von technischer oder rechnerischer Kapazität (Ekert, 1991).
+
+
+\vspace{1em}
+\noindent\textbf{Abgrenzung und konzeptionelle Einordnung}
+
+\noindent
+Quantum Key Distribution (QKD) dient ausschließlich der sicheren Verteilung kryptographischer Schlüssel – die eigentliche Datenübertragung erfolgt weiterhin klassisch und muss gesondert verschlüsselt werden. QKD allein stellt also kein vollständiges Sicherheitssystem dar (Scarani et al., 2009).
+Zudem erfordert QKD stets eine Authentifikation der Kommunikationspartner, um Angriffe wie „Man-in-the-Middle“ zu verhindern. Diese Authentifikation kann durch klassische Verfahren oder durch Post-Quantum-Kryptographie (PQK) erfolgen, die auf mathematisch schwer lösbaren Problemen basiert (Mosca, 2018).
+QKD und PQK verfolgen dabei unterschiedliche Ansätze: Während PQK softwarebasiert ist und klassische Systeme absichert, nutzt QKD physikalische Gesetze zur Sicherheit. PQK ist leichter zu integrieren, QKD bietet im Idealfall theoretisch unbedingte Sicherheit, erfordert aber quantenphysikalische Infrastruktur (National Academies, 2019).
+QKD ist damit ein spezialisierter Baustein, kein Ersatz für klassische oder PQK-gestützte Systeme, sondern ein ergänzender Bestandteil quantensicherer Kommunikation.
+
+
+\vspace{1em}
+\noindent\textbf{Grundlagen der Protokolle}
+
+\subparagraph{BB84-Protokoll}
+Das BB84-Protokoll wurde 1984 von Bennett und Brassard entwickelt und gilt als das erste konkrete Verfahren zur Quantum Key Distribution. Die zentrale Idee besteht darin, einzelne Photonen in zufälligen Polarisationszuständen zu senden – etwa horizontal/vertikal (|, ⎯) und diagonal (⧬, ×).
+Der Sender (Alice) wählt dabei zufällig eine Basis (z. B. rectilinear oder diagonal) und sendet ein entsprechend polarisiertes Photon. Der Empfänger (Bob) misst das Photon ebenfalls in einer zufällig gewählten Basis. Nur wenn Sender und Empfänger dieselbe Basis verwendet haben, stimmen die Messergebnisse überein und können als Teil des gemeinsamen Schlüssels übernommen werden.
+Ein Abhörversuch durch einen Dritten (Eve) würde das Photon stören und damit statistisch erkennbare Fehler erzeugen – was Grundlage der theoretischen Sicherheit ist.
+ (Bennett & Brassard, 1984)
+ 
+\subparagraph{E91-Protokoll}
+Das E91-Protokoll, vorgeschlagen von Ekert (1991), basiert nicht auf Polarisation und Basiswahl, sondern auf quantum-entanglement (Verschränkung). Dabei wird ein Paar verschränkter Photonen erzeugt, von denen eines zu Alice und eines zu Bob geschickt wird.
+Die beiden messen ihre Photonen in jeweils unterschiedlichen, zufällig gewählten Messrichtungen. Aufgrund der Quantenverschränkung sind die Messergebnisse korreliert – stärker, als es nach klassischer Physik möglich wäre. Diese Korrelationen können mit Bell-Tests überprüft werden und dienen als Sicherheitsnachweis: Wird die Bell-Ungleichung verletzt, ist ein Abhörversuch ausgeschlossen.
+(Ekert, 1991)
+
+\subparagraph{Vergleich BB84 vs. E91}
+Beide Protokolle ermöglichen die sichere Generierung gemeinsamer Schlüssel, unterscheiden sich aber im Sicherheitsmodell:
+BB84 stützt sich auf die Unmöglichkeit einer störungsfreien Messung und erfordert Vertrauen in die Quelle und die Geräte.
+E91 nutzt dagegen verschränkte Zustände und erlaubt die Überprüfung der Sicherheit durch beobachtbare Bell-Korrelationen – potenziell sogar device-independent, also ohne vollständiges Vertrauen in die Hardware.
+
+\vspace{1em}
+\noindent\textbf{Erweiterte QKD-Konzepte}
+
+\noindent
+Um theoretisch sichere QKD-Protokolle an reale Bedingungen anzupassen, wurden mehrere Erweiterungen entwickelt, die bekannte Schwachstellen adressieren.
+Decoy-State QKD
+In der Praxis ist es oft technisch schwierig, wirklich einzelne Photonen zu senden. Viele Systeme verwenden daher abgeschwächte Laserpulse, bei denen gelegentlich mehrere Photonen gleichzeitig ausgesendet werden. Ein Angreifer könnte diese ausnutzen, indem er einen Photonenteil abzweigt und das restliche Signal weitersendet – ein sogenannter Photon-Splitting-Angriff.
+Decoy-State QKD löst dieses Problem, indem zusätzlich zum eigentlichen Signal auch sogenannte Täuschungspulse („decoy states“) mit variabler Intensität gesendet werden. Diese erlauben es, den Kanal zu testen und solche Angriffe zu erkennen, ohne die Schlüsselerzeugung zu stören.
+ (Scarani et al., 2009, Abschn. III.C)
+Device-Independent QKD (DI-QKD)
+Bei herkömmlichen Protokollen wird vorausgesetzt, dass die verwendeten Geräte korrekt und vertrauenswürdig arbeiten. In der Realität kann das aber durch Manipulation oder Fertigungsfehler nicht immer garantiert werden.
+DI-QKD umgeht dieses Problem, indem es die Sicherheit direkt aus den beobachteten Messdaten ableitet – unabhängig von der internen Funktionsweise der Geräte. Möglich wird das durch quantenmechanische Bell-Tests, mit denen gezeigt werden kann, dass echte Nichtlokalität vorliegt und somit ein Abhören ausgeschlossen ist. Damit ist DI-QKD theoretisch besonders robust – aber experimentell sehr anspruchsvoll.
+ (Scarani et al., 2009, Abschn. V.C)
+
+\vspace{1em}
+\noindent\textbf{Sicherheitsprinzipien und Angriffsmodelle}
+
+\noindent
+Die Sicherheit von QKD beruht auf fundamentalen Prinzipien der Quantenmechanik. Ein zentrales Element ist die Messstörung: Wird ein Quantenobjekt – etwa ein Photon im BB84-Protokoll – vom Angreifer gemessen, verändert sich sein Zustand. Dadurch entstehen Fehler in der Bitfolge, die von den Kommunikationspartnern erkannt werden können. Zudem verhindert das No-Cloning-Theorem, dass ein unbekannter Quantenzustand exakt kopiert werden kann. Damit ist es einem Angreifer prinzipiell unmöglich, eine perfekte Kopie der übertragenen Information zu erstellen.
+ (Scarani et al., 2009)
+Trotz dieser theoretischen Sicherheit existieren Angriffsmodelle, die Schwächen im Protokoll oder im Ablauf ausnutzen – etwa durch Ausnutzung falsch gewählter Basen oder durch die Manipulation von Messprozessen, z. B. durch das sogenannte Basis-Guessing. Auch Detektor-Manipulationen werden diskutiert, sofern Annahmen über das ideale Verhalten der Geräte nicht erfüllt sind.
+ (Scarani et al., 2009)
+Insgesamt gilt QKD als informationstheoretisch sicher, sofern alle theoretischen Annahmen erfüllt sind. In der Praxis jedoch hängt die tatsächliche Sicherheit stark von der korrekten Implementierung und der Kontrolle externer Fehlerquellen ab. Die Diskrepanz zwischen Theorie und Realität ist daher ein aktives Forschungsfeld, insbesondere im Hinblick auf Standards, Geräteverifikation und Modellierung von Angriffen.
+ (Mosca, 2018)
+
+
 \subsubsection{Quantum-Random-Number-Generator}
+\noindent\textbf{Einleitung und Motivation}
+
+\noindent
+Ein Quantum Random Number Generator (QRNG) erzeugt echte Zufallszahlen auf Basis quantenmechanischer Prozesse. Im Gegensatz zu klassischen Zufallszahlengeneratoren, die deterministisch aus einem Startwert („Seed“) arbeiten, ist das Ergebnis bei QRNGs fundamental unvorhersagbar, da es nicht kausal vorherbestimmt ist.
+ (Herrero-Collantes & Garcia-Escartin, 2017, Kap. I)
+Pseudo-Random Number Generators (PRNGs) erzeugen zwar scheinbar zufällige Folgen, doch sind diese vollständig durch ihren Startwert bestimmt. Wird dieser bekannt oder erraten, lässt sich die gesamte Folge rekonstruieren – ein kritisches Risiko etwa bei Schlüsselgenerierung oder Challenge-Response-Verfahren.
+ (NIST SP 800-90B, 2018, Sec. 3.1)
+QRNGs bieten hier einen klaren Vorteil: Da sie auf quantenphysikalischer Messung beruhen – etwa bei der Entscheidung, ob ein Photon reflektiert oder transmittiert wird – entsteht das Ergebnis erst im Moment der Messung. Selbst der Hersteller kann die Bitfolge nicht vorhersagen, was sie einzigartig und nicht rekonstruierbar macht.
+ (Ma et al., 2016, S. 2)
+In der Kryptographie ist echter Zufall essenziell. Wird ein Schlüssel durch einen schwachen Zufallsprozess erzeugt, kann er unter Umständen rekonstruiert werden. Ein bekanntes Beispiel ist der Debian OpenSSL-Bug (2006–2008), bei dem fehlerhafte Zufallszahlen zu wiederverwendbaren Schlüsseln führten. QRNGs vermeiden solche Risiken, da sie eine verlässliche, nicht-reproduzierbare Entropiequelle liefern.
+ (Herrero-Collantes & Garcia-Escartin, 2017, Kap. III)
+
+
+\vspace{1em}
+\noindent\textbf{Einsatzmöglichkeiten in der Kryptographie}
+
+\noindent
+QRNGs finden vor allem Anwendung in zwei Bereichen:
+\smallskip
+In Quantum Key Distribution (QKD): Hier dienen sie zur Erzeugung der zufälligen Bitfolgen, die später verschlüsselt oder verglichen werden. Da die Sicherheit von QKD-Protokollen wie BB84 maßgeblich von der Qualität des Zufalls abhängt, sind QRNGs hier ein kritischer Bestandteil. Ohne echten Zufall wäre z. B. ein Angriff durch Wiederverwendung von Schlüsseln möglich.
+\smallskip
+In klassischen kryptographischen Protokollen: Auch in herkömmlichen Systemen wie TLS, S/MIME oder SSH kann ein QRNG eine sichere Hardware-Entropiequelle für einen Pseudozufallszahlengenerator (PRNG) sein. Typischerweise wird das QRNG genutzt, um einen PRNG zu „seeden“, also mit einer Startentropie zu versorgen. So wird das Beste aus beiden Welten kombiniert: Echter Zufall + hohe Geschwindigkeit durch PRNGs.
+\smallskip
+(NIST SP 800-90B, 2018, Sec. 3.1)
+Auch moderne Hardware-Sicherheitsmodule (HSMs) und Smartcards integrieren zunehmend QRNGs – sowohl zur Erhöhung der kryptographischen Sicherheit als auch zur Einhaltung regulatorischer Standards. In sensiblen Sektoren wie der Finanzbranche oder beim Militär ist eine verifizierbare Quelle für echten Zufall mittlerweile eine Anforderung.
+(Sanguinetti et al., 2014)
+
+
+\vspace{1em}
+\noindent\textbf{Abgrenzung und Rolle in der Kryptographie}
+
+\noindent
+Quantum Random Number Generators (QRNGs) sind zentrale Bausteine sicherer Systeme, jedoch keine vollständigen Kryptosysteme. Ihre Aufgabe besteht ausschließlich in der Erzeugung echter, nicht vorhersagbarer Zufallszahlen – sie übernehmen weder Verschlüsselung noch Authentifikation. Als Grundlagentechnologie ersetzen oder ergänzen sie klassische Zufallsquellen wie Pseudozufallszahlengeneratoren (PRNGs).
+ (Herrero-Collantes & Garcia-Escartin, 2017, Kap. IV)
+QRNGs werden meist mit anderen Verfahren kombiniert. In der Quantenkryptographie, etwa bei Quantum Key Distribution (QKD), liefern sie die nötigen Zufallsbits. Auch in klassischen Anwendungen wie TLS oder VPNs dienen sie als sichere Entropiequelle zur Initialisierung von PRNGs. Moderne Hardware wie Security Modules (HSMs) oder Smartcards nutzt QRNGs zunehmend zur Stärkung kryptographischer Prozesse und zur Einhaltung regulatorischer Standards.
+ (Ma et al., 2016, S. 4; Sanguinetti et al., 2014)
+Trotz dieser Vorteile sind QRNGs nicht automatisch sicher. Bei kompromittierter oder fehlerhafter Hardware kann ein Angreifer Einfluss nehmen. Ma et al. (2016) unterscheiden daher drei Vertrauensmodelle: praktische QRNGs, die voll auf ihre Hardware angewiesen sind; semi-self-testing QRNGs mit interner Überprüfung; und fully self-testing QRNGs, bei denen quantenmechanische Tests (z. B. Bell-Tests) die Korrektheit unabhängig von der Gerätevertrauenswürdigkeit belegen. Letztere, auch als Device-Independent QRNGs (DI-QRNGs) bekannt, gelten als langfristiges Ziel kryptographischer Forschung.
+ (Ma et al., 2016, S. 5–6)
+QRNGs bieten somit das Potenzial für neue, robuste Sicherheitssysteme – ihre Wirksamkeit entfaltet sich jedoch nur im Zusammenspiel mit weiteren kryptographischen Komponenten. Ihre korrekte Einbindung ist entscheidend für die Integrität moderner Sicherheitsarchitekturen.
+
+
+\vspace{1em}
+\noindent\textbf{Funktionsprinzipien von QRNG}
+
+\noindent
+Die Funktionsweise von Quantum Random Number Generators (QRNGs) beruht auf einem fundamentalen Prinzip der Quantenmechanik: Das Ergebnis einer Messung ist nicht im Voraus bestimmbar – es entsteht erst im Moment der Messung. Genau dieses Verhalten macht sich die QRNG-Technologie zunutze, um echte, nicht reproduzierbare Zufallszahlen zu erzeugen.
+ (Herrero-Collantes & Garcia-Escartin, 2017, Kap. II)
+Ein klassisches Beispiel für dieses Prinzip ist der Strahlteiler-Ansatz (Beam Splitter), bei dem einzelne Photonen auf einen halbtransparenten Spiegel treffen. Das Photon wird dabei entweder reflektiert oder transmittiert – mit einer Wahrscheinlichkeit von jeweils 50 Prozent. Welchen der beiden Wege es nimmt, ist nicht kausal festgelegt, sondern ergibt sich erst durch die Messung an einem der beiden Detektoren. Jeder Detektor steht für eine Bitentscheidung („0“ oder „1“) – und damit entsteht ein echter Zufallswert.
+ (Jennewein et al., 2000)
+Ein weiteres praktisches Prinzip ist die Nutzung von Laserrauschen – also der zufälligen Phasenschwankungen von Licht, die bei der Emission in einem Laser auftreten. Diese Schwankungen können mit optischen Detektoren erfasst und in digitale Bitfolgen umgewandelt werden. Auch hier ist das Messergebnis nicht vorhersagbar und basiert auf quantenmechanischen Effekten.
+(Ma et al., 2016, Abschn. „Practical architectures“)
+Neben diesen beiden Grundtypen existieren noch weitere physikalische Realisierungen, die auf unterschiedlichen Quellen quantenmechanischer Unbestimmtheit beruhen: etwa das Quantentunnelungsrauschen in Halbleiterbauelementen, Phasenrauschen in Oszillatoren, oder Spontanemission in optischen Verstärkern. Die konkrete Umsetzung hängt dabei von der jeweiligen Anwendung ab – ob hohe Geschwindigkeit, Miniaturisierung oder maximale Vertrauenswürdigkeit im Vordergrund steht.
+(Herrero-Collantes & Garcia-Escartin, 2017, Kap. II & III)
+Allen Ansätzen gemeinsam ist, dass sie im Unterschied zu klassischen Zufallsgeneratoren nicht deterministisch sind. Es ist physikalisch unmöglich, das Ergebnis vorherzusagen – selbst mit vollständigem Wissen über den Aufbau des Systems. Genau das macht QRNGs zu einer so wertvollen Komponente in sicherheitskritischen Bereichen der Kryptographie.
+
+
+\vspace{1em}
+\noindent\textbf{Anforderungen an sichere QRNGs}
+
+\noindent
+Ein Quantum Random Number Generator (QRNG) muss für den Einsatz in kryptographischen Systemen spezifische Anforderungen erfüllen. Diese betreffen nicht nur die physikalische Qualität der Zufallszahlen, sondern auch ihre Testbarkeit und Vertrauenswürdigkeit. Vier zentrale Kriterien sind entscheidend.
+ (Herrero-Collantes & Garcia-Escartin, 2017, Kap. II; Ma et al., 2016, S. 2–3)
+Erstens: Nicht-Vorhersagbarkeit. Anders als bei PRNGs lässt sich bei QRNGs das Ergebnis nicht rekonstruieren – selbst mit vollständigem Wissen über Aufbau und Zustand. Die Ursache liegt in der quantenmechanischen Superposition: Ein Ergebnis entsteht erst im Moment der Messung, z. B. wenn ein Photon zufällig reflektiert oder transmittiert wird.
+ (Herrero-Collantes & Garcia-Escartin, 2017, Kap. II; Ma et al., 2016, S. 2–3)
+Zweitens: Zufälligkeitstestbarkeit. Um die Gleichverteilung und Unabhängigkeit der erzeugten Bitfolgen zu prüfen, werden standardisierte statistische Tests eingesetzt – etwa die NIST Statistical Test Suite (STS) oder Dieharder. Ein QRNG muss diese regelmäßig bestehen, um weiterbetrieben werden zu dürfen.
+ (NIST SP 800-90B, 2018, Sec. 4)
+Drittens: Entropiequellenanalyse. Die Entropie – also der tatsächlich enthaltene Zufall – muss ausreichend hoch und gegen technische Störungen abgesichert sein. Systeme müssen in der Lage sein, die effektive Entropie zu schätzen und im Zweifel zu verwerfen. Diese Prüfung ist Teil vieler Zertifizierungen, etwa FIPS 140-3.
+ (Ma et al., 2016; NIST SP 800-90B, Abschn. 5.2)
+Viertens: Device Independence. Ideal ist ein QRNG, das auch dann sichere Zufallszahlen liefert, wenn die Hardware nicht vertrauenswürdig ist. Dies wird durch quantenmechanische Tests wie Bell-Tests erreicht, die Unabhängigkeit von internen Annahmen garantieren. Solche Geräte sind technisch anspruchsvoll, aber ein zentrales Ziel künftiger Entwicklungen.
+ (Ma et al., 2016, Abschnitt „Classification of QRNGs“)
+ 
 
 \subsection{Aktuelle Anwendungsprojekte}
 \subsubsection{Post-Quantum-Cryptography}

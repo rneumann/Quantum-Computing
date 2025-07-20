@@ -40,33 +40,46 @@ Damit befindet sich der Finanzsektor an einem Wendepunkt: Auf der einen Seite bi
 Die konkrete Anwendbarkeit von Quantencomputern im Finanzsektor kann anhand von drei zentralen Bereichen veranschaulicht werden: Portfoliooptimierung, Monte-Carlo-Simulation und Risikomessung. Aufgrund ihrer hohen rechnerischen Komplexität und datenintensiven Anforderungen gelten diese Felder als besonders geeignet für quantenbasierte Verfahren. Im nachfolgenden Abschnitt wird untersucht, in welchem Ausmaß Quantenalgorithmen klassische Methoden in diesen Bereichen ergänzen oder ersetzen können.
 
 \subsection{Portfoliooptimierung}
+Die Portfoliotheorie ist ein Konzept der Finanzwirtschaft und beschreibt die Bestimmung eines optimalen Portfolios durch die Zusammensetzung von mehreren Kapitalanlagen. Kapitalanlagen beschreiben Investitionen in zahlreiche, langfristig orientierte Anlagen, die in Form von Aktien, Anleihen, Währungen, Immobilien oder Rohstoffen über Jahre gehalten und nicht verkauft werden. 
+\cite{orus2019,sakuler2025}
 
-\subsubsection*{Grundlagen der Portfoliotheorie}
-
-Die Portfoliotheorie ist ein Konzept der Finanzwirtschaft und beschreibt die Bestimmung eines optimalen Portfolios durch die Zusammensetzung von mehreren Kapitalanlagen. Kapitalanlagen beschreiben Investitionen in zahlreiche, langfristig orientierte Anlagen, die in Form von Aktien, Anleihen, Währungen, Immobilien oder Rohstoffen über Jahre gehalten und nicht verkauft werden 
-\cite{orus2019,sakuler2025}.
+    "Efficient Frontier Schaubild"
  
-Harry Markowitz widmete sich der Frage in welcher Form ein optimales Portfolio, unter berücksichtigung der Marktbedingungen zusammengestellt werden sollte. Er beschreibt das Ziel, ein Portfolio zu konstruieren, dass für ein gegebenes Risikoniveau die maximale Rendite erbringt. Gleichermaßen kann auch umgekehrt, bei einer angestrebten Rendite, das Portfolio identifiziert werden, dass das Risiko minimiert. Somit steht die erwartete Rendite in direkter Relation zu dem erwarteten Risiko bestimmt durch die Unsicherheit der Zukunft
-\cite{mondello2017,markowitz1959}.
- 
-Annahmen der Theorie sind, dass ein Anleger eine risikoaverse, rational handelnde Person ist, die Entscheidungen auf Grundlage der Renditen und Varianzen fällt. Das Risiko kann durch die Varianz der Portfoliorenditen bestimmt werden, oder auch der Standardabweichung der erwarteten Rendite. 
-Eines der Hauptprinzipien der Theorie ist die Diversifikation. Diese beschreibt die Verknüpfung verschiedener Anlageklassen mit einer negativen Korrelation, also einer entgegengesetzten Entwicklung auf dem Markt. Somit sinkt das Risiko mit sinkender Korrelation und steigt die Rendite mit sinkender Korrelation. (Korrelation < 0, Hierdurch wird das Risiko minimiert, ohne damit auf Rendite zu verzichten.)
-Die effiziente Grenze wird dann erreicht, wenn ceteris paribus, die Rendite nicht weiter steigen kann, ohne dass das Risiko steigt, durch Austauschen oder Wegnehmen eines Portfolios. 
-Wichtig ist, dass alle zur Verfügung stehenden Anlagewerte vollständig investiert werden. In der Praxis führt dies jedoch zu einem exponentiellen Anstieg der Rechenkomplexität. Mit steigender Anzahl der Anlagewerte steigt der Analyseaufwand. 
-\cite{sakuler2025,markowitz1959}.
-
-\subsubsection*{Einführung Anwendung von Quantencomputern}
-
-Trotz der theoretischen Stärke der Portfoliotheorie stößt sie schnell bei wachsender Komplexität an Ihre Grenzen. Herkömmliche Computer benötigen bei solchen Anwendungen enorm viel Rechenleistung und Zeit. 
-An dieser Stelle kommen Quantencomputer ins Spiel. Quantencomputer sind in der Lage, komplexe Optimierungsprobleme in der Finanzwelt effizienter zu lösen. Sie bieten eine neue Perspektive, um die Suche nach optimalen Portfolios zu beschleunigen. Während der Suche können Quantencomputer auf realitätsnähere und größere Modelle zugreifen und eröffnet damit neue Dimensionen in der praktischen Anwendung. 
+Harry Markowitz widmete sich der Frage in welcher Form ein optimales Portfolio, unter berücksichtigung der Marktbedingungen zusammengestellt werden sollte. Die Effizienzkurve repräsentiert das zentrale Konzept und stellt jene Portfolios dar, die die maximale Rendite zu einem gegebenen Risikoniveau, beziehungsweise umgekehrt das minimale Risiko für eine Zielrendite darstellt. (Markowitz 1959) modelliert daher ein Portfolio mittels des Erwartungswert der zukünftigen Renditen, sowie der Varianz (bzw. Standardabweichung) als Maß für das Risiko. Er entdeckte, dass die Varianz des Portfolios durch Diversifikation, also der Gewichtung unterschiedlicher Anlageklassen mit geringer Korrelation, minimiert werden kann. Hierdurch entsteht die gekrümmte vorm der Effizienzkurve. Ein rational handelnder Investor würde nun ein Portfolio auf der Kurve wählen. Portfolios rechts oder unterhalb der Effizienzkurve weisen entweder eine geringere Rendite, zu dem selben Risiko oder eine identische Rendite zu mehr Risiko auf. 
+Die Optimierung nach Markowitz lässt sich in einem kontinuierlichem, quadratischen Optimierungsproblem schreiben das mithilfe von quadratischer Programmierung lösbar ist. 
+\cite{Sakuler et al., 2025, Orús u. a. 2019}.
+In der Praxis müssen jedoch oft diskrete Kauf- oder Nicht Kauf Entscheidungen getroffen werden, die das Problem zu einem kombinatorischen Optimierungsproblem machen. Solche Probleme lassen sich dann in einem Quadratic Unconstrained Binary Optimization (QUBO) Formulierung überführen. Die daraus Entstehende Lösungsmenge wächst dann exponentiell mit der Anzahl der hinzugefügten Assets. 
+Trotz der theoretischen Stärke der Portfoliotheorie stößt sie schnell bei solch wachsender Komplexität an Ihre Grenzen.
+\cite{mondello2017,markowitz1959, Sakuler et al. 2025}.
 
 \subsubsection*{Hybride Quantenalgorithmen}
+An dieser Stelle kommen Quantencomputer ins Spiel. Die Idee dahinter ist, das kombinatorische Problem direkt auf Quantenbits abzubilden und damit die Suche nach einer effizienten Lösung zu optimieren. Zwei Technologien stechen in den letzten Jahren der Forschung besonders heraus: Quantum Annealing und gate-basierte Qantenalgorithmen. \cite{Mugel et al., 2022,Orus et al., 2019} 
 
-Innerhalb dieses Fortschritts hat sich eine Bandbreite an Algorithmen herauskristallisiert, die die ursprüngliche Berechnung mit quantenmechanischen Berechnungen Schritten verknüpft. Diese hybriden Quantenalgorithmen kombinieren die Stärken aus beiden Verfahren, um anspruchsvolle mathematische Probleme effizienter zu lösen. Hierbei werden anspruchsvolle Teile, die gut auf quantenbasierte Umsetzungen zugeschnitten werden können, umzuleiten und andere Aufgaben in ursprünglicher Form zu bearbeiten. 
+Zahlreiche kombinatorische Optimierungsprobleme wie eine Portfolioauswahl von 0/1-Entscheidungen gehören zu den sehr schwer lösbaren Problemen (NP-schwere Probleme). Diese lassen sich in eine QUBO-Form überführen exakt wie in der statistischen Physik bei dem Ising-Modell. Quantum Annealer hingegen sind spezialisierte Quantencomputer, die QUBO-Probleme oder auch Ising-Probleme durch quantenmechanische Tunnel zur Minimumslösung finden sollen.  
+\cite{Mugel et al., 2022}
+Die Übersetzung auf die Portfoliotheorie ist wie folgt: Jede mögliche Portfolioentscheidung wird als Qubit abgebildet, während die Markowitzfunktion, also die Kombination aus Rendite und Risiko als effektives Hamiltonian formuliert wird. Hamiltonian ist die mathematische Form der Energie des Modells. Diese dient zur Identifikation des optimalen Portfolios, also den Zustand mit der geringstmöglichen Energie durch Herunterkühlens des Quantenannealers. \cite{Mugel et al., 2022}
 
- 
-Es wird deutlich, dass besonders Anwendungen in Optimierungsverfahren, Simulationen und maschinelles Lernen hybride Quantenalgorithmen verwendet werden können. 
-Die Entwicklung eines hybriden Quantenalgorithmus kann erfolgen durch die anfängliche Identifizierung der rechenintensiven Bereiche. Diese Bereiche können dann mithilfe der Auswahl von Quantenalgorithmen beschleunigt werden.
+In ersten Studien wird deutlich, dass kleine Portfolioinstanzen bereits mithilfe eines D-Wave-2000Q-Annealer gelöst werden kann. Rosenberg (2016) verzeichnete hier Erfolge in der Nutzung um Arbitrage-Möglichkeiten und optimale Portfolios zu finden. 
+In ersten Praxis versuchen von (Sakuler et. Al), Raiffeisen Bank International und dem Tech-Dienstleister Reply wurde reale Portfoliooptimierungsprobleme (9-11 Assets aus Aktien, Anleihen, Geldmarkt) mit Budget- und Volatilitätsrestriktionen ins QUBO-Modell mit einem D-Wave Quantenanealler getestet. Es gelang Ergebnisse in Sekunden bis Minuten zu erzielen, die mit der klassischen Lösung im Einklang standen. Herausforderungen stellen die Vernetzung der Quantenbits im Annealer dar sowie die einspeisung des Problems in die Hardware.\cite{Sakuler et al., 2025}
+
+Die bisherigen Erfahrungen mit Quantum Annealing zeigen, dass es bisher noch keine deutlich Verbesserungen erziehlt werden können die über die klassischen Verfahren hinaus gehen. Jedoch sind Quantum-Annealer für kleinere bis mittelgroße Probleme von Vorteil und stehen bereits zur Verfügung. 
+
+Gate-basierte Quantencomputer arbeiten mit Schaltkreisen. Auf diesen Systemen können Variationsalgorithmen implementiert werden, die Optimierungsprobleme lösen. Die zwei bekanntesten Methoden sind hierbei Quantum Approximate Optimization Algorithm (QAQO) und Variational Quantum Eigensolver (VQE). In beiden Methoden kommt ein parametischer Quantenschaltkreis zum Einsatz, dessen Parameter iterativ von einem klassischen
+Optimierer so eingestellt werden, dass das gemessene Ausgabe-Stadium die Zielfunktion minimiert. Für die Portfoliooptimierung muss zuerst das eigentliche Problem abgeleitet und in einen Hamiltonoperator übersetzt werden.
+\cite{Buonaiuto et al., 2023, Brandhofer et al., 2023}
+
+Für den Quantum Approximate Optimization Algorithm (QAOA) Ansatz muss durch die Umwandlung in ein Ising-Modell zunächst das Optimierungsproblem binär formuliert werden. Dieses Modell bildet mit Wechselwirkungsparametern zwischen den Qubits das Ertrags-Risiko-profil des Portfolios ab. (Brandhofer et al., 2023)
+Der QAO-Algorythmus verwendet abwechselnd zwei Arten von Gate-Operationen. Eine Operation auf dem Problem Hamiltonian basierenden Phasenschicht und eine auf einer Mixer-Hamiltonian Rotationsschicht. ¬Die Anzahl der Alternierungen zwischen Misch- und Phasen-Gates ist bestimmt durch die Tiefe. Ziel ist es, die Messwahrscheinlichkeit für eine optimale Lösung zu verbessern. In der Studie von Brandhofer et al. (2023), zeigen die Autoren, dass der Einsatz von diesen spezialisierten Mixern, die Güte und die Umsetzbarkeit der Lösung deutlich verbessert. 
+
+Der Variational Quantum Eigensolver (VQE) verfolgt zwar vom Grundsatz her ein ähnliches Ziel, verwendet jedoch einen anderen Ansatz. Statt des festgelegten Schematas bei QAOA, ist die Wahl des Schaltkreises beliebig und mit festen Parametern versehen. Der Erwartungswert des Problem-Hamiltonians wird durch wiederholtes Messen geschätzt, und ein klassischer Optimierer passt die Parameter an, um den Energieerwartungswert zu minimieren. Die Ansätze können beispielsweise Hardware-effizient oder Problem-spezifisch sein.
+\cite{Buonaiuto et al., 2023}
+Buonaiuto et al. (2023) testeten in einer Studie die Wirksamkeit der VQE-Pipeline. Die Ergebnisse lieferten, dass der VQE auf einem 5-Qubit-Gerät eine fast identische Lösung zum klassischen Optimum generieren konnte. Die Qualität der Lösung variierte jedoch mit der Qualität des Quantenchips. Je größer und weniger von Rausch behaftete Geräte lieferten verbesserte als kleinere. Somit schmälern Rauschen und die begrenzte Qubit-Zahlen zwar noch den Nutzen, obwohl die Algorithmen prinzipiell eine optimale Lösung finden. 
+\cite{Buonaiuto et al., 2023}
+
+Der Einsatz von QAOQ mit der Fixierung der Anzahl der enthaltenen Assets wurde von Brandhofer et al. (2023) untersucht. Die Resultate zeigten, dass die Anzahl benötigter Quantengatter und Messungen die für mittlere Problemgrößen benötigt werden, die NISQ-Geräte an ihre Grenzen bringt. Für kleinere Portfolios konnten jedoch annähernd optimale Ergebnisse erziehlt werden. 
+
+Beide Ansätze QAOA/VQE glänzen in Ihrer Flexibilität. Es können leichter zusätzliche Nebenbedingungen eingebaut werden und dynamische Portfolio-Probleme formulieren. Nachteile spiegeln sich in der in der limitation durch Rauschen und Decoherence, die ohne notwendige Fehlerkorrektur nicht behoben werden können. Aufgrund dieser Einschränkungen bleiben die Anwedungen der gate-basierten Ansätze noch auf rein Simulierter Ebene oder auf kleinen Hardware-Experimenten beschränkt. 
+
 
 \subsection{ Monte Carlo Simulation}
 
@@ -77,16 +90,7 @@ Als grundlegendes Instrument wird in diesem Bereich die Monte-Carlo-Simulation i
 
 Dieser stochastische Ansatz wird in der Finanzwelt besonders bei der Bewertung von Portfolios, Optionen und Aktien verwendet \cite{orus2019}.
 
-\subsubsection*{Monte Carlo und Quantencomputern}
-Die Monte-Carlo-Simulation ist ein stochastisches Verfahren, das Unsicherheit und Zufall unter der Verwendung der Wahrscheinlichkeitstheorie berücksichtigt und visualisiert. Grundlegend hierfür ist das Gesetz der Großen Zahlen, das definiert, je mehr Stichproben verwendet werden, desto genauer sind die Schätzungen. 
 
-\subsubsection*{Anwendungsbereich Bewertung von Optionen}
-Insbesondere Optionen, deren Gewinne direkt mit der Entwicklung anderer Finanzanlagen abhängen, spielen bei der Monte Carlo Simulation eine fundamentale Rolle. 
-Optionen stellen Finanzderivate dar, wobei ein Derivat ein Instrument ist, dessen Preisentwicklung von der Entwicklung einer oder mehrerer Anlagen abhängt. Die Option an sich stellt ein Recht aber keine direkte Verpflichtung dar, eine im vorhinein gefestigte Menge eines bestimmten Gutes, innerhalb eines bestimmten Zeitraums oder zu einem bestimmten Zeitpunkts, zu einem spezifischen Preis (Strike) zu kaufen (Call-Option) oder zu verkaufen (Put-Option). 
-(Unterscheidung: europäische, amerikanische, asiatische etc. vllt zu weit?)
-(lehrbuch option pricing, investment and finance uni konstanz, als quelle)
- 
-In der Bewertung der Optionen kommt jetzt die Monte Carlo Simulation zu tragen. Hierbei muss der Strike-Preis einer Option als erwarteter Payoff dargestellt werden………
 
 
 \subsection{Risikomessung und Value at Risk}
@@ -150,6 +154,25 @@ Die jüngsten Entwicklungen verdeutlichen, dass die Realisierung quantenbasierte
 
 
 \section{Top 3 Zukunftsprojekte und Forschungsinitiativen}
+
+\vspace{0.5em}
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{3.5cm}|p{3.5cm}|p{3cm}|p{4.5cm}|}
+\hline
+\textbf{Projekt / Akteur} & \textbf{Innovationshöhe} & \textbf{Anwendungsbezug} & \textbf{Potenzial im Finanzwesen} \\
+\hline
+\textbf{IBM Quantum (USA)} & Führend in Hardware (1121-Qubit, Roadmap zu 100k+ Qubits); neuartige Algorithmen (z.\,B. Amplitude Estimation) & Hoch – direkte Partner wie HSBC, JPMorgan; Fokus auf Pricing, VaR, Optimierung & Plattform für zukünftige Quanteninfrastruktur im Finanzwesen; starker Einfluss auf Forschung und Industrialisierung \\
+\hline
+\textbf{JPMorgan Chase (USA)} & Pionier unter Banken; eigene Forschungsabteilung; hybride Algorithmen 1000x schneller; Quantensicherheit & Sehr hoch – speziell auf finanzmathematische Probleme (VaR, Derivate, Kryptografie) ausgerichtet & Strategischer Vorsprung als Early Adopter; hohe Relevanz für Risiko- und Portfolioanalyse \\
+\hline
+\textbf{NEASQC (EU)} & EU-gefördertes Forschungsprojekt; Fokus auf praxistaugliche NISQ-Algorithmen; Open-Source-Bibliotheken & Hoch – Monte-Carlo, PCA, Portfolioanalyse in realen Finance-Use-Cases & Frühzeitige Anwendungsdemonstration in Europa; Stärkung europäischer Souveränität \\
+\hline
+\end{tabular}
+\caption{Top 3 Zukunftsprojekte im Quantencomputing für das Finanzwesen – Vergleich nach Innovationsgrad, Anwendungsnähe und Potenzial (eigene Darstellung)}
+\end{table}
+
 
 \section{Bewertung anhand der Kriterien}
 

@@ -19,7 +19,7 @@ Folgende Abbildung zeigt typische elementare Gates, welche für die Konstruktion
 \begin{figure}
     \centering
     \includegraphics[width=0.5\linewidth]{Bildschirmfoto 2025-07-03 um 14.18.32.png}
-    \caption{Qubit Gates}
+    \caption{Qubit Gates} (vgl.\citeauthor{nielsen_quantum_2010},\citeyear{nielsen_quantum_2010}, S. 177)
     \label{fig:enter-label}
 \end{figure}
 
@@ -29,18 +29,20 @@ Folgende Abbildung zeigt typische elementare Gates, welche für die Konstruktion
     \item Neben diesen beiden sehr wichtigen Gates gibt es auch noch die Pauli-X, -Y. und -Z Gates, sowie Phasengatter, T-Gate  und weitere 
 \end{itemize}
 Werden mehrerer dieser Gatter nacheinander auf ein Qubit Register angewendet, bildet sich daraus ein Quanten-Schaltkries, welcher als gesamter Algorithmus verstanden werden kann.
+(vgl.\citeauthor{nielsen_quantum_2010},\citeyear{nielsen_quantum_2010}, S. 174-188)
 \subsection*{Bekannte Quantenalgorithmen basierend auf dem Quantenschaltkreismodell}
 Das Quantenschaltkreismodell dient als Grundlage für mehrere bekannte Quantenalgorithmen dazu zählen folgende: (siehe auch (\autoref{basic_algorithms}))
 \subsubsection*{1) Shor's Algorithmus}
-Der Shor Algorithmus führt eine effiziente Primfaktorzerlegung großer Zahlen durch, was klassische Verschlüsselungsverfahren wie RSA bedroht. Der Algorithmus verwendet die Quantum Fourier Transformation (QFT) und periodenfindende Subroutinen innerhalb des Circuit-Models. (siehe auch (\autoref{first:shor-algorithm})
+Der Shor Algorithmus führt eine effiziente Primfaktorzerlegung großer Zahlen durch, was klassische Verschlüsselungsverfahren wie RSA bedroht. Der Algorithmus verwendet die Quantum Fourier Transformation (QFT) und periodenfindende Subroutinen innerhalb des Circuit-Models. (siehe auch (\autoref{first:shor-algorithm}) (vgl.\citeauthor{nielsen_quantum_2010},\citeyear{nielsen_quantum_2010}, S. 226-232) hier fehlt noch die Quelle "Quantum Computing  and Shor´s Algorithmus"
 \subsubsection*{2) Grover´s Algorithmus}
 Der Grover Algorithmus dient zur Suche eines Eintrags in einer unstrukturierten Datenbank mit einer quadratischen Beschleunigung gegenüber klassischen Verfahren.
-Der Algorithmus basiert auf Rotation in einem zweidimensionalen Unterraum, dargestellt als wiederholte Anwendung von sogenannten Grover-Iterationen, realisiert durch Gates im Circuit-Modell. (ausführliche Erklärung: (\autoref{sec:grover-algorithm})) 
+Der Algorithmus basiert auf Rotation in einem zweidimensionalen Unterraum, dargestellt als wiederholte Anwendung von sogenannten Grover-Iterationen, realisiert durch Gates im Circuit-Modell. (ausführliche Erklärung: (\autoref{sec:grover-algorithm}))  (vgl.\citeauthor{nielsen_quantum_2010},\citeyear{nielsen_quantum_2010}, S. 248-254)
 
 \subsubsection*{3) Regev}
 Regevs Arbeiten zum LWE-Problem beinhalten eine theoretische Quantenreduktion, die sich vollständig im gate-basierten Modell realisieren lässt. Die dafür erforderlichen Operationen – wie das Erzeugen von Superpositionen, die Anwendung der Quanten-Fouriertransformation sowie die Verarbeitung von Messresultaten – sind mit klassischen Quanten-Gattern (z.B. Hadamard-, CNOT- und Phasengattern) darstellbar. Auch wenn Regevs Reduktion primär theoretischer Natur ist und keine praktischen Implementierungen wie Shor oder Grover hat, zeigen die verwendeten Techniken eine klare Kompatibilität mit dem Quantum Circuit Model.
 (vgl. \citeauthor{regev_lattices_2024}, \citeyear{regev_lattices_2024})
-\textbf{Hier muss ne Leerzeile rein geht aber nicht}
+
+
 Das gate-basierte Paradigma ist nicht nur ein theoretisches Modell, das man in der Quanteninformatik zur Beschreibung von Algorithmen verwendet – es spielt auch in der Praxis eine zentrale Rolle. So setzt zum Beispiel das Open-Source-Framework Qiskit von IBM genau auf dieses Modell: Quantenprogramme werden dort direkt als sogenannte „Quantum Circuits“ aufgebaut. Diese bestehen aus einer festen Anzahl von Qubits und einer Folge von Operationen, also Gattern, Messungen und Resets – genau wie es im Schaltkreis-Modell vorgesehen ist.
 Dass Theorie und Praxis hier so eng zusammenhängen, zeigt, wie wichtig das gate-basierte Modell nicht nur für die Entwicklung von Algorithmen ist, sondern auch für den praktischen Einsatz auf echten Quantencomputern, wie denen von IBM oder Google.
 
@@ -70,13 +72,13 @@ Das Potential des MBQC lässt sich gut an ausgewählten Beispielen verdeutlichen
 Darüber hinaus lassen sich bekannte Algorithmen wie der Shor-Algorithmus zur Faktorisierung großer Zahlen oder der Grover-Algorithmus zur Datenbanksuche in messungsbasierten Varianten formulieren. Diese benötigen lediglich eine geeignete Struktur des zugrunde liegenden Cluster-States sowie eine korrekt gewählte Messstrategie, um dieselbe Funktionalität wie im Schaltkreis-Modell zu erreichen. Damit zeigt sich die formale Äquivalenz der beiden Paradigmen – bei grundlegend unterschiedlicher Umsetzung (vgl. ebenda \citeyear{h_j_briegel_measurement-based_2009}, S. 2)
 
 \subsection{Adiabatisches Paradigma (Quantum Annealing)}
-Ein weiteres Modell zur Realisierung von Quantenalgorithmen ist das adiabatische Paradigma, welches auch als Quantum Annealing bezeichnet wird. Das Adiabatischen Modell basiert auf der Idee, ein Quantensystem durch eine langsame, kontinuierliche Änderung eines Hamiltonians gezielt in seinen Grundzustand zu führen. Die gesuchte Lösung des Modells ist in diesem Grundzustand markiert. Genau in dieser Art unterscheidet sich das Quantum Annealing auch vom Gate oder messungsbasierten Modell. 
+Ein weiteres Modell zur Realisierung von Quantenalgorithmen ist das adiabatische Paradigma, welches auch als "Quantum Annealing" bezeichnet wird. Das Adiabatischen Modell basiert auf der Idee, ein Quantensystem durch eine langsame, kontinuierliche Änderung eines Hamiltonians gezielt in seinen Grundzustand zu führen. Die gesuchte Lösung des Modells ist in diesem Grundzustand markiert. Genau in dieser Art unterscheidet sich das Quantum Annealing auch vom Gate oder messungsbasierten Modell. 
 Das Grundprinzip des Modells besteht darin, dass man das Quantensystem zunächst in einem leicht vorbereiteten Anfangszustand hält. Dieser entspricht dem Grundzustand eines sogenannten Treibenden Hamiltonians $H_D$. Dieser Hamiltonian kann z.B. ein transversales Feld enthalten, das alle Qubits gleichmäßig beeinflusst. Im Laufe des Algorithmus wird dann schrittweise der Problem-Hamiltonian $H_P$ zugeschaltet, dieser enthält die Struktur des zu lösenden Problems. Die Gesamtentwicklung erfolgt über einen zeitabgängigen Hamiltonian, der folgenden Form:
 $$
 H(t) = A(t) \cdot H_D + B(t) \cdot H_P
 $$
 
-Die beiden Funktionen A(t) und B(t) steuern, wie stark der jeweilige Hamiltonian zu einem bestimmten Zeitpunkt t wirkt. Am Anfang dominiert hierbei HD und am Ende HP. Das System bleibt nach dem adiabatischen Theorem während des gesamten Prozesses im jeweiligen Grundzustand, wenn die Änderungen langsam genug erfolgen. Am Ende wird die gesuchte Lösung, also der Grundzustand von $H_P$ erreicht.
+Die beiden Funktionen A(t) und B(t) steuern, wie stark der jeweilige Hamiltonian zu einem bestimmten Zeitpunkt t wirkt. Am Anfang dominiert hierbei $H_D$ und am Ende $H_P$. Das System bleibt nach dem adiabatischen Theorem während des gesamten Prozesses im jeweiligen Grundzustand, wenn die Änderungen langsam genug erfolgen. Am Ende wird die gesuchte Lösung, also der Grundzustand von $H_P$ erreicht.
  
 Die Hamiltonian dürfen mit einer Geschwindigkeit geändert werden, die stark vom sogenannten Energieabstand (Gap) zwischen dem Grundzustand und dem ersten angeregten Zustand abhängt. Je kleiner dieser Abstand ist, desto langsamer muss die Änderung erfolgen, um unerwünschte Übergänge in angeregte Zustände zu vermeiden. 
 Das Quantum Annealing eignet sich besonders gut für kombinatorische Optimierungsprobleme, da viele davon auf sogenannte Ising-Modelle abgebildet werden können. Ein Beispiel für ein Problem-Hamiltonian ist folgendes:
@@ -113,7 +115,11 @@ Das Verfahren nutzt zwei Hamiltonians. Einmal einen Probleme-Hamiltonian $H_C$, 
 $$
 |\psi_p(\vec{\gamma}, \vec{\beta})\rangle = e^{-i\beta_p H_B}e^{-i\gamma_p H_C} \dots e^{-i\beta_1 H_B}e^{-i\gamma_1 H_C} |+\rangle^{\otimes N}
 $$
+(vgl. \citeauthor{zhou_quantum_nodate}, \citeyear{zhou_quantum_nodate}, S. 3 Gleichung (3))
+
+
 Die Parameter $\gamma$ und $\beta$ werden dabei von einem klassischen Optimierer so angepasst, dass die gemessene Erwartung des Zieloperators optimiert wird. Das System bleibt hierbei anders als beim adiabatischen Paradigma nicht unbedingt im Grundzustand, sondern nutzt gezielt nicht-adiabatische Übergänge, um effizient zu besseren Lösungen zu kommen. Damit eignet sich der Algorithmus gut für NISQ-Geräte und kann mit relativ flachen Quantenschaltungen implementiert werden. 
+(vgl. \citeauthor{zhou_quantum_nodate}, \citeyear{zhou_quantum_nodate}, S. 2-9)
 
 \subsubsection*{3) Quantum Machine Learning}
 Das letzte der drei genannten typischen Gebiete in dem hybride Quantenalgorithmen eine wichtige Rolle spielen, ist das sogenannte Quantum Machine Learning. Hierbei kommt es wie der Name schon vermuten lässt zur Verbindung von Quantencomputing und maschinellem Lernen. Auch in diesem Gebiet ist das Hybrid-Paradigma der Standard, weil klassische Daten verarbeitet und mit quantenmechanischen Methoden analysiert werden. 
@@ -122,7 +128,8 @@ Ein Beispiel für Quantum Machine Learning ist der Variational Quantum Classifie
 Ein großer Vorteil und damit eine Stärke des hybrides Ansatzes von Quantum Machine Learning liegt darin, dass man quantenmechanische Effekte wie die Superposition und Verschränkung nutzen kann, um komplexe Strukturen in Daten zu erkennen und dabei aufgrund des Machine Learning nicht auf eine vollständige Quantenhardware angewiesen ist.
 
 (vgl. \citeauthor{alchieri_introduction_2021}, \citeyear{alchieri_introduction_2021}, S.2-4)
-\textbf{hier leerzeile}
+
+
 Das Hybrid-Paradigma ist ein zentraler Baustein moderner Quantenalgorithmen. Es ist besonders gut für aktuelle NISQ-Geräte geeignet und ermöglicht die Zusammenarbeit zwischen klassischem Rechner und Quantenprozessor. Hybride Verfahren zeigen bereits heute, egal ob in der Quantenchemie, bei Optimierungsproblemen oder in maschinellem Lernen, was auf echter Hardware möglich ist. Sie gelten als vielversprechender Weg in Richtung praktischer Quantenanwendungen. 
 
 \subsection{Funktionelles Paradigma}
@@ -589,17 +596,17 @@ jupyter notebook
 \subsubsection{Konstruktion des Grover Circuits:}
 
 
-Um den Grover Algorithmus praktisch auf eine Quantencomputer umzusetzen, wird eine konkrete Konstruktion der Schaltung benötigt. Der Algorithmus setzt sich dabei aus 4 wesentlichen Komponenten zusammen: 
+Um den Grover Algorithmus praktisch auf einem Quantencomputer umzusetzen, wird eine konkrete Konstruktion der Schaltung benötigt. Der Algorithmus setzt sich dabei aus 4 wesentlichen Komponenten zusammen: 
 \begin{enumerate}
-    \item  Initialisierung: Hierbei werden die Qubits in eine gleichmäßige Superposition gebracht
-    \item Oracle: Im Oracle wird der gesuchte Zustand, welcher der Grover Algorithmus identifizieren soll, ausgewählt
-    \item Diffusionsoperator: Der Diffusionsoperator verstärkt den Zustand des Oracle
-    \item   Messung: Abgeschlossen wird der Algorithmus mit der Messung, um das Ergebnis zu erhalten. 
+    \item  \textbf{Initialisierung:} Hierbei werden die Qubits in eine gleichmäßige Superposition gebracht
+    \item \textbf{Oracle:} Im Oracle wird der gesuchte Zustand, welcher der Grover Algorithmus identifizieren soll, ausgewählt
+    \item \textbf{Diffusionsoperator:} Der Diffusionsoperator verstärkt den Zustand des Oracle
+    \item   \textbf{Messung:} Abgeschlossen wird der Algorithmus mit der Messung, um das Ergebnis zu erhalten. 
 \end{enumerate}
 
 Diese 4 Schritte können beliebig für eine beliebige Anzahl an Qubits angewendet werden. Im Folgenden werden die 4 Komponenten nochmals ausführlicher beschrieben. Das Ganze erfolgt jeweils mathematisch, konzeptionell und zusätzlich noch praktisch. Für den praktischen Teil wurde ein Grover Algorithmus mit Qiskit in Jupyter Notebooks implementiert und Codeausschnitte zeigen Schritt für Schritt die praktische Umsetzung.
 
-\subsection*{Initialisierung}
+\subsection*{1) Initialisierung}
 Der Startzustand aller Qubits ist $\ket{0}$. Um eine gleichverteilte Superposition über alle Basiszustände der Qubits zu erzeugen, muss für jedes der Qubits ein Hadamard-Gate ($H$) angewendet werden. Für die Anzahl $n$ Qubits ergibt sich daraus folgender Zusammenhang:
 $$
 |\psi_0\rangle = H^{\otimes n}|0\rangle^{\otimes n} = \frac{1}{\sqrt{2^n}} \sum_{x=0}^{2^n-1} |x\rangle
@@ -623,56 +630,81 @@ qc.h([0, 1])
 
 Das gewählte Beispiel ist für 2 Qubits, kann jedoch, wie bereits erwähnt, für die Anzahl $n$ Qubits beliebig erweitert werden.
 
-\subsection*{Oracle}
-Der nächste Schritt in der Implementierung des Grover-Algorithmus nennt sich Oracle. Bei Oracle handelt es sich um eine unitäre Operation $U_f$, welche den gesuchten Zustand $\ket{T}$ durch eine Phaseninversion der Qubits kenntlich macht. Das bedeutet, dass in diesem Schritt immer der gesuchte Zielzustand markiert wird. Dies erlaubt im Beispiel von 2 Qubits vier verschiedene Zielzustände: "00", "01", "10" und "11".
+\subsection*{2) Oracle}
+Der nächste Schritt in der Implementierung des Grover-Algorithmus ist das sogenannte Oracle. Bei Oracle handelt es sich um eine unitäre Operation $U_f$, welche den gesuchten Zielzustand $\ket{T}$ durch eine Phaseninversion der Qubits kenntlich macht. Das bedeutet konkret, dass der markierte Zielzustand bei Anwendung des Oracles sein Vorzeichen wechselt, während alle anderen Zustände unverändert bleiben. Dieser Zusammenhang wird formal wie folgt beschrieben: 
+$$
+U_f|x\rangle = \begin{cases}
+    -|x\rangle & \text{wenn } x = T \\
+    |x\rangle & \text{sonst}
+\end{cases}
+$$
 
-Dieser Zusammenhang wird wie folgt beschrieben:
-$$
-U_f \ket{x} = (-1)^{f(x)} \ket{x}
-$$
 Ein ideales Oracle wird formal wie folgt beschrieben:
 $$
-U_f \ket{x} = \begin{cases} -\ket{x} & \text{wenn } x \text{ der gesuchte Zustand ist} \\ \ket{x} & \text{sonst} \end{cases}
+S_0(\alpha) = I - (1 - e^{i\alpha})|T\rangle\langle T|
 $$
-Für die Standardversion des Grover-Algorithmus wird der Parameter $f(x)$ in der genannten Formel gesetzt, was zu folgender Formel führt:
+Diese Darstellung stammt aus dem Paper "Deterministic Grover search with a restrical oracle", wo das Oracle als generalisierte Phasenrotation beschrieben wird 
+(vgl. \citeauthor{roy_deterministic_2022}, \citeyear{roy_deterministic_2022} S.2, Gleichung 3)
+Für die Standardversion des Grover-Algorithmus wird wird der Phasenwinkel $\alpha = \pi$ gesetzt. Daraus ergibt sich die klassische Formel des Grover-Algorithmus: 
 $$
-U_f \ket{x} = (-1)^{\delta_{x,T}} \ket{x}
+S_o(\pi) = I - 2|T\rangle\langle T|
 $$
-Die daraus entstehende Inversion lässt sich als eine Reflexion des Zustandsvektors im sogenannten Hilbertraum interpretieren. (Roy et al 2022, Grover 1996)
 
-Zum besseren Verständnis, wie das Genannte mit Qiskit in Jupyter Notebooks umgesetzt wird, hier die Fortsetzung des Beispiels für 2 Qubits. Als Beispiel wird im Folgenden nun der Zielzustand $\ket{01}$ markiert.
+Die daraus entstehende Inversion lässt sich als eine Reflexion des Zustandsvektors im sogenannten Hilbertraum interpretieren. 
 
-Standardmäßig wirkt das CZ-Gate (Controlled-Z Gate) in Qiskit auf den Zustand $\ket{11}$. Wenn man nun einen der anderen genannten Zustände markieren möchte, muss man mit NOT-Gates (X-Gates) arbeiten, welche die Qubits so transformieren, dass der gewünschte Zielzustand vor dem CZ-Gate zum Zustand $\ket{11}$ wird und nach dem CZ-Gate wieder zurücktransformiert wird.
 
-\subsection*{Zielzustand $\ket{01}$ markieren (Beispiel):}
-Um den Zustand $\ket{01}$ zu markieren, invertieren wir das erste Qubit (Index 0) mit einem X-Gate, sodass aus $\ket{0}$ ein $\ket{1}$ wird. Das zweite Qubit (Index 1) bleibt $\ket{1}$. Somit wird aus $\ket{01}$ ein $\ket{11}$. Anschließend wenden wir das CZ-Gate an und invertieren das erste Qubit wieder zurück, um den Zustand wiederherzustellen.
 
+\subsection*{Beispiel: Markierung von Zielzuständen in Qiskit}
+Zum besseren Verständis wie das Oracle praktisch umgesetzt wird, folgt nun die Fortsetzung des Beispiels mit 2 Qubits. Bei der prakitschen Umsetzung von Oracle in Qiskit wird häufig das Controlled-Z-Gata (CZ-Gate) genuzt. Dieses Gate wirkt standardmäßig immer nur den den Zustand $\ket{11}$. Möchte man nun jedoch einen anderen Zustand markieren, wie z.B. die anderen 3 Möglichen Zustände $\ket{01}$, $\ket{10}$ oder $\ket{00}$ müssen X-Gates (NOT-Gates) eingesetzt werden, um den gewünschten Zielzustand temporär in den Zustand $\ket{11}$ zu transformieren (zur Erinnerung: diese Transformation ist nötig, da das CZ-Gate nur auf den Zustand $\ket{11}$ angewendet werden kann). Wenn nach der Transformation zu Zustand $\ket{11}$ das CZ-Gate angewendet wurde, wird das X-Gate erneut ausgeführt, um zur ursprünglichen Codierung des Zustands zurückzukehren.
+Als Beispiel wird im Folgenden nun der Zielzustand $\ket{01}$ markiert.
+
+
+\subsection*{Zielzustand markieren am Beispiel $\ket{01}$:}
+Um die Zielzustände in Qiskit erfolgreich durch Oracle zu markieren, zunächst eine kurze Erklärung zur Implementierung. 
 \begin{verbatim}
-# Oracle für den Zielzustand |01> erstellen
-# Qubit 0 (links) ist 0, Qubit 1 (rechts) ist 1
-# Um aus |01> ein |11> zu machen, muss Qubit 0 invertiert werden (X-Gate)
-
-# X-Gate auf Qubit 0 anwenden (0 -> 1)
-qc.x(0)
-# CZ-Gate anwenden (wirkt auf |11>)
-qc.cz(0, 1)
-# X-Gate auf Qubit 0 zurückanwenden (1 -> 0)
-qc.x(0)
-
-# Schaltung zeichnen (optional)
-# qc.draw('mpl')
+oracle = QuantumCircuit(2)
+oracle.x(0)     # Invertiert das 0. Quibit: 0 -> 1
+oracle.x(1)     # Invertiert das 1. Quibit: 0 -> 1
 \end{verbatim}
-Mit dieser Vorgehensweise können beliebige Zielzustände auf einfache Weise realisiert werden, und das Ganze ohne zusätzliche Hilfs-Qubits. Das funktioniert auch für die Anzahl $n$ Qubits. 
-(vgl. \citeauthor{roy_deterministic_2022}, \citeyear{roy_deterministic_2022})
+In Qiskit bedeutet oracle.x(0), dass das erste Qubit, also Qubit 0, invertiert wird: 0 wird zu 1 und 1 wird zu 0. Analag hierzu invertiert oracle.x(1) das zweite Qubit, also Qubit 1. Dadurch lassen sich gezielt alle Zustände in Zustand $\ket{11}$ umwandeln, auf die dann das CZ-Gate wirken kann. 
+
+
+Um den Zustand $\ket{01}$ zu markieren, invertieren wir das erste Qubit (Index 0) mit einem X-Gate, sodass aus $\ket{0}$ eine $\ket{1}$ wird. Das zweite Qubit (Index 1) bleibt $\ket{1}$. Somit wird aus dem Zustand $\ket{01}$ der Zustand $\ket{11}$. Anschließend wenden wir das CZ-Gate an und invertieren das erste Qubit wieder zurück, um den Ursprungszustand wiederherzustellen.
+\begin{verbatim}
+oracle = QuantumCircuit(2)
+oracle.x(0)         # |01> -> |11>)
+oracle.cz(0, 1)     # Phaseninversion durch CZ
+oracle.x(0)         # Rücktransformation zu |01)
+\end{verbatim}
+
+\subsection*{Allgemeine Methode zur Zielzustandsmarkierung}
+Mit dieser Vorgehensweise können beliebige Zielzustände (im Fall von 2 Qubits: die Zustände $\ket{00}$, $\ket{01}$, $\ket{10}$ und $\ket{11}$) auf einfache Weise realisiert werden, und das Ganze ohne zusätzliche Hilfs-Qubits. Das funktioniert auch für die Anzahl $n$ Qubits. 
+(vgl. \citeauthor{roy_deterministic_2022}, \citeyear{roy_deterministic_2022}). 
+
+Die folgende Tabelle zeigt für den Fall 2  Qubits, wie man durch die gezielte Anwendung von X-Gates beliebige Zielzustände mit einem CZ-Gate markieren kann:
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+Zielzustand $|z_1 z_0\rangle$ & Beschreibung & Vor dem CZ (X-Gates) & Nach dem CZ (X-Gates) \\
+\hline
+$|00\rangle$ & Beide Qubits sind 0 & x(0); x(1) & x(0); x(1) \\
+\hline
+$|01\rangle$ & Qubit 1 = 0, Qubit 0 = 1 & x(0) & x(0) \\
+\hline
+$|10\rangle$ & Qubit 1 = 1, Qubit 0 = 0 & x(1) & x(1) \\
+\hline
+$|11\rangle$ & Beide Qubits sind bereits 1 & - & - \\
+\hline
+\end{tabular}
 
 
 
-\subsection*{Diffusionsoperator}
+\subsection*{3) Diffusionsoperator}
 Der Diffusionsoperator, welcher auch häufig „Inversion about the mean“ genannt wird, verstärkt den im Oracle markierten Zielzustand, indem er alle Amplituden am Mittelwert reflektiert. Die Definition des Diffusionsoperators ist folgende:
 $$
 D = 2|\psi\rangle\langle\psi| - I
 $$
-Dabei steht der Parameter $|\psi\rangle$ für den gleichverteilten Zustand. Das entspricht aus geometrischer Sicht einer Spiegelung im Hilbertraum. Genau diese Operation ist für die Verstärkung des im Oracle markierten Zielzustands verantwortlich. Nach jeder Grover-Iteration bewirkt sie eine Rotation des Zustandsvektors um einen festen Winkel im Unterraum von markierten und unmarkierten Zuständen. (vgl. Grover 1996, Montanaro 2016).
+Dabei steht der Parameter $|\psi\rangle$ für den gleichverteilten Zustand. Das entspricht aus geometrischer Sicht einer Spiegelung im Hilbertraum. Genau diese Operation ist für die Verstärkung des im Oracle markierten Zielzustands verantwortlich. Nach jeder Grover-Iteration bewirkt sie eine Rotation des Zustandsvektors um einen festen Winkel im Unterraum von markierten und unmarkierten Zuständen. (vgl. \citeauthor{nielsen_quantum_2010}, \citeyear{nielsen_quantum_2010}, Kapitel 6.1.2)
 
 In unserem gewählten Beispiel mit 2 Qubits kann der Diffusionsoperator in Qiskit wie folgt umgesetzt werden:
 \begin{verbatim}
@@ -688,7 +720,7 @@ from qiskit.circuit.library import GroverOperator
 grover_op = GroverOperator (oracle=oracle)
 \end{verbatim}
 
-\subsection*{Messung}
+\subsection*{4) Messung}
 Der abschließende Schritt im Grover Algorithmus ist die Messung. Diese folgt nach mehreren Iterationen von Oracle und Diffusion (typischerweise $\approx \frac{\pi}{4} \sqrt{2^n}$)
 \begin{verbatim}
 grover_circuit.measure_all()
@@ -699,7 +731,7 @@ Die Wahrscheinlichkeit, bei der Messung den markierten Zustand zu erhalten ist n
 Die Konstruktion des Grover-Circuits ist modular und besteht wie beschrieben aus den genannten vier klar definierten Schritten. Mithilfe von Qiskit lassen sich diese Schritte präzise implementieren, debuggen und simulieren. Das kann sowohl für die theoretische Analyse als auch für praktische Experimente auf realen Quantencomputern verwendet werden.
 
 (vgl. \citeauthor{ibm_quantum_nodate}, \citeyear{ibm_quantum_nodate}; vgl. \citeauthor{noauthor_grovers_nodate}, \citeyear{noauthor_grovers_nodate})
-\subsubsection{Ausführung auf Simulator (Qiskit Aer)}
+
 \subsubsection{Visualisierung von Schaltkreis und Ergebnissen}
 
 \setlength{\parindent}{0pt} % Keine Einrückung am Absatzanfang
