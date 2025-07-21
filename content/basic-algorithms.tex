@@ -406,12 +406,12 @@ Bevor wir uns dem Grover-Algorithmus zuwenden, betrachten wir folgendes Beispiel
 Formulieren wir nun das Beispiel um: Anstelle von Spielkarten betrachten wir eine binäre Reihenfolge natürlicher Zahlen — nämlich $00$, $01$, $10$ und $11$. Nehmen wir an, die Pik-Dame entspricht dabei der Zahl $11$. Wir definieren eine Funktion $f$, die den Wert $1$ zurückgibt, wenn das Eingabemuster $11$ ist, und $0$ in allen anderen Fällen. Somit lässt sich das Problem wie folgt formal ausdrücken:
 
 \begin{definition}[Unstrukturiertes Suchproblem]
-Sei $f\colon \{0, 1\}^n \rightarrow \{0, 1\}$ eine abstrakte Funktion mit $f(x) \in \{0, 1\}$. Gesucht ist ein Wert $x$, sodass $f(x) = 1$, falls ein solcher Wert existiert; andernfalls soll das Ergebnis $0$ sein.
+Sei $f\colon \{0, 1\}^n \rightarrow \{0, 1\}$ eine abstrakte Funktion mit $f(x) \in \{0, 1\}$. Gesucht ist ein Wert $x$, sodass $f(x) = 1$, falls ein solcher Wert existiert; andernfalls soll das Ergebnis $0$ sein.(\cite{montanaro_quantum_2016})
 \end{definition}
 
 Die Komplexität des unstrukturierten Suchproblems ergibt sich daraus, wie viele Iterationen der Funktion erforderlich sind, um das gesuchte Element zu finden. Wir benötigen im schlechtesten Fall $N - 1$ Funktionsauswertungen, wobei $N = 2^n$ gilt. Auf diese Weise prüfen wir alle möglichen Eingaben. Ähnlich wie im Beispiel mit den Karten entspricht $N$ dem letzten Element, vorausgesetzt, die vorherigen wurden bereits geprüft. Der Grover-Algorithmus kann dieses Problem jedoch deutlich schneller lösen und erreicht dabei eine quadratische Laufzeitverbesserung.\\
 
-Jedoch repliziert der Grover-Algorithmus noch ein Suchproblem. Wie wir im Beispiel mit den Spielkarten gesehen haben, müssen wir Karte für Karte umdrehen, um zu prüfen, ob es die gesuchte Karte ist oder nicht. Dieser Prozess ist iterativ und wird durch das \textit{heuristische Suchproblem} beschrieben:
+Jedoch repliziert der Grover-Algorithmus noch ein Suchproblem. Wie wir im Beispiel mit den Spielkarten gesehen haben, müssen wir Karte für Karte umdrehen, um zu prüfen, ob es die gesuchte Karte ist oder nicht. Dieser Prozess ist iterativ und wird durch das \textit{heuristische Suchproblem} beschrieben (\cite{montanaro_quantum_2016}):
 
 \begin{definition}[Heuristisches Suchproblem]
 Gegeben sei die Möglichkeit, einen probabilistischen „Rate“-Algorithmus \( A \) auszuführen, und eine „Prüf“-Funktion \( f \), sodass
@@ -425,7 +425,7 @@ Eine Möglichkeit, das heuristische Suchproblem klassisch zu lösen, besteht dar
 
 \subsection{Aufbau des Grover Algorithmus}
 
-Um den Grover-Algorithmus vollständig zu verstehen, ist es wichtig, zunächst die grundlegenden Quantenoperationen zu begreifen. Lov Grover führte die folgende Definition für eine bestimmte Klasse von Operationen ein.\cite[1-2]{grover-placeholder}
+Um den Grover-Algorithmus vollständig zu verstehen, ist es wichtig, zunächst die grundlegenden Quantenoperationen zu begreifen. Lov Grover führte die folgende Definition für eine bestimmte Klasse von Operationen ein.\cite[1-2]{zotero-1211}
 
 \begin{definition}[Unitäre Operationen]
 Quantenmechanische Operationen, die in kontrollierter Weise ausgeführt werden können, sind \emph{unitäre Operationen}, welche in jedem Schritt auf eine kleine Anzahl von Qubits wirken.
@@ -433,10 +433,10 @@ Quantenmechanische Operationen, die in kontrollierter Weise ausgeführt werden k
 
 Der Grover-Algorithmus basiert auf einer Folge solcher unitären Operationen, die auf einen reinen Anfangszustand angewendet werden. Diese Operationen dienen dazu, die Wahrscheinlichkeit des gesuchten Ergebnisses zu verstärken. Am Ende des Algorithmus erfolgt eine Messung des resultierenden Zustands. Diese Messung projiziert das überlagerte Quantensystem auf einen klassischen Zustand, der mit hoher Wahrscheinlichkeit die Lösung des zugrunde liegenden Suchproblems enthält.\\
 
-Lov Grover definierte die folgenden unitären Operationen als zentrale Bestandteile seines Algorithmus:
+Lov Grover definierte die folgenden unitären Operationen (\cite{zotero-1211}) als zentrale Bestandteile seines Algorithmus:
 
 \begin{enumerate}
-    \item \textbf{Initialisierung in einen Superpositionszustand:} 
+    \item \textbf{Initialisierung in einen Superpositionszustand (\ref{sec: Superposition}):} 
     Die erste Operation besteht darin, ein Quantenregister mit $n$ Qubits (entsprechend $N = 2^{n}$ möglichen Zuständen) in einen Zustand zu überführen, in dem alle Basiszustände mit der gleichen Wahrscheinlichkeit auftreten – also eine \textit{Gleichverteilung}. Die \textit{Gleichverteilung} wird dadurch erreicht, dass die Amplituden aller Zustände gleich sind. Wenn das System anfangs im Zustand $\ket{0}^{\otimes n}$ ist (alle Qubits auf 0), dann erzeugen wir durch Anwendung der Hadamard-Transformation auf jedes Qubit die Superposition:
 
 $$
@@ -444,7 +444,7 @@ $$
 $$
 
 Dies ist die gleichmäßige Superposition über alle möglichen Zustände $\ket{x}$ mit $x \in {0, \ldots, N-1}$.\\
-    \item \textbf{Walsch-Hadamard Transformation}: Hadamard Transformation ist eine wichtige Quantummechanische Operation, die durch eine Operation $H$ definiert ist. Diese Operation wird auf ein einzelnes Qubit angewendet und wird durch die folgende Matrix dargestellt:
+    \item \textbf{Walsch-Hadamard Transformation}: Hadamard Transformation ist eine wichtige Quantummechanische Operation, die durch eine Operation $H$ definiert ist.(\ref{subsubsec:hadamard_gatter}) Diese Operation wird auf ein einzelnes Qubit angewendet und wird durch die folgende Matrix dargestellt:
     $$
 H = \frac{1}{\sqrt{2}} \begin{pmatrix}
 1 & 1 \\
@@ -465,7 +465,7 @@ $$
 
 Dabei ist $x \cdot y$ das bitweise Skalarprodukt der $n$-Bit-Binärzahlen $x$ und $y$.\\
 
-    \item \textbf{Selektive Phasenrotation:} Die dritte elementare Operation ist die selektive Phasenrotation der Amplitude in bestimmten Zuständen. Die Transformation, die dies für ein Zwei-Zustands-System beschreibt, hat die Form:
+    \item \textbf{Selektive Phasenrotation:} Die dritte elementare Operation ist die selektive Phasenrotation der Amplitude in bestimmten Zuständen.(\cite{zotero-1211}) Die Transformation, die dies für ein Zwei-Zustands-System beschreibt, hat die Form:
 
     $$
 R = \begin{pmatrix}
@@ -527,7 +527,7 @@ Lokale Übergangsmatrizen sind Matrizen, in denen nur eine konstante Anzahl von 
 Anschließend führt Grover den Begriff der Diffusionstransformation ein:
 
 \begin{definition}[Grover-Diffusionstransformation]
-\( D \) ist keine lokale Übergangsmatrix, da es Übergänge von jedem Zustand zu allen \( N \) Zuständen gibt:
+\( D \) ist keine lokale Übergangsmatrix, da es Übergänge von jedem Zustand zu allen \( N \) Zuständen gibt (\cite{zotero-1211}):
 $$
 D_{ij} = 
 \begin{cases}
@@ -572,7 +572,7 @@ Für das Verständnis des Grover-Algorithmus ist es entscheidend nachzuvollziehe
 
 \begin{definition}[Toffoli-Gatter]
 \label{def:toffoli}
-Das Toffoli-Gatter, auch bekannt als $CCNOT$-Gatter (für „controlled-controlled-not“), ist eine Erweiterung des bekannten $CNOT$-Gatters mit zwei Steuerbits und einem Zielbit. Das bedeutet: Das Zielbit (das dritte Bit) wird genau dann invertiert, wenn sowohl das erste als auch das zweite Steuerbit den Wert $1$ haben.\ref{toffoli}
+Das Toffoli-Gatter, auch bekannt als $CCNOT$-Gatter (für „controlled-controlled-not“), ist eine Erweiterung des bekannten $CNOT$-Gatters mit zwei Steuerbits und einem Zielbit. Das bedeutet: Das Zielbit (das dritte Bit) wird genau dann invertiert, wenn sowohl das erste als auch das zweite Steuerbit den Wert $1$ haben.(\cite{toffoli_proceedings_1980})
 \end{definition}
 
 Das Toffoli-Gatter sieht folgendermaßen aus:
@@ -585,7 +585,7 @@ Das Toffoli-Gatter sieht folgendermaßen aus:
 
  Für die Zustände der oberen Qubits, die die Indizes $00$, $01$ und $10$ codieren, bleibt das Toffoli-Gatter ohne Wirkung – der Hilfsqubit verbleibt in dem Zustand $\frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$.\\
 
- Erst beim Index $11$ wird das Gatter aktiv: Es wendet das $X$-Gatter auf den Hilfsqubit an, wodurch dieser den Zustand $\frac{1}{\sqrt{2}}(|1\rangle - |0\rangle)$ annimmt\ref{def:toffoli}. Dieser lässt sich äquivalent als $-\frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$ schreiben – das Minuszeichen erscheint also vor dem gesamten Zustand.\\
+ Erst beim Index $11$ wird das Gatter aktiv: Es wendet das $X$-Gatter auf den Hilfsqubit an, wodurch dieser den Zustand $\frac{1}{\sqrt{2}}(|1\rangle - |0\rangle)$ annimmt \ref{def:toffoli}. Dieser lässt sich äquivalent als $-\frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$ schreiben – das Minuszeichen erscheint also vor dem gesamten Zustand.\\
 
  Dieses Minuszeichen bezieht sich nicht nur auf den Hilfsqubit, sondern auf den gesamten Zustand, der dem Index $11$ entspricht. Daher kann man den Hilfsqubit als unverändert betrachten und das Vorzeichen dem Zustand der oberen Qubits zuordnen. Damit ist der Index $11$ als der gesuchte Zustand mit einem Minus gekennzeichnet. Anders ausgedrückt: Die Orakelfunktion transformiert den Zustand $|11\rangle\,|q_{\text{3}}\rangle$ in $-|11\rangle\,|q_{\text{3}}\rangle$, wobei $|q_{\text{3}}\rangle$ den Zustand des Hilfsqubits bezeichnet.
 
@@ -841,11 +841,11 @@ Aus Sicht der Komplexitätstheorie bezeichnet man die Eingangsgröße mit \(n\),
 Die Laufzeit des Grover‐Algorithmus lässt sich daher durch  
 $O\bigl(2^{n/2}\bigr)$ beschreiben. Obwohl dies gegenüber dem klassischen \(O(2^n)\) einen erheblichen quadratischen Gewinn darstellt, wächst der Algorithmus bei zunehmender Zahl der Suchbits weiterhin exponentiell.
 
-Die untere Schranke aus der Arbeit von Bennett–Bernstein–Brassard–Vazirani (BBBV96 referenz) zeigt, dass kein Quantenalgorithmus im Black‐Box‐Modell mit weniger als  
+Die untere Schranke aus der Arbeit von Bennett–Bernstein–Brassard–Vazirani (\cite{zotero-1212}) zeigt, dass kein Quantenalgorithmus im Black‐Box‐Modell mit weniger als  
 \[
 \Omega(\sqrt{N})
 \]  
-Orakelaufrufen auskommen kann. Damit ist der Grover‐Algorithmus in diesem Modell asymptotisch optimal: Ohne zusätzliche Struktur in der Datenbank lässt sich kein suprakquadratischer (etwa exponentieller) Vorteil erzielen.  
+Orakelaufrufen auskommen kann.(\cite{zotero-1211}) Damit ist der Grover‐Algorithmus in diesem Modell asymptotisch optimal: Ohne zusätzliche Struktur in der Datenbank lässt sich kein suprakquadratischer (etwa exponentieller) Vorteil erzielen.  
 
 
 \section{Klassifikation von Algorithmen nach Zeitkomplexität}
@@ -860,9 +860,9 @@ Innerhalb von \(\mathbf{NP}\) existieren die \(\mathbf{NP}\)-\emph{vollständige
 
 Die Klasse der \(\mathbf{NP}\)-\emph{harten} Probleme (\(\mathbf{NP}\)\emph{-hard}) enthält solche Probleme, auf die sich beliebige \(\mathbf{NP}\)-Probleme in polynomieller Zeit reduzieren lassen. Im Gegensatz zu \(\mathbf{NP}\)-vollständigen Problemen müssen \(\mathbf{NP}\)-harte Probleme selbst nicht in \(\mathbf{NP}\) liegen und können etwa gar nicht entscheidbar sein oder nur in exponentieller Zeit verifizierbar sein.\\
 
-Wenn man zusätzlich zur deterministischen Rechenmaschine Zufallsbits zulässt und die Wahrscheinlichkeit, die richtige Entscheidung zu treffen, für positive und negative Instanzen jeweils oberhalb eines festen Schwellwerts (typischerweise \(>1/2\)) liegt, definiert man die Klasse \(\mathbf{BPP}\) (bounded‑error probabilistic polynomial time). Probleme in \(\mathbf{BPP}\) lassen sich mit Monte‑Carlo‑Algorithmen in polynomieller Zeit mit beliebig kleiner Fehlerrate lösen.\\
+Wenn man zusätzlich zur deterministischen Rechenmaschine Zufallsbits zulässt und die Wahrscheinlichkeit, die richtige Entscheidung zu treffen, für positive und negative Instanzen jeweils oberhalb eines festen Schwellwerts (typischerweise \(>1/2\)) liegt, definiert man die Klasse \(\mathbf{BPP}\) (bounded‑error probabilistic polynomial time). Probleme in \(\mathbf{BPP}\) lassen sich mit Monte‑Carlo‑Algorithmen in polynomieller Zeit mit beliebig kleiner Fehlerrate lösen.(\cite{zotero-1212}) \\
 
-Der quantenmechanische Gegenpart zu \(\mathbf{BPP}\) ist die Klasse \(\mathbf{BQP}\) (bounded‑error quantum polynomial time). Hierbei kann ein Quantenalgorithmus für ein Problem in polynomieller Zeit auf einem Quantencomputer mit hoher Wahrscheinlichkeit das korrekte Ergebnis liefern. Ein bekanntes Beispiel ist die Ganzzahlfaktorzerlegung großer Zahlen mittels Shor’s Algorithmus, der das hierfür klassische \(\mathbf{NP}\)-Problem in polynomieller Zeit auf einem Quantencomputer löst.
+Der quantenmechanische Gegenpart zu \(\mathbf{BPP}\) ist die Klasse \(\mathbf{BQP}\) (bounded‑error quantum polynomial time).(\cite{zotero-1212}) Hierbei kann ein Quantenalgorithmus für ein Problem in polynomieller Zeit auf einem Quantencomputer mit hoher Wahrscheinlichkeit das korrekte Ergebnis liefern. Ein bekanntes Beispiel ist die Ganzzahlfaktorzerlegung großer Zahlen mittels Shor’s Algorithmus, der das hierfür klassische \(\mathbf{NP}\)-Problem in polynomieller Zeit auf einem Quantencomputer löst.
 
 \begin{figure}[h]
   \centering
