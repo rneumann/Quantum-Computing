@@ -100,11 +100,10 @@ Es ist wichtig zu beachten, dass diese theoretische Parallelität in der praktis
 Diese enorme Zustandsvielfalt ist nicht einfach direkt auslesbar – bei einer Messung kollabiert das Qubit-System zu genau einem dieser \(2^n\) Basiszustände. Dennoch erlaubt die gleichzeitige Verarbeitung dieser vielen Möglichkeiten innerhalb eines Algorithmus ein grundsätzlich neues Rechenparadigma. Probleme, deren Rechenzeit auf konventionellen Computern exponentiell wächst können deshalb von Quantencomputern in angemessenen Zeiten gelöst werden. 
 
 Es ist sehr wichtig Quantenparallelismus nicht mit dem parallelen Ausführen von Programmen in klassischen Computern gleichzusetzen. Quantenparallelismus nutzt die fundamentalen Eigenschaften der Quantenmechanik, insbesondere die Superposition und die Interferenz von Wahrscheinlichkeitsamplituden. Das heißt, dass es bei Quantenalgorithmen darum geht die Amplituden der Zustände so zu manipulieren, dass sich die Amplituden der Zustände, die korrekte Lösungen repräsentieren, durch konstruktive Interferenz verstärken, während sich die Amplituden der Zustände mit falschen Lösungen durch destruktive Interferenz abschwächen oder sogar vollständig auslöschen (vgl. Kapitel irgenwas mit algorithmen). (vgl. \cite[16 f.]{nielsen_quantum_2010}
-
+\\
 \section{Quanten-Gatter}\label{sec:quanten_gatter}
-***Blablabla***
-
-
+Quanten-Gatter sind die fundamentalen Operationen eines Quantencomputers. Sie manipulieren Qubit-Zustände auf kontrollierte Weise und bilden so das quantenmechanische Analogon zu klassischen Logikgattern. Im Gegensatz zu klassischen Gattern, bei dem ein Bit nur zwischen $0$ und $1$ wechselt, wirken Quanten-Gatter auf Superpositionen und können komplexere, zusammenhängende Zustände erzeugen.
+\\
 \subsection{Ein-Qubit-Gatter}
 Ein klassisches \emph{Ein-Bit-Gatter} nimmt einen einzelnen Bitwert als Eingabe und liefert einen Bitwert als Ausgabe. Sein Verhalten lässt sich durch eine Wahrheitstabelle angeben – etwa invertiert das NOT-Gatter Eingaben $0 \rightarrow 1$ und $1 \rightarrow 0$. Abgesehen von der Identität ist NOT das einzige nicht-triviale Ein-Bit-Logikgatter in klassischen Computern. (Vgl. \cite[S.17f.]{nielsen_quantum_2010}) Dagegen transformiert ein \emph{Ein-Qubit-Gatter} den Zustand eines einzelnen Qubits. Strukturell handelt es sich um eine lineare, unitäre Abbildung im zweidimensionalen Zustandsraum. Konkret wird ein Ein-Qubit-Gatter durch eine, in Formel \ref{equq:unitaets} dargestellte, $2\times 2$-Unitärmatrix $U$ beschrieben, die den Zustandsvektor des Qubits auf einen neuen Zustand abbildet. (Vgl. ebd., S. 174)
 
@@ -171,11 +170,9 @@ Die Wirkung der Ein-Quibit-Gatter Pauli-$X$-, $Y$-, $Z$-Gatter wird folgenderma�
 
 \end{itemize}\\
 \\
-Die Pauli-Gatter gehören meist zur Grundmenge der verfügbaren elementaren Quantenoperationen auf einem Qubit. Zusammen mit dem Einheitsoperator $I$ bilden sie die sogenannte Pauli-Gruppe auf einem Qubit. Komplexere Ein-Qubit-Gatter lassen sich durch Kombinationen der Pauli-Gatter darstellen. So ist etwa das weit verbreitete und im folgenden Unterkapitel \ref{subsubsec:hadamard_gatter} beschriebenen Hadamard-Gatter eine von den Pauli-Matrizen abgeleitete Transformation. Auch Kontrollgatter wie CNOT können unter Nutzung von Pauli-Operatoren konstruiert werden. (Vgl. \cite[S.312]{wekesa_sirengo_mathematical_2024})\\
+Die Pauli-Gatter gehören meist zur Grundmenge der verfügbaren elementaren Quantenoperationen auf einem Qubit. Zusammen mit dem Einheitsoperator $I$ bilden sie die sogenannte Pauli-Gruppe auf einem Qubit. Komplexere Ein-Qubit-Gatter lassen sich durch Kombinationen der Pauli-Gatter darstellen. So ist etwa das weit verbreitete und im folgenden Unterkapitel \ref{subsubsec:hadamard_gatter} beschriebenen Hadamard-Gatter eine von den Pauli-Matrizen abgeleitete Transformation. Auch Kontrollgatter wie CNOT können unter Nutzung von Pauli-Operatoren konstruiert werden. (Vgl. \cite[S.312]{wekesa_sirengo_mathematical_2024})
 \\
-
 \subsection{Hadamard-Gatter}\label{subsubsec:hadamard_gatter}
-
 Das Hadamard-Gatter $H$ ist eines der einfachsten Mittel, um aus einem allgemeinen Qubit-Zustand eine Überlagerung (Superposition) zu erzeugen.  Während ein Bit nur entweder 0 oder 1 sein kann, vermischt $H$ die beiden Basiszustände so, dass das Qubit  „halb 0, halb 1“ wird. (Vgl. \cite[S.19f.]{nielsen_quantum_2010})\\
 \\
 Formal schreibt man: (Vgl. \cite[S.76]{rieffel_quantum_2011})
@@ -249,7 +246,7 @@ U_{\text{SWAP}} =
 \\
 Diese Matrix vertauscht $|01\rangle$ und $|10\rangle$, während $|00\rangle$ und $|11\rangle$ unverändert bleiben. (Vgl. \cite[S.79]{rieffel_quantum_2011}) Der Gatter ist unitär, selbstinvers ($U^2 = I$) und hermitesch ($U = U^\dagger$). Damit erfüllt er alle Bedingungen für eine physikalisch zulässige Quantenoperation. (Vgl. \cite[S.2]{gheorghiu_standard_2011})\\
 \\
-Eine direkte Realisierung des SWAP-Gatters ist auf vielen Hardwareplattformen nicht vorgesehen. Stattdessen lässt es sich durch eine Folge von drei CNOT-Gattern konstruieren:\\
+Eine direkte Realisierung des SWAP-Gatters ist auf vielen Hardwareplattformen nicht vorgesehen. Stattdessen lässt es sich durch eine Folge von drei CNOT-Gattern konstruieren:
 \begin{figure}[h]
 \centering
 \begin{tikzpicture}[line width=0.8pt, scale=1.2,
@@ -309,7 +306,7 @@ Ein zentrales Einsatzgebiet ergibt sich in Systemen mit begrenzter Konnektivitä
 %(Qubit Mapping and Routing via MaxSAT, S.2f.)
 
 \subsection{CNOT}\label{subsec:cnot_gatter}
-Das Controlled-NOT Gatter (CNOT) besitzt ein Kontroll- und ein Zielqubit und bewirkt, dass der Zustand des Zielqubits genau dann mit einem Pauli-X (Bitflipping, dem klassischen NOT) invertiert wird, wenn das Kontrollqubit im Zustand $|1\rangle$ ist. Ist das Kontrollqubit $|0\rangle$, bleibt das Ziel unverändert.(Vgl. \cite[S.20f., 177f.]{nielsen_quantum_2010}) Der CNOT-Gatter ist unitär und invertierbar und lässt sich in der $4\times 4$-Matrix wie folgt darstellen: (Vgl. ebd.) \\
+Das Controlled-NOT Gatter (CNOT) besitzt ein Kontroll- und ein Zielqubit und bewirkt, dass der Zustand des Zielqubits genau dann mit einem Pauli-X (Bitflipping, dem klassischen NOT) invertiert wird, wenn das Kontrollqubit im Zustand $|1\rangle$ ist. (Vgl. \cite[S.20f., 177f.]{nielsen_quantum_2010}) Der CNOT-Gatter ist unitär und invertierbar und lässt sich in der $4\times 4$-Matrix wie folgt darstellen: (Vgl. ebd.) \\
 \begin{equation}
 \text{CNOT} = \begin{pmatrix}
 1 & 0 & 0 & 0 \\
@@ -347,13 +344,11 @@ Das Kontrollqubit bleibt also unverändert, währenddessen das Zielqubit genau d
 \end{tikzpicture}
 \caption{Darstellung des CNOT-Gatters (nach \cite[S.178]{nielsen_quantum_2010})}
 \end{figure} \\
-CNOT-Gatter spielt eine zentrale Rolle in der Quantenlogik, da es im Zusammenspiel mit Ein-Qubit-Gattern ein universelles Gate-Set für die Quantenberechnung bildet. (Vgl. ebd. S.191)
+CNOT-Gatter spielt eine zentrale Rolle in der Quantenlogik, da es im Zusammenspiel mit Ein-Qubit-Gattern eine zweistufige Unitarität bildet und sich daraus jeder beliebige Quantum-Schaltkreis bilden lässt. (Vgl. ebd. S.191) Ein Beispiel, bei dem das CNOT-Gatter zur Verschränkung beiträgt, ist bei der Erzeugung von sogennanten Bell-Zuständen - dieses Thema wird in Unterkapitel \ref{sec:bell_zustand} weitergehend erläutert. (Vgl. ebd. S.25f.) Darüber hinaus bilden CNOT-Gatter die Grundlage für komplexere Operationen wie bspw. beim Toffoli-Gatter (CCNOT). (Vgl. \cite[S.5f., 156f.]{AbuGhanem_a_2025})
 
 
 
 %\subsection{CU-Gatter}
-
-
 %\subsection{Quantenschaltungen}
 
 
@@ -747,7 +742,7 @@ Nach der Korrektur ist der logische Zustand wiederhergestellt:
 
 Die ursprüngliche Quanteninformation bleibt somit erhalten, obwohl ein physikalischer Fehler aufgetreten ist. Der Bit-Flip-Code demonstriert damit, wie Quantenfehler durch Redundanz und geeignete Messprotokolle erkannt und korrigiert werden können – ein grundlegendes Prinzip aller Quantenfehlerkorrekturverfahren. (vgl. \cite[426 ff.]{nielsen_quantum_2010})
 
-\section{Bell-Zustand}
+\section{Bell-Zustand}\label{sec:bell_zustand}
 Um die theoretischen Grundlagen der Quanteninformation greifbarer zu machen, bietet sich der Bell-Zustand als anschauliches Beispiel an. Er veranschaulicht zentrale Konzepte wie Quantenverschränkung und Nichtlokalität und bildet die Grundlage für viele Anwendungen in der Quantenkommunikation und -verarbeitung. Im Folgenden wird der Bell-Zustand näher erläutert, seine mathematische Darstellung vorgestellt und seine Bedeutung anhand konkreter Experimente und Anwendungen verdeutlicht.
 
 \subsection{Was ist ein Bell-Zustand?}
@@ -771,6 +766,8 @@ Insgesamt existieren vier verschiedene Bell-Zustände, die eine Situation maxima
 \]
 
 Mathematisch gibt es genau vier dieser Zustände, weil ein System aus zwei Qubits einen vierdimensionalen Zustandsraum besitzt. Die Bell-Zustände bilden darin eine vollständige Basis aller maximal verschränkten Zustände. Das heißt: Jede mögliche maximale Verschränkung zwischen zwei Qubits lässt sich als Kombination dieser vier Zustände ausdrücken.
+\\
+
 
 Die theoretischen Eigenschaften dieser Zustände lassen sich nicht nur mathematisch beschreiben, sondern auch ganz konkret auf Quantencomputern beobachten. In einer Simulation mit der IBM Quantum Learning Platform wurden hierfür zwei Qubits gezielt in einen verschränkten Zustand überführt. Das anschließende Messergebnis zeigt deutlich das charakteristische Verhalten eines Bell-Zustands: Es treten ausschließlich die Zustände \(\ket{00}\) und \(\ket{11}\) auf – jeweils mit 50\,\% Wahrscheinlichkeit. Die Kombinationen \(\ket{01}\) und \(\ket{10}\), bei denen sich die Qubits unterscheiden würden, wurden hingegen nicht beobachtet. Bemerkenswert ist dabei: Diese Quantenkorrelation bleibt bestehen, selbst wenn die Qubits räumlich voneinander getrennt sind. Die Messergebnisse des einen beeinflussen scheinbar sofort das andere – ein Verhalten, das mit klassischer Physik nicht erklärbar ist.
 

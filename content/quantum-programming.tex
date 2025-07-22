@@ -11,29 +11,27 @@
 \section{Programmiermodelle in der Quanteninformatik}
 \label{programming-models}
 \subsection{Gate-basiertes Paradigma (Quantum Circuit Model)}
-Das Gate basierte Paradigma oder auch Quantenschaltkreis Modell (engl. Quantum Circuit Model) genannt, ist das Standardmodell für die Programmierung von Quantenprogrammen. Daher wird es auch häufig als das am weitesten verbreitete Paradigma in der Quanteninformatik zur Beschreibung und Realisierung von Quantenalgorithmen bezeichnet. In diesem Modell werden die Quantenprogramme als Schaltkreise (engl. Quantum circuits) dargestellt. Diese bestehen aus einer Sequenz von unitären Quanten Gattern, welche auf Qubits angewendet werden. 
+Das Gate-basierte Paradigma oder auch Quantenschaltkreis Modell (engl. Quantum Circuit Model) genannt, ist das Standardmodell für die Programmierung von Quantenprogrammen. Daher wird es auch häufig als das am weitesten verbreitete Paradigma in der Quanteninformatik zur Beschreibung und Realisierung von Quantenalgorithmen bezeichnet. In diesem Modell werden die Quantenprogramme als Schaltkreise (engl. quantum circuits) dargestellt. Diese bestehen aus einer Sequenz von unitären Quanten-Gattern, welche auf Qubits angewendet werden. 
 
-Strukturell orientiert sich das Quantenschaltkreismodell an klassischen digitalen Schaltungen. Klassische Schaltkreise bestehen aus Leitungen, Gattern und klassischen Bits mit den Zuständen 0 und 1. Ganz analog dazu bestehen Quantenschaltkreise aus Qubit-Leitungen und Gattern und Quantenbits (Qubits). Jede Leitung repräsentiert dabei ein Qubit und jedes Gatter eine unitäre Transformation auf eines oder mehrere Qubits. Die Struktur des Quantenschaltkreis wird genauso wie bei digitalen Schaltungen meist visuell dargestellt, um die Reihenfolge der angewendeten Operationen und die daran beteiligten Qubits zu verdeutlichen. 
+Strukturell orientiert sich das Quantenschaltkreismodell an klassischen digitalen Schaltungen. Klassische Schaltkreise bestehen aus Leitungen, Gattern und Bits mit den Zuständen 0 und 1. Analog dazu bestehen Quantenschaltkreise aus Qubit-Leitungen, Gattern und Quantenbits (Qubits). Jede Leitung repräsentiert dabei ein Qubit und jedes Gatter eine unitäre Transformation auf eines oder mehrere Qubits. Die Struktur des Quantenschaltkreises wird meist visuell dargestellt, um die Reihenfolge der angewendeten Operationen und die daran beteiligten Qubits zu verdeutlichen.
 
-Folgende Abbildung zeigt typische elementare Gates, welche für die Konstruktion von Quantenschaltkreisen verwendet, werden: 
-\begin{figure}
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.5\linewidth]{images/qubit_gates.png}
     \caption{Qubit Gates \autocite[177]{nielsen_quantum_2010}}
     \label{fig:enter-label}
 \end{figure}
 
-\begin{itemize}
-    \item Das Hadamard-Gate (H) bringt Qubits aus Ihren Basiszuständen in eine Superposition 
-    \item Das CNOT-Gate (Controlled-Not), ist ein zwei Qubit Gate, welches als zentraler Bestandteil der Quantenverschränkung funktiert, es verschränkt sozusagen zwei Qubits miteinander 
-    \item Neben diesen beiden sehr wichtigen Gates gibt es auch noch die Pauli-X, -Y. und -Z Gates, sowie Phasengatter, T-Gate  und weitere 
-\end{itemize}
-Werden mehrerer dieser Gatter nacheinander auf ein Qubit Register angewendet, bildet sich daraus ein Quanten-Schaltkries, welcher als gesamter Algorithmus verstanden werden kann.
-\autocite[174-188]{nielsen_quantum_2010}
+\autoref{fig:enter-label} zeigt typische elementare Gates, welche für die Konstruktion von Quantenschaltkreisen verwendet werden. Das Hadamard-Gate (H) bringt Qubits aus ihren Basiszuständen in eine Superposition. Das CNOT-Gate (Controlled-Not) ist ein Gate mit zwei Qubits, das diese miteinander verschränkt und so als zentraler Bestandteil der Quantenverschränkung fungiert. Darüber hinaus gibt es weitere Gates wie die Pauli-X-, -Y- und -Z-Gates, Phasengatter und das T-Gate. Werden mehrere dieser Gatter nacheinander auf ein Qubit-Register angewendet, bildet sich daraus ein Quanten-Schaltkreis, welcher als Quantenalgorithmus verstanden werden kann. \autocite[174-188]{nielsen_quantum_2010}
+
+\textbf{Brauchen wir das so? Das doppelt sich glaube ich sehr mit der Algorithmen-Gruppe}
+
 \subsection*{Bekannte Quantenalgorithmen basierend auf dem Quantenschaltkreismodell}
+
 Das Quantenschaltkreismodell dient als Grundlage für mehrere bekannte Quantenalgorithmen dazu zählen folgende: (siehe auch (\autoref{basic_algorithms}))
 \subsubsection*{1) Shor's Algorithmus}
-Der Shor Algorithmus führt eine effiziente Primfaktorzerlegung großer Zahlen durch, was klassische Verschlüsselungsverfahren wie RSA bedroht. Der Algorithmus verwendet die Quantum Fourier Transformation (QFT) und periodenfindende Subroutinen innerhalb des Circuit-Models. (siehe auch (\autoref{first:shor-algorithm}) \autocite[226-232]{nielsen_quantum_2010} \textbf{hier fehlt noch die Quelle "Quantum Computing  and Shor´s Algorithmus"}
+Der Shor Algorithmus führt eine effiziente Primfaktorzerlegung großer Zahlen durch, was klassische Verschlüsselungsverfahren wie RSA bedroht. Der Algorithmus verwendet die Quantum Fourier Transformation (QFT) und periodenfindende Subroutinen innerhalb des Circuit-Models. (siehe auch (\autoref{first:shor-algorithm}) \autocite[226-232]{nielsen_quantum_2010} \autocite{haywardQuantumComputingShors2005}
+
 \subsubsection*{2) Grover´s Algorithmus}
 Der Grover Algorithmus dient zur Suche eines Eintrags in einer unstrukturierten Datenbank mit einer quadratischen Beschleunigung gegenüber klassischen Verfahren.
 Der Algorithmus basiert auf Rotation in einem zweidimensionalen Unterraum, dargestellt als wiederholte Anwendung von sogenannten Grover-Iterationen, realisiert durch Gates im Circuit-Modell. (ausführliche Erklärung: (\autoref{sec:grover-algorithm}))  \autocite[248-254]{nielsen_quantum_2010}
@@ -41,354 +39,320 @@ Der Algorithmus basiert auf Rotation in einem zweidimensionalen Unterraum, darge
 \subsubsection*{3) Regev}
 Regevs Arbeiten zum LWE-Problem beinhalten eine theoretische Quantenreduktion, die sich vollständig im gate-basierten Modell realisieren lässt. Die dafür erforderlichen Operationen – wie das Erzeugen von Superpositionen, die Anwendung der Quanten-Fouriertransformation sowie die Verarbeitung von Messresultaten – sind mit klassischen Quanten-Gattern (z.B. Hadamard-, CNOT- und Phasengattern) darstellbar. Auch wenn Regevs Reduktion primär theoretischer Natur ist und keine praktischen Implementierungen wie Shor oder Grover hat, zeigen die verwendeten Techniken eine klare Kompatibilität mit dem Quantum Circuit Model. \autocite{regev_lattices_2024}
 
-
-Das gate-basierte Paradigma ist nicht nur ein theoretisches Modell, das man in der Quanteninformatik zur Beschreibung von Algorithmen verwendet – es spielt auch in der Praxis eine zentrale Rolle. So setzt zum Beispiel das Open-Source-Framework Qiskit von IBM genau auf dieses Modell: Quantenprogramme werden dort direkt als sogenannte „Quantum Circuits“ aufgebaut. Diese bestehen aus einer festen Anzahl von Qubits und einer Folge von Operationen, also Gattern, Messungen und Resets – genau wie es im Schaltkreis-Modell vorgesehen ist.
-Dass Theorie und Praxis hier so eng zusammenhängen, zeigt, wie wichtig das gate-basierte Modell nicht nur für die Entwicklung von Algorithmen ist, sondern auch für den praktischen Einsatz auf echten Quantencomputern, wie denen von IBM oder Google.
+\textbf{TODO ENDE}
+\\
+\\
+Das Gate-basierte Paradigma ist nicht nur ein theoretisches Modell, sondern spielt auch in der Praxis eine zentrale Rolle. So setzt zum Beispiel das Open-Source-Framework Qiskit von IBM auf dieses Modell. Quantenprogramme werden dort als sogenannte \enquote{Quantum Circuits} aufgebaut. Diese bestehen aus einer festen Anzahl von Qubits und einer Folge von Operationen, also Gattern, Messungen und Resets -- genau wie es im Schaltkreis-Modell vorgesehen ist. Das Gate-basierte Modell ist nicht nur für die Entwicklung von Algorithmen wichtig, sondern auch für den praktischen Einsatz auf echten Quantencomputern, wie denen von IBM oder Google.
 
 \subsection{Messungsbasiertes Paradigma}
-Das messungsbasierte Paradigma, auch bekannt als Measurement-Based Quantum Computing (MBQC) oder one-way quantum computation, stellt eine alternative Architektur zur Implementierung von Quantenalgorithmen dar. Im Gegensatz zum weit verbreiteten Schaltkreis-Modell, bei dem Quanteninformationen durch sequenzielle Anwendung unitärer Gatter verarbeitet werden, basiert MBQC auf einer anderen Grundidee: Der eigentliche Rechenprozess erfolgt nicht durch Gatter, sondern ausschließlich durch gezielte Einzelqubit-Messungen an einem vorbereiteten, verschränkten Vielteilchenzustand – dem sogenannten Cluster-State.
-Diese Struktur eröffnet neue Perspektiven auf die Organisation und Steuerung von Quanteninformation. Die gesamte logische Verarbeitung geschieht dabei einseitig – also „one-way“ – da jede Messung irreversibel ist und den gemessenen Qubit-Zustand zerstört. Die Fähigkeit zur universellen Quantenberechnung wird dabei vollständig durch die Verschränkungseigenschaften des vorbereiteten Zustands sowie die geschickte Wahl und Abfolge der Messungen realisiert. \autocite[2-4]{briegel_measurement-based_2009}
-\subsection*{Struktur und Erzeugung von Cluster-States}
-Zentrale Ressource des MBQC ist der Cluster-State, ein hochgradig verschränkter Quantenzustand mehrerer Qubits. Formal gehört der Cluster-State zur Klasse der Graphenzustände. Diese Zustände lassen sich durch mathematische Graphen beschreiben, in denen Knoten einzelnen Qubits entsprechen und Kanten die Verschränkungen zwischen ihnen darstellen.
+Das messungsbasierte Paradigma, auch bekannt als \textit{Measurement-Based Quantum Computing (MBQC)} oder \textit{One-Way Quantum Computation}, stellt eine alternative Architektur zur Implementierung von Quantenalgorithmen dar. Im Gegensatz zum weit verbreiteten Schaltkreis-Modell, bei dem Quanteninformationen durch sequenzielle Anwendung unitärer Gatter verarbeitet werden, basiert MBQC auf einer anderen Grundidee: Der eigentliche Rechenprozess erfolgt nicht durch Gatter, sondern ausschließlich durch gezielte Einzelqubit-Messungen an einem vorbereiteten, verschränkten Vielteilchenzustand – dem sogenannten Cluster-State.
 
-Die Erzeugung eines solchen Zustands erfolgt in zwei Schritten:
+Diese Struktur eröffnet neue Möglichkeiten für die Organisation und Steuerung von Quanteninformation. Die gesamte logische Verarbeitung geschieht dabei einseitig (\enquote{one-way}), da jede Messung irreversibel ist und den gemessenen Qubit-Zustand zerstört. Die Fähigkeit zur universellen Quantenberechnung wird vollständig durch die Verschränkungseigenschaften des vorbereiteten Zustands sowie die geschickte Wahl und Abfolge der Messungen realisiert. \autocite[2-4]{briegelMeasurementbasedQuantumComputation2009}
+
+\subsection*{Struktur und Erzeugung von Cluster-States}
+Die zentrale Ressource des MBQC ist der Cluster-State, ein hochgradig verschränkter Quantenzustand mehrerer Qubits. Formal gehört der Cluster-State zur Klasse der Graphenzustände. Diese Zustände lassen sich durch mathematische Graphen beschreiben, in denen Knoten einzelnen Qubits entsprechen und Kanten die Verschränkungen zwischen ihnen darstellen. Die Erzeugung eines solchen Zustands erfolgt in zwei Schritten:
+
 \begin{enumerate}
-    \item 	Zunächst werden alle Qubits in den Zustand $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ gebracht.
-    \item 2.	Anschließend wird auf jedes benachbarte Qubitpaar (gemäß der Graphstruktur) ein kontrolliertes Phasengatter $U_{PG}=diag(1,1,1,-1)$ angewendet.
+    \item Überführung aller Qubits in den Zustand $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
+    \item Anwendung eines kontrollierten Phasengatters $U_{PG}=diag(1,1,1,-1)$ auf jedes benachbarte Qubit-Paar (gemäß der Graphenstruktur)
 \end{enumerate}
-Der so erzeugte Zustand $|G\rangle$, wobei G der zugrundeliegende Graph ist, besitzt die gewünschten Verschränkungseigenschaften, um ihn als Rechenressource im MBQC zu verwenden. Besonders der zweidimensionale (2D) Cluster-State hat sich hierbei als universell erwiesen, d.h. als hinreichend mächtig für die Implementierung beliebiger Quantenalgorithmen (vgl. \textbf{FIX REF} ebenda \citeyear{h_j_briegel_measurement-based_2009}, S. 2-3).
+
+Der so erzeugte Zustand $|G\rangle$ (G ist der zugrundeliegende Graph) besitzt die gewünschten Verschränkungseigenschaften, um ihn als Rechenressource im MBQC zu verwenden. Besonders der zweidimensionale Cluster-State hat sich hierbei als universell erwiesen und kann für die Implementierung beliebiger Quantenalgorithmen verwendet werden. \autocite[2-3]{briegelMeasurementbasedQuantumComputation2009}
+
 \subsection*{Rechenmodell und Algorithmus Implementierung}
+
 Eine MBQC-Berechnung lässt sich in einem schematischen Ablauf darstellen, der vier grundlegende Schritte umfasst:
 \begin{enumerate}
     \item \textbf{Initialisierung:} Vorbereitung eines ausreichend großen 2D-Cluster-States, der unabhängig vom konkreten Algorithmus erzeugt wird.
     \item \textbf{Kodierung des Algorithmus durch Messmuster:} Die Berechnung wird durch eine Sequenz von Einzelqubit-Messungen in ausgewählten Basen realisiert. Dabei bestimmt das Muster der Messungen (also deren Reihenfolge und jeweilige Basis) die Art der durchgeführten logischen Operationen.
     \item \textbf{Adaptive Steuerung:} Die Wahl der Messbasis für spätere Schritte kann von den Ergebnissen vorheriger Messungen abhängen. Diese Feedforward-Kontrolle wird durch eine klassische Recheneinheit übernommen.
-    \item \textbf{Ausgabezustand:} Das Endresultat der Quantenberechnung ist entweder in den verbleibenden nicht gemessenen Qubits codiert oder ergibt sich aus den Messergebnissen selbst. Die resultierenden Zustände unterscheiden sich höchstens durch lokale Pauli-Operationen.
+    \item \textbf{Ausgabezustand:} Das Endresultat der Quantenberechnung ist entweder in den verbleibenden nicht gemessenen Qubits codiert oder ergibt sich aus den Messergebnissen selbst. Die resultierenden Zustände unterscheiden sich maximal durch lokale Pauli-Operationen.
 \end{enumerate}
-Ein bemerkenswertes Merkmal dieses Modells ist, dass trotz der inhärenten Zufälligkeit der einzelnen Messergebnisse (aufgrund des quantenmechanischen Messprozesses) der gesamte Rechenvorgang deterministisch kontrolliert und wiederholbar bleibt – vorausgesetzt, das Feedforward wird korrekt berücksichtigt (vgl. \textbf{FIX REF} ebenda \citeyear{h_j_briegel_measurement-based_2009}, S. 3-4).
+
+Ein bemerkenswertes Merkmal dieses Modells ist, dass trotz der inhärenten Zufälligkeit der einzelnen Messergebnisse aufgrund des quantenmechanischen Messprozesses der gesamte Rechenvorgang deterministisch kontrolliert und wiederholbar bleibt – vorausgesetzt, das Feedforward wird korrekt berücksichtigt. \autocite[3-4]{briegelMeasurementbasedQuantumComputation2009}
+
 \subsection*{Exemplarische Anwendungen}
-Das Potential des MBQC lässt sich gut an ausgewählten Beispielen verdeutlichen. Eines der grundlegendsten Konzepte ist das Teleportationsprotokoll, das im Kontext des MBQC zeigt, wie Quanteninformation durch Messungen effektiv von einem Teil des Clusters zum anderen übertragen werden kann. Dieses Prinzip bildet die Basis für viele weiterführende Techniken, darunter auch die Realisierung effektiver logischer Gatter allein durch Messungen.
-Darüber hinaus lassen sich bekannte Algorithmen wie der Shor-Algorithmus zur Faktorisierung großer Zahlen oder der Grover-Algorithmus zur Datenbanksuche in messungsbasierten Varianten formulieren. Diese benötigen lediglich eine geeignete Struktur des zugrunde liegenden Cluster-States sowie eine korrekt gewählte Messstrategie, um dieselbe Funktionalität wie im Schaltkreis-Modell zu erreichen. Damit zeigt sich die formale Äquivalenz der beiden Paradigmen – bei grundlegend unterschiedlicher Umsetzung (vgl. \textbf{FIX REF} ebenda \citeyear{h_j_briegel_measurement-based_2009}, S. 2)
+
+Das Potenzial des MBQC lässt sich gut an ausgewählten Beispielen verdeutlichen. Eines der grundlegendsten Konzepte ist das Teleportationsprotokoll, das im Kontext des MBQC zeigt, wie Quanteninformation durch Messungen effektiv von einem Teil des Clusters zum anderen übertragen werden kann. Dieses Prinzip bildet die Basis für viele weiterführende Techniken, darunter auch die Realisierung effektiver logischer Gatter allein durch Messungen.
+
+Darüber hinaus lassen sich bekannte Algorithmen wie der Shor-Algorithmus zur Faktorisierung großer Zahlen oder der Grover-Algorithmus zur Datenbanksuche in messungsbasierten Varianten formulieren. Diese benötigen lediglich eine geeignete Struktur des zugrunde liegenden Cluster-States sowie eine korrekt gewählte Messstrategie, um dieselbe Funktionalität wie im Schaltkreis-Modell abzubilden. Damit zeigt sich die formale Äquivalenz der beiden Paradigmen bei grundlegend unterschiedlicher Umsetzung. \autocite[2]{briegelMeasurementbasedQuantumComputation2009}
 
 \subsection{Adiabatisches Paradigma (Quantum Annealing)}
-Ein weiteres Modell zur Realisierung von Quantenalgorithmen ist das adiabatische Paradigma, welches auch als "Quantum Annealing" bezeichnet wird. Das Adiabatischen Modell basiert auf der Idee, ein Quantensystem durch eine langsame, kontinuierliche Änderung eines Hamiltonians gezielt in seinen Grundzustand zu führen. Die gesuchte Lösung des Modells ist in diesem Grundzustand markiert. Genau in dieser Art unterscheidet sich das Quantum Annealing auch vom Gate oder messungsbasierten Modell. 
-Das Grundprinzip des Modells besteht darin, dass man das Quantensystem zunächst in einem leicht vorbereiteten Anfangszustand hält. Dieser entspricht dem Grundzustand eines sogenannten Treibenden Hamiltonians $H_D$. Dieser Hamiltonian kann z.B. ein transversales Feld enthalten, das alle Qubits gleichmäßig beeinflusst. Im Laufe des Algorithmus wird dann schrittweise der Problem-Hamiltonian $H_P$ zugeschaltet, dieser enthält die Struktur des zu lösenden Problems. Die Gesamtentwicklung erfolgt über einen zeitabgängigen Hamiltonian, der folgenden Form:
-$$
-H(t) = A(t) \cdot H_D + B(t) \cdot H_P
-$$
 
-Die beiden Funktionen A(t) und B(t) steuern, wie stark der jeweilige Hamiltonian zu einem bestimmten Zeitpunkt t wirkt. Am Anfang dominiert hierbei $H_D$ und am Ende $H_P$. Das System bleibt nach dem adiabatischen Theorem während des gesamten Prozesses im jeweiligen Grundzustand, wenn die Änderungen langsam genug erfolgen. Am Ende wird die gesuchte Lösung, also der Grundzustand von $H_P$ erreicht.
+Ein weiteres Modell zur Realisierung von Quantenalgorithmen ist das adiabatische Paradigma, welches auch als \enquote{Quantum Annealing} bezeichnet wird. Das adiabatische Modell basiert auf der Idee, ein Quantensystem durch eine langsame, kontinuierliche Änderung eines Hamiltonians gezielt in seinen Grundzustand zu führen. Die gesuchte Lösung des Modells ist in diesem Grundzustand markiert, was das Quantum Annealing vom Gate- oder messungsbasierten Modell unterscheidet.
+
+Beim Quantum Annealing wird das Quantensystem zunächst in einem leicht vorbereiteten Anfangszustand gehalten. Dieser entspricht dem Grundzustand eines sogenannten treibenden Hamiltonians $H_D$. Dieser Hamiltonian kann z.B. ein transversales Feld enthalten, das alle Qubits gleichmäßig beeinflusst. Im Laufe des Algorithmus wird danach schrittweise der Problem-Hamiltonian $H_P$ zugeschaltet. Dieser enthält die Struktur des zu lösenden Problems. Die Gesamtentwicklung erfolgt über einen zeitabhängigen Hamiltonian (\autoref{eq:time-dependent-hamiltonian}). 
+
+\begin{equation}
+    H(t) = A(t) \cdot H_D + B(t) \cdot H_P
+\label{eq:time-dependent-hamiltonian}
+\end{equation}
+
+Die beiden Funktionen A(t) und B(t) steuern, wie stark der jeweilige Hamiltonian zu einem bestimmten Zeitpunkt t wirkt. Am Anfang dominiert hierbei $H_D$ und am Ende $H_P$. Das System bleibt nach dem adiabatischen Theorem während des gesamten Prozesses im jeweiligen Grundzustand, wenn die Änderungen langsam genug erfolgen. Am Ende wird die gesuchte Lösung, der Grundzustand von $H_P$, erreicht.
  
-Die Hamiltonian dürfen mit einer Geschwindigkeit geändert werden, die stark vom sogenannten Energieabstand (Gap) zwischen dem Grundzustand und dem ersten angeregten Zustand abhängt. Je kleiner dieser Abstand ist, desto langsamer muss die Änderung erfolgen, um unerwünschte Übergänge in angeregte Zustände zu vermeiden. 
-Das Quantum Annealing eignet sich besonders gut für kombinatorische Optimierungsprobleme, da viele davon auf sogenannte Ising-Modelle abgebildet werden können. Ein Beispiel für ein Problem-Hamiltonian ist folgendes:
-$$
+Die Änderungsgeschwindigkeit, mit der die Hamiltonians modifiziert werden dürfen, hängt stark vom sogenannten Energieabstand (Gap) zwischen dem Grundzustand und dem ersten angeregten Zustand ab. Je kleiner dieser Abstand ist, desto langsamer muss die Änderung erfolgen, um unerwünschte Übergänge in angeregte Zustände zu vermeiden.
+
+Das Quantum Annealing eignet sich besonders gut für kombinatorische Optimierungsprobleme, da diese oftmals auf sogenannte Ising-Modelle abgebildet werden können. Ein Problem-Hamiltonian kann beispielsweise die in \autoref{eq:problem-hamiltonian} dargestellte Form annehmen. Die Kopplungsterme $J_{ij}$ und die lokalen Felder $h_i$ kodieren hierbei die jeweilige Problemstruktur. \autoref{tab:qa-problems} stellt eine Auswahl von Problemklassen dar, die mittels Quantum Annealing gelöst werden können.
+
+\begin{equation}
 H_P = \sum_{i,j} J_{ij}\sigma_i^z\sigma_j^z + \sum_i h_i\sigma_i^z
-$$
-Die Kopplungsterme $J_{ij}$ und die lokalen Felder $h_i$ kodieren hierbei die jeweilige Problemstruktur.
-Es gibt verschiedene Problemklassen, welche durch Quantum Annealing gelöst werden können, zu den typischen gehören unter anderem Folgende Beispiele: 
-\begin{itemize}
-    \item \textbf{Max-Cut: }Bei Max-Cut wird ein Graph aufgeteilt in zwei Teilmengen, sodass die Kantensumme zwischen den beiden Mengen maximal wird 
-    \item 	\textbf{k-Clique:} Bei der k-Clique-Suche geht es darum, vollständige Teilgraphen mit genau k Knoten zu finden, also Untergruppen, in denen jeder Knoten mit jedem anderen verbunden ist 
-    \item \textbf{Graph Coloring: }Beim Graph Coloring sollen Knoten eines Graphen mit möglichst wenigen Farben so eingefärbt werden, dass benachbarte Knoten unterschiedliche Farben erhalten 
-    \item \textbf{Ising-Modell-Minimierung:} Hier wird der Ising-Hamiltonian direkt minimiert. Da sich viele kombinatorische Probleme darauf abbilden lassen, bildet diese Minimierung die Grundlage für zahlreiche Optimierungsaufgaben 
-\end{itemize}
-Quantum Annealing (QA) verwendet im Gegensatz zum klassischen Simulated Annealing (SA), bei der thermische Fluktuationen benutzt werden, Quantenfluktuationen, insbesondere Quanten-Tunnel, um Energiebarrieren zu überwinden. Das ist vor allem dann ein Vorteil, wenn die Energiebarrieren hoch, aber schmal sind. In genau diesen Fällen kann das Quantum Annealing schneller zu einer optimalen Lösung finden als sein klassischen Gegenstück Simulated Annealing. 
-Das adiabatische Paradigma wurde in der Praxis unter anderem durch die Firma D-Wave Systems in Hardware umgesetzt. Die Systeme von D-Wave Systems sind darauf spezialisiert Optimierungsprobleme durch Quantum Annealing zu lösen, also das adiabatische Paradigma technisch zu realisieren. \autocite[2-4]{rajak_quantum_nodate} \autocite[4-5, 42-43]{albash_adiabatic_2018}
+\label{eq:problem-hamiltonian}
+\end{equation}
+
+\begin{table}[ht!]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Problemklasse} & \textbf{Beschreibung} \\
+\hline
+Max-Cut & Zerlegung eines Graphen in zwei Teilmengen mit maximaler Kantensumme zwischen ihnen. \\
+\hline
+k-Clique & Finden eines vollständigen Teilgraphen mit genau \(k\) Knoten. \\
+\hline
+Graph Coloring & Einfärben von Knoten, sodass benachbarte Knoten verschiedene Farben erhalten. \\
+\hline
+Ising-Minimierung & Direktes Minimieren des Ising-Hamiltonians, auf den sich viele kombinatorische Probleme abbilden lassen. \\
+\hline
+\end{tabularx}
+\caption{Typische kombinatorische Probleme für Quantum Annealing}
+\label{tab:qa-problems}
+\end{table}
+
+Quantum Annealing (QA) verwendet im Gegensatz zum klassischen Simulated Annealing (SA) Quantenfluktuationen (z. B. Quanten-Tunnel), um Energiebarrieren zu überwinden. Dies ist vor allem dann ein Vorteil, wenn die Energiebarrieren hoch, aber schmal sind. In diesen Fällen kann das Quantum Annealing schneller eine optimale Lösung finden als sein klassisches Gegenstück Simulated Annealing. Das adiabatische Paradigma wurde in der Praxis unter anderem durch die Firma D-Wave Systems in Hardware umgesetzt. \autocite[2-4]{rajak_quantum_nodate} \autocite[4-5, 42-43]{albash_adiabatic_2018}
+
 \subsection{Hybrid-Paradigma}
-Das Hybrid-Paradigma stellt neben dem Gate basierten und adiabatischen Modell einen weiteren wichtigen Ansatz zur Realisierung von Quantenalgorithmen dar. Es ist aus dem Grund besonders interessant, da es sowohl klassische als auch quantenmechanische Bestandteile kombiniert. Konkret bedeutet das, dass die aufwendigen und hardwareintensiven Berechnungen, wie etwa die Manipulation und Messung von Quantenzuständen auf dem Quantencomputer laufen, während Aufgaben wie das Anpassen von Parametern oder das Auswerten von Messergebnissen klassisch bearbeitet werden. Aufgrund dieser Aufgabenteilung lassen sich viele Probleme bereits heutzutage auf existierender Hardware lösen. Das liegt vor allem daran, dass das Hybrid-Paradigma mit relativ kurzen Quantenschaltungen auskommt und keine langen kohärenten Entwicklungen benötigt. \autocite[1-2]{cerezo_variational_nodate}
-Das Grundprinzip im Hybrid-Paradigma ist immer gleich. Man startet zunächst mit einem Anfangszustand, der mithilfe einer parametrierten Quantenschaltung erzeugt wird. Anschließend wird ein Zielwert gemessen, das kann z.B. eine Energie sein und gibt dann diesen Messwert an den klassischen Computer zurück. Auf diesem wird dann ein Optimierungsalgorithmus ausgeführt, der neue Parameter vorschlägt, mit denen die Quantenschaltung beim nächsten Durchlauf verändert wird. Dieser Prozess wird so lange wiederholt, bis ein gewünschtes Ergebnis erreicht ist. Das erklärte Prinzip kommt in mehreren hybriden Algorithmen zum Einsatz. Im Folgenden werden nun drei bekannte hybride Algorithmen genauer vorgestellt. 
+
+Ein weiterer Ansatz zur Realisierung von Quantenalgorithmen ist das Hybrid-Paradigma. Es ist besonders interessant, weil es sowohl klassische als auch quantenmechanische Bestandteile kombiniert. Konkret laufen die aufwendigen und hardwareintensiven Berechnungen wie die Manipulation und Messung von Quantenzuständen auf dem Quantencomputer, während Aufgaben wie das Anpassen von Parametern oder das Auswerten von Messergebnissen klassisch bearbeitet werden. Aufgrund dieser Aufgabenteilung lassen sich viele Probleme bereits heute auf existierender Hardware lösen. Das liegt vor allem daran, dass das Hybrid-Paradigma mit kurzen Quantenschaltungen auskommt und keine langen kohärenten Entwicklungen benötigt. \autocite[1-2]{cerezo_variational_nodate}
+
+Den Ausgangspunkt beim Hybrid-Paradigma bildet ein Anfangszustand, der mithilfe einer parametrierten Quantenschaltung erzeugt wird. Anschließend wird ein Zielwert gemessen und an den klassischen Computer zurückgegeben. Auf diesem wird dann ein Optimierungsalgorithmus ausgeführt, der neue Parameter vorschlägt, mit denen die Quantenschaltung beim nächsten Durchlauf verändert wird. Dieser Prozess wird so lange wiederholt, bis ein gewünschtes Ergebnis erreicht ist. Dieses Prinzip wird bereits heute von mehreren hybriden Algorithmen umgesetzt, weshalb das Paradigma als vielversprechender Weg in Richtung praktischer Quantenanwendungen gilt.
+
 \subsubsection*{1) Variationaler Quanten Eigenlöser (VQE)}
-Der variationale Quanten Eigenlöser (engl, variational quantum eigensolver), kurz VQE, ist ein hybrider Algorithmus der Berechnung von Eigenwerten, genauer gesagt zur Bestimmung des Grundzustands eines Hamiltonians verwendet wird. In der Quantenchemie ist das extrem wichtig, da sich damit die Energie eines Moleküls berechnen lässt. Die Idee hinter dem VQE-Algorithmus ist es einen Quantenzustand $|\psi(\theta)\rangle$ vorzubereiten, der von bestimmten Parametern $\theta$ abhängt. Für diesen Zustand wird dann der Erwartungswert einer Energie gemessen, was sich mathematisch durch folgende Formel ausdrücken lässt:
-$$
-\langle\psi(\theta)|H|\psi(\theta)\rangle
-$$
-Dieser Ausdruck wird als sogenannte Kostenfunktion verwendet. Das Ziel ist es die Parameter θ so zu verändern, dass die gemessene Energie möglichst klein wird und somit dem Grundzustand des Systems entspricht. Dieser Schritt passiert auf einem klassischen Rechner, der z.B. den Nelder-Mead-Algorithmus oder einen anderen Optimierer nutzt, nicht auf dem Quantencomputer selbst. 
-Ein großer Vorteil von VQE ist, dass die benötigten Quantenschaltungen relativ flach bleiben, sie kommen mit wenigen Gattern und kurzen Operationen aus. Diese Tatsache ist besonders für NISQ-Hardware praktisch, da bei dieser jede zusätzliche Operation das Risiko für Fehler erhöht. \label{nisq-definition}
-2014 wurde der VQU bereits durch Peruzzo et al, erfolgreich auf einem photonischen Quantenprozessor umgesetzt. Dabei wurde die Bildungskurve des Moleküls He–H⁺ berechnet. Die Energie wurde dabei über ein klassisch-quantisches Zusammenspiel optimiert und das Ergebnis lag innerhalb der chemischen Genauigkeit. Das war bereits ein starker Beweis dafür, dass hybride Algorithmen schon vor über 10 Jahren auf damaliger Hardware praktikabel waren. 
-(vgl. \citeauthor{cerezo_variational_nodate}, \citeyear{cerezo_variational_nodate}, vgl. \citeauthor{peruzzo_variational_nodate}, \citeyear{peruzzo_variational_nodate})
+\label{nisq-definition}
+
+Der variationale Quanten Eigenlöser (VQE) ist ein hybrider Algorithmus zur Berechnung von Eigenwerten, der zur Bestimmung des Grundzustands eines Hamiltonians verwendet wird. In der Quantenchemie ist das extrem wichtig, da sich damit die Energie eines Moleküls berechnen lässt. Die Idee hinter dem VQE-Algorithmus ist es, einen Quantenzustand $|\psi(\theta)\rangle$ vorzubereiten, der von bestimmten Parametern $\theta$ abhängt. Für diesen Zustand wird dann der Erwartungswert einer Energie gemessen, was sich mathematisch durch \autoref{eq:vqe} ausdrücken lässt. Dieser Ausdruck wird als Kostenfunktion verwendet. Das Ziel ist es, die Parameter $\theta$ so zu verändern, dass die gemessene Energie möglichst klein wird und somit dem Grundzustand des Systems entspricht. Dieser Schritt wird auf einem klassischen Rechner ausgeführt, der z.B. den Nelder-Mead-Algorithmus oder einen anderen Optimierer nutzt. 
+
+\begin{equation}
+    \langle\psi(\theta)|H|\psi(\theta)\rangle
+\label{eq:vqe}
+\end{equation}
+
+Ein großer Vorteil des VQE ist, dass die benötigten Quantenschaltungen flach bleiben, d.h. mit wenigen Gattern und kurzen Operationen auskommen. Diese Tatsache ist besonders für NISQ-Hardware praktisch, da bei dieser jede zusätzliche Operation das Risiko für Fehler erhöht.
+
+2014 wurde der VQU bereits durch \citeauthor{peruzzo_variational_nodate}. erfolgreich auf einem photonischen Quantenprozessor umgesetzt, wobei die Bildungskurve des Moleküls $He-H^+$ berechnet wurde. Die Optimierung der Energie erfolgte dabei über ein klassisch-quantisches Zusammenspiel, und das Ergebnis lag innerhalb der chemischen Genauigkeit. Somit waren hybride Algorithmen bereits auf Hardware von vor 10 Jahren praktikabel. \autocite{cerezo_variational_nodate} \autocite{peruzzo_variational_nodate}
+
 \subsubsection*{2) Quantum Approximate Optimization Algorithm (QAOA)}
-Der sogenannte Quantum Approximate Optimization Algorithm (QAOA) ist ein weiterer Algorithmus des Hybrid-Paradigmas und wurde dazu entwickelt, um kombinatorische Optimierungsprobleme zu lösen. Typische Beispiele hierfür sind Max-Cut, k-Clique oder andere Graph Probleme (siehe Kapitel…). Auch QAOA besteht aus einem parametrisierten Quantenschaltkreis und einer klassischen Optimierung, funktioniert jedoch deutlich anders als VQE.
-Das Verfahren nutzt zwei Hamiltonians. Einmal einen Probleme-Hamiltonian $H_C$, welcher das zu lösende Problem abbildet (z.B. ein Ising-Modell) und einmal einen sogenannten Mixer-Hamiltonian $H_B$, der typischerweise eine Summe von X-Gattern ist. Ausgehend vom Anfangszustand werden nun abwechselt die Hamiltonian $H_C$ und $H_B$ auf das System angewendet. Daraus ergibt sich dann für eine Schaltungstiefe p folgender QAOA-Zustand: 
-$$
-|\psi_p(\vec{\gamma}, \vec{\beta})\rangle = e^{-i\beta_p H_B}e^{-i\gamma_p H_C} \dots e^{-i\beta_1 H_B}e^{-i\gamma_1 H_C} |+\rangle^{\otimes N}
-$$
-(vgl. \citeauthor{zhou_quantum_nodate}, \citeyear{zhou_quantum_nodate}, S. 3 Gleichung (3))
 
+Der Quantum Approximate Optimization Algorithm (QAOA) ist ein weiterer hybrider Algorithmus und dient zur Lösung von kombinatorischen Optimierungsproblemen. Typische Beispiele hierfür sind Max-Cut, k-Clique oder andere Graphenprobleme (siehe Kapitel \textbf{TODO REFERENCE}). Auch QAOA besteht aus einem parametrisierten Quantenschaltkreis und einer klassischen Optimierung, unterscheidet sich in der Funktionsweise jedoch deutlich von VQE.
 
-Die Parameter $\gamma$ und $\beta$ werden dabei von einem klassischen Optimierer so angepasst, dass die gemessene Erwartung des Zieloperators optimiert wird. Das System bleibt hierbei anders als beim adiabatischen Paradigma nicht unbedingt im Grundzustand, sondern nutzt gezielt nicht-adiabatische Übergänge, um effizient zu besseren Lösungen zu kommen. Damit eignet sich der Algorithmus gut für NISQ-Geräte und kann mit relativ flachen Quantenschaltungen implementiert werden. 
-(vgl. \citeauthor{zhou_quantum_nodate}, \citeyear{zhou_quantum_nodate}, S. 2-9)
+Das Verfahren nutzt zwei Hamiltonians: Ein Problem-Hamiltonian $H_C$, welches das zu lösende Problem abbildet (z.B. ein Ising-Modell) und ein sog. Mixer-Hamiltonian $H_B$, das typischerweise eine Summe von X-Gattern ist. Ausgehend vom Anfangszustand werden abwechselnd die Hamiltonians $H_C$ und $H_B$ auf das System angewendet. Daraus ergibt sich dann für eine Schaltungstiefe $p$ der in \autoref{eq:qaoa} dargestellte QAOA-Zustand. \autocite[3]{zhou_quantum_nodate}
+
+\begin{equation}
+    |\psi_p(\vec{\gamma}, \vec{\beta})\rangle = e^{-i\beta_p H_B}e^{-i\gamma_p H_C} \dots e^{-i\beta_1 H_B}e^{-i\gamma_1 H_C} |+\rangle^{\otimes N}
+\label{eq:qaoa}
+\end{equation}
+
+Die Parameter $\gamma$ und $\beta$ werden dabei von einem klassischen Optimierer so angepasst, dass die gemessene Erwartung des Zieloperators optimiert wird. Das System bleibt anders als beim adiabatischen Paradigma nicht unbedingt im Grundzustand, sondern nutzt gezielt nicht-adiabatische Übergänge, um effizient zu besseren Lösungen zu kommen. Der Algorithmus eignet sich gut für NISQ-Geräte und kann mit flachen Quantenschaltungen implementiert werden. \autocite[2-9]{zhou_quantum_nodate}
 
 \subsubsection*{3) Quantum Machine Learning}
-Das letzte der drei genannten typischen Gebiete in dem hybride Quantenalgorithmen eine wichtige Rolle spielen, ist das sogenannte Quantum Machine Learning. Hierbei kommt es wie der Name schon vermuten lässt zur Verbindung von Quantencomputing und maschinellem Lernen. Auch in diesem Gebiet ist das Hybrid-Paradigma der Standard, weil klassische Daten verarbeitet und mit quantenmechanischen Methoden analysiert werden. 
-Hierbei läuft das typische Vorgehen wie folgt ab. Zunächst werden die Eingangsdaten, also z.B. Bilder oder numerische Werte, durch sogenannte Feature Maps in einen Quantenzustand umgewandelt. Anschließend wird dieser Zustand durch eine parametrisierte Quantenschaltung geschickt die als Klassifikator dient. Abschließend wird das Ergebnis auf einem klassischen Computer ausgewertet und der Fehler wird klassisch minimiert. 
-Ein Beispiel für Quantum Machine Learning ist der Variational Quantum Classifier (VQC), bei dem die Quantenschaltung so trainiert wird, dass sie zum Beispiel zwischen verschiedenen Klassen unterscheiden kann, wie z.B. zwischen verschiedenen Ziffern in einem Bild. Auch hier wird eine Kostenfunktion (z.B. der Klassifikationsfehler) iterativ durch einen klassischen Optimierer minimiert. 
-Ein großer Vorteil und damit eine Stärke des hybrides Ansatzes von Quantum Machine Learning liegt darin, dass man quantenmechanische Effekte wie die Superposition und Verschränkung nutzen kann, um komplexe Strukturen in Daten zu erkennen und dabei aufgrund des Machine Learning nicht auf eine vollständige Quantenhardware angewiesen ist.
 
-(vgl. \citeauthor{alchieri_introduction_2021}, \citeyear{alchieri_introduction_2021}, S.2-4)
+Auch im Quantum Machine Learning spielen hybride Quantenalgorithmen eine wichtige Rolle, wobei klassische Daten verarbeitet und mit quantenmechanischen Methoden analysiert werden.
 
+Zunächst werden die Eingangsdaten wie Bilder oder numerische Werte durch sog. Feature Maps in einen Quantenzustand umgewandelt. Anschließend wird dieser Zustand durch eine parametrisierte Quantenschaltung geschickt, die als Klassifikator dient. Abschließend wird das Ergebnis auf einem klassischen Computer ausgewertet und der Fehler minimiert.
 
-Das Hybrid-Paradigma ist ein zentraler Baustein moderner Quantenalgorithmen. Es ist besonders gut für aktuelle NISQ-Geräte geeignet und ermöglicht die Zusammenarbeit zwischen klassischem Rechner und Quantenprozessor. Hybride Verfahren zeigen bereits heute, egal ob in der Quantenchemie, bei Optimierungsproblemen oder in maschinellem Lernen, was auf echter Hardware möglich ist. Sie gelten als vielversprechender Weg in Richtung praktischer Quantenanwendungen. 
+Ein Beispiel für Quantum Machine Learning ist der Variational Quantum Classifier (VQC), bei dem die Quantenschaltung so trainiert wird, dass sie zwischen verschiedenen Klassen unterscheiden kann, beispielsweise unterschiedlichen Ziffern in einem Bild. Auch hier wird eine Kostenfunktion (z.B. der Klassifikationsfehler) iterativ durch einen klassischen Optimierer minimiert. 
+
+Eine große Stärke des hybriden Ansatzes beim Machine Learning ist die Möglichkeit zur Nutzung quantenmechanischer Effekte wie der Superposition und Verschränkung, um komplexe Strukturen in Daten zu erkennen, ohne dass eine vollständige Quantenhardware notwendig ist. \autocite[2-4]{alchieri_introduction_2021}
 
 \subsection{Funktionelles Paradigma}
 
-\setlength{\parindent}{0pt} % Keine Einrückung am Absatzanfang
-\setlength{\parskip}{1em}   % Fügt einen vertikalen Abstand von 1em zwischen Absätzen ein
+Das funktionelle Paradigma verfolgt den Ansatz, Quantenprogramme als Funktionen ähnlich wie in klassischen funktionalen Programmiersprachen zu modellieren. Es ermöglicht eine deklarative, abstrahierte und zugleich formal fundierte Beschreibung quantenmechanischer Prozesse und hebt sich damit deutlich von den herkömmlichen, zumeist schaltkreisorientierten Programmiersprachen ab. Ein Beispiel ist die Sprache QML (Quantum Meta Language), in der Programme als Ausdrücke formuliert werden, deren Bedeutung sich durch morphische Abbildungen innerhalb der Kategorie endlicher Quantenberechnungen (FQC) erschließt. Diese formale Semantik erlaubt es, sowohl reversible als auch irreversible Quantenoperationen in einer gemeinsamen Sprache zu erfassen.
 
-Das funktionelle Paradigma im Quantencomputing verfolgt den Ansatz, Quantenprogramme als Funktionen zu modellieren, vergleichbar mit klassischen funktionalen Programmiersprachen. Es ermöglicht eine deklarative, abstrahierte und zugleich formal fundierte Beschreibung quantenmechanischer Prozesse und hebt sich damit deutlich von den herkömmlichen, zumeist schaltkreisorientierten Programmiersprachen ab. Ein zentrales Beispiel ist die Sprache QML (Quantum Meta Language), in der Programme als Ausdrücke formuliert werden, deren Bedeutung sich durch morphische Abbildungen innerhalb der Kategorie endlicher Quantenberechnungen (FQC) erschließt. Diese formale Semantik erlaubt es, sowohl reversible als auch irreversible Quantenoperationen in einer gemeinsamen Sprache zu erfassen.
+Ein wesentliches Ziel dieses Paradigmas ist die gezielte Kontrolle von Dekohärenz -- einem der kritischsten Probleme in der praktischen Umsetzung von Quantenalgorithmen. QML begegnet dieser Herausforderung mit einem strikt linearen Typ-System, das sicherstellt, dass jede Variable, insbesondere jeder Qubit, genau einmal verwendet wird. Dadurch wird die Einhaltung quantenmechanischer Prinzipien wie des No-Cloning-Theorems gewährleistet. Operationen, die eine Messung des Zustands erzwingen (z. B. \texttt{if}), werden dabei syntaktisch von solchen unterschieden, die ohne Dekohärenz auskommen (z.B. \texttt{if\textsubscript{$\circ$}}). Letztere dürfen nur unter orthogonalitätsbasierten Bedingungen verwendet werden, was eine formale Absicherung gegen unbeabsichtigte Messprozesse bietet. Auf diese Weise lassen sich Superpositionen und Verschränkungen programmatisch erhalten und präzise steuern.
 
-Ein wesentliches Anliegen dieses Paradigmas ist die gezielte Kontrolle von Dekohärenz -- einem der kritischsten Probleme in der praktischen Umsetzung von Quantenalgorithmen. QML begegnet dieser Herausforderung mit einem strikt linearen Typ-System, das sicherstellt, dass jede Variable, insbesondere jeder Qubit, genau einmal verwendet wird. Dadurch wird die Einhaltung quantenmechanischer Prinzipien wie des No-Cloning-Theorems gewährleistet. Operationen, die eine Messung des Zustands erzwingen, wie etwa \texttt{if}, werden dabei syntaktisch von solchen unterschieden, die ohne Dekohärenz auskommen, wie \texttt{if\textsubscript{$\circ$}}. Letztere dürfen nur unter orthogonalitätsbasierten Bedingungen verwendet werden, was eine formale Absicherung gegen unbeabsichtigte Messprozesse bietet. Auf diese Weise lassen sich Superpositionen und Verschränkungen programmatisch erhalten und präzise steuern.
+Die Ausdrucksstärke des funktionellen Paradigmas zeigt sich besonders in der formalen Darstellung bekannter Quantenalgorithmen und -protokolle. Grundlegende Operationen wie das Hadamard-Gatter oder Variationen von Deutsch's Algorithmus lassen sich in QML nicht nur elegant formulieren, sondern auch direkt in Quanten-Schaltkreise überführen. Die Algorithmen von Shor und Grover, auf die in \autoref{TODO:REF-Shor-Algorithmus} und \autoref{TODO:REF-grover-algorithm} \textbf{TODO:REF} eingegangen wird, können ebenfalls in diesem Rahmen abgebildet werden. Darüber hinaus eignet sich QML gut zur Beschreibung komplexer Quantenprotokolle wie Superdense Coding. Die Sprache erlaubt es, parallele Auswertungen mehrerer Qubits strukturell auszudrücken, was die zugrunde liegenden Prinzipien des Quantenparallelismus sichtbar macht und formal überprüfbar werden lässt.
 
-Die Ausdrucksstärke des funktionellen Paradigmas zeigt sich besonders in der formalen Darstellung bekannter Quantenalgorithmen und -protokolle. Grundlegende Operationen wie das Hadamard-Gatter oder Variationen von Deutsch's Algorithmus lassen sich in QML nicht nur elegant formulieren, sondern auch direkt in Quanten-Schaltkreise überführen. Die Algorithmen von Shor und Grover, auf die in den Abschnitten \ref{sec:Shor-Algorithmus} und \ref{sec:grover-algorithm} eingegangen wird, können ebenfalls in diesem Rahmen abgebildet werden. Darüber hinaus eignet sich QML hervorragend zur Beschreibung komplexer Quantenprotokolle wie etwa Superdense Coding. Die Sprache erlaubt es, parallele Auswertungen mehrerer Qubits strukturell auszudrücken, was die zugrunde liegenden Prinzipien des Quantenparallelismus nicht nur sichtbar macht, sondern auch formal überprüfbar werden lässt.
+Eine der größten Stärken des funktionellen Paradigmas liegt in der Transparenz des Ressourcenmanagements. Da Weakenings, das bewusste Ignorieren oder Nicht-Nutzen von Variablen, explizit gekennzeichnet werden müssen, lassen sich Stellen, an denen Dekohärenz auftritt, im Programm eindeutig identifizieren. Dies eröffnet die Möglichkeit einer gezielten Optimierung hinsichtlich der Informationssicherheit und der quantenmechanischen Integrität eines Programms.
 
-Eine der größten Stärken des funktionellen Paradigmas liegt schließlich in der Transparenz des Ressourcenmanagements. Da Weakenings -- also das bewusste Ignorieren oder Nicht-Nutzen von Variablen -- explizit gekennzeichnet werden müssen, lassen sich die Stellen im Programm eindeutig identifizieren, an denen Dekohärenz eintritt. Dies eröffnet die Möglichkeit einer gezielten Optimierung hinsichtlich der Informationssicherheit und der quantenmechanischen Integrität eines Programms.
-
-Insgesamt stellt das funktionelle Paradigma eine leistungsfähige und theoretisch fundierte Grundlage für die Entwicklung und Verifikation von Quantenprogrammen dar. Es verbindet formale Strenge mit praktischer Anwendbarkeit und erlaubt es, sowohl algorithmische als auch protokollbasierte Quantenoperationen in einem klar typisierten, kontrollierten und analysierbaren Rahmen zu formulieren (vgl. \citeauthor{thorsten_altenkirch_functional_2005}, \citeyear{thorsten_altenkirch_functional_2005}).
-
+Insgesamt stellt das funktionelle Paradigma eine leistungsfähige und theoretisch fundierte Grundlage für die Entwicklung und Verifikation von Quantenprogrammen dar. Es verbindet formale Strenge mit praktischer Anwendbarkeit und erlaubt es, sowohl algorithmische als auch protokollbasierte Quantenoperationen in einem klar typisierten, kontrollierten und analysierbaren Rahmen zu formulieren. \autocite{altenkirchFunctionalQuantumProgramming2005}
 
 \section{Quanten-Programmiersprachen und -Frameworks}
 \label{sec:programming-languages}
 
 Die Entwicklung von Quantencomputern hat zur Entstehung spezialisierter Programmiersprachen und Frameworks geführt, die die besonderen Eigenschaften des Quantencomputings berücksichtigen. Diese Sprachen und Frameworks ermöglichen es Entwicklern, Quantenalgorithmen zu implementieren und zu testen, ohne sich mit den komplexen physikalischen Details der Quantenhardware auseinandersetzen zu müssen.
 
-Im Gegensatz zu klassischen Programmiersprachen müssen Quanten-Programmier-sprachen spezielle Konzepte wie Superposition, Verschränkung und Messung unterstützen. Sie müssen auch die Interaktion zwischen klassischen Berechnungen und Quantenberechnungen ermöglichen, da die meisten Quantenalgorithmen sowohl klassische als auch Quantenkomponenten enthalten.
+Im Gegensatz zu klassischen Programmiersprachen müssen Quanten-Programmier\-sprachen spezielle Konzepte wie Superposition, Verschränkung und Messung unterstützen. Auch müssen sie die Interaktion zwischen klassischen Berechnungen und Quantenberechnungen ermöglichen, da die meisten Quantenalgorithmen sowohl klassische als auch Quantenkomponenten enthalten.
 
-Dieses Kapitel gibt einen Überblick über die verschiedenen Arten von Quanten-Programmiersprachen und ordnet sie den vorangegangenen Programmierparadigmen zu. Anschließend wird das Framework Qiskit von IBM detaillierter betrachtet.
+Dieses Kapitel gibt in \autoref{sec:lang-frameworks} zunächst einen Überblick über die verschiedenen Arten von Quanten-Programmiersprachen und ordnet sie den vorangegangenen Programmierparadigmen zu. Anschließend wird in \autoref{sec:qiskit-details} das Framework Qiskit von IBM detaillierter betrachtet.
 
 \subsection{Übersicht über Sprachen und Frameworks}
-Quanten-Programmiersprachen lassen sich nach unterschiedlichen Dimensionen systematisch klassifizieren. Diese betreffen die Abstraktionsebene, das Programmierparadigma, die Hardwarebindung sowie das zugrundeliegende Quantenmodell. Eine klare Trennung dieser Dimensionen erleichtert die Einordnung und den Vergleich der verschiedenen Ansätze. In diesem Kapitel werden diese zentrale Unterscheidungsmerkmale systematisch dargestellt. Zu jeder Kategorie werden exemplarische Sprachen vorgestellt, welche abschließend in einer vergleichenden Übersichtstabelle gegenübergestellt werden.
+\label{sec:lang-frameworks}
 
-\textbf{Abstraktionsebenen}\\ 
-Die Abstraktionsebene einer Quantenprogrammiersprache oder eines entsprechenden Frameworks definiert den Grad der Nähe des Codes zur physikalischen Quantenhardware beziehungsweise die Höhe der konzeptionellen Abstraktionsebene, auf der die Programmierung erfolgt.
-Man unterscheidet zwischen High-Level- und Low-Level-Sprachen. 
+Quanten-Programmiersprachen lassen sich nach unterschiedlichen Dimensionen systematisch nach Abstraktionsebene (\autoref{def:abstraction-layer}), dem Programmierparadigma (\autoref{def:programming-paradigma}), der Hardwarebindung (\autoref{def:hardware-binding}) sowie dem zugrundeliegenden Quantenmodell (\autoref{def:quantum-model}) klassifizieren. Eine klare Trennung dieser Dimensionen erleichtert die Einordnung und den Vergleich der verschiedenen Ansätze. Dieses Kapitel stellt diese zentralen Unterscheidungsmerkmale systematisch dar und stellt zu jeder Kategorie exemplarische Sprachen vor, welche abschließend in einer vergleichenden Übersichtstabelle gegenübergestellt werden.
 
-\textit{Low-Level-Sprachen} ermöglichen die Kontrolle über einzelne Qubits und Quantengatter. Sie orientieren sich stärker an konkreten Schaltkreisen und hardware-nahen Operationen. Ein Beispiel hierfür ist OpenQASM, das als Assemblersprache für Quantencomputer dient. Es ermöglicht eine präzise Steuerung der Quantenschaltkreise, erfordert jedoch auch ein tiefes Verständnis der Quantenmechanik und Hardware-Architektur (Vgl. \cite{cross_open_2017}).
+\begin{defn}[Abstraktionsebene]
+\label{def:abstraction-layer}
+Die Abstraktionsebene einer Quantenprogrammiersprache oder eines entsprechenden Frameworks definiert den Grad der Nähe des Codes zur physikalischen Quantenhardware beziehungsweise die Höhe der konzeptionellen Abstraktionsebene, auf der die Programmierung erfolgt. Man unterscheidet zwischen High-Level- und Low-Level-Sprachen.
+\end{defn}
 
-\textit{High-Level-Sprachen} hingegen bieten eine größere Abstraktion, die es Entwicklern ermöglicht, sich auf die Logik des Quantenalgorithmus zu konzentrieren und Algorithmen unabhängig von konkreten Schaltkreisen zu beschreiben. Sie ähneln klassischen Programmiersprachen und sind intuitiver zu bedienen, indem sie die Komplexität von Quantenoperationen abstrahieren. Beispiele hierfür sind Q\#, Qiskit oder Cirq, die im späteren Verlauf dieses Kapitels genauer betrachtet werden (Vgl. \cite{singh_survey_2024})
+\begin{defn}[Low-Level-Sprache]
+\label{def:low-level-lang}
+Eine Low-Level-Sprache ermöglicht die Kontrolle über einzelne Qubits und Quantengatter. Sie orientiert sich stärker an konkreten Schaltkreisen und Hardware-nahen Operationen. Ein Beispiel hierfür ist OpenQASM, das als Assemblersprache für Quantencomputer dient. Es ermöglicht eine präzise Steuerung der Quantenschaltkreise, erfordert jedoch auch ein tiefes Verständnis der Quantenmechanik und der Hardware-Architektur. \autocite{cross_open_2017}
+\end{defn}
 
-\textbf{Programmierparadigmen}\\ 
-Das Programmierparadigma beschreibt den stilistischen und konzeptionellen Ansatz der Formulierung und Organisation von Programmen.
+\begin{defn}[High-Level-Sprache]
+\label{def:high-level}
+Eine High-Level-Sprache bietet eine größere Abstraktion, die es Entwicklern ermöglicht, sich auf die Logik des Quantenalgorithmus zu konzentrieren und Algorithmen unabhängig von konkreten Schaltkreisen zu beschreiben. Sie ähnelt klassischen Programmiersprachen und ist intuitiver zu bedienen, indem sie die Komplexität von Quantenoperationen abstrahiert. Beispiele hierfür sind Q\#, Qiskit oder Cirq, die im späteren Verlauf dieses Kapitels genauer betrachtet werden \autocite{singhSurveyAvailableTools2024a}.
+\end{defn}
 
-\textit{Imperative Programmiersprachen}, auch prozedurale Sprachen genannt, sind im Quantum-Computing von klassischen imperativen Sprachen wie C oder Java inspiriert und verwenden meist das QRAM-Modell. Sie basieren auf Anweisungen, die den globalen Zustand eines Programms ändern (Vgl. \cite{garhwal_quantum_2021}). 
+\begin{defn}[Programmierparadigma]
+\label{def:programming-paradigma}
+Ein Programmierparadigma beschreibt den stilistischen und konzeptionellen Ansatz der Formulierung und Organisation von Programmen.
+\end{defn}
 
-Das Quanten-Schaltkreismodell gilt als treibende Kraft der Quantenprogrammierung. Um dieses in eine Sprache einzubauen, wurde ein Pseudocode für die Quantenprogrammierung vorgeschlagen, der in der Sprache QCL mündete. Als erste imperative Quantum-Programmiersprache wurde sie im Jahr 1998 an der technischen Universität in Wien veröffentlicht. QCL verwendet hierbei eine von C abgeleitete Syntax und bietet einen vollständigen Quantensimulator für die Codeentwicklung auf einem klassischen Computer (Vgl. \cite{sofge_survey_2008}).
+\begin{defn}[Imperative Programmiersprache]
+\label{def:imperative-prog-lang}
+Eine imperative Programmiersprache, auch prozedurale Sprache genannt, ist im Quantum-Computing von klassischen imperativen Sprachen wie C oder Java inspiriert und verwendet meist das QRAM-Modell. Sie basiert auf Anweisungen, die den globalen Zustand eines Programms ändern. \autocite{garhwal_quantum_2021}. 
+\end{defn}
 
-Quantum Guarded Command Language (qGCL) als weitere imperative Sprache basiert auf Dijkstras Semantik der Programmiersprache und hat verschiedene Konzepte wie das Quantenregister in Form eines Vektors eingeführt. LanQ ist eine high-level, imperative Quantenprogrammiersprache, deren Syntax ebenfalls der Sprache C ähnelt. Sie führt Quantenberechnungen unter Verwendung der klassischen Steuerung auf Quantendaten durch. LanQ wurde entwickelt, da QCL und qGCL keine Interprozesskommunikation und Mehrparteienprotokolle unterstützen. Bei LanQ gehört jede Quantenressource höchstens einem Prozess an, während der Kanal von Sender- und Empfängerprozess gemeinsam genutzt werden kann. Darüber hinaus bietet LanQ Werkzeuge für die parallele Ausführung von Programmen (Vgl. \cite{garhwal_quantum_2021}).
+\paragraph{QCL} Das Quanten-Schaltkreismodell gilt als treibende Kraft der Quantenprogrammierung. Um dieses in eine Sprache einzubauen, wurde ein Pseudocode für die Quantenprogrammierung vorgeschlagen, der in der Sprache QCL mündete. Als erste imperative Quanten-Programmiersprache wurde sie im Jahr 1998 an der Technischen Universität in Wien veröffentlicht. QCL verwendet eine von C abgeleitete Syntax und bietet einen vollständigen Quantensimulator für die Codeentwicklung auf einem klassischen Computer \autocite{sofgeSurveyQuantumProgramming2008a}.
 
-In \textit{funktionalen, deklarativen Sprachen} werden Berechnungen mit Hilfe mathematischer Funktionen durchgeführt, die auf Konzepte wie dem Lambda-Kalkül und der linearen Logik zurückgreifen. Lambda-Kalküle sind Konstruktionen aus der mathematischen Logik und können als die kleinsten universellen Programmiersprachen betrachtet werden. Sie bestehen aus einer einzigen Transformationsregel (Variablensubstitution) und einem einzigen Funktionsschema. Jede berechenbare Funktion kann mit diesem Formalismus ausgedrückt werden (Vgl. \cite{garhwal_quantum_2021}).
+\paragraph{qGCL} Quantum Guarded Command Language (qGCL) als weitere imperative Sprache basiert auf Dijkstras Semantik der Programmiersprache und hat verschiedene Konzepte wie das Quantenregister in Form eines Vektors eingeführt. LanQ ist eine high-level, imperative Quantenprogrammiersprache, deren Syntax ebenfalls der Sprache C ähnelt. Sie führt Quantenberechnungen unter Verwendung der klassischen Steuerung auf Quantendaten durch. LanQ wurde entwickelt, da QCL und qGCL keine Interprozesskommunikation und Mehrparteienprotokolle unterstützen. Bei LanQ gehört jede Quantenressource höchstens einem Prozess an, während der Kanal von Sender- und Empfängerprozess gemeinsam genutzt werden kann. Darüber hinaus bietet LanQ Werkzeuge für die parallele Ausführung von Programmen \autocite{garhwal_quantum_2021}.
 
-Quantum ML (QML) ist eine funktionale Quantensprache aus dem Jahr 2006. QML Programme sind frei von Dekohärenz und gewährleisten Quantenparallelität durch Superposition und Verschränkung (Vgl. \cite{garhwal_quantum_2021}). 
-Quipper ist eine weitere high-level, skalierbare und funktionale Quantenprogrammiersprache. Sie wurde zur Programmierung einer Reihe von nicht-trivialen Quantenalgorithmen verwendet und kann Darstellungen mit Billionen von Gattern erzeugen. Quipper ist auf ein Berechnungsmodell ausgerichtet, das einen klassischen Computer zur Steuerung eines Quantengeräts verwendet und ist dabei nicht von einer bestimmten Quantenhardware abhängig (Vgl. \cite{green_quipper_2013}). Eine vergleichbare klassische Programmiersprache ist Haskell.
+In \textit{funktionalen, deklarativen Sprachen} werden Berechnungen mithilfe mathematischer Funktionen durchgeführt, die auf Konzepte wie dem Lambda-Kalkül und der linearen Logik zurückgreifen. Lambda-Kalküle sind Konstruktionen aus der mathematischen Logik und können als die kleinsten universellen Programmiersprachen betrachtet werden. Sie bestehen aus einer einzigen Transformationsregel (Variablensubstitution) und einem einzigen Funktionsschema. Jede berechenbare Funktion kann mit diesem Formalismus ausgedrückt werden. \autocite{garhwal_quantum_2021}
 
-\textit{Hybride, multi-Paradigmen Sprachen} und Frameworks kombinieren imperative Programmierung und deklarative Schaltungen. Sie integrieren sowohl klassische als auch Quantenprogrammierkonzepte, um komplexe Interaktionen zwischen verschiedenen Algorithmen zu ermöglichen und beide Berechnungsarten zu kombinieren. Dies ist in der heutigen NISQ-Ära von hoher Relevanz. Diese Ära beschreibt den aktuellen technologischen Übergangszeitraum der Quanteninformatik, in der erste Quantenalgorithmen zwar auf realen Geräten ausführbar, aber noch fehlerhaft, klein und begrenzt sind (Vgl. \ref{nisq-definition}). 
+\paragraph{QML} Quantum ML (QML) ist eine funktionale Quantensprache aus dem Jahr 2006. QML-Programme sind frei von Dekohärenz und gewährleisten Quantenparallelität durch Superposition und Verschränkung. \autocite{garhwal_quantum_2021}
 
-Eine hybride, domänenspezifische Quantenprogrammiersprache ist Q\# als Teil des Microsoft Quantum Development Kits. Sie besteht aus einem kleinen Satz von primitiven Datentypen, Arrays und Tupeln zur Erstellung neuer strukturierter Datentypen und unterstützt if-then Anweisungen und Schleifen. Weitere Merkmale umfassen die Interoperabilität mit der Python-Programmierung sowie die Unterstützung des Verschränkungs- und Überlagerungskonzepts (Vgl. \cite{garhwal_quantum_2021}).
+\paragraph{Quipper} Quipper ist eine weitere high-level, skalierbare und funktionale Quantenprogrammiersprache. Sie wurde zur Programmierung einer Reihe von nicht-trivialen Quantenalgorithmen verwendet und kann Darstellungen mit Billionen von Gattern erzeugen. Quipper ist auf ein Berechnungsmodell ausgerichtet, das einen klassischen Computer zur Steuerung eines Quantengeräts verwendet und ist nicht von einer bestimmten Quantenhardware abhängig. \autocite{green_quipper_2013} Eine vergleichbare klassische Programmiersprache ist Haskell.
 
-In Abbildung \ref{fig:quantum-landscape} ist eine Übersicht über diverse Programmiersprachen nach Abstraktionsebene und Programmierparadigmen (Type of language) zu sehen. Die Abbildung verdeutlich jedoch auch, dass es bislang keine einheitlich standardisierte Klassifikation von Quantenprogrammiersprachen gibt und diese je nach Quellen variiert. Während \citeauthor{garhwal_quantum_2021} Q\# als eine hybride Programmiersprache hervorgehoben haben, ordnen \citeauthor{serrano_quantum_2023} sie dem imperativen Paradigma zu. Unterschiedliche Autoren setzen dabei teils unterschiedliche Schwerpunkte, was zu divergierenden Einordnungen führen kann. Angesichts der uneinheitlichen Einordnungen in der Literatur erscheint die Erarbeitung eines standardisierten Klassifikationsschemas als eine relevante Aufgabe für zukünftige Forschungsarbeiten.
+\textit{Hybride, Multi-Paradigmen Sprachen} und Frameworks kombinieren imperative Programmierung und deklarative Schaltungen. Sie integrieren sowohl klassische als auch Quantenprogrammierkonzepte, um komplexe Interaktionen zwischen verschiedenen Algorithmen zu ermöglichen und beide Berechnungsarten zu kombinieren. Dies ist in der heutigen NISQ-Ära (\autoref{nisq-definition}) von hoher Relevanz. Diese Ära beschreibt den aktuellen technologischen Übergangszeitraum der Quanteninformatik, in dem erste Quantenalgorithmen zwar auf realen Geräten ausführbar, aber noch fehlerhaft, klein und begrenzt sind. 
 
-\begin{figure}[H]
+\paragraph{Q\#} Eine hybride, domänenspezifische Quantenprogrammiersprache ist Q\# als Teil des Microsoft Quantum Development Kits. Sie besteht aus einem kleinen Satz von primitiven Datentypen, Arrays und Tupeln zur Erstellung neuer strukturierter Datentypen und unterstützt If-Then-Anweisungen und Schleifen. Weitere Merkmale umfassen die Interoperabilität mit der Python-Programmierung sowie die Unterstützung des Verschränkungs- und Überlagerungskonzepts. \autocite{garhwal_quantum_2021}
+
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.9\linewidth]{images/languages/Quantum-Programming-Landscape.png}
-    \caption{Übersicht über Quanten-Programmiersprachen nach Abstraktionsebenen und Programmierparadigmen (\cite{serrano_quantum_2023})}
+    \caption{Übersicht über Quanten-Programmiersprachen nach Abstraktionsebenen und Programmierparadigmen \autocite[][]{serrano_quantum_2023}.}
     \label{fig:quantum-landscape}
 \end{figure}
 
-\textbf{Hardwarebindung}\\
-Die Hardwarebindung einer Quanten-Programmiersprache oder eines Frameworks beschreibt, inwieweit sie an eine bestimmte Quantenhardware-Plattform gebunden ist. Man unterscheidet zwischen Hardware-spezifisch und Hardware-unabhängig.
+\autoref{fig:quantum-landscape} zeigt eine Übersicht über Programmiersprachen nach Abstraktionsebene und Programmierparadigmen ("Type of language"). Zu beachten ist, dass es bislang keine einheitlich standardisierte Klassifikation von Quantenprogrammiersprachen gibt und diese je nach Quellen variiert. Während \citeauthor{garhwal_quantum_2021} Q\# als eine hybride Programmiersprache hervorgehoben haben, ordnen \citeauthor{serrano_quantum_2023} sie dem imperativen Paradigma zu. 
+Unterschiedliche Autoren setzen dabei teils unterschiedliche Schwerpunkte, was zu divergierenden Einordnungen führen kann. Angesichts der uneinheitlichen Einordnungen in der Literatur erscheint die Erarbeitung eines standardisierten Klassifikationsschemas als eine relevante Aufgabe für zukünftige Forschungsarbeiten.
 
-\textit{Hardware-Spezifische} Frameworks sind für die Optimierung und Ausführung auf einer bestimmten Architektur konzipiert und optimiert. Sie nutzen die spezifischen Eigenschaften und Einschränkungen der Hardware zur Maximierung der Leistung. Beispiele hierfür sind Cirq, optimiert für Google Sycamore Hardware (https://quantumai.google/cirq) oder PyQuil, optimiert für Rigetti´s Quantum Cloud Service. (https://www.rigetti.com/what-we-build). #INTERNETQUELLEN NOCH ANPASSEN
+\begin{defn}[Hardwarebindung]
+\label{def:hardware-binding}
+Die Hardwarebindung einer Quanten-Pro\-gram\-mier\-sprache oder eines Frameworks beschreibt, inwieweit sie an eine bestimmte Quanten\-hardware-Plattform gebunden ist. Man unterscheidet zwischen Hardware-spezifisch und Hardware-unabhängig.
+\end{defn}
 
-\textit{Hardware-unabhängige}Sprachen und Frameworks sind so konzipiert, dass sie auf einer Vielzahl von Hardware-Plattformen ausgeführt werden können, oft durch die Verwendung von Zwischenrepräsentationen wie OpenQASM. Sie bieten eine große Flexibilität und Portabilität. Zu ihnen gehören unter anderem Qiskit von IBM sowie Q\# von Microsoft.
+\begin{defn}[Hardware-spezifisch]
+Hardware-spezifische Frameworks sind für die Optimierung und Ausführung auf einer bestimmten Architektur konzipiert und optimiert. Sie nutzen die spezifischen Eigenschaften und Einschränkungen der Hardware zur Maximierung der Leistung. Beispiele hierfür sind Cirq \footnote{Cirq \url{https://quantumai.google/cirq}}, optimiert für Google Sycamore Hardware oder PyQuil, optimiert für Rigetti´s Quantum Cloud Service\footnote{Rigetti \url{https://www.rigetti.com/what-we-build}}. 
+\end{defn}
 
-\textbf{Quantenmodell}\\ 
-Eine weitere wesentliche Klassifikationsdimension ergibt sich aus dem zugrunde liegenden Quantenmodell. Quantencomputer können auf verschiedenen physikalischen Prinzipien und Berechnungsmodellen basieren, die sich auch in den Programmiersprachen widerspiegeln. Hierfür werden Programmiersprachen den Modellen aus \ref{programming-models} zugeordnet.
+\begin{defn}[Hardware-unabhängig]
+Hardware-unabhängige Sprachen und Frameworks sind so konzipiert, dass sie auf einer Vielzahl von Hardware-Plattformen ausgeführt werden können, oft durch die Verwendung von Zwischenrepräsentationen wie OpenQASM. Sie bieten eine große Flexibilität und Portabilität. Zu ihnen gehören unter anderem Qiskit von IBM sowie das Braket SDK von Amazon \autocite{ferreiraExploratoryStudyUsage2025}.
+\end{defn}
 
-Das Gate-basierte Modell ist das dominanteste und am weitesten verbreitete Modell, bei dem Quantenalgorithmen durch Schaltkreise aus Quantengattern auf Qubits dargestellt werden. Ein Großteil der aktuellen Quantencomputer und Frameworks basieren auf diesem Modell. Beispiele für Sprachen und Frameworks sind die bereits erwähnten Qiskit, Cirq oder OpenQASM (Vgl. \cite{QUELLE FEHLT})
+\begin{defn}[Quantenmodell]
+\label{def:quantum-model}
+Das Quantenmodell beschreibt die dem Quantencomputer zugrunde liegenden physikalischen Prinzipien und Berechnungsmodelle. Hierfür werden Programmiersprachen den Modellen aus Kapitel \ref{programming-models} zugeordnet.
+\end{defn}
 
-Das messungsbasierte Paradigma (MBQC) führt Berechnungen durch eine Sequenz von Einzel-Qubit-Messungen auf einem vorbereiteten hochgradig verschränkten Anfangs-Cluster-Zustand durch. Die Wahl der Messbasis für jedes Qubit hängt hierbei von den Ergebnissen früherer Messungen ab. Bisher gibt es wenige produktive Frameworks, ein prominentes Beispiel ist jedoch der One-Way Quantum Computer. One-way (Einweg) ergibt sich daraus, dass jede Messung den Zustand eines Qubits zerstört und die Ressource verbraucht. Raussendorf et al. bewiesen, dass mithilfe eines zweidimensionalen Cluster-Zustands beliebige Quantenalgorithmen realisiert werden können, wodurch dieses Modell formal als äquivalent zum Schaltkreis-Modell zu sehen ist. (Measurement-based quantum computation)
+Das Gate-basierte Modell ist das dominanteste und am weitesten verbreitete Modell, bei dem Quantenalgorithmen durch Schaltkreise aus Quantengattern auf Qubits dargestellt werden. Ein Großteil der aktuellen Quantencomputer und Frameworks basieren auf diesem Modell. Beispiele für Sprachen und Frameworks sind die bereits erwähnten Q\#, Cirq oder OpenQASM. \autocite{ferreiraExploratoryStudyUsage2025}
 
-Das adiabatische Paradigma nutzt Annealing zur Lösung komplexer Optimierungs- und Sampling-Probleme. Das bekannteste Beispiel hierfür ist das D-Wave Ocean SDK, das speziell für adiabatische Quantencomputer entwickelt wurde. Annealing übertrifft das Gate-Modell bei Optimierungsproblemen, da es den erheblichen Vorverarbeitungsaufwand vermeidet, der mit Gate-basierten Ansätzen verbunden ist. Darüber hinaus ist es deutlich toleranter gegenüber Fehlern und Rauschen und auf die Größe von Unternehmensproblemen skalierbar. (Optimization Performance of QA and QAOA D-Wave) (Adiabatic Quantum Computing)
+Das messungsbasierte Paradigma (MBQC) führt Berechnungen durch eine Sequenz von Einzel-Qubit-Messungen auf einem vorbereiteten, hochgradig verschränkten Anfangs-Cluster-Zustand durch. Die Wahl der Messbasis für jedes Qubit hängt hierbei von den Ergebnissen früherer Messungen ab. Bisher gibt es wenige produktive Frameworks. Ein prominentes Beispiel ist der One-Way Quantum Computer. One-way (Einweg) ergibt sich daraus, dass jede Messung den Zustand eines Qubits zerstört und die Ressource verbraucht. \citeauthor{briegelMeasurementbasedQuantumComputation2009} bewiesen, dass mithilfe eines zweidimensionalen Cluster-Zustands beliebige Quantenalgorithmen realisiert werden können, wodurch dieses Modell formal als äquivalent zum Schaltkreis-Modell zu sehen ist. \autocite{briegelMeasurementbasedQuantumComputation2009}
 
-\textbf{Zusammenfassung} \\
-In dieser Arbeit wurden bisher unter dem Begriff „Quanten-Programmiersprachen und -Frameworks“ sowohl formale, eigenständige Programmiersprachen als auch softwareseitige Entwicklungsumgebungen und Bibliotheken zusammengefasst, die die Programmierung, Ausführung und Analyse von Quantenalgorithmen ermöglichen.
+Das adiabatische Paradigma nutzt Annealing zur Lösung komplexer Optimierungs- und Sampling-Probleme. Annealing übertrifft das Gate-Modell bei Optimierungsproblemen, da es den erheblichen Vorverarbeitungsaufwand vermeidet, der mit Gate-basierten Ansätzen verbunden ist. Darüber hinaus ist es deutlich toleranter gegenüber Fehlern und Rauschen sowie auf die Größe von Unternehmensproblemen skalierbar. \autocite{albash_adiabatic_2018} Das bekannteste Beispiel ist das D-Wave\footnote{D-Wave \url{https://www.dwavequantum.com/solutions-and-products/ocean/}} Ocean SDK, das speziell für adiabatische Quantencomputer entwickelt wurde. 
 
-Obwohl sich diese Systeme in Aufbau und Fokus teilweise unterscheiden, verfolgen sie das gemeinsame Ziel der Bildung einer Schnittstelle zwischen Quantenalgorithmen und deren Ausführung auf Quantenhardware oder Simulationen. Um eine systematische Vergleichbarkeit zu gewährleisten, wurden sie gemeinsam betrachtet und entsprechend ihrer funktionalen Eigenschaften klassifiziert. (Sollte ich den Teil lieber an den Anfang schreiben???)
+In dieser Arbeit wurden bisher unter dem Begriff \enquote{Quanten-Programmiersprachen und -Frameworks} sowohl formale, eigenständige Programmiersprachen als auch softwareseitige Entwicklungsumgebungen und Bibliotheken zusammengefasst, die die Programmierung, Ausführung und Analyse von Quantenalgorithmen ermöglichen. Obwohl sich diese Systeme in Aufbau und Fokus teilweise unterscheiden, verfolgen sie das gemeinsame Ziel der Bildung einer Schnittstelle zwischen Quantenalgorithmen und deren Ausführung auf Quantenhardware oder Simulationen. \autoref{tab:quantum_languages_full} fasst die Klassifizierungen beispielhafter Quanten-Programmiersprachen und Frameworks zusammen. Die Einordnung beruht hierbei auf verschiedenen Arbeiten von \autocite{singhSurveyAvailableTools2024a}, \autocite{ferreiraExploratoryStudyUsage2025}, \autocite{garhwal_quantum_2021}, \autocite{serranoQuantumSoftwareComponents2023a} und eigener Einschätzung.
 
-Die folgende Tabelle fasst die Klassifizierungen verschiedener beispielhafter Quanten-Programmiersprachen und Frameworks zusammen. Die Einordnung beruht hierbei auf verschiedenen Arbeiten von (Quellen: A Survey on Available Tools and Technologies Enabling Quantum Computing | An exploratory study on the usage of quantum programming | Quantum Programming Language: A Systematic Review of Research Topic and Top Cited Languages | Quantum Software Components and Platforms: Overview and Quality Assessment)
-
-\begin{table}[H]
+\begin{table}[ht!]
 \centering
 \footnotesize
-\begin{tabular}{|p{1cm}|p{3cm}|p{2cm}|l|l|p{2cm}|p{2cm}|}
+\begin{tabular}{|p{1cm}|p{2cm}|p{2cm}|p{1.5cm}|p{2cm}|p{1.5cm}|}
 \hline
 \textbf{Jahr} & 
-\textbf{Quantum-Programmiersprache / Framework} & 
+\textbf{Sprache / Framework} & 
 \textbf{Abstraktions-level} & 
 \textbf{Paradigma} & 
-\textbf{Hardwarebindung} & 
 \textbf{Quantenmodell} & 
 \textbf{Hostsprache} \\
 \hline
-2017 & Qiskit & High-Level & Hybrid & IBM Q & Gate-basiert & Python \\
+2022 & OpenQASM3 & Low-Level & Imperativ & Gate-basiert & Quantum Assembly \\
 \hline
-2018 & Cirq & High-Level & Hybrid & Google Sycamore & Gate-basiert & Python \\
+2020 & Braket SDK & High-Level & Hybrid & Gate-basiert & Python \\
 \hline
-2018 & Q\# & High-Level & Hybrid & ... & ...& C\# \\
+2020 & D-Wave Ocean & High-Level & Hybrid & Adiabatisch & Python \\
 \hline
-1998 & QCL & Low-Level & Imperativ & ... & ... & C \\
+2020 & Silq & High-Level & Hybrid & Gate-basiert & Eigenständig \\
 \hline
-2000 & qGCL & High-Level & Imperativ & ... & ... & Pascal \\
+2020 & OpenQL & High-Level & Hybrid & Gate-basiert & Python, C++ \\
 \hline
-2003 & Q & High-Level & Imperativ & ... & ... & C++ \\
+2018 & Cirq & High-Level & Hybrid & Gate-basiert & Python \\
 \hline
-2006 & LanQ & Low-Level & Imperativ & ... & ... & C \\
+2018 & Q\# (Microsoft QDK) & High-Level & Hybrid & Gate-basiert & C\# \\
 \hline
-2012 & Scaffold & Low-Level & Imperativ & ... & ... & C / C++ \\
+2018 & Strawberry Fields & High-Level & Hybrid & Kontinuierlich-Variabel & Python \\
 \hline
-2017 & OpenQASM & Low-Level & Imperativ & ... & ... & Assembly Lanaguage \\
+2017 & Qiskit & High-Level & Hybrid & Gate-basiert & Python \\
 \hline
-2016 & pyQuil & High-Level & Imperativ & ... & ... & Python \\
+2017 & OpenQASM & Low-Level & Imperativ &  Gate-basiert & Quantum Assembly \\
 \hline
-2018 & Strawberry Fields & High-Level & Hybrid & ... & ... & Python \\
+2016 & pyQuil & High-Level & Imperativ &  Gate-basiert & Python \\
 \hline
-2020 & Silq & High-Level & Hybrid & ... & ... & Python \\
+2013 & Quipper & High-Level & Funktional & Gate-basiert & Haskell \\
 \hline
-2020 & OpenQL & High-Level & Imperativ & ... & ... & Python, C++ \\
+2012 & Scaffold & Low-Level & Imperativ &  Gate-basiert & C / C++ \\
 \hline
-2022 & OpenQASM3 & Low-Level & Imperativ & ... & ... & Assembly Lanaguage \\
+2006 & LanQ & Low-Level & Imperativ & Gate-basiert & C, Java \\
 \hline
-1996 & Quantum Lambda Calculi & High-Level & Funktional & ... & ... & Lambda Calculus \\
+2005 & QML & High-Level & Funktional & Gate-basiert & Haskell \\
 \hline
-2005 & QML & High-Level & Funktional & ... & ... & Haskell \\
+2003 & Q & High-Level & Imperativ & Gate-basiert & C++ \\
 \hline
-2013 & Quipper & High-Level & Funktional & ... & ... & Haskell \\
+2000 & qGCL & High-Level & Imperativ &  Gate-basiert & C \\
 \hline
-2020 & Braket SDK & High-Level & Hybrid & Amazon & ... & Python \\
-
-
-
+1998 & QCL & Low-Level & Imperativ & Gate-basiert & C \\
+\hline
+1996 & Quantum Lambda Calculi (theoretisches Konzept) & High-Level & Funktional & Gate-basiert & Lambda Calculus \\
 
 \hline
 \end{tabular}
 \caption{Erweiterter Vergleich von Quantum-Programmiersprachen und Frameworks}
 \label{tab:quantum_languages_full}
 \end{table}
-tbd
 
-\subsection{Vertiefung ausgewählter Frameworks / QISKIT}
+\subsection{Qiskit im Detail}
+\label{sec:qiskit-details}
 
-\textbf{Wie ausführlich soll ich diesen Teil machen? Alle drei Sprachen/Frameworks oder nur eins davon (Qiskit als Grundlage für nachfolgenden Teil und am weitesten verbreitete)? Wie detailliert?}
-\begin{itemize}
-    \item \textbf{Qiskit SDK:} Umfangreiche Bibliotheken, Simulator, Backendsteuerung
-    \item \textbf{Cirq:} Framework von Google für Schaltungsdesign und Simulation
-    \item \textbf{Q\#:} Domänenspezifische Sprache von Microsoft
-\end{itemize}
+Qiskit ist ein Python-basiertes Open-Source Softwareentwicklungskit (SDK) von IBM. Es bietet ein umfassendes Ökosystem an Werkzeugen und Plugins zur Erstellung und Bearbeitung von Quantenprogrammen. Diese Programme lassen sich sowohl in der IBM Quantum Experience als auch auf weiteren IBM-unabhängigen Backends ausführen. \autocite{singhSurveyAvailableTools2024a} Darüber hinaus können sie auch lokal simuliert werden, wie im Praxisbeispiel (\autoref{sec:practical-example}) zu sehen ist. 
 
-\subsubsection{Qiskit}
-\begin{itemize}
-            \item Open-Source-SDK für Quanteninformatik
-            \item Python-basiert
-            \item Unterstützt IBM Quantum Experience Hardware
-            \item Umfangreiches Ökosystem von Tools und Plugins
-            
-        \end{itemize}
-Architktur
-\begin{itemize}
-    \item \textbf{Mehrschichtige Architektur}
-    \begin{itemize}
-        \item \textbf{Terra}: Grundlegende Funktionalität für das Arbeiten mit Quantenschaltkreisen
-        \begin{itemize}
-            \item Schaltkreisdarstellung und -manipulation
-            \item Transpiler für Optimierung und Übersetzung
-            \item Backend-Schnittstellen für Simulation und Hardware-Ausführung
-        \end{itemize}
-        
-        \item \textbf{Aer}: Hochleistungs-Simulatoren
-        \begin{itemize}
-            \item Unterstützt verschiedene Simulationstypen: Zustandsvektor, Dichtematrix, Stabilisator
-            \item Ermöglicht Rauschsimulation
-        \end{itemize}
-        
-        \item \textbf{Ignis}: Werkzeuge für Charakterisierung und Fehlerminderung
-        \begin{itemize}
-            \item Fehlercharakterisierung und -kalibrierung
-            \item Fehlerminderungstechniken
-        \end{itemize}
-        
-        \item \textbf{Aqua}: Algorithmen für verschiedene Anwendungsbereiche
-        \begin{itemize}
-            \item Chemie, Finanzen, Maschinelles Lernen, Optimierung
-        \end{itemize}
-    \end{itemize}
-    
-    \item \textbf{Abstrakte und konkrete Schaltkreise}
-    \begin{itemize}
-        \item Abstrakte Schaltkreise: Repräsentation von Quantenalgorithmen auf hoher Abstraktionsebene
-        \item Konkrete Schaltkreise: Implementierung mit Standardbibliothek von Gates
-        \item OpenQASM als Zwischensprache für Quantenschaltkreise
-    \end{itemize}
-    
-    \item \textbf{Transpiler}
-    \begin{itemize}
-        \item Übersetzt und optimiert Schaltkreise für die Ziel-Hardware
-        \item Arbeitet in mehreren Durchläufen mit verschiedenen Passes
-        \item Wichtige Passes:
-        \begin{itemize}
-            \item Layout-Selektion: Mapping von logischen zu physischen Qubits
-            \item Routing: Einfügen von SWAP-Gates für nicht direkt verbundene Qubits
-            \item Optimierung: Zusammenfassen von Gates, Entfernen unnötiger Gates
-            \item Dekomposition: Zerlegung komplexer Gates in elementare Gates
-        \end{itemize}
-    \end{itemize}
-    
-    \item \textbf{Primitives}
-    \begin{itemize}
-        \item Grundlegende Bausteine für Quantenberechnungen
-        \item \texttt{Sampler}: Stichproben aus Quantenschaltkreisen ziehen
-        \item \texttt{Estimator}: Erwartungswerte von Observablen schätzen
-    \end{itemize}
-\end{itemize}
+Qiskit hat sich seit seiner Einführung im Jahr 2017 als ein zentrales Werkzeug in der Quanteninformatik etabliert. Mit über sechs Millionen Installationen und einer monatlichen Installationsrate von 300.000 ist Qiskit die meistgenutzte Software für Quantencomputing. Das Ökosystem wird nicht nur von IBM gepflegt, sondern mittlerweile von einer großen Gemeinschaft aus über 500 Mitwirkenden, die zur Entwicklung von über 300 Python-Paketen beigetragen haben. \autocite{javadi-abhariQuantumComputingQiskit2024a}
 
-Besonderheiten und Anwendung
+\autoref{fig:qiskit-architektur} zeigt die schematische Darstellung der Qiskit-Architektur. Qiskit unterstützt sowohl abstrakte als auch konkrete Repräsentationen von Quantenalgorithmen. Als High-Level-Programmiersprache (\autoref{def:high-level}) werden Algorithmen auf hoher Abstraktionsebene als logische Operationen modelliert. Im Zentrum von Qiskit stehen Quantenschaltkreise (Quantum Circuits), um die sich Optimierungs- und Übersetzungswerkzeuge gruppieren. \autocite{javadi-abhariQuantumComputingQiskit2024a}
 
-\begin{itemize}
-    \item \textbf{Dynamische Schaltkreise}
-    \begin{itemize}
-        \item Ermöglichen klassisch kontrollierte Quantenoperationen
-        \item Unterstützen Mid-Circuit-Messungen und bedingte Operationen
-        \item Wichtig für adaptive Algorithmen und Fehlerkorrektur
-    \end{itemize}
-    
-    \item \textbf{Fehlerminderung}
-    \begin{itemize}
-        \item Verschiedene Techniken zur Reduzierung von Hardwarefehlern
-        \item Zero-Noise Extrapolation
-        \item Probabilistic Error Cancellation
-        \item Dynamical Decoupling
-    \end{itemize}
-    
-    \item \textbf{Anwendungsgebiete}
-    \begin{itemize}
-        \item Quantenchemie und Materialwissenschaft
-        \item Optimierungsprobleme
-        \item Maschinelles Lernen
-        \item Finanzmathematik
-    \end{itemize}
-    
-    \item \textbf{Ökosystem und Community}
-    \begin{itemize}
-        \item Über 6 Millionen Installationen, 300.000 pro Monat
-        \item 500+ Mitwirkende, die meisten nicht von IBM
-        \item 300+ Pakete im Python Package Index (PyPI) hängen von Qiskit ab
-        \item Über 2.000 wissenschaftliche Arbeiten haben Qiskit verwendet
-    \end{itemize}
-\end{itemize}
+Ein Pass Manager (Transpiler) wendet Transformationen auf den Schaltkreis an, um ihn an das Gate-Set und die Topologie der Zielhardware anzupassen. Dies ermöglicht die Ausführung auf verschiedenen Quantenprozessoren. Der Transpiler folgt dabei einem mehrstufigen Kompilationsschema, bestehend aus der Layout-Auswahl, dem Routing, der Optimierung und der Dekomposition. In der Layout-Auswahl werden logische Qubits zu physischen Qubits zugewiesen und das Routing fügt SWAP-Gates hinzu. In der Optimierung wird die Anzahl von Gattern und die Schaltungstiefe reduziert und die Dekomposition zerlegt komplexe Operationen in elementare Gates des nativen Gate-Sets der Zielhardware. \autocite{javadi-abhariQuantumComputingQiskit2024a}
 
+Die Zwischensprache OpenQASM dient als Brücke und erlaubt die serielle und strukturierte Repräsentation von Schaltungen. \autocite{crossOpenQuantumAssembly2017a}
 
+Die aufbereiteten Schaltkreise führen die Primitives dann auf Simulatoren oder realen Quantenprozessoren aus. Der Sampler führt einen Schaltkreis aus und liefert die resultierenden Bitstring-Wahrscheinlichkeiten zurück, während der Estimator Erwartungswerte von Observables schätzt.
+
+Qiskit ist modular aufgebaut und folgt einer mehrschichtigen Architektur mit vier Komponenten. Dies ermöglicht es, Quantenprogramme zunächst abstrakt zu formulieren und sie dann für die konkrete Hardware zu optimieren. \autocite{javadi-abhariQuantumComputingQiskit2024a}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=1\linewidth]{images/languages/Qiskit-Architektur.png}
+    \caption{Qiskit-Architektur \autocite{javadi-abhariQuantumComputingQiskit2024a}}
+    \label{fig:qiskit-architektur}
+\end{figure}
+
+\paragraph{Terra (1)} Terra bildet das Fundament des Frameworks und stellt die grundlegenden Datentypen und Werkzeuge bereit, um Quanten-Schaltkreise zu erstellen, zu manipulieren und zwischen Hardware und Software zu vermitteln. Die zentrale Abstraktion ist der in \autoref{fig:qiskit-architektur} dargestellte Quantum Circuit, in dem Gatter, Messungen und Barrieren als sequenzielle Operationen auf Qubits modelliert werden. Darüber hinaus enthält Terra die Implementierung des Transpilers zur Optimierung der Schaltkreise und die Schnittstellen zu Simulatoren und Cloud-QPUs. \autocite{javadi-abhariQuantumComputingQiskit2024a}
+
+\paragraph{Aer (2)} Aer bietet schnelle Simulationen quantenmechanischer Zustände, wie Zustandsvektor-, Dichtematrix- und Stabilisator-Simulationen, und unterstützt die Modellierung realistischer Rauschprozesse. Die Integration realistischer Rauschmodelle (Noise Models) ermöglicht die Simulation und Optimierung auf echter Hardware. Diese ist essenziell für die Entwicklung von Algorithmen auf NISQ-Geräten. \autocite{javadi-abhariQuantumComputingQiskit2024a}
+
+\paragraph{Ignis (3) und Aqua (4)} Ignis und Aqua waren ursprünglich zwei weitere Komponenten, die mittlerweile in verschiedene separate Module ausgelagert wurden. Ignis enthält Werkzeuge zur Charakterisierung von Hardwarefehlern sowie Fehlermessungs- und -minderungstechniken \autocite[Vgl.][]{QUELLE ZUR IBM SEITE FEHLT NOCH}. Aqua konzentriert sich auf die Anwendung von Qiskit auf spezifische Anwendungsfälle. Die Komponente enthält eine Sammlung von Quantenalgorithmen. Dazu gehören Algorithmen für Quantenchemie, Finanzmathematik oder maschinelles Lernen, die Nutzern die Implementierung von Quantenalgorithmen ermöglichen, ohne tief mit den Details der Schaltkreisimplementierung vertraut sein zu müssen. \autocite{javadi-abhariQuantumComputingQiskit2024a}
 
 \section{Quantum Software Engineering}
 
-Quantum Software Engineering (QSE) ist ein aufkommendes Teilgebiet der Softwaretechnik, das sich mit der Entwicklung, Integration und Wartung quantenbasierter Softwaresysteme befasst. Im Gegensatz zur klassischen Softwareentwicklung bringt QSE neue Anforderungen mit sich – etwa die Integration probabilistischer Ausführung, hardwareabhängiger Toolchains und hybrider Workflows. \autocite{TODO:Quantum-Based Software Engineering} Dieses Kapitel beleuchtet zentrale Aspekte der QSE, vom zugrundeliegenden Software-Stack (\autoref{sec:quantum-software-stack}) über den Einsatz von Simulationen und den Zugang zu realer Quantenhardware über Cloud-Plattformen bis hin zur Integration quantenbasierter Anwendungen in moderne Softwareentwicklungsprozesse.
-
+Quantum Software Engineering (QSE) ist ein aufkommendes Teilgebiet der Softwaretechnik, das sich mit der Entwicklung, Integration und Wartung quantenbasierter Softwaresysteme befasst. Im Gegensatz zur klassischen Softwareentwicklung bringt QSE neue Anforderungen mit sich – etwa die Integration probabilistischer Ausführung, hardwareabhängiger Toolchains und hybrider Workflows. \autocite{zhao_quantum-based_2025} Dieses Kapitel beleuchtet zentrale Aspekte der QSE, vom zugrundeliegenden Software-Stack (\autoref{sec:quantum-software-stack}) über den Einsatz von Simulatoren (\autoref{sec:simulators}) und den Zugang zu realer Quantenhardware über Cloud-Plattformen (\autoref{sec:quantum-cloud-computing}) bis hin zur Integration quantenbasierter Anwendungen in moderne Softwareentwicklungsprozesse (\autoref{sec:integration-devops}).
 
 \subsection{Quantum Software Stack}
 \label{sec:quantum-software-stack}
@@ -448,6 +412,7 @@ Jede Schicht im Software-Stack abstrahiert technische Details der darunterliegen
 \end{figure}
 
 \subsection{Simulatoren}
+\label{sec:simulators}
 
 Simulatoren ermöglichen als Teil der Plattformschicht des Quantum Software-Stacks die funktionale Ausführung von Quantenalgorithmen auf klassischer Hardware, ohne dass eine physikalische Quantenmaschine benötigt wird.
 
@@ -460,10 +425,10 @@ Simulationen von Quantencomputern lassen sich in drei grundlegende Kategorien ei
 
 Im Kontext der Entwicklung von Quantensoftware ist vor allem die Simulation auf algorithmischer Ebene relevant. Hierbei werden vollständige Quantenprogramme in Form von Schaltkreisen simuliert, sodass Entwickler deren Verhalten analysieren, testen und optimieren können. Im Vordergrund steht dabei die logische Korrektheit und Funktionalität des Programms als Ganzes. Diese Form der Simulation ist ein essenzieller Bestandteil der Entwicklungswerkzeuge in modernen SDKs wie Qiskit oder Cirq.
 
-Allerdings unterliegt diese Art der Simulation fundamentalen Einschränkungen: Da der Speicher- und Rechenaufwand exponentiell mit der Anzahl der simulierten Qubits wächst, ist ihre Nutzung auf Programme mit einer vergleichsweise kleinen Qubitanzahl beschränkt. Für komplexere, realitätsnahe Algorithmen und Anwendungen reicht die Simulation daher oft nicht aus -- in solchen Fällen ist der Zugang zu echter Quantenhardware erforderlich. \autocite{TODO:Simulation of Quantum Computers: Review and Acceleration
-Opportunities}
+Allerdings unterliegt diese Art der Simulation fundamentalen Einschränkungen: Da der Speicher- und Rechenaufwand exponentiell mit der Anzahl der simulierten Qubits wächst, ist ihre Nutzung auf Programme mit einer vergleichsweise kleinen Qubitanzahl beschränkt. Für komplexere, realitätsnahe Algorithmen und Anwendungen reicht die Simulation daher oft nicht aus -- in solchen Fällen ist der Zugang zu echter Quantenhardware erforderlich. \autocite{cicero_simulation_2025}
 
 \subsection{Quantum Cloud Computing}
+\label{sec:quantum-cloud-computing}
 
 Da Quantenhardware in der Anschaffung teuer und im Betrieb hochkomplex ist, stellt das Quantum Cloud Computing (QCC) eine zentrale Möglichkeit dar, um Endnutzern dennoch einen praktischen Zugang zu physikalischer Quantenhardware zu ermöglichen. Über Cloud-Plattformen erhalten sie Zugriff auf Ressourcen, Jobmanagement und Fehlermitigation mittels abstrahierter Schnittstellen in einer skalierbaren Umgebung.
 
@@ -497,138 +462,90 @@ Auch auf Softwareebene gibt es Unterschiede: IBM unterstützt mit Qiskit ein umf
 Darüber hinaus gibt es weitere Plattformen wie etwa \textit{Strangeworks}, \textit{Xanadu}, \textit{Quantinuum}, \textit{IonQ} (auch über Azure Quantum) und \textit{Microsoft Azure Quantum}. Diese bieten entweder eigene Hardwaretechnologien (wie photonische QPUs bei Xanadu oder trapped-ion Systeme bei Quantinuum) oder bündeln übergreifende Multi-Backend-Zugänge mit einheitlicher API. Microsoft ermöglicht zudem tiefe Integration in klassische Azure-Dienste, während Strangeworks auf eine benutzerfreundliche Multi-Vendor-Umgebung setzt.
 
 \subsection{Integration in moderne Entwicklungsprozesse}
+\label{sec:integration-devops}
 
-Die Integration quantenbasierter Komponenten in bestehende Softwaresysteme erfordert ein Umdenken in der Softwareentwicklung. Quantum Software Engineering (QSE) spielt hierbei eine zentrale Rolle: Es zielt darauf ab, softwareseitige Lösungen zu entwerfen und umzusetzen, die die besonderen Eigenschaften von Quantencomputern – wie Superposition und probabilistische Zustände – gezielt nutzen und gleichzeitig deren Einschränkungen berücksichtigen.
+Mit Fortschritten im Quantum Computing wächst auch die Bedeutung moderner DevOps-Methoden, wie sie aus der klassischen Softwaretechnik bekannt sind. Dazu zählen insbesondere die kontinuierliche Integration und Bereitstellung (CI/CD) sowie das automatisierte Testen. Die Vielfalt an Hardwarearchitekturen und die fehlende Standardisierung, beispielsweise die Nutzung von proprietären, plattformspezifischen Programmiersprachen und Werkzeugen, stellen dabei besondere Herausforderungen dar.
 
-Trotz erster Fortschritte steht QSE noch am Anfang seiner Entwicklung und hat im Vergleich zur klassischen Softwaretechnik erheblichen Aufholbedarf. Zu den zentralen Herausforderungen zählen die große Heterogenität der verfügbaren Hardware, deren begrenzte Verfügbarkeit sowie die Notwendigkeit, für unterschiedliche Anbieter jeweils eigene Programmiersprachen, Bibliotheken und Tools zu verwenden.
+Ein aktueller Forschungsansatz ist das Framework QCRAFT, mit dem klassische CI/CD-Prinzipien auf das Quantum Computing übertragen werden können. Es nutzt containerisierte Umgebungen, um Plattformkonsistenz zu gewährleisten, und bindet Werkzeuge wie GitHub Actions in den Entwicklungsprozess ein. Wie in \autoref{fig:qcraft} abgebildet, ist eine zentrale Funktion dabei die automatische Übersetzung von Quantenprogrammen in plattformspezifische Code-Formate wie Qiskit oder Amazon Braket SDK mithilfe des Q-Trans Service. Dadurch lassen sich Quantenanwendungen ohne manuelle Anpassung zwischen Anbietern wie IBM und AWS migrieren, was einen wichtigen Schritt hin zur plattformübergreifenden Interoperabilität und Wiederverwendbarkeit darstellt.
 
-Um diese Fragmentierung zu überwinden, arbeiten verschiedene Anbieter an standardisierenden Lösungen. So stellt Amazon mit seinem einheitlichen Software Development Kit (SDK) eine Abstraktionsschicht bereit, die es ermöglicht, Quantenalgorithmen in einer einzigen Sprache zu entwickeln, auf unterschiedlichen Simulatoren zu testen und schließlich auf Hardware verschiedener Anbieter auszuführen. Weitere Initiativen fokussieren sich auf die automatische Auswahl der jeweils stabilsten Ausführung, indem sie Hardwarecharakteristika und Compilerverhalten kombinieren und analysieren.
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=1\textwidth]{images/qcraft.pdf}
+  \caption{Vereinfachte Architektur des QCRAFT Developer Interface \autocite{romero-alvarez_qcraft_2025}}
+  \label{fig:qcraft}
+\end{figure}
 
-Auch im Bereich serviceorientierter Architekturen (Service-Oriented Computing, SOC) bestehen weiterhin große Lücken zwischen klassischen und quantenbasierten Ansätzen. Während SOC in der klassischen Softwareentwicklung weit verbreitet ist, fehlen im Quantenbereich etablierte Konzepte und Umsetzungsmuster. Erste Vorschläge zielen darauf ab, gemeinsame Entwicklungsmodelle für klassische und Quantenentwickler zu schaffen, um hybride Anwendungen kollaborativ zu gestalten. Die Verfügbarkeit geeigneter Ressourcen und Werkzeuge stellt dabei jedoch weiterhin eine wesentliche Hürde dar.
+Durch visuelle Werkzeuge wie Quirk\footnote{Quirk \url{https://algassert.com/quirk}} kann darüber hinaus der Zugang zur Quantenentwicklung vereinfacht werden: Entwickler können Schaltkreise per Drag-and-Drop erstellen und direkt als Services ausliefern. Solche integrierten Entwicklungsumgebungen, die CI/CD, Übersetzung, Deployment und Ausführung kombinieren, tragen wesentlich zur Professionalisierung der quantenbasierten Softwareentwicklung bei und schaffen die Grundlage für skalierbare, wartbare und automatisierbare Prozesse. \autocite{romero-alvarez_qcraft_2025}
 
+\section{Praxisbeispiel: Grover-Suche mit Qiskit}
+\label{sec:practical-example}
 
-----
+Abschließend soll anhand eines Beispiels die praktische Umsetzung einer Quantenanwendung veranschaulicht werden. Konkret wird der Grover-Algorithmus zur Lösung eines unstrukturierten Suchproblems implementiert. Der Algorithmus zielt darauf ab, in einem Zustandsraum mit $2^n$ Einträgen einen bestimmten, zuvor markierten Zustand mit signifikant weniger Abfragen zu identifizieren, als dies klassisch möglich wäre. Die Implementierung erfolgt auf Grundlage eines Gate-basierten Quantenmodells, wobei zunächst einfache Systeme mit zwei und drei Qubits betrachtet werden.
 
-\subsection{Integration in moderne Entwicklungsprozesse}
+Kapitel Überblick... \textbf{TODO}
 
-Quantum Software Engineering (QSE) ist ein noch junges Teilgebiet der Softwaretechnik, das darauf abzielt, die besonderen Eigenschaften von Quantencomputern – wie Superposition, Entanglement und probabilistische Zustände – systematisch in die Entwicklungspraxis einzubinden. Dabei spielt QSE eine zentrale Rolle bei der Gestaltung, Implementierung und Wartung quantenbasierter Softwaresysteme. Ziel ist es, zuverlässige und wiederverwendbare Lösungen zu schaffen, die sich effektiv in klassische Systeme integrieren lassen.
-
-Trotz erster Fortschritte ist Quantum Software Engineering noch weit von der Reife traditioneller Softwareentwicklung entfernt. Die Herausforderungen reichen von der eingeschränkten Verfügbarkeit von Quantenhardware über inkompatible Programmiersprachen und proprietäre Bibliotheken bis hin zu fehlenden Standards für die Entwicklung plattformübergreifender Anwendungen. Der Mangel an einheitlichen Werkzeugketten und interoperablen Schnittstellen erschwert die breite Einführung quantenbasierter Dienste und limitiert deren Integration in bestehende Entwicklungssysteme.
-
-Initiativen wie das einheitliche SDK von Amazon, das den Zugriff auf verschiedene Simulatoren und Quantencomputer über eine gemeinsame Sprache ermöglicht, stellen erste Schritte in Richtung Standardisierung dar. Weitere Ansätze konzentrieren sich darauf, Hardwareunterschiede durch automatisierte Auswahl stabiler Ausführungspfade zu kompensieren – unter Berücksichtigung von Compiler- und Geräteprofilen. Auch im Bereich serviceorientierter Architekturen (SOC) bestehen noch große Lücken zwischen klassischer und quantenbasierter Umsetzung. Aktuelle Forschungsarbeiten schlagen hier hybride Modelle vor, in denen klassische und Quantenentwickler gemeinsam an servicebasierten Anwendungen arbeiten können. Der breite Einsatz solcher Methoden wird jedoch durch die begrenzte Verfügbarkeit geeigneter Ressourcen und Werkzeuge behindert.
-
-Langfristig wird es entscheidend sein, Quantum Software Engineering weiter zu professionalisieren – durch standardisierte Schnittstellen, abstrahierte Toolchains und DevOps-kompatible Workflows –, um die Lücke zur klassischen Softwaretechnik zu schließen und Quantensoftware in produktive Systeme integrierbar zu machen.
-
-
-
-Moderne Quantensoftwareentwicklung integriert zunehmend bewährte Praktiken aus der klassischen Softwaretechnik – insbesondere Continuous Integration (CI), Continuous Deployment (CD) und DevOps-Prinzipien. Diese Konzepte ermöglichen iterative Entwicklungszyklen, automatisierte Tests sowie eine nahtlose Integration zwischen klassischer und Quantenprogrammierung.
-
-Quantenplatformen wie ... unterstützen diese mit spezialisierten Funktionen ...
-
-\subsection{Tooling und Automatisierung}
-\begin{itemize}
-    \item Transpiler: Anpassung an spezifisches Backend
-    \item Middleware: Warteschlange, Priorisierung, Job-IDs
-    \item Backend-Optimierung: z.\,B. minimale Tiefe, minimale Fehlerwahrscheinlichkeit
-    \item Möglichkeit automatisierter Testausführung mit Simulator
-\end{itemize}
-
-\section{Praxisbeispiel: Grover-Suche mit Qiskit} 
-Dieses Beispiel veranschaulicht die praktische Umsetzung des Grover-Algorithmus zur Lösung eines unstrukturierten Suchproblems. Der Algorithmus zielt darauf ab, in einem Zustandsraum mit $2^n$ Einträgen einen bestimmten, zuvor markierten Zustand mit signifikant weniger Abfragen zu identifizieren, als dies klassisch möglich wäre. Die Implementierung erfolgt auf Grundlage eines gate-basierten Quantenmodells, wobei zunächst einfache Systeme mit zwei und drei Qubits betrachtet werden.
+\subsection{Aufbau???(TODO: andere Überschrift)}
 
 Ausgangspunkt ist jeweils ein Qubit-Register, das durch die Anwendung von Hadamard-Gattern in eine gleichmäßige Superposition aller möglichen Zustände überführt wird. Diese Phase der Initialisierung erzeugt einen quantenmechanischen Zustand, in dem jeder mögliche Eintrag des Suchraums mit gleicher Amplitude repräsentiert ist. Der nächste Schritt besteht in der Anwendung des sogenannten Orakels, das den gesuchten Zustand durch eine Phaseninversion markiert. In der hier realisierten Version wird im Fall von zwei Qubits der Zustand $|11\rangle$ als Zielzustand definiert und durch ein einfaches CZ-Gatter identifiziert. Für die Erweiterung auf drei Qubits wird entsprechend ein mehrfach kontrolliertes Z-Gatter eingesetzt, das gezielt den Zustand $|111\rangle$ anspricht.
 
-Im Anschluss an das Oracle kommt der sogenannte Diffusionsoperator zur Anwendung, der eine Spiegelung aller Amplituden um ihren Mittelwert bewirkt. Ziel dieses Schritts ist es, die Wahrscheinlichkeit des markierten Zustands zu verstärken, während die übrigen Zustände unterdrückt werden. Die Umsetzung erfolgt durch eine festgelegte Folge elementarer Gatter, darunter Hadamard-, X- und kontrollierte NOT-Gatter. Schon nach einer einzigen Iteration dieses Verfahrens – bei kleinen Registern in der Regel ausreichend – ist der Zielzustand in der quantenmechanischen Wahrscheinlichkeitsverteilung deutlich hervorgehoben.
+Im Anschluss an das Oracle kommt der sogenannte Diffusionsoperator zur Anwendung, der eine Spiegelung aller Amplituden um ihren Mittelwert bewirkt. Ziel dieses Schritts ist es, die Wahrscheinlichkeit des markierten Zustands zu verstärken, während die übrigen Zustände unterdrückt werden. Die Umsetzung erfolgt durch eine festgelegte Folge elementarer Gatter, darunter Hadamard-, X- und kontrollierte NOT-Gatter. Bereits nach einer einzigen Iteration dieses Verfahrens – bei kleinen Registern in der Regel ausreichend – ist der Zielzustand in der quantenmechanischen Wahrscheinlichkeitsverteilung deutlich hervorgehoben.
 
 Die finale Messung der Qubits erfolgt am Ende des Algorithmus. Dabei zeigt sich, dass der zuvor markierte Zustand mit hoher Wahrscheinlichkeit detektiert wird. Die experimentelle Auswertung bestätigt die theoretische Erwartung: Der Grover-Algorithmus führt zu einer gezielten Verstärkung des gewünschten Ergebnisses. Dies wird insbesondere durch die grafische Darstellung der Messhäufigkeiten deutlich, bei der der Zielzustand als klar dominanter Messwert erscheint.
 
-Insgesamt zeigt dieses Beispiel, wie sich ein komplexer quantenmechanischer Algorithmus mit relativ einfachen Mitteln umsetzen lässt. Die Verbindung von Theorie und Praxis wird damit greifbar: Während im Kapitel Quantenalgorithmen die mathematische Grundlage gelegt wurde, bietet die hier vorgestellte Implementierung eine konkrete Anwendung und liefert gleichzeitig einen Einstieg in den praktischen Umgang mit modernen Quantenentwicklungstools.
+Insgesamt zeigt dieses Beispiel, wie sich ein komplexer quantenmechanischer Algorithmus mit relativ einfachen Mitteln umsetzen lässt. Die Verbindung von Theorie und Praxis wird damit greifbar: Während im Kapitel Quantenalgorithmen \textbf{TODO:REF} die mathematische Grundlage gelegt wird, bietet die hier vorgestellte Implementierung eine konkrete Anwendung und liefert gleichzeitig einen Einstieg in den praktischen Umgang mit modernen Quantenentwicklungstools.
 
 \subsection{Implementierung und Testing mit Qiskit}
-\subsubsection{Projektstruktur und Setup (Python-Umgebung, Qiskit-Installation)}
+\subsubsection{Einrichtung der Entwicklungsumgebung mit Qiskit}
 
-\setlength{\parindent}{0pt} % Keine Einrückung am Absatzanfang
-\setlength{\parskip}{1em}   % Fügt einen vertikalen Abstand von 1em zwischen Absätzen ein
+Zur praktischen Umsetzung wird eine lokale Python-Umgebung eingerichtet, in der die Programmbibliothek \texttt{qiskit} installiert wird. Die Verwendung einer virtuellen Umgebung (\texttt{venv}) gewährleistet dabei, dass projektbezogene Abhängigkeiten isoliert bleiben und mit anderen Projekten nicht in Konflikt geraten. Für die interaktive Arbeit mit Quantenalgorithmen kommt das Werkzeug Jupyter Notebook zum Einsatz, was über einen integrierten Webserver verfügt. \autoref{tab:qiskit-anforderungen} zeigt die Systemvoraussetzungen, während \autoref{tab:qiskit-setup} die wesentlichen Installations- und Einrichtungsschritte zusammenfasst.
 
-\subsubsection*{Systemanforderungen}
-Die Systemanforderungen für die Implementierung und das Testing mit Qiskit sind wie folgt:
-\begin{itemize}
-    \item \textbf{Betriebssystem}: Windows 10 oder 11 (64-Bit)
-    \item \textbf{Python-Version}: Python 3.8 bis 3.11
-    \item \textbf{Arbeitsspeicher}: Mindestens 4 GB RAM (empfohlen: 8 GB oder mehr)
-    \item \textbf{Festplattenspeicher}: Ca. 1--2 GB freier Speicherplatz
-    \item \textbf{Internetverbindung}: Für Installation, Updates und IBM-Zugriff
-\end{itemize}
+\begin{table}[ht!]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Komponente} & \textbf{Anforderung} \\
+\hline
+Betriebssystem & Windows 10 oder 11 (64-Bit) \\
+\hline
+Python-Version & 3.8 bis 3.11 \\
+\hline
+Arbeitsspeicher & Mindestens 4 GB (empfohlen: 8 GB oder mehr) \\
+\hline
+Festplattenspeicher & 1–2 GB freier Speicherplatz \\
+\hline
+Internetverbindung & Für Installation, Updates und IBM-Zugriff \\
+\hline
+\end{tabularx}
+\caption{Systemanforderungen für die Qiskit-Installation}
+\label{tab:qiskit-anforderungen}
+\end{table}
 
-\subsubsection*{Virtuelle Umgebung und Qiskit installieren}
-
-\begin{enumerate}
-    \item \textbf{Virtuelle Umgebung einrichten} 
-    
-Virtuelle Umgebungen helfen dabei, Abhängigkeiten eines Projekts zu isolieren und Konflikte mit anderen Projekten zu vermeiden.
-    \begin{verbatim}
-python -m venv C:\Users\deinBenutzername\Documents\quantum-env
-    \end{verbatim}
-\textit{Dieser Befehl erstellt eine neue virtuelle Python-Umgebung im angegebenen Verzeichnis, wodurch alle Projektabhängigkeiten lokal isoliert gespeichert werden. }
-   
-
- \item \textbf{Virtuelle Umgebung aktivieren}
-    \begin{verbatim}
-cd C:\Users\deinBenutzername\Documents\quantum-env
-.\Scripts\activate
-    \end{verbatim}
-\textit{Diese Befehle wechseln in das Verzeichnis der virtuellen Umgebung und aktivieren sie.  Der Prompt zeigt danach den Namen der aktiven Umgebung an, was ein Zeichen dafür ist, dass alle weiteren Befehle lokal ausgeführt werden. }
-  
-
-    \item \textbf{pip-Version prüfen}
-    \begin{verbatim}
-pip --version
-    \end{verbatim}
-\textit{Dieser Befehl überprüft, ob der Python-Paketmanager \texttt{pip} korrekt installiert und aktiviert ist.  \texttt{pip} wird im nächsten Schritt zur Installation der Pakete verwendet. }
-    
-\end{enumerate}
-
-\subsubsection*{Installation der benötigten Pakete}
-
-\begin{enumerate}
-    \setcounter{enumi}{3} % Zähler für fortlaufende Liste
-    \item \textbf{Qiskit installieren}
-    \begin{verbatim}
-pip install qiskit
-    \end{verbatim}
-\textit{Dieser Befehl installiert das Hauptpaket \texttt{qiskit}, das alle grundlegenden Funktionen zur Programmierung und Simulation von Quantencomputern enthält. }
-
-    \item \textbf{Visualisierungsfunktionen hinzufügen (optional, empfohlen)}
-    \begin{verbatim}
-pip install qiskit[visualization]
-    \end{verbatim}
-\textit{Dieser Befehl installiert zusätzliche Bibliotheken zur grafischen Darstellung von Quanten-Schaltkreisen und Simulationsergebnissen, z.B. mit Matplotlib.  Dies ist notwendig bei Nutzung von Jupyter Notebook. }
-
-    \item \textbf{IBM Runtime installieren (optional)}
-    \begin{verbatim}
-pip install qiskit-ibm-runtime
-    \end{verbatim}
-\textit{Dieser Befehl ermöglicht die Anbindung an echte Quantenhardware über IBMs Cloud-Umgebung.  Dies ist optional, aber hilfreich für fortgeschrittene Experimente. }
-\end{enumerate}
-
-\subsubsection*{Jupyter Notebook nutzen}
-
-\begin{enumerate}
-    \setcounter{enumi}{6} % Zähler für fortlaufende Liste
-    \item \textbf{Jupyter installieren}
-    \begin{verbatim}
-pip install jupyter
-    \end{verbatim}
-\textit{Dieser Befehl installiert Jupyter Notebook -- eine interaktive Umgebung, in der Python-Code, Visualisierungen und Textelemente kombiniert werden können. }
-
-
-    \item \textbf{Notebook starten}
-    \begin{verbatim}
-jupyter notebook
-    \end{verbatim}
-\textit{Dieser Befehl startet den Jupyter Notebook-Server und öffnet die Benutzeroberfläche im Webbrowser.  Hier können direkt interaktive Codebeispiele mit Qiskit ausgeführt werden. }
-
-\end{enumerate}
+\begin{table}[ht!]
+\centering
+\begin{tabularx}{\textwidth}{|c|X|X|}
+\hline
+\textbf{Schritt} & \textbf{Beschreibung} & \textbf{Befehl} \\
+\hline
+1 & Virtuelle Umgebung erstellen & \mintinline{bash}|python -m venv quantum-env| \\
+\hline
+2 & Virtuelle Umgebung aktivieren (Windows) & \mintinline{bash}|.\Scripts\activate| \\
+\hline
+3 & pip-Version prüfen & \mintinline{bash}|pip --version| \\
+\hline
+4 & Qiskit installieren & \mintinline{bash}|pip install qiskit| \\
+\hline
+5 & Visualisierungspakete (optional) & \mintinline{bash}|pip install qiskit[visualization]| \\
+\hline
+6 & IBM Runtime installieren (optional) & \mintinline{bash}|pip install qiskit-ibm-runtime| \\
+\hline
+7 & Jupyter Notebook installieren & \mintinline{bash}|pip install jupyter| \\
+\hline
+8 & Jupyter Notebook Server starten & \mintinline{bash}|jupyter notebook| \\
+\hline
+\end{tabularx}
+\caption{Installations- und Einrichtungsschritte für Qiskit}
+\label{tab:qiskit-setup}
+\end{table}
 
 \subsubsection{Konstruktion des Grover Circuits:}
 
@@ -810,64 +727,28 @@ Im Idealfall – das heißt, bei korrekter Funktionsweise des Orakels und des Gr
 \begin{verbatim}
 plot_histogram(counts)
 plt.show()
-plot_histogram(counts)
-plt.show()
 \end{verbatim}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\linewidth]{Visualisierung der Messergebnisse.png}
+    \includegraphics[width=0.75\linewidth]{images//quantum-information/Visualisierung der Messergebnisse.png}
     \caption{Visualisierung der Messergebnisse}
     \label{fig:enter-label}
 \end{figure}
 
 Die Kombination aus Schaltkreisvisualisierung und Ergebnisdarstellung bietet einen idealen Zugang zum Verständnis von Grovers Algorithmus.  Sie macht die Wirkung der einzelnen quantenlogischen Schritte nachvollziehbar und veranschaulicht das Prinzip der amplitudenbasierten Suche auf anschauliche Weise.  Solche Visualisierungen sind nicht nur didaktisch wertvoll, sondern auch essenziell für die Entwicklung und Analyse komplexerer Quantenalgorithmen in der Praxis. 
 
-\clearpage % Fügt einen Seitenumbruch ein, um den nächsten Abschnitt auf einer neuen Seite zu beginnen
+\subsubsection{Testen und Debugging}
 
-\subsubsection{Tests und Debugging-Hilfsmittel (z.\,B. Histogramme, Counts)}
+Bei der Entwicklung von Quantenalgorithmen spielt die systematische Überprüfung des Codes eine entscheidende Rolle. Quantenprogramme sind nicht nur aufgrund ihrer Komplexität fehleranfällig, sondern verhalten sich auch häufig nicht intuitiv, da viele Zustände nicht direkt beobachtbar sind. Deshalb ist es essenziell, gezielt mit Tests, Zwischenergebnissen und Visualisierungen zu arbeiten, um Fehler zu erkennen und zu beheben. Nachfolgend sind ausgewählte Methoden vorgestellt, mit denen das zuvor mit Qiskit implementierte Quantenprogramm überprüft werden kann.
 
+\paragraph{Schrittweise Entwicklung} Das in \autoref{code:groverComplete} dargestellte schrittweise Aufbauen des Grover-Algorithmus ist eine erste Form des \enquote{Testens durch Design}. So wurden zunächst einzelne Operatoren und Zustände erzeugt, bevor sie in die Gesamtschaltung integriert wurden. Durch das schrittweise Ergänzen der Gates kann bereits in frühen Phasen kontrolliert werden, ob jede Transformation wie gewünscht wirkt. Dies entspricht einem iterativen Debugging-Verfahren.
 
-\paragraph*{Tests und Debugging-Hilfsmittel}
-\mbox{}
-
-Bei der Entwicklung von Quantenalgorithmen spielt die systematische Überprüfung des Codes eine entscheidende Rolle, insbesondere im experimentellen Rahmen mit Frameworks wie Qiskit. Quantenprogramme sind nicht nur aufgrund ihrer Komplexität fehleranfällig, sondern verhalten sich auch häufig nicht intuitiv, da viele Zustände nicht direkt beobachtbar sind. Deshalb ist es essenziell, gezielt mit Tests, Zwischenergebnissen und Visualisierungen zu arbeiten, um Fehler zu erkennen und zu beheben.
-
-\paragraph*{Schrittweise Entwicklung und Visualisierung}
-\mbox{}
-
-Im vorliegenden Notebook wurde der Grover-Algorithmus schrittweise aufgebaut, was eine erste Form des \enquote{Testens durch Design} darstellt. So wurden zunächst einzelne Operatoren und Zustände erzeugt, bevor sie in die Gesamtschaltung integriert wurden. Ein typisches Beispiel findet sich im Abschnitt zur 2-Qubit-Version:
-\begin{verbatim}
-def diffusion(circuit):
-    circuit.h([0, 1])
-    circuit.x([0, 1])
-    circuit.h(1)
-    circuit.cx(0, 1)
-    circuit.h(1)
-    circuit.x([0, 1])
-    circuit.h([0, 1])
-# Grover Circuit
-grover_circ = QuantumCircuit(2)
-grover_circ.h([0, 1])         # Superposition
-oracle(grover_circ)           # Oracle anwenden
-diffusion(grover_circ)        # Verstärkung
-grover_circ.measure_all()
-def diffusion(circuit):
-    circuit.h([0, 1])
-    circuit.x([0, 1])
-    circuit.h(1)
-    circuit.cx(0, 1)
-    circuit.h(1)
-    circuit.x([0, 1])
-    circuit.h([0, 1])
-# Grover Circuit
-grover_circ = QuantumCircuit(2)
-grover_circ.h([0, 1])         # Superposition
-oracle(grover_circ)           # Oracle anwenden
-diffusion(grover_circ)        # Verstärkung
-grover_circ.measure_all()
-\end{verbatim}
-Durch das schrittweise Ergänzen der Gates kann bereits in frühen Phasen kontrolliert werden, ob jede Transformation wie gewünscht wirkt. Dies entspricht einem iterativen Debugging-Verfahren.
+\begin{listing}[ht!]
+  \inputminted{python}{code/grover.py}
+  \caption{Aufbau des Grover-Algorithmus für 2 Qubits}
+  \label{code:groverComplete}
+\end{listing}
 
 \paragraph*{Visualisierung als Debugging-Werkzeug}
 \mbox{}
@@ -875,7 +756,6 @@ Durch das schrittweise Ergänzen der Gates kann bereits in frühen Phasen kontro
 Wie im vorherigen Kapitel gezeigt, wird mit \texttt{draw()} der Schaltkreis visualisiert. Dies erfüllt nicht nur dokumentarische, sondern auch diagnostische Zwecke. Es kann dadurch überprüft werden, ob etwa das Oracle korrekt umgesetzt oder die Anzahl der Grover-Iterationen richtig gewählt wurde.
 \subparagraph*{Beispiel:}
 \begin{verbatim}
-circuit.draw()
 circuit.draw()
 \end{verbatim}
 Fehlende oder falsch platzierte Gates werden so unmittelbar sichtbar. Besonders hilfreich ist dies bei komplexeren Operatorfolgen wie in der 3-Qubit-Version.
@@ -886,7 +766,6 @@ Fehlende oder falsch platzierte Gates werden so unmittelbar sichtbar. Besonders 
 Ein sehr effektives Mittel zur Fehlererkennung ist die statistische Analyse der Ausgaben. Die mit \texttt{plot\_histogram()} erzeugten Verteilungen lassen Rückschlüsse auf das Verhalten des Algorithmus zu:
 \begin{verbatim}
 plot_histogram(result.get_counts())
-plot_histogram(result.get_counts())
 \end{verbatim}
 Tritt der erwartete Peak beim Zielzustand nicht auf, kann dies auf einen Fehler im Oracle, in der Grover-Iteration oder in der Initialisierung hinweisen. Wurde beispielsweise ein falsches CZ-Gatter verwendet oder versehentlich eine falsche Qubit-Reihenfolge angesprochen, so verteilt sich die Wahrscheinlichkeitsmasse ungleichmäßig oder falsch.
 
@@ -895,11 +774,5 @@ Tritt der erwartete Peak beim Zielzustand nicht auf, kann dies auf einen Fehler 
 
 Die Arbeit mit Quantenalgorithmen erfordert sowohl eine sorgfältige Teststrategie, klassische Softwareentwicklung aber auch eine strukturiertere Herangehensweise. Im Notebook werden bereits einfache Mittel wie Visualisierung, gezielte Zwischenschritte und Histogrammanalyse genutzt und sind eine große Hilfe beim Debugging. Für komplexere Algorithmen empfiehlt sich darüber hinaus der gezielte Einsatz von Statevector-Simulationen, Barrieren zur Strukturierung und die Ausgabe von Zwischenzuständen.
 
-\subsection{Fazit und Ausblick}
-\begin{itemize}
-    \item Zusammenfassung der Entwicklungsschritte
-    \item Stärken und Schwächen aktueller Toolchains
-    \item Ausblick: Hybrid-Ansätze, komplexere Anwendungsfälle, Integration in klassische Softwarelandschaften
-\end{itemize}
-
+\clearpage
 \printbibliography
