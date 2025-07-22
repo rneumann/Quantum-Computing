@@ -10,6 +10,7 @@
 Dieses Kapitel führt in die Grundlagen der Quanteninformation ein und beschreibt den fundamentalen Unterschied zwischen klassischen Bits und Qubits. Es erklärt die Superposition von Qubits und deren Darstellung auf der Bloch-Kugel. Anschließend werden wesentliche Quanten-Gatter wie die Pauli- und Hadamard-Gatter vorgestellt, die Transformationen von Qubit-Zuständen ermöglichen und Grundlage für Quantenalgorithmen sind. Das Kapitel beschreibt erste Quantenalgorithmen, darunter den Deutsch- und Deutsch-Josza-Algorithmus, die die Effizienzvorteile quantenmechanischer Berechnungen demonstrieren. Weiterhin werden Konzepte der Quantenverschränkung und Quantenteleportation erläutert, inklusive deren Protokolle, Anwendungen in der Quantenkommunikation sowie ihre Realisierung auf Basis von Bell-Zuständen. Abschließend wird die Bedeutung der Bell-Zustände als Basis maximaler Verschränkung und ihre Nutzung in Quantencomputing, Kryptographie und Netzwerken behandelt. Das Kapitel bietet somit einen umfassenden Überblick über zentrale theoretische und praktische Prinzipien der Quanteninformation als Grundlage für weiterführende Quantencomputeranwendungen.
 
 \section{Das Qubit als Informationsträger}
+\label{Das Qubit als Informationsträger}
 \subsection{Klassisches Bit vs.\ Qubit}
 Ein \emph{Bit} ist die kleinste Informationseinheit in klassischen Computern. Es kann genau einen von zwei Zuständen annehmen: $\text{Bit}\,\in\{0,1\}$.
 Physikalisch bedeutet das zum Beispiel: Strom an = 1, Strom aus = 0. Durch Schaltkreise, die verschiedene logische Operatoren abbilden, können so Berechnungen durchgeführt werden oder durch spezielle Kodierungen (zum Beispiel ASCII) Daten repräsentiert werden.
@@ -140,7 +141,7 @@ Die Unitarität ($U^{\dagger}U = I$) stellt sicher, dass die Transformation phys
 %& \textbf{Phase-Shift-Gatter} 
 %& \gatterbox{R_\Theta}
 
-\subsection{Pauli-Gatter $X$, $Y$, $Z$}\label{subsec:pauli_gatter}
+\subsubsection{Pauli-Gatter $X$, $Y$, $Z$}\label{subsec:pauli_gatter}
 
 Die Pauli-Matrizen wurden 1927 von dem Physiker Wolfgang Pauli eingeführt, um den neu entdeckten Elektronenspin im Rahmen der Quantenmechanik zu beschreiben. Elektronen besitzen einen intrinsischen Drehimpuls (Spin ½), der keine klassische Entsprechung hat. (Vgl. \cite[S.312]{wekesa_sirengo_mathematical_2024}) Pauli entwickelte drei $2\times 2$-Matrizen (oft $\sigma_x, \sigma_y, \sigma_z$ bezeichnet), um die Spin-$x$-, Spin-$y$- und Spin-$z$-Operatoren des Elektrons darzustellen. Dies geschah im Kontext der Erklärung des anomalen Zeeman-Effekts, bei dem Spektrallinien in Magnetfeldern aufgespalten werden. (Vgl. ebd.)\\
 \\
@@ -153,7 +154,7 @@ In der üblichen Darstellungsform (der sogenannten $Z$-Basis ${|0\rangle,|1\rang
   Z=\begin{pmatrix}1&0\\ 0&-1\end{pmatrix}.
 \end{equation}
 \\
-Jede Matrix ist dabei \emph{unitär}: Multipliziert man sie mit ihrer konjugiert-transponierten Version, erhält man wieder die Einheitsmatrix. (Vgl. \cite[S.71]{nielsen_quantum_2010}) Außerdem ist sie \emph{hermitesch}: Die Matrix ist ihr eigenes „Spiegelbild“. (Vgl. ebd., S.78) Beides zusammen bedeutet, dass wenn man ein Pauli-Gatter zweimal anwendet, steht das Qubit wieder da, wo es zuvor war ($U^2=I$). Es ergeben sich dabei ausschließlich die Eigenwerte $+1$ oder $-1$. Damit besitzt jeder Pauli-Operator genau zwei orthogonale Eigenzustände, was ihn zum einfachsten nicht-trivialen Messoperator macht. Weiterhin sind die Pauli-Matrizen spurlos, d.h. ihre Spur (die Summe der Diagonalelemente) ist Null. (Vgl. ebd., S.76)\\
+Jede Matrix ist dabei \emph{unitär}: Multipliziert man sie mit ihrer konjugiert-transponierten Version, erhält man wieder die Einheitsmatrix. (Vgl. \cite[S.71]{nielsen_quantum_2010}) Außerdem ist sie \emph{hermitesch}: Die Matrix ist ihr eigenes „Spiegelbild“. (Vgl. ebd., S.78) Beides zusammen bedeutet, dass wenn man ein Pauli-Gatter zweimal anwendet, steht das Qubit wieder da, wo es zuvor war ($U^2=I$). Es ergeben sich dabei ausschließlich die Eigenwerte $+1$ oder $-1$. Damit besitzt jeder Pauli-Operator genau zwei orthogonale Eigenzustände, was ihn zum einfachsten nicht-trivialen Messoperator macht. Weiterhin sind die Pauli-Matrizen spurlos, d.h. ihre Spur (die Summe der Diagonalelemente) ist null. (Vgl. ebd., S.76)\\
 \\
 Jeder Qubit-Zustand lässt sich, bezogen auf die in Unterkapitel \ref{subsec:blockkugel} eingeführte Block-Kugel, als Punkt auf einer Einheitskugel darstellen. In diesem Bild wirken die Pauli-Gatter wie Halbumdrehungen um die drei Raumachsen: $X$ rotiert den Bloch-Vektor um $180^{\circ}$ um die $x$-Achse, $Y$ um die $y$-Achse und $Z$ um die $z$-Achse. (Vgl. \cite[S.215ff.]{rieffel_quantum_2011}) Die Eigenzustände von $Z$ liegen daher an Nord- und Südpol, während die Eigenzustände von $X$ und $Y$ entlang des Äquators auf den $x$- bzw.\ $y$-Achsen sitzen.\\
 \\
@@ -172,7 +173,7 @@ Die Wirkung der Ein-Quibit-Gatter Pauli-$X$-, $Y$-, $Z$-Gatter wird folgenderma�
 \\
 Die Pauli-Gatter gehören meist zur Grundmenge der verfügbaren elementaren Quantenoperationen auf einem Qubit. Zusammen mit dem Einheitsoperator $I$ bilden sie die sogenannte Pauli-Gruppe auf einem Qubit. Komplexere Ein-Qubit-Gatter lassen sich durch Kombinationen der Pauli-Gatter darstellen. So ist etwa das weit verbreitete und im folgenden Unterkapitel \ref{subsubsec:hadamard_gatter} beschriebenen Hadamard-Gatter eine von den Pauli-Matrizen abgeleitete Transformation. Auch Kontrollgatter wie CNOT können unter Nutzung von Pauli-Operatoren konstruiert werden. (Vgl. \cite[S.312]{wekesa_sirengo_mathematical_2024})
 \\
-\subsection{Hadamard-Gatter}\label{subsubsec:hadamard_gatter}
+\subsubsection{Hadamard-Gatter}\label{subsubsec:hadamard_gatter}
 Das Hadamard-Gatter $H$ ist eines der einfachsten Mittel, um aus einem allgemeinen Qubit-Zustand eine Überlagerung (Superposition) zu erzeugen.  Während ein Bit nur entweder 0 oder 1 sein kann, vermischt $H$ die beiden Basiszustände so, dass das Qubit  „halb 0, halb 1“ wird. (Vgl. \cite[S.19f.]{nielsen_quantum_2010})\\
 \\
 Formal schreibt man: (Vgl. \cite[S.76]{rieffel_quantum_2011})
@@ -223,15 +224,15 @@ In den folgenden Unterkapiteln wird sowohl der SWAP als auch der CNOT-Gatter aus
 
 \[
 \begin{array}{c@{\hspace{1cm}}c}
-\textbf{NOT-Gatter (X)} & \textbf{SWAP-Gatter} \\
-\gatterbox{X} & \swapgatter
+\textbf{SWAP-Gatter} & \textbf{NOT-Gatter (X)} \\
+\swapgatter & \gatterbox{X}
 \end{array}
 \]
 
 
 
 
-\subsection{SWAP}
+\subsubsection{SWAP}
 Ein SWAP-Gatter vertauscht den Zustand zweier Qubits. Formal entspricht es der Abbildung $|a,b\rangle \mapsto |b,a\rangle$ mit $a,b \in \{0,1\}$. In der Standardbasis $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$ ergibt sich daraus folgende Matrix:
 
 \begin{equation}
@@ -305,7 +306,7 @@ Ein zentrales Einsatzgebiet ergibt sich in Systemen mit begrenzter Konnektivitä
 
 %(Qubit Mapping and Routing via MaxSAT, S.2f.)
 
-\subsection{CNOT}\label{subsec:cnot_gatter}
+\subsubsection{CNOT}\label{subsec:cnot_gatter}
 Das Controlled-NOT Gatter (CNOT) besitzt ein Kontroll- und ein Zielqubit und bewirkt, dass der Zustand des Zielqubits genau dann mit einem Pauli-X (Bitflipping, dem klassischen NOT) invertiert wird, wenn das Kontrollqubit im Zustand $|1\rangle$ ist. (Vgl. \cite[S.20f., 177f.]{nielsen_quantum_2010}) Der CNOT-Gatter ist unitär und invertierbar und lässt sich in der $4\times 4$-Matrix wie folgt darstellen: (Vgl. ebd.) \\
 \begin{equation}
 \text{CNOT} = \begin{pmatrix}
@@ -607,7 +608,7 @@ Die Informationen in den folgenden Abschnitten befinden sich in der Quelle (Vgl.
 \\
 Die Wissenschaftler Daniel Gottesman und Isaac Chuang stellen eine Technik, eine Verallgemeinerung von Quantenteleportation vor, welche Quantenberechnung in Quantencomputern effizient und ressourcenarm zulässt. Dadurch werden bekannte fehlertolerante Protokolle für Quantenberechnung vereinigt. Mit dieser Technik der Quantenteleportation sollen Quanteninformationen in einen neuen Zustand transformiert werden. Dies ähnelt der Wirkung eines Quantengatters.\\
 \\
-Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. Ein CNOT gate ist eine Komponente, die zwei verschränkte Qubits in einem Bell-Zustand (Zustand, in dem zwei Qubits maximal miteinander verschränkt sind; mehr dazu in Subsektion 1.5.1) aufnimmt und den zweiten Qubit, den sog. „target“ Qubit dreht, wenn das erste Qubit, das sog. „control“ Qubit, einen Wert von \(\ket{1}\) hat. Beim Durchgang werden Pauli-Matrix Operationen durchgeführt, welche die Quanteninformationen auf ein drittes Qubit übertragen.\\
+Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. Ein CNOT gate ist eine Komponente, die zwei verschränkte Qubits in einem Bell-Zustand (Zustand, in dem zwei Qubits maximal miteinander verschränkt sind; mehr dazu in Subsektion 1.5.1) aufnimmt und den zweiten Qubit, den sog. „target“ Qubit dreht, wenn der erste Qubit, das sog. „control“ Qubit, einen Wert von \(\ket{1}\) hat. Beim Durchgang werden Pauli-Matrix Operationen durchgeführt, welche die Quanteninformationen auf einen dritten Qubit übertragen.\\
 \begin{figure}[h!]
     \centering
     \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_1.png}
