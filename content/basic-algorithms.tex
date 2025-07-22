@@ -88,7 +88,40 @@ Nach der Fouriertransformation wird eine Messung durchgeführt, die mit hoher Wa
 \]
 zu \( r \) steht. Mithilfe der Kettenbruchentwicklung kann daraus die Periode \( r \) bestimmt werden.
 
-Ist \( r \) bekannt und erfüllt sie bestimmte Voraussetzungen (z.B. \( r \) ist gerade und \( x^{r/2} \not\equiv -1 \bmod N \)), so lassen sich mit dem Euklidischen Algorithmus die Primfaktoren von \( N \) berechnen:  
+Ist \( r \) bekannt und erfüllt sie bestimmte Voraussetzungen (z.B. \( r \) ist gerade und \( x^{r/2} \not\equiv -1 \bmod N \)), so lassen sich mit dem Euklidischen Algorithmus die Primfaktoren von \( N \) berechnen: 
+
+Sei \( N \in \mathbb{N} \) eine zusammengesetzte Zahl, und \( x \in \mathbb{Z} \) mit \(\gcd(x, N) = 1\).  
+Finde die kleinste Periode \( r \) der Funktion
+\[
+f(a) = x^a \mod N,
+\]
+sodass
+\[
+x^r \equiv 1 \mod N.
+\]
+Falls \( r \) gerade ist, dann gilt:
+\[
+x^r \equiv 1 \mod N \Rightarrow (x^{r/2})^2 \equiv 1 \mod N.
+\]
+Dies führt zur Faktorisierung:
+\[
+x^r - 1 = (x^{r/2} - 1)(x^{r/2} + 1) \equiv 0 \mod N.
+\]
+Daraus folgt, dass \( N \) die Zahl \( (x^{r/2} - 1)(x^{r/2} + 1) \) teilt.
+Mit
+\[
+\gcd(x^{r/2} \pm 1, N)
+\]
+können nun mit hoher Wahrscheinlichkeit nichttriviale Teiler von \( N \) gefunden werden – sofern
+\[
+x^{r/2} \not\equiv \pm 1 \mod N.
+\]
+Diese Methode basiert auf der algebraischen Identität (Differenz der Quadrate):
+\[
+a^2 - b^2 = (a - b)(a + b),
+\]
+wobei hier \( a = x^{r/2}, b = 1 \).
+
 \begin{definition}[Größter gemeinsamer Teiler (gcd)]
 Der größte gemeinsame Teiler zweier Zahlen \(m, n \in \mathbb{N}\), bezeichnet als \(\gcd(m,n)\), ist die größte natürliche Zahl, die sowohl \(m\) als auch \(n\) ohne Rest teilt.\\
 
@@ -144,7 +177,7 @@ Dabei ist:
   \begin{itemize}
     \item \( n \): Anzahl der Qubits im ersten Register.
     \item \( Q = 2^n \): Anzahl der möglichen Zustände im ersten Register
-    \item \( x \): Laufvariable über alle Basiszustände von \( \ket{0} \) bis \( \ket{Q-1} \).
+    \item \( a \): Laufvariable über alle Basiszustände von \( \ket{0} \) bis \( \ket{Q-1} \).
     \item \( 1 \): Anfangszustand des zweiten Registers, auf das später die modulare Exponentiation angewendet wird.
   \end{itemize}
 
@@ -358,6 +391,15 @@ Wir wählen \( N = 15 \) und \( x = 2 \). Für den Algorithmus benötigen wir ei
     \]
 
     Die Periode \( r = 4 \) der Funktion \( f(a) = 2^a \bmod 15 \) sorgt dafür, dass bei der Messung des ersten Registers besonders häufig Vielfache von \( \frac{Q}{r} = \frac{256}{4} = 64 \) auftreten. Erwartbare Messwerte sind also \( c \in \{0, 64, 128, 192\} \).\\
+
+    Für die Visualisierung vereinfacht mit \(Q = 32\) kann man die Wahrscheinlichkeitsverteilung bei der Messung des ersten Registers wie folgt darstellen:
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth,height=6cm,keepaspectratio]{images/basic-algorithms/shor_qft_wkeitverteilung.png}
+    \caption{Visualisierung von \( \frac{Q}{r} = \frac{32}{4} = 8  \) mit \( c \in \{0, 8, 16, 24\} \)}
+    \label{fig:Visualisierung von \( \frac{Q}{r} = \frac{32}{4} = 8  \) mit \( c \in \{0, 8, 16, 24\} \)}
+\end{figure}
 
     \item \textbf{Messung und Kettenbruchentwicklung} \\
 
