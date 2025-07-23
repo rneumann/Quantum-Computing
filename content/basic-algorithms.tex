@@ -293,7 +293,7 @@ Alle Operationen lassen sich im wesentlichen wie folgt zusammenfassen: Zunächst
     \State \Return \( \gcd(x, N) \) \Comment{Zufällig gewähltes \( x \) war schon ein Teiler}
 \EndIf
 \State Bestimme die Periode \( r \) der Funktion \( f(x) = x^a \bmod N \) mittels Quanten-Phasenschätzung:
-\State Initialisiere zwei Register: Eins mit Superposition aller \( x \), eins mit Zustand \( |1\rangle \)
+\State Initialisiere zwei Register: Eins mit Superposition aller \( a \), eins mit Zustand \( |1\rangle \)
 \State Wende die unitäre Operation \( U_f \colon |a\rangle|1\rangle \mapsto |a\rangle|x^a \bmod N\rangle \) an
 \State Wende die Quanten-Fourier-Transformation (QFT) auf das erste Register an
 \State Miss das erste Register → erhalte Näherung \( d/r \)
@@ -392,7 +392,7 @@ Wir wählen \( N = 15 \) und \( x = 2 \). Für den Algorithmus benötigen wir ei
 
     Die Periode \( r = 4 \) der Funktion \( f(a) = 2^a \bmod 15 \) sorgt dafür, dass bei der Messung des ersten Registers besonders häufig Vielfache von \( \frac{Q}{r} = \frac{256}{4} = 64 \) auftreten. Erwartbare Messwerte sind also \( c \in \{0, 64, 128, 192\} \).\\
 
-    Für die Visualisierung vereinfacht mit \(Q = 32\) kann man die Wahrscheinlichkeitsverteilung bei der Messung des ersten Registers wie folgt darstellen:
+    Für die Visualisierung vereinfacht mit \(Q = 32\), kann man die Wahrscheinlichkeitsverteilung bei der Messung des ersten Registers wie folgt darstellen:
 
     \begin{figure}[H]
     \centering
