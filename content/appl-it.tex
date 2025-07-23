@@ -14,11 +14,170 @@ Lola Bankai, Mareike Rennebaum, Siri Wandel, Hüma Yilmaz}
 
 \subsection{Technologischer Überblick}
 
+
 \subsubsection{Technologische Grundlagen}
-\noindent\textbf{}
+
+\noindent\textbf{1. Grundlagen des Maschinellen Lernens für QML}  
+
+\noindent  
+Maschinelles Lernen (ML) ist ein Teilgebiet der Künstlichen Intelligenz, das darauf abzielt, Computersysteme auf der Basis von Beispieldaten dazu zu befähigen, Muster zu erkennen, Vorhersagen zu treffen und Entscheidungen zu fällen, ohne dass dafür explizit programmierte Regeln erforderlich sind. Der zugrunde liegende Gedanke besteht darin, dass Algorithmen aus Erfahrung lernen – ein Prinzip, das insbesondere dann zur Anwendung kommt, wenn Probleme zu komplex sind, um sie analytisch zu modellieren, jedoch ausreichend Datenmaterial vorliegt. Ziel ist es, Modelle zu erzeugen, die aus bekannten Datenstrukturen generalisierbare Zusammenhänge ableiten und auf neue, unbekannte Daten anwendbar sind \cite{alpaydin2022,kreutzer2019}.  
+
+Für den Einsatz maschinellen Lernens lassen sich zwei zentrale Lernformen unterscheiden: das überwachte Lernen (supervised learning) und das unüberwachte Lernen (unsupervised learning). Beim überwachten Lernen wird ein Modell auf Basis gelabelter Daten trainiert. Es lernt, Eingabemuster mit bekannten Ausgabewerten zu verknüpfen, und kann dieses Wissen auf neue Daten übertragen. Typische Anwendungen sind Klassifikations- oder Regressionsaufgaben. Im unüberwachten Lernen hingegen stehen keine Zielwerte zur Verfügung. Stattdessen versucht der Algorithmus, selbstständig Strukturen oder Cluster in den Daten zu identifizieren, etwa durch Ähnlichkeitsmaße oder Dimensionsreduktion \cite{weber2020}.  
+
+Ein besonders bedeutender Teilbereich des ML ist das Deep Learning (DL). Es basiert auf mehrschichtigen künstlichen neuronalen Netzen, die in der Lage sind, komplexe und hierarchische Merkmale aus großen Datensätzen automatisch zu extrahieren. Der Begriff „deep“ bezieht sich dabei auf die Tiefe des Netzwerks, also die Anzahl der Verarbeitungsschichten. DL hat sich in vielen datenintensiven Anwendungsfeldern wie der Bild- und Spracherkennung als besonders leistungsfähig erwiesen. Viele aktuelle Entwicklungen im Quantum Machine Learning (QML) – etwa Quantum Neural Networks (QNN), Quantum Autoencoder oder Quantum Convolutional Networks – orientieren sich strukturell und funktional an Deep-Learning-Architekturen und übertragen deren Konzepte in den quantenmechanischen Kontext \cite{kreutzer2019}.  
+
+Neben neuronalen Netzwerken existieren zudem klassische ML-Verfahren, die in der QML-Forschung als Vergleichsmodelle, für das Feature Engineering oder zur Vorverarbeitung verwendet werden. Support Vector Machines (SVM) gehören zu den wichtigsten überwachten Lernverfahren. Sie trennen Klassen durch eine optimal platzierte Hyperplane und maximieren dabei den Abstand zwischen den Klassen, was die Generalisierungsfähigkeit des Modells erhöht. SVMs sind besonders bei hochdimensionalen Daten effektiv und werden in der QML-Forschung durch Quantum Support Vector Machines (QSVM) erweitert \cite{janiesch2021}.  
+
+Ein weiteres zentrales Verfahren ist K-Means, ein unüberwachter Lernalgorithmus zur Clusteranalyse. Er partitioniert die Daten in eine vorab festgelegte Anzahl $k$ von Gruppen, wobei jeder Datenpunkt dem nächstgelegenen Clusterzentrum zugeordnet wird. Die Clusterzentren werden iterativ angepasst, bis sich die Gruppenzugehörigkeit stabilisiert \cite{springer2021}.  
+
+Schließlich ist die Principal Component Analysis (PCA) als Verfahren zur Dimensionsreduktion von besonderer Relevanz. PCA projiziert Daten auf wenige unkorrelierte Hauptachsen, welche die maximale Varianz erklären. Sie erleichtert damit sowohl die Visualisierung als auch die Verarbeitung komplexer Datensätze. In der QML-Forschung wird PCA häufig durch Quantum PCA (qPCA) ersetzt, um quantenspezifische Merkmale effizient zu extrahieren \cite{springer2021}.  
+
+Diese klassischen Verfahren sind nicht nur für die Analyse und Vorverarbeitung von Daten im klassischen ML unerlässlich, sondern bilden auch methodische und konzeptionelle Grundlagen für viele QML-Architekturen. Clustering ist eine grundlegende Aufgabe im unüberwachten maschinellen Lernen, bei der Datenpunkte in Gruppen ähnlicher Eigenschaften eingeteilt werden. Der klassische K-Means Algorithmus ist dafür weit verbreitet, leidet jedoch bei großen Datensätzen unter zunehmender Rechenkomplexität. Eine quantenmechanische Erweiterung dieses Verfahrens stellt der \textit{q-means} Algorithmus dar, der auf effizienten quantenmechanischen Operationen zur Distanzmessung und Gruppenzuweisung basiert \cite{kerenidis2019}.  
+
+Im Gegensatz zum klassischen Verfahren wird im q-means Algorithmus die Distanz zwischen einem Datenpunkt und einem Clusterzentrum nicht numerisch berechnet, sondern über die Überlappung quantenmechanischer Zustände geschätzt. Dies geschieht durch \textit{quantum state preparation}, bei der sowohl Datenpunkte als auch Clusterzentren in Amplituden kodiert werden, sowie durch sogenannte \textit{inner product estimation circuits}, die diese Überlappung bestimmen \cite{kerenidis2019}.  
+
+Der q-means Algorithmus folgt dabei einem iterativen Dreischritt:  
+\begin{enumerate}
+  \item \textbf{Initialisierung:} Die Clusterzentren werden klassisch gewählt und in quantenmechanische Zustände überführt.
+  \item \textbf{Zuweisungsschritt:} Datenpunkte werden jenen Zentren zugeordnet, zu denen ihre quantenmechanische Zustandsüberlappung (gemessene Distanz) minimal ist. Dies nutzt effiziente Quantenschaltkreise zur inneren Produktabschätzung.
+  \item \textbf{Update-Schritt:} Die neuen Clusterzentren werden als gewichtete Mittelwerte neu berechnet – ebenfalls in quantenmechanischer Form.
+\end{enumerate}  
+
+Der q-means Algorithmus zeigt, wie sich klassische Clustering-Ansätze durch quantenmechanische Optimierung beschleunigen lassen. Die theoretische Effizienz basiert auf der Annahme eines \textit{Quantum Random Access Memory} (QRAM), das den parallelen Zugriff auf quantenkodierte Daten ermöglichen würde – eine Technologie, die derzeit jedoch noch nicht praktisch verfügbar ist. q-means gilt als konzeptioneller Vorläufer für weiterführende Verfahren wie \textit{quantum Principal Component Analysis} (qPCA) und quanteninspirierte Anomalieerkennung \cite{kerenidis2019}.  
+
+\vspace{0.5cm}
+\noindent\textbf{2. Datenkodierung und quantenmechanische Vorverarbeitung}  
 
 \noindent
-...
+\textbf{Datenkodierung (State Preparation)}\\
+Um klassische Daten mit Quantenalgorithmen verarbeiten zu können, müssen sie zunächst in Quantenzustände überführt werden – ein Prozess, der als \textit{State Preparation} bezeichnet wird. Anders als bei klassischen Algorithmen, bei denen Daten direkt in numerischer oder symbolischer Form eingehen, müssen Quantencomputer Informationen in den Amplituden, Phasen oder Basiszuständen von Qubits kodieren. Die Wahl der Kodierung beeinflusst dabei direkt den Ressourcenbedarf, die Trainingskomplexität und die Fehleranfälligkeit eines QML-Modells. Daher ist sie nicht nur ein Vorverarbeitungsschritt, sondern ein zentrales Designkriterium für jede QML-Anwendung \cite{schuld2018}.  
+
+\vspace{0.3cm}
+\noindent
+\textbf{Kodierungsstrategien}  
+
+\vspace{0.2cm}
+\noindent
+\textbf{Angle Encoding}\\
+Beim \textit{Angle Encoding} werden einzelne Datenpunkte in Rotationswinkel für bestimmte Quantengates übersetzt – typischerweise über Rotationen um die $Y$- oder $Z$-Achse. Diese Methode ist besonders gut für aktuelle NISQ-Hardware geeignet, da sie nur flache Schaltungen erfordert und vergleichsweise robust gegenüber Rauschen ist. Sie ist daher in vielen aktuellen Demonstratoren der Standardansatz, auch wenn sie nicht speichereffizient ist: Jede Datenkomponente benötigt ihre eigene Qubit-Rotation \cite{schuld2018, bsi2025}.  
+
+\vspace{0.2cm}
+\noindent
+\textbf{Amplitude Encoding}\\
+\textit{Amplitude Encoding} speichert die Datenwerte direkt in den Amplituden eines Quantenzustands. Dabei lassen sich $2^n$ Datenpunkte theoretisch mit nur $n$ Qubits abbilden, was diese Methode extrem speichereffizient macht. In der Praxis ist sie jedoch technisch anspruchsvoll: Die initiale Zustandspräparation ist komplex, besonders bei verrauschten oder realitätsnahen Datensätzen. Die entstehende Schaltungstiefe macht sie für viele aktuelle NISQ-Geräte nur eingeschränkt nutzbar – insbesondere bei Echtzeitanwendungen. Dennoch ist Amplitude Encoding von hohem theoretischem Interesse, z.~B. für generative Modelle oder komplexe Feature-Räume \cite{schuld2018, zoufal2019}.  
+
+\vspace{0.2cm}
+\noindent
+\textbf{Quantenverschränkung in Embedding-Schichten}\\
+Ein zentrales Merkmal moderner QGAN-Architekturen ist der Einsatz von \textit{entangled embeddings}. Dabei werden mehrere Qubits in einem verschränkten Zustand vorbereitet, um hochdimensionale und nichtlineare Abhängigkeiten zwischen den Inputmerkmalen abzubilden. Niu et al. (2022) zeigen, dass der Einsatz solcher Entanglement-Schichten in der Eingabekodierung die Fähigkeit des Generators signifikant verbessert, komplexe Wahrscheinlichkeitsverteilungen zu erlernen – insbesondere im Vergleich zu rein tensorproduktbasierten Kodierungen. Diese Methode wird als vielversprechend für Bilddaten, medizinische Signale oder molekulare Repräsentationen eingestuft \cite{niu2022}.  
+
+\vspace{0.5cm}
+
+\noindent\textbf{3. Schlüsselalgorithmen im QML}  
+
+\vspace{0.3cm}
+\noindent
+\textbf{Quantum Neural Networks (QNNs) und Variational Quantum Circuits (VQCs)}\\
+Quantum Neural Networks sind Quantenmodelle, die von der Architektur klassischer neuronaler Netze inspiriert sind. In der Praxis kommen fast ausschließlich hybride Varianten zum Einsatz, sogenannte \textit{Variational Quantum Circuits}. Diese bestehen aus einem parametrisierten Quantenanteil, der durch klassische Optimierungsalgorithmen trainiert wird. Dabei übernehmen klassische Systeme typischerweise die Gradientenberechnung, während die quantenmechanischen Schaltungen die eigentliche Datenverarbeitung und Mustererkennung übernehmen. Die zentrale Herausforderung liegt im Training dieser Modelle: Der Optimierungsprozess ist anfällig für sogenannte \textit{barren plateaus}, also Parameterregionen mit extrem flachen Gradienten, die effektives Lernen stark erschweren. QNNs gelten dennoch als Schlüsseltechnologie, insbesondere bei Klassifikationsaufgaben mit hohem Strukturgehalt \cite{abbas2021}.  
+
+\vspace{0.3cm}
+\noindent
+\textbf{Quantum Autoencoder (QAE)}\\
+Quantum Autoencoder sind die quantenmechanische Erweiterung klassischer Autoencoder und dienen der komprimierten Repräsentation von Quantenzuständen. Ziel ist es, irrelevante Komponenten eines Quantenzustands gezielt zu verwerfen, um eine effizientere, latente Repräsentation zu erzeugen. Ein Maß für die Qualität der Kompression ist die \textit{TrashState-Fidelity} – ein Maß für die Entfernung zur Referenz \cite{ngairangbam2022}. Im Gegensatz zu klassischen Autoencodern steht bei QAEs nicht die vollständige Rekonstruktion des ursprünglichen Zustands im Vordergrund, sondern die Reduktion redundanter Information im Quantenraum. Dies erlaubt insbesondere bei verrauschten oder hochdimensionalen Daten effizientere Modellierungen \cite{schuld2018}.  
+
+\vspace{0.3cm}
+\noindent
+\textbf{Quantum Support Vector Machines (QSVM)}\\
+Eine der vielversprechendsten Anwendungen quantenmechanischer Methoden im Bereich des überwachten Lernens ist die Quantum Support Vector Machine (QSVM). Analog zur klassischen SVM verfolgt auch die QSVM das Ziel, Datenpunkte durch eine optimale Trennungshyperfläche zu klassifizieren. Der zentrale Unterschied liegt jedoch in der Nutzung von quantenmechanischen Feature Maps, um die Daten in einen hochdimensionalen Hilbertraum zu überführen, in dem eine lineare Trennung möglich wird \cite{kavitha2024}. Der sogenannte \textit{Quantum Kernel Trick} basiert auf der Idee, die Ähnlichkeit zweier klassischer Datenpunkte nicht direkt, sondern über die Überlappung ihrer quantenmechanischen Zustände zu bestimmen. Formal wird der Kernelwert durch das Quadrat des inneren Produkts zweier Zustände beschrieben:
+\[
+K(x, z) = \left| \langle \Phi(x) \mid \Phi(z) \rangle \right|^2
+\]
+In der Praxis wird dieser Kernelwert über quantenmechanische Messungen ermittelt – etwa durch Verfahren wie den \textit{SWAP-Test} oder über spezielle Pauli-basierte Feature Maps. Diese nutzen verschiedene Kombinationen von Gattern (z.\,B. X, Y, Z), um die Daten in den Hilbertraum zu übertragen. Eine YZ-basierte Map erzielte z.\,B. auf dem Wine-Datensatz eine Genauigkeit von 98{,}11\,\% – höher als bei der klassischen RBF-SVM mit 96{,}15\,\% \cite{kavitha2024}.  
+
+Die Umsetzung der QSVM erfolgt in drei Schritten:  
+\begin{enumerate}
+  \item Preprocessing mit Standardisierung und ggf. PCA zur Dimensionsreduktion,
+  \item Generierung der Kernelmatrix durch Anwendung quantenmechanischer Feature Maps,
+  \item Klassifikation, wobei der Kernelwert als Grundlage für die Entscheidung dient.
+\end{enumerate}  
+Ein zentrales Forschungsziel ist die Optimierung geeigneter Feature Maps, da diese maßgeblich über die Effizienz und Generalisierungsfähigkeit des Modells entscheiden. Darüber hinaus zeigt sich, dass QSVMs vor allem bei kleinen bis mittleren Datensätzen unter Nutzung aktueller NISQ-Hardware praktikabel sind. Ihre Anwendung steht somit im direkten Zusammenhang mit der verfügbaren Qubit-Anzahl und der Wahl speichereffizienter Kodierungsverfahren.  
+
+\vspace{0.3cm}
+\noindent
+\textbf{Generative Verfahren in der QML}  
+
+\vspace{0.2cm}
+\noindent
+\textit{Quantum Generative Adversarial Networks (qGANs)}\\
+Quantum Generative Adversarial Networks übertragen das Prinzip klassischer GANs – ein Konkurrenzspiel zwischen Generator und Diskriminator – in den quantenmechanischen Kontext. In der Regel wird der Generator als parametrisierte Quantenschaltung (PQC) realisiert, die durch Rotation, Superposition und Entanglement synthetische Zustände generiert \cite{zoufal2019}. Die Trainingsdaten werden dabei häufig mittels \textit{Amplitude Encoding} in einen kompakten Quantenzustand überführt, was eine exponentielle Datenkomprimierung ermöglicht \cite{schuld2018}. Der Diskriminator bleibt meist klassisch, operiert jedoch auf den Ergebnissen quantenmechanischer Messungen, wodurch quantenspezifische Muster erkennbar werden \cite{braccia2021}. Aktuelle Forschungsansätze zeigen, dass der Einsatz von verschränkten Eingabezuständen (\textit{entangled embeddings}) die Ausdrucksstärke des Generators verbessern kann \cite{niu2022}.  
+
+\vspace{0.2cm}
+\noindent
+\textit{Quantum Diffusion Models (QDM) \& unitäre Dynamik}\\
+Ein zentrales Konzept zur Beschreibung der Zeitentwicklung geschlossener Quantensysteme ist die \textit{unitäre Dynamik}, wie sie durch die zeitabhängige Schrödingergleichung beschrieben wird:
+\[
+i\hbar \frac{\partial \psi(x, t)}{\partial t} = \hat{H} \psi(x, t)
+\]
+Diese Dynamik bewahrt die Norm des Zustandsvektors und ist reversibel. In erweiterten QML-Modellen, insbesondere bei \textit{Quantum Diffusion Models} (QDM), wird diese unitäre Entwicklung ergänzt durch dissipative Effekte, um realistische Transportphänomene in quantenoffenen Systemen zu modellieren. Degond et al. (2004) stellen dazu ein quantenmechanisches Drift-Diffusionsmodell auf Basis der Wigner–BGK-Gleichung vor. Diese enthält Kollisionsterm-Approximationen und führt zu makroskopischen Gleichungen mit \textit{quantum corrections}, insbesondere dem Bohmschen Potential und quantenkorrigierten Drucktermen. Solche Erweiterungen sind essenziell für QML-Modelle, die auf realistischen, nicht-unitären Dynamiken basieren \cite{degond2004}.  
+
+\vspace{0.5cm}
+
+
+\noindent\textbf{4. Lernstrategien und Optimierungsverfahren}  
+
+\vspace{0.2cm}
+\noindent
+\textbf{Transfer Learning} bezeichnet die Wiederverwendung zuvor gelernter Repräsentationen auf neue, verwandte Aufgaben – z.\,B. durch Reinitialisierung von Modellparametern oder -architekturen. Diese Idee lässt sich auch in Quantum Machine Learning übertragen, etwa durch Wiederverwendung optimierter Parametrisierungen von VQCs oder Pretraining auf synthetischen Daten.
+
+\vspace{0.2cm}
+\noindent
+\textbf{Meta-Learning} hingegen zielt darauf ab, Lernsysteme selbst „anpassungsfähiger“ zu machen. Laut Hospedales et al. (2022) umfassen klassische Meta-Learning-Strategien:
+\begin{itemize}
+  \item \textit{Metriklernen} (z.\,B. Vergleich neuer Beispiele mit Referenzklassen),
+  \item \textit{Optimierungslernen} (z.\,B. durch modifizierte Gradientenverfahren),
+  \item \textit{Modellinitialisierung} (z.\,B. MAML).
+\end{itemize}
+Diese Konzepte gewinnen auch in der QML zunehmend an Bedeutung – etwa bei der automatisierten Auswahl von Encoding-Strategien oder architekturabhängigen Optimierungsansätzen \cite{hospedales2022}.  
+
+\vspace{0.4cm}
+\noindent\textbf{5. Mathematische Werkzeuge im QML}  
+
+\vspace{0.2cm}
+\noindent
+\textbf{Quantum Kernel Methods}\\
+Quantum Kernel Methods übertragen den aus der klassischen ML bekannten „Kernel-Trick“ auf den Quantenraum: Anstatt Daten explizit in höherdimensionale Feature-Räume zu transformieren, nutzt man quantenmechanische Zustände, um innere Produkte direkt zu messen. Die Kernel-Werte entsprechen dabei typischerweise der \textit{Fidelity} zwischen zwei kodierten Zuständen, was mithilfe des \textit{SWAP-Tests} implementiert werden kann.  
+
+Jerbi et al. (2023) unterscheiden zwei Klassen:
+\begin{enumerate}
+  \item Explizite Modelle, die mit Observablen auf einzelnen Zuständen arbeiten,
+  \item Implizite Modelle, die nur über Kernel-Funktionen (Fidelity, Projective Measurements) operieren.
+\end{enumerate}
+Die Autoren zeigen auch, dass Kernelmethoden zwar gute Trennungen im Feature-Raum ermöglichen, aber oft eine hohe Sample-Komplexität aufweisen – ein zentrales Thema im praktischen QML \cite{jerbi2023}.
+
+\vspace{0.2cm}
+\noindent
+\textbf{Shadow Tomography}\\
+\textit{Shadow Tomography} ist eine Technik zur kompakten Repräsentation eines Quantenzustands durch Stichprobenmessungen. Dabei werden sogenannte \textit{Classical Shadows} erstellt – kleine Informationspakete über den Zustand, die eine effiziente Approximation von Observablen erlauben. Der Vorteil gegenüber vollständiger Quanten-Tomografie liegt im exponentiellen Effizienzgewinn bei vielen Qubits. Jerbi et al. (2023) zeigen, dass solche Methoden besonders für \textit{post hoc}-Analysen in Typ-III-QML-Modellen wichtig sind, z.\,B. zur Messung von Feature-Overlaps, Kernelwerten oder Verifikation von Outputzuständen.
+
+\vspace{0.4cm}
+\noindent\textbf{6. Technologischer Rahmen und Implementierung}  
+
+\vspace{0.2cm}
+\noindent
+\textbf{NISQ-Hardware}\\
+Aktuelle Quantencomputer befinden sich im sogenannten \textit{NISQ}-Zeitalter (\textit{Noisy Intermediate-Scale Quantum}), einem Begriff, der von John Preskill geprägt wurde. NISQ-Systeme zeichnen sich durch eine mittlere Qubit-Anzahl (etwa 50–100 Qubits) und eine hohe Fehleranfälligkeit aus. Die zentrale Herausforderung besteht darin, dass Quantenzustände extrem empfindlich auf Störungen reagieren – sogenannte Dekohärenz –, was die korrekte Ausführung tiefer Schaltungen stark einschränkt. Zudem fehlt es an praxistauglichen Fehlerkorrekturverfahren, da diese selbst enorme Ressourcen erfordern würden.  
+
+Für Quantum Machine Learning bedeutet das: Nur Modelle mit geringer Schaltungstiefe, robuster Kodierung und hybrider Architektur sind derzeit realistisch umsetzbar. Der Hardwarebezug ist damit nicht nur technischer Rahmen, sondern direktes Gestaltungskriterium für alle gegenwärtigen QML-Ansätze \cite{preskill2018}.
+
+\vspace{0.2cm}
+\noindent
+\textbf{Transpilation \& Readout}\\
+Bevor ein Quantenalgorithmus auf realer Hardware ausgeführt werden kann, muss er in eine für das jeweilige Quantenprozessor-Layout ausführbare Form übersetzt werden – dieser Vorgang wird \textit{Transpilation} genannt. Dabei wandelt ein Compiler abstrakte logische Quantenoperationen in konkrete, hardwarekompatible Gatterfolgen um. Da reale Quantenprozessoren meist nur bestimmte Gatter und begrenzte Qubit-Verbindungen unterstützen, sind diese Anpassungen notwendig – sie können aber auch zu unbeabsichtigten Veränderungen der Modellstruktur führen.
+
+In sicherheitskritischen Szenarien ist dieser Schritt deshalb besonders sensibel – etwa im Hinblick auf gezielte Manipulationen oder Compiler-Fehlverhalten. Beim \textit{Readout} schließlich werden die Qubits gemessen, um ein klassisches Ergebnis zu erhalten. Auch hier besteht eine potenzielle Schwachstelle: Die Messung ist probabilistisch und anfällig für Fehler oder systematische Verzerrungen, insbesondere bei häufiger Wiederholung (\textit{Sampling}) oder starker Rauschbelastung. Beide Prozesse – Transpilation und Readout – sind daher nicht nur technische Zwischenschritte, sondern sicherheitsrelevante Komponenten im gesamten QML-Workflow \cite{wille2019}.
+
+\vspace{0.5cm}
+
 
 \subsubsection{Stand der Technik und Forschung}
 \noindent
@@ -153,16 +312,11 @@ In der Komplexitätstheorie gelten sie als Mittelweg: leistungsfähiger als klas
 \noindent
 Um die drei dominanten Architekturtypen im QML vergleichend einzuordnen, werden sie anhand zentraler Kriterien bewertet. Die folgende Übersicht verdichtet die wesentlichen Merkmale zu einer praxisorientierten Entscheidungsgrundlage:
 
-\usepackage{array}
-\usepackage{booktabs}
-\usepackage{multirow}
-\usepackage{makecell}
-\renewcommand\theadfont{\bfseries}
 
 \begin{table}[ht]
 \centering
 \small
-\begin{tabular}{|>{\bfseries}m{3cm}|m{3.5cm}|m{3.5cm}|m{3.5cm}|}
+\begin{tabular}{|>{\bfseries}m{2.5cm}|m{3cm}|m{3cm}|m{3cm}|}
 \hline
 Kriterium & Typ I – \textbf{Fully Quantum} & Typ II – \textbf{Hybride Modelle} & Typ III – \textbf{Quantum-simuliert Klassisch} \\
 \hline
@@ -176,7 +330,8 @@ Trainierbarkeit & Niedrig (Barren Plateaus, hardwarelimitiert) & Mittel (Kombina
 Fehlerresistenz & Gering (hohe Schaltungsstiefe, fehleranfällig) & Mittel (robust gegenüber see PQC-Modelle) & Hoch (nur selektive Quantenkomponenten) \\
 \hline
 
-Hardwareabhängigkeit & Sehr hoch (vollständige Quantenprozessorabhängigkeit) & Mittel (anpassbar an NISQ-Bedingungen) & Gering (oft klassische Ausführung möglich) \\
+Hardware-
+abhängigkeit & Sehr hoch (vollständige Quantenprozessorabhängigkeit) & Mittel (anpassbar an NISQ-Bedingungen) & Gering (oft klassische Ausführung möglich) \\
 \hline
 
 Skalierbarkeit & Niedrig (nur wenige Qubits praktikabel) & Mittel (optimiert für NISQ-Systeme) & Hoch (insbesondere bei Shadow Models) \\

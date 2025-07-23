@@ -626,44 +626,66 @@ Damit ist das mit Qiskit's Aer-Simulator erzeugte Modell im Beispiel-Setup eine 
 Neben der Fehlersimulation 
 
 \subsubsection{Der Shor-Code}
-Um ein einzelnes logisches Qubit in einem Quantencomputer gegen Fehler zu schützen, werden beim Shor-Code insgesamt neun physikalische Qubits verwendet.
+Um ein einzelnes logisches Qubit in einem Quantencomputer gegen Fehler zu schützen, werden beim Shor-Code insgesamt neun physikalische Qubits verwendet. So auch im Falle dieses Praxisbeispiels.
 
-Der Grund dafür liegt in der Notwendigkeit zwei fundamentale Fehlertypen zu korrigieren: Den zuvor erläuterten Bitflip- und den Phasenflip-Fehler.
+Zur Implementierung in Qiskit wurde wie folgt vorgegangen:
+\begin{enumerate}
+  \item \textbf{Erstellung eines Quanten-Schaltkreises zur Simulation eines gezielten Fehlers mit Qiskit:}  
+  In einem Testaufbau wurde ein vereinfachter Shor-Algorithmus implementiert, bei dem der Fokus auf der Quantum Phase Estimation (QPE) lag. Um die Anfälligkeit des Verfahrens gegenüber Fehlern zu analysieren, wurde ein gezielter Phasenflip-Fehler auf \texttt{Qubit 4} (ein Qubit aus dem QPE-Register) induziert. Dies geschieht über den Befehl \texttt{qc.z(4)}.
+\\
+  \item \textbf{Aufteilung eines logischen Qubits in neun physische Qubits gemäß Shor-Code:}  
+  Zur Fehlerkorrektur wird das betroffene logische Qubit mithilfe der Shor-Kodierung in neun physikalische Qubits aufgeteilt. Dabei wird zuerst dreifach codiert (zum Schutz vor Bitflips) und anschließend jede dieser drei Kopien nochmals in der X-Basis dupliziert (zum Schutz vor Phasenflips laut Shor Code). Diese redundante Kodierung ist essenziell für die spätere Fehlerdiagnose.
+\\
+  \item \textbf{Schutz vor Bitflips durch Mehrheitsentscheid (Majority Voting):}  
+  Um X-Fehler zu erkennen, wird bei jeder Dreiergruppe von Qubits ein Mehrheitsentscheid getroffen: Wenn zwei der drei Qubits (also die Mehrheit) denselben Zustand haben, wird dieser als der ursprüngliche Zustand gewertet. Dies erlaubt die Korrektur einzelner Bitflips, ohne das logische Qubit zu zerstören.
+\\
+  \item \textbf{Schutz vor Phasenflips durch Basiswechsel:}  
+  Da Phasenfehler in der Z-Basis auftreten aber durch einen Wechsel in die X-Basis in Bitflip-Fehler transformiert werden können, wird jedes physische Qubit zusätzlich mit einem Hadamard-Gate (\texttt{H}) versehen. So wird der Schutzmechanismus gegen Bitflips indirekt auch zur Korrektur von Phasenflips eingesetzt.
+\\
+  \item \textbf{Syndrommessung:}  
+  Die Fehlererkennung erfolgt durch die Auswertung von sog. Syndromen. Diese zeigen nicht den exakten Fehler an, sondern liefern ein Muster, das angibt, ob ein Fehler vorliegt und an welcher Stelle er sich befinden könnte. Die eigentliche Information des logischen Qubits bleibt dabei erhalten, da es nicht gemnessen wurde und sein Zustand somit nicht kollabiert ist.
+\\
+  \item \textbf{Fehlerkorrektur und Rekonstruktion:}  
+  Wurde ein Bitflip festgestellt, wird es durch ein \texttt{X}-Gate korrigiert. Dasselbe gilt für Phasenfehler, die jedoch durch \texttt{Z}-Gates ersetzt werden. Nach der Korrektur wird das logische Qubit aus den physikalischen Qubits rekonstruiert und kann anschließend ausgelesen werden.
+\end{enumerate}
 
-Im vorliegenden Beispiel    
-
+In der Simulation wurden insgesamt \textbf{10\,000} Durchläufe durchgeführt. Die Ergebnisse zeigen, dass der Shor-Code nahezu alle gezielt induzierten Phasenflip-Fehler erfolgreich ausgleicht. 
 
 
 Das Ergebnis ist eindeutig. Nach gezielter Fehlerkorrektur durch den Shor-Code lassen sich die Bitflip-Messergebnisse in Abbildung \ref{fig:with-error-correction} signifikant besser interpretieren, als davor. Dies zeigt sich durch die viel differenziertere Verteilung der Qubits 0 und 1, die durch die Anwendung des Shor-Codes nun korrigiert wurden.
 
-Fraglich ist nun, bis zu welcher Schwelle der Shor-Code fehlerhafte Qubits ausgleichen kann und weiterhin akzeptable Ergebnisse liefern kann. 
+\subsubsection{Interpretation}
 
-\begin{table}[h]
-    \centering
-    \caption{Vergleich der Häufigkeiten bei Korrektur und ausbleibender Korrektur}
-    \label{tab:vergleich}
-    \begin{tabular}{lrrr}
-    \textbf{Syndrom} & \textbf{Ohne Fehler} & \textbf{Mit Fehler + Korr.} & $\Delta$ (Mit--Ohne) \\
+Die aus dem Test-Setup abzuleitenden Resultate lassen mehrere Schlüsse zu:
 
-    1 000001 & 379  & 395  & +16  \\
-    1 010101 & 379  & 375  & -4   \\
-    0 000001 & 408  & 390  & -18  \\
-    0 010101 & 411  & 380  & -31  \\
-    0 010100 & 2203 & 2110 & -93  \\
-    1 010100 & 2065 & 2111 & +46  \\
-    1 000000 & 2144 & 2112 & -32  \\
-    0 000000 & 2011 & 2127 & +116 \\
-    \end{tabular}
+\begin{itemize}
+\item Die Häufigkeiten der dominanten Ausgabewerte (\texttt{0 000000}, \texttt{1 000000}, \texttt{0 001010}, \texttt{1 001010}) bleiben unter Fehler und Korrektur größtenteils erhalten. Dies zeigt, dass das korrekte Messergebnis des logischen Qubits durch die Fehlerkorrektur \textbf{erfolgreich wiederhergestellt werden kann}, nachdem der Fehler auf Qubit 4 erzeugt wurde.
+
+
+\item Die leichte Verschiebung einzelner Häufigkeiten (z.,B. \texttt{1 001010} von 2189 auf 2064) kann unter Umständen durch Rauschen oder  Imperfektion bei der Syndrome-Kodierung erklärt werden, aber ändert nichts an der Gesamtwirkung.
+\end{itemize}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Output-String} & \textbf{Ohne Fehler} & \textbf{Mit Fehler + Korrektur} \\
+\hline
+0 000000 & 2042 & 2101 \\
+0 001010 & 2099 & 2092 \\
+0 100000 & 405  & 387  \\
+0 101010 & 379  & 368  \\
+1 000000 & 2106 & 2234 \\
+1 001010 & 2189 & 2064 \\
+1 100000 & 380  & 370  \\
+1 101010 & 400  & 384  \\
+\hline
+\end{tabular}
+\caption{Vergleich der Messergebnisse mit und ohne Fehlerkorrektur}
+\label{tab:shor_correction}
 \end{table}
 
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.75\linewidth]{images/praxis-example/result_w_ec.png}
-    \caption{Caption}
-    \label{fig:with-error-correction}
-\end{figure}
-
-
+Wie bereits in den Kapiteln zuvor aufgezeigt gibt es heute weit modernere Verfahren zur Reduktion und Behebung von Fehlern in Quantenalgorithmen, wie z.B. Surface Codes. Nichtsdestotrotz ist das hier vorgestellte Shor-9-Qubit-Code Beispiel ein guter didaktischer Einstieg und kann den Weg für intensivere Beschäftigung mit dem Thema ebnen.
 
 \printbibliography

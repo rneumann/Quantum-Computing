@@ -709,6 +709,18 @@ Ein zentrales Anliegen beim Verständnis und bei der Vermittlung von Quantenalgo
 
 Für beide Varianten des Grover-Algorithmus wird der jeweilige Quanten-Schaltkreis mit der Methode \mintinline{python}{grover_circuit.draw()} visualisiert. Die resultierende Darstellung (\autoref{fig:grover-visualize-circuit}) erlaubt einen direkten Einblick in den logischen Aufbau des Algorithmus, insbesondere in die Abfolge und Wirkung der in \autoref{sec:grover-implementation} beschriebenen verschiedenen quantenmechanischen Operationen.
 
+\begin{listing}[ht!]
+\begin{minted}[fontsize=\footnotesize,breaklines]{text}
+     ┌───┐┌───┐   ┌───┐┌───┐┌───┐   ┌───┐
+q_0: ┤ H ├┤ X ├─■─┤ X ├┤ H ├┤ Z ├─■─┤ H ├
+     ├───┤└───┘ │ ├───┤├───┤└───┘ │ ├───┤
+q_1: ┤ H ├──────■─┤ H ├┤ Z ├──────■─┤ H ├
+     └───┘        └───┘└───┘        └───┘
+\end{minted}
+\caption{ASCII-Darstellung einer Grover-Schaltung}
+\label{code:grover-circuit-ascii}
+\end{listing}
+
 \begin{figure}
       \includegraphics[width=0.25\linewidth]{circuit_superposition.png}
       \caption{Visualisierung des Schaltkreises (Superposition)}
