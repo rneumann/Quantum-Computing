@@ -365,7 +365,7 @@ Wir wählen \( N = 15 \) und \( x = 2 \). Für den Algorithmus benötigen wir ei
     \centering
     \includegraphics[width=1\textwidth,height=6cm,keepaspectratio]{images/basic-algorithms/shor_mod15_frequenz_graustufen.png}
     \caption{Visualisierung von $f(a) = 2^a \bmod 15$ mit Periode $r$ = 4}
-    \label{fig:Visualisierung von $f(a) = 2^a \bmod 15$ mit Periode $r$ = 4}
+    \label{fig:mod-visualize}
 \end{figure}
 
     Der verschränkte Zustand besteht also aus Gruppen gleicher Ausgabewerte:
@@ -398,7 +398,7 @@ Wir wählen \( N = 15 \) und \( x = 2 \). Für den Algorithmus benötigen wir ei
     \centering
     \includegraphics[width=1\textwidth,height=6cm,keepaspectratio]{images/basic-algorithms/shor_qft_wkeitverteilung.png}
     \caption{Visualisierung von \( \frac{Q}{r} = \frac{32}{4} = 8  \) mit \( c \in \{0, 8, 16, 24\} \)}
-    \label{fig:Visualisierung von \( \frac{Q}{r} = \frac{32}{4} = 8  \) mit \( c \in \{0, 8, 16, 24\} \)}
+    \label{fig:frac-visualize}
 \end{figure}
 
     \item \textbf{Messung und Kettenbruchentwicklung} \\
@@ -917,107 +917,4 @@ Der quantenmechanische Gegenpart zu \(\mathbf{BPP}\) ist die Klasse \(\mathbf{BQ
 \end{figure}
 
 Abschließend lässt sich festhalten, dass die Frage, ob \(\mathbf{P}=\mathbf{NP}\) gilt, zu den bedeutendsten offenen Problemen der Informatik zählt. Auch der Vergleich zwischen klassischen und quantenmechanischen Modellen, speziell die Vermutung \(\mathbf{P}\subsetneq \mathbf{BQP}\subseteq \mathbf{NP}\), prägt die Forschung im Bereich effizienter Algorithmen maßgeblich.
-
-\section{Quantum Safe Algorithmen}
-
-\subsection*{Einleitung}
-
-Mit der rasanten Entwicklung von Quantencomputern stehen klassische Verschlüsselungsverfahren vor einer existenziellen Bedrohung. Während heutige Systeme auf der Annahme beruhen, dass bestimmte mathematische Probleme schwer zu lösen sind, können Quantenalgorithmen wie \textit{Shor’s Algorithmus} oder \textit{Grover’s Algorithmus} diese Probleme effizient berechnen – und damit die Sicherheit brechen, auf die heutige digitale Kommunikation angewiesen ist.
-
-Diese Bedrohung macht sogenannte \textbf{Quantum Safe Algorithmen} notwendig – kryptographische Verfahren, die auch gegen Angriffe durch leistungsfähige Quantencomputer resistent sind. Zwei Hauptansätze stehen im Zentrum der Forschung:
-
-\begin{itemize}
-  \item \textbf{Quantum Key Distribution (QKD)} – ein Verfahren, das physikalische Gesetze der Quantenmechanik nutzt, um absolut sichere Schlüsselverteilungen zu ermöglichen.
-  \item \textbf{Post-Quantum Cryptography (PQC)} – klassische, quantenresistente Algorithmen, die auf heutigen Geräten ausgeführt werden können.
-\end{itemize}
-
-In diesem Kapitel werfen wir einen Blick auf beide Ansätze – und erläutern insbesondere die jüngsten Fortschritte durch das NIST (National Institute of Standards and Technology), das 2022 erste standardisierungsreife Algorithmen bekannt gegeben hat.
-
-\subsection{Quantum Key Distribution}
-
-Quantum Key Distribution (QKD) ermöglicht es, kryptografische Schlüssel über unsichere Kanäle zu übertragen – mit einem entscheidenden Vorteil: Jeder Abhörversuch verändert unweigerlich den Zustand der übertragenen Quanteninformation und kann somit erkannt werden.
-
-Ein klassisches Beispiel für ein QKD-Protokoll ist das \textbf{BB84-Protokoll}, das 1984 von Bennett und Brassard entwickelt wurde und später, im Jahr 2000, von Peter W. Shor and John Preskill geprüft wurde. Es nutzt die Polarisation von Photonen, um binäre Informationen zu codieren. Der Ablauf besteht aus drei Phasen:
-
-\begin{itemize}
-  \item \textbf{Key Exchange:} Alice sendet zufällig polarisierte Photonen an Bob, der sie in zufällig gewählten Basen misst.
-  \item \textbf{Key Sifting:} Über einen klassischen Kanal gleichen beide ihre verwendeten Basen ab und behalten nur die Werte, bei denen die Basen übereinstimmten.
-  \item \textbf{Key Distillation:} Durch Stichproben wird geprüft, ob Abhörversuche stattfanden. Die finale Schlüssellänge ergibt sich nach dieser Bereinigung.
-\end{itemize}
-
-\noindent Neben BB84 existieren weitere bedeutende Protokolle:
-
-\begin{itemize}
-  \item \textbf{B92} (reduzierte Variante mit zwei Zuständen)
-  \item \textbf{E91} (nutzte erstmals Quantenverschränkung)
-  \item \textbf{BBM92}, \textbf{SARG04}, \textbf{DPS}, \textbf{COW}, \textbf{GG02} (verschiedene Weiterentwicklungen)
-\end{itemize}
-
-Für eine detaillierte Übersicht der Protokolle und deren Unterschiede siehe das Paper:
-\textit{An Overview of Quantum-Safe Approaches: Quantum Key Distribution and Post-Quantum Cryptography} von Guobin Xu et al.
-
-\subsection{Post-Quantum Cryptographie Algorithmen}
-
-Da QKD mit hohen technischen und infrastrukturellen Anforderungen verbunden ist, setzt sich in der Praxis vor allem die \textbf{Post-Quantum Cryptography (PQC)} durch. Sie nutzt klassische Rechenverfahren, basiert jedoch auf mathematischen Problemen, die auch für Quantencomputer als schwierig gelten.
-
-Das US-amerikanische \textbf{NIST} hat im Rahmen eines mehrjährigen Wettbewerbs Verfahren für zwei Hauptkategorien gesucht:
-
-\begin{itemize}
-  \item \textbf{Public-Key Encryption and Key Establishment (KEM)}
-  \item \textbf{Digitale Signaturverfahren}
-\end{itemize}
-
-\noindent Nach mehreren Runden wählte NIST im Juli 2022 vier Algorithmen aus, die als erste Quantum Safe Standards empfohlen werden.
-
-\noindent Für Verschlüsselung und Schlüsselaustausch nominierte NIST:
-
-\begin{itemize}
-  \item \textbf{CRYSTALS-Kyber} – 2017, J. Bos et al.
-\end{itemize}
-
-\vspace{0.5em} % optionaler vertikaler Abstand
-
-\noindent Für digitale Signaturen nominierte NIST:
-
-\begin{itemize}
-  \item \textbf{CRYSTALS-Dilithium} – 2018, L. Ducas et al.
-
-  \item \textbf{Falcon} – 2018, P.-A. Fouque et al.
-
-  \item \textbf{SPHINCS+} – 2019, D. J. Bernstein et al.
-\end{itemize}
-
-\subsubsection*{CRYSTALS-Kyber}
-
-\textbf{CRYSTALS-Kyber} ist ein \textit{lattice-basiertes Key Encapsulation Mechanism (KEM)}. Es basiert auf dem sogenannten \textit{Module Learning with Errors (MLWE)}-Problem, das auch von Quantencomputern bislang nicht effizient gelöst werden kann.
-
-Der Algorithmus nutzt Polynomarithmetik und besteht aus drei Hauptschritten:
-
-\begin{enumerate}
-  \item \textbf{Schlüsselerzeugung:} Öffentlicher und privater Schlüssel werden erzeugt.
-  \item \textbf{Encapsulation:} Ein gemeinsamer Schlüssel wird erzeugt und verschlüsselt übertragen.
-  \item \textbf{Decapsulation:} Der Empfänger entschlüsselt den Schlüssel mit seinem privaten Schlüssel.
-\end{enumerate}
-
-\noindent Kyber bietet drei Sicherheitsniveaus, die sich durch unterschiedliche Parametergrößen unterscheiden und an klassische AES-Sicherheitsstufen angelehnt sind:
-
-\begin{itemize}
-  \item \textbf{Kyber-512} – Sicherheitsniveau 1 (vergleichbar mit AES-128)
-  \item \textbf{Kyber-768} – Sicherheitsniveau 3 (vergleichbar mit AES-192)
-  \item \textbf{Kyber-1024} – Sicherheitsniveau 5 (vergleichbar mit AES-256)
-\end{itemize}
-
-\subsubsection*{CRYSTALS-Dilithium}
-
-\textbf{CRYSTALS-Dilithium} ist ein digitaler Signaturalgorithmus, ebenfalls basierend auf \textit{MLWE} und \textit{MSIS} (Module Short Integer Solution). Die Signaturerzeugung verwendet die \textit{Fiat-Shamir-Transformation}, die aus einem interaktiven Zero-Knowledge-Protokoll eine nicht-interaktive Signatur macht.
-
-Dilithium bietet drei Sicherheitsniveaus:
-
-\begin{itemize}
-  \item \textbf{Dilithium2}
-  \item \textbf{Dilithium3}
-  \item \textbf{Dilithium5}
-\end{itemize}
-
-Die Vorteile liegen in der schnellen Verifikation, der Robustheit gegen Seitenkanalangriffe und der guten Performance. Diese Eigenschaften machen Dilithium zu einem führenden Kandidaten im Bereich der quantensicheren digitalen Signaturen.
 \printbibliography
