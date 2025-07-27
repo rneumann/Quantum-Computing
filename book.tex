@@ -5,6 +5,7 @@
 % choose options for [] as required from the list
 % in the Reference Guide
 
+\usepackage{tabularx}
 \usepackage{mathptmx}
 \usepackage{helvet}
 \usepackage{courier}
@@ -14,8 +15,9 @@
 \usepackage{makeidx}         % allows index generation
 \usepackage{graphicx}        % standard LaTeX graphics tool
 \usepackage{tikz}
-%%\usepackage{quantikz}
-\usetikzlibrary{calc, decorations.pathreplacing,angles, quotes}
+\usetikzlibrary[calc,decorations.pathreplacing,angles,quotes]
+                             % for TikZ angle and quotes libraries
+                             % when including figure files
 \usepackage{multicol}        % used for the two-column index
 \usepackage[bottom]{footmisc}% places footnotes at page bottom
 
@@ -31,20 +33,9 @@
 
 \usepackage{titlesec}
 
-\usepackage{booktabs}
-\usepackage{longtable}
-\usepackage{array}
-\usepackage{ragged2e}
-\usepackage{microtype}
-\usepackage{tabularx}
-\usepackage{adjustbox}
-
-\titleformat{\paragraph}[runin]  % Kein Zeilenumbruch nach Absatzüberschriften
-  {\normalfont\normalsize\bfseries}  % Stil: normaler Text, fett
-  {}
-  {0pt}
-  {}
-
+\titleformat{\paragraph}[block]
+  {\normalfont\normalsize\bfseries}
+  {}{0pt}{}
 \titlespacing*{\paragraph}{0pt}{0ex}{1em}
 
 \usepackage{hyperref}
@@ -65,9 +56,8 @@
     refsection=chapter,
     backend=biber,
     style=apa,
-  ]{biblatex}
+]{biblatex}
   
-%%\addbibresource{testref.bib} %Import the bibliography file
 \addbibresource{references.bib} %Import the bibliography file
 
 
@@ -83,10 +73,25 @@
 
 \graphicspath{{./}{images/}}
 
+%% --------------------------------
+%% | Listings                     |
+%% --------------------------------
+%  Docs: https://tug.ctan.org/macros/latex/contrib/minted/minted.pdf
+
+% https://github.com/overleaf/toolkit/issues/298
+\usepackage[newfloat]{minted}
+\SetupFloatingEnvironment{listing}{name=Quellcode, listname=Quellcodeverzeichnis}
+\setminted{
+  frame=single,
+  breaklines=true
+}
+
+\usepackage{csquotes}       % language-specific quotes
+
 \begin{document}
 
 \author{Prof. Dr.-Ing. Rainer Neumann (Hrsg.)}
-\title{Quantencomputer – Ein aktueller Überblick}
+\title{Quantencomputer -- Ein aktueller Überblick}
 \subtitle{Grundlagen, Hardware, Software, Anwendungen, Trends, Ethische Aspekte}
 \maketitle
 
@@ -94,38 +99,22 @@
 
 %%\include{content/dedication}
 %%\include{content/foreword}
-\include{content/preface}
+%%\include{content/preface}
 %%\include{content/acknowledgement}
 
 \tableofcontents
+
+\listoffigures
+\listoftables
+\listoflistings
+
 
 %%\include{content/acronym}
 
 
 \mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\include{content/part1}
-
-\include{content/physics}
-\include{content/quantum-information}
-
-\include{content/part2}
-
-\include{content/hardware}
-\include{content/basic-algorithms}
-\include{content/error-correction}
 \include{content/quantum-programming}
-
-\include{content/part3}
-
-\include{content/appl-it}
-\include{content/appl-medicine}
-\include{content/appl-material}
-\include{content/appl-finance}
-
-\include{content/ethics}
-
-%%\include{content/appendix}
 
 \backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%\include{content/glossary}
