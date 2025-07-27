@@ -271,7 +271,9 @@ Das \textit{messungsbasierte} Paradigma (MBQC) führt Berechnungen durch eine Se
 
 Das \textit{adiabatische} Paradigma nutzt Annealing zur Lösung komplexer Optimierungs- und Sampling-Probleme. Annealing übertrifft das Gate-Modell bei Optimierungsproblemen, da es den erheblichen Vorverarbeitungsaufwand vermeidet, der mit Gate-basierten Ansätzen verbunden ist. Darüber hinaus ist es deutlich toleranter gegenüber Fehlern und Rauschen sowie auf die Größe von Unternehmensproblemen skalierbar. \autocite{albash_adiabatic_2018} Das bekannteste Beispiel ist das D-Wave\footnote{D-Wave \url{https://www.dwavequantum.com/solutions-and-products/ocean/}} Ocean SDK, das speziell für adiabatische Quantencomputer entwickelt wurde.
 
-\begin{table}[ht!]
+In dieser Arbeit werden unter dem Begriff \enquote{Quanten-Programmiersprachen und -Frameworks} sowohl formale, eigenständige Programmiersprachen als auch softwareseitige Entwicklungsumgebungen und Bibliotheken zusammengefasst, die die Programmierung, Ausführung und Analyse von Quantenalgorithmen ermöglichen. Obwohl sich diese Systeme in Aufbau und Fokus teilweise unterscheiden, verfolgen sie das gemeinsame Ziel der Bildung einer Schnittstelle zwischen Quantenalgorithmen und deren Ausführung auf Quantenhardware oder Simulationen. \autoref{tab:quantum_languages_full} fasst die Klassifizierungen beispielhafter Quanten-Programmiersprachen und Frameworks zusammen. Die Einordnung beruht hierbei auf verschiedenen Arbeiten von \autocite{singhSurveyAvailableTools2024a}, \autocite{ferreiraExploratoryStudyUsage2025}, \autocite{garhwal_quantum_2021}, \autocite{serranoQuantumSoftwareComponents2023a} und eigener Einschätzung.
+
+\begin{table}[H]
 \centering
 \footnotesize
 \begin{tabularx}{\textwidth}{|l|p{2cm}|l|l|l|X|}
@@ -326,8 +328,6 @@ Das \textit{adiabatische} Paradigma nutzt Annealing zur Lösung komplexer Optimi
 \label{tab:quantum_languages_full}
 \end{table}
 
-In dieser Arbeit werden unter dem Begriff \enquote{Quanten-Programmiersprachen und -Frameworks} sowohl formale, eigenständige Programmiersprachen als auch softwareseitige Entwicklungsumgebungen und Bibliotheken zusammengefasst, die die Programmierung, Ausführung und Analyse von Quantenalgorithmen ermöglichen. Obwohl sich diese Systeme in Aufbau und Fokus teilweise unterscheiden, verfolgen sie das gemeinsame Ziel der Bildung einer Schnittstelle zwischen Quantenalgorithmen und deren Ausführung auf Quantenhardware oder Simulationen. \autoref{tab:quantum_languages_full} fasst die Klassifizierungen beispielhafter Quanten-Programmiersprachen und Frameworks zusammen. Die Einordnung beruht hierbei auf verschiedenen Arbeiten von \autocite{singhSurveyAvailableTools2024a}, \autocite{ferreiraExploratoryStudyUsage2025}, \autocite{garhwal_quantum_2021}, \autocite{serranoQuantumSoftwareComponents2023a} und eigener Einschätzung.
-
 \subsection{Qiskit im Detail}
 \label{sec:qiskit-details}
 
@@ -337,7 +337,7 @@ Qiskit hat sich seit seiner Einführung im Jahr 2017 als ein zentrales Werkzeug 
 
 \autoref{fig:qiskit-architektur} zeigt die schematische Darstellung der Qiskit-Architektur. Qiskit unterstützt sowohl abstrakte als auch konkrete Repräsentationen von Quantenalgorithmen. Als High-Level-Programmiersprache werden Algorithmen auf hoher Abstraktionsebene als logische Operationen modelliert. Im Zentrum von Qiskit stehen Quantenschaltkreise (Quantum Circuits), um die sich Optimierungs- und Übersetzungswerkzeuge gruppieren. \autocite{javadi-abhariQuantumComputingQiskit2024a}
 
-\begin{figure}[ht!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{languages/Qiskit-Architektur.png}
     \caption{Qiskit-Architektur \autocite{javadi-abhariQuantumComputingQiskit2024a}}
@@ -385,9 +385,9 @@ Das Quantum Software Engineering benötigt einen mehrschichtigen Software-Stack,
   }
 ]
 
-\node[layerbox] (l1) at (0,  0) {Programmiersprachen};
-\node[layerbox] (l2) at (0, -1) {SDKs und Frameworks};
-\node[layerbox] (l3) at (0, -2) {Quantenalgorithmen};
+\node[layerbox] (l1) at (0, 0) {Quantenalgorithmen};
+\node[layerbox] (l2) at (0, -1) {Programmiersprachen};
+\node[layerbox] (l2) at (0, -2) {SDKs und Frameworks};
 \node[layerbox] (l4) at (0, -3) {Quantenanwendungen};
 
 \node[layerbox] (l5) at (0, -4.5) {Simulation};
@@ -481,16 +481,16 @@ Darüber hinaus gibt es weitere Plattformen wie etwa \textit{Strangeworks}, \tex
 \subsection{Integration in moderne Entwicklungsprozesse}
 \label{sec:integration-devops}
 
-Mit Fortschritten im Quantum Computing wächst auch die Bedeutung moderner DevOps-Methoden, wie sie aus der klassischen Softwaretechnik bekannt sind. Dazu zählen insbesondere die kontinuierliche Integration und Bereitstellung (CI/CD) sowie das automatisierte Testen. Die Vielfalt an Hardwarearchitekturen und die fehlende Standardisierung, beispielsweise die Nutzung von proprietären, plattformspezifischen Programmiersprachen und Werkzeugen, stellen dabei besondere Herausforderungen dar.
-
-Ein aktueller Forschungsansatz ist das Framework QCRAFT, mit dem klassische CI/CD-Prinzipien auf das Quantum Computing übertragen werden können. Es nutzt containerisierte Umgebungen, um Plattformkonsistenz zu gewährleisten, und bindet Werkzeuge wie GitHub Actions in den Entwicklungsprozess ein. Wie in \autoref{fig:qcraft} abgebildet, ist eine zentrale Funktion dabei die automatische Übersetzung von Quantenprogrammen in plattformspezifische Code-Formate wie Qiskit oder Amazon Braket SDK mithilfe des Q-Trans Service. Dadurch lassen sich Quantenanwendungen ohne manuelle Anpassung zwischen Anbietern wie IBM und AWS migrieren, was einen wichtigen Schritt hin zur plattformübergreifenden Interoperabilität und Wiederverwendbarkeit darstellt.
+Mit Fortschritten im Quantum Computing wächst auch die Bedeutung moderner DevOps-Methoden, wie sie aus der klassischen Softwaretechnik bekannt sind. Dazu zählen insbesondere die kontinuierliche Integration und Bereitstellung (CI/CD) sowie das automatisierte Testen. Die Vielfalt an Hardwarearchitekturen und die fehlende Standardisierung, beispielsweise die Nutzung von proprietären, plattformspezifischen Programmiersprachen und Werkzeugen, stellt dabei besondere Herausforderungen dar.
 
 \begin{figure}[ht!]
   \centering
-  \includegraphics[width=1\textwidth]{qcraft-architecture.pdf}
+  \includegraphics[width=0.8\textwidth]{qcraft-architecture.pdf}
   \caption{Vereinfachte Architektur des QCRAFT Developer Interface \autocite{romero-alvarez_qcraft_2025}}
   \label{fig:qcraft}
 \end{figure}
+
+Ein aktueller Forschungsansatz ist das Framework QCRAFT, mit dem klassische CI/CD-Prinzipien auf das Quantum Computing übertragen werden können. Es nutzt containerisierte Umgebungen, um Plattformkonsistenz zu gewährleisten, und bindet Werkzeuge wie GitHub Actions in den Entwicklungsprozess ein. Wie in \autoref{fig:qcraft} abgebildet, ist eine zentrale Funktion dabei die automatische Übersetzung von Quantenprogrammen in plattformspezifische Code-Formate wie Qiskit oder Amazon Braket SDK mithilfe des Q-Trans Service. Dadurch lassen sich Quantenanwendungen ohne manuelle Anpassung zwischen Anbietern wie IBM und AWS migrieren, was einen wichtigen Schritt hin zur plattformübergreifenden Interoperabilität und Wiederverwendbarkeit darstellt.
 
 Durch visuelle Werkzeuge wie Quirk\footnote{Quirk \url{https://algassert.com/quirk}} kann darüber hinaus der Zugang zur Quantenentwicklung vereinfacht werden: Entwickler können Schaltkreise per Drag-and-Drop erstellen und direkt als Services ausliefern. Solche integrierten Entwicklungsumgebungen, die CI/CD, Übersetzung, Deployment und Ausführung kombinieren, tragen wesentlich zur Professionalisierung der quantenbasierten Softwareentwicklung bei und schaffen die Grundlage für skalierbare, wartbare und automatisierbare Prozesse. \autocite{romero-alvarez_qcraft_2025}
 
@@ -516,17 +516,6 @@ Insgesamt zeigt dieses Beispiel, wie sich ein komplexer quantenmechanischer Algo
 
 Zur praktischen Umsetzung wird eine lokale Python-Umgebung eingerichtet, in der die Programmbibliothek \texttt{qiskit} installiert wird. Die Verwendung einer virtuellen Umgebung (\texttt{venv}) gewährleistet dabei, dass projektbezogene Abhängigkeiten isoliert bleiben und mit anderen Projekten nicht in Konflikt geraten. Für die interaktive Arbeit mit Quantenalgorithmen kommt das Werkzeug Jupyter Notebook zum Einsatz, was über einen integrierten Webserver verfügt. \autoref{tab:qiskit-anforderungen} zeigt die Systemvoraussetzungen, während \autoref{tab:qiskit-setup} die wesentlichen Installations- und Einrichtungsschritte zusammenfasst.
 
-Um den Grover-Algorithmus praktisch auf einem Quantencomputer umzusetzen, wird eine konkrete Konstruktion der Schaltung benötigt. Der Algorithmus setzt sich dabei aus fünf wesentlichen Komponenten zusammen: 
-\begin{enumerate}
-    \item  \textbf{Initialisierung:} Vorbereitung aller Qubits im Zustand $\ket{0}$.
-    \item \textbf{Superposition:} Erzeugung einer gleichmäßigen Überlagerung aller möglichen Basiszustände durch Anwendung von Hadamard-Gattern
-    \item \textbf{Oracle:} Im Oracle wird der gesuchte Zustand, welchen der Grover-Algorithmus identifizieren soll, ausgewählt.
-    \item \textbf{Diffusionsoperator:} Der Diffusionsoperator verstärkt durch Interferenz den Zustand des Oracle.
-    \item   \textbf{Messung:} Abgeschlossen wird der Algorithmus mit der Messung, um das Ergebnis zu erhalten. 
-\end{enumerate}
-
-Diese fünf Schritte können für eine beliebige Anzahl an Qubits angewendet werden. Im Folgenden werden die Komponenten jeweils mathematisch, konzeptionell und praktisch näher ausgeführt. Für den praktischen Teil wird ein Grover-Algorithmus mit Qiskit in Jupyter Notebooks implementiert.
-
 \begin{table}[ht!]
 \centering
 \begin{tabularx}{\textwidth}{|l|X|}
@@ -547,6 +536,17 @@ Internetverbindung & Für Installation, Updates und IBM-Zugriff \\
 \caption{Systemanforderungen für die Qiskit-Installation}
 \label{tab:qiskit-anforderungen}
 \end{table}
+
+Um den Grover-Algorithmus praktisch auf einem Quantencomputer umzusetzen, wird eine konkrete Konstruktion der Schaltung benötigt. Der Algorithmus setzt sich dabei aus fünf wesentlichen Komponenten zusammen: 
+\begin{enumerate}
+    \item  \textbf{Initialisierung:} Vorbereitung aller Qubits im Zustand $\ket{0}$.
+    \item \textbf{Superposition:} Erzeugung einer gleichmäßigen Überlagerung aller möglichen Basiszustände durch Anwendung von Hadamard-Gattern
+    \item \textbf{Oracle:} Im Oracle wird der gesuchte Zustand, welchen der Grover-Algorithmus identifizieren soll, ausgewählt.
+    \item \textbf{Diffusionsoperator:} Der Diffusionsoperator verstärkt durch Interferenz den Zustand des Oracle.
+    \item   \textbf{Messung:} Abgeschlossen wird der Algorithmus mit der Messung, um das Ergebnis zu erhalten. 
+\end{enumerate}
+
+Diese fünf Schritte können für eine beliebige Anzahl an Qubits angewendet werden. Im Folgenden werden die Komponenten jeweils mathematisch, konzeptionell und praktisch näher ausgeführt. Für den praktischen Teil wird ein Grover-Algorithmus mit Qiskit in Jupyter Notebooks implementiert.
 
 \begin{table}[ht!]
 \centering
@@ -709,27 +709,15 @@ Ein zentrales Anliegen beim Verständnis und bei der Vermittlung von Quantenalgo
 
 Für beide Varianten des Grover-Algorithmus wird der jeweilige Quanten-Schaltkreis mit der Methode \mintinline{python}{grover_circuit.draw()} visualisiert. Die resultierende Darstellung (\autoref{fig:grover-visualize-circuit}) erlaubt einen direkten Einblick in den logischen Aufbau des Algorithmus, insbesondere in die Abfolge und Wirkung der in \autoref{sec:grover-implementation} beschriebenen verschiedenen quantenmechanischen Operationen.
 
-\begin{listing}[ht!]
-\begin{minted}[fontsize=\footnotesize,breaklines]{text}
-     ┌───┐┌───┐   ┌───┐┌───┐┌───┐   ┌───┐
-q_0: ┤ H ├┤ X ├─■─┤ X ├┤ H ├┤ Z ├─■─┤ H ├
-     ├───┤└───┘ │ ├───┤├───┤└───┘ │ ├───┤
-q_1: ┤ H ├──────■─┤ H ├┤ Z ├──────■─┤ H ├
-     └───┘        └───┘└───┘        └───┘
-\end{minted}
-\caption{ASCII-Darstellung einer Grover-Schaltung}
-\label{code:grover-circuit-ascii}
-\end{listing}
-
 \begin{figure}
-      \includegraphics[width=0.25\linewidth]{circuit_superposition.png}
-      \caption{Visualisierung des Schaltkreises (Superposition)}
+      \includegraphics[width=1\linewidth]{circuit_diffusion.png}
+      \caption{Visualisierung des Schaltkreises (nach Diffusion)}
       \label{fig:grover-visualize-circuit}
 \end{figure}
 
 \subsubsection*{Visualisierung der Messergebnisse}
 
-Nach Ausführung des Algorithmus auf einem Quantensimulator – konkret dem QASM-Simulator von Qiskit – erfolgt die Analyse der Ergebnisse durch grafische Darstellung der Messausgänge als Histogramm (\autoref{code:grover-visualize-measure}).  
+Nach Ausführung des Algorithmus auf einem Quantensimulator – konkret dem AerSimulator von Qiskit – erfolgt die Analyse der Ergebnisse durch grafische Darstellung der Messausgänge als Histogramm (\autoref{code:grover-visualize-measure}).  
 
 \begin{listing}[ht!]
   \inputminted{python}{code/grover-visualize-measure.py}

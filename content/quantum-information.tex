@@ -199,16 +199,18 @@ Die Fähigkeit, Superpositionen mit nur einem Gate herzustellen, macht H unverzi
 \subsection{Mehr-Qubit-Gatter}
 Mehr-Qubit-Gatter operieren auf mehreren Qubits gleichzeitig. Während Mehr-Bit-Gatter wie AND oder XOR nicht umkehrbar sind, können Quantengatter durch ihre unitärität umgekehrt werden. Ein Mehr-Qubit-Gatter wirkt dabei auf einem Tensorprodukt-Raum, also dem zusammengesetzten Zustandsraum mehrerer Qubits. Es erlaubt Operationen, die nicht separabel sind, d.h. sie lassen sich nicht auf die Wirkung einzelner Gatter auf jedes Qubit zurückführen.\\
 \\
-Zu der Klasse der Mehr-Qubit-Gatter zählt das \emph{SWAP}-Gatter, das zwei Qubit-Zustände vertauscht, das \emph{Toffoli-Gatter}, welches zwei Steuerbits verwendet, um ein drittes zu invertieren, sowie das \emph{Fredkin-Gatter}, das zwei Zielbits konditional vertauscht. (Vgl. \cite[S.29, 156f.]{nielsen_quantum_2010})\\
+Zu der Klasse der Mehr-Qubit-Gatter zählt das \emph{SWAP}-Gatter, das zwei Qubit-Zustände vertauscht, das \emph{CNOT-Gatter}, welches ein Steuerbit verwendet um das zweite zu invertieren, das \emph{Toffoli-Gatter}, welches zusätzlich ein zwei Steuerbits verwendet, sowie das \emph{Fredkin-Gatter}, das zwei Zielbits konditional vertauscht. (Vgl. \cite[S.29, 156f.]{nielsen_quantum_2010})\\
 \\
-In den folgenden Unterkapiteln wird sowohl der SWAP als auch der CNOT-Gatter ausführlicher beschrieben.
+In den folgenden Unterkapiteln wird sowohl den CNOT- als auch den SWAP-Gatter ausführlich untersuchen.
 
-\newcommand{\gatterbox}[1]{%
+\newcommand{\cnotbox}{%
   \tikz[baseline=-0.5ex]{
-    \draw[-] (-1,0) -- (-0.3,0);
-    \draw[thick] (-0.3,-0.4) rectangle (0.3,0.4);
-    \node at (0,0) {\( #1 \)};
-    \draw[-] (0.3,0) -- (1,0);
+    \draw[-] (-1,0.5) -- (-0.3,0.5);
+    \draw[-] (-1,-0.5) -- (-0.3,-0.5);
+    \draw[thick] (-0.3,-0.9) rectangle (0.3,0.9);
+    \node[rotate=90] at (0,0) {\(\scriptsize\text{CNOT}\)};
+    \draw[-] (0.3,0.5) -- (1,0.5);
+    \draw[-] (0.3,-0.5) -- (1,-0.5);
   }%
 }
 
@@ -224,11 +226,51 @@ In den folgenden Unterkapiteln wird sowohl der SWAP als auch der CNOT-Gatter aus
 
 \[
 \begin{array}{c@{\hspace{1cm}}c}
-\textbf{SWAP-Gatter} & \textbf{NOT-Gatter (X)} \\
-\swapgatter & \gatterbox{X}
+\textbf{CNOT-Gatter} & \textbf{SWAP-Gatter}\\
+\cnotbox & \swapgatter
 \end{array}
 \]
 
+\subsubsection{CNOT}\label{subsec:cnot_gatter}
+Das Controlled-NOT Gatter (CNOT) besitzt ein Kontroll- und ein Zielqubit und bewirkt, dass der Zustand des Zielqubits genau dann mit einem Pauli-X (Bitflipping, dem klassischen NOT) invertiert wird, wenn das Kontrollqubit im Zustand $|1\rangle$ ist. (Vgl. \cite[S.20f., 177f.]{nielsen_quantum_2010}) Der CNOT-Gatter ist unitär und invertierbar und lässt sich in der $4\times 4$-Matrix wie folgt darstellen: (Vgl. ebd.) \\
+\begin{equation}
+\text{CNOT} = \begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0
+\end{pmatrix}
+\end{equation} \\
+In der Standardbasis der zwei Qubits ${|00\rangle, |01\rangle, |10\rangle, |11\rangle}$ transformiert ein CNOT-Gatter die Basiszustände folgendermaßen:
+$|00\rangle ;\to; |00\rangle$
+$|01\rangle ;\to; |01\rangle$
+$|10\rangle ;\to; |11\rangle$
+$|11\rangle ;\to; |10\rangle$
+Das Kontrollqubit bleibt also unverändert, währenddessen das Zielqubit genau dann seinen Zustand wechselt, wenn dieses $|1\rangle$ war. (Vgl. \cite[S.21]{nielsen_quantum_2010})
+\\
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[line width=0.8pt,
+    control/.style={fill=black, draw=black, shape=circle, minimum size=6pt, inner sep=0pt},
+    target/.style={draw, shape=circle, minimum size=12pt, inner sep=0pt}
+]
+% --- Qubit-Leitungen ---
+\draw (-0.6,1) -- (1.6,1);  % obere Leitung
+\draw (-0.6,0) -- (1.6,0);  % untere Leitung
+% --- CNOT: Kontrollpunkt ---
+\node[control] (ctrl) at (0.5,1) {};
+% --- CNOT: Zielkreis mit Pluszeichen ---
+\node[target] (targ) at (0.5,0) {};
+\draw (0.5,-0.2) -- (0.5,0.2);   % vertikale Linie im Plus
+\draw (0.3,0) -- (0.7,0);        % horizontale Linie im Plus
+% --- Verbindungslinie zwischen Control und Target ---
+\draw (ctrl) -- (targ);
+% --- Untertitel ---
+%\node at (0.5,-0.8) {\small Darstellung eines CNOT-Gatters (Controlled-NOT-Gatter)};
+\end{tikzpicture}
+\caption{Darstellung des CNOT-Gatters (nach \cite[S.178]{nielsen_quantum_2010})}
+\end{figure} \\
+CNOT-Gatter spielt eine zentrale Rolle in der Quantenlogik, da es im Zusammenspiel mit Ein-Qubit-Gattern eine zweistufige Unitarität bildet und sich daraus jeder beliebige Quantum-Schaltkreis bilden lässt. (Vgl. ebd. S.191) Ein Beispiel, bei dem das CNOT-Gatter zur Verschränkung beiträgt, ist bei der Erzeugung von sogennanten Bell-Zuständen - dieses Thema wird in Unterkapitel \ref{sec:bell_zustand} weitergehend erläutert. (Vgl. ebd. S.25f.) Darüber hinaus bilden CNOT-Gatter die Grundlage für komplexere Operationen wie bspw. beim Toffoli-Gatter (CCNOT). (Vgl. \cite[S.5f.]{abughanem_toffoli_2025})
 
 
 
@@ -245,7 +287,7 @@ U_{\text{SWAP}} =
 \end{pmatrix}
 \end{equation}
 \\
-Diese Matrix vertauscht $|01\rangle$ und $|10\rangle$, während $|00\rangle$ und $|11\rangle$ unverändert bleiben. (Vgl. \cite[S.79]{rieffel_quantum_2011}) Der Gatter ist unitär, selbstinvers ($U^2 = I$) und hermitesch ($U = U^\dagger$). Damit erfüllt er alle Bedingungen für eine physikalisch zulässige Quantenoperation. (Vgl. \cite[S.2]{gheorghiu_standard_2011})\\
+Diese Matrix vertauscht $|01\rangle$ und $|10\rangle$, während $|00\rangle$ und $|11\rangle$ unverändert bleiben. (Vgl. \cite[S.79]{rieffel_quantum_2011}) Der Gatter ist unitär, selbstinvers ($U^2 = I$) und hermitesch ($U = U^\dagger$). Damit erfüllt er alle Bedingungen für eine physikalisch zulässige Quantenoperation. (Vgl. \cite[S.2]{gheorghiuStandardFormQudit2011})\\
 \\
 Eine direkte Realisierung des SWAP-Gatters ist auf vielen Hardwareplattformen nicht vorgesehen. Stattdessen lässt es sich durch eine Folge von drei CNOT-Gattern konstruieren:
 \begin{figure}[h]
@@ -302,51 +344,9 @@ Eine direkte Realisierung des SWAP-Gatters ist auf vielen Hardwareplattformen ni
 \caption{Zerlegung des SWAP-Gatters in drei CNOT-Gatter (nach \cite[S.~23]{rieffel_quantum_2011})}
 \end{figure}
 \\
-Ein zentrales Einsatzgebiet ergibt sich in Systemen mit begrenzter Konnektivität. Wenn zwei Qubits, die miteinander interagieren sollen, nicht direkt gekoppelt sind, werden SWAP-Gatter eingesetzt, um Zustände über benachbarte Qubits hinweg zu verschieben. Dieses Vorgehen ist unter dem Begriff \emph{Qubit-Routing} bekannt. (Vgl. \cite[S.2f.]{molavi_qubit_2022}) Auch in der Quanten-Fourier-Transformation wird das SWAP-Gatter verwendet. Am Ende der Transformation wird die spiegelverkehrte Reihenfolge der Qubits mithilfe von SWAP-Gattern wiederhergestellt, indem jeweils Paare symmetrisch zur Mitte des Registers vertauscht werden. (Vgl. \cite[S.219]{nielsen_quantum_2010})
+Ein zentrales Einsatzgebiet ergibt sich in Systemen mit begrenzter Konnektivität. Wenn zwei Qubits, die miteinander interagieren sollen, nicht direkt gekoppelt sind, werden SWAP-Gatter eingesetzt, um Zustände über benachbarte Qubits hinweg zu verschieben. Dieses Vorgehen ist unter dem Begriff \emph{Qubit-Routing} bekannt. (Vgl. \cite[S.2f.]{molaviQubitMappingRouting2022}) Auch in der Quanten-Fourier-Transformation wird das SWAP-Gatter verwendet. Am Ende der Transformation wird die spiegelverkehrte Reihenfolge der Qubits mithilfe von SWAP-Gattern wiederhergestellt, indem jeweils Paare symmetrisch zur Mitte des Registers vertauscht werden. (Vgl. \cite[S.219]{nielsen_quantum_2010})
 
 %(Qubit Mapping and Routing via MaxSAT, S.2f.)
-
-\subsubsection{CNOT}\label{subsec:cnot_gatter}
-Das Controlled-NOT Gatter (CNOT) besitzt ein Kontroll- und ein Zielqubit und bewirkt, dass der Zustand des Zielqubits genau dann mit einem Pauli-X (Bitflipping, dem klassischen NOT) invertiert wird, wenn das Kontrollqubit im Zustand $|1\rangle$ ist. (Vgl. \cite[S.20f., 177f.]{nielsen_quantum_2010}) Der CNOT-Gatter ist unitär und invertierbar und lässt sich in der $4\times 4$-Matrix wie folgt darstellen: (Vgl. ebd.) \\
-\begin{equation}
-\text{CNOT} = \begin{pmatrix}
-1 & 0 & 0 & 0 \\
-0 & 1 & 0 & 0 \\
-0 & 0 & 0 & 1 \\
-0 & 0 & 1 & 0
-\end{pmatrix}
-\end{equation} \\
-In der Standardbasis der zwei Qubits ${|00\rangle, |01\rangle, |10\rangle, |11\rangle}$ transformiert ein CNOT-Gatter die Basiszustände folgendermaßen:
-$|00\rangle ;\to; |00\rangle$
-$|01\rangle ;\to; |01\rangle$
-$|10\rangle ;\to; |11\rangle$
-$|11\rangle ;\to; |10\rangle$
-Das Kontrollqubit bleibt also unverändert, währenddessen das Zielqubit genau dann seinen Zustand wechselt, wenn dieses $|1\rangle$ war. (Vgl. \cite[S.21]{nielsen_quantum_2010})
-\\
-\begin{figure}[h]
-\centering
-\begin{tikzpicture}[line width=0.8pt,
-    control/.style={fill=black, draw=black, shape=circle, minimum size=6pt, inner sep=0pt},
-    target/.style={draw, shape=circle, minimum size=12pt, inner sep=0pt}
-]
-% --- Qubit-Leitungen ---
-\draw (-0.6,1) -- (1.6,1);  % obere Leitung
-\draw (-0.6,0) -- (1.6,0);  % untere Leitung
-% --- CNOT: Kontrollpunkt ---
-\node[control] (ctrl) at (0.5,1) {};
-% --- CNOT: Zielkreis mit Pluszeichen ---
-\node[target] (targ) at (0.5,0) {};
-\draw (0.5,-0.2) -- (0.5,0.2);   % vertikale Linie im Plus
-\draw (0.3,0) -- (0.7,0);        % horizontale Linie im Plus
-% --- Verbindungslinie zwischen Control und Target ---
-\draw (ctrl) -- (targ);
-% --- Untertitel ---
-%\node at (0.5,-0.8) {\small Darstellung eines CNOT-Gatters (Controlled-NOT-Gatter)};
-\end{tikzpicture}
-\caption{Darstellung des CNOT-Gatters (nach \cite[S.178]{nielsen_quantum_2010})}
-\end{figure} \\
-CNOT-Gatter spielt eine zentrale Rolle in der Quantenlogik, da es im Zusammenspiel mit Ein-Qubit-Gattern eine zweistufige Unitarität bildet und sich daraus jeder beliebige Quantum-Schaltkreis bilden lässt. (Vgl. ebd. S.191) Ein Beispiel, bei dem das CNOT-Gatter zur Verschränkung beiträgt, ist bei der Erzeugung von sogennanten Bell-Zuständen - dieses Thema wird in Unterkapitel \ref{sec:bell_zustand} weitergehend erläutert. (Vgl. ebd. S.25f.) Darüber hinaus bilden CNOT-Gatter die Grundlage für komplexere Operationen wie bspw. beim Toffoli-Gatter (CCNOT). (Vgl. \cite[S.5f., 156f.]{AbuGhanem_a_2025})
-
 
 
 %\subsection{CU-Gatter}
@@ -611,15 +611,15 @@ Die Wissenschaftler Daniel Gottesman und Isaac Chuang stellen eine Technik, eine
 Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. Ein CNOT gate ist eine Komponente, die zwei verschränkte Qubits in einem Bell-Zustand (Zustand, in dem zwei Qubits maximal miteinander verschränkt sind; mehr dazu in Subsektion 1.5.1) aufnimmt und den zweiten Qubit, den sog. „target“ Qubit dreht, wenn der erste Qubit, das sog. „control“ Qubit, einen Wert von \(\ket{1}\) hat. Beim Durchgang werden Pauli-Matrix Operationen durchgeführt, welche die Quanteninformationen auf einen dritten Qubit übertragen.\\
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_1.png}
-    \caption{Zeitstrahl von links nach rechts. B = Bell-Zustand, X Y Z = Pauli Operatoren, \(\ket{\alpha}\) = Zustand des Sender-Qubits, der an den Empfänger-Qubit übertragen werden soll}
+    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_1.jpeg}
+    \caption{Zeitstrahl von links nach rechts. B = Bell-Zustand, X Y Z = Pauli Operatoren, \(\ket{0}\) = Zustand des Sender-Qubits, der an den Empfänger-Qubit übertragen werden soll}
     \label{fig:meinbild}
 \end{figure}
 \newpage
 \noindent Dieses Prinzip kann leicht modifiziert werden. Die modifizierte Variante erlaubt es, vier Qubits, wovon jeweils zwei verschränkt sind, durchzulassen und anhand von Pauli-Matrix Operationen zu transformieren. Die zwei Paare von Verschränkungen sind vorerst getrennt. Eines enthält den „target“ Qubit \(\ket{\alpha}\), das andere den „control“ Qubit \(\ket{\beta}\). Der „target“ Qubit wird gedreht, wenn der „control“ Qubit einen Wert von \(\ket{1}\) hat. Es stehen 4 Rechenoperationen (I, X, Y, Z) zur Verfügung. Welche Operationen auf die Qubits der Verschränkungen angewendet werden, ist vom Zufall bestimmt. Zwei Qubits \(\ket{out}\), welche die Quanteninformationen von \(\ket{\alpha}\) und \(\ket{\beta}\) enthalten, wobei \(\ket{out}\) = CNOT\(\ket{\beta}\)\(\ket{\alpha}\), kommen aus den CNOT gate am Ende als Output heraus.\\
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_2.png}
+    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_2.jpeg}
     \caption{Zeitstrahl von links nach rechts. B = Bell-Zustand, X Y Z = Pauli Operatoren, \(\ket{\chi}\) = Ausgangszustand für Operation}
     \label{fig:meinbild}
 \end{figure}
@@ -627,8 +627,8 @@ Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. E
 \noindent Eine andere modifizierte Variante ist eine, bei der ein CNOT gate zwischen zwei Qubits von zwei unterschiedlichen verschränkten Qubit Paaren geöffnet wird. Der Output von solch einem Gatter kann verwendet werden, um den Zustand \(\ket{\chi}\) der vorherigen Abbildung zu bilden, von dem in einer Quantenteleportation mit zwei Verschränkungen Gebrauch gemacht wird. \(\ket{\chi}\) kann so erzeugt werden, oder durch eine Quantenteleportation zwischen zwei GHZ (Greenberger Horne Zellinger) Zuständen. Ein GHZ Zustand ist eine Verschränkung von drei Quantenobjekten.\\
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_3.png}
-    \caption{Zeitstrahl von links nach rechts. \(\ket{\Upsilon}\) = GHZ Zustand, H = Hadamard gate (für Hadamard Transformation), B = Bell-Zustand, X Y Z = Pauli Operatoren}
+    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_3.jpeg}
+    \caption{Zeitstrahl von links nach rechts. \(\ket{\Upsilon}\) = GHZ Zustand, H = Hadamard gate (für Hadamard Transformation), B = Bell-Zustand, X Z = Pauli Operatoren}
     \label{fig:meinbild}
 \end{figure}
 \newpage

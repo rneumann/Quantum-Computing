@@ -6,6 +6,246 @@
 
 \chapterauthor{Lola Bankai, Felix Goos}
 
+\section{Top Technologien und Algorithmen}
+
+Quantencomputer beruhen auf unterschiedlichen technologischen Prinzipien, die jeweils eigene algorithmische Strategien erfordern. Neben gate-basierten Universalarchitekturen existieren spezialisierte Modelle wie Quantum Annealing oder variationale Hybridverfahren, die auf bestimmte Problemklassen zugeschnitten sind.
+
+Dieses Kapitel gibt einen systematischen Überblick über die zentralen technologischen Ansätze und Quantenalgorithmen. Im Fokus stehen deren Funktionsprinzipien, technische Voraussetzungen sowie typische Einsatzbereiche. Ziel ist es, die strukturelle Vielfalt aktueller Quantencomputing-Ansätze herauszuarbeiten und deren Relevanz für verschiedene Anwendungsszenarien einzuordnen.
+
+Zu den derzeit zentralen quantenbasierten Methoden im Finanzkontext gehören:
+
+\begin{itemize}
+  \item Quantum Annealing (QA)
+  \item Gate-basierte Algorithmen
+    \begin{itemize}
+      \item Quantum Approximate Optimization Algorithm (QAOA)
+      \item Variational Quantum Eigensolver und verwandte Variationsansätze (VQE, VQA)
+    \end{itemize}
+  \item Quantum Amplitude Estimation (QAE)
+\end{itemize}
+
+Die folgenden Abschnitte analysieren diese Technologien aus technischer Perspektive. Sie zeigen, welche Stärken und Schwächen mit den jeweiligen Ansätzen verbunden sind und welche praktischen Voraussetzungen für deren erfolgreichen Einsatz im Finanzwesen erfüllt sein müssen.
+
+\subsection{Quantum Annealing (QA)}
+
+\subparagraph{Herkunft und Entwicklung}
+Quantum Annealing (QA) ist ein quantenmechanisches Optimierungsverfahren, das auf dem Konzept der adiabatischen Quantenberechnung basiert. Die Idee wurde Anfang der 2000er-Jahre insbesondere durch Farhi et al. und D-Wave Systems weiterentwickelt und kommerzialisiert \cite{orus_quantum_2019}. Während universelle Quantencomputer auf Gattermodellen beruhen, fokussiert sich QA auf die Lösung kombinatorischer Optimierungsprobleme durch sukzessive Energie-Minimierung in einem physikalischen System.
+
+\subparagraph{Grundidee und Aufbau}
+QA nutzt quantenmechanische Effekte wie Superposition und insbesondere Tunneling, um das globale Minimum einer Zielfunktion zu finden. Das Verfahren startet mit einem bekannten Anfangszustand (Anfangshamiltonian) und transformiert diesen langsam in den Zielzustand (Problemhamiltonian), wobei das System idealerweise stets im Grundzustand bleibt. Das zugrundeliegende Optimierungsproblem wird in ein sogenanntes \emph{Quadratic Unconstrained Binary Optimization} (QUBO) oder Ising-Modell übersetzt \cite{orus_quantum_2019, mugel_dynamic_2022}.
+
+\subparagraph{Technologische Basis}
+Die Technologie basiert auf dem adiabatischen Theorem: Wird ein System hinreichend langsam verändert, verbleibt es mit hoher Wahrscheinlichkeit im Grundzustand \cite{orus_quantum_2019}. Zur Umsetzung wird die Problemstruktur als QUBO-Modell kodiert, wobei binäre Variablen Entscheidungsoptionen (z.\,B. Asset-Auswahl) und deren Wechselwirkungen Risiken, Renditen oder Nebenbedingungen repräsentieren. Die physische Umsetzung erfolgt auf Hardware wie dem D-Wave-Quantenprozessor, wobei Qubits binären Variablen und Kopplungen den Interaktionen entsprechen \cite{mugel_dynamic_2022}.
+
+\subparagraph{Algorithmisches Vorgehen}
+Zu Beginn befindet sich das System in einem leicht vorbereitbaren Grundzustand. Während des Annealing-Prozesses wird der Hamiltonian kontinuierlich in Richtung des Problems deformiert. Wenn dieser Übergang langsam genug erfolgt, bleibt das System im energetischen Minimum, dem optimalen Lösungskandidaten \cite{orus_quantum_2019}. Dieses Vorgehen erlaubt es, auch in hochdimensionalen Problemräumen durch Quanten-Tunneling lokale Minima zu überwinden und globale Lösungen zu erreichen \cite{mugel_dynamic_2022, Rosenberg 2016}.
+
+\subparagraph{Modellierungsvoraussetzungen}
+Eine Voraussetzung für QA ist die Transformation des Problems in eine QUBO-Form. Für viele finanzielle Anwendungen, insbesondere Portfoliooptimierung – ist dies gut möglich, da viele Constraints und Zielfunktionen binär darstellbar sind \cite{mugel_dynamic_2022}. Einschränkungen ergeben sich jedoch bei komplexen, nichtlinear verknüpften Nebenbedingungen, deren QUBO-Formulierung zusätzlicher Modellierungsarbeit bedarf \cite{sakuler_real-world_2025}.
+
+\subparagraph{Chancen und Stärken}
+QA bietet insbesondere bei kombinatorischen, binären Problemen eine attraktive Alternative zu klassischen Heuristiken. Vorteile sind die natürliche Hardware-Umsetzung auf spezialisierten Systemen wie D-Wave, die Fähigkeit zur Überwindung lokaler Minima durch Tunneling sowie eine schnelle Konvergenz bei kleinen bis mittelgroßen Problemgrößen \cite{mugel_dynamic_2022, sakuler_real-world_2025}. Zudem zeigt sich in Studien, dass QA insbesondere bei realitätsnahen Portfolios mit echten Marktdaten effiziente Lösungen liefern kann \cite{mugel_dynamic_2022}.
+
+\subparagraph{Grenzen und Herausforderungen}
+Ein zentrales Problem besteht in der begrenzten Skalierbarkeit aktueller Systeme: Sowohl die Anzahl als auch die Konnektivität der Qubits limitiert die Größe und Komplexität der darstellbaren Probleme \cite{sakuler_real-world_2025}. Auch ist die Einbettung realer Constraints in die QUBO-Form nicht trivial und verlangt sorgfältiges Penalty-Tuning. Zudem ist die aktuelle Hardware noch anfällig für Rauschen, was insbesondere bei tiefer „Temperatur“ zu Fehlern führen kann \cite{Rosenberg2016, sakuler_real-world_2025}.
+
+\subsection{Gate-basierte Ansätze (QAOA und VQE)}
+
+Gate-basierte Quantencomputer arbeiten auf Basis von quantenmechanischen Schaltkreisen. Diese Systeme ermöglichen die Implementierung sogenannter Variationsalgorithmen, bei denen ein parametrischer Quantenschaltkreis durch einen klassischen Optimierer so angepasst wird, dass eine Zielfunktion minimiert oder maximiert wird. Zu den bekanntesten Methoden gehören der Quantum Approximate Optimization Algorithm (QAOA) und der Variational Quantum Eigensolver (VQE) \cite{buonaiuto_best_2023, brandhofer_benchmarking_2022}. Beide Verfahren finden Anwendung in der Portfoliooptimierung, erfordern jedoch eine geeignete Problemformulierung in Form eines Ising-Hamiltonians.
+
+\subsubsection*{Quantum Approximate Optimization Algorithm (QAOA)}
+
+\subparagraph{Herkunft und Entwicklung}
+QAOA wurde ursprünglich 2014 von Farhi et al. entwickelt \cite{farhi_quantum_2014} und stellt eine hybride Methode dar, die speziell für kombinatorische Optimierungsprobleme konzipiert wurde. Im Gegensatz zu Quantum Annealing arbeitet QAOA nicht auf einem physikalisch kontinuierlichen Prozess, sondern diskret über parametrische Gate-Schaltungen. Es zählt zu den vielversprechendsten Algorithmen für sogenannte Noisy Intermediate-Scale Quantum (NISQ)-Geräte.
+
+\subparagraph{Grundidee und Aufbau}
+Der QAOA-Ansatz kombiniert zwei zentrale Operationen: eine Phasenoperation basierend auf dem Problemhamiltonian und eine Mischoperation über den sogenannten Mixer-Hamiltonian. Durch abwechselnde Anwendung dieser beiden Operatoren und Variation der Parameter wird ein Quantenzustand erzeugt, der eine möglichst hohe Wahrscheinlichkeit hat, die optimale Lösung zu repräsentieren \cite{brandhofer_benchmarking_2022}.
+
+\subparagraph{Technologische Basis}
+Für QAOA muss das Optimierungsproblem binär formuliert und in ein Ising-Modell überführt werden. Dabei codieren Qubit-Zustände Entscheidungsvariablen, während Kopplungsterme die Interaktionen (z.\,B. Risiko-Rendite) abbilden. Die Implementierung erfolgt auf gate-basierten Quantenprozessoren, typischerweise innerhalb von Frameworks wie Qiskit oder Cirq \cite{buonaiuto_best_2023}.
+
+\subparagraph{Algorithmisches Vorgehen}
+Der Algorithmus initialisiert einen Quantenzustand (meist im Gleichgewichtszustand) und führt anschließend $p$-mal abwechselnd zwei Schichten aus: eine Phase-Schicht $U_C(\gamma)$, die auf dem Problemhamiltonian basiert, und eine Mixer-Schicht $U_B(\beta)$, die eine Rotation im Zustandsspektrum bewirkt. Nach jeder Iteration werden die Parameter $\gamma$ und $\beta$ durch einen klassischen Optimierer angepasst. Ziel ist es, die Messwahrscheinlichkeit für optimale Lösungen zu maximieren \cite{brandhofer_benchmarking_2022}.
+
+\subparagraph{Voraussetzungen und Modellierung}
+Ein geeignetes QUBO- oder Ising-Modell ist Voraussetzung. Besonders die Abbildung harter Constraints stellt eine Herausforderung dar, da diese mit Penalty-Terms implementiert werden müssen. Spezialisierte Mixer können hierbei die Ergebnisqualität und Konvergenz verbessern, wie etwa in der Studie von Brandhofer et al. gezeigt \cite{brandhofer_benchmarking_2022}.
+
+\subparagraph{Chancen und Stärken}
+QAOA ist besonders gut geeignet für kombinatorische Probleme mit binärer Struktur. Die geringe Tiefe der Schaltungen macht es für NISQ-Hardware attraktiv. Die Möglichkeit, domänenspezifische Mixer zu integrieren, bietet zusätzliche Flexibilität \cite{brandhofer_benchmarking_2022}.
+
+\subparagraph{Grenzen und Herausforderungen}
+Die praktische Leistungsfähigkeit ist stark von der Wahl der Parameter, der Problemgröße und dem Hardware-Backend abhängig. Mit zunehmender Tiefe steigt die Empfindlichkeit gegenüber Rauschen. Zudem erfordert die Parametereinstellung oft umfangreiche Hyperparameter-Tuning-Prozesse \cite{buonaiuto_best_2023}.
+
+\subsubsection*{Variational Quantum Eigensolver (VQE)}
+
+\subparagraph{Herkunft und Entwicklung}
+Der Variational Quantum Eigensolver (VQE) wurde 2014 eingeführt und war eine der ersten Methoden zur Nutzung von NISQ-Geräten für Optimierungsprobleme in Physik und Chemie. Anders als QAOA richtet sich VQE nicht ausschließlich an kombinatorische Probleme, sondern zielt allgemein auf das Auffinden von Grundzuständen komplexer Hamiltonians ab \cite{buonaiuto_best_2023}.
+
+\subparagraph{Grundidee und Aufbau}
+VQE basiert auf dem variationalen Prinzip der Quantenmechanik: Der Erwartungswert des Hamiltonians wird auf einem parametrischen Quantenzustand minimiert. Dieser Zustand wird durch einen sogenannten Ansatz erzeugt, ein vorgegebener Schaltkreis mit variierbaren Parametern. Die Optimierung erfolgt iterativ mit Hilfe eines klassischen Optimierungsalgorithmus \cite{buonaiuto_best_2023}.
+
+\subparagraph{Technologische Basis}
+Das zugrunde liegende Optimierungsproblem wird zunächst in ein QUBO-Modell transformiert, welches dann in ein Ising-Hamiltonian überführt wird. Über die Wahl des Ansatzes und die Operatorbasis (z.\,B. Pauli-Zerlegung) wird der Hamiltonian auf einem realen Quantenprozessor gemessen. Die Messwerte dienen als Eingabe für die klassische Optimierung.
+
+\subparagraph{Algorithmisches Vorgehen}
+VQE setzt auf eine wiederholte Schleife aus Quanten- und Klassikprozessor: Zunächst wird der parametrische Schaltkreis vorbereitet und gemessen. Dann schätzt der klassische Teil den Erwartungswert des Hamiltonians und passt die Parameter des Ansatzes an. Dieser Vorgang wird solange wiederholt, bis eine Konvergenz zum Energie-Minimum erreicht ist \cite{buonaiuto_best_2023}.
+
+\subparagraph{Voraussetzungen und Modellierung}
+Für die Portfoliooptimierung wird das ursprüngliche Problem zunächst in ein binäres Quadratic Programming-Modell transformiert. Constraints wie Budgetgrenzen werden in die Zielfunktion eingebettet, indem sie als Strafterme gewichtet werden. Die Effizienz hängt stark von der richtigen Wahl des Ansatzes, des Optimierers sowie der Penalty-Koeffizienten ab \cite{buonaiuto_best_2023}.
+
+\subparagraph{Chancen und Stärken}
+VQE zeigt große Flexibilität hinsichtlich der Wahl des Ansatzes und eignet sich besonders gut für kontinuierliche oder strukturierte Optimierungsprobleme. Studien zeigen, dass bei richtiger Parametrisierung auf realer Hardware (z.\,B. IBM Q) sehr gute Ergebnisse erzielt werden können, auch ohne aufwändige Fehlerkor
+
+
+\subsection{Quantum Amplitude Estimation (QAE)}
+
+\subparagraph{Herkunft und Entwicklung}
+Quantum Amplitude Estimation (QAE) wurde im Jahr 2000 von Brassard et al. eingeführt und gehört zur Klasse der quantenmechanischen Algorithmen, die auf der Grover-Suche aufbauen \cite{quantumjournal2020}. Das Ziel war, klassische Monte-Carlo-Verfahren durch quadratische Geschwindigkeitsvorteile zu übertreffen. Im Unterschied zu Ansätzen wie Quantum Annealing oder VQE, die auf Optimierung abzielen, adressiert QAE das Problem der präzisen Erwartungsschätzung – ein zentraler Aspekt in stochastischen Simulationen.
+
+\subparagraph{Grundidee und Aufbau}
+QAE zielt darauf ab, Wahrscheinlichkeiten bzw. Erwartungswerte effizient zu schätzen. Dazu nutzt es die quantenmechanische Superposition sowie Amplitudeninterferenz, um Zustände mit hoher Relevanz zu verstärken. Die Wahrscheinlichkeit für das Auftreten eines gewünschten Ergebnisses wird dabei indirekt über Messungen in speziell vorbereiteten Zuständen ermittelt. Im Gegensatz zu klassischen Monte-Carlo-Verfahren, bei denen zur Erreichung einer Genauigkeit $\varepsilon$ eine Komplexität von $O(1/\varepsilon^2)$ notwendig ist, erreicht QAE dies mit nur $O(1/\varepsilon)$ Abfragen \cite{quantumjournal2020, rebentrost2018}.
+
+\subparagraph{Technologische Basis}
+QAE kombiniert mehrere quantentechnische Bausteine: Vorbereitung eines Superpositionszustands, Anwendung einer Oracle-Funktion zur Kodierung des Problems, kontrollierte Grover-Operatoren zur Amplitudenverstärkung sowie eine abschließende Quanten-Fourier-Transformation zur Schätzung der Zielamplitude \cite{martin2022}. Die Berechnungen erfolgen auf gate-basierten Quantencomputern. Die zugrunde liegende Struktur ist auf tiefe und komplexe Quantenschaltkreise angewiesen, was besondere Anforderungen an Kohärenzzeiten und Fehlerkorrektur stellt.
+
+\subparagraph{Algorithmisches Vorgehen}
+Im ersten Schritt wird ein Zustand vorbereitet, der die Lösungswahrscheinlichkeit in seiner Amplitude trägt. Anschließend erfolgt die wiederholte Anwendung des Grover-Operators, der die Wahrscheinlichkeit des Zielzustands periodisch verstärkt. Die Anzahl der Grover-Schritte variiert kontrolliert, sodass über Quanteninterferenz ein Phasenintervall entsteht, welches über die inverse Quanten-Fourier-Transformation präzise ausgelesen werden kann. Das Ergebnis ist eine Schätzung der Zielwahrscheinlichkeit mit quadratisch höherer Effizienz im Vergleich zur klassischen Simulation \cite{quantumjournal2020, martin2022}.
+
+\subparagraph{Voraussetzungen und Modellierung}
+Damit QAE zur Anwendung kommen kann, muss das zugrunde liegende Problem so formuliert werden, dass es sich als Wahrscheinlichkeitsverteilung über einem Quantenzustand ausdrücken lässt. In der Praxis bedeutet dies, dass die Bewertung (z.\,B. eines Finanzinstruments) als Erwartungswert über Zufallsvariablen formuliert sein muss. Die Komplexität der Problemabbildung liegt vor allem in der Konstruktion des Orakels und der effizienten Kodierung der stochastischen Prozesse in die Amplituden \cite{rebentrost2018}.
+
+\subparagraph{Chancen und Stärken}
+QAE eignet sich besonders für Probleme, bei denen Erwartungswerte über große Stichprobenräume geschätzt werden müssen – etwa bei der Bewertung komplexer, pfadabhängiger Optionen oder der Berechnung von Value-at-Risk (VaR) \cite{orus_quantum_2019}. Die quadratische Beschleunigung gegenüber Monte-Carlo-Methoden führt zu erheblichen Effizienzgewinnen. Studien zeigen, dass bereits bei moderaten Genauigkeitsanforderungen signifikante Reduktionen im Rechenaufwand möglich sind \cite{rebentrost2018, egger2020}. Darüber hinaus eröffnet QAE neue Möglichkeiten zur Modellierung realitätsnaher Szenarien, die mit klassischen Methoden bislang nicht praktikabel waren.
+
+\subparagraph{Grenzen und Herausforderungen}
+Die größte Herausforderung in der praktischen Umsetzung liegt in den hardwareseitigen Anforderungen. QAE benötigt tiefe Quantenschaltkreise, die auf heutigen NISQ-Geräten aufgrund limitierter Qubit-Anzahl, kurzer Kohärenzzeiten und hoher Fehlerraten nur schwer zuverlässig realisierbar sind \cite{bouland_prospects_2020, martin2022}. Auch die Konstruktion eines effizienten Orakels ist nicht trivial und hängt stark vom Anwendungsfall ab. Darüber hinaus ist die statistische Robustheit des Algorithmus empfindlich gegenüber Messfehlern, was die praktische Anwendbarkeit einschränkt.
+
+\subparagraph{Praktische Perspektiven und Entwicklungen}
+Trotz dieser Hürden gibt es vielversprechende Entwicklungen: Kooperationen wie jene zwischen JPMorgan und IBM oder Forschungsprojekte von Google zeigen, dass QAE in der Finanzbranche ernsthaft evaluiert wird \cite{egger2020}. Erste Proof-of-Concepts für die Optionsbewertung auf simulierten und realen Quantenplattformen sind bereits veröffentlicht worden. Die zukünftige Skalierung hängt maßgeblich von Fortschritten in der Hardwareentwicklung und der Fehlerkorrektur ab.
+
+\subsection{Vergleich der Technologien}
+
+Zur Einordnung der vorgestellten quantenmechanischen Verfahren: Quantum Annealing (QA), Quantum Approximate Optimization Algorithm (QAOA), Variational Quantum Eigensolver (VQE) sowie Quantum Amplitude Estimation (QAE) bietet sich ein zweistufiger Vergleich an. Zunächst erfolgt ein technologischer Vergleich anhand funktionaler und struktureller Merkmale, gefolgt von einer allgemeinen Bewertung hinsichtlich Reifegrad und industrieller Perspektiven.
+
+\subparagraph*{Legende der Vergleichskriterien}
+Die Tabelle vergleicht vier zentrale quantenmechanische Verfahren anhand technologisch-funktionaler Merkmale. Im Fokus stehen strukturelle Unterschiede, Hardwareanforderungen und algorithmische Eigenheiten, die für die praktische Implementierung und Modellierbarkeit entscheidend sind.
+
+
+\begin{itemize}
+    \item \textbf{Plattform}: Art der zugrundeliegenden Quantenarchitektur (adiabatisch oder gate-basiert).
+    \item \textbf{Zieltyp}: Ob das Verfahren auf Optimierung oder Erwartungsschätzung ausgerichtet ist.
+    \item \textbf{Formulierung}: Mathematische Struktur, in die Probleme überführt werden müssen (z.\,B. QUBO, Hamiltonian).
+    \item \textbf{Ressourcen}: Erforderliche Quantenschaltkreise, Qubit-Kopplungen oder komplexe Operatoren.
+    \item \textbf{Struktur}: Art des Algorithmusaufbaus – z.\,B. statisch, flexibel oder zyklisch.
+    \item \textbf{Fehlertoleranz}: Robustheit gegenüber Rauschen und Hardwareunschärfen.
+    \item \textbf{Qubitbedarf}: Geschätzter Ressourcenbedarf bezogen auf Qubit-Zahl und Konnektivität.
+\end{itemize}
+
+\subparagraph{Legende der Einstufungen}
+
+\begin{itemize}
+    \item \textbf{hoch}: Verfahren ist etabliert, gut erforscht oder praxistauglich.
+    \item \textbf{mittel}: Verfahren ist teilweise anwendbar, unterliegt aber Einschränkungen.
+    \item \textbf{niedrig}: Aktuell kaum praktikabel oder nur experimentell umsetzbar.
+    \item \textbf{aufstrebend / wachsend / sehr hoch}: Verfahren mit stark wachsendem Potenzial, aber begrenztem Stand heute.
+\end{itemize}
+
+\subsubsection*{Technologischer Vergleich}
+
+\begin{table}[H]
+\centering
+\caption{Technologisch-struktureller Vergleich der Methoden}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{0.26\linewidth}|p{0.18\linewidth}|p{0.18\linewidth}|p{0.18\linewidth}|p{0.18\linewidth}|}
+\hline
+\textbf{Kriterium} & \textbf{QA} & \textbf{QAOA} & \textbf{VQE} & \textbf{QAE} \\
+\hline
+Plattform & Adiabatisch & Gate-basiert & Gate-basiert & Gate-basiert \\
+\hline
+Zieltyp & Optimierung & Optimierung & Optimierung & Schätzung \\
+\hline
+Formulierung & QUBO/Ising & Ising-Modell & Hamiltonian & Orakel \\
+\hline
+Ressourcen & Kopplungen & Tiefe Gates & Variabler Ansatz & QFT, Gates \\
+\hline
+Struktur & Hardware-nah & Alternierend & Flexibel & Interferenz \\
+\hline
+Fehlersensitivität & Gering & Hoch & Hoch & Sehr hoch \\
+\hline
+Qubitbedarf & Niedrig & Mittel & Mittel & Hoch \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection*{Bewertung und Analyse: Technologisch-struktureller Vergleich}
+
+\paragraph{Analyse ausgewählter Aspekte}
+
+Bereits der erste Eintrag zeigt eine klare Trennung: Während Quantum Annealing (QA) auf einem adiabatischen Hardwaremodell basiert, setzen alle anderen Verfahren auf gate-basierte Systeme. Dies macht QA besonders hardware-nah und ressourcenschonend, da es keine komplexen Schaltungen benötigt \cite{orus_quantum_2019, mugel_dynamic_2022}. Die Kopplungen zwischen Qubits übernehmen direkt die Problemstruktur. Im Gegensatz dazu erfordern QAOA, VQE und QAE komplexe Gate-Sequenzen, die eine präzise Steuerung voraussetzen \cite{buonaiuto_best_2023}.
+
+Ein auffälliger Unterschied zeigt sich beim Zieltyp: Während QA, QAOA und VQE für Optimierungsprobleme entwickelt wurden, dient QAE der Schätzung von Wahrscheinlichkeiten, etwa bei Monte-Carlo-Simulationen oder Value-at-Risk-Modellen \cite{rebentrost_quantum_2018, quantumjournal2020}. Daraus ergeben sich tiefgreifende Unterschiede in der Struktur und Ressourcennutzung. Insbesondere QAE benötigt tiefe, kontrollierte Quantenschaltkreise inklusive Quanten-Fourier-Transformation, was es zu einer der anspruchsvollsten Methoden macht \cite{martin2022}.
+
+Der Punkt „Struktur“ verdeutlicht, wie unterschiedlich die Algorithmen designt sind: QAOA arbeitet mit alternierenden Operatoren (Problem- und Mixer-Gates), während VQE auf einen frei wählbaren Ansatz basiert, der auf die Hardware optimiert sein kann \cite{brandhofer_benchmarking_2022}. QA hingegen nutzt eine kontinuierliche Energielandschaft, was eine ganz andere physikalische Interpretation erlaubt.
+
+In Bezug auf Fehlertoleranz und Qubitbedarf zeigen sich wieder zwei Extreme: QA benötigt vergleichsweise wenige Qubits mit eingeschränkter Konnektivität, ist dafür aber relativ robust gegenüber Fehlern \cite{sakuler_real-world_2025}. QAE hingegen ist stark fehleranfällig und benötigt eine hohe Zahl kohärenter Qubits \cite{bouland_prospects_2020}, was es aktuell noch limitiert.
+
+Der technologische Vergleich zeigt klar, dass sich die Verfahren nicht nur im Ziel, sondern auch in ihrer Hardware- und Ressourcenausrichtung stark unterscheiden. Während QA eine spezialisierte, robuste Lösung für bestimmte Optimierungsprobleme bietet, sind VQE, QAOA und QAE flexibler, aber in ihrer aktuellen Form noch stark abhängig von der Hardwareentwicklung.
+
+
+
+
+\subsubsection*{Reifegrad und Anwendungsperspektiven}
+
+\begin{table}[H]
+\centering
+\caption{Bewertung der Verfahren nach Reifegrad und industrieller Perspektive}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{0.24\linewidth}|p{0.19\linewidth}|p{0.19\linewidth}|p{0.19\linewidth}|p{0.19\linewidth}|}
+\hline
+\textbf{Kriterium} & \textbf{QA} & \textbf{QAOA} & \textbf{VQE} & \textbf{QAE} \\
+\hline
+Reifegrad & hoch & mittel & mittel & niedrig \\
+\hline
+Hardware-Kompatibilität & hoch & mittel & mittel & niedrig \\
+\hline
+Industrielle Relevanz & hoch & mittel & mittel & aufstrebend \\
+\hline
+Skalierbarkeit & gering & mittel & mittel & gering \\
+\hline
+Fehlerkorrektur & gering & hoch & hoch & sehr hoch \\
+\hline
+Forschungstiefe & hoch & hoch & sehr hoch & wachsend \\
+\hline
+Zukunftspotenzial & mittel & hoch & hoch & sehr hoch \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsubsection*{Bewertung und Analyse: Reifegrad und Anwendungsperspektiven}
+
+Die Tabelle gibt einen überblicksartigen Vergleich der vier betrachteten quantenmechanischen Verfahren entlang zentraler Anwendungskriterien. Dabei geht es weniger um eine vollständige Bewertung, sondern vielmehr um eine Orientierung entlang von Stärken und Schwächen in Bezug auf praktische Umsetzbarkeit, Forschungsstand und Zukunftspotenzial.
+
+
+
+\paragraph{Analyse ausgewählter Kriterien}
+
+Besonders auffällig ist die hohe Bewertung von Quantum Annealing (QA) im Hinblick auf den technologischen Reifegrad und die praktische Umsetzbarkeit. Diese Einschätzung basiert auf der industriellen Nutzung durch Anbieter wie D-Wave sowie reale Anwendungen etwa in der Portfolio- oder Supply-Chain-Optimierung \cite{mugel_dynamic_2022, sakuler_real-world_2025}. Dennoch zeigt QA gleichzeitig eine \emph{geringe Skalierbarkeit}, was mit der begrenzten Qubit-Konnektivität aktueller Annealer zusammenhängt \cite{sakuler_real-world_2025}.
+
+Quantum Amplitude Estimation (QAE) weist ein gegenteiliges Profil auf: Es besitzt ein \emph{sehr hohes Zukunftspotenzial}, kann aber derzeit aufgrund der tiefen Schaltkreise und des Bedarfs an Fehlerkorrektur kaum praktisch eingesetzt werden \cite{bouland_prospects_2020, martin2022}. Die „niedrig“-Bewertung bei Umsetzbarkeit entspricht dem aktuellen Stand auf NISQ-Geräten.
+
+Variational Quantum Eigensolver (VQE) wird in der Literatur häufig für chemische und finanzielle Modellierungen eingesetzt, insbesondere auf IBM-Q-Systemen \cite{buonaiuto_best_2023}. Die Kombination aus mittelmäßigem Reifegrad und hohem Forschungsstand ist hier konsistent: Die Methode ist anpassbar, aber hardwareintensiv.
+
+Der QAOA-Ansatz liegt in fast allen Dimensionen zwischen QA und VQE, was durch seine modulare Gate-Struktur begründet ist. Studien zeigen jedoch, dass bei sorgfältiger Parametrisierung und Spezialisierung deutliche Fortschritte erzielt werden können \cite{brandhofer_benchmarking_2022}.
+
+Zusammenfassend zeigt sich, dass aktuell nur QA als produktionsnah gelten kann, während QAOA und VQE im mittleren Reifegrad operieren. QAE hingegen steht als vielversprechender, aber technisch herausfordernder Spezialfall am Anfang seiner Entwicklung.
+
+
+
+
+
+
+
 \abstract{Dieses Kapitel untersucht das Potenzial von Quantencomputing für den Einsatz im Finanzwesen. Im Zentrum stehen drei besonders rechenintensive Anwendungsfelder: Portfoliooptimierung, Monte-Carlo-Simulationen und Risikomessung. Anhand aktueller Forschungsergebnisse und Pilotprojekte wird analysiert, wie Quantenalgorithmen klassische Verfahren ergänzen oder perspektivisch ablösen könnten. Dabei werden sowohl Quantum Annealing als auch gate-basierte Algorithmen wie QAOA, VQE und QAE betrachtet. Darüber hinaus beleuchtet das Kapitel die Rolle führender Technologieunternehmen, Finanzinstitute und internationaler Forschungsinitiativen. Abschließend erfolgt eine kritische Bewertung der technologischen Entwicklungen mit Blick auf konkrete Einsatzmöglichkeiten, bestehende Herausforderungen und strategische Implikationen für die Finanzbranche.}
 
 \section{Einleitung}
@@ -211,61 +451,7 @@ Amplitude-Schätzung von Überschreitungswahrscheinlichkeit &
 
 
 
-\section{Top Technologien und Algorithmen}
 
-Im vorangegangenen Kapitel wurden drei zentrale Anwendungsfelder vorgestellt, in denen quantenbasierte Verfahren im Finanzwesen potenzielle Vorteile gegenüber klassischen Methoden aufweisen. In all diesen Bereichen werden spezifische Quantenalgorithmen verwendet, die auf unterschiedlichen technologischen Prinzipien beruhen. Das Verständnis dieser Verfahren ist ausschlaggebend, um ihr Potenzial, ihre Grenzen und ihre technische Realisierbarkeit richtig einzuordnen.
-
-Mit der zunehmenden Komplexität moderner Finanzmodelle und der stetig wachsenden Menge verfügbarer Daten stoßen klassische Rechenverfahren an fundamentale Grenzen. Besonders bei Aufgaben, die eine hohe kombinatorische Tiefe oder stochastische Genauigkeit erfordern, wie etwa die Bewertung von komplexen Derivaten oder die Simulation von extremen Risiken, geraten klassische Architekturen an ihre Grenzen \cite{plos2024, bouland_prospects_2020}.
-
-In solchen Szenarien versprechen Quantencomputer neue Lösungsansätze. Sie nutzen grundlegende Eigenschaften der Quantenmechanik wie Superposition und Verschränkung, um bestimmte Klassen von Problemen effizienter zu bearbeiten. Während klassische Computer Informationen in Form von Bits (0 oder 1) verarbeiten, ermöglichen Quantenbits (Qubits) die gleichzeitige Darstellung und Verarbeitung vieler Zustände. Das kann in spezifischen Fällen zu einer erheblichen Beschleunigung oder einer höheren Ergebnisgüte führen \cite{orus_quantum_2019, bouland_prospects_2020, martin2022}.
-
-Im Rahmen der zuvor beschriebenen Anwendungen wurden bereits konkrete Quantenansätze eingeführt. Dieses Kapitel widmet sich nun vertiefend den zugrunde liegenden Technologien und Algorithmen. Ziel ist es, ihre Funktionsweise, ihre strukturellen Voraussetzungen und ihre Eignung für verschiedene Problemstellungen im Finanzbereich systematisch darzustellen.
-
-Zu den derzeit zentralen quantenbasierten Methoden im Finanzkontext gehören:
-
-\begin{itemize}
-  \item Quantum Annealing (QA)
-  \item Gate-basierte Algorithmen
-    \begin{itemize}
-      \item Quantum Approximate Optimization Algorithm (QAOA)
-      \item Variational Quantum Eigensolver und verwandte Variationsansätze (VQE, VQA)
-    \end{itemize}
-  \item Quantum Amplitude Estimation (QAE)
-\end{itemize}
-
-Die folgenden Abschnitte analysieren diese Technologien aus technischer Perspektive. Sie zeigen, welche Stärken und Schwächen mit den jeweiligen Ansätzen verbunden sind und welche praktischen Voraussetzungen für deren erfolgreichen Einsatz im Finanzwesen erfüllt sein müssen.
-
-\subsection{Quantum Annealing (QA)}
-
-Quantum Annealing ist ein quantenmechanisches Optimierungsverfahren, das für kombinatorische Probleme eingesetzt wird. Es wird insbesondere in der Portfoliooptimierung verwendet, kommt aber auch in Bereichen wie Arbitrage-Erkennung, Kreditrisikoanalyse und Supply-Chain-Prozessen zum Einsatz \cite{orus_quantum_2019, mugel_dynamic_2022}.
-
-Technologisch basiert Quantum Annealing auf dem adiabatischen Prinzip. Dabei wird das Quantensystem aus einem bekannten Anfangszustand (Anfangshamiltonian) langsam in den Problemzustand überführt. Solange dieser Vorgang ausreichend langsam erfolgt, bleibt das System im energetisch niedrigsten Zustand, der die optimale Lösung enthält \cite{Orus2019}. Das zugrunde liegende Problem muss dafür in ein Quadratic Unconstrained Binary Optimization (QUBO)-Modell oder ein Ising-Modell transformiert werden. Die binären Entscheidungsvariablen repräsentieren Investitionsentscheidungen, die Wechselwirkungen codieren Rendite, Risiko und Constraints. Auf der Hardware wird jeder Qubit einer Variablen zugewiesen, und Kopplungen entsprechen den Interaktionen der Modellstruktur. Während des Annealing-Prozesses wird das System kontrolliert „heruntergekühlt“, bis es in einem möglichst optimalen Zustand verharrt \cite{mugel_dynamic_2022, Rosenberg2016}. Diese Umsetzung ermöglicht eine praxisnahe Anwendung bei strukturierten Finanzproblemen, auch wenn die gegenwärtigen Systeme noch Einschränkungen in der Skalierbarkeit aufweisen \cite{sakuler_real-world_2025}.
-
-Ein großer Vorteil von Quantum Annealing ist die effiziente Lösung diskreter Optimierungsprobleme. Es kann auf spezieller Hardware wie dem D-Wave-System implementiert werden, die physikalisch auf QUBO-Probleme ausgelegt ist. Durch quantenmechanisches Tunneling können lokale Minima überwunden und Lösungen schneller gefunden werden. Weitere Vorteile sind die gute Konvergenz bei kleinen bis mittelgroßen Instanzen und der natürliche Hardwarebezug \cite{mugel_dynamic_2022, sakuler_real-world_2025}. Zu den Nachteilen zählen die beschränkte Skalierbarkeit auf große Problemgrößen, die begrenzte Qubit-Konnektivität und die schwierige Abbildung komplexer Nebenbedingungen \cite{sakuler_real-world_2025}.
-
-\subsection{Gate-basierte Ansätze (QAOA und VQE)}
-
-Gate-basierte Quantencomputer arbeiten mit Schaltkreisen. Auf diesen Systemen können Variationsalgorithmen implementiert werden, die Optimierungsprobleme lösen. Die zwei bekanntesten Methoden sind hierbei Quantum Approximate Optimization Algorithm (QAOA) und Variational Quantum Eigensolver (VQE). In beiden Methoden kommt ein parametrischer Quantenschaltkreis zum Einsatz, dessen Parameter iterativ von einem klassischen
-Optimierer so eingestellt werden, dass das gemessene Ausgabe-Stadium die Zielfunktion minimiert. Für die Portfoliooptimierung muss zuerst das eigentliche Problem abgeleitet und in einen Hamiltonoperator übersetzt werden \cite{buonaiuto_best_2023, brandhofer_benchmarking_2022}.
- 
-\subsubsection*{Quantum Approximate Optimization Algorithm (QAOA)}
-Für den Quantum Approximate Optimization Algorithm (QAOA) Ansatz muss durch die Umwandlung in ein Ising-Modell zunächst das Optimierungsproblem binär formuliert werden. Dieses Modell bildet mit Wechselwirkungsparametern zwischen den Qubits das Ertrags-Risiko-Profil des Portfolios ab \cite{brandhofer_benchmarking_2022}.
-Der QAO-Algorythmus verwendet abwechselnd zwei Arten von Gate-Operationen. Eine Operation auf dem Problem Hamiltonian basierenden Phasenschicht und eine auf einer Mixer-Hamiltonian Rotationsschicht. ­Die Anzahl der Alternierungen zwischen Misch- und Phasen-Gates ist bestimmt durch die Tiefe. Ziel ist es, die Messwahrscheinlichkeit für eine optimale Lösung zu verbessern. In der Studie von Brandhofer et al. (2023), zeigen die Autoren, dass der Einsatz von diesen spezialisierten Mixern, die Güte und die Umsetzbarkeit der Lösung deutlich verbessert.
-
-\subsubsection*{Variational Quantum Eigensolver (VQE)}
-Der Variational Quantum Eigensolver (VQE) verfolgt zwar vom grundsatz her ein ähnliches Ziel, verwendet jedoch einen anderen Ansatz. Statt des festgelegten Schematas bei QAOA, ist die Wahl des Schaltkreises beliebig und mit festen Parametern versehen. Der Erwartungswert des Problem-Hamiltonians wird durch wiederholtes Messen geschätzt, und ein klassischer Optimierer passt die Parameter an, um den Energieerwartungswert zu minimieren. Die Ansätze können beispielsweise Hardware-effizient oder Problem-spezifisch sein \cite{brandhofer_benchmarking_2022}.
-
-\subsection{Quantum Amplitude Estimation (QAE)}
-
-Quantum Amplitude Estimation (QAE) ist ein quantenmechanischer Algorithmus, der von Brassard et al. entwickelt wurde und sich besonders für die Beschleunigung Monte-Carlo-basierter Verfahren eignet \cite{quantumjournal2020}. In der Finanzwelt wird QAE zur Bewertung komplexer Finanzinstrumente wie Optionen sowie zur Modellierung von Kreditrisiken und stochastischen Prozessen verwendet \cite{rebentrost2018, egger2020}.
-
-Technologisch kombiniert QAE Quantenamplitudeninterferenz mit Messstrategien, um Erwartungswerte effizienter zu schätzen als klassische Monte-Carlo-Algorithmen. Während herkömmliche Verfahren $O(1/\varepsilon^2)$ Stichproben zur Erreichung einer Genauigkeit $\varepsilon$ benötigen, reduziert QAE diesen Aufwand auf $O(1/\varepsilon)$ \cite{quantumjournal2020, martin2022}. Die zugrunde liegende Quantenroutine nutzt dabei quantenmechanische Effekte wie Superposition und Interferenz, um Wahrscheinlichkeiten zu verstärken, die zur Zielausgabe führen. Anwendungen beinhalten insbesondere die Bewertung pfadabhängiger Optionen, Value-at-Risk-Simulationen sowie generelle Risiko- und Bewertungsmodelle, bei denen große Stichprobenmengen erforderlich sind \cite{orus_quantum_2019, rebentrost2018}.
-
-Ein zentraler Vorteil von QAE liegt in der quadratischen Beschleunigung gegenüber klassischen Verfahren, was zu erheblichen Effizienzgewinnen bei der Bewertung komplexer Modelle führen kann \cite{rebentrost2018}. Zudem ermöglicht QAE die Verarbeitung realitätsnäherer Modelle, die mit klassischen Methoden oft rechnerisch unpraktikabel wären.
-
-Zu den Nachteilen gehört vor allem der aktuelle Stand der Quantenhardware. Begrenzte Qubit-Anzahlen, kurze Kohärenzzeiten und Messfehler erschweren die skalierbare Umsetzung in der Praxis \cite{bouland_prospects_2020, martin2022}. Auch erfordert QAE oft tiefe Quantenschaltkreise, was den Einsatz auf heutigen NISQ-Geräten (Noisy Intermediate-Scale Quantum) einschränkt.
-
-Trotz dieser Herausforderungen arbeiten Industrie und Forschung an der praktischen Umsetzung. Besonders Partnerschaften zwischen Banken wie JPMorgan und Technologieunternehmen wie IBM zeigen, dass der Einsatz von QAE in der Finanzpraxis in naher Zukunft realistisch sein könnte \cite{egger2020}.
 
 \section{Wichtige Unternehmen und Akteure und Ihre Zukunftsprojekte}
 Der Fortschritt im Quantencomputing für Finanzanwendungen wird wesentlich von der engen Vernetzung führender Technologieunternehmen, Finanzinstitute und Forschungsinitiativen geprägt. Einige Akteure entwickeln Hardware und Plattformen, andere arbeiten direkt an Algorithmen oder Pilotprojekten. Im Folgenden werden die wichtigsten Akteure vorgestellt und ihre Projekte zugeordnet.

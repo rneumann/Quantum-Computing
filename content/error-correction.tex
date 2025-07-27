@@ -11,16 +11,15 @@
 \section{Fehlertypen in Quantenrechnern}\label{chap:QEC1}
 \subsection{Die Herausforderung von Fehlern in Quantencomputern}
  Ein zentrales Hindernis bei der praktischen Realisierung von Quantencomputern ist die Fehleranfälligkeit. Diese treten in Quantensystemen häufiger auf als in klassischen Rechnern und sind viel schwerer zu kontrollieren.
-Während klassische Systeme mit extrem niedrigen Fehlerraten arbeiten (unter 10⁻¹⁷), liegen diese bei heutigen Quantenprozessoren um Größenordnungen zwischen 10⁻³ und 10⁻¹. Der Grund dafür liegt unter anderem in der hohen Empfindlichkeit von Qubits gegenüber Umwelteinflüssen wie elektromagnetischen Feldern, Temperaturfluktuationen oder Strahlungen. Hinzu kommen Fehler durch ungenaue Hardware, Crosstalk zwischen benachbarten Qubits und unzuverlässige Mess- oder Initialisierungsprozessen.\cite[Seite 48-49]{tutschku_quantencomputing_2023}\\
+Während klassische Systeme mit extrem niedrigen Fehlerraten arbeiten (unter $10^{-17}$), liegen diese bei heutigen Quantenprozessoren um Größenordnungen zwischen $10^{-3}$ und $10^{-1}$. Der Grund dafür liegt unter anderem in der hohen Empfindlichkeit von Qubits gegenüber Umwelteinflüssen wie elektromagnetischen Feldern, Temperaturfluktuationen oder Strahlungen. Hinzu kommen Fehler durch ungenaue Hardware, Crosstalk zwischen benachbarten Qubits und unzuverlässige Mess- oder Initialisierungsprozesse. vgl.\cite[Seite 48-49]{tutschke_quantencomputing_2023}\medskip
 
-Quantenfehler sind ein Zusammenspiel aus unvermeidbaren physikalischen Prozessen, technologischen Grenzen und Umwelteinflüssen. Sie zu verstehen und zu kontrollieren ist eine der größten Herausforderungen beim Bau und Betrieb eines funktionierenden Quantencomputers. Die Auswirkungen dieser Fehler sind tiefgreifend. Schon ein einzelner Fehler kann sich durch Verschränkung auf das gesamte System ausbreiten. Besonders kritisch sind Phasenfehler, da sie die Interferenzmuster zerstören können, auf denen viele Quantenalgorithmen beruhen.
-
-Deshalb ist die Entwicklung effektiver Fehlerkorrekturmethoden ein zentrales Thema für die Zukunft des Quantencomputings. Nur wenn bestimmte Mechanismen greifen, kann der theoretische Nutzen in der Praxis ausgeschöpft werden.
+Quantenfehler sind ein Zusammenspiel aus unvermeidbaren physikalischen Prozessen, technologischen Grenzen und Umwelteinflüssen. Sie zu verstehen und zu kontrollieren, ist eine der größten Herausforderungen beim Bau und Betrieb eines funktionierenden Quantencomputers. Die Auswirkungen dieser Fehler sind tiefgreifend. Schon ein einzelner Fehler kann sich durch Verschränkung auf das gesamte System ausbreiten. Besonders kritisch sind Phasenfehler, da sie die Interferenzmuster zerstören können, auf denen viele Quantenalgorithmen beruhen.
+Physikalische Ursachen von Fehlern im Quantencomputing wirken direkt auf die empfindlichen Quantenzustände der Qubits ein. Diese physikalischen Einflüsse führen zu konkreten Fehlertypen. Welche dieser Fehlerarten in der Praxis überwiegt, hängt maßgeblich von der jeweiligen Hardwareplattform ab. So sind beispielsweise supraleitende Qubits besonders anfällig für Defasierungseffekte, während bei Ionenfallen Laserstabilität eine große Rolle spielt. Die Art und Weise, wie physikalische Effekte in konkrete Fehler münden, ist also eng mit den technischen Eigenschaften und Grenzen der verwendeten Hardware verbunden.
+Aus gegebenen Gründen ist die Entwicklung effektiver Fehlerkorrekturmethoden ein zentrales Thema für die Zukunft des Quantencomputings. Nur wenn bestimmte Mechanismen greifen, kann der theoretische Nutzen in der Praxis ausgeschöpft werden.
 
 
 \subsection{Physikalische Fehlerursachen in Quantenrechnern}
-Quantencomputer arbeiten nicht mit Bits sondern mit Qubits, die sich gleichzeitig in mehreren Zuständen befinden können. Die quantenmechanischen Eigenschaften von Qubits, insbesondere die Superposition, ermöglichen das enorme Potenzial und die Leistungsstärke von Quantencomputern. Gleichzeitig machen sie Quantencomputer allerdings auch extrem empfindlich. Schon geringe äußere Einflüsse können die Zustände stören und zu Fehlern führen. Im Folgenden werden zentrale physikalische Ursachen näher betrachtet.
-
+Quantencomputer arbeiten nicht mit Bits sondern mit Qubits, die sich gleichzeitig in mehreren Zuständen befinden können. Die quantenmechanischen Eigenschaften von Qubits, insbesondere die Superposition, ermöglichen das enorme Potenzial und die Leistungsstärke von Quantencomputern. Gleichzeitig machen sie Quantencomputer allerdings auch extrem empfindlich. Schon geringe äußere Einflüsse können die Zustände stören und zu Fehlern führen. Im Folgenden werden zentrale physikalische Ursachen näher betrachtet.\medskip
 
 
 \textbf{Dekohärenz}
@@ -36,13 +35,13 @@ Die Wirkung solcher Umweltkopplungen lässt sich mathematisch mithilfe der sogen
 
 Ein häufig verwendetes Modell zur Beschreibung solcher Fehler ist das lokale und Markov’sche Fehlermodell. Es geht davon aus, dass jedes Qubit nur mit seiner eigenen lokalen Umgebung interagiert (lokal) und dass sich diese Umgebung bei jedem Zeitschritt erneuert bzw. unabhängig vom Zustand in vorherigen Zeitintervallen ist (Markov). Die Gesamtwirkung auf ein Mehr-Qubit-System lässt sich dann als Produkt von Einzeleffekten auf die jeweiligen Qubits darstellen. Dieses Modell ist realistisch und erlaubt es, die meisten heute verwendeten Quantenfehlerkorrekturverfahren zu formulieren. 
 
-Insgesamt zeigt sich, dass Dekohärenz  ein unvermeidlicher, aber mathematisch gut beschreibbarer Effekt ist. Durch geeignete Fehlerkorrektur und die Annahme realistischer Fehlermodelle kann ihre Auswirkung auf Quanteninformationen deutlich reduziert werden.  \cite[Seite 332-339]{rieffelQuantumComputingGentle2011a}\\
+Insgesamt zeigt sich, dass Dekohärenz  ein unvermeidlicher, aber mathematisch gut beschreibbarer Effekt ist. Durch geeignete Fehlerkorrektur und die Annahme realistischer Fehlermodelle kann ihre Auswirkung auf Quanteninformationen deutlich reduziert werden. vgl. \cite[Seite 332-339]{rieffelQuantumComputingGentle2011a}\medskip
 
 
 
 \textbf{Rauschen und Vibration}
 
-Doch Dekohärenz ist nicht die einzige physikalische Fehlerursache in Quantencomputern. Weitere Ursachen liegen in verschiedenen Rauschprozessen. Das sind zufällige oder unkontrollierte Störungen aus der Umgebung. Dazu zählen unter anderem thermisches Rauschen, das durch Temperaturunterschiede entsteht, sowie elektromagnetische Fluktuationen, verursacht durch Stromleitungen, elektronische Geräte oder sogar Mobilfunkstrahlung. Auch mechanische Vibrationen stellen eine Störquelle dar. Diese können beispielsweise durch Pumpen oder Bewegungen im Kühlapparat ausgelöst werden und sich auf die empfindlichen Qubits übertragen. In Systemen wie Ionenfallen können solche Vibrationen die Bewegung der Ionen stören. Dies führt dazu, dass die Quantenobjekte ihre Überlagerungszustände verlieren und sich zunehmend klassisch verhalten. Gleichzeitig wirken zufällige elektrische Feldschwankungen auf die Teilchen, wodurch es zu unkontrollierten Energie- und Positionsänderungen kommen kann. Wird dabei das harmonische Potenzial gestört, verlassen die Ionen ihren quantenmechanischen Grundzustand, was zu Rechenfehlern führt. Besonders problematisch wird dies bei stark gekoppelten Qubits, bei denen viele Operationen wie CNOT-Gatter notwendig sind. Denn jede zusätzliche Operation erhöht die Anfälligkeit für Rauschen und überfordert in vielen Fällen die heutigen Fehlermitigationstechniken. Um diese Fehler zu minimieren, sind hochstabile Betriebsbedingungen sowie gezielte Kühl- und Isolationsmaßnahmen unerlässlich.\cite[Seite 39-43]{tutschku_quantencomputing_2023}\\;  \cite[Seite 353-356]{nielsen_quantum_2010}\\
+Doch Dekohärenz ist nicht die einzige physikalische Fehlerursache in Quantencomputern. Weitere Ursachen liegen in verschiedenen Rauschprozessen. Das sind zufällige oder unkontrollierte Störungen aus der Umgebung. Dazu zählen unter anderem thermisches Rauschen, das durch Temperaturunterschiede entsteht, sowie elektromagnetische Fluktuationen, verursacht durch Stromleitungen, elektronische Geräte oder sogar Mobilfunkstrahlung. Auch mechanische Vibrationen stellen eine Störquelle dar. Diese können beispielsweise durch Pumpen oder Bewegungen im Kühlapparat ausgelöst werden und sich auf die empfindlichen Qubits übertragen. In Systemen wie Ionenfallen können solche Vibrationen die Bewegung der Ionen stören. Dies führt dazu, dass die Quantenobjekte ihre Überlagerungszustände verlieren und sich zunehmend klassisch verhalten. Gleichzeitig wirken zufällige elektrische Feldschwankungen auf die Teilchen, wodurch es zu unkontrollierten Energie- und Positionsänderungen kommen kann. Wird dabei das harmonische Potenzial gestört, verlassen die Ionen ihren quantenmechanischen Grundzustand, was zu Rechenfehlern führt. Besonders problematisch wird dies bei stark gekoppelten Qubits, bei denen viele Operationen wie CNOT-Gatter notwendig sind. Denn jede zusätzliche Operation erhöht die Anfälligkeit für Rauschen und überfordert in vielen Fällen die heutigen Fehlermitigationstechniken. Um diese Fehler zu minimieren, sind hochstabile Betriebsbedingungen sowie gezielte Kühl- und Isolationsmaßnahmen unerlässlich. vgl. \cite[Seite 39-43]{tutschke_quantencomputing_2023}; \cite[Seite 353-356]{nielsen_quantum_2010}\medskip
 
 
 
@@ -50,15 +49,15 @@ Doch Dekohärenz ist nicht die einzige physikalische Fehlerursache in Quantencom
 
 Ein besonderes Problem ist die unzureichende Isolation der Qubits. Idealerweise sollte ein Qubit vollständig von seiner Umgebung abgeschottet sein. In der Realität ist das fast nicht möglich. Selbst im Vakuum oder bei extrem tiefen Temperaturen gibt es noch mikroskopisch kleine Wechselwirkungen mit anderen Teilchen, Materialien oder Defekten. Manche Materialien enthalten zum Beispiel sogenannte Zwei-Niveau-Systeme, die mit den Qubits interagieren können und als zusätzliche Störquellen wirken. Auch kosmische Strahlung oder Magnetfelder aus der Umgebung können Störungen verursachen.
 
-Aus all diesen Gründen ist es extrem wichtig, die Quantenhardware so gut wie möglich gegen äußere Einflüsse zu schützen. Das geschieht zum Beispiel durch ultratiefe Temperaturen im Millikelvin-Bereich, durch spezielle Abschirmungen gegen elektromagnetische Wellen, durch mechanische Entkopplung der Geräte und durch den Einsatz besonders reiner Materialien ohne Defekte. Trotzdem lässt sich nie ganz vermeiden, dass äußere Einflüsse auf das System wirken. Daher ist es bedeutend, zusätzlich auf softwareseitige Verfahren zur Fehlerkorrektur zu setzen. \cite[Seite 24-26]{tutschku_quantencomputing_2023}
+Aus all diesen Gründen ist es extrem wichtig, die Quantenhardware so gut wie möglich gegen äußere Einflüsse zu schützen. Das geschieht zum Beispiel durch ultratiefe Temperaturen im Millikelvin-Bereich, durch spezielle Abschirmungen gegen elektromagnetische Wellen, durch mechanische Entkopplung der Geräte und durch den Einsatz besonders reiner Materialien ohne Defekte. Trotzdem lässt sich nie ganz vermeiden, dass äußere Einflüsse auf das System wirken. Daher ist es bedeutend, zusätzlich auf softwareseitige Verfahren zur Fehlerkorrektur zu setzen. vgl. \cite[Seite 24-26]{tutschke_quantencomputing_2023}
 
 
 
 \subsection{Klassifizierung von Quantenfehlern}\label{chap:QEC1.3}
 Die Klassifikation von Quantenfehlern stellt eine bedeutsame Grundlage für die Entwicklung stabiler Fehlerkorrekturverfahren im Quantencomputing dar. Aufgrund der Superposition können Fehler nicht nur den Zustand selbst, sondern auch die relative Phase, Amplitude oder die Kohärenzeigenschaften eines Qubits beeinflussen. Die Einteilung unterscheidet zwischen diskreten, kontinuierlichen, zufälligen und systematischen Fehlern.
 
-Die Diskrete Fehlerarten sind die Pauli-Fehler. Die einfachste und zugleich mathematisch fundamentale Klasse von Quantenfehlern basiert auf den sogenannten Pauli-Fehlern, benannt nach den drei Pauli-Matrizen 
-X, Y und Z. Diese Operatoren stellen Basisoperationen im zweidimensionalen Qubit-Zustandsraum dar und bilden eine vollständige Fehlerbasis für beliebige Ein-Qubit-Störungen.
+Die diskreten Fehlerarten sind die Pauli-Fehler. Die einfachste und zugleich mathematisch fundamentale Klasse von Quantenfehlern basiert auf den sogenannten Pauli-Fehlern, benannt nach den drei Pauli-Matrizen 
+X, Y und Z. Diese Operatoren stellen Basisoperationen im zweidimensionalen Qubit-Zustandsraum dar und bilden eine vollständige Fehlerbasis für beliebige Ein-Qubit-Störungen.\medskip
 
 
 
@@ -66,13 +65,13 @@ X, Y und Z. Diese Operatoren stellen Basisoperationen im zweidimensionalen Qubit
 
 Ein Bit-Flip-Fehler ist eine der einfachsten und grundlegendsten Fehlerarten in der Quanteninformatik. Er beschreibt eine Umkehrung des Zustands eines Qubits, also einen Wechsel von $|0\rangle$ nach $|1\rangle$ oder von $|1\rangle$ nach $|0\rangle$. Formal wird dieser Fehler durch den X-Operator (auch Pauli-X-Gatter genannt) dargestellt, der wie ein klassisches NOT-Gatter wirkt: X$|0\rangle$=$|1\rangle$, X$|1\rangle$=$|0\rangle$. Ein solcher Fehler kann in der physikalischen Realität zum Beispiel durch thermische Anregung entstehen. Also wenn ein Qubit spontan aus dem Grundzustand $|0\rangle$ in einen angeregten Zustand $|1\rangle$ übergeht, weil es mit seiner Umgebung Energie austauscht.
 
-Beim Bit-Flip-Fehler geht es also ausschließlich um die Veränderung der Besetzungszustände eines Qubits, nicht um seine Phase oder Superposition. Er ist die quantenmechanische Entsprechung eines klassischen Bitfehlers, bei dem eine „0“ zu einer „1“ wird oder umgekehrt.  \cite[Seite 246-251]{rieffelQuantumComputingGentle2011a}\\
+Beim Bit-Flip-Fehler geht es also ausschließlich um die Veränderung der Besetzungszustände eines Qubits, nicht um seine Phase oder Superposition. Er ist die quantenmechanische Entsprechung eines klassischen Bitfehlers, bei dem eine „0“ zu einer „1“ wird oder umgekehrt. vgl. \cite[Seite 246-251]{rieffelQuantumComputingGentle2011a}\medskip
 
 
 
 \textbf{Phase-Flip-Fehler (Z-Fehler)}
 
-Ein Phase-Flip-Fehler (auch Z-Fehler) ist eine fundamentale Art von Fehler in der Quanteninformationstheorie, die nicht den Zustand $|0\rangle$ oder $|1\rangle$ selbst verändert, sondern die relative Phase zwischen ihnen. Formal wird dieser Fehler durch den Z-Operator (Pauli-Z-Gatter) dargestellt: Z$|0\rangle$=$|0\rangle$,Z$|1\rangle$=−$|1\rangle$. Obwohl sich der Zustand $|1\rangle$ dabei nicht in $|0\rangle$ umwandelt, bekommt er ein negatives Vorzeichen. Die sogenannte Phaseninversion. Für Zustände wie $|0\rangle$ oder $|1\rangle$ alleine ist dieser Effekt nicht direkt sichtbar. Doch sobald der Qubit-Zustand eine Superposition ist, wirkt sich der Fehler messbar aus. Besonders deutlich wird das in diesem Zustand: \[
+Ein Phase-Flip-Fehler (auch Z-Fehler) ist eine fundamentale Art von Fehler in der Quanteninformationstheorie, die nicht den Zustand $|0\rangle$ oder $|1\rangle$ selbst verändert, sondern die relative Phase zwischen ihnen. Formal wird dieser Fehler durch den Z-Operator (Pauli-Z-Gatter) dargestellt: $Z|0\rangle$=$|0\rangle$,$Z|1\rangle$=$-|1\rangle$. Obwohl sich der Zustand $|1\rangle$ dabei nicht in $|0\rangle$ umwandelt, bekommt er ein negatives Vorzeichen. Die sogenannte Phaseninversion. Für Zustände wie $|0\rangle$ oder $|1\rangle$ alleine ist dieser Effekt nicht direkt sichtbar. Doch sobald der Qubit-Zustand eine Superposition ist, wirkt sich der Fehler messbar aus. Besonders deutlich wird das in diesem Zustand: \[
 |+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)
 \]
 Wird darauf der Z-Operator angewendet, entsteht:
@@ -80,25 +79,25 @@ Wird darauf der Z-Operator angewendet, entsteht:
 Z|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = |-\rangle
 \]
 
-Damit wird die Phase zwischen den beiden Zustandsanteilen vertauscht. Das hat gravierende Folgen für Quantenalgorithmen, die auf Interferenz und kohärenter Phasenevolution beruhen. Phase-Flip-Fehler stören also genau diese empfindlichen quantenmechanischen Effekte, die Quantencomputer leistungsfähig machen. \cite[Seite 251-252]{rieffelQuantumComputingGentle2011a}\\
+Damit wird die Phase zwischen den beiden Zustandsanteilen vertauscht. Das hat gravierende Folgen für Quantenalgorithmen, die auf Interferenz und kohärenter Phasenevolution beruhen. Phase-Flip-Fehler stören also genau diese empfindlichen quantenmechanischen Effekte, die Quantencomputer leistungsfähig machen. vgl. \cite[Seite 251-252]{rieffelQuantumComputingGentle2011a}\medskip
 
 
 
 \textbf{Kombinierte Bit- und Phase-Fehler (Y-Fehler)}
 
-Der Y-Operator kombiniert Bit- und Phase-Flip in einem einzigen Fehler: Y=iXZ. Er wirkt gleichzeitig wie ein X- (Bit-Flip) und ein Z-Operator (Phase-Flip), und ist damit der vollständigste Einzelfehler im Pauli-Basisset. Solche Fehler treten typischerweise bei komplexeren physikalischen Störungen auf. Dazu zählt unter anderem Crosstalk zwischen benachbarten Qubits, Störfelder mit nichtlokaler Auswirkung oder gekoppelte Fluktuationen in Steuerleitungen. In der Fehlerkorrektur werden Y-Fehler daher als gleichzeitiges Auftreten von X- und Z-Fehlern behandelt und können entsprechend über Stabiliser-Messungen erkannt werden (Rieffel & Polak, 2011, S.375).
+Der Y-Operator kombiniert Bit- und Phase-Flip in einem einzigen Fehler: Y=iXZ. Er wirkt gleichzeitig wie ein X- (Bit-Flip) und ein Z-Operator (Phase-Flip) und ist damit der vollständigste Einzelfehler im Pauli-Basisset. Solche Fehler treten typischerweise bei komplexeren physikalischen Störungen auf. Dazu zählt unter anderem Crosstalk zwischen benachbarten Qubits, Störfelder mit nichtlokaler Auswirkung oder gekoppelte Fluktuationen in Steuerleitungen. In der Fehlerkorrektur werden Y-Fehler daher als gleichzeitiges Auftreten von X- und Z-Fehlern behandelt und können entsprechend über Stabiliser-Messungen erkannt werden.
 
-Diese drei Operatoren bilden eine vollständige Fehlerbasis für Ein-Qubit-Störungen. Jeder beliebige Fehler auf einem Qubit kann mathematisch als Linearkombination von I, X, Y und Z dargestellt werden. Diese Eigenschaft ist von Bedeutung für den Aufbau von Quantenfehlerkorrekturcodes wie dem Shor-Code oder dem Steane-Code, welche gezielt auf Pauli-Fehler reagieren.  \cite[Seite 252-253]{rieffelQuantumComputingGentle2011a}\\
+Diese drei Operatoren bilden eine vollständige Fehlerbasis für \\ Ein-Qubit-Störungen. Jeder beliebige Fehler auf einem Qubit kann mathematisch als Linearkombination von I, X, Y und Z dargestellt werden. Diese Eigenschaft ist von Bedeutung für den Aufbau von Quantenfehlerkorrekturcodes wie dem Shor-Code oder dem Steane-Code, welche gezielt auf Pauli-Fehler reagieren.  vgl. \cite[Seite 252-253]{rieffelQuantumComputingGentle2011a}\medskip
 
 
 
 \textbf{Dämpfung}
 
-Neben diskreten Fehlern gibt es die kontinuierliche Fehlerprozesse, die sich über sogenannte Quantenkanäle modelliert werden. Die zwei wichtigsten Beispiele sind Amplitudendämpfung und die Phasendämpfung. Sie hängen eng mit den physikalischen Prozessen der Phasen- und Amplitudendämpfung zusammen.
+Neben diskreten Fehlern gibt es die kontinuierlichen Fehlerprozesse, die sich über sogenannte Quantenkanäle modellieren lassen. Die zwei wichtigsten Beispiele sind Amplitudendämpfung und die Phasendämpfung. Sie hängen eng mit den physikalischen Prozessen der Phasen- und Amplitudendämpfung zusammen.
 
-Die Amplitudendämpfung beschreibt den Verlust von Energie durch das Qubit, etwa infolge spontaner Emission oder thermischer Relaxation. Der Zustand $|1\rangle$ relaxiert dabei mit einer gewissen Wahrscheinlichkeit γ in den Grundzustand $|0\rangle$. \cite[Seite 380-383]{nielsen_quantum_2010}\\
+Die Amplitudendämpfung beschreibt den Verlust von Energie durch das Qubit, etwa infolge spontaner Emission oder thermischer Relaxation. Der Zustand $|1\rangle$ relaxiert dabei mit einer gewissen Wahrscheinlichkeit $\gamma$ in den Grundzustand $|0\rangle$. vgl. \cite[Seite 380-383]{nielsen_quantum_2010}
 
-Bei der Phasendämpfung (Dephasing) geht keine Energie verloren, aber Kohärenz. Die Off-Diagonal-Elemente der Dichtematrix, also die, die Superpositionen erzeugen, werden gedämpft. Dies geschieht durch Umwelteinflüsse wie Fluktuationen elektromagnetischer Felder. In der Praxis ist Phasendämpfung oft die dominante Dekohärenzquelle. \cite[Seite 383-386]{nielsen_quantum_2010}\\
+Bei der Phasendämpfung (Dephasing) geht keine Energie verloren, aber Kohärenz. Die Off-Diagonal-Elemente der Dichtematrix, also die, die Superpositionen erzeugen, werden gedämpft. Dies geschieht durch Umwelteinflüsse wie Fluktuationen elektromagnetischer Felder. In der Praxis ist Phasendämpfung oft die dominante Dekohärenzquelle. vgl. \cite[Seite 383-386]{nielsen_quantum_2010}\medskip
 
 
 
@@ -107,14 +106,14 @@ Bei der Phasendämpfung (Dephasing) geht keine Energie verloren, aber Kohärenz.
 Quantenfehler lassen sich nicht nur nach ihrer physikalischen Form, sondern auch nach ihrer Entstehungsart klassifizieren. Hierzu zählen zufällige Fehler und systematische Fehler.
 
 Zufällige Fehler (stochastisch) entstehen unvorhersehbar durch thermisches Rauschen, Photonen-Einfälle, kosmische Strahlung oder spontane Kopplungen an die Umgebung. Sie sind oft kurzzeitig, unkorreliert und lassen sich statistisch modellieren.
-Systematische Fehler beruhen auf wiederholbaren, deterministischen Einflüssen, wie falscher Kalibrierung von Pulssequenzen, ungenauen Gatterzeiten oder falsch modellierter Kopplung. Solche Fehler summieren sich über Zeit auf und können ganze Rechenprozesse verfälschen. Sie sind schwerer zu korrigieren, da sie nicht durch Mittelwertbildung „herausrauschen“.\cite[Seite 3-5]{acharyaQuantumErrorCorrection2025a}
+Systematische Fehler beruhen auf wiederholbaren, deterministischen Einflüssen, wie falscher Kalibrierung von Pulssequenzen, ungenauen Gatterzeiten oder falsch modellierter Kopplung. Solche Fehler summieren sich über Zeit auf und können ganze Rechenprozesse verfälschen. Sie sind schwerer zu korrigieren, da sie nicht durch Mittelwertbildung „herausrauschen“. vgl. \cite[Seite 3-5]{acharyaQuantumErrorCorrection2025a}
 Die Unterscheidung ist für die Architekturplanung bedeutend, da systematische Fehler oft durch verbesserte Hardware, kontrollierte Steuerungen oder modellgestützte Korrektur vermieden werden können.
 
 Ein wachsendes Problem in größeren Quantenprozessoren ist das Auftreten von korrelierten Fehlern. Solche Fehler beeinflussen mehrere Qubits gleichzeitig und können durch gemeinsame Störquellen oder durch ungewollte Kopplungen entstehen. Anders als unabhängige Fehler breiten sie sich nicht lokal aus, sondern erzeugen komplexe Fehlerbilder, die von klassischen Fehlerkorrekturmodellen oft nicht erfasst werden.
 
 
 \subsection{Hardwarebedingte Fehler und Systematische Grenzen}
-Neben den oben beschriebenen Fehlern spielen auch hardwarebedingte Fehler eine zentrale Rolle in der Fehlertheorie des Quantencomputings. Diese entstehen durch Unzulänglichkeiten in der technischen Umsetzung der Steuerung, der Auslese und der physikalischen Qubit-Architektur. In realen Quantenprozessoren, wie supraleitenden Schaltkreisen, Ionenfallen oder spinbasierten Systemen, sind diese Fehlerquellen ein wesentlicher begrenzender Faktor für die Skalierbarkeit und Zuverlässigkeit der Systeme.
+Neben den oben beschriebenen Fehlern spielen auch hardwarebedingte Fehler eine zentrale Rolle in der Fehlertheorie des Quantencomputings. Diese entstehen durch Unzulänglichkeiten in der technischen Umsetzung der Steuerung, der Auslese und der physikalischen Qubit-Architektur. In realen Quantenprozessoren, wie supraleitenden Schaltkreisen, Ionenfallen oder spinbasierten Systemen, sind diese Fehlerquellen ein wesentlicher begrenzender Faktor für die Skalierbarkeit und Zuverlässigkeit der Systeme.\medskip
 
 
 
@@ -130,63 +129,69 @@ Ein wesentliches Problem sind fehlerhafte Gatteroperationen. Idealerweise sollen
  \item Leakage-Fehler: Besonders bei supraleitenden oder mehrstufigen Systemen kann ein Qubit durch ein Gatter in höhere Energiezustände außerhalb des Rechenraums (z.B. $|2\rangle$) übergehen, was spätere Gates unbrauchbar macht.
 \item Falsche Kalibrierung: Abweichungen in der Kalibrierung der Steuerpulse führen dazu, dass Operationen (z.B. ein X-Gate) nicht exakt das tun, was vorgesehen ist, etwa eine Rotation um 178° statt 180°.
 \end{itemize}
-Diese Gatterfehler häufen sich über tiefe Schaltkreise hinweg und führen dazu, dass die logische Fehlerrate mit zunehmender Schaltungstiefe exponentiell ansteigt. Selbst bei modernen Quantenprozessoren liegt die mittlere Gatterfidelität, also die Wahrscheinlichkeit, mit der ein Gatter korrekt ausgeführt wird, typischerweise nur bei 99–99,9\%.  \cite[Seite 2-5]{acharyaQuantumErrorCorrection2025a}\\;  \cite[Seite 5-13]{kang_timeadaptive_2025}\\
+Diese Gatterfehler häufen sich über tiefe Schaltkreise hinweg und führen dazu, dass die logische Fehlerrate mit zunehmender Schaltungstiefe exponentiell ansteigt. Selbst bei modernen Quantenprozessoren liegt die mittlere Gatterfidelität, also die Wahrscheinlichkeit, mit der ein Gatter korrekt ausgeführt wird, typischerweise nur bei 99–99,9 \%. vgl. \cite[Seite 2-5]{acharyaQuantumErrorCorrection2025a}; \cite[Seite 5-13]{kang_timeadaptive_2025}\medskip
 
 
 
 \textbf{Messfehler}
 
-Ein weiterer kritischer Aspekt sind Messfehler. Die Auslese eines Qubits erfolgt in der Regel über die Verstärkung und Analyse eines quantenmechanischen Signals. Dabei können verschiedene Fehlerquellen auftreten. Zum Beispiel elektronisches Rauschen in der Verstärkerschaltung, Überlappung der Signalverteilungen für die Zustände $|0\rangle$und $|1\rangle$ oder Verzögerungen und Sättigungseffekte in der Ausleseelektronik. Solche Störungen können dazu führen, dass der tatsächliche Zustand des Qubits falsch interpretiert wird. Dies beeinträchtigt nicht nur die Genauigkeit von Quantenalgorithmen, sondern besonders auch die Fehlerkorrektur, die auf das zuverlässige Auslesen von Syndromen angewiesen ist. \cite[Seite 49-51]{tutschku_quantencomputing_2023}\\; \cite[Seite 5-7]{kang_timeadaptive_2025}\\
+Ein weiterer kritischer Aspekt sind Messfehler. Die Auslese eines Qubits erfolgt in der Regel über die Verstärkung und Analyse eines quantenmechanischen Signals. Dabei können verschiedene Fehlerquellen auftreten. Zum Beispiel elektronisches Rauschen in der Verstärkerschaltung, Überlappung der Signalverteilungen für die Zustände $|0\rangle$ und $|1\rangle$ oder Verzögerungen und Sättigungseffekte in der Ausleseelektronik. Solche Störungen können dazu führen, dass der tatsächliche Zustand des Qubits falsch interpretiert wird. Dies beeinträchtigt nicht nur die Genauigkeit von Quantenalgorithmen, sondern besonders auch die Fehlerkorrektur, die auf das zuverlässige Auslesen von Syndromen angewiesen ist. vgl. \cite[Seite 49-51]{tutschke_quantencomputing_2023}; \cite[Seite 5-7]{kang_timeadaptive_2025}\medskip
 
 
 
 \textbf{Qubitinitalisierung}
 
-Die Initialisierung von Qubits ist ein grundlegender Schritt zu Beginn jeder Quantenberechnung. Ziel ist es, sämtliche Qubits zuverlässig in den Grundzustand $|0\rangle$ zu bringen. In der Praxis gelingt dies jedoch nicht immer mit perfekter Genauigkeit. Mögliche Ursachen sind zum Beispiel thermische Anregungen bei unzureichender Kühlung, unvollständige Relaxation aus angeregten Zuständen oder Restkopplungen an Resonatoren oder benachbarte Qubits. Fehlerhafte Initialisierungen beeinflussen unmittelbar die Ausführung der ersten Gatteroperationen und können sich über den gesamten Quantenschaltkreis hinweg auswirken. \cite[Seite 3-5]{acharyaQuantumErrorCorrection2025a}\\
+Die Initialisierung von Qubits ist ein grundlegender Schritt zu Beginn jeder Quantenberechnung. Ziel ist es, sämtliche Qubits zuverlässig in den Grundzustand $|0\rangle$ zu bringen. In der Praxis gelingt dies jedoch nicht immer mit perfekter Genauigkeit. Mögliche Ursachen sind zum Beispiel thermische Anregungen bei unzureichender Kühlung, unvollständige Relaxation aus angeregten Zuständen oder Restkopplungen an Resonatoren oder benachbarte Qubits. Fehlerhafte Initialisierungen beeinflussen unmittelbar die Ausführung der ersten Gatteroperationen und können sich über den gesamten Quantenschaltkreis hinweg auswirken. vgl. \cite[Seite 3-5]{acharyaQuantumErrorCorrection2025a}\medskip
 
 
 
 \textbf{Konnektivität}
 
-In skalierbaren Architekturen, vor allem in zweidimensionalen Gittern supraleitender Qubits, sind nicht alle Qubits direkt miteinander verbunden. Diese eingeschränkte Konnektivität führt dazu, dass logische Operationen, die Qubits an weit entfernten Positionen betreffen, durch zusätzliche SWAP-Gatter oder Relaisoperationen realisiert werden müssen. Diese zusätzlichen Schritte erhöhen nicht nur die Rechenzeit, sondern fügen dem System zusätzliche Fehlerquellen hinzu. Besonders kritisch ist dies in tiefen Schaltkreisen oder bei komplexen Algorithmen. \cite[Seite 49-51]{tutschku_quantencomputing_2023}\\
-
-
+In skalierbaren Architekturen, vor allem in zweidimensionalen Gittern supraleitender Qubits, sind nicht alle Qubits direkt miteinander verbunden. Diese eingeschränkte Konnektivität führt dazu, dass logische Operationen, die Qubits an weit entfernten Positionen betreffen, durch zusätzliche SWAP-Gatter oder Relaisoperationen realisiert werden müssen. Diese zusätzlichen Schritte erhöhen nicht nur die Rechenzeit, sondern fügen dem System zusätzliche Fehlerquellen hinzu. Besonders kritisch ist dies in tiefen Schaltkreisen oder bei komplexen Algorithmen. vgl. \cite[Seite 49-51]{tutschke_quantencomputing_2023}\medskip
 
 
 \textbf{Kalibrierfehler}
 
-Alle oben genannten Fehlerarten werden zusätzlich durch Kalibrierfehler verstärkt. Diese entstehen, wenn die physikalischen Parameter des Systems, wie Frequenzen, Kopplungsstärken, Pulsamplituden oder Dämpfungsraten nicht exakt bekannt oder nicht stabil sind. Selbst kleine Abweichungen in der Kalibrierung können über viele Rechenzyklen hinweg zu signifikanten Abweichungen im Endergebnis führen. Studien zeigen, dass Kalibrierfehler insbesondere bei nicht regelmäßig durchgeführten Rekalibrierungszyklen zu systematischer Fehlentwicklung der Qubit-Zustände führen.  \cite[Seite 5-7]{acharyaQuantumErrorCorrection2025a}\\
+Alle oben genannten Fehlerarten werden zusätzlich durch Kalibrierfehler \\verstärkt. Diese entstehen, wenn die physikalischen Parameter des Systems, wie Frequenzen, Kopplungsstärken, Pulsamplituden oder Dämpfungsraten nicht exakt bekannt oder nicht stabil sind. Selbst kleine Abweichungen in der Kalibrierung können über viele Rechenzyklen hinweg zu signifikanten Abweichungen im Endergebnis führen. Studien zeigen, dass Kalibrierfehler insbesondere bei nicht regelmäßig durchgeführten Rekalibrierungszyklen zu systematischer Fehlentwicklung der Qubit-Zustände führen. vgl. \cite[Seite 5-7]{acharyaQuantumErrorCorrection2025a}
 
 \subsection{Quantifizierung und Modellierung von Quantenfehlern}
-Die präzise Modellierung und Quantifizierung von Fehlern in Quantencomputern ist wichtig, um deren Auswirkungen auf die Informationsverarbeitung zu verstehen und wirksame Fehlerkorrekturstrategien zu entwickeln. Aufgrund der Besonderheiten quantenmechanischer Systeme, insbesondere Superposition, Nichtklassikalität und Unitarität, ist eine Beschreibung von Fehlerprozessen nur durch formalisierte mathematische Modelle möglich, die über klassische Störmodelle weit hinausgehen. In der Theorie offener Quantensysteme werden solche Fehler durch Quantenkanäle beschrieben, deren Wirkung über sogenannte Krausoperatoren modelliert wird.
+Die präzise Modellierung und Quantifizierung von Fehlern in Quantencomputern ist wichtig, um deren Auswirkungen auf die Informationsverarbeitung zu verstehen und wirksame Fehlerkorrekturstrategien zu entwickeln. Aufgrund der Besonderheiten quantenmechanischer Systeme, insbesondere Superposition, Nichtklassikalität und Unitarität, ist eine Beschreibung von Fehlerprozessen nur durch formalisierte mathematische Modelle möglich, die über klassische Störmodelle weit hinausgehen. In der Theorie offener Quantensysteme werden solche Fehler durch Quantenkanäle beschrieben, deren Wirkung über sogenannte Krausoperatoren modelliert wird.\medskip
 
 
 
 \textbf{Fehlerkanäle und Krausoperatoren}
 
-Ein Quantenkanal beschreibt die Wirkung eines Umgebungseinflusses auf ein Quantensystem, das sich dadurch in einen neuen Zustand überführt. Formal wird ein Quantenkanal (E) durch eine completely positive, trace-preserving (CPTP) Abbildung auf dem Raum der Dichtematrizen definiert. Die Wirkung eines solchen Kanals auf einen Zustand ρ wird durch die Kraus-Zerlegung beschrieben:
+Ein Quantenkanal beschreibt die Wirkung eines Umgebungseinflusses auf ein Quantensystem, das sich dadurch in einen neuen Zustand überführt. Formal wird ein Quantenkanal (E) durch eine completely positive, trace-preserving (CPTP) Abbildung auf dem Raum der Dichtematrizen definiert. Die Wirkung eines solchen Kanals auf einen Zustand $\rho$ wird durch die Kraus-Zerlegung beschrieben:
 
+$$
 E(\rho) = \sum_k E_k \rho E_k^\dagger, \quad \text{mit} \quad \sum_k E_k^\dagger E_k = I.
+$$
 
-Hierbei sind  $E_k$ die Krausoperatoren, die jeweils eine mögliche Fehlerwirkung modellieren. Diese Darstellung ist besonders mächtig, da sie sowohl diskrete als auch kontinuierliche Fehlermechanismen integriert. Je nach Art des Rauschprozesses ergeben sich unterschiedliche konkrete Kanalformen:
+Hierbei sind  $E_k$ die Krausoperatoren, die jeweils eine mögliche Fehlerwirkung modellieren. Diese Darstellung ist besonders mächtig, da sie sowohl diskrete als auch kontinuierliche Fehlermechanismen integriert. Je nach Art des Rauschprozesses ergeben sich unterschiedliche konkrete Kanalformen:\medskip
+
 Amplitudendämpfungskanal: Modelliert Energieverluste wie spontane Emission. Dabei relaxiert das Qubit mit Wahrscheinlichkeit 
-γ vom angeregten Zustand $|1\rangle$ in den Grundzustand $|0\rangle$. Die zugehörigen Krausoperatoren lauten:
+$\gamma$ vom angeregten Zustand $|1\rangle$ in den Grundzustand $|0\rangle$. Die zugehörigen Krausoperatoren lauten:
 
-E_0 = \begin{pmatrix} 1 & 0 \\ 0 & \sqrt{1-\gamma} \end{pmatrix},E_1 = \begin{pmatrix} 0 & 0 \\ \sqrt{\gamma} & 0 \end{pmatrix}
+
+$$
+E_0 = \begin{pmatrix} 1 & 0 \\ 0 & \sqrt{1-\gamma} \end{pmatrix}, \quad E_1 = \begin{pmatrix} 0 & 0 \\ \sqrt{\gamma} & 0 \end{pmatrix}
+$$
 
 
 Depolarisationskanal: Beschreibt symmetrisches Rauschen, bei dem mit Wahrscheinlichkeit p ein zufälliger Pauli-Fehler (X, Y, Z) auftritt:
 
-E(\rho) = (1-p)\rho + \frac{p}{3}(X\rho X + Y\rho Y + Z\rho Z)
+$$
+\mathcal{E}(\rho) = (1-p)\rho + \frac{p}{3}(X\rho X + Y\rho Y + Z\rho Z)
+$$
 
 
-Diese Modelle bilden die Grundlage für theoretische Fehleranalysen und sind integraler Bestandteil moderner Simulationen von Quantenalgorithmen.\cite[Seite 379-397]{nielsen_quantum_2010}\\
+Diese Modelle bilden die Grundlage für theoretische Fehleranalysen und sind integraler Bestandteil moderner Simulationen von Quantenalgorithmen. vgl. \cite[Seite 379-397]{nielsen_quantum_2010}\medskip
 
 
 
 \textbf{Fehlerraten}
 
-Fehlerraten spielen eine zentrale Rolle bei der Quantifizierung und Modellierung von Quantenfehlern, insbesondere im Kontext der derzeit verfügbaren NISQ-Quantencomputer („Noisy Intermediate-Scale Quantum“). Diese Systeme sind durch verschiedene Störfaktoren stark limitiert. Dazu zählen kurze Kohärenzzeiten (T1 und T2), begrenzte Qubit-Konnektivität, Crosstalk und insbesondere die Fehlerraten bei Quantengattern und Messungen. Die Gate-Fidelity, also die Wahrscheinlichkeit, mit der ein Quantengatter korrekt ausgeführt wird, liegt derzeit bei etwa 0,1\% Fehler für 1-Qubit-Gatter und etwa 1\% Fehler für 2-Qubit-Gatter. Auch bei der Initialisierung und Auslesung treten mit etwa 1\% signifikante Fehler auf. Diese Fehlerraten sind um Größenordnungen höher als bei klassischen Computern und schränken die maximale Schaltungstiefe sowie die Verlässlichkeit von Quantenalgorithmen massiv ein. Um diese Fehler systematisch zu erfassen und vergleichbar zu machen, wurden Metriken wie das „Quantenvolumen“ entwickelt. Es kombiniert Aspekte wie Qubit-Anzahl, Gate-Fidelity und Schaltungstiefe zu einer einzigen Kenngröße. Allerdings ist diese Metrik nicht unumstritten, da die Aussagekraft stark vom konkreten Anwendungsfall abhängt. In jedem Fall ist eine präzise Quantifizierung und Modellierung der Fehlerraten unerlässlich, um die Einsatzfähigkeit von Quantencomputern realistisch bewerten zu können und eine effektive Fehlerkorrektur zu ermöglichen. \cite{marre_welche_2021}\\
+Fehlerraten spielen eine zentrale Rolle bei der Quantifizierung und Modellierung von Quantenfehlern, insbesondere im Kontext der derzeit verfügbaren NISQ-Quantencomputer („Noisy Intermediate-Scale Quantum“). Diese Systeme sind durch verschiedene Störfaktoren stark limitiert. Dazu zählen kurze Kohärenzzeiten (T1 und T2), begrenzte Qubit-Konnektivität, Crosstalk und insbesondere die Fehlerraten bei Quantengattern und Messungen. Die Gate-Fidelity, also die Wahrscheinlichkeit, mit der ein Quantengatter korrekt ausgeführt wird, liegt derzeit bei etwa 0,1\% Fehler für 1-Qubit-Gatter und etwa 1\% Fehler für 2-Qubit-Gatter. Auch bei der Initialisierung und Auslesung treten mit etwa 1\% signifikante Fehler auf. Diese Fehlerraten sind um Größenordnungen höher als bei klassischen Computern und schränken die maximale Schaltungstiefe sowie die Verlässlichkeit von Quantenalgorithmen massiv ein. Um diese Fehler systematisch zu erfassen und vergleichbar zu machen, wurden Metriken wie das „Quantenvolumen“ entwickelt. Es kombiniert Aspekte wie Qubit-Anzahl, Gate-Fidelity und Schaltungstiefe zu einer einzigen Kenngröße. Allerdings ist diese Metrik nicht unumstritten, da die Aussagekraft stark vom konkreten Anwendungsfall abhängt. In jedem Fall ist eine präzise Quantifizierung und Modellierung der Fehlerraten unerlässlich, um die Einsatzfähigkeit von Quantencomputern realistisch bewerten zu können und eine effektive Fehlerkorrektur zu ermöglichen. vgl. \cite{marre_welche_2021}\medskip
 
 
 
@@ -196,21 +201,21 @@ Ein zentrales Konzept in der Quantenfehlertoleranz ist die sogenannte Fehlergren
 \( p_{L} \) 
 durch Vergrößerung des Codes zu unterdrücken. Ist der physikalische Fehler kleiner als der Schwellenwert \( p_{L} \) , kann die logische Fehlerquote beliebig klein gemacht werden. Der Code wirkt also stabilisierend. Liegt der physikalische Fehler jedoch über diesem Schwellenwert, wird die Fehlerkorrektur kontraproduktiv und verschlechtert den Zustand. Für den in der Praxis besonders relevanten Surface Code liegt der theoretische Schwellenwert bei etwa 10,9\% (bei separater Behandlung von X- und Z-Fehlern). Mit realistischen Decodierungsalgorithmen liegt der praktische Schwellenwert bei etwa 10,3\%.
 
-Ein weiterer kritischer Aspekt ist die Fehlertoleranz (Fault Tolerance) von Quantenfehlerkorrekturverfahren. Dabei geht es nicht nur darum, Fehler im Qubit-Zustand selbst zu erkennen und zu beheben, sondern auch Fehler, die während des Korrekturprozesses auftreten, beispielsweise bei Zwei-Qubit-Gates oder bei der Syndrommessung, korrekt zu behandeln. Eine fehlertolerante Fehlerkorrektur muss gewährleisten, dass sich solche Fehler nicht unkontrolliert ausbreiten. Dies wird beispielsweise durch spezielle Schaltungen, redundante Hilfsqubits (Ancillas) oder wiederholte Messungen über mehrere Zyklen erreicht. Diese zusätzlichen Anforderungen erhöhen jedoch den Ressourcenbedarf erheblich. In realistischen Szenarien, insbesondere bei Surface Codes mit fehlerhaften Syndrommessungen, reduziert sich der Schwellenwert dadurch auf etwa 1\%. Dennoch ist dieser Wert für moderne Quantenhardware erreichbar, da aktuelle Systeme bereits Fehlerquoten unterhalb dieser Grenze aufweisen. \cite[Seite 13-15]{roffe_quantum_2019} \\
+Ein weiterer kritischer Aspekt ist die Fehlertoleranz (Fault Tolerance) von Quantenfehlerkorrekturverfahren. Dabei geht es nicht nur darum, Fehler im Qubit-Zustand selbst zu erkennen und zu beheben, sondern auch Fehler, die während des Korrekturprozesses auftreten, beispielsweise bei Zwei-Qubit-Gates oder bei der Syndrommessung, korrekt zu behandeln. Eine fehlertolerante Fehlerkorrektur muss gewährleisten, dass sich solche Fehler nicht unkontrolliert ausbreiten. Dies wird beispielsweise durch spezielle Schaltungen, redundante Hilfsqubits (Ancillas) oder wiederholte Messungen über mehrere Zyklen erreicht. Diese zusätzlichen Anforderungen erhöhen jedoch den Ressourcenbedarf erheblich. In realistischen Szenarien, insbesondere bei Surface Codes mit fehlerhaften Syndrommessungen, reduziert sich der Schwellenwert dadurch auf etwa 1\%. Dennoch ist dieser Wert für moderne Quantenhardware erreichbar, da aktuelle Systeme bereits Fehlerquoten unterhalb dieser Grenze aufweisen. vgl. \cite[Seite 13-15]{roffe_quantum_2019} 
 
 \subsection{Auswirkungen von Fehlern auf Quantenalgorithmen und Systemarchitektur}
-Fehler haben tiefgreifende Auswirkungen auf die Funktionsweise von Quantenalgorithmen und die Gestaltung von Quantencomputer-Architekturen. Bereits kleinste Abweichungen durch Umwelteinflüsse oder ungenaue Operationen können den empfindlichen Quantenzustand stören. Solche Störungen zeichnen sich in Form von Dekohärenz, Gate-Fehlern und Messfehlern ab. Besonders kritisch ist die Dekohärenz, also der Verlust von Quantenkohärenz, die essenziell für Superpositions- und Verschränkungszustände ist. Algorithmen, die stark auf Interferenzeffekten beruhen, werden dadurch extrem fehleranfällig. Ein einzelner Fehler kann das gesamte Interferenzmuster zerstören und damit das korrekte Ergebnis verhindern. \cite[Seite 381-385]{nielsen_quantum_2010}\\
+Fehler haben tiefgreifende Auswirkungen auf die Funktionsweise von Quantenalgorithmen und die Gestaltung von Quantencomputer-Architekturen. Bereits kleinste Abweichungen durch Umwelteinflüsse oder ungenaue Operationen können den empfindlichen Quantenzustand stören. Solche Störungen zeichnen sich in Form von Dekohärenz, Gate-Fehlern und Messfehlern ab. Besonders kritisch ist die Dekohärenz, also der Verlust von Quantenkohärenz, die essenziell für Superpositions- und Verschränkungszustände ist. Algorithmen, die stark auf Interferenzeffekten beruhen, werden dadurch extrem fehleranfällig. Ein einzelner Fehler kann das gesamte Interferenzmuster zerstören und damit das korrekte Ergebnis verhindern. vgl. \cite[Seite 381-385]{nielsen_quantum_2010}\medskip
 
-Diese hohe Fehleranfälligkeit wirkt sich direkt auf die algorithmische Struktur aus. Je größer die Schaltungstiefe, also die Anzahl nacheinander geschalteter Operationen, desto wahrscheinlicher treten Fehler auf. Aktuelle Hardware beschränkt die maximale Tiefe daher erheblich. Entwickler müssen daher bereits beim Entwurf von Quantenalgorithmen Strategien zur Fehlertoleranz berücksichtigen. Ein zentrales Konzept in diesem Zusammenhang ist der sogenannte Fehlerschwellenwert (Threshold), der angibt, bis zu welchem Maß an physikalischen Fehlern eine zuverlässige Fehlerkorrektur überhaupt möglich ist  \cite[Seite 293-308]{rieffelQuantumComputingGentle2011a}\\
+Diese hohe Fehleranfälligkeit wirkt sich direkt auf die algorithmische Struktur aus. Je größer die Schaltungstiefe, also die Anzahl nacheinander geschalteter Operationen, desto wahrscheinlicher treten Fehler auf. Aktuelle Hardware beschränkt die maximale Tiefe daher erheblich. Entwickler müssen daher bereits beim Entwurf von Quantenalgorithmen Strategien zur Fehlertoleranz berücksichtigen. Ein zentrales Konzept in diesem Zusammenhang ist der sogenannte Fehlerschwellenwert (Threshold), der angibt, bis zu welchem Maß an physikalischen Fehlern eine zuverlässige Fehlerkorrektur überhaupt möglich ist. vgl. \cite[Seite 293-308]{rieffelQuantumComputingGentle2011a}\medskip
 
-Auch auf der Systemarchitektur wirkt sich die Fehleranfälligkeit massiv aus. Um fehlerhafte physikalische Qubits nutzbar zu machen, werden sie in logische Qubits zusammengefasst, die durch Fehlerkorrekturcodes geschützt sind. Dieser Schritt ist jedoch teuer. Die Anzahl der tatsächlich benötigten physikalischen Qubits steigt exponentiell mit dem Anspruch an Fehlertoleranz. Beispielsweise kann ein logisches Qubit je nach Code und Fehlerrate mehrere hundert oder tausend physikalische Qubits benötigen \cite[Seite 435–437]{nielsen_quantum_2010}\\; \cite[Seite 246-253]{rieffelQuantumComputingGentle2011a}\\
+Auch auf der Systemarchitektur wirkt sich die Fehleranfälligkeit massiv aus. Um fehlerhafte physikalische Qubits nutzbar zu machen, werden sie in logische Qubits zusammengefasst, die durch Fehlerkorrekturcodes geschützt sind. Dieser Schritt ist jedoch teuer. Die Anzahl der tatsächlich benötigten physikalischen Qubits steigt exponentiell mit dem Anspruch an Fehlertoleranz. Beispielsweise kann ein logisches Qubit je nach Code und Fehlerrate mehrere hundert oder tausend physikalische Qubits benötigen. vgl. \cite[Seite 435–437]{nielsen_quantum_2010}; \cite[Seite 246-253]{rieffelQuantumComputingGentle2011a}\medskip
 
 Liegt die effektive Fehlerrate pro Gatteroperation oder Qubit unterhalb dieser Fehlerschwelle, so kann durch wiederholte Korrekturzyklen ein logisch fehlerfreier Zustand aufrechterhalten werden. Wird sie überschritten, kann auch ein noch so ausgeklügelter Fehlerkorrekturcode das System nicht mehr retten.
 
-Die Gestaltung der Quantenhardware und -architektur muss daher darauf ausgerichtet sein, mit einer begrenzten Anzahl physikalischer Qubits möglichst effektive Fehlerresistenz zu gewährleisten. Dazu gehören unter anderen Fehlertolerante Layouts, z.B. zweidimensionale Qubit-Gitter mit lokaler Nachbarschaftsstruktur, die einfache Syndrome-Messung und Korrektur ermöglichen.
-Die konkrete Umsetzung solcher Codes, wie etwa des 9-Qubit Shor-Codes, zeigt, dass verschiedene Arten von Fehlern, wie der Bit-Flip, Phase-Flip und kombinierte Fehler, durch geeignete Verschränkung und Syndrommessung identifiziert und korrigiert werden können. Dies setzt jedoch eine Systemarchitektur voraus, die gezielte Paarung und Interaktion zwischen Qubits erlaubt, was hohe Anforderungen an die Qubit-Konnektivität und Kohärenz stellt.
+Die Gestaltung der Quantenhardware und -architektur muss daher darauf ausgerichtet sein, mit einer begrenzten Anzahl physikalischer Qubits möglichst effektive Fehlerresistenz zu gewährleisten. Dazu gehören unter anderen fehlertolerante Layouts, z.B. zweidimensionale Qubit-Gitter mit lokaler Nachbarschaftsstruktur, die einfache Syndrome-Messung und Korrektur ermöglichen.
+Die konkrete Umsetzung solcher Codes, wie etwa des 9-Qubit Shor-Codes, zeigt, dass verschiedene Arten von Fehlern, wie der Bit-Flip, Phase-Flip und kombinierte Fehler, durch geeignete Verschränkung und Syndrommessung identifiziert und korrigiert werden können. Dies setzt jedoch eine Systemarchitektur voraus, die gezielte Paarung und Interaktion zwischen Qubits erlaubt, was hohe Anforderungen an die Qubit-Konnektivität und Kohärenz stellt.\medskip
 
-Fehler wirken sich aber nicht nur auf die Hardware, sondern auch auf die Softwareebene aus. Quantenalgorithmen müssen so entworfen sein, dass sie entweder robust gegenüber Fehlern sind oder mit reduzierten Ressourcen für Fehlerkorrektur arbeiten. Dafür werden auch softwarebasierte Fehlermitigationstechniken verwendet, etwa die statistische Nachbearbeitung von Messergebnissen oder hybride Strategien, bei denen klassische Optimierung zur Steuerung kurzer Quantenzyklen genutzt wird. \cite[Seite 305-306]{rieffelQuantumComputingGentle2011a}\\
+Fehler wirken sich aber nicht nur auf die Hardware, sondern auch auf die Softwareebene aus. Quantenalgorithmen müssen so entworfen sein, dass sie entweder robust gegenüber Fehlern sind oder mit reduzierten Ressourcen für Fehlerkorrektur arbeiten. Dafür werden auch softwarebasierte Fehlermitigationstechniken verwendet, etwa die statistische Nachbearbeitung von Messergebnissen oder hybride Strategien, bei denen klassische Optimierung zur Steuerung kurzer Quantenzyklen genutzt wird. vgl. \cite[Seite 305-306]{rieffelQuantumComputingGentle2011a}\medskip
 
 Zusammenfassend lässt sich sagen, dass die Fehleranfälligkeit in Quantencomputern kein nachträgliches Problem darstellt, sondern ein grundlegendes Designkriterium auf allen Ebenen. Von der Wahl der Algorithmen über die Anzahl und Anordnung der Qubits bis hin zur Steuerungselektronik. Nur wenn es gelingt, Fehler systematisch zu modellieren, zu korrigieren oder zu umgehen, können Quantencomputer ihr volles Potenzial entfalten.
 
@@ -231,21 +236,21 @@ Im Folgenden werden sechs theoretische Grundprinzipien vorgestellt, die das Fund
 Diese Prinzipien greifen konzeptionell ineinander und schaffen gemeinsam die Voraussetzung dafür, dass selbst bei wiederholtem Auftreten physikalischer Fehler eine stabile und skalierbare Quanteninformationsverarbeitung möglich bleibt.
 
 \subsection{Prinzip der Fehlerkennung ohne Zustandsmessung}
-Eines der zentralen Konzepte der Quanten-Fehlerkorrektur ist, dass man Fehler erkennen kann, ohne die kodierte Quanteninformation zu messen und somit zu zerstören. In klassischen Systemen könnten wir etwa redundante Bitmuster verwenden, um Fehler aufgrund direkter Messung zu erkennen und zu korrigieren. In einem quantenmechanischen System ist es jedoch nicht so einfach möglich, eine Messung durchzuführen, da ein solcher Schritt den Superpositionszustand des Qubits kollabieren ließe und damit die gespeicherte Information unter Umständen irreversibel zerstören könnte. \cite{nielsen_quantum_2010}
+Eines der zentralen Konzepte der Quanten-Fehlerkorrektur ist, dass man Fehler erkennen kann, ohne die kodierte Quanteninformation zu messen und somit zu zerstören. In klassischen Systemen könnten wir etwa redundante Bitmuster verwenden, um Fehler aufgrund direkter Messung zu erkennen und zu korrigieren. In einem quantenmechanischen System ist es jedoch nicht so einfach möglich, eine Messung durchzuführen, da ein solcher Schritt den Superpositionszustand des Qubits kollabieren ließe und damit die gespeicherte Information unter Umständen irreversibel zerstören könnte. Vgl. \cite{nielsen_quantum_2010}
 
-Um das zu umgehen, führt man im Bereich der Quanten-Fehlerkorrektur sogenannte Syndrommessungen durch. Dabei handelt es sich um Messungen, bei denen nicht der Zustand des Qubits direkt gemessen wird, sondern nur Information über das Eintreten von Fehlern. Dieses Prinzip lässt sich mit einer Prüfungsaufsicht vergleichen: Die Aufsicht erkennt zwar, wenn ein Prüfling abschreibt und somit einen Täuschungsversuch begeht. Sie kennt jedoch nicht den Inhalt der Klausur. In der Quantenfehlerkorrektur misst man hierbei den sogenannten Stabilisator-Operator, der zu einem speziellen Quanten-Fehlerkorrekturcode gehört. Diese Operatoren definieren eine Menge erlaubter Zustände – sogenannte +1-Eigenzustände der Stabilizer-Gruppe. Tritt ein Fehler auf, so verändert sich die Eigenwertstruktur des Stabilisators. Ein Wechsel zwischen \(+1\) und \(-1\) ist zum Beispiel ein  Zeichen dafür, dass ein bestimmter Fehler passiert. \cite[Seite 444-446]{nielsen_quantum_2010}
+Um das zu umgehen, führt man im Bereich der Quanten-Fehlerkorrektur sogenannte Syndrommessungen durch. Dabei handelt es sich um Messungen, bei denen nicht der Zustand des Qubits direkt gemessen wird, sondern nur Information über das Eintreten von Fehlern. Dieses Prinzip lässt sich mit einer Prüfungsaufsicht vergleichen: Die Aufsicht erkennt zwar, wenn ein Prüfling abschreibt und somit einen Täuschungsversuch begeht. Sie kennt jedoch nicht den Inhalt der Klausur. In der Quantenfehlerkorrektur misst man hierbei den sogenannten Stabilisator-Operator, der zu einem speziellen Quanten-Fehlerkorrekturcode gehört. Diese Operatoren definieren eine Menge erlaubter Zustände – sogenannte +1-Eigenzustände der Stabilizer-Gruppe. Tritt ein Fehler auf, so verändert sich die Eigenwertstruktur des Stabilisators. Ein Wechsel zwischen \(+1\) und \(-1\) ist zum Beispiel ein  Zeichen dafür, dass ein bestimmter Fehler passiert. Vgl. \cite[Seite 444-446]{nielsen_quantum_2010}
 
-Die Syndrommessung erfolgt in der Praxis meist so, dass man Hilfsqubits (Ancillae) einführt, auf denen man den Stabilisator wirken lässt und so Informationen darüber erhält, was der Stabilizer auf den gekodeten Zustand angewendet hätte, ohne hierbei den gekodeten Zustand zu verändern. So lassen sich ernsthaft Fehler zum Beispiel durch die sogenannten kontrollierten Operatoren auch zu dem Hilfs-Qubit "weiterleiten" und damit dort auslesen. Dabei bleibt die gekodete Quanteninformation erhalten. Man nutzt dies dazu, das sogenannte Fehlersyndrom zu bestimmen um dann gezielt unitäre Korrektur-Operatoren durchzuführen (siehe Kapitel \ref{chap:QEC3}.). \cite[Seite 444-446]{nielsen_quantum_2010}
+Die Syndrommessung erfolgt in der Praxis meist so, dass man Hilfsqubits (Ancillae) einführt, auf denen man den Stabilisator wirken lässt und so Informationen darüber erhält, was der Stabilizer auf den gekodeten Zustand angewendet hätte, ohne hierbei den gekodeten Zustand zu verändern. So lassen sich ernsthaft Fehler zum Beispiel durch die sogenannten kontrollierten Operatoren auch zu dem Hilfs-Qubit "weiterleiten" und damit dort auslesen. Dabei bleibt die gekodete Quanteninformation erhalten. Man nutzt dies dazu, das sogenannte Fehlersyndrom zu bestimmen um dann gezielt unitäre Korrektur-Operatoren durchzuführen (siehe Kapitel \ref{chap:QEC3}.). Vgl. \cite[Seite 444-446]{nielsen_quantum_2010}
 
 Ein Schlüsselelement des fehlertoleranten Quantencomputings ist die Möglichkeit, einen Quantenzustand messen zu können, ohne dass er in seinen Ursprungszustand zu zwei Drittelwahrscheinlichkeit kollabiert. Dank dieser Fähigkeit können Codes konstruiert werden, welche die Integrität von Quanteninformation auch dann noch lange Zeit sicherstellen, wenn wiederkehrende Fehler laufend erkannt und ausgebessert werden.
 
 \subsection{Prinzip der redundanten Informationsverteilung}
 Quanten-Fehlerkorrektur beruht auf zentraler Idee, Quantenzustände vor Fehlern zu schützen, indem Redundanz eingefügt wird. Das bedeutet, ein einzelnes logisches Qubit wird nicht durch ein einziges physikalisches Qubit dargestellt, sondern auf mehrere physikalische Qubits verteilt. Genau durch diese zusätzliche Kodierungskapazität können Fehler eintreten, ohne dass dabei die logische Quanteninformation verloren geht. Ein passendes Beispiel ist eine wichtige Nachricht, die Sie einem Freund dreimal schicken – per E-Mail, per WhatsApp und als Sprachnachricht. Selbst wenn eine Variante verloren geht oder fehlerhaft ist, kann er den Inhalt rekonstruieren. Genauso wird in der Quanten-Fehlerkorrektur ein logisches Qubit auf mehrere physikalische Qubits verteilt, um Fehler zu überstehen.
 
-Im Unterschied zur klassischen Fehlerkorrektur, bei der Redundanz verwendet wird (z.B. dreifache Paritätsbits), muss in der Quantenwelt solch ein Ansatz jedoch mit Bedacht gewählt werden. Denn das No-Cloning-Theorem verhindert, dass man auch einfach unbekannte Quantenzustände duplizieren kann. \cite{nielsen_quantum_2010} Stattdessen wird die Kodierung mithilfe einer kohärenten Verschränkung mehrerer Qubits erreicht, sodass die Quanteninformation nicht in einem einzelnen Qubit, sondern in einem höherdimensionalen Unterraum des Gesamtsystems gespeichert wird.
+Im Unterschied zur klassischen Fehlerkorrektur, bei der Redundanz verwendet wird (z.B. dreifache Paritätsbits), muss in der Quantenwelt solch ein Ansatz jedoch mit Bedacht gewählt werden. Denn das No-Cloning-Theorem verhindert, dass man auch einfach unbekannte Quantenzustände duplizieren kann. Vgl. \cite{nielsen_quantum_2010} Stattdessen wird die Kodierung mithilfe einer kohärenten Verschränkung mehrerer Qubits erreicht, sodass die Quanteninformation nicht in einem einzelnen Qubit, sondern in einem höherdimensionalen Unterraum des Gesamtsystems gespeichert wird.
 
-Ein bekanntes Beispiel ist der Shor-Code, bei dem ein logisches Qubit auf neun physikalische Qubits abgebildet wird. Dieser Code schützt sowohl vor Bit-Flip- als auch vor Phase-Flip-Fehlern, indem er erst eine dreifache Kopie erstellt, um Bit-Flips zu entdecken, dann jede dieser Kopien nochmals mit einer Phase-Flip-Korrektur kodiert. \cite{shor_scheme_1995}
-Ebenso gut ist der Steane-Code, der sieben Qubits zum Darstellen eines logischen Qubits verwendet und den klassischen (7, 4, 3)-Hamming-Code verwendet. \cite{steane_error_1996}
+Ein bekanntes Beispiel ist der Shor-Code, bei dem ein logisches Qubit auf neun physikalische Qubits abgebildet wird. Dieser Code schützt sowohl vor Bit-Flip- als auch vor Phase-Flip-Fehlern, indem er erst eine dreifache Kopie erstellt, um Bit-Flips zu entdecken, dann jede dieser Kopien nochmals mit einer Phase-Flip-Korrektur kodiert. Vgl. \cite{shor_scheme_1995}
+Ebenso gut ist der Steane-Code, der sieben Qubits zum Darstellen eines logischen Qubits verwendet und den klassischen (7, 4, 3)-Hamming-Code verwendet. Vgl. \cite{steane_error_1996}
 
 Mit Hilfe einer solchen Kodierung kann Quanteninformation in einem sogenannten Code-Raum abgelegt werden, der durch eine Gruppe von Stabilisator-Operatoren definiert ist. Tritt ein Fehler auf, so wird der Zustand in einen orthogonalen Unterraum verschoben, der außerhalb des Code-Raums liegt. Dieses Umschichten lässt sich über die Syndrommessung identifizieren – und zwar ohne, dass der ursprüngliche Zustand vermessen wird. Wesentlich ist, dass die Redundanz dabei hilft, Fehler zu lokalisieren und Korrekturoperationen durchzuführen, ohne die Quantenkohärenz zu stören.
 
@@ -254,7 +259,7 @@ Die Redundanz durch Kodierung ist somit die Voraussetzung für alle Quanten-Fehl
 \subsection{Prinzip der Unterscheidbarkeit von Fehlern}
 Ein entscheidendes Konzept in der Quantenfehlerkorrektur ist, dass Fehler auf einfache Weise voneinander unterscheidbar sein müssen. Nur wenn Fehler Zustände auf unterschiedliche Weise beschädigen, hat man eine Chance, festzustellen welcher der Fehler aufgetreten ist, mit dem Ziel diesen gezielt zu korrigieren ohne die Quanteninformation zu verlieren. Stellen Sie sich vor, Sie bekommen zwei Fehlermeldungen auf Ihr Handy - eine lautet "kein Netz", die andere "Flugmodus aktiviert". Nur wenn Sie beide unterscheiden können, wissen Sie, wie Sie das Problem beheben. Wenn beide Fehlermeldungen gleich heißen würden, hätten Sie Schwierigkeiten das Problem zu lösen. 
 
-In der Sprache der Quanteninformatik bedeutet dies, dass die durch Fehler erstellten Zustände orthogonal zueinander sein müssen, beziehungsweise so aufgebaut, dass man durch Messung eines fehlerhaften Zustands auf den Code-Raum schließen kann. Andernfalls besteht die Gefahr, dass Fehler, die zu gleichem Messausgang führen, nicht unterschieden werden können und die Messung zu einer falschen Korrektur und dem Verlust von Information führt. \cite[Seite 449–451]{nielsen_quantum_2010}
+In der Sprache der Quanteninformatik bedeutet dies, dass die durch Fehler erstellten Zustände orthogonal zueinander sein müssen, beziehungsweise so aufgebaut, dass man durch Messung eines fehlerhaften Zustands auf den Code-Raum schließen kann. Andernfalls besteht die Gefahr, dass Fehler, die zu gleichem Messausgang führen, nicht unterschieden werden können und die Messung zu einer falschen Korrektur und dem Verlust von Information führt. Vgl. \cite[Seite 449–451]{nielsen_quantum_2010}
 
 Dieses Konzept wird durch das sogenannte Fehlerkorrekturkriterium mathematisch präzisiert. Für eine Menge von Fehlern \(\left\{E_{i}\right\}\) , die von einem Quantencode korrigiert werden sollen, gilt:
 \begin{equation}
@@ -268,10 +273,10 @@ für alle Zustände \(
 
 Aber aufgepasst: Wenn zwei unterschiedliche Fehler denselben Effekt auf den Code haben – also nicht unterscheidbar sind –, kann keine gezielte Korrektur erfolgen. Die Fähigkeit zur Unterscheidung solcher Fehlerzustände ist also die Voraussetzung für \textit{irgendeine} syndrombasierte Fehlerkorrektur. Nur dadurch können beispielsweise Look-Up-Tabellen oder automatische Fehlerkorrekturmechanismen sicher die \textit{einzig mögliche} Korrektur wählen.
 
-Das Prinzip hat übrigens eine Parallele zur Konstruktion von Stabilizer-Codes, bei denen unterschiedliche Fehler unterschiedliche Syndrommuster hinterlassen. Durch geschickte Wahl der Stabilisatorgruppe kann man erreichen, dass in einem Stabilizer-Code alle Fehler innerhalb der Toleranzgrenze eindeutige Syndrome haben. \cite{gottesmann Stabilizer Codes}
+Das Prinzip hat übrigens eine Parallele zur Konstruktion von Stabilizer-Codes, bei denen unterschiedliche Fehler unterschiedliche Syndrommuster hinterlassen. Durch geschickte Wahl der Stabilisatorgruppe kann man erreichen, dass in einem Stabilizer-Code alle Fehler innerhalb der Toleranzgrenze eindeutige Syndrome haben. Vgl. \cite{gottesman_stabilizer_1997}
 
 \subsection{Prinzip der reversiblen Fehlerkorrektur}
-Ein entscheidendes Prinzip der Quanten-Fehlerkorrektur ist es, dass sämtliche eingesetzten Operationen im Fehlerkorrekturprozess umkehrbar sein müssen. Vergleichbar mit dem Schreiben eines Textes in Word, bei dem Sie über STRG + Z den vorherigen Zustand des Textes wiederherstellen können, sollte ein Fehler auftreten.  In der Quantenmechanik entsprechen sämtliche möglichen zeitlichen Entwicklungen von isolierten Systemen unitären Transformationen – also Operationen, die völlig umkehrbar sind und keine Information vernichten. Diese Forderung gilt es auch für die Fehlerkorrektur durchzusetzen, da eine unwiderrufliche Fehlerkorrektur notwendigerweise den kodierten Quantenzustand zerstören und die Kohärenz der Quanteninformation verlieren würde. \cite[Seite 450-451]{nielsen_quantum_2010}
+Ein entscheidendes Prinzip der Quanten-Fehlerkorrektur ist es, dass sämtliche eingesetzten Operationen im Fehlerkorrekturprozess umkehrbar sein müssen. Vergleichbar mit dem Schreiben eines Textes in Word, bei dem Sie über STRG + Z den vorherigen Zustand des Textes wiederherstellen können, sollte ein Fehler auftreten.  In der Quantenmechanik entsprechen sämtliche möglichen zeitlichen Entwicklungen von isolierten Systemen unitären Transformationen – also Operationen, die völlig umkehrbar sind und keine Information vernichten. Diese Forderung gilt es auch für die Fehlerkorrektur durchzusetzen, da eine unwiderrufliche Fehlerkorrektur notwendigerweise den kodierten Quantenzustand zerstören und die Kohärenz der Quanteninformation verlieren würde. Vgl. \cite[Seite 450-451]{nielsen_quantum_2010}
 
 Anders ausgedrückt: Wenn bei einer Kette von Ereignissen ein Fehler durch das Syndrom erkannt wurde, erfolgt ihre Korrektur durch eine bestimmte, unitäre Operation, welche uns den Fehlerzustand wieder ins Urteil des Codes zurückführt. Ist dieser Zustand erreicht, ist unser Fehler nicht nur korrigiert, sondern auch so, dass wir ihn \textbf{ kohärent rekonstruieren} können – und dies ist für weiteres Quantenrechnen und für fehlerresistente Quantenrechner notwendig.
 
@@ -284,11 +289,11 @@ Die Fehlererkennung und -korrektur insgesamt bildet somit einen Prozess, bei dem
 Darum unterscheidet sich die Quanten-Fehlerkorrektur deutlich z.B. von klassischen Korrekturverfahren, welche nicht unbedingt reversibel sein müssen. In der Quanteninformatik wiederum ist Reversibilität jedoch ein \textbf{fundamentales physikalisches Prinzip}, das sowohl theoretisch als auch bei der Praxis der Implementierung beachtet werden muss.
 
 \subsection{Prinzip der lokalen Fehlerbegrenzung}
-Ein weiteres wichtiges Konzept, das hinter der Quanten-Fehlerkorrektur steckt, ist das der Fehlerlokalisierung. Damit ist gemeint, dass ein aufgetretener Fehler am besten so gefunden und behandelt werden kann, dass er sowohl räumlich als auch logisch eng eingegrenzt ist, und dass seine Folgen sich nicht unkontrolliert über das gesamte System ausbreiten. Ein anschauliches Beispiel für dieses Prinzip ist der Austausch einer defekten Glühbirne in einer Wohnung. Tritt ein Fehler – etwa ein Kurzschluss oder das Durchbrennen einer einzelnen Lampe – auf, betrifft dies lediglich den konkreten Leuchtkörper. Die restliche Stromversorgung bleibt davon unberührt. Die Reparatur kann somit gezielt und lokal erfolgen, ohne dass andere Teile des Systems beeinträchtigt oder untersucht werden müssen. Nur wenn ein Fehler örtlich identifiziert und korrigiert werden kann, ist eine skalierbare und robuste Fehlerkorrektur möglich.\cite[Seite 451-452]{nielsen_quantum_2010}
+Ein weiteres wichtiges Konzept, das hinter der Quanten-Fehlerkorrektur steckt, ist das der Fehlerlokalisierung. Damit ist gemeint, dass ein aufgetretener Fehler am besten so gefunden und behandelt werden kann, dass er sowohl räumlich als auch logisch eng eingegrenzt ist, und dass seine Folgen sich nicht unkontrolliert über das gesamte System ausbreiten. Ein anschauliches Beispiel für dieses Prinzip ist der Austausch einer defekten Glühbirne in einer Wohnung. Tritt ein Fehler – etwa ein Kurzschluss oder das Durchbrennen einer einzelnen Lampe – auf, betrifft dies lediglich den konkreten Leuchtkörper. Die restliche Stromversorgung bleibt davon unberührt. Die Reparatur kann somit gezielt und lokal erfolgen, ohne dass andere Teile des Systems beeinträchtigt oder untersucht werden müssen. Nur wenn ein Fehler örtlich identifiziert und korrigiert werden kann, ist eine skalierbare und robuste Fehlerkorrektur möglich. Vgl. \cite[Seite 451-452]{nielsen_quantum_2010}
 
 Fehler können in einem Quantencomputer verschiedene Ursprünge haben – z. B. Dekohärenz, Wechselwirkung mit der Umwelt oder Fehler bei Gates. Nach dem Prinzip der Fehlerlokalisierung sollte jeder dieser Fehler anfänglich lediglich eine begrenzte Anzahl physikalischer Qubits beeinflussen. Diese Voraussetzung soll es ermöglichen, mittels sogenannter Syndrommessungen zu erkennen, wo ein Fehler aufgetreten ist, ohne dabei den globalen Quantenzustand zu zerstören.
 
-Dieses Konzept ist eng mit der Verwendung sogenannter lokaler Fehlerkorrektur-Codes wie z. B. topologischen Codes wie dem Surface Code verbunden. Bei diesen Codes sind die Qubits in einer regelmäßigen, zweidimensionalen Gitteranordnung angeordnet, bei der jeder Stabilizer-Operator nur Qubits betrachtet, die benachbart sind. Ein auftretender Fehler produziert ein lokales Syndrom, das sich aus den Nachbarn des fehlerhaften Qubits ergibt. Dadurch kann der Fehler nicht nur gefunden, sondern auch eingegrenzt und so gezielt korrigiert werden. \cite{fFowler_surface_2012 et al}
+Dieses Konzept ist eng mit der Verwendung sogenannter lokaler Fehlerkorrektur-Codes wie z. B. topologischen Codes wie dem Surface Code verbunden. Bei diesen Codes sind die Qubits in einer regelmäßigen, zweidimensionalen Gitteranordnung angeordnet, bei der jeder Stabilizer-Operator nur Qubits betrachtet, die benachbart sind. Ein auftretender Fehler produziert ein lokales Syndrom, das sich aus den Nachbarn des fehlerhaften Qubits ergibt. Dadurch kann der Fehler nicht nur gefunden, sondern auch eingegrenzt und so gezielt korrigiert werden. Vgl. \cite{fowler_surface_2012}
 
 Insbesondere für große, skalierbare Quantenrechner ist die Fähigkeit zur Fehlerlokalisierung essentiell: Denn ohne diese müssten sämtliche Qubits miteinander verschränkt und abgefragt werden, was einen exponentiellen Kontroll- und Ressourcenaufwand bedeuten würde. Bei lokalisierbaren Fehlern hingegen können lineare oder sogar konstante Skalierungsstrategien verfolgt werden – wodurch fehlertolerante Quantencomputer in greifbare Nähe rücken.
 
@@ -297,7 +302,7 @@ Zusammengefasst: Fehlerlokalisierung sorgt dafür, dass weder einzelne Fehler de
 \subsection{Fehlerschwellenprinzip (Threshhold Theorem)}
 Ein fundamentaler Mechanismus, um fehlertolerante Quantencomputer auch technisch umsetzen zu können, ist das Fehlerschwellenprinzip. Dieses besagt, dass sich Quanten-Fehlerkorrektur auf lange Sicht nur dann lohnt, wenn bei den einzelnen Qubits und Operationen die Wahrscheinlichkeit eines physikalischen Fehlers unter einem bestimmten Schwellenwert liegt, der als Fehlerschwelle bezeichnet wird. Wird die Schwelle unterschritten, so können beliebig exakte Rechnungen dadurch durchgeführt werden, dass man die Fehlerkorrektur immer wieder einsetzt – selbst wenn fortwährend physikalische Fehler passieren. Ein anschauliches Beispiel für dieses Prinzip liefert der Alltag mit technischen Geräten: Ein Smartphone, das nur einmal pro Monat abstürzt, bleibt in der Regel gut nutzbar. Tritt der Fehler hingegen alle fünf Minuten auf, wird das Gerät praktisch unbrauchbar – selbst wenn die Software grundsätzlich korrekt arbeitet. Es gibt also eine kritische Grenze, ab der die Häufigkeit der Fehler das Systemverhalten dominiert und keine sinnvolle Nutzung mehr möglich ist.\cite[Seite 454-456]{nielsen_quantum_2010}
 
-Dieses Prinzip wurde im Rahmen des Threshold Theorems auch rigoros bewiesen \cite{aharonov_fault-tolerant_1997}. Das Theorem besagt, dass bei einer hinreichend kleinen Fehlerrate jedes Quanten-Computing mit beliebiger Genauigkeit durchgeführt werden kann – vorausgesetzt, es gibt genügend Redundanz und Korrekturschritte. Oder anders ausgedrückt: wenn Fehler selten genug und die Möglichkeit zur Fehlerkorrektur groß genug sind, dann können Fehler „überlebt“ werden.
+Dieses Prinzip wurde im Rahmen des Threshold Theorems auch rigoros bewiesen Vgl. \cite{aharonov_fault-tolerant_1997}. Das Theorem besagt, dass bei einer hinreichend kleinen Fehlerrate jedes Quanten-Computing mit beliebiger Genauigkeit durchgeführt werden kann – vorausgesetzt, es gibt genügend Redundanz und Korrekturschritte. Oder anders ausgedrückt: wenn Fehler selten genug und die Möglichkeit zur Fehlerkorrektur groß genug sind, dann können Fehler „überlebt“ werden.
 
 Der genaue Wert der Fehlerschwelle hängt vom gewählten Code, der Architektur und der Art der Fehler ab. Er beträgt typischerweise  Wert zwischen \(
     10^{-4}
@@ -325,8 +330,7 @@ konzentrieren wir uns darauf, wie sie in ersten, einfachen Fehlerkorrekturcodes
 praktisch angewendet werden. Diese Codes verdeutlichen die grundlegende Idee,
 logische Information durch Kodierung über mehrere physikalische Qubits und durch
 Syndrommessungen zu schützen.
-Erste historische Codes demonstrieren diese Prinzipien exemplarisch. Insbesondere betrachten wir den Shor-Code (9-Qubit-Code) und den Steane-Code (7-Qubit-Code) als frühe Beispiele, sowie den einfachen 3-Qubit-Code, um die Funktionsweise und mathematischen Grundlagen der QEC zu verdeutlichen.
-\cite[Seite 427-430]{nielsen_quantum_2010}
+Erste historische Codes demonstrieren diese Prinzipien exemplarisch. Insbesondere betrachten wir den Shor-Code (9-Qubit-Code) und den Steane-Code (7-Qubit-Code) als frühe Beispiele, sowie den einfachen 3-Qubit-Code, um die Funktionsweise und mathematischen Grundlagen der QEC zu verdeutlichen (vgl.~\cite[Seite 427-430]{nielsen_quantum_2010}).
 \medskip
 \paragraph{3-Qubit-Wiederholungscode (Bit-Flip Code):}
 Als einfachstes Beispiel dient der 3-Qubit-Wiederholungscode, der gegen Bit-Flips schützt. Hier wird ein logisches Qubit auf drei physische Qubits verteilt, z.\,B.
@@ -335,8 +339,7 @@ Als einfachstes Beispiel dient der 3-Qubit-Wiederholungscode, der gegen Bit-Flip
 \]
 Durch diese Redundanz kann ein einzelner Bitfehler erkannt werden, ohne den Logikzustand direkt zu messen. Man misst dazu sogenannte Paritätsoperatoren (Stabilisatoren), die nur verraten, ob unter den drei Qubits ein Ungleichgewicht vorliegt, aber nicht, was das logische Bit ist. Konkret prüft man, ob alle drei Qubits gleich sind (\(\lvert 000 \rangle\) oder \(\lvert 111 \rangle\)) oder ob eines abweicht. Diese Syndrommessungen liefern einen Fehlerindikator (z.\,B. welches Qubit anders ist), ohne die Superposition zu zerstören. Anschließend kann durch eine entsprechende Pauli-\(X\)-Operation der Fehler rückgängig gemacht werden.
 
-Der 3-Qubit-Code illustriert somit die Prinzipien der Fehlererkennung und -korrektur: Die Fehler sind durch orthogonale Syndrome unterscheidbar, und die Korrekturoperation (Bit-Flip auf dem identifizierten fehlerhaften Qubit) stellt den ursprünglichen Zustand wieder her (Reversibilität). Allerdings kann dieser einfache Code nur einen Bit-Flip-Fehler korrigieren und versagt, falls zwei oder mehr Qubits gleichzeitig flippen.
-\cite[Seite 430-431]{nielsen_quantum_2010}
+Der 3-Qubit-Code illustriert somit die Prinzipien der Fehlererkennung und -korrektur: Die Fehler sind durch orthogonale Syndrome unterscheidbar, und die Korrekturoperation (Bit-Flip auf dem identifizierten fehlerhaften Qubit) stellt den ursprünglichen Zustand wieder her (Reversibilität). Allerdings kann dieser einfache Code nur einen Bit-Flip-Fehler korrigieren und versagt, falls zwei oder mehr Qubits gleichzeitig flippen (vgl.~\cite[Seite 430-431]{nielsen_quantum_2010}).
 
 \begin{center}
   \includegraphics[width=0.75\linewidth]{images/error-correction/Abb1_BitFlipCode_1.png}
@@ -353,8 +356,7 @@ Der 3-Qubit-Code illustriert somit die Prinzipien der Fehlererkennung und -korre
 
 Die Funktionsweise des 3-Qubit-Bitflip-Codes ist in Abbildung~\ref{fig:bitflipcode} dargestellt.
 Der obere Teil zeigt die Kodierung eines logischen Qubits auf drei physikalische Qubits mit Hilfe von CNOT-Gattern.
-Darunter ist der vollständige Fehlerkorrekturzyklus schematisch zusammengefasst: von der Kodierung über die Fehlererkennung (Syndrommessung) bis zur gezielten Korrektur.
-Vgl.\ \cite[8]{devitt_quantum_2013}.
+Darunter ist der vollständige Fehlerkorrekturzyklus schematisch zusammengefasst: von der Kodierung über die Fehlererkennung (Syndrommessung) bis zur gezielten Korrektur (vgl.~\cite[8]{devitt_quantum_2013}).
 
 \paragraph{3-Qubit-Wiederholungscode (Phasenflip-Code):}\label{chap:QEC1.4}
 
@@ -374,16 +376,14 @@ Diesen Zusammenhang macht man sich zunutze, indem man einen Bitflip-Code in der 
 \[
 |0_L\rangle = |+++\rangle, \quad |1_L\rangle = |---\rangle
 \]
-Ein einzelner Phasenfehler auf einem der drei Qubits kehrt den lokalen Zustand von \(|+\rangle\) zu \(|-\rangle\) um (oder umgekehrt), wodurch mithilfe von Paritätsmessungen (Syndromen) analog zum klassischen Wiederholungscode erkannt werden kann, welches Qubit betroffen ist. Eine anschließende \(Z\)-Operation korrigiert den Fehler, ohne die Superposition zu zerstören. \cite[430-431]{nielsen_quantum_2010} \cite[4]{devitt_quantum_2013}\\
+Ein einzelner Phasenfehler auf einem der drei Qubits kehrt den lokalen Zustand von \(|+\rangle\) zu \(|-\rangle\) um (oder umgekehrt), wodurch mithilfe von Paritätsmessungen (Syndromen) analog zum klassischen Wiederholungscode erkannt werden kann, welches Qubit betroffen ist. Eine anschließende \(Z\)-Operation korrigiert den Fehler, ohne die Superposition zu zerstören (vgl.~\cite[430-431]{nielsen_quantum_2010} \cite[4]{devitt_quantum_2013}).
 
 \paragraph{Shor-Code (9-Qubit-Code):}
 
 Peter Shor entwickelte 1995 den ersten Quantenfehlerkorrekturcode, der in der Lage ist, beliebige Ein-Qubit-Fehler zu korrigieren – also sowohl Bit-Flips (\(X\)), Phasen-Flips (\(Z\)) als auch Kombinationen davon (\(Y = iXZ\)). Der sogenannte Shor-Code kombiniert zwei einfache Schutzprinzipien: eines gegen Bitfehler und eines gegen Phasenfehler.
 
-\medskip
-
 Das Grundprinzip besteht darin, ein einzelnes logisches Qubit auf \textbf{neun physikalische Qubits} zu verteilen. Dazu wird zunächst ein \textbf{Bit-Flip-Code} angewendet, der das Qubit dreifach wiederholt: \( |\psi\rangle \mapsto |\psi\rangle |\psi\rangle |\psi\rangle \). Das schützt gegen Bitfehler, also versehentliches Umdrehen von 0 zu 1 oder umgekehrt.
-Anschließend wird jeder dieser drei Pfade durch ein \textbf{Hadamard-Gatter (\(H\))} in eine Superposition überführt. Danach folgt erneut eine dreifache Wiederholung – diesmal entlang der Zeilen. So entsteht ein Zustand, der gleichzeitig vor Phasenflips schützt. \cite[10-11]{devitt_quantum_2013}
+Anschließend wird jeder dieser drei Pfade durch ein \textbf{Hadamard-Gatter (\(H\))} in eine Superposition überführt. Danach folgt erneut eine dreifache Wiederholung – diesmal entlang der Zeilen. So entsteht ein Zustand, der gleichzeitig vor Phasenflips schützt (vgl.~\cite[10-11]{devitt_quantum_2013}).
 Die folgende Abbildung zeigt diesen Aufbau schematisch:
 
 \begin{center}
@@ -391,7 +391,7 @@ Die folgende Abbildung zeigt diesen Aufbau schematisch:
 
     \vspace{0.5em}
 
-    \par\noindent\textbf{Abbildung 1.4.1:} Vorbereitung des Shor-Codes auf neun physikalischen Qubits. Zunächst erfolgt eine dreifache Wiederholung des Eingangszustands mithilfe von CNOT-Gattern. Anschließend wird auf jedem der drei Pfade ein Hadamard-Gatter \(H\) angewendet, das den Zustand in eine Superposition überführt. Danach folgt erneut eine dreifache Wiederholung (pro Zeile), um die Zustände \(|000\rangle \pm |111\rangle\) zu erzeugen. \cite[10]{devitt_quantum_2013}
+    \par\noindent\textbf{Abbildung 1.4.1:} Vorbereitung des Shor-Codes auf neun physikalischen Qubits. Zunächst erfolgt eine dreifache Wiederholung des Eingangszustands mithilfe von CNOT-Gattern. Anschließend wird auf jedem der drei Pfade ein Hadamard-Gatter \(H\) angewendet, das den Zustand in eine Superposition überführt. Danach folgt erneut eine dreifache Wiederholung (pro Zeile), um die Zustände \(|000\rangle \pm |111\rangle\) zu erzeugen (vgl.~\cite[10]{devitt_quantum_2013})
 \end{center}
 
 \medskip
@@ -404,17 +404,14 @@ Formal lassen sich die kodierten logischen Zustände wie folgt schreiben:
 |1_L\rangle &= \frac{1}{\sqrt{8}} (|000\rangle - |111\rangle)(|000\rangle - |111\rangle)(|000\rangle - |111\rangle)
 \end{aligned}
 \]
-
-\cite[10]{devitt_quantum_2013}
-
-\medskip
+vgl.~\cite[10]{devitt_quantum_2013}
 
 Die Struktur ist dabei wie folgt aufgebaut: Jeder der drei Blöcke (je drei Qubits) bildet eine Superposition aus \(|000\rangle\) und \(|111\rangle\). Diese Superposition ist entweder additiv (für \(|0_L\rangle\)) oder subtraktiv (für \(|1_L\rangle\)). Dadurch entsteht ein verschränkter Gesamtzustand, der sowohl Bit- als auch Phasenfehler sichtbar macht.
-Fehlererkennung erfolgt durch Messung sogenannter \textbf{Stabilisatoren} – das sind spezielle Operatoren, die Auskunft darüber geben, ob und wo ein Fehler aufgetreten ist, ohne den gespeicherten Zustand direkt zu zerstören. So bewirkt etwa ein Phasenfehler in einem Block den Wechsel von \(|000\rangle + |111\rangle\) zu \(|000\rangle - |111\rangle\), was sich im Vorzeichen niederschlägt. Diese Änderung kann durch Syndrommessungen erkannt und der Fehler durch gezielte Anwendung eines Pauli-Operators (\(X\) oder \(Z\)) korrigiert werden. \cite[432-433]{nielsen_quantum_2010}
+Fehlererkennung erfolgt durch Messung sogenannter \textbf{Stabilisatoren} – das sind spezielle Operatoren, die Auskunft darüber geben, ob und wo ein Fehler aufgetreten ist, ohne den gespeicherten Zustand direkt zu zerstören. So bewirkt etwa ein Phasenfehler in einem Block den Wechsel von \(|000\rangle + |111\rangle\) zu \(|000\rangle - |111\rangle\), was sich im Vorzeichen niederschlägt. Diese Änderung kann durch Syndrommessungen erkannt und der Fehler durch gezielte Anwendung eines Pauli-Operators (\(X\) oder \(Z\)) korrigiert werden (vgl.~\cite[432-433]{nielsen_quantum_2010}).
 
-Da ein \(Y\)-Fehler eine Kombination von \(X\)- und \(Z\)-Fehler ist, genügt es, beide Einzelfehlerarten behandeln zu können. Der Shor-Code erfüllt diese Anforderung und besitzt die Parameter \([[9, 1, 3]]\): Er kodiert ein logisches Qubit in neun physikalische und kann bis zu zwei Fehler erkennen – sowie einen davon zuverlässig korrigieren.\cite[10-11]{devitt_quantum_2013}
+Da ein \(Y\)-Fehler eine Kombination von \(X\)- und \(Z\)-Fehler ist, genügt es, beide Einzelfehlerarten behandeln zu können. Der Shor-Code erfüllt diese Anforderung und besitzt die Parameter \([[9, 1, 3]]\): Er kodiert ein logisches Qubit in neun physikalische und kann bis zu zwei Fehler erkennen – sowie einen davon zuverlässig korrigieren (vgl.~\cite[10-11]{devitt_quantum_2013})
 
-Auch wenn der Code praktisch aufwendig ist, markiert er einen Meilenstein der Quanteninformationsverarbeitung: Er bewies erstmals, dass sich Quanteninformation durch geschickte Kodierung und nicht-destruktive Messung grundsätzlich vor Fehlern schützen lässt. \cite[Seite 432–434]{nielsen_quantum_2010}\\
+Auch wenn der Code praktisch aufwendig ist, markiert er einen Meilenstein der Quanteninformationsverarbeitung: Er bewies erstmals, dass sich Quanteninformation durch geschickte Kodierung und nicht-destruktive Messung grundsätzlich vor Fehlern schützen lässt (vgl.~\cite[Seite 432–434]{nielsen_quantum_2010})
 
 \paragraph{Steane-Code (7-Qubit-Code):}
 
@@ -442,9 +439,8 @@ Die Zustände \(|0_L\rangle\) und \(|1_L\rangle\) bestehen aus Superpositionen s
   \item Die Bitfolgen erfüllen bestimmte Paritätsbedingungen und sind so konstruiert, dass man bei einem einzelnen Bitflip noch erkennen kann, welches Bit betroffen ist.
   \item Durch die Überlagerung mehrerer solcher gültiger Codewörter (Superposition) entsteht ein Quantenfehlerkorrekturcode, der sowohl Bit- als auch Phasenfehler erkennen kann.
 \end{itemize}
-Diese scheinbar komplizierten Muster sind also notwendig, um mit nur sieben Qubits vollständige Ein-Qubit-Fehlerkorrektur zu ermöglichen.
-\cite[12]{devitt_quantum_2013}
-\medskip
+Diese scheinbar komplizierten Muster sind also notwendig, um mit nur sieben Qubits vollständige Ein-Qubit-Fehlerkorrektur zu ermöglichen (vgl.~\cite[12]{devitt_quantum_2013}).
+
 \paragraph{Ausblick auf fortgeschrittene Codes:}
 
 Die bisher vorgestellten Codes – wie der Drei-Qubit-Code, der Shor-Code und der Steane-Code – zeigen, wie sich einzelne Bit- oder Phasenfehler gezielt erkennen und korrigieren lassen. Während sie bereits vollständige Quantenfehlerkorrektur auf einem logischen Qubit ermöglichen, stoßen sie bei wachsender Qubit-Anzahl und praktischer Realisierung an ihre Grenzen.
@@ -457,34 +453,31 @@ Der Oberflächencode basiert auf einem zweidimensionalen Gitter aus physikalisch
 
 Man kann sich die Struktur wie ein Schachbrett vorstellen: Die Daten-Qubits liegen auf Kanten des Gitters, während die Mess-Qubits zwischen ihnen positioniert sind. Diese Mess-Qubits überwachen jeweils vier benachbarte Daten-Qubits. Dabei gibt es zwei Typen von Stabilizer-Operatoren:
 \begin{itemize}
-  \item \textbf{\(Z\)-Stabilizer} (auch \emph{Plaquette-Operatoren}\footnote{Plaquettes bezeichnen kleine quadratische Flächen im Gitter. Ein \(Z\)-Stabilizer wirkt auf die vier Daten-Qubits an den Ecken einer solchen Plaquette und erkennt Bitfehler.}) überprüfen die Parität in Bezug auf Bit-Flip-Fehler.
-  \item \textbf{\(X\)-Stabilizer} (auch \emph{Stern-Operatoren}\footnote{Stern-Operatoren wirken auf die vier Daten-Qubits, die an einem Gitterpunkt zusammenlaufen, und erkennen Phasenfehler.}) erkennen Phasenfehler.
-\end{itemize}
-\cite[677]{google_quantum_ai_suppressing_2023}
-\cite[28]{devitt_quantum_2013}
+  \item \textbf{\(Z\)-Stabilizer} (auch \emph{Plaquette-Operatoren}\footnote{Plaquettes bezeichnen kleine quadratische Flächen im Gitter. Ein \(Z\)-Stabilizer wirkt auf die vier Daten-Qubits an den Ecken einer solchen Plaquette und erkennt Bitfehler.}) überprüfen die Parität in Bezug auf Bit-Flip-Fehler
+  \item \textbf{\(X\)-Stabilizer} (auch \emph{Stern-Operatoren}\footnote{Stern-Operatoren wirken auf die vier Daten-Qubits, die an einem Gitterpunkt zusammenlaufen, und erkennen Phasenfehler.}) erkennen Phasenfehler
+\end{itemize} (vgl.~\cite[677]{google_quantum_ai_suppressing_2023} \cite[28]{devitt_quantum_2013}).
 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\linewidth]{images/error-correction/Abb4_Oberflaechencode_1.png}
-    \caption{Stabilisatorstruktur eines 2D-Oberflächen-Codes. Gelbe Kreise repräsentieren Daten-Qubits. Graue Kreise stehen für Mess-Bits, die jeweils auf vier benachbarte Daten-Qubits wirken: Z-Stabilisatoren (blau) erkennen Bit-Flip-Fehler, X-Stabilisatoren (rot) erkennen Phasenfehler \cite{higgot2023}).}
+    \caption{Stabilisatorstruktur eines 2D-Oberflächen-Codes. Gelbe Kreise repräsentieren Daten-Qubits. Graue Kreise stehen für Mess-Bits, die jeweils auf vier benachbarte Daten-Qubits wirken: Z-Stabilisatoren (blau) erkennen Bit-Flip-Fehler, X-Stabilisatoren (rot) erkennen Phasenfehler (vgl.~\cite{higgott_improved_2023}).}
     \label{fig:oberflaechencode-stabilisatoren}
 \end{figure}
-
 
 \paragraph{Syndrommessung und Fehlererkennung:}
 
 Die Fehlerkorrektur erfolgt zyklisch. In jedem Zyklus werden alle \(X\)- und \(Z\)-Stabilizer gemessen. Dazu wird jedes Mess-Qubit mit den vier zugehörigen Daten-Qubits durch eine Reihe kontrollierter Gatter verschränkt, z.\,B. mit CNOT-Operationen. Nach dieser Verschaltung enthält das Mess-Qubit die Paritätsinformation: Bei \(Z\)-Stabilizern etwa, ob eine gerade oder ungerade Anzahl von \( |1\rangle \)-Zuständen in der Gruppe vorliegt. Anschließend wird das Mess-Qubit gemessen – in der \(Z\)-Basis für \(Z\)-Stabilizer und in der \(X\)-Basis für \(X\)-Stabilizer.
 
-Das Ergebnis der Messung – 0 (Eigenwert \(+1\)) oder 1 (Eigenwert \(-1\)) – wird als \emph{Syndrom-Bit} bezeichnet. Es zeigt an, ob sich seit der letzten Messung ein Fehler ereignet hat. Wichtig ist: Diese Messungen beeinflussen den logischen Zustand nicht. Sie liefern nur Informationen über potenzielle Fehler, ohne die kodierte Quanteninformation direkt zu zerstören. \cite[5-6]{fowler_surface_2012}\\
+Das Ergebnis der Messung – 0 (Eigenwert \(+1\)) oder 1 (Eigenwert \(-1\)) – wird als \emph{Syndrom-Bit} bezeichnet. Es zeigt an, ob sich seit der letzten Messung ein Fehler ereignet hat. Wichtig ist: Diese Messungen beeinflussen den logischen Zustand nicht. Sie liefern nur Informationen über potenzielle Fehler, ohne die kodierte Quanteninformation direkt zu zerstören (vgl.~\cite[5-6]{fowler_surface_2012}).
 
 \paragraph{Decodierung und Fehlerlokalisierung:}
 
-Die Menge aller Syndrom-Bits ergibt ein \emph{Syndrommuster}, aus dem auf die wahrscheinlichsten Fehler geschlossen werden kann. Ein einzelner Bitfehler an einem Daten-Qubit führt typischerweise dazu, dass zwei benachbarte \(Z\)-Stabilizer von 0 auf 1 wechseln. Analog dazu führt ein Phasenfehler zu Abweichungen bei zwei benachbarten \(X\)-Stabilizern. \cite[7]{fowler_surface_2012}
+Die Menge aller Syndrom-Bits ergibt ein \emph{Syndrommuster}, aus dem auf die wahrscheinlichsten Fehler geschlossen werden kann. Ein einzelner Bitfehler an einem Daten-Qubit führt typischerweise dazu, dass zwei benachbarte \(Z\)-Stabilizer von 0 auf 1 wechseln. Analog dazu führt ein Phasenfehler zu Abweichungen bei zwei benachbarten \(X\)-Stabilizern (vgl.~\cite[7]{fowler_surface_2012}).
 
-Diese lokalen Muster bilden die Grundlage für die sogenannte \emph{Decodierung}: Ein Algorithmus analysiert die Verteilung der Fehlerhinweise und rekonstruiert den wahrscheinlichsten Fehlerpfad. Häufig wird dazu ein Graph aufgebaut, in dem Syndromabweichungen als Knoten erscheinen. Der Decoder sucht dann eine möglichst kurze Verbindung dieser Knoten – z.\,B. mithilfe eines Minimum-Weight-Perfect-Matching-Algorithmus. \cite[10-11]{fowler_surface_2012}
+Diese lokalen Muster bilden die Grundlage für die sogenannte \emph{Decodierung}: Ein Algorithmus analysiert die Verteilung der Fehlerhinweise und rekonstruiert den wahrscheinlichsten Fehlerpfad. Häufig wird dazu ein Graph aufgebaut, in dem Syndromabweichungen als Knoten erscheinen. Der Decoder sucht dann eine möglichst kurze Verbindung dieser Knoten – z.\,B. mithilfe eines Minimum-Weight-Perfect-Matching-Algorithmus (vgl.~\cite[10-11]{fowler_surface_2012}).
 
-Da auch Messungen fehlerhaft sein können, betrachtet man oft mehrere Zyklen hintereinander und baut einen 3D-Graphen mit der Zeitachse als dritter Dimension. Inkonstistente Syndrome über die Zeit hinweg deuten dann auf Messfehler hin. \cite[2]{10.1145/3676641.3716005}\\
+Da auch Messungen fehlerhaft sein können, betrachtet man oft mehrere Zyklen hintereinander und baut einen 3D-Graphen mit der Zeitachse als dritter Dimension. Inkonstistente Syndrome über die Zeit hinweg deuten dann auf Messfehler hin (vgl.~\cite[2]{wu_micro_2025}).
 
 \paragraph{Korrekturoperation:}
 
@@ -492,7 +485,7 @@ Nach der Decodierung steht eine Hypothese über die Art und Position der Fehler 
 
 In der Praxis verwendet man häufig stattdessen ein sogenanntes \emph{Pauli-Frame}\footnote{Ein Pauli-Frame ist ein rein klassisches Register, in dem alle erkannten Fehler notiert werden. Die tatsächliche physische Korrektur wird dadurch vermieden und stattdessen bei der Interpretation der Messdaten berücksichtigt. So spart man potenziell fehleranfällige Operationen.}. Dabei wird die Fehlerinformation nicht physisch korrigiert, sondern nur logisch „mitgeführt“ und am Ende beim Auslesen berücksichtigt. Das spart Ressourcen und reduziert zusätzliche Fehlerquellen.
 
-Nach Abschluss eines Fehlerkorrekturzyklus beginnt sofort der nächste – denn in einem realen Quantencomputer können ständig neue Fehler auftreten. Die kontinuierliche Wiederholung des Zyklus ermöglicht daher langfristig stabile und fehlertolerante Quanteninformation.\\
+Nach Abschluss eines Fehlerkorrekturzyklus beginnt sofort der nächste – denn in einem realen Quantencomputer können ständig neue Fehler auftreten. Die kontinuierliche Wiederholung des Zyklus ermöglicht daher langfristig stabile und fehlertolerante Quanteninformation.
 
 \paragraph{Einfacher Überblick: So funktioniert ein Fehlerkorrekturzyklus im Oberflächencode}Damit ein Quantencomputer trotz fehleranfälliger Qubits zuverlässig funktioniert, wird in kurzen Abständen automatisch überprüft, ob Fehler aufgetreten sind. Der Ablauf sieht dabei so aus:
 
@@ -515,10 +508,10 @@ Nach Abschluss eines Fehlerkorrekturzyklus beginnt sofort der nächste – denn 
 
 \subsection{Aktuelle H\"urden und was die Zukunft bringt}\label{chap:QEC3.3}
 
-Trotz erster erfolgreicher Implementierungen steht die Quantenfehlerkorrektur (QEC) noch am Anfang ihrer praktischen Nutzbarkeit. Der Weg zu einem fehlertoleranten Quantencomputer ist gepflastert mit technischen und konzeptionellen Herausforderungen. In diesem Abschnitt beleuchten wir die zentralen H\"urden und geben einen Ausblick auf vielversprechende Entwicklungen.\\
+Trotz erster erfolgreicher Implementierungen steht die Quantenfehlerkorrektur (QEC) noch am Anfang ihrer praktischen Nutzbarkeit. Der Weg zu einem fehlertoleranten Quantencomputer ist gepflastert mit technischen und konzeptionellen Herausforderungen. In diesem Abschnitt beleuchten wir die zentralen H\"urden und geben einen Ausblick auf vielversprechende Entwicklungen.
 
 \paragraph{Qubit-Qualit\"at und Fehlerschwellen} 
-Ein zentrales Problem ist die Qualit\"at der physikalischen Qubits selbst. Quantenfehlerkorrektur wirkt nur, wenn die zugrunde liegenden Fehlerraten hinreichend niedrig sind. Theoretisch existiert eine Fehlerschwelle, unterhalb derer Redundanz die Zuverl\"assigkeit erh\"oht\footnote{Siehe das Threshold-Theorem in Abschnitt~\ref{chap:QEC2}}. Praktisch liegt diese Schwelle typischerweise bei Fehlerraten $\lesssim 10^{-3}$. Viele Architekturen, wie supraleitende Qubits oder Ionenfallen, erreichen in Labordemonstrationen bereits zweiqubit-Gates mit Fehlerraten im niedrigen Promillebereich, was vielversprechend ist. \cite{Quantinuum announces a world record in fidelity for quantum computing qubits} Doch um lange Quantenalgorithmen (z.B. Faktorisierung mit Shor bei $n=2048$) fehlerfrei auszuf\"uhren, m\"ussen logische Qubits \emph{stundenlang} koh\"arent bleiben -- ein Ziel, das nur mit sehr stabilen physikalischen Qubits erreichbar ist. \cite{10.22331/q-2021-04-15-433}.\\
+Ein zentrales Problem ist die Qualit\"at der physikalischen Qubits selbst. Quantenfehlerkorrektur wirkt nur, wenn die zugrunde liegenden Fehlerraten hinreichend niedrig sind. Theoretisch existiert eine Fehlerschwelle, unterhalb derer Redundanz die Zuverl\"assigkeit erh\"oht\footnote{Siehe das Threshold-Theorem in Abschnitt~\ref{chap:QEC2}}. Praktisch liegt diese Schwelle typischerweise bei Fehlerraten $\lesssim 10^{-3}$. Viele Architekturen, wie supraleitende Qubits oder Ionenfallen, erreichen in Labordemonstrationen bereits zweiqubit-Gates mit Fehlerraten im niedrigen Promillebereich, was vielversprechend ist (vgl.~\cite{noauthor_quantinuum_2022}). Doch um lange Quantenalgorithmen (z.B. Faktorisierung mit Shor bei $n=2048$) fehlerfrei auszuf\"uhren, m\"ussen logische Qubits \emph{stundenlang} koh\"arent bleiben -- ein Ziel, das nur mit sehr stabilen physikalischen Qubits erreichbar ist (vgl.~\cite{gidney_how_2021}).
 
 \paragraph{Massiver Qubit-Overhead}
 Der immense Ressourcenbedarf ist eine der größten Hürden der Fehlerkorrektur. 
@@ -533,30 +526,29 @@ Heutige Quantenprozessoren umfassen jedoch erst wenige Hundert bis einige Tausen
 die Skalenlücke ist also noch immens. Zudem bringt jeder weitere Qubit rein 
 ingenieurtechnische Herausforderungen mit sich: Komplexe Verkabelung, 
 ständige Kalibrierung und das thermische Management müssen für jedes einzelne 
-Qubit gewährleistet werden.\\
+Qubit gewährleistet werden.
 
 \paragraph{Technische Limitierungen bei Kryogenik und Auslese}
-Besonders supraleitende Systeme m\"ussen bei 10--20\,mK betrieben werden. Hier stoßen Forscher schnell an Grenzen: Die K\"uhlung gro\ss er Quantenprozessoren erfordert aufw\"andige Verd\"unnungsk\"uhler \emph{(dilution refrigerators)}, und die Zahl der nach innen f\"uhrenden Kabel wird schnell zum Flaschenhals.  Auch die Kontrolle \"uber klassische Elektronik ist herausfordernd: Steuereinheiten befinden sich oft au\ss erhalb des K\"uhlsystems und m\"ussen mit tausenden Kan\"alen kommunizieren -- ein thermisches und technisches Problem. \cite[1]{https://doi.org/10.1140/epjqt/s40507-019-0072-0} Ans\"atze wie Cryo-CMOS (Steuerelektronik bei tiefen Temperaturen) werden intensiv erforscht. \cite[13.5.1-13.5.2]{10.1109/IEDM.2016.7838410}
+Besonders supraleitende Systeme m\"ussen bei 10--20\,mK betrieben werden. Hier stoßen Forscher schnell an Grenzen: Die K\"uhlung gro\ss er Quantenprozessoren erfordert aufw\"andige Verd\"unnungsk\"uhler \emph{(dilution refrigerators)}, und die Zahl der nach innen f\"uhrenden Kabel wird schnell zum Flaschenhals.  Auch die Kontrolle \"uber klassische Elektronik ist herausfordernd: Steuereinheiten befinden sich oft au\ss erhalb des K\"uhlsystems und m\"ussen mit tausenden Kan\"alen kommunizieren -- ein thermisches und technisches Problem (vgl.~\cite[1]{krinner_engineering_2019}). Ans\"atze wie Cryo-CMOS (Steuerelektronik bei tiefen Temperaturen) werden intensiv erforscht (vgl.~\cite[13.5.1-13.5.2]{charbon_cryo-cmos_2016}).
 
 \paragraph{Dekodierung: Komplex und latenzkritisch}
-Selbst wenn alle Syndromdaten vorliegen, ist die Decodierung (Fehlerdiagnose und Korrekturvorschlag) ein nichttriviales Problem. Bei QEC-Zyklen im Mikrosekundenbereich und Millionen von Qubits entstehen Datenraten im Bereich hunderter Terabyte pro Sekunde. Diese m\"ussen in Echtzeit verarbeitet werden, idealerweise mit Latenzen $<1\,\mu$s. Daher ben\"otigt man spezialisierte Hardware-Decoder und ausgekl\"ugelte Algorithmen wie Minimum Weight Matching. \cite[3-4]{10.1145/3676641.3716005}\\
+Selbst wenn alle Syndromdaten vorliegen, ist die Decodierung (Fehlerdiagnose und Korrekturvorschlag) ein nichttriviales Problem. Bei QEC-Zyklen im Mikrosekundenbereich und Millionen von Qubits entstehen Datenraten im Bereich hunderter Terabyte pro Sekunde. Diese m\"ussen in Echtzeit verarbeitet werden, idealerweise mit Latenzen $<1\,\mu$s. Daher ben\"otigt man spezialisierte Hardware-Decoder und ausgekl\"ugelte Algorithmen wie Minimum Weight Matching (vg.~\cite[3-4]{wu_micro_2025}).
 
 \paragraph{Nicht-ideale Fehler und Modellabweichungen}
-Die meisten QEC-Codes beruhen auf idealisierten Fehlermodellen (z.B. unkorrelierte, Pauli-artige Fehler). In realen Systemen treten jedoch korrelierte Fehler, Kaskadeneffekte und Leakage auf, die nicht leicht mit bestehenden Codes zu behandeln sind. Solche Abweichungen senken die effektive Fehlerschwelle und machen eine robuste Fehlerkorrektur schwieriger. \cite[312]{10.1103/RevModPhys.87.307}\\
++Die meisten QEC-Codes beruhen auf idealisierten Fehlermodellen (z.B. unkorrelierte, Pauli-artige Fehler). In realen Systemen treten jedoch korrelierte Fehler, Kaskadeneffekte und Leakage auf, die nicht leicht mit bestehenden Codes zu behandeln sind. Solche Abweichungen senken die effektive Fehlerschwelle und machen eine robuste Fehlerkorrektur schwieriger (vgl.~\cite[312]{terhal_quantum_2015}).
 
 \paragraph{Ausblick und neue Ans\"atze}
 Die Forschung reagiert mit vielf\"altigen Strategien:
 \begin{itemize}
-    \item \textbf{Hardwareverbesserung:} Längere Kohärenzzeiten, stabilere Qubits und besseres Materialdesign sind zentrale Entwicklungsziele. \cite[309]{10.1103/RevModPhys.87.307}
-    \item \textbf{Topologische Qubits:} Systeme wie Majorana-Moden versprechen inhärente Fehlerresistenz, sind aber noch experimentell. \cite[320]{10.1103/RevModPhys.87.307}
-    \item \textbf{Modulare Architekturen:} Mehrere kleine Qubit-Module könnten vernetzt werden, um skalierbare Systeme aufzubauen. \cite[332-333]{10.1103/RevModPhys.87.307}
-    \item \textbf{Neue Codes:} Quantum-LDPC-Codes \cite[342]{10.1103/RevModPhys.87.307} oder Color Codes \cite[327]{10.1103/RevModPhys.87.307} bieten bessere Raten und Flexibilität, sind aber schwerer umzusetzen.
-    \item \textbf{Ko-Design:} Eine enge Verzahnung von Hardware, Software und Fehlermodellen ist notwendig, um das Gesamtsystem zu optimieren. \cite[308]{10.1103/RevModPhys.87.307}
+    \item \textbf{Hardwareverbesserung:} Längere Kohärenzzeiten, stabilere Qubits und besseres Materialdesign sind zentrale Entwicklungsziele (vgl.~\cite[309]{terhal_quantum_2015})
+    \item \textbf{Topologische Qubits:} Systeme wie Majorana-Moden versprechen inhärente Fehlerresistenz, sind aber noch experimentell (vgl.~\cite[320]{terhal_quantum_2015})
+    \item \textbf{Modulare Architekturen:} Mehrere kleine Qubit-Module könnten vernetzt werden, um skalierbare Systeme aufzubauen (vgl.~\cite[332-333]{terhal_quantum_2015}).
+    \item \textbf{Neue Codes:} Quantum-LDPC-Codes (vgl.~\cite[342]{terhal_quantum_2015}) oder Color Codes (vgl.~\cite[327]{terhal_quantum_2015}) bieten bessere Raten und Flexibilität, sind aber schwerer umzusetzen.
+    \item \textbf{Ko-Design:} Eine enge Verzahnung von Hardware, Software und Fehlermodellen ist notwendig, um das Gesamtsystem zu optimieren (vgl.~\cite[308]{terhal_quantum_2015}).
 \end{itemize}
 
 \paragraph{Fazit} 
 Die Quantenfehlerkorrektur hat sich in den letzten Jahren von einem theoretischen Konzept zu einem praktischen Forschungsfeld mit greifbaren Fortschritten entwickelt. Dennoch sind viele zentrale Herausforderungen ungel\"ost. Die kommenden Jahre werden entscheidend sein, um aus den heutigen Demonstratoren robuste, fehlertolerante Quantencomputer zu formen. Dabei ist klar: Ohne QEC ist skalierbares Quantencomputing unm\"oglich -- mit ihr aber wird es eines Tages m\"oglich sein, Probleme zu l\"osen, die klassisch unzug\"anglich bleiben.
-
 
 \section{Praxisbeispiel: Ein einfacher Quantenfehlerkorrekturcode anhand des Shor-Codes: Der Shor-Code}
 Wie bereits im Verlauf der vorherigen Seiten aufgezeigt sind Maßnahmen zur Fehlerkorrektur in Quantensystemen unabdingbar, um sinnvolle, verlässliche und fehlerfreie Berechnungen durchzuführen und die Technik des Quantencomputings weiter zu skalieren.
@@ -587,7 +579,7 @@ Während die besten klassischen Verfahren (z.B. General Number Field Sieve) sube
 Seine korrekte Ausführung erfordert somit nicht nur eine ausreichende Anzahl von Qubits, sondern auch eine hohe Gattertreue und stabile Kohärenzeigenschaften über viele Taktzyklen hinweg.
 
 \subsection{Implementierung in IBM Qiskit}
-\textbf{Q}uantum \textbf{I}nformation \textbf{S}cience Kit (kurz Qiskit) ist eine Software zur Visualisierung von Quantenschaltkreisen, zur Simulation von Quantencomputer-ähnlichen Umgebungen und zur Entwicklung und Ausführung von Quantenalgorithmen. Neben Simulationsoptionen bietet IBM, die Firma hinter der Open Source Software, auch Zugriff zu eigenen Quantencomputern an~\cite{qiskit}.
+\textbf{Q}uantum \textbf{I}nformation \textbf{S}cience Kit (kurz Qiskit) ist eine Software zur Visualisierung von Quantenschaltkreisen, zur Simulation von Quantencomputer-ähnlichen Umgebungen und zur Entwicklung und Ausführung von Quantenalgorithmen. Neben Simulationsoptionen bietet IBM, die Firma hinter der Open Source Software, auch Zugriff zu eigenen Quantencomputern an (vgl.~\cite{learning_how_2023}).
 
 
 \subsubsection{Der Aufbau}
@@ -662,7 +654,7 @@ Die aus dem Test-Setup abzuleitenden Resultate lassen mehrere Schlüsse zu:
 \item Die Häufigkeiten der dominanten Ausgabewerte (\texttt{0 000000}, \texttt{1 000000}, \texttt{0 001010}, \texttt{1 001010}) bleiben unter Fehler und Korrektur größtenteils erhalten. Dies zeigt, dass das korrekte Messergebnis des logischen Qubits durch die Fehlerkorrektur \textbf{erfolgreich wiederhergestellt werden kann}, nachdem der Fehler auf Qubit 4 erzeugt wurde.
 
 
-\item Die leichte Verschiebung einzelner Häufigkeiten (z.,B. \texttt{1 001010} von 2189 auf 2064) kann unter Umständen durch Rauschen oder  Imperfektion bei der Syndrome-Kodierung erklärt werden, aber ändert nichts an der Gesamtwirkung.
+\item Die leichte Verschiebung einzelner Häufigkeiten (z.,B. \texttt{1 001010} von 2189 auf 2064) kann unter Umständen durch Rauschen oder Imperfektion bei der Syndrome-Kodierung erklärt werden, aber ändert nichts an der Gesamtwirkung.
 \end{itemize}
 
 \begin{table}[h!]
