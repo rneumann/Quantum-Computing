@@ -3,16 +3,24 @@
 import matplotlib.pyplot as plt
 from IPython.display import display as dp
 from qiskit import QuantumCircuit
-from qiskit_aer.primitives import SamplerV2
+from qiskit.visualization import plot_histogram
+from qiskit_aer import AerSimulator
 
 
-# Oracle für Zielzustand |11⟩
-def oracle(circuit):
-    circuit.cz(0, 1)  # CZ wirkt auf |11>
+def initialize_s(qc: QuantumCircuit, qubits: list[int]) -> QuantumCircuit:
+    """Anwendung eines Hadamard-Gates auf Qubits im Schaltkreis."""
+    for q in qubits:
+        qc.h(q)
+    return qc
 
 
-# Diffusionsoperator
-def diffusion(circuit):
+def oracle(circuit: QuantumCircuit) -> None:
+    """Oracle für den Zielzustand |11⟩."""
+    circuit.cz(0, 1)
+
+
+def diffusion(circuit: QuantumCircuit) -> None:
+    """Diffusionsoperator (U_s)."""
     circuit.h([0, 1])
     circuit.z([0, 1])
     circuit.cz(0, 1)
@@ -23,7 +31,7 @@ def diffusion(circuit):
 grover_circuit = QuantumCircuit(2)
 
 # Superposition
-grover_circuit.h([0, 1])
+grover_circuit = initialize_s(grover_circuit, [0, 1])
 print("Schaltkreis nach Superposition:")
 dp(grover_circuit.draw())  # Schaltkreis visualisieren
 
@@ -40,11 +48,11 @@ dp(grover_circuit.draw())  # Schaltkreis visualisieren
 # Messung
 grover_circuit.measure_all()
 
-# Simulation mit SamplerV2
-sampler = SamplerV2()
-job = sampler.run([grover_circuit], shots=1024)
+# Simulation mit AerSimulator
+simulator = AerSimulator()
+job = simulator.run(grover_circuit, shots=1024)
 result = job.result()
-counts = result[0].data.meas.get_counts()
+counts = result.get_counts()
 
 print("Grover-Ergebnis:", counts)
 

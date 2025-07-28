@@ -611,7 +611,7 @@ Die Wissenschaftler Daniel Gottesman und Isaac Chuang stellen eine Technik, eine
 Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. Ein CNOT gate ist eine Komponente, die zwei verschränkte Qubits in einem Bell-Zustand (Zustand, in dem zwei Qubits maximal miteinander verschränkt sind; mehr dazu in Subsektion 1.5.1) aufnimmt und den zweiten Qubit, den sog. „target“ Qubit dreht, wenn der erste Qubit, das sog. „control“ Qubit, einen Wert von \(\ket{1}\) hat. Beim Durchgang werden Pauli-Matrix Operationen durchgeführt, welche die Quanteninformationen auf einen dritten Qubit übertragen.\\
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_1.jpeg}
+    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_1.png}
     \caption{Zeitstrahl von links nach rechts. B = Bell-Zustand, X Y Z = Pauli Operatoren, \(\ket{0}\) = Zustand des Sender-Qubits, der an den Empfänger-Qubit übertragen werden soll}
     \label{fig:meinbild}
 \end{figure}
@@ -619,7 +619,7 @@ Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. E
 \noindent Dieses Prinzip kann leicht modifiziert werden. Die modifizierte Variante erlaubt es, vier Qubits, wovon jeweils zwei verschränkt sind, durchzulassen und anhand von Pauli-Matrix Operationen zu transformieren. Die zwei Paare von Verschränkungen sind vorerst getrennt. Eines enthält den „target“ Qubit \(\ket{\alpha}\), das andere den „control“ Qubit \(\ket{\beta}\). Der „target“ Qubit wird gedreht, wenn der „control“ Qubit einen Wert von \(\ket{1}\) hat. Es stehen 4 Rechenoperationen (I, X, Y, Z) zur Verfügung. Welche Operationen auf die Qubits der Verschränkungen angewendet werden, ist vom Zufall bestimmt. Zwei Qubits \(\ket{out}\), welche die Quanteninformationen von \(\ket{\alpha}\) und \(\ket{\beta}\) enthalten, wobei \(\ket{out}\) = CNOT\(\ket{\beta}\)\(\ket{\alpha}\), kommen aus den CNOT gate am Ende als Output heraus.\\
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_2.jpeg}
+    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_2.png}
     \caption{Zeitstrahl von links nach rechts. B = Bell-Zustand, X Y Z = Pauli Operatoren, \(\ket{\chi}\) = Ausgangszustand für Operation}
     \label{fig:meinbild}
 \end{figure}
@@ -627,7 +627,7 @@ Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. E
 \noindent Eine andere modifizierte Variante ist eine, bei der ein CNOT gate zwischen zwei Qubits von zwei unterschiedlichen verschränkten Qubit Paaren geöffnet wird. Der Output von solch einem Gatter kann verwendet werden, um den Zustand \(\ket{\chi}\) der vorherigen Abbildung zu bilden, von dem in einer Quantenteleportation mit zwei Verschränkungen Gebrauch gemacht wird. \(\ket{\chi}\) kann so erzeugt werden, oder durch eine Quantenteleportation zwischen zwei GHZ (Greenberger Horne Zellinger) Zuständen. Ein GHZ Zustand ist eine Verschränkung von drei Quantenobjekten.\\
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_3.jpeg}
+    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_3.png}
     \caption{Zeitstrahl von links nach rechts. \(\ket{\Upsilon}\) = GHZ Zustand, H = Hadamard gate (für Hadamard Transformation), B = Bell-Zustand, X Z = Pauli Operatoren}
     \label{fig:meinbild}
 \end{figure}
