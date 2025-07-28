@@ -28,7 +28,7 @@ Die Vision des Quanteninternets beinhaltet nicht nur lokale Netzwerke, sondern a
 Da der Aufbau eines globalen Quanteninternets noch in weiter Ferne liegt, werden hybride Netzwerklösungen diskutiert. Diese könnten klassische und quantenbasierte Datenübertragung kombinieren, um eine nahtlose Integration zu ermöglichen und einen Übergang zu schaffen. (\cite{QuanteninternetZukunftTechnologie}) Erste Feldexperimente zeigen bereits, dass die Verteilung von verschränkten Photonen über kommerziell genutzte Glasfasern parallel zum klassischen Datenverkehr möglich ist, was die Kompatibilität bestehender Infrastrukturen unterstreicht.
 
 \section{Einführung in Quantenhardwareplattformen}
-Die physikalische Realisierung eines Quantencomputers ist maßgeblich durch die Wahl der zugrunde liegenden Hardwareplattform bestimmt. Quantenhardware bildet das technische Fundament für alle quantenlogischen Operationen und beeinflusst entscheidend die Skalierbarkeit, Robustheit und Anwendungsdomänen heutiger und zukünftiger Quantencomputer. Der Begriff „Plattform“ bezeichnet hierbei die physikalischen Systeme, mit denen Qubits realisiert, kontrolliert und gemessen werden. Zwei übergeordnete Klassen haben sich als besonders relevant herausgestellt: Festkörperbasierte und atomare Plattformen (\cite{schmaltzQuantentechnologienUndQuantenOkosysteme2025, homeister_quantum_2015}.
+Die physikalische Realisierung eines Quantencomputers ist maßgeblich durch die Wahl der zugrunde liegenden Hardwareplattform bestimmt. Quantenhardware bildet das technische Fundament für alle quantenlogischen Operationen und beeinflusst entscheidend die Skalierbarkeit, Robustheit und Anwendungsdomänen heutiger und zukünftiger Quantencomputer. Der Begriff „Plattform“ bezeichnet hierbei die physikalischen Systeme, mit denen Qubits realisiert, kontrolliert und gemessen werden. Zwei übergeordnete Klassen haben sich als besonders relevant herausgestellt: Festkörperbasierte und atomare Plattformen (\cite{schmaltzQuantentechnologienUndQuantenOkosysteme2025, homeisterQuantumComputingVerstehen2015}.
 
 \subsection{Überblick über Plattformtypen}
 \begin{itemize}
@@ -59,23 +59,24 @@ Anwendungen & Metrologie, Quantensimulation & Algorithmische Anwendungen, Optimi
 
 
 \subsection{Technologischer Reifegrad und Herausforderungen}
-Laut der „Schwerpunktstudie Quantenökosysteme“ des Fraunhofer ISI befinden sich supraleitende Systeme (v.a. Transmon-Qubits) sowie Ionenfallen derzeit auf dem höchsten technologischen Entwicklungsstand. Beide Plattformen konnten bereits fehlerkorrigierte Gatter demonstrieren, wenngleich unter hohem technologischem Aufwand (\cite{schmaltz_quantentechnologien_2025}).
-\\\\
-Andere Ansätze wie photonische Qubits oder NV-Zentren bieten teils attraktive Eigenschaften (z.B. Raumtemperaturbetrieb oder geringe Dekohärenzanfälligkeit), sind jedoch noch mit praktischen Limitierungen bei Skalierung, Adressierbarkeit oder Gatterqualität konfrontiert (\cite{homeister_quantum_2015}).
-\\\\
-Die derzeit gängigen Quantencomputer zählen zur Klasse der sogenannten \textit{Noisy Intermediate-Scale Quantum}-Systeme (NISQ). Diese verfügen über 50–150 Qubits, erlauben jedoch keine vollumfängliche Fehlerkorrektur. Anwendungen beschränken sich auf experimentelle Algorithmen mit begrenzter Komplexität (\cite{schmaltz_quantentechnologien_2025, homeister_quantum_2015}).
-\\\\
-Ein Durchbruch in Richtung großskaliger, universeller Quantencomputer wird eine massive Erhöhung der Qubit-Zahl, Schätzungen gehen von $10^5$ bis $10^6$ Qubits aus, sowie Fortschritte bei Fehlertoleranz und Architektur erfordern (\cite{schmaltz_quantentechnologien_2025}).
+Laut der „Schwerpunktstudie Quantenökosysteme“ des Fraunhofer ISI befinden sich supraleitende Systeme (v.a. Transmon-Qubits) sowie Ionenfallen derzeit auf dem höchsten technologischen Entwicklungsstand. Beide Plattformen konnten bereits fehlerkorrigierte Gatter demonstrieren, wenngleich unter hohem technologischem Aufwand (\cite{schmaltzQuantentechnologienUndQuantenOkosysteme2025}).
+\\
+Andere Ansätze wie photonische Qubits oder NV-Zentren bieten teils attraktive Eigenschaften (z.B. Raumtemperaturbetrieb oder geringe Dekohärenzanfälligkeit), sind jedoch noch mit praktischen Limitierungen bei Skalierung, Adressierbarkeit oder Gatterqualität konfrontiert (\cite{homeisterQuantumComputingVerstehen2015}).
+\\
+Die derzeit gängigen Quantencomputer zählen zur Klasse der sogenannten \textit{Noisy Intermediate-Scale Quantum}-Systeme (NISQ). Diese verfügen über 50–150 Qubits, erlauben jedoch keine vollumfängliche Fehlerkorrektur. Anwendungen beschränken sich auf experimentelle Algorithmen mit begrenzter Komplexität (\cite{schmaltzQuantentechnologienUndQuantenOkosysteme2025, homeisterQuantumComputingVerstehen2015}).
+\\
+Ein Durchbruch in Richtung großskaliger, universeller Quantencomputer wird eine massive Erhöhung der Qubit-Zahl, Schätzungen gehen von $10^5$ bis $10^6$ Qubits aus, sowie Fortschritte bei Fehlertoleranz und Architektur erfordern (\cite{schmaltzQuantentechnologienUndQuantenOkosysteme2025}).
 
 \subsection{Ausblick auf die Kapitelstruktur}
 Die folgende Gliederung dieses Teils orientiert sich an den bedeutendsten physikalischen Plattformen des aktuellen Forschungsstandes. Jede Plattform wird hinsichtlich ihrer physikalischen Grundlagen, technischer Implementierung, Herausforderungen und Perspektiven systematisch analysiert. Die Kapitel im Überblick:
 
 \begin{itemize}
-\item \textbf{Kapitel 1.2: Supraleitende Qubits}
-\item \textbf{Kapitel 1.3: Ionenfallen-Qubits}
-\item \textbf{Kapitel 1.4: Diamantbasierte Qubits (NV-Zentren)}
-\item \textbf{Kapitel 1.5: Weitere Plattformen} 
-\item \textbf{Kapitel 1.6: Praxisbeispiel am IBM Q}
+\item \textbf{Kapitel 1.3: Supraleitende Qubits}
+\item \textbf{Kapitel 1.4: Ionenfallen-Qubits}
+\item \textbf{Kapitel 1.5: Diamantbasierte Qubits (NV-Zentren)}
+\item \textbf{Kapitel 1.6: Weitere Plattformen}
+\item \textbf{Kapitel 1.7: Vergleichende Bewertung der Quantenhardware-Architekturen} 
+\item \textbf{Kapitel 1.8: Praxisbeispiel am IBM Q}
 \end{itemize}
 
 Dieses Einführungskapitel legt somit den Grundstein für ein vertieftes Verständnis der komplexen und heterogenen Hardwarelandschaft im Quantencomputing. Es zeigt, dass die Wahl der Plattform nicht nur technische, sondern auch strategische Bedeutung für den weiteren Fortschritt in Forschung und Anwendung besitzt.
@@ -209,7 +210,7 @@ Ein typisches MS-Gatter basiert auf einem bichromatischen Laserpuls, welcher sym
 Während theoretische Betrachtungen von Ionenfallen-Qubits sich stark auf die physikalischen Prinzipien konzentrieren, wie in Abschnitt 1.6.3 beschrieben, unterscheidet sich der tatsächliche Aufbau eines Ionenfallen-Quantencomputers in der Praxis erheblich durch seine technische Komplexität. Moderne Systeme verbinden physikalisch hochpräzise Komponenten mit klassischer Computertechnik und Softwareintegration, welche im folgenden Kapitel genauer vorgestellt werden.
 \subsubsection{Beispiele in Reale Systemen}
 
-Ein anschauliches Beispiel für die Realisierung eines kommerziellen Ionenfallen-Quantencomputers liefert das österreichische Unternehmen Alpine Quantum Technologies (AQT). Der Quantenprozessor von AQT ist vollständig in ein standardisiertes 19-Zoll-Gehäuse integriert, das äußerlich kaum von einem klassischen Serverschrank unterscheidbar ist. Im Inneren befinden sich jedoch Hochvakuumkammern, mikrostrukturierte Paul-Fallen, Lasermodule, modulare Optiksysteme und eine komplexe Steuerungseinheit. Die Quantenhardware wird durch klassische Komponenten ergänzt, die für Temperaturkontrolle, Impulssteuerung, Datenausgabe und externe Kommunikation zuständig sind (\cite{bischoff_wettkampf_2024}).
+Ein anschauliches Beispiel für die Realisierung eines kommerziellen Ionenfallen-Quantencomputers liefert das österreichische Unternehmen Alpine Quantum Technologies (AQT). Der Quantenprozessor von AQT ist vollständig in ein standardisiertes 19-Zoll-Gehäuse integriert, das äußerlich kaum von einem klassischen Serverschrank unterscheidbar ist. Im Inneren befinden sich jedoch Hochvakuumkammern, mikrostrukturierte Paul-Fallen, Lasermodule, modulare Optiksysteme und eine komplexe Steuerungseinheit. Die Quantenhardware wird durch klassische Komponenten ergänzt, die für Temperaturkontrolle, Impulssteuerung, Datenausgabe und externe Kommunikation zuständig sind (\cite{bischoffWettkampfQubits2024}).
 
     \begin{figure}[ht]
     \centering
@@ -230,13 +231,13 @@ Die genaue Funktionsweise eines Ionenfallen-Quantencomputers, also die Architekt
 \\\\
 \paragraph{Paul-Falle}
 
-Die bekannteste Realisierungsform stellt die lineare Paul-Falle dar, wie sie beispielsweise von AQT verwendet wird (\cite{bischoff_wettkampf_2024}). Diese wurde im vorherigen Kapitel bereits vorgestellt. AQT hält die Ionen in einer eindimensionalen Kette, wobei eine X-förmige Elektrodengeometrie hohe Fallenfrequenzen bei gleichzeitig guter optischer Zugänglichkeit ermöglicht (\cite{frisch_trapped-ion_2024, strohmIonBasedQuantumComputing2024}). In diesen sogenannten Surface Traps erlaubt die Chip-Architektur die präzise Adressierung einzelner Ionen sowie das Auslesen durch seitlich einfallende Laserstrahlen, um Gatteroperationen auszuführen (\cite{strohmIonBasedQuantumComputing2024}).
+Die bekannteste Realisierungsform stellt die lineare Paul-Falle dar, wie sie beispielsweise von AQT verwendet wird (\cite{bischoffWettkampfQubits2024}). Diese wurde im vorherigen Kapitel bereits vorgestellt. AQT hält die Ionen in einer eindimensionalen Kette, wobei eine X-förmige Elektrodengeometrie hohe Fallenfrequenzen bei gleichzeitig guter optischer Zugänglichkeit ermöglicht (\cite{frischTrappedIonQuantumComputing2024, strohmIonBasedQuantumComputing2024}). In diesen sogenannten Surface Traps erlaubt die Chip-Architektur die präzise Adressierung einzelner Ionen sowie das Auslesen durch seitlich einfallende Laserstrahlen, um Gatteroperationen auszuführen (\cite{strohmIonBasedQuantumComputing2024}).
 
 \medskip
 
 \paragraph{QCCD-Architektur}
 
-Eine skalierbare Architektur ist das sogenannte \textit{Quantum Charge-Coupled Device} (QCCD), das 2002 von Kielpinski et al.\ erstmals vorgestellt wurde (\cite{kiepinski_architecture_2002}). Sie basiert auf der Trennung von Rechen-, Speicher- und Transportzonen. In dieser Architektur, wie sie beispielsweise von Quantinuum verfolgt wird, werden Ionen gezielt zwischen verschiedenen Zonen bewegt, um dort Gatteroperationen auszuführen oder für spätere Nutzung zu speichern. Um diese Parallelisierung zu ermöglichen, muss die Architektur folgende Anforderungen erfüllen: schnelle und verlustarme Transporte, Synchronisation über viele Kontrollzonen, Phasenstabilität sowie ggf. die Kombination unterschiedlicher Ionenarten zur Kühlung (\cite{strohmIonBasedQuantumComputing2024}).
+Eine skalierbare Architektur ist das sogenannte \textit{Quantum Charge-Coupled Device} (QCCD), das 2002 von Kielpinski et al.\ erstmals vorgestellt wurde (\cite{kiepinskiArchitectureLargescaleIontrap2002}). Sie basiert auf der Trennung von Rechen-, Speicher- und Transportzonen. In dieser Architektur, wie sie beispielsweise von Quantinuum verfolgt wird, werden Ionen gezielt zwischen verschiedenen Zonen bewegt, um dort Gatteroperationen auszuführen oder für spätere Nutzung zu speichern. Um diese Parallelisierung zu ermöglichen, muss die Architektur folgende Anforderungen erfüllen: schnelle und verlustarme Transporte, Synchronisation über viele Kontrollzonen, Phasenstabilität sowie ggf. die Kombination unterschiedlicher Ionenarten zur Kühlung (\cite{strohmIonBasedQuantumComputing2024}).
 
 \medskip
 
@@ -403,9 +404,62 @@ Ein zentraler Ansatz ist die Nutzung von Kernspins der umgebenden Atome. Diese b
 Letzendlich würde im Idealfall perfekter Qubit-Systeme die Rechenleistung exponentiell mit der Anzahl der Qubits wachsen. (\cite{UngeahnteMoglichkeitenDurch}) 
 \input{content/jakob/mainfile}
 
+\section{Vergleichende Bewertung der Quantenhardware-Architekturen}
+
+Die Wahl der geeigneten Quantenhardware ist entscheidend für die Leistungsfähigkeit und Skalierbarkeit zukünftiger Quantencomputer. Während jede Plattform auf unterschiedlichen physikalischen Prinzipien basiert, unterscheiden sie sich deutlich hinsichtlich ihrer technischen Reife, Kohärenzeigenschaften, Gatterfidelitäten und infrastrukturellen Anforderungen. Die folgende vergleichende Übersicht stellt zentrale Stärken, Schwächen sowie typische Herausforderungen führender Hardwareansätze gegenüber, wie sie in den vorangegangenen Kapiteln detailliert beschrieben wurden.
+
+\begin{table}[H]
+\centering
+\caption{Vergleich führender Quantenhardware-Plattformen (Stand 2025)}
+\label{tab:vergleich_hardware}
+\begin{tabular}{|p{3.5cm}|p{4cm}|p{4cm}|p{4.5cm}|}
+\hline
+\textbf{Hardwareplattform} & \textbf{Stärken} & \textbf{Schwächen} & \textbf{Herausforderungen \& Risiken} \\
+\hline
+
+\textbf{Ionenfallen} &
+Lange Kohärenzzeiten, hohe Gatterfidelity, präzise Kontrolle, All-to-All-Konnektivität &
+Langsame Gatter, limitiert durch Shuttling und Optik &
+Wiring- und Sorting-Probleme, Heizraten, begrenzte Skalierbarkeit \\
+
+\hline
+\textbf{Supraleitend} &
+Technologisch reif, schnelle Gatter, gute CMOS-Fertigung &
+Tieftemperatur notwendig, begrenzte Konnektivität, hohe Wärmelast &
+Verkabelungs-Overhead, Skalierung der Kryotechnik, Rauschempfindlichkeit \\
+
+\hline
+\textbf{Photonisch} &
+Hohe Kohärenz, verlustfreie Übertragung, Raumtemperaturbetrieb &
+Probabilistische Gatter, schwierige Detektion &
+Effiziente Verschränkung, komplexe Fertigung, Kryo-Dilemma bei Einzelfotonen \\
+
+\hline
+\textbf{Diamant (NV-Zentren)} &
+Raumtemperaturfähig, lange Speicherzeiten über Kernspins, hybride Kopplung &
+Begrenzte Skalierbarkeit, geringe Gatterfidelity &
+Nanofabrikation, Isotopenreinheit, präzise Positionierung \\
+
+\hline
+\textbf{Silizium-Spin} &
+Sehr hohe Integrationsdichte, CMOS-kompatibel &
+Niedrige Gatter-Fidelity, begrenzte Systemreife &
+Materialparadoxon ($^{28}$Si vs.\ natürlichem Si), komplexe Steuerintegration \\
+
+\hline
+\textbf{Topologische Qubits} &
+Inhärente Fehlertoleranz, robust gegenüber Dekohärenz &
+Experimentell unbewiesen, extrem komplexe Physik &
+Quasiteilchen-Vergiftung, fehlende Kontrolle über Majoranas \\
+
+\hline
+\end{tabular}
+\end{table}
+
+Die Analyse zeigt, dass kein Architekturansatz bislang alle Anforderungen an ein vollständig fehlertolerantes, skalierbares und praktikables Quantensystem erfüllt. Während supraleitende und ionenbasierte Systeme heute technologisch führend sind, versprechen Plattformen wie NV-Zentren oder topologische Qubits langfristig neue Wege zur Robustheit und Integration. Die Wahl einer geeigneten Plattform hängt daher stark vom Anwendungsbereich, den Systemanforderungen und technologischen Reifegraden ab. Im nächsten Kapitel wird in Form eines Praxisbeispiels abschließend der genaue Aufbau eines spezifischen Quantencomputers vorgestellt, als Beispiel wurde der supraleitende Quantencomputer von IBM ausgewählt.
+
 \section{Praxisbeispiel(e): Im Inneren eines IBM-Quantencomputers}
 Die Entwicklung kommerziell nutzbarer Quantencomputer stellt eine der größten wissenschaftlichen und ingenieurtechnischen Herausforderungen unserer Zeit dar. Während die physikalischen Grundlagen der Quantenmechanik, wie Qubit-Logik, Superposition und Verschränkung in den vorangegangenen Kapiteln dieses Buches bereits detailliert erläutert wurden, fokussiert sich dieses Kapitel auf die konkrete Hardwarearchitektur und Systemintegration eines der ersten kommerziellen Quantencomputersysteme: das IBM Q System One. Dieses System wurde erstmals 2019 vorgestellt und markiert einen wichtigen Meilenstein im Quantencomputing. IBM Q System One zielt darauf ab, Quantencomputing aus dem reinen Forschungslabor heraus und in eine zuverlässigere, wartungsärmere und industriell einsetzbare Form zu überführen (Havlíček et al., 2019; IBM News Room, 2019). 
-%Dennis please fix Quelle :)
 % https://uk.newsroom.ibm.com/ibm-unveils-worlds-first-integrated-quantum-computing-system-for-commercial-use
 
 \begin{figure}[H]

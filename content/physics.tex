@@ -414,7 +414,7 @@ Eine Cauchy-Folge \( \{ |\psi_n\rangle \} \) ist eine Folge von Vektoren, bei de
 
 Die Vollständigkeit besagt, dass diese Folge gegen einen Grenzwert \( \ket{\psi} \) innerhalb des Raumes konvergiert. Dies stellt sicher, dass der Raum bezüglich der durch das Skalarprodukt definierten Metrik keine „Lücken“ enthält. Anschaulich bedeutet das: Jeder Zustand, der durch eine Folge angenähert werden kann, gehört auch tatsächlich zum Raum.
 
-Das durch das Skalarprodukt induzierte Normkonzept ermöglicht es, eine Metrik und damit eine topologische Struktur auf dem Raum zu definieren. Dies erlaubt es, Begriffe wie Konvergenz, Stetigkeit und Orthogonalität mathematisch präzise zu fassen. Diese Konzepte bilden die Grundlage für eine konsistente Beschreibung quantenmechanischer Zustände.
+Das durch das Skalarprodukt induzierte Normkonzept ermöglicht es, eine Metrik und damit eine topologische Struktur auf dem Raum zu definieren. Dies erlaubt es, Begriffe wie Konvergenz, Stetigkeit und Orthogonalität mathematisch präzise zu fassen. Diese Konzepte bilden die Grundlage für eine konsistente Beschreibung quantenmechanischer Zustände (vgl. \cite{Werner Dirk Funktionalanalysis, Kapitel V}).
 
 Zudem ist der Hilbertraum die natürliche Umgebung für sogenannte unitäre Operatoren. Ein Operator \( U \) auf einem Hilbertraum ist genau dann unitär, wenn er die Struktur des Raumes erhält, das heißt:
 
@@ -428,11 +428,11 @@ Ein praktisches Anwendungsbeispiel für unitäre Operatoren ist die gezielte Erz
 
 Weitere Beispiele für unitäre Operatoren und ihre Funktion in Quantenalgorithmen werden in Kapitel \ref{qbits} behandelt.
 
-\subsection{Ausblick: Darstellung und Interpretation von Zuständen}
 
-Die mathematische Struktur des Hilbertraums erlaubt es, Qubit-Zustände sowohl algebraisch als auch geometrisch zu beschreiben. Die Bra-Ket-Notation stellt eine kompakte Form dar, um Zustände und ihre Transformationen mathematisch zu erfassen. Diese Notation wird in  \textcolor{red} {Kapitel~1.5} systematisch eingeführt und bildet dort die Grundlage für die Beschreibung von Messprozessen und Zustandsentwicklungen.
 
-Ein weiteres zentrales Konzept ist die Äquivalenz unter einer globalen Phase. Zwei Zustände, die sich lediglich durch einen komplexen Phasenfaktor unterscheiden, sind physikalisch nicht unterscheidbar. Diese Eigenschaft führt zur Beschreibung der Zustände im sogenannten projektiven Hilbertraum. Die geometrische Konsequenz dieser Beschreibung ist die Bloch-Kugel, auf der alle reinen Qubit-Zustände als Punkte auf einer Kugeloberfläche dargestellt werden können. Diese Interpretation wird in \textcolor{red}{Kapitel~1.5.2} vertieft behandelt und bietet eine anschauliche Ergänzung zur algebraischen Sichtweise.
+Die mathematische Struktur des Hilbertraums erlaubt es, Qubit-Zustände sowohl algebraisch als auch geometrisch zu beschreiben. Die Bra-Ket-Notation stellt eine kompakte Form dar, um Zustände und ihre Transformationen mathematisch zu erfassen. 
+
+Ein weiteres zentrales Konzept ist die Äquivalenz unter einer globalen Phase. Zwei Zustände, die sich lediglich durch einen komplexen Phasenfaktor unterscheiden, sind physikalisch nicht unterscheidbar. Diese Eigenschaft führt zur Beschreibung der Zustände im sogenannten projektiven Hilbertraum. Die geometrische Konsequenz dieser Beschreibung ist die Bloch-Kugel, auf der alle reinen Qubit-Zustände als Punkte auf einer Kugeloberfläche dargestellt werden können.
 
 
 Der Qubit-Zustand ist ein normierter Vektor in einem komplexen Hilbertraum. Die mathematische Struktur dieses Raums erlaubt die präzise Definition von Superposition, Normierung, Skalarprodukt, Phasenäquivalenz und linearen Transformationen. Die Vollständigkeit und Separabilität des Hilbertraums stellen sicher, dass auch Grenzwerte und stetige Prozesse sinnvoll beschrieben werden können. Die Möglichkeit unitärer Operatoren ist eine direkte Konsequenz der Struktur des Hilbertraums und erlaubt die Darstellung quantenmechanischer Zeitentwicklungen und Quantenlogik. Die Konzepte der Basiswahl und Dimensionsabhängigkeit verknüpfen die abstrakte Struktur des Hilbertraums mit der physikalischen Realität eines Quantensystems. Diese Grundlagen sind entscheidend für die Beschreibung von Messprozessen, physikalischen Realisierungen und logischen Operationen in der Quanteninformatik.
@@ -452,7 +452,7 @@ Für praktische Quantenberechnungen ist es entscheidend, dass das System nur ein
 
 Auch wenn solche Systeme in der Theorie unendlich viele Zustände unterscheiden könnten (und damit unbegrenzt Information speichern würden), ist dies in der Praxis unrealistisch. Denn reale physikalische Systeme sind störanfällig, da das sogenannte Rauschen die Zahl unterscheidbarer Zustände und die damit zusammenhängende Informationskapazität begrenzt. \\
 
-Ein weiterer wichtiger Aspekt ist die \textbf{Symmetrie} des Systems. Symmetrisch beschränkte Zustandsräume – wie der zweidimensionale Raum eines Spin-1/2-Teilchens mit den Zuständen $\ket{\uparrow}$ und $\ket{\downarrow}$ – helfen, die Stabilität der Quanteninformation zu sichern. Solche Systeme sind weniger anfällig für Störungen von außen und daher besser gegen Dekohärenz geschützt. Die Wahl eines symmetrischen, wohldefinierten Zustandsraums kann somit entscheidend zur Fehlerresistenz eines Qubits beitragen.
+Ein weiterer wichtiger Aspekt ist die \textbf{Symmetrie} des Systems. Symmetrisch beschränkte Zustandsräume wie der zweidimensionale Raum eines Spin-1/2-Teilchens mit den Zuständen $\ket{\uparrow}$ und $\ket{\downarrow}$ – helfen, die Stabilität der Quanteninformation zu sichern. Solche Systeme sind weniger anfällig für Störungen von außen und daher besser gegen Dekohärenz geschützt. Die Wahl eines symmetrischen, wohldefinierten Zustandsraums kann somit entscheidend zur Fehlerresistenz eines Qubits beitragen.
 
 
 Demgegenüber können \textbf{ungeeignete physikalische Repräsentationen} schnell zur Dekohärenz führen. Ein Beispiel ist ein Teilchen in einem flachen Potentialtopf, das nur gerade tief genug ist, um zwei gebundene Zustände zu enthalten. Solch ein System könnte zwar theoretisch als Qubit verwendet werden – es besteht jedoch die Gefahr, dass das Teilchen durch äußere Einflüsse in den ungebundenen Bereich des Kontinuums übergeht. Dadurch würde der Zustand aus dem definierten Zustandsraum „herausspringen“, was zur Zerstörung der Superposition und damit zu Informationsverlust führt.\\
@@ -716,33 +716,51 @@ Trotz der genannten Einschränkungen gelten photonische Systeme als vielversprec
 
 \subsection{Spin-Qubits}
 \label{subsec: Spin-Qubits}
-Spin-Qubits gehören zu den vielversprechendsten physikalischen Realisierungsformen von Qubits. Sie basieren auf dem quantenmechanischen Eigendrehimpuls, dem Spin, von Elektronen oder Atomkernen. Die beiden möglichen Orientierungen des Spins, üblicherweise als $\ket{\uparrow}$ (Spin-up) und $\ket{\downarrow}$ (Spin-down) bezeichnet, bilden die Basiszustände eines Qubits.
+Spin-Qubits zählen zu den derzeit vielversprechendsten Kandidaten für die physikalische Realisierung von Quanteninformation. Ihre Grundlage ist der quantenmechanische Eigendrehimpuls, der sogenannte Spin, von Elektronen oder Atomkernen. Dieser kann in zwei entgegengesetzten Orientierungen auftreten, üblicherweise als $\ket{\uparrow}$ (Spin-up) und $\ket{\downarrow}$ (Spin-down) bezeichnet. Diese beiden diskreten Zustände bilden die Basis eines Zwei-Niveau-Systems und damit eines Qubits(vgl. \cite{Bukard et al}).
 
-Die gezielte Kontrolle dieser Zustände erfolgt durch äußere Einflüsse, meist in Form elektromagnetischer Felder. Hierbei werden Mikrowellenimpulse oder lokal angelegte Magnetfelder genutzt, um mithilfe von Spinresonanz Zustandsänderungen zu induzieren.
+Die gezielte Kontrolle des Spins erfolgt durch äußere Einflüsse wie Magnetfelder oder Mikrowellenimpulse. Mittels Spinresonanztechniken, insbesondere Elektronenspinresonanz (ESR) oder Kernspinresonanz (NMR), lassen sich gezielte Übergänge zwischen den Zuständen anregen. Solche Manipulationen sind notwendig, um Quantenoperationen durchzuführen(siehe \cite{Petta et al}.
 
-In der Praxis kommen Spin-Qubits häufig in Halbleitern zum Einsatz. Quantendots dienen dabei als künstliche Atome, in denen einzelne Elektronen gefangen sind. Alternativ finden auch Defektzentren in Diamantstrukturen, etwa NV-Zentren, Anwendung. Diese Systeme bieten Potenzial für eine Integration in bestehende Halbleitertechnologien.
+In der praktischen Umsetzung werden Spin-Qubits häufig in Halbleitern realisiert. Ein etabliertes Konzept sind sogenannte Quantendots. Quantendots sind nanoskalige, künstliche Potenzialmulden, in denen einzelne Elektronen eingeschlossen werden können. Eine alternative Plattform stellen Defektzentren in Diamant dar, insbesondere NV-Zentren (Stickstoff-Leerstellen-Zentren). Diese bestehen aus einem Stickstoffatom und einer benachbarten Fehlstelle im Kristallgitter. Beide Systeme erlauben eine präzise Kontrolle und Auslese der Spin-Zustände(vgl. \cite{nielsen_quantum_2010, Kapitel 7.7}).
 
-Ein bedeutender Vorteil von Spin-Qubits liegt in ihren vergleichsweise langen Kohärenzzeiten. Dadurch bleibt die Quanteninformation über relevante Zeitspannen hinweg erhalten, was sie für die praktische Nutzung besonders attraktiv macht.
+Ein wesentlicher Vorteil von Spin-Qubits sind ihre vergleichsweise langen Kohärenzzeiten. Diese erlauben es, die Quanteninformation über relevante Zeiträume hinweg stabil zu speichern. Elektronenspins in isotopenreinem Silizium oder Kernspins in NV-Zentren weisen besonders gute Kohärenzeigenschaften auf (vgl. \cite{Burkard et al}.
 
-Die Wechselwirkung zwischen mehreren Spin-Qubits wird typischerweise durch Austauschkopplung oder über gemeinsame Felder vermittelt. Diese Kopplung ist notwendig für die Umsetzung von Quantenlogikgattern, erfordert aber hochpräzise Steuerung und Isolation gegenüber Umwelteinflüssen.
+Spin-Qubits erfüllen eine Vielzahl der DiVincenzo-Kriterien. Die Skalierbarkeit wird durch den Bezug zu etablierten Halbleiterprozessen grundsätzlich ermöglicht, auch wenn die parallele Kontrolle vieler Qubits gegenwärtig noch Herausforderungen birgt. Die Initialisierung gelingt z.\,B. durch thermische Polarisierung oder durch optisch angeregte Übergänge bei NV-Zentren. 
 
-Forschungsschwerpunkte liegen aktuell auf der Verbesserung von Kohärenzzeiten, der Entwicklung effizienter Fehlerkorrekturverfahren und der Skalierung zu größeren Systemen. Ziel ist es, auf dieser Grundlage robuste Quantenprozessoren zu realisieren (vgl.\cite{nielsen_quantum_2010, Kapitel 7.7}).
+Die Kohärenzzeit ist bei modernen Spin-Qubits hinreichend groß im Vergleich zur Dauer von Quantenoperationen. Einzelqubit-Gatter lassen sich durch kontrollierte Spinrotationen realisieren. Für Zwei-Qubit-Gatter werden typischerweise Austauschkopplung oder Resonator-basierte Verfahren verwendet, womit auch das Kriterium der universellen Quantenlogikgatter erfüllt ist.
+
+Die Messung von Qubits erfolgt z.\,B. durch fluoreszenzbasierte Ausleseverfahren bei NV-Zentren oder spinabhängiges Tunneln bei Quantendots. Beide Methoden ermöglichen eine zuverlässige Zustandserkennung. Eine Herausforderung bleibt jedoch die Quantenkommunikation: Spin-Qubits besitzen keine natürliche Schnittstelle zur Fernübertragung von Quanteninformation. Der Aufbau hybrider Architekturen mit photonischer Kopplung wird daher intensiv erforscht.
+
+Insgesamt lassen sich Spin-Qubits als ein realistischer Kandidat für skalierbare Quanteninformationsverarbeitung einschätzen. Die Kombination aus relativ hoher Kohärenz, guter Kontrolle und Fortschritten in der Halbleiterintegration macht sie zu einem Fokus aktueller Forschung.
+
 
 \subsection{Neutralatom-Qubits}
 \label{subsec: Neutralatom-Qubits}
-Neutralatom-Qubits verwenden einzelne, elektrisch neutrale Atome als Träger von Quanteninformation. Diese Atome werden durch optische Fallen oder optische Gitter eingefangen und lassen sich auf engstem Raum präzise anordnen. Als Qubit-Zustände dienen dabei zwei ausgewählte hyperfeine Energieniveaus, die durch Kopplung zwischen Elektronen- und Kernspin entstehen.
 
-Die Manipulation dieser Zustände erfolgt durch kohärente Laserpulse. Diese ermöglichen sowohl Zustandsübergänge als auch kontrollierte Wechselwirkungen zwischen benachbarten Atomen. Besonders relevant sind Rydberg-Zustände, bei denen sich ein Elektron in einem stark angeregten Zustand befindet.
+Neutralatom-Qubits verwenden elektrisch neutrale Atome als Träger von Quanteninformation. Diese Atome können mit hoher Präzision in optischen Fallen oder Gittern fixiert und in regelmäßigen Strukturen angeordnet werden.
 
-Rydberg-Zustände zeichnen sich durch stark verstärkte Wechselwirkungen aus. Sie erlauben die Realisierung von Zwei-Qubit-Gattern über Mechanismen wie die Rydberg-Blockade, bei der bestimmte Übergänge durch das Vorhandensein eines benachbarten angeregten Atoms unterdrückt werden.
+Die verwendeten Qubit-Zustände basieren meist auf zwei ausgewählten hyperfeinen Energieniveaus der Atome. Diese entstehen durch die Kopplung von Elektronen- und Kernspin. Die Zustände können als  $\ket{0}$ und $\ket{1}$ definiert und durch kohärente Laserpulse gezielt manipuliert werden (siehe \cite{saffman2010rydberg}).
 
-Ein großer Vorteil von Neutralatom-Qubits ist ihre hervorragende Skalierbarkeit. Optische Gitter ermöglichen die gleichzeitige Kontrolle von Tausenden Atomen mit hoher Reproduzierbarkeit und Homogenität. Auch die Kohärenzzeiten sind in vielen Szenarien konkurrenzfähig mit anderen Plattformen.
+Ein zentraler Vorteil dieser Plattform liegt in ihrer exzellenten Skalierbarkeit. Mit Hilfe optischer Gitter ist es möglich, große Ensembles einzelner Atome regelmäßig anzuordnen. Dabei lassen sich Tausende von Qubits mit hoher Homogenität und Reproduzierbarkeit gleichzeitig kontrollieren (vgl \cite{saffman2010rydberg}).
 
-Gleichzeitig bestehen Herausforderungen bei der exakten Positionierung, der Einzeladressierung und der Minimierung störender Einflüsse wie Streulicht oder thermischen Fluktuationen. Hier konzentriert sich die aktuelle Forschung auf verbesserte Kontrollmechanismen und die Integration komplexerer Strukturen.
+Für die Realisierung von Zwei-Qubit-Gattern werden häufig sogenannte Rydberg-Zustände eingesetzt. Dabei wird ein Elektron in einen hoch angeregten Zustand versetzt. Diese Zustände zeichnen sich durch starke, langreichweitige Wechselwirkungen zwischen benachbarten Atomen aus.
 
-Neutralatom-Qubits ergänzen bestehende Plattformen sinnvoll. Ihre Kombination aus Skalierbarkeit, Präzision und Kohärenz macht sie zu einer zentralen Technologie für Quantencomputer und spezialisierte Quantensimulatoren.
+Ein wichtiger Mechanismus ist dabei die Rydberg-Blockade. Sie verhindert, dass zwei nahegelegene Atome gleichzeitig angeregt werden können. Diese Eigenschaft erlaubt die Implementierung schneller und zuverlässiger Zwei-Qubit-Gatter(vgl. \cite{saffman2010rydberg}).
 
+Die Initialisierung der Qubits erfolgt typischerweise durch Laserkühlung und optisches Pumpen(vgl. \cite{saffman2010rydberg}). Dabei werden die Atome gezielt in definierte Anfangszustände überführt.
 
+Die Kohärenzzeiten von Neutralatom-Qubits sind in vielen Fällen vergleichbar mit anderen Plattformen. Vor allem atomare Systeme mit gut abgeschirmten Zuständen zeigen stabile Quanteneigenschaften über relevante Zeiträume(vgl. \cite{saffman2010rydberg}).
+
+Die Einzelqubit-Manipulation wird durch laserinduzierte Übergänge realisiert. Die Adressierung einzelner Atome erfordert jedoch hohe optische Auflösung. Technisch ist dies durch Fokusierung mithilfe von Mikrolinsenarrays oder optischen Phasenschiebern lösbar.
+
+Die Messung erfolgt durch fluoreszenzbasierte Verfahren. Nach Anregung emittieren die Atome Photonen, deren Detektion Rückschlüsse auf den Zustand des jeweiligen Qubits erlaubt.
+
+Neutralatom-Qubits erfüllen nahezu alle DiVincenzo-Kriterien. Die physikalische Realisierung einzelner Qubits und die Möglichkeit universeller Gatteroperationen sind nachgewiesen. Auch Initialisierung und Messung sind mit hoher Genauigkeit umsetzbar.
+
+Eine Herausforderung stellt aktuell noch die Quantenkommunikation dar. Der direkte Transport atomarer Qubits über größere Distanzen ist komplex. Forschungsarbeiten konzentrieren sich daher auf die Kopplung der Atome an photonische Schnittstellen oder an mobile Speicher.
+
+Eine weitere offene Frage betrifft die Fehlertoleranz. Zwar existieren erste Konzepte für Fehlerkorrektur mit atomaren Gittern, deren Effizienz und praktische Umsetzung müssen jedoch weiter optimiert werden.
+
+Neutralatom-Plattformen werden heute bereits für experimentelle Quantenprozessoren und insbesondere für Quantensimulationen komplexer Vielteilchensysteme eingesetzt. Ihre Kombination aus hoher Kontrolle, Skalierbarkeit und Kohärenz macht sie zu einem zentralen Forschungsfeld der Quanteninformatik.
 
 
 

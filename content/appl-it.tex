@@ -174,8 +174,7 @@ Die Autoren zeigen auch, dass Kernelmethoden zwar gute Trennungen im Feature-Rau
 \vspace{0.1cm}
 \noindent
 \textbf{Shadow Tomography}\\
-\textit{Shadow Tomography} ist eine Technik zur kompakten Repräsentation eines Quantenzustands durch Stichprobenmessungen. Dabei werden sogenannte \textit{Classical Shadows} erstellt – kleine Informationspakete über den Zustand, die eine effiziente Approximation von Observablen erlauben. Der Vorteil gegenüber vollständiger Quanten-Tomografie liegt im exponentiellen Effizienzgewinn bei vielen Qubits. Jerbi et al. zeigen, dass solche Methoden besonders für \textit{post hoc}-Analysen in Typ-III-QML-Modellen wichtig sind, z.\,B. zur Messung von Feature-Overlaps, Kernelwerten oder Verifikation von Outputzuständen.
-\cite{jerbi_quantum_2023}
+\textit{Shadow Tomography} ist eine Technik zur kompakten Repräsentation eines Quantenzustands durch Stichprobenmessungen. Dabei werden sogenannte \textit{Classical Shadows} erstellt – kleine Informationspakete über den Zustand, die eine effiziente Approximation von Observablen erlauben. Der Vorteil gegenüber vollständiger Quanten-Tomografie liegt im exponentiellen Effizienzgewinn bei vielen Qubits. Jerbi et al. zeigen, dass solche Methoden besonders für \textit{post hoc}-Analysen in Typ-III-QML-Modellen wichtig sind, z.\,B. zur Messung von Feature-Overlaps, Kernelwerten oder Verifikation von Outputzuständen. \cite{jerbi_quantum_2023}
 
 \vspace{1cm}
 \noindent\textbf{6. Technologischer Rahmen und Implementierung}  
@@ -207,21 +206,29 @@ Die Forschung im Bereich des Quantum Machine Learning (QML) erlebt seit einigen 
 
 \noindent
 Die derzeitige Forschung im Bereich QML lässt sich anhand drei unterschiedlicher Modellarchitekturen strukturieren, wobei insbesondere der Grad der quantenmechanischen Integration ein zentrales Unterscheidungskriterium darstellt. Zwei etablierte Klassifikationen \cite{chengNoisyIntermediatescaleQuantum2023} und Mitarai, K., Negoro, M., Kitagawa, M., & Fujii, K. (2018). Quantum circuit learning 
-schlagen dabei jeweils eine Dreiteilung vor, die sich inhaltlich stark überschneiden, aber unterschiedliche Perspektiven einnehmen: Chen et al. fokussieren primär auf die strukturelle Zusammensetzung der Modelle, während Mitarai et al. den Funktionalitäts- und Integrationsgrad betonen.
-Zur besseren Übersicht wird im Folgenden eine kombinierte Darstellung beider Ansätze gewählt, um die zentralen Architekturen konsistent und vergleichbar einzuordnen.
+schlagen dabei jeweils eine Dreiteilung vor, die sich inhaltlich stark überschneiden, aber unterschiedliche Perspektiven einnehmen: Cheng et al. fokussieren primär auf die strukturelle Zusammensetzung der Modelle, während Mitarai et al. den Funktionalitäts- und Integrationsgrad betonen.
+Zur besseren Übersicht wird im Folgenden eine kombinierte Darstellung beider Ansätze gewählt, um die zentralen Architekturen konsistent und vergleichbar einzuordnen. 
+
+MITARI ZITIEREN; NICHT AUFFINDBAR
 
 \subparagraph{Typ I / Fully Quantum Models}
 Diese Modellklasse führt alle Verarbeitungsschritte – von der Datenkodierung über die Merkmalsextraktion bis zur Entscheidung – vollständig auf Quantenhardware durch. Dazu zählen z.B. Quantum Support Vector Machines (QSVM) mit vollständig quantenbasiertem Kernelansatz sowie Quantum Hopfield Networks oder vollständig quantisierte QNNs. \cite{chengNoisyIntermediatescaleQuantum2023} und Mitarai et al 2018
 Trotz ihres theoretischen Potenzials – etwa durch maximale Parallelisierung – sind diese Modelle derzeit nur für sehr kleine Problemräume einsetzbar. Sie gelten als stark hardwareabhängig und in der Optimierung hochkomplex.
 
+MITARI ZITIEREN; NICHT AUFFINDBAR
+
 \subparagraph{Typ II / Hybride Quantum-Classical Models}
-In diesen Architekturen werden klassische und quantenmechanische Verarbeitungseinheiten kombiniert. Typisch ist eine klassische Vorverarbeitung (z.B. Feature Engineering, Normalisierung) in Verbindung mit einem quantenmechanischen Kernmodul wie VQCs oder QNNs (Chen et al., 2023, S.4–5; Mitarai et al 2018).
+In diesen Architekturen werden klassische und quantenmechanische Verarbeitungseinheiten kombiniert. Typisch ist eine klassische Vorverarbeitung (z.B. Feature Engineering, Normalisierung) in Verbindung mit einem quantenmechanischen Kernmodul wie VQCs oder QNNs.
 Diese Modelle sind derzeit die am weitesten verbreitete Architektur in der praktischen Forschung, da sie mit den Limitierungen heutiger NISQ-Geräte vereinbar sind. Sie bieten eine höhere Modellflexibilität, sind vergleichsweise leicht trainierbar und erlauben modulare Schnittstellen zwischen klassischen und quantenbasierten Komponenten (Mitarai et al 2018).
+
+MITARI ZITIEREN; NICHT AUFFINDBAR
 
 \subparagraph{ Typ III / Quantum-enhanced Classical Models}
 Hierbei handelt es sich um klassisch dominierte Architekturen, in die gezielt einzelne quantenmechanische Komponenten – etwa zur Kernelberechnung oder Dimensionsreduktion – integriert werden. Ein prominentes Beispiel ist die Quantum PCA oder die QSVM mit quantenmechanischem Kernel.
 Solche Modelle versprechen Vorteile insbesondere bei großen Datensätzen, da sie eine Reduktion der Zeitkomplexität ermöglichen – etwa von O(n²) auf O(logn), sofern eine geeignete Datenkodierung vorhanden ist. Gleichzeitig sind sie vergleichsweise hardwaretolerant, da nur ausgewählte Verarbeitungsschritte auf Quantenhardware erfolgen.
 \cite{chengNoisyIntermediatescaleQuantum2023} und Mitarai et al 2018
+
+MITARI ZITIEREN; NICHT AUFFINDBAR
 
 \vspace{1em}
 \noindent\textbf{Funktionale Gliederung nach Lernziel}
@@ -411,6 +418,8 @@ Im Bereich der Regression bietet QML ebenfalls erste erfolgversprechende Ansätz
 Zudem kommen auch VQCs mit kontinuierlichen Lossfunktionen wie Mean Squared Error (MSE) zur Anwendung. Diese kombinieren parametrische PQCs mit klassischer Rückpropagation, wobei sich insbesondere bei kleineren Regressionsproblemen mit begrenztem Datensatz (z.B. polynomiale Fits) Vorteile gegenüber klassischen Methoden zeigen – etwa in Bezug auf Robustheit gegenüber Rauschen und Modellkompression.
 Gleichzeitig ist jedoch zu beachten, dass viele quantenbasierte Regressionsansätze eine sehr hohe Rechenkomplexität in der Initialisierung und Messung aufweisen, was ihre praktische Umsetzung auf heutigen NISQ-Systemen limitiert. In Zukunft könnten Fortschritte bei Qubit-Fidelity und Circuit Depth hier jedoch deutliche Verbesserungen bringen.
 Schuld, M., Bergholm, V., Gogolin, C., Izaac, J., & Killoran, N. (2019). Quantum machine learning in feature Hilbert spaces.
+
+SCHULD ZITIEREN; NICHT AUFFINDBAR
 
 \subparagraph{Clustering und Dimensionsreduktion}
 Im Bereich des unüberwachten Lernens richten Gujju et al. den Fokus auf Quanten-Clustering, insbesondere den Quantum K-Means Algorithmus. Dabei wird die Distanz zwischen Datenpunkten mittels SWAP-Tests im Hilbertraum ermittelt. Dies ermöglicht effizienteres Clustering, insbesondere bei nichtlinear separierbaren Strukturen – vorausgesetzt, die Initialisierung der Clusterzentren ist ausreichend präzise.
@@ -775,7 +784,8 @@ Ein zentraler Treiber für die Akzeptanz und Skalierbarkeit von QRNG ist die Sta
 
 Die von Toshiba entwickelte USB-QRNG-Serie richtet sich an Anwendungen in professionellen Desktop- und Rechenzentrumsumgebungen. Die Geräte nutzen eine optische Methode, bei der einzelne Photonen auf einen Strahlteiler gelenkt und anschließend detektiert werden. Die Entscheidung, ob ein Photon auf Detektor A oder B trifft, basiert auf fundamentaler Quantenunsicherheit, wodurch Bitfolgen mit maximaler Entropie erzeugt werden \cite{toshiba_europe_cambridge_research_laboratory_quantum_2025}. Der Vorteil dieser Architektur liegt in der unmittelbaren physikalischen Rückführbarkeit der Zufälligkeit sowie in der einfachen Integration über eine standardisierte USB-Schnittstelle. Die Bitraten liegen im Bereich einiger Mbit/s und eignen sich damit sowohl zur Initialisierung kryptographischer Prozesse (z.B. RSA-Schlüsselerzeugung, TLS-Handshakes) als auch als Entropiequelle für Betriebssysteme oder Sicherheitsmodule. Toshiba hebt besonders die Resistenz gegenüber externen Einflussgrößen hervor, da die Detektion in einem abgeschirmten optischen System erfolgt. Die Geräte wurden unter anderem in der britischen Post-Quantum-Initiative evaluiert und werden derzeit auch in Kombination mit PQC-Algorithmen getestet.
 
-Ein umfassender Überblick über aktuelle und potenzielle QRNG-Anwendungen findet sich im Bericht „QRNG Report 2021“ von evolutionQ. Dort wird deutlich, dass sich die Einsatzfelder weit über klassische Kryptographie hinaus erstrecken. QRNG wird beispielsweise in der Tokenisierung von Finanztransaktionen, bei der Erzeugung von Seeds für Blockchain-Schlüsselpaare oder in der Protokollinitialisierung sicherer Multi-Party-Computing-Systeme eingesetzt \cite{??????} <- Piani et al. Besonders hervorgehoben wird die Rolle von QRNG in virtualisierten und containerisierten Cloud-Infrastrukturen, bei denen klassische Entropiequellen wie /dev/random nicht hinreichend isoliert oder manipulationssicher sind. QRNG kann hier als dedizierter Hardware-Entropieprovider über PCIe, USB oder Netzwerkprotokolle eingebunden werden. Ein weiteres Anwendungsfeld ist die Verwendung in sicherheitskritischer Hardware wie Hardware Security Modules (HSMs), wo QRNG zur Generierung nicht reproduzierbarer Einmalschlüssel beiträgt. Laut evolutionQ liegt der entscheidende Vorteil in der messbaren Entropieherkunft, die sowohl regulatorischen Anforderungen (z.B. eIDAS, FIPS) als auch zukünftigen Anforderungen an Post-Quantum-Resilienz gerecht wird.
+Ein umfassender Überblick über aktuelle und potenzielle QRNG-Anwendungen findet sich im Bericht „QRNG Report 2021“ von evolutionQ. Dort wird deutlich, dass sich die Einsatzfelder weit über klassische Kryptographie hinaus erstrecken. QRNG wird beispielsweise in der Tokenisierung von Finanztransaktionen, bei der Erzeugung von Seeds für Blockchain-Schlüsselpaare oder in der Protokollinitialisierung sicherer Multi-Party-Computing-Systeme eingesetzt. Besonders hervorgehoben wird die Rolle von QRNG in virtualisierten und containerisierten Cloud-Infrastrukturen, bei denen klassische Entropiequellen wie /dev/random nicht hinreichend isoliert oder manipulationssicher sind. QRNG kann hier als dedizierter Hardware-Entropieprovider über PCIe, USB oder Netzwerkprotokolle eingebunden werden. Ein weiteres Anwendungsfeld ist die Verwendung in sicherheitskritischer Hardware wie Hardware Security Modules (HSMs), wo QRNG zur Generierung nicht reproduzierbarer Einmalschlüssel beiträgt. Laut evolutionQ liegt der entscheidende Vorteil in der messbaren Entropieherkunft, die sowohl regulatorischen Anforderungen (z.B. eIDAS, FIPS) als auch zukünftigen Anforderungen an Post-Quantum-Resilienz gerecht wird.
+
 
 Die vorgestellten Anwendungsprojekte zeigen, dass QRNG nicht mehr als isolierte Labortechnologie zu betrachten ist, sondern sich zunehmend als integraler Bestandteil moderner Sicherheitsarchitekturen etabliert. Während sich einzelne Implementierungen – etwa in Form von USB-Geräten oder Chips – technisch stark unterscheiden, eint sie das Ziel, vertrauenswürdige und physikalisch nachvollziehbare Zufallsquellen für kryptographische Kernfunktionen bereitzustellen. In der Gesamtschau ergibt sich ein technologieoffenes, aber klar sicherheitsgetriebenes Innovationsfeld: QRNG schließt eine zentrale Lücke in der Kette quantensicherer Systeme, indem es nicht nur den algorithmischen Teil, sondern auch die zugrunde liegende Entropiequelle absichert. Damit kommt dieser Technologie eine Schlüsselrolle im Übergang von klassischen zu postquantenresilienten Sicherheitsinfrastrukturen zu – und zwar nicht nur auf konzeptioneller, sondern bereits auf operativer Ebene.
 
