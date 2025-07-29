@@ -4,10 +4,10 @@
 % use \chaptermark{}
 % to alter or adjust the chapter heading in the running head
 
-\chapterauthor{Burak Demirtas, Dominik Neumaier, Hannes Ringswald, Marvin Rothmann, Thilo Prünte}
+\chapterauthor{Dominik Neumaier, Hannes Ringswald, Marvin Rothmann, Thilo Prünte}
 
 \abstract{}
-Dieses Kapitel führt in die Grundlagen der Quanteninformation ein und beschreibt den fundamentalen Unterschied zwischen klassischen Bits und Qubits. Es erklärt die Superposition von Qubits und deren Darstellung auf der Bloch-Kugel. Anschließend werden wesentliche Quanten-Gatter wie die Pauli- und Hadamard-Gatter vorgestellt, die Transformationen von Qubit-Zuständen ermöglichen und Grundlage für Quantenalgorithmen sind. Das Kapitel beschreibt erste Quantenalgorithmen, darunter den Deutsch- und Deutsch-Josza-Algorithmus, die die Effizienzvorteile quantenmechanischer Berechnungen demonstrieren. Weiterhin werden Konzepte der Quantenverschränkung und Quantenteleportation erläutert, inklusive deren Protokolle, Anwendungen in der Quantenkommunikation sowie ihre Realisierung auf Basis von Bell-Zuständen. Abschließend wird die Bedeutung der Bell-Zustände als Basis maximaler Verschränkung und ihre Nutzung in Quantencomputing, Kryptographie und Netzwerken behandelt. Das Kapitel bietet somit einen umfassenden Überblick über zentrale theoretische und praktische Prinzipien der Quanteninformation als Grundlage für weiterführende Quantencomputeranwendungen.
+Dieses Kapitel führt in die Grundlagen der Quanteninformation ein. Es erläutert die Unterschiede zwischen klassischen Bits und Qubits, beschreibt zentrale Konzepte wie Superposition, Verschränkung und Quantenparallelismus und stellt grundlegende Quanten-Gatter vor. Anhand der Algorithmen von Deutsch und Deutsch-Josza wird das Potenzial quantenmechanischer Berechnungen demonstriert. Zudem behandelt das Kapitel die Prinzipien der Quantenteleportation, Quantenkommunikation sowie die Bedeutung von Bell-Zuständen und Quantenfehlerkorrektur. Damit bietet es einen Überblick über die theoretischen Grundlagen und ersten Anwendungen der Quanteninformation.
 
 \section{Das Qubit als Informationsträger}
 \label{Das Qubit als Informationsträger}
@@ -17,7 +17,7 @@ Physikalisch bedeutet das zum Beispiel: Strom an = 1, Strom aus = 0. Durch Schal
 
 In \emph{Quantencomputern} werden analog dazu \emph{Qubits} (Quantenbits) als grundlegende Informationseinheiten verwendet. Ein Qubit wird hier als abstraktes mathematisches Objekt behandelt, dessen Konzept auf alle konkreten physikalischen Implementierungen anwendbar ist, die im späteren Teil dieses Buches erläutert werden.
 
-Wie ein klassisches Bit hat auch ein Qubit zwei mögliche Zustände: $\ket{0}$ und $\ket{1}$. Die Notation, die zur Beschreibung verwendet wird, heißt \emph{Bra-Ket-Notation} (vgl. Kapitel \ref{subsec:dirac}). Der entscheidende Unterschied zu einem konventionellen Bit ist, dass ein Qubit auch andere Zustände als $\ket{0}$ und $\ket{1}$ annehmen kann. Konkret kann es eine lineare Kombination der beiden Zustände, eine sogenannte Superposition (vgl. Kapitel irgendwas in physikalische Grundlagen), einnehmen. Dies wird folgendermaßen beschrieben:
+Wie ein klassisches Bit hat auch ein Qubit zwei mögliche Zustände: $\ket{0}$ und $\ket{1}$. Die Notation, die zur Beschreibung verwendet wird, heißt \emph{Bra-Ket-Notation}. Der entscheidende Unterschied zu einem konventionellen Bit ist, dass ein Qubit auch andere Zustände als $\ket{0}$ und $\ket{1}$ annehmen kann. Konkret kann es eine lineare Kombination der beiden Zustände, eine sogenannte Superposition (vgl. Kapitel irgendwas in physikalische Grundlagen), einnehmen. Dies wird folgendermaßen beschrieben:
 \begin{equation}
     \ket{\psi} = \alpha\,\ket{0} \;+\; \beta\,\ket{1}, \quad \alpha, \beta \in \mathbb{C},
 \end{equation}
@@ -60,7 +60,79 @@ Der Zustand des Qubits kann folgendermaßen berechnet werden:
   \ket{\psi} = \cos\frac{\theta}{2} \ket{0} + e^{i\phi} \sin\frac{\theta}{2} \ket{1}
 \end{equation}
 
-Ein Qubit kann also eine unendliche Anzahl an Zuständen annehmen. Das ließe die Vermutung zu, dass ein Qubit auch unendlich viele Informationen speichern kann. Dies ist jedoch nicht der Fall, weil beim Messen des Zustandes die Superposition zusammenfällt und das Qubit dann entweder den Wert $\ket{0}$ oder $\ket{1}$ hat. (vgl. [5 ff.]\cite{pattanayak_quantum_2017}, \cite[15 f.]{nielsen_quantum_2010}
+Ein Qubit kann also eine unendliche Anzahl an Zuständen annehmen. Das ließe die Vermutung zu, dass ein Qubit auch unendlich viele Informationen speichern kann. Dies ist jedoch nicht der Fall, weil beim Messen des Zustandes die Superposition zusammenfällt und das Qubit dann entweder den Wert $\ket{0}$ oder $\ket{1}$ hat. (vgl. [5 ff.]\cite{pattanayakQuantumMachineLearning2017}, \cite[15 f.]{nielsen_quantum_2010}
+
+\subsection{Informationscodierung}
+Thilo
+\subsubsection{Basis Encoding}
+Thilo
+
+\subsubsection{QuAM Encoding}
+\begin{itemize}
+\item Ziel: Sammlung mehrerer Datenwerte und Speicherung im Quantenregister (Sammlung mehrerer Qubits, die gemeinsam einen Zustand beschreiben)
+\item Quantenalgorithmus benötigt mehrere Zahlenwerte \( x_1, x_2, \ldots \) als Input
+\item Daten in einem gemeinsamen Qubit-Register als Superposition von Basis-encodierten Zuständen speichern
+\item Ergebnis: Gleichgewichtete Superposition aller Datenwerte mit Amplituden (hohe Wahrscheinlichkeiten gemessen zu werden)
+\item Daten sind binär codiert (z.\,B. \( x_1 = 010, x_2 = 011, x_3 = 110 \))
+\item Jeder Datenwert = ein Basiszustand im Quantenregister (z.\,B. \( |010\rangle \))
+\item Für \( n \) Werte mit je \( l \) Bit: benötigt werden \( l \) Qubits
+\end{itemize}
+\cite{Date encoding patterns for quantum computing}
+\\
+
+
+Anwendungsbeispiel
+\begin{itemize}
+\item Gegeben: Drei Werte \( x_1 = 010 \), \( x_2 = 011 \), \( x_3 = 110 \)
+\item Jeder Wert ist 3 Bit lang → 3 Qubits nötig
+\item Quantenregister speichert:
+  \[
+  |\psi\rangle = \frac{1}{\sqrt{3}} (|010\rangle + |011\rangle + |110\rangle)
+  \]
+\item Nur diese drei Zustände haben Amplituden, alle anderen (z.\,B. \( |000\rangle, |001\rangle \)) = 0
+\item Nach Messung: Einer der gespeicherten Werte wird mit Wahrscheinlichkeit \( \frac{1}{3} \) gelesen
+\end{itemize}
+
+\subsubsection{Angle Encoding}
+
+\begin{itemize}
+\item Jeder Datenpunkt wird durch ein separates Qubit repräsentiert.
+\item Ziel: Daten effizient auf einem Quantencomputer kodieren, um möglichst viele Operationen innerhalb der Stabilitätsdauer des Quantenzustands durchzuführen.
+\item Jeder Wert \(x_i\) wird auf das Intervall \([0, \frac{\pi}{2}]\) normalisiert.
+\item Bereich \([0, \frac{\pi}{2}]\), weil \(\cos(x)\) und \(\sin(x)\) dort positiv sind → keine Vorzeichenprobleme
+\item Ein einzelnes Qubit repräsentiert einen Datenwert durch  Rotation um die y-Achse auf der Bloch-Kugel.
+\item Die resultierende Quantenzustand ist separabel, d.h. es findet keine Verschränkung der Qubits statt.
+\item Der Zustand ergibt sich als Tensorprodukt einzelner Qubit-Zustände: 
+\[
+|\psi\rangle = \bigotimes_i \begin{bmatrix} \cos x_i \\ \sin x_i \end{bmatrix}
+\]
+\item Vorteil: Sehr effizient in Bezug auf Operationen – konstante Anzahl paralleler Einzelqubit-Rotationen genügt.
+\item Nachteil: Für \(n\) Datenwerte werden \(n\) Qubits benötigt – nicht optimal im Qubit-Bedarf.
+\item Anwendungen: Klassifikatoren, Quantum Image Processing (ein Qubit = Farbwert, Register = Position), Quantum Neural Networks (Quron).
+\end{itemize}
+\cite{encoding patterns for quantum algorithms}
+\\
+
+
+Anwendungsbeispiel:
+\begin{itemize}
+\item \textbf{Beispiel:} Temperaturen in Städten speichern – Berlin: 15°C, Paris: 25°C, Madrid: 30°C
+\item \textbf{Schritt 1:} Normalisieren auf Bereich \([0, \frac{\pi}{2}]\)
+  \begin{itemize}
+    \item 15°C → 45°, 25°C → 75°, 30°C → 90°
+  \end{itemize}
+\item \textbf{Schritt 2:} Visualisierung: Jede Temperatur entspricht einem Zeiger (Qubit) auf einer Uhr
+\item \textbf{Schritt 3:} Zeiger wird um Winkel gedreht (z.\,B. 45°)
+\item \textbf{Schritt 4:} Drehung entspricht Rotation eines Qubits um y-Achse
+\item \textbf{Schritt 5:} Jeder Qubit-Zustand speichert seinen Drehwinkel
+\item \textbf{Schritt 6:} Kombination aller Qubits = Gesamtzustand des Systems
+\end{itemize}
+
+
+\subsubsection{QRAM Encoding}
+Marvin
+\subsubsection{Amplituden Encoding}
+Marvin
 
 \subsection{Verschränkung von Qubits}
 \label{subsec:verschraenkungQubits}
@@ -100,8 +172,8 @@ Es ist wichtig zu beachten, dass diese theoretische Parallelität in der praktis
 
 Diese enorme Zustandsvielfalt ist nicht einfach direkt auslesbar – bei einer Messung kollabiert das Qubit-System zu genau einem dieser \(2^n\) Basiszustände. Dennoch erlaubt die gleichzeitige Verarbeitung dieser vielen Möglichkeiten innerhalb eines Algorithmus ein grundsätzlich neues Rechenparadigma. Probleme, deren Rechenzeit auf konventionellen Computern exponentiell wächst können deshalb von Quantencomputern in angemessenen Zeiten gelöst werden. 
 
-Es ist sehr wichtig Quantenparallelismus nicht mit dem parallelen Ausführen von Programmen in klassischen Computern gleichzusetzen. Quantenparallelismus nutzt die fundamentalen Eigenschaften der Quantenmechanik, insbesondere die Superposition und die Interferenz von Wahrscheinlichkeitsamplituden. Das heißt, dass es bei Quantenalgorithmen darum geht die Amplituden der Zustände so zu manipulieren, dass sich die Amplituden der Zustände, die korrekte Lösungen repräsentieren, durch konstruktive Interferenz verstärken, während sich die Amplituden der Zustände mit falschen Lösungen durch destruktive Interferenz abschwächen oder sogar vollständig auslöschen (vgl. Kapitel irgenwas mit algorithmen). (vgl. \cite[16 f.]{nielsen_quantum_2010}
-\\
+Es ist sehr wichtig Quantenparallelismus nicht mit dem parallelen Ausführen von Programmen in klassischen Computern gleichzusetzen. Quantenparallelismus nutzt die fundamentalen Eigenschaften der Quantenmechanik, insbesondere die Superposition und die Interferenz von Wahrscheinlichkeitsamplituden. Das heißt, dass es bei Quantenalgorithmen darum geht die Amplituden der Zustände so zu manipulieren, dass sich die Amplituden der Zustände, die korrekte Lösungen repräsentieren, durch konstruktive Interferenz verstärken, während sich die Amplituden der Zustände mit falschen Lösungen durch destruktive Interferenz abschwächen oder vollständig auslöschen. (vgl. \cite[16 f.]{nielsen_quantum_2010})
+
 \section{Quanten-Gatter}\label{sec:quanten_gatter}
 Quanten-Gatter sind die fundamentalen Operationen eines Quantencomputers. Sie manipulieren Qubit-Zustände auf kontrollierte Weise und bilden so das quantenmechanische Analogon zu klassischen Logikgattern. Im Gegensatz zu klassischen Gattern, bei dem ein Bit nur zwischen $0$ und $1$ wechselt, wirken Quanten-Gatter auf Superpositionen und können komplexere, zusammenhängende Zustände erzeugen.
 \\
@@ -270,7 +342,7 @@ Das Kontrollqubit bleibt also unverändert, währenddessen das Zielqubit genau d
 \end{tikzpicture}
 \caption{Darstellung des CNOT-Gatters (nach \cite[S.178]{nielsen_quantum_2010})}
 \end{figure} \\
-CNOT-Gatter spielt eine zentrale Rolle in der Quantenlogik, da es im Zusammenspiel mit Ein-Qubit-Gattern eine zweistufige Unitarität bildet und sich daraus jeder beliebige Quantum-Schaltkreis bilden lässt. (Vgl. ebd. S.191) Ein Beispiel, bei dem das CNOT-Gatter zur Verschränkung beiträgt, ist bei der Erzeugung von sogennanten Bell-Zuständen - dieses Thema wird in Unterkapitel \ref{sec:bell_zustand} weitergehend erläutert. (Vgl. ebd. S.25f.) Darüber hinaus bilden CNOT-Gatter die Grundlage für komplexere Operationen wie bspw. beim Toffoli-Gatter (CCNOT). (Vgl. \cite[S.5f.]{abughanem_toffoli_2025})
+CNOT-Gatter spielt eine zentrale Rolle in der Quantenlogik, da es im Zusammenspiel mit Ein-Qubit-Gattern eine zweistufige Unitarität bildet und sich daraus jeder beliebige Quantum-Schaltkreis bilden lässt. (Vgl. ebd. S.191) Ein Beispiel, bei dem das CNOT-Gatter zur Verschränkung beiträgt, ist bei der Erzeugung von Bell-Zuständen - dieses Thema wird in Unterkapitel \ref{sec:bell_zustand} erläutert. Darüber hinaus bilden CNOT-Gatter die Grundlage für komplexere Operationen wie bspw. beim Toffoli-Gatter (CCNOT). (Vgl. \cite[S.5f.]{abughanem_toffoli_2025})
 
 
 
@@ -611,7 +683,7 @@ Die Wissenschaftler Daniel Gottesman und Isaac Chuang stellen eine Technik, eine
 Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. Ein CNOT gate ist eine Komponente, die zwei verschränkte Qubits in einem Bell-Zustand (Zustand, in dem zwei Qubits maximal miteinander verschränkt sind; mehr dazu in Subsektion 1.5.1) aufnimmt und den zweiten Qubit, den sog. „target“ Qubit dreht, wenn der erste Qubit, das sog. „control“ Qubit, einen Wert von \(\ket{1}\) hat. Beim Durchgang werden Pauli-Matrix Operationen durchgeführt, welche die Quanteninformationen auf einen dritten Qubit übertragen.\\
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_1.png}
+    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_1.jpeg}
     \caption{Zeitstrahl von links nach rechts. B = Bell-Zustand, X Y Z = Pauli Operatoren, \(\ket{0}\) = Zustand des Sender-Qubits, der an den Empfänger-Qubit übertragen werden soll}
     \label{fig:meinbild}
 \end{figure}
@@ -619,7 +691,7 @@ Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. E
 \noindent Dieses Prinzip kann leicht modifiziert werden. Die modifizierte Variante erlaubt es, vier Qubits, wovon jeweils zwei verschränkt sind, durchzulassen und anhand von Pauli-Matrix Operationen zu transformieren. Die zwei Paare von Verschränkungen sind vorerst getrennt. Eines enthält den „target“ Qubit \(\ket{\alpha}\), das andere den „control“ Qubit \(\ket{\beta}\). Der „target“ Qubit wird gedreht, wenn der „control“ Qubit einen Wert von \(\ket{1}\) hat. Es stehen 4 Rechenoperationen (I, X, Y, Z) zur Verfügung. Welche Operationen auf die Qubits der Verschränkungen angewendet werden, ist vom Zufall bestimmt. Zwei Qubits \(\ket{out}\), welche die Quanteninformationen von \(\ket{\alpha}\) und \(\ket{\beta}\) enthalten, wobei \(\ket{out}\) = CNOT\(\ket{\beta}\)\(\ket{\alpha}\), kommen aus den CNOT gate am Ende als Output heraus.\\
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_2.png}
+    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_2.jpeg}
     \caption{Zeitstrahl von links nach rechts. B = Bell-Zustand, X Y Z = Pauli Operatoren, \(\ket{\chi}\) = Ausgangszustand für Operation}
     \label{fig:meinbild}
 \end{figure}
@@ -627,7 +699,7 @@ Zwei Qubits werden durch ein CNOT (controlled NOT) Gatter (gate) teleportiert. E
 \noindent Eine andere modifizierte Variante ist eine, bei der ein CNOT gate zwischen zwei Qubits von zwei unterschiedlichen verschränkten Qubit Paaren geöffnet wird. Der Output von solch einem Gatter kann verwendet werden, um den Zustand \(\ket{\chi}\) der vorherigen Abbildung zu bilden, von dem in einer Quantenteleportation mit zwei Verschränkungen Gebrauch gemacht wird. \(\ket{\chi}\) kann so erzeugt werden, oder durch eine Quantenteleportation zwischen zwei GHZ (Greenberger Horne Zellinger) Zuständen. Ein GHZ Zustand ist eine Verschränkung von drei Quantenobjekten.\\
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_3.png}
+    \includegraphics[width=1.0\textwidth]{images/quantum-information/quantenteleportation_cnot_3.jpeg}
     \caption{Zeitstrahl von links nach rechts. \(\ket{\Upsilon}\) = GHZ Zustand, H = Hadamard gate (für Hadamard Transformation), B = Bell-Zustand, X Z = Pauli Operatoren}
     \label{fig:meinbild}
 \end{figure}
@@ -643,7 +715,7 @@ In der Fehlerkorrektur sind insbesondere \emph{logische Qubits} wichtig. Ein log
 
 Die Funktionsweise basiert auf der Verteilung der Quanteninformation auf mehrere physikalische Qubits. Durch diese Redundanz können Fehler in einzelnen physikalischen Qubits erkannt und korrigiert werden, ohne die im logischen Qubit gespeicherte Information zu zerstören. 
 
-Der Aufwand für die Implementierung logischer Qubits ist erheblich. Je nach verwendetem Fehlerkorrekturverfahren können hunderte oder sogar tausende physikalische Qubits erforderlich sein, um ein einzelnes logisches Qubit zu realisieren. Dieser Mehraufwand führt jedoch zu einer drastischen Verbesserung der Fehlerrate. Aktuelle Forschungsergebnisse zeigen, dass logische Qubits Fehlerarten aufweisen können, die um mehrere Größenordnungen niedriger sind als die ihrer physikalischen Komponenten. (vgl. \cite{divincenzo_topics_1996}, \cite[426 ff.]{nielsen_quantum_2010}, \cite{ibm_quantum_error}).
+Der Aufwand für die Implementierung logischer Qubits ist erheblich. Je nach verwendetem Fehlerkorrekturverfahren können hunderte oder sogar tausende physikalische Qubits erforderlich sein, um ein einzelnes logisches Qubit zu realisieren. Dieser Mehraufwand führt jedoch zu einer drastischen Verbesserung der Fehlerrate. Aktuelle Forschungsergebnisse zeigen, dass logische Qubits Fehlerarten aufweisen können, die um mehrere Größenordnungen niedriger sind als die ihrer physikalischen Komponenten. (vgl. \cite{divincenzoTopicsQuantumComputers1996}, \cite[426 ff.]{nielsen_quantum_2010}, \cite{ibm_research_team_introduction_nodate}).
 
 
 \subsection{Beispiel: Bit-Flip}
@@ -853,6 +925,6 @@ Im Gegensatz zur Quantenkryptographie, bei der Sicherheit im Vordergrund steht, 
 
 
 \section{Zusammenfassung}
-Dieses Kapitel hat gezeigt, dass Quanteninformation weit über das hinausgeht, was klassische Informatikmodelle leisten können. Durch die Einführung des Qubits als Informationsträger wurde deutlich, wie Superposition und Verschränkung völlig neue Rechenparadigmen ermöglichen. Die behandelten Quanten-Gatter, insbesondere die Pauli- und Hadamard-Gatter, bilden die Grundlage für alle quantenlogischen Operationen und Algorithmen. Mit den Beispielen des Deutsch- und Deutsch-Josza-Algorithmus wurde verdeutlicht, dass Quantencomputer bestimmte Probleme wesentlich effizienter lösen können als klassische Rechner. Außerdem wurde die Quantenverschränkung nicht nur als theoretisches Phänomen, sondern auch als praktisches Werkzeug für Teleportation, Kommunikation und Kryptographie vorgestellt. Die Bell-Zustände illustrierten dabei, wie stark verschränkte Systeme als Basis für sichere Kommunikation und Quantencomputing genutzt werden. Insgesamt bietet dieses Kapitel eine Grundlage, um die Funktionsweise und das Potenzial von Quantencomputern zu verstehen und bereitet darauf vor, in den kommenden Kapiteln tiefer in Hardware, Software und konkrete Anwendungen einzutauchen.
+In diesem Kapitel wurden zentrale Konzepte der Quanteninformation eingeführt. Ausgangspunkt war das Qubit als quantenmechanisches Pendant zum klassischen Bit. Durch Superposition und komplexe Amplituden besitzt ein Qubit einen kontinuierlichen Zustandsraum, der auf der Bloch-Kugel visualisiert werden kann. In Kombination mit weiteren Qubits eröffnet sich durch Verschränkung ein exponentiell wachsender Zustandsraum, der die Basis für das sogenannte Quantenparallelismus bildet. Mit den Pauli- und Hadamard-Gattern sowie Mehr-Qubit-Gattern wie CNOT und SWAP wurden die grundlegenden Bausteine für Quantenoperationen vorgestellt. Aufbauend darauf wurden die ersten Quantenalgorithmen – insbesondere der Deutsch- und der Deutsch-Josza-Algorithmus – erläutert, die zeigen, wie Quantencomputer bestimmte Probleme effizienter lösen können als klassische Systeme. Darüber hinaus wurde die Bedeutung robuster Fehlerkorrekturmechanismen hervorgehoben, um die hohe Fehleranfälligkeit physikalischer Qubits auszugleichen. Schließlich wurde die Rolle der Quantenverschränkung für Kommunikation und Teleportation aufgezeigt. Anhand der Bell-Zustände wurde demonstriert, wie stark korrelierte Quantenpaare als Grundlage für Quantenkryptographie und verteilte Quantenberechnungen dienen. Insgesamt bietet dieses Kapitel eine Grundlage, um die Funktionsweise und das Potenzial von Quantencomputern zu verstehen und bereitet darauf vor, in den kommenden Kapiteln tiefer in Hardware, Software und konkrete Anwendungen einzutauchen.
 
 \printbibliography

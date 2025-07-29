@@ -6,22 +6,177 @@
 
 \chapterauthor{Lola Bankai, Felix Goos}
 
-\section{Top Technologien und Algorithmen}
+\abstract{Dieses Kapitel untersucht das Potenzial von Quantencomputing für den Einsatz im Finanzwesen. Im Zentrum stehen drei besonders rechenintensive Anwendungsfelder: Portfoliooptimierung, Monte-Carlo-Simulationen und Risikbeomessung. Anhand aktueller Forschungsergebnisse und Pilotprojekte wird analysiert, wie Quantenalgorithmen klassische Verfahren ergänzen oder perspektivisch ablösen könnten. Dabei werden sowohl Quantum Annealing als auch gate-basierte Algorithmen wie QAOA, VQE und QAE betrachtet. Darüber hinaus beleuchtet das Kapitel die Rolle führender Technologieunternehmen, Finanzinstitute und internationaler Forschungsinitiativen. Abschließend erfolgt eine kritische Bewertung der technologischen Entwicklungen mit Blick auf konkrete Einsatzmöglichkeiten, bestehende Herausforderungen und strategische Implikationen für die Finanzbranche.}
+
+
+\section{Einleitung}
+Das Finanzwesen zählt zu den datenintensiven und rechentechnisch anspruchsvollen Bereichen der modernen Wirtschaft. Täglich werden riesige Datenmengen analysiert, komplexe Modelle berechnet und Entscheidungen unter Unsicherheit getroffen. Klassische Computersysteme stoßen hierbei zunehmend an ihre Leistungsgrenzen, insbesondere wenn es um die Lösung kombinatorischer Optimierungsprobleme, stochastischer Simulationen oder die Verarbeitung hochdimensionaler Datenstrukturen geht. In diesem Kontext rücken Quantencomputer als potenziell transformative Technologie in den Fokus. Da sie auf den Prinzipien der Quantenmechanik wie Superposition, Verschränkung und Interferenz beruhen, ermöglichen Sie damit neue Arten der Informationsverarbeitung, die bei bestimmten Problemklassen eine exponentielle Beschleunigung gegenüber klassischen Verfahren versprechen.
+
+Erste Forschungsarbeiten und Pilotprojekte belegen, dass Quantenalgorithmen insbesondere in der Portfoliooptimierung, in der Bewertung komplexer Finanzinstrumente sowie im Risikomanagement erhebliche Vorteile bringen könnten. Dabei geht es nicht nur um Rechengeschwindigkeit, sondern auch um die Möglichkeit, realistischere Modelle zu verwenden, die bislang aufgrund ihrer Komplexität nicht praktikabel waren. 
+
+Im weiteren Verlauf dieses Kapitels werden zunächst die zentralen Herausforderungen und Chancen des Quantencomputings im Finanzwesen dargestellt. Anschließend werden die drei wichtigsten Anwendungsfelder beleuchtet: Portfoliooptimierung, Optionsbewertung und Risikobemessung. Darauf folgt eine Übersicht über die zugrunde liegenden Technologien und Algorithmen. Zudem werden führende Akteure, bedeutende Unternehmensinitiativen sowie ausgewählte Forschungsprojekte vorgestellt. Den Abschluss bildet eine Bewertung der Entwicklungen und ein Teilfazit mit Blick auf zukünftige Potenziale.
+
+\section{Relevanz und Problemstellung}
+Im Finanzwesen wächst der Bedarf an leistungsfähiger und präziser Datenverarbeitung aufgrund immer komplexerer Finanzinstrumente, hochvolatiler Märkte und anspruchsvoller regulatorischer Anforderungen stetig. Herkömmliche Computersysteme geraten dabei zunehmend unter Druck, da ihre Rechenkapazitäten oft nicht mehr mit der exponentiellen Zunahme an Datenvolumina und Modellkomplexität Schritt halten können. Besonders betroffen sind Bereiche wie die Optimierung von Portfolios, die Bewertung derivativer Finanzprodukte und die Durchführung komplexer stochastischer Risikosimulationen, in denen Vereinfachungen unvermeidbar geworden sind. Diese Vereinfachungen können jedoch die Genauigkeit und Aussagekraft der Modelle deutlich verringern \cite{egger2020}.
+
+Quantencomputer eröffnen hier ein grundsätzlich neuen Lösungsansatz. Durch ihre Fähigkeit, quantenmechanische Prinzipien wie Superposition und Verschränkung für parallele Berechnungen zu nutzen, ermöglichen sie eine signifikante Effizienzsteigerung bei bestimmten Problembereichen im Finanzsektor. Erste Studien und Pilotanwendungen zeigen, dass quantenbasierte Algorithmen insbesondere kombinatorische Optimierungsprobleme und Simulationen stochastischer Prozesse deutlich schneller und genauer durchführen könnten als klassische Methoden \cite{orus2019, woerner2019}. Diese Verbesserungen könnten insbesondere dazu beitragen, komplexere und realistischere Modelle einzusetzen und damit bessere Investitionsentscheidungen und Risikomanagementstrategien zu ermöglichen.
+
+Gleichzeitig bringt die Einführung von Quantencomputern neue Risiken und Herausforderungen mit sich. Besonders kritisch ist die potenzielle Bedrohung der klassischen kryptographischen Verfahren, auf denen heutige Finanzsysteme basieren. Das sogenannte „Harvest Now, Decrypt Later“-Risiko beschreibt ein Szenario, bei dem sensible verschlüsselte Finanzdaten bereits heute abgefangen und später mit ausgereiften Quantencomputern entschlüsselt werden könnten \cite{mosca2018}. Die derzeit noch unausgereifte Quantentechnologie stellt zudem Unsicherheitsfaktoren hinsichtlich Stabilität, Skalierbarkeit und Anwendungsreife dar.
+
+Daher steht das Finanzwesen aktuell an einer entscheidenden Wegmarke: Die vielversprechenden Chancen des Quantencomputings müssen gegen die neuartigen Risiken abgewogen werden. Eine strategische Auseinadersetzung und praxisnahe Forschung in diesem Technologiefeld sind somit unerlässlich, um die kommenden Veränderungen proaktiv zu gestalten und zugleich bestehende Infrastrukturen effektiv abzusichern \cite{egger2020, orus2019}.
+
+
+!!hier fehlen noch die dinger in zotero
+
+\section{Top 3 Anwendungsfelder (Praxis \& Theorie)}
+
+Die Potenziale von Quantencomputern im Finanzsektor lassen sich beispielhaft an drei spezifischen Anwendungsfeldern aufzeigen. Diese Bereiche zeichnen sich durch hohen Rechenaufwand, komplexe mathematische Modelle und große Praxisrelevanz aus. Im Fokus stehen insbesondere Probleme, die für klassische Computermethoden zunehmend schwer zu bewältigen sind. Quantenbasierte Verfahren könnten hier nicht nur eine erhebliche Effizienzsteigerung bewirken, sondern auch eine qualitative Verbesserung der Ergebnisse ermöglichen.
+
+Im Folgenden werden die drei Anwendungsgebiete gennant und näher untersucht:
+Portfoliooptimierung
+\begin{itemize}
+    \item{Portfoliooptimierung}
+\begin{itemize}
+        \item{Effiziente Zusammenstellung und laufende Optimierung großer, diversifizierter Portfolios.}
+        \item{Potenzial: Schnelle und genauere Bestimmung optimaler Asset-Allokationen mithilfe quantenbasierter Optimierungsverfahren.}
+\end{itemize}
+\item{Optionsbewertung (Monte-Carlo-Methode als Kern)}
+\begin{itemize}
+        \item{Komplexe Modellierungen und Bewertung derivativer Finanzinstrumente.}
+        \item{Potenzial: Höhere Präzision und Geschwindigkeit in der Berechnung der Optionspreise sowie in der Modellierung relevanter Marktszenarien.}
+\end{itemize}
+\item{Risikomessung und stochastische Simulation (Monte-Carlo-Methode als Kern)}
+\begin{itemize}
+        \item{Durchführung umfangreicher Monte-Carlo-Simulationen und präzise Risikomessung bei dynamischen Marktentwicklungen.}
+        \item{Potenzial: Deutlich verbesserte Simulationsergebnisse und realistischere Risikoprofile durch quantenunterstützte stochastische Verfahren.}
+\end{itemize}
+\end{itemize}
+
+Diese Abschnitte beleuchten sowohl die theoretischen Grundlagen als auch erste praktische Implementierungen auf aktueller Quantenhardware. Ziel ist es, das Potenzial quantenbasierter Verfahren im Vergleich zu klassischen Methoden realistisch einzuordnen und mögliche technologische Durchbrüche zu identifizieren.
+
+\subsection{Portfoliooptimierung}
+Die Portfoliotheorie ist ein Konzept der Finanzwirtschaft und beschreibt die Bestimmung eines optimalen Portfolios durch die Zusammensetzung von mehreren Kapitalanlagen. Kapitalanlagen beschreiben Investitionen in zahlreiche, langfristig orientierte Anlagen, die in Form von Aktien, Anleihen, Währungen, Immobilien oder Rohstoffen über Jahre gehalten und nicht verkauft werden \cite{orus_quantum_2019, sakuler_real-world_2025}.
+
+Harry Markowitz widmete sich der Frage, in welcher Form ein optimales Portfolio unter Berücksichtigung der Marktbedingungen zusammengestellt werden sollte. Die Effizienzkurve \ref{fig:efficient_frontier_vqe} repräsentiert das zentrale Konzept und stellt jene Portfolios dar, die die maximale Rendite zu einem gegebenen Risikoniveau, beziehungsweise umgekehrt das minimale Risiko für eine Zielrendite darstellen. Markowitz modelliert daher ein Portfolio mittels des Erwartungswert der zukünftigen Renditen, sowie der Varianz (bzw. Standardabweichung) als Maß für das Risiko. Markowitz entdeckte, dass die Varianz des Portfolios durch Diversifikation, also der Gewichtung unterschiedlicher Anlageklassen mit geringer Korrelation, minimiert werden kann. Hierdurch entsteht die gekrümmte Form der Effizienzkurve. Ein rational handelnder Investor würde nun ein Portfolio auf der Kurve wählen. Portfolios rechts oder unterhalb der Effizienzkurve weisen entweder eine geringere Rendite, zu dem selben Risiko oder eine identische Rendite zu mehr Risiko auf.
+
+Die Optimierung nach Markowitz lässt sich in einem kontinuierlichen, quadratischen Optimierungsproblem schreiben, das mithilfe von quadratischer Programmierung lösbar ist
+\cite{markowitz, 1952}.
+
+In der Praxis müssen jedoch oft diskrete Kauf- oder Nicht-Kauf-Entscheidungen getroffen werden, die das Problem zu einem kombinatorischen Optimierungsproblem machen. Solche Probleme lassen sich dann in einem Quadratic Unconstrained Binary Optimization (QUBO) Formulierung überführen. Die daraus entstehende Lösungsmenge wächst dabei exponentiell mit der Anzahl der hinzugefügten Assets.
+Trotz der theoretischen Stärke der Portfoliotheorie stößt sie schnell bei solch wachsender Komplexität an Ihre Grenzen \cite{sakuler_real-world_2025, orus_quantum_2019}.
+
+\subsubsection*{Quantenbasierte Methoden zur Portfoliotheorie}
+
+An dieser Stelle kommen Quantencomputer ins Spiel. Die Idee dahinter ist, das kombinatorische Problem direkt auf Quantenbits abzubilden und damit die Suche nach einer effizienten Lösung zu optimieren. Zwei Technologien stechen in den letzten Jahren der Forschung besonders heraus: Quantum Annealing und gate-basierte Quantenalgorithmen \cite{mugel_dynamic_2022, orus_quantum_2019}. Auf diese werden im folgenden genauer eingegangen.
+
+\subsubsection*{Quantum Annealing}
+ 
+Zahlreiche kombinatorische Optimierungsprobleme, wie zum Beispiel eine Portfolioauswahl von 0/1-Entscheidungen, gehören zu den sehr schwer lösbaren Problemen. Diese lassen sich in eine Quadratic Unconstrained Binary Optimization (QUBO-Form) überführen. Quantum Annealer sind spezialisierte Quantencomputer und nutzen diese QUBO-Probleme und leiten sie durch quantenmechanische Tunnel, um Ihre Minimums Lösung zu finden. 
+
+Die Übersetzung auf die Portfoliotheorie ist wie folgt: Jede mögliche Portfolioentscheidung wird als Qubit abgebildet, während die Markowitzfunktion, also die Kombination aus Rendite und Risiko als effektives Hamiltonian formuliert wird. Hamiltonian ist die mathematische Form der Energie des Modells. Diese dient zur Identifikation des optimalen Portfolios, also den Zustand mit der geringstmöglichen Energie erzeugt durch das stetige Herunterkühlens des Quantenannealers. Details zu dieser Technologie in Kapitel 4.4.1 \cite{mugel_dynamic_2022}.
+ 
+Erste praktische Untersuchungen zeigen, dass kleine Portfolioinstanzen erfolgreich mithilfe von Quantum Annealing gelöst werden können. So gelang es, reale Portfolios mit etwa 9 bis 11 Assets (bestehend aus Aktien, Anleihen und Geldmarktinstrumenten) unter Berücksichtigung von Budget- und Volatilitätsrestriktionen als QUBO-Probleme zu formulieren und auf Quantenhardware auszuführen. Die Optimierungsläufe lieferten innerhalb von Sekunden bis wenigen Minuten Lösungen, die qualitativ mit klassischen Verfahren übereinstimmten \cite{sakuler_real-world_2025}rosenberg.
+ 
+Dabei zeigten sich insbesondere bei hybriden Annealing-Methoden, also der Kombination aus klassischer Vorverarbeitung und quantenbasierter Optimierung robuste Ergebnisse mit hoher Reproduzierbarkeit. Herausfordernd bleiben allerdings die begrenzte Konnektivität der Qubits im Annealer und die damit verbundene Notwendigkeit, Problemstrukturen auf die zugrundeliegende Hardware-Topologie zu projizieren. Ebenso erweist sich die Auswahl geeigneter Modellparameter wie Strafterme oder Normierungen als kritisch für die Qualität der Lösung \cite{sakuler_real-world_2025}.
+ 
+Auch in umfangreichen Testfällen mit deutlich größeren Portfolios und längeren historischen Datenreihen zeigten sich skalierbare Resultate. Die besten Ergebnisse wurden dabei mit hybriden oder quanteninspirierten Verfahren erzielt, die klassische Heuristiken mit quantum-naher Optimierung kombinierten. Ein echter Quantenvorteil gegenüber klassischen Methoden konnte bislang jedoch noch nicht nachgewiesen werden, wenngleich die Technologie als reif für kleinere, strukturierte Probleme gilt \cite{BBVA, 2020}.
+
+Herausforderungen bestehen weiterhin in der begrenzten Konnektivität der Qubits in aktuellen Annealing-Hardwarearchitekturen (z.\,B. D-Wave), was eine komplexe Problemembedding-Strategie erfordert \cite{orus_quantum_2019}. Zusätzlich beeinflussen Parameter wie Strafterme und Normalisierungen die Lösungssuche stark, was eine sorgfältige Modellierung notwendig macht \cite{sakuler_real-world_2025}. Obwohl Quantum Annealing keine universelle Quantenlösung darstellt, bieten erste Resultate auf praktischen Geräten vielversprechende Hinweise auf eine sinnvolle Anwendbarkeit die langfrisitg umgesetzt werden kann.
+
+\subsubsection*{Gate-basierte-Algorithmen}
+ 
+Gate-basierte Algorithmen wie QAOA und VQE lassen sich auf Portfoliooptimierungsprobleme anwenden, indem diese zunächst in ein Ising-Modell oder einen geeigneten Hamiltonoperator überführt werden. In dieser Darstellung entsprechen die Qubits binären Portfolioentscheidungen, während die Zielfunktion aus Risiko- und Ertragsanteilen als Energieausdruck kodiert wird. Der Quantenalgorithmus sucht dann durch parametrische Variationen jenen Zustand mit minimaler Energie, der einer optimalen Allokation entspricht \cite{buonaiuto_best_2023, brandhofer_benchmarking_2022}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{EfficientFrontier_VQE.png}
+    \caption{Beispiel einer Efficient Frontier in der Portfolio-Optimierung (simuliertes 6-Asset-Portfolio). Die blaue Kurve zeigt die optimale Risiko-Rendite-Kurve (klassische Exhaustivsuche), die grünen Dreiecke markieren Lösungen des Quantum-VQE-Algorithmus. Man sieht, dass die Quantenlösungen die Effizienzgrenze eng nachzeichnen (Rendite $\mu^T x$ und Risiko $x^T \Sigma x$ sind in willkürlichen Einheiten). \cite[Abb. 8]{egger_quantum_2020}}
+    \label{fig:efficient_frontier_vqe}
+\end{figure}
+
+
+Abb. \ref{fig:efficient_frontier_vqe} illustriert, dass bereits heutige gate-basierte Quantenalgorithmen wie der VQE in der Lage sind, für kleine Portfolios (hier ein simuliertes 6-Asset-Portfolio) ähnlich effiziente Lösungen wie klassische Exhaustivsuche zu erzeugen. Die grünen Dreiecke zeigen, dass die vom VQE generierten Lösungen eng entlang der klassischen Efficient Frontier liegen. Die zugrundeliegende Studie von Egger et al. (2020) verdeutlicht das Potenzial quantenbasierter Optimierung in Kombination mit VQE, insbesondere für risikoertragsbasierte Portfolioentscheidungen. 
+
+Die zugrunde liegende Studie von Egger et al. (2020) demonstriert damit erfolgreich die prinzipielle Machbarkeit dieser Methode auf simulierten Quantencomputern. Einschränkungen bestehen jedoch weiterhin in Bezug auf Skalierbarkeit, da größere Portfolios tiefere Schaltkreise und längere Optimierung erfordern.
+ 
+Bereits weitere Studien stehen im Einklang mit den Ergebnissen von Egger, und zeigen, dass unter kontrollierten Bedingungen bereits vielversprechende Ergebnisse erzielt werden können. So testeten mehrere Arbeiten die Wirksamkeit von VQE-Pipelines. Die Ergebnisse lieferten, dass der VQE auf einem 5-Qubit-Gerät eine fast identische Lösung zum klassischen Optimum generieren konnte. Die Qualität der Lösung variierte jedoch mit der Qualität des Quantenchips. Größere und weniger von Rausch behaftete Geräte lieferten verbesserte Ergebnisse als kleinere. Somit schmälern Rauschen und die begrenzte Qubit-Zahlen zwar noch den Nutzen, obwohl die Algorithmen prinzipiell eine optimale Lösung bieten \cite{buonaiuto_best_2023}.
+Der Einsatz von QAOA mit der Fixierung der Anzahl der enthaltenen Assets zeigte, dass die Anzahl benötigter Quantengatter und Messungen, die für mittlere Problemgrößen benötigt werden, die NISQ-Geräte an ihre Grenzen bringt. Für kleinere Portfolios konnten jedoch annähernd optimale Ergebnisse erzielt werden \cite{brandhofer_benchmarking_2022}.
+ 
+Beide Ansätze QAOA/VQE glänzen in Ihrer Flexibilität. Es können leichter zusätzliche Nebenbedingungen eingebaut und dynamische Portfolio-Probleme formuliert werden. Nachteile spiegeln sich in der Limitation durch Rauschen und Dekohärenz wider, die ohne notwendige Fehlerkorrektur nicht behoben werden können. Aufgrund dieser Einschränkungen bleiben die Anwendungen der gate-basierten Ansätze noch auf rein simulierter Ebene oder auf kleinen Hardware-Experimenten beschränkt\cite{buonaiuto_best_2023}.
+
+\subsection{ Monte Carlo Simulation (Kern Methode)}
+Bevor im weiteren genau auf die Optionsbewertung und die Risikomessung und stochastische Simulation eingegangen wird, wird zuerst die Monte Carlo Simulation als Kern Methode behandelt.
+
+Die Bewertung von Anlagen und Portfolios bedingt eine enorme Komplexität durch die unvollkommene Verteilung von Informationen auf Finanzmärkten. Entscheidungen über Risikostrategien, Bewertungen und Investitionen müssen häufig in Situationen getroffen werden, in denen wirtschaftliche Verläufe nicht direkt einsichtig sind. Hierbei greifen Marktteilnehmer auf Schätzungen, Wahrscheinlichkeiten und historische Daten zurück, um zukünftige Entwicklungen zu bewerten. 
+
+ Als zentrales Werkzeug in diesem Bereich kommt die Monte-Carlo-Simulation zum Einsatz. Sie eignet sich besonders zur Schätzung von Lösungen analytisch komplexer oder schwer lösbarer mathematischer Probleme. Dabei werden mithilfe statistischer Verfahren und Zufallsstichproben verschiedene Szenarien eines Systems wiederholt simuliert, um Erwartungswerte oder Wahrscheinlichkeiten näherungsweise zu bestimmen.\cite{orus_quantum_2019}
+
+Typische Anwendungsfelder dieses stochastischen Ansatzes sind: Optionsbewertung (Pricing von Derivaten, deren Auszahlung vom zukünftigen Preisverlauf eines Basiswerts abhängt) und Risikobemessung (Berechnung des Value at Risk für ein Portfolio über einen Zeithorizont) \cite{orus_quantum_2019}. 
+
+Sowohl die Optionsbewertung als auch die Risikobemessung stellen zentrale Aufgaben im Finanzwesen dar, bei denen zukünftige, stochastisch unsichere Größen quantifiziert werden müssen. Aufgrund der Komplexität moderner Finanzinstrumente und der hohen Dimensionalität der zugrunde liegenden Zufallsprozesse sind analytische Lösungen häufig nicht verfügbar. Die Monte-Carlo-Simulation dient in beiden Anwendungsfeldern als methodisches Fundament, um durch zufällige Stichproben komplexe Erwartungswerte oder Verteilungsquantile numerisch zu vergleichen. Damit bildet sie die Grundlage zahlreicher Bewertungs- und Risikomodelle in Praxis und Forschung.
+
+\subsubsection*{Optionsbewertung}
+Die Bewertung von Optionen erfordert häufig numerische Verfahren, da für viele Ausgestaltungen keine geschlossenen analytischen Lösungen existieren. Besonders bei komplexeren Derivaten wie asiatischen Optionen, Barrier-Optionen oder Portfolios von Optionen muss meist numerisch simuliert werden. Optionen stellen Finanzderivate dar, wobei ein Derivat ein Instrument ist, dessen Preisentwicklung von der Entwicklung einer oder mehrerer Anlagen abhängt. Das Monte-Carlo-Verfahren nutzt hierbei eine große Menge an Zufallspfad-Simulationen generiert für die relevanten Prozesse und errechnet aus den Auszahlungen oder Verlusten statistische Kennzahlen. Faktisch wird versucht, den „fairen“ Preis einer Option zu ermitteln. Dazu werden mögliche Pfade, die der Aktienkurs einnehmen könnte, bis zur Fälligkeit simuliert, für jeden Pfad die Auszahlung berechnet und gemittelt\cite{orus_quantum_2019}.
+ 
+Damit die Verteilungsmerkmale in der geforderten Genauigkeit erfasst werden können, müssen ausreichend Pfade generiert werden. Das Gesetz der großen Zahlen bestimmt hierbei dass die Schätzung des Erwartungswertes mit der Anzahl N der simulierten Pfade ungefähr mit $1/\sqrt{N}$ konvergiert. Diese Konvergenz ist verhältnismäßig gering. Um die Genauigkeit, um genau eine Einheit zu verbessern, muss die Zahl der Simulationsläufe um das Vierfache erhöht werden. Dadurch steigt die Zahl der Pfade schnell auf eine Millionen oder Milliarden Höhe an.
+In der Praxis ist genau das eins der größten Probleme. Komplexe Berechnungen von zum Beispiel Kreditrisiko-Simulationen von Hunderten von Banken und Unternehmen können Tage dauern. Trotz der stetigen Parallelisierung stoßen herkömmliche Methoden aufgrund der Rechenzeit und Kosten an Ihre Grenzen \cite{orus_quantum_2019}.
+
+\subsubsection*{Quantenbasierte Methoden zur Optionsbewertung}
+
+Durch methodische Erweiterungen, wie der Quantum Amplitude Estimation (QAE) können Prozesse der klassischen Monte-Carlo Simulation beschleunigt werden. Bei dem Fall der Optionsbewertung, müssen Wahrscheinlichkeitsverteilungen über zukünftige Assetpreise quantenmechanisch kodiert werden. Diesbezüglich wird QAE angewendet, um effiziente Schätzungen des Erwartungswertes, also die Bestimmung des “fairen” Optionspreises, zu gewährleisten. Im Vergleich zur klassischen Monte-Carlo-Methode, die für eine Zielgenauigkeit von $\varepsilon$ etwa $O(1/\varepsilon^2)$ Stichproben benötigt, minimiert QAE diesen Aufwand auf $O(1/\varepsilon)$. Praktisch bedeutet das, dass statt einer Million klassischer Proben rund 1000 Quantenproben ausreichen bei gleichbleibender Akkuratesse \cite{lomonaco_quantum_2002, montanaro, 2015}.
+
+In ersten Bewertungs-Workflows wurde dieser theoretische Ansatz bereits auf realer Quantenhardware getestet und demonstriert. Es wurden verschieden Optionsarten mithilfe passender Quantenschaltungen modelliert und darauf folgend mit Maximum-Likelihood-Amplitude-Estimation (MLAE) bewertet. Dieses Verfahren ist vorteilhafter als das klassische QAE, da es durch eine flachere Schaltung besser für die NISQ-Geräte geeignet ist. NISQ-Geräte (Noisy Intermediate-Scale Quantum) sind gegenwärtige Quantencomputer mit einer begrenzten Anzahl von Qubits und ohne vollständige Fehlerkorrektur, die bereits erste praktische Anwendungen ermöglichen, jedoch noch anfällig für Störungen und Skalierungsprobleme sind \cite{stamatopoulos_option_2020}.
+
+Fehler können durch Kalibrierung von Zwei-Qubit-Gattern gedämpft werden, wodurch bereits aus Drei-Qubit-Schaltungen valide Optionspreise extrahiert werden konnten. Zentrale praktische Hindernisse bleiben jedoch bestehen. Besonders das effiziente Laden von Datenquellen und klassischen Wahrscheinlichkeitsverteilungen auf Quantenhardware stellt sich als kompliziert heraus. Um diese Marktszenarien, wie Asset-Preise, auf Quantencomputern zu verarbeiten, müssen die Daten in einen entsprechenden Quantenzustand überführt werden. Hiefür benötigen die klassischen Verfahren einen exponentiell steigenden Ressourcenaufwand von $O(2^n)$. Eine Lösung bietet Quantum Generative Adversial Networks (qGans), die aus den klassischen Marktdaten die passenden Wahrscheinlichkeitsverteilungen erlernt und anschließend als polynomieller Komplexität als Quantenzustand bereitstellt \cite{zoufal_quantum_2019}.
+
+Zusammenfassend wird deutlich, dass QAE in Kombination mit verfahren wie MLAE, iterativen QAE oder variationalen Ansätzen zu einer Beschleunigung klassischer Monte-Carlo-Simulationen führt. In Verbindung mit effizienten Datenlagern wie qGANs rückt der Einsatz solcher Verfahren auf realer Quantenhardware in greifbare Nähe.
+
+\subsubsection*{Risikobemessung und Value at Risk}
+
+Eine der zentralen Herausforderungen im modernen Finanzwesen ist die Risikobemessung. Um drohende Verluste rechtzeitig zu erkennen und gezielt Gegenmaßnahmen zu ergreifen, sind Banken, Investoren und andere Marktteilnehmer in einem hoch volatilen Marktumfeld darauf angewiesen, Risiken genau zu quantifizieren und zuverlässig einschätzen zu können.
+
+Auch in der Risikobemessung stellt die Monte-Carlo-Simulation ein zentrales Instrument dar, insbesondere zur Schätzung von Risikokennzahlen wie dem Value at Risk (VaR) oder dem Conditional Value at Risk (CVaR), die auf der Analyse stochastischer Verlustverteilungen basieren. Der VaR ist ein anerkanntes und gängiges Instrument zur Quantifizierung von Risiko und zeigt den maximalen Verlust an, den ein Portfolio oder eine einzelne Anlageposition innerhalb eines bestimmten Zeitraums und mit einer festgelegten Vertrauens-Wahrscheinlichkeit (in der Regel 95\,\% oder 99\,\%) nicht überschreiten wird \cite{springer2025, plos2024}. 
+Für Finanzinstitutionen ist der VaR nicht nur methodisch relevant, sondern auch regulatorisch von hoher Bedeutung. Finanzinstitute wie Banken, Versicherungen und Investmentfonds sind gesetzlich verpflichtet, Marktrisiken und Kreditrisiken regelmäßig zu quantifizieren, um ausreichende Kapitalpuffer zu erzeugen. Die Risikokennzahlen dienen darüber hinaus intern der Begrenzung von Handelspositionen, etwa durch tägliche VaR-Limits für einzelne Portfolios oder Trader. Auch in der langfristigen Risikosteuerung, etwa bei Pensionskassen oder Versicherungen, sind VaR und CVaR zentrale Steuerungsgrößen, um sicherzustellen, dass finanzielle Verpflichtungen auch unter Stressszenarien eingehalten werden können \cite{orus_quantum_2019}.
+Trotz seiner weiten Verbreitung ist der VaR nicht frei von Kritik. Insbesondere die fehlende Subadditivität kann bei der Aggregation von Risiken zu fehlerhaften Einschätzungen führen. Der CVaR wurde als kohärentes Risikomaß eingeführt, um auch die Schwere der Verluste im Extrembereich zu erfassen und gilt in vielen Anwendungen als präzisere Alternative \cite{orus_quantum_2019}. 
+
+In der Praxis lassen sich VaR und CVaR nur in einfachen Fällen analytisch berechnen. Komplexe Portfolios mit nicht-normalverteilten Erträgen oder Derivatebestandteilen erfordern numerische Verfahren. Die Monte-Carlo-Simulation ist hier besonders geeignet, um aus vielen simulierten Szenarien empirische Verlustverteilungen abzuleiten und daraus die relevanten Quantile zu bestimmen \cite{zoufal_quantum_2019}.
+
+Die Monte-Carlo-Simulation gilt zwar als Standardverfahren zur Schätzung komplexer Verlustverteilungen, stößt jedoch bei steigender Modellkomplexität schnell an ihre Grenzen. Mit zunehmender Anzahl an Risikofaktoren, Anlageklassen oder eingebetteten Derivaten steigt der Rechenaufwand drastisch an. Insbesondere die Ermittlung von Extremrisiken wie dem 99{,}9\,\%\,VaR erfordert Millionen von Simulationsläufen, was selbst auf leistungsstarken Rechnern mit erheblichen Laufzeiten verbunden ist. Für verschachtelte Portfolios kommt es häufig zu sogenannten Nested-Monte-Carlo-Strukturen, bei denen für jedes Szenario zusätzliche Bewertungen durchgeführt werden müssen. Die resultierende Rechenzeit verhindert eine laufende Risikobewertung in kurzen Intervallen und erschwert eine schnelle Reaktion in volatilen Marktphasen \cite{bouland_prospects_2020, orus_quantum_2019}
+
+
+\subsubsection*{Quantenbasierte Methoden zur Risikobemessung und Value at Risk}
+
+In Anbetracht der rechentechnischen Hürden klassischer Risikosimulationen rückt erneut Quantum Computing als vielversprechender Lösungsansatz zunehmend in den Fokus. Besonders relevant ist auch hierbei der Quantum-Amplitude-Estimation-Algorithmus (QAE), der bei der Berechnung stochastischer Erwartungswerte eine quadratische Beschleunigung gegenüber klassischen Monte-Carlo-Verfahren ermöglicht \cite{quantumjournal2020, rebentrost_quantum_2018}. Der Vorteil des QAE ist der selbe wie in der Optionsbewertung und lässt sich durch eine Minimierung der Simulationsläufe identifizieren, wodurch eine Zielgenauigkeit $\varepsilon$ erreicht wird, da die Komplexität von $O(1/\varepsilon^2)$ auf $O(1/\varepsilon)$ reduziert wird \cite{martin2022}. Dies ist besonders relevant bei der Schätzung seltener Ereignisse wie dem 99{,}9\,\%-VaR, bei dem klassisch Millionen bis Milliarden Pfade erforderlich wären.
+
+Zur Anwendung von QAE im Risikokontext wird ein Orakel-Operator entworfen, der für ein bestimmtes Verlustniveau $x$ anzeigt, ob der simulierte Portfolioverlust dieses Niveau überschreitet. Mittels QAE lässt sich dann die Wahrscheinlichkeit $P(\text{Verlust} > x)$ effizient bestimmen. Durch Variation von $x$ kann so derjenige Schwellenwert ermittelt werden, für den die Überschreitungswahrscheinlichkeit einem definierten Konfidenzniveau entspricht, was exakt der Definition des Value at Risk entspricht. Analog dazu lässt sich auch der Conditional Value at Risk berechnen, indem ein modifizierter Schaltkreis verwendet wird, der den durchschnittlichen Verlust im Überschreitungsfall quantifiziert \cite{orus_quantum_2019, egger_quantum_2020}.
+
+Die Umsetzung dieser quantenmechanischen Verfahren erfordert jedoch eine geeignete Repräsentation der Verlustverteilung auf dem Quantencomputer. Dazu müssen komplexe stochastische Prozesse, wie sie etwa durch Marktrisiken und Korrelationen zwischen verschiedenen Risikofaktoren entstehen, in einem Quantenzustand abgebildet werden. Eine direkte Kodierung solcher Verteilungen auf Quantenhardware ist jedoch exponentiell aufwendig, weshalb quantum-native Methoden wie Quantum Generative Adversarial Networks (qGANs) eingesetzt werden. Diese Netzwerke sind in der Lage, aus realen Marktdaten eine Zielverteilung zu lernen und diese in polynomieller Komplexität als Quantenzustand bereitzustellen \cite{zoufal_quantum_2019}. Kombiniert mit vereinfachten QAE-Varianten wie dem Maximum-Likelihood-Amplitude-Estimation (MLAE), die flachere Quantenschaltkreise erzeugen, können solche Verfahren auch auf heutiger NISQ-Hardware eingesetzt werden \cite{stamatopoulos_option_2020}.
+
+Erste Proof-of-Concept-Studien zeigen, dass quantenbasierte Risikomessung prinzipiell umsetzbar ist. In einer wegweisenden Arbeit demonstrierten Woerner und Egger die Berechnung des VaR für ein vereinfachtes Anleiheportfolio mit Hilfe eines IBM-Q-Prozessors. Trotz der Beschränkung auf wenige Qubits konnten valide Resultate erzeugt werden, die die klassische Berechnung reproduzierten \cite{egger_quantum_2020}. Aufbauend darauf wurden in weiteren Studien der potenzielle Ressourcenbedarf für realistische Risikoszenarien analysiert. Diese Arbeiten kommen zu dem Ergebnis, dass für große Portfolios mit vielen Risikofaktoren und hohen Konfidenzniveaus fehlerkorrigierte Quantencomputer mit deutlich größerer Qubit-Anzahl erforderlich wären. Gleichzeitig wurden aber auch Ansätze zur Reduktion der Komplexität untersucht, etwa durch grobe Vorabschätzungen mittels klassischer Simulation oder durch analytische Näherungen innerhalb des quantenbasierten Modells \cite{martin2022}.
+
+Auch in der Finanzindustrie wächst das Interesse an quantenbasierter Risikomodellierung. Verschiedene Banken, Technologieunternehmen und Start-ups forschen an hybriden Architekturen, bei denen klassische und Quantencomputer kombiniert werden. Ziel ist es, einzelne Komponenten wie die Quantilschätzung gezielt zu beschleunigen und so tägliche Risikoberichte effizienter zu gestalten. Langfristig wird angestrebt, komplexe Verlustverteilungen nahezu in Echtzeit zu analysieren und damit ein neues Niveau an Präzision und Reaktionsgeschwindigkeit im Risikomanagement zu erreichen \cite{orus_quantum_2019, bouland_prospects_2020}.
+
+Gleichzeitig sind praktische Anwendungen noch limitiert: Das Laden komplexer Verlustverteilungen ist technisch aufwendig, und aktuelle NISQ-Geräte stoßen bei umfangreichen Risikomodellen rasch an Grenzen. Auch klassische Monte-Carlo-Verfahren leiden unter ähnlichen Problemen, insbesondere bei Konvergenzgeschwindigkeit und Modellrisiken \cite{MonteCarloSim2023}. Quantenverfahren zeigen daher bislang insbesondere bei strukturierten, datengetriebenen Subproblemen einen Vorteil.
+
+Insgesamt zeigt sich, dass quantenbasierte Methoden wie QAE das Potenzial haben, bestehende Grenzen klassischer Risikoberechnung deutlich zu verschieben. Zwar steht die praktische Umsetzung noch am Anfang, doch bereits heute belegen erste experimentelle Studien den theoretischen Vorteil und die prinzipielle Machbarkeit. Mit zunehmender Reife der Quantenhardware sowie verbesserter Datenkodierung und Fehlerkorrektur könnten quantenmechanische Simulationen zu einem festen Bestandteil moderner Finanzanalyse werden.
+
+\section{Grundlegende Technologien}
 
 Quantencomputer beruhen auf unterschiedlichen technologischen Prinzipien, die jeweils eigene algorithmische Strategien erfordern. Neben gate-basierten Universalarchitekturen existieren spezialisierte Modelle wie Quantum Annealing oder variationale Hybridverfahren, die auf bestimmte Problemklassen zugeschnitten sind.
+
+Gate-basierte Quantencomputer operieren auf Basis quantenmechanischer Schaltkreise. Diese Architekturen ermöglichen insbesondere die Implementierung sogenannter Variationsalgorithmen, bei denen ein parametrischer Quantenschaltkreis durch einen klassischen Optimierer iterativ angepasst wird, um eine Zielfunktion zu minimieren oder zu maximieren. Zu den bekanntesten Verfahren dieser Art zählen der Quantum Approximate Optimization Algorithm (QAOA) und der Variational Quantum Eigensolver (VQE), die beide vor allem in der Portfoliooptimierung Anwendung finden und eine geeignete Problemformulierung in Form eines Ising-Hamiltonians voraussetzen \cite{brandhofer2022, buonaiuto2023}. Ein weiteres wichtiges Verfahren ist Quantum Amplitude Estimation (QAE), das für quantenbasierte Monte-Carlo-Simulationen konzipiert wurde \cite{egger2020}.
+
+Ergänzend zu diesen gate-basierten Methoden existieren adiabatische Verfahren wie das Quantum Annealing, das auf der sukzessiven Anpassung eines Hamiltonians beruht. Quantum Annealing eignet sich insbesondere für kombinatorische Optimierungsprobleme und verfolgt einen grundsätzlich anderen Lösungsansatz, der auf physikalischer Energieabsenkung basiert, anstatt auf diskreter Gate-Manipulation. Gerade im Finanzkontext zeigt sich eine wachsende Komplementarität beider Paradigmen: Während gate-basierte Verfahren zunehmend für simulations- und schätzbasierte Anwendungen wie Risikomodellierung und Optionsbewertung eingesetzt werden, zeigt Quantum Annealing Potenzial bei der effizienten Lösung von diskreten Optimierungsproblemen wie etwa der Portfoliozusammensetzung.
 
 Dieses Kapitel gibt einen systematischen Überblick über die zentralen technologischen Ansätze und Quantenalgorithmen. Im Fokus stehen deren Funktionsprinzipien, technische Voraussetzungen sowie typische Einsatzbereiche. Ziel ist es, die strukturelle Vielfalt aktueller Quantencomputing-Ansätze herauszuarbeiten und deren Relevanz für verschiedene Anwendungsszenarien einzuordnen.
 
 Zu den derzeit zentralen quantenbasierten Methoden im Finanzkontext gehören:
 
 \begin{itemize}
-  \item Quantum Annealing (QA)
-  \item Gate-basierte Algorithmen
-    \begin{itemize}
-      \item Quantum Approximate Optimization Algorithm (QAOA)
-      \item Variational Quantum Eigensolver und verwandte Variationsansätze (VQE, VQA)
-    \end{itemize}
-  \item Quantum Amplitude Estimation (QAE)
+\item Quantum Annealing (QA) – (Adiabatisches Verfahren)
+\item Quantum Approximate Optimization Algorithm (QAOA) – (Gate-basierter Algorithmus)
+\item Variational Quantum Eigensolver (VQE) – (Gate-basierter Algorithmus)
+\item Quantum Amplitude Estimation (QAE) – (Gate-basierter Algorithmus)
 \end{itemize}
 
 Die folgenden Abschnitte analysieren diese Technologien aus technischer Perspektive. Sie zeigen, welche Stärken und Schwächen mit den jeweiligen Ansätzen verbunden sind und welche praktischen Voraussetzungen für deren erfolgreichen Einsatz im Finanzwesen erfüllt sein müssen.
@@ -53,7 +208,7 @@ Ein zentrales Problem besteht in der begrenzten Skalierbarkeit aktueller Systeme
 
 Gate-basierte Quantencomputer arbeiten auf Basis von quantenmechanischen Schaltkreisen. Diese Systeme ermöglichen die Implementierung sogenannter Variationsalgorithmen, bei denen ein parametrischer Quantenschaltkreis durch einen klassischen Optimierer so angepasst wird, dass eine Zielfunktion minimiert oder maximiert wird. Zu den bekanntesten Methoden gehören der Quantum Approximate Optimization Algorithm (QAOA) und der Variational Quantum Eigensolver (VQE) \cite{buonaiuto_best_2023, brandhofer_benchmarking_2022}. Beide Verfahren finden Anwendung in der Portfoliooptimierung, erfordern jedoch eine geeignete Problemformulierung in Form eines Ising-Hamiltonians.
 
-\subsubsection*{Quantum Approximate Optimization Algorithm (QAOA)}
+\subsubsection{Quantum Approximate Optimization Algorithm (QAOA)}
 
 \subparagraph{Herkunft und Entwicklung}
 QAOA wurde ursprünglich 2014 von Farhi et al. entwickelt \cite{farhi_quantum_2014} und stellt eine hybride Methode dar, die speziell für kombinatorische Optimierungsprobleme konzipiert wurde. Im Gegensatz zu Quantum Annealing arbeitet QAOA nicht auf einem physikalisch kontinuierlichen Prozess, sondern diskret über parametrische Gate-Schaltungen. Es zählt zu den vielversprechendsten Algorithmen für sogenannte Noisy Intermediate-Scale Quantum (NISQ)-Geräte.
@@ -76,7 +231,7 @@ QAOA ist besonders gut geeignet für kombinatorische Probleme mit binärer Struk
 \subparagraph{Grenzen und Herausforderungen}
 Die praktische Leistungsfähigkeit ist stark von der Wahl der Parameter, der Problemgröße und dem Hardware-Backend abhängig. Mit zunehmender Tiefe steigt die Empfindlichkeit gegenüber Rauschen. Zudem erfordert die Parametereinstellung oft umfangreiche Hyperparameter-Tuning-Prozesse \cite{buonaiuto_best_2023}.
 
-\subsubsection*{Variational Quantum Eigensolver (VQE)}
+\subsubsection{Variational Quantum Eigensolver (VQE)}
 
 \subparagraph{Herkunft und Entwicklung}
 Der Variational Quantum Eigensolver (VQE) wurde 2014 eingeführt und war eine der ersten Methoden zur Nutzung von NISQ-Geräten für Optimierungsprobleme in Physik und Chemie. Anders als QAOA richtet sich VQE nicht ausschließlich an kombinatorische Probleme, sondern zielt allgemein auf das Auffinden von Grundzuständen komplexer Hamiltonians ab \cite{buonaiuto_best_2023}.
@@ -127,29 +282,6 @@ Trotz dieser Hürden gibt es vielversprechende Entwicklungen: Kooperationen wie 
 
 Zur Einordnung der vorgestellten quantenmechanischen Verfahren: Quantum Annealing (QA), Quantum Approximate Optimization Algorithm (QAOA), Variational Quantum Eigensolver (VQE) sowie Quantum Amplitude Estimation (QAE) bietet sich ein zweistufiger Vergleich an. Zunächst erfolgt ein technologischer Vergleich anhand funktionaler und struktureller Merkmale, gefolgt von einer allgemeinen Bewertung hinsichtlich Reifegrad und industrieller Perspektiven.
 
-\subparagraph*{Legende der Vergleichskriterien}
-Die Tabelle vergleicht vier zentrale quantenmechanische Verfahren anhand technologisch-funktionaler Merkmale. Im Fokus stehen strukturelle Unterschiede, Hardwareanforderungen und algorithmische Eigenheiten, die für die praktische Implementierung und Modellierbarkeit entscheidend sind.
-
-
-\begin{itemize}
-    \item \textbf{Plattform}: Art der zugrundeliegenden Quantenarchitektur (adiabatisch oder gate-basiert).
-    \item \textbf{Zieltyp}: Ob das Verfahren auf Optimierung oder Erwartungsschätzung ausgerichtet ist.
-    \item \textbf{Formulierung}: Mathematische Struktur, in die Probleme überführt werden müssen (z.\,B. QUBO, Hamiltonian).
-    \item \textbf{Ressourcen}: Erforderliche Quantenschaltkreise, Qubit-Kopplungen oder komplexe Operatoren.
-    \item \textbf{Struktur}: Art des Algorithmusaufbaus – z.\,B. statisch, flexibel oder zyklisch.
-    \item \textbf{Fehlertoleranz}: Robustheit gegenüber Rauschen und Hardwareunschärfen.
-    \item \textbf{Qubitbedarf}: Geschätzter Ressourcenbedarf bezogen auf Qubit-Zahl und Konnektivität.
-\end{itemize}
-
-\subparagraph{Legende der Einstufungen}
-
-\begin{itemize}
-    \item \textbf{hoch}: Verfahren ist etabliert, gut erforscht oder praxistauglich.
-    \item \textbf{mittel}: Verfahren ist teilweise anwendbar, unterliegt aber Einschränkungen.
-    \item \textbf{niedrig}: Aktuell kaum praktikabel oder nur experimentell umsetzbar.
-    \item \textbf{aufstrebend / wachsend / sehr hoch}: Verfahren mit stark wachsendem Potenzial, aber begrenztem Stand heute.
-\end{itemize}
-
 \subsubsection*{Technologischer Vergleich}
 
 \begin{table}[H]
@@ -191,8 +323,14 @@ In Bezug auf Fehlertoleranz und Qubitbedarf zeigen sich wieder zwei Extreme: QA 
 
 Der technologische Vergleich zeigt klar, dass sich die Verfahren nicht nur im Ziel, sondern auch in ihrer Hardware- und Ressourcenausrichtung stark unterscheiden. Während QA eine spezialisierte, robuste Lösung für bestimmte Optimierungsprobleme bietet, sind VQE, QAOA und QAE flexibler, aber in ihrer aktuellen Form noch stark abhängig von der Hardwareentwicklung.
 
+\subparagraph{Legende der Einstufungen}
 
-
+\begin{itemize}
+    \item \textbf{hoch}: Verfahren ist etabliert, gut erforscht oder praxistauglich.
+    \item \textbf{mittel}: Verfahren ist teilweise anwendbar, unterliegt aber Einschränkungen.
+    \item \textbf{niedrig}: Aktuell kaum praktikabel oder nur experimentell umsetzbar.
+    \item \textbf{aufstrebend / wachsend / sehr hoch}: Verfahren mit stark wachsendem Potenzial, aber begrenztem Stand heute.
+\end{itemize}
 
 \subsubsection*{Reifegrad und Anwendungsperspektiven}
 
@@ -242,247 +380,48 @@ Zusammenfassend zeigt sich, dass aktuell nur QA als produktionsnah gelten kann, 
 
 
 
+\section{Unternehmen und Akteure}
+Quantencomputing hat sich in den vergangenen Jahren zu einem zentralen Innovationsfeld entwickelt, in dem sowohl große Technologiekonzerne als auch spezialisierte Unternehmen aus dem Finanzsektor aktiv sind. Diese Akteure tragen wesentlich zur technologischen Entwicklung, praktischen Anwendung und breiteren Implementierung quantenbasierter Lösungen bei.
 
+\subsection{Allgemeine Akteure}
 
+Große Technologiekonzerne prägen die allgemeine Entwicklung des Quantencomputings maßgeblich. IBM bietet mit IBM Quantum Experience eine cloud-basierte Plattform an, die Zugang zu gate-basierten Quantencomputern mit bis zu 433 Qubits ermöglicht und Forschenden und Unternehmen erlaubt, ihre Algorithmen praktisch zu testen (IBM, 2023). Google verfolgt ebenfalls einen gate-basierten Ansatz und erzielte mit dem Sycamore-Prozessor Quantum Supremacy, indem sie zeigten, dass Quantencomputer spezifische Rechenprobleme deutlich schneller lösen können als klassische Rechner (Arute et al., 2019). D-Wave hingegen verfolgt den Ansatz des Quantum Annealings, der sich insbesondere für kombinatorische Optimierungsprobleme eignet und bereits in Industrieanwendungen, z.B. im Logistik- und Finanzsektor, eingesetzt wird (Johnson et al., 2011).
 
+\subsection{Spezifische Akteure im Finanzsektor}
 
-\abstract{Dieses Kapitel untersucht das Potenzial von Quantencomputing für den Einsatz im Finanzwesen. Im Zentrum stehen drei besonders rechenintensive Anwendungsfelder: Portfoliooptimierung, Monte-Carlo-Simulationen und Risikomessung. Anhand aktueller Forschungsergebnisse und Pilotprojekte wird analysiert, wie Quantenalgorithmen klassische Verfahren ergänzen oder perspektivisch ablösen könnten. Dabei werden sowohl Quantum Annealing als auch gate-basierte Algorithmen wie QAOA, VQE und QAE betrachtet. Darüber hinaus beleuchtet das Kapitel die Rolle führender Technologieunternehmen, Finanzinstitute und internationaler Forschungsinitiativen. Abschließend erfolgt eine kritische Bewertung der technologischen Entwicklungen mit Blick auf konkrete Einsatzmöglichkeiten, bestehende Herausforderungen und strategische Implikationen für die Finanzbranche.}
+Parallel zur allgemeinen technologischen Entwicklung haben zahlreiche Finanzinstitutionen das Potenzial von Quantencomputing erkannt und entwickeln gezielt anwendungsorientierte Lösungen. JP Morgan investiert gezielt in Projekte, die sowohl Quantum Annealing als auch gate-basierte Methoden einsetzen, um komplexe Optimierungsprobleme und Risikobewertungen zu verbessern. Ein Beispiel hierfür ist die Anwendung von Quantum Annealing zur Portfoliooptimierung, bei der signifikante Effizienzgewinne erzielt wurden (Herman et al., 2022). Goldman Sachs konzentriert sich besonders auf quantenbasierte Monte-Carlo-Simulationen zur Verbesserung der Preisgestaltung und Risikomessung komplexer Finanzprodukte und hat erste Pilotprojekte mit gate-basierten Quantencomputern erfolgreich getestet (Egger et al., 2020). Die spanische Bank BBVA arbeitet mit unterschiedlichen Technologiepartnern wie Multiverse Computing zusammen, um quantenbasierte Algorithmen für Handelsstrategien und Risikoanalysen zu erproben, was erste vielversprechende Ergebnisse hinsichtlich Geschwindigkeit und Genauigkeit gezeigt hat (Orús et al., 2019).
 
-\section{Einleitung}
-Das Finanzwesen zählt zu den datenintensivsten und rechentechnisch anspruchsvollsten Bereichen der modernen Wirtschaft. Täglich werden riesige Datenmengen analysiert, komplexe Modelle berechnet und Entscheidungen unter Unsicherheit getroffen. Klassische Computersysteme stoßen hierbei zunehmend an ihre Leistungsgrenzen, insbesondere wenn es um die Lösung kombinatorischer Optimierungsprobleme, stochastischer Simulationen oder die Verarbeitung hochdimensionaler Datenstrukturen geht. In diesem Kontext rücken Quantencomputer als potenziell transformative Technologie in den Fokus. Sie beruhen auf den Prinzipien der Quantenmechanik wie Superposition, Verschränkung und Interferenz und ermöglichen damit neue Arten der Informationsverarbeitung, die bei bestimmten Problemklassen eine exponentielle Beschleunigung gegenüber klassischen Verfahren versprechen.
+Diese spezifischen Akteure spielen eine zentrale Rolle dabei, quantenbasierte Innovationen im Finanzwesen voranzutreiben, indem sie konkrete Anwendungsfälle entwickeln und gleichzeitig praktische Erfahrungen sammeln, die wiederum in die allgemeine technologische Weiterentwicklung zurückfließen.
 
-Erste Forschungsarbeiten und Pilotprojekte belegen, dass Quantenalgorithmen insbesondere in der Portfoliooptimierung, in der Bewertung komplexer Finanzinstrumente sowie im Risikomanagement erhebliche Vorteile bringen könnten. Dabei geht es nicht nur um Rechengeschwindigkeit, sondern auch um die Möglichkeit, realistischere Modelle zu verwenden, die bislang aufgrund ihrer Komplexität nicht praktikabel waren. Gleichzeitig stellt die wachsende Leistungsfähigkeit von Quantencomputern auch eine Bedrohung für klassische kryptografische Verfahren dar, was die Notwendigkeit neuer Sicherheitsstrategien aufwirft.
 
-Im weiteren Verlauf dieses Kapitels werden zunächst die zentralen Herausforderungen und Chancen des Quantencomputings im Finanzwesen dargestellt. Anschließend werden die drei wichtigsten Anwendungsfelder beleuchtet: Portfoliooptimierung, Optionsbewertung und Risikomessung. Darauf folgt eine Übersicht über die zugrunde liegenden Technologien und Algorithmen. Zudem werden führende Akteure, bedeutende Unternehmensinitiativen sowie ausgewählte Forschungsprojekte vorgestellt. Den Abschluss bildet eine Bewertung der Entwicklungen und ein Teilfazit mit Blick auf zukünftige Potenziale.
+\section{Zentrale Zukunftsprojekte und Forschungsinitiativen}
 
-\section{Relevanz und Problemstellung}
-Zu den datenintensivsten und rechenaufwendigsten Bereichen der modernen Wirtschaft zählt das Finanzwesen. Jeden Tag müssen enorme Datenmengen ausgewertet, komplizierte Modelle beurteilt und Entscheidungen mit Risiko getroffen werden   häufig unter Bedingungen von Unsicherheit und in dynamischen Märkten. Bei der Bewältigung solcher Aufgaben geraten herkömmliche Computer zunehmend an ihre Grenzen. Der Rechenaufwand in Bereichen wie Optimierung, Simulation oder probabilistischer Risikobewertung wächst insbesondere mit der Komplexität von Finanzprodukten und -märkten exponentiell an \cite{springer2025,plos2024}.
+Der Fortschritt im Quantencomputing für Finanzanwendungen wird wesentlich durch spezifische Projekte und strategische Forschungsinitiativen geprägt. Diese konzentrieren sich auf die Entwicklung praxisnaher quantenbasierter Lösungen, speziell für Anwendungen im Finanzsektor. Im Folgenden werden zentrale Zukunftsprojekte ausführlich vorgestellt sowie deren Ziele, Inhalte und bisherigen Ergebnisse umfassend beschrieben.
 
-Quantencomputer stellen ein neuartiges Paradigma dar: Sie verarbeiten Informationen auf der Grundlage quantenmechanischer Zustände, was die parallele Bearbeitung bestimmter mathematischer Probleme mit einem erheblichen Geschwindigkeitsvorteil ermöglicht. Neue Lösungsräume eröffnen sich insbesondere bei kombinatorischen Optimierungsproblemen, wie sie beispielsweise in der Portfoliozusammensetzung oder im Optionspricing vorkommen, sowie bei stochastischen Simulationen. Erste Untersuchungen haben ergeben, dass Quantenalgorithmen diese Aufgaben mit einer deutlich höheren Effizienz bewältigen können als klassische Verfahren \cite{quantumjournal2020,orus2019}.
+\subsection{IBM Quantum Roadmap – Skalierung der Quantenhardware}
 
-Zugleich bringt die Verwendung von Quantencomputern im Finanzsektor neue Herausforderungen mit sich. Vor allem die Gefahr, dass klassische kryptographische Verfahren brechen könnten, steht neben der noch nicht voll ausgereiften Hardware im Raum. Es geht dabei nicht nur um den Schutz sensibler Finanzdaten, sondern auch um die Stabilität ganzer Systeme. Das sogenannte „Harvest Now, Decrypt Later“-Szenario ist besonders kritisch. Dabei werden heute verschlüsselte Daten abgefangen, um sie später mit leistungsfähigen Quantencomputern zu entschlüsseln \cite{finance21net}.
+Die IBM Quantum Roadmap stellt ein langfristiges, strategisches Projekt dar, das sich auf die schrittweise Verbesserung und industrielle Skalierung von Quantenhardware konzentriert. IBM strebt dabei eine kontinuierliche Erhöhung der Anzahl und Qualität supraleitender Qubits an, mit dem Ziel, innerhalb der nächsten Jahre Quantenprozessoren mit Tausenden von Qubits bereitzustellen. Diese technologische Weiterentwicklung ist entscheidend, um komplexere Algorithmen mit praxisrelevanter Größenordnung durchführen zu können und somit den kommerziellen Einsatz in Bereichen wie Finanzdienstleistungen zu ermöglichen. Im Rahmen der Roadmap wurden bereits signifikante Fortschritte erzielt, darunter die Einführung von Quantenprozessoren mit mehreren hundert Qubits, die aktuell durch Cloud-Plattformen nutzbar sind (IBM Quantum, 2023).
 
-Damit befindet sich der Finanzsektor an einem Wendepunkt: Auf der einen Seite bieten Quantencomputer enorme Möglichkeiten zur Effizienzsteigerung und zur Verbesserung bestehender Verfahren   wie bei Risikomodellen, Investmentstrategien oder der Integration mit künstlicher Intelligenz \cite{finance21net}. Auf der anderen Seite ist es notwendig, dass bestehende Infrastrukturen rechtzeitig gegen neue Bedrohungen geschützt werden. Die Chance-Risiko-Dualität macht Quantencomputing für den Finanzsektor äußerst relevant und zeigt die Notwendigkeit praxisnaher Forschung und strategischer Vorausschau auf \cite{springer2025,orus2019}.
+\subsection{NEASQC – Europäisches Projekt für NISQ-Anwendungen}
 
-!!hier fehlen noch die dinger in zotero
+Das Projekt NEASQC (Next Applications of Quantum Computing) wird von der Europäischen Union im Rahmen des Programms Horizon 2020 finanziert und verfolgt das Ziel, Algorithmen und Anwendungen für NISQ-Geräte (Noisy Intermediate-Scale Quantum) zu entwickeln. Das Projekt adressiert praxisrelevante industrielle Anwendungen und konzentriert sich insbesondere auf Finanzanwendungen wie Monte-Carlo-Simulationen, Portfolioanalysen und die Hauptkomponentenanalyse (PCA). HSBC nimmt als Finanzakteur eine zentrale Rolle im Konsortium ein und validiert entwickelte quantenbasierte Methoden anhand konkreter bankwirtschaftlicher Szenarien. Das Projekt verfolgt einen offenen Ansatz und veröffentlicht die Algorithmen sowie Testumgebungen unter Open-Source-Lizenzen, um breitere industrielle Anwendbarkeit zu gewährleisten und Synergien zwischen Forschung und Industrie zu fördern (NEASQC, 2025; Manzano et al., 2024).
 
-\section{Top 3 Anwendungsfelder (Praxis \& Theorie)}
+\subsection{IBM Quantum Finance – Quantenalgorithmen für Risikoanalyse und Simulation}
 
-Die konkrete Anwendbarkeit von Quantencomputern im Finanzsektor lässt sich exemplarisch an drei besonders rechenintensiven und praxisrelevanten Bereichen aufzeigen. Diese Felder zeichnen sich durch hohe algorithmische Komplexität und umfangreiche Datenanforderungen aus und gelten daher als vielversprechende Einsatzgebiete für quantenbasierte Verfahren. Im Folgenden wird untersucht, in welchem Ausmaß Quantenalgorithmen klassische Methoden ergänzen oder perspektivisch ablösen könnten.
+Unter dem Titel „IBM Quantum Finance“ verfolgt IBM die Entwicklung spezifischer Quantenalgorithmen, die speziell für Anwendungen im Finanzsektor geeignet sind. Ein wesentlicher Schwerpunkt ist die Quantum Amplitude Estimation (QAE), welche Monte-Carlo-Simulationen stark beschleunigt und gleichzeitig Genauigkeitsgewinne ermöglicht. Konkret wird QAE bei der Bewertung komplexer Finanzinstrumente, der Risikomodellierung und der Berechnung von Risikokennzahlen wie dem Value at Risk (VaR) eingesetzt. IBM arbeitet hierbei eng mit Finanzinstituten wie JPMorgan Chase zusammen, um reale Finanzmodelle zu testen und ihre Ergebnisse direkt in die Praxis zu überführen. Erste Anwendungstests zeigen, dass Quantenverfahren deutliche Effizienz- und Präzisionsvorteile gegenüber klassischen Ansätzen bieten (Larsson & Oosterlee, 2019; Moody’s, 2024).
 
-Die drei zentralen Anwendungsfelder sind:
+\subsection{D-Wave Portfolio Pilot – Portfoliooptimierung mittels Quantum Annealing}
 
-\begin{itemize}
-    \item{Portfoliooptimierung}
-   
-    \item{Monte-Carlo-Simulationen}
+D-Wave Systems betreibt das „D-Wave Portfolio Pilot“-Projekt, das speziell auf die Anwendung von Quantum Annealing-Technologie zur Portfoliooptimierung fokussiert ist. Ziel des Pilotprojekts ist es, Finanzunternehmen praktische Einblicke und konkrete Vorteile der Quantum-Annealing-Methode für die Lösung kombinatorischer Optimierungsprobleme wie etwa der optimalen Asset-Allokation zu verschaffen. Die Ergebnisse des Projekts belegen eine erheblich gesteigerte Effizienz und verbesserte Lösungsqualität gegenüber traditionellen Optimierungstechniken. Verschiedene Finanzunternehmen nutzen bereits die Technologie von D-Wave in Pilotprojekten, um reale Portfoliooptimierungen durchzuführen und konkrete Anwendungsszenarien zu validieren (D-Wave Systems, 2023; Herman et al., 2022).
 
-    \begin{itemize}
-        \item{Optionsbewertung}
-        \item{Risikomessung}
-    \end{itemize}
-\end{itemize}
-
-Diese Abschnitte beleuchten sowohl die theoretischen Grundlagen als auch erste praktische Implementierungen auf aktueller Quantenhardware. Ziel ist es, das Potenzial quantenbasierter Verfahren im Vergleich zu klassischen Methoden realistisch einzuordnen und mögliche technologische Durchbrüche zu identifizieren.
-
-\subsection{Portfoliooptimierung}
-Die Portfoliotheorie ist ein Konzept der Finanzwirtschaft und beschreibt die Bestimmung eines optimalen Portfolios durch die Zusammensetzung von mehreren Kapitalanlagen. Kapitalanlagen beschreiben Investitionen in zahlreiche, langfristig orientierte Anlagen, die in Form von Aktien, Anleihen, Währungen, Immobilien oder Rohstoffen über Jahre gehalten und nicht verkauft werden \cite{orus_quantum_2019, sakuler_real-world_2025}.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.6\textwidth]{bildname.png}
-  \caption{efficient frontier}
-  \label{fig:beispielbild}
-\end{figure}
-
-Harry Markowitz widmete sich der Frage, in welcher Form ein optimales Portfolio unter Berücksichtigung der Marktbedingungen zusammengestellt werden sollte. Die Effizienzkurve repräsentiert das zentrale Konzept und stellt jene Portfolios dar, die die maximale Rendite zu einem gegebenen Risikoniveau, beziehungsweise umgekehrt das minimale Risiko für eine Zielrendite darstellen. Markowitz (1959) modelliert daher ein Portfolio mittels des Erwartungswert der zukünftigen Renditen, sowie der Varianz (bzw. Standardabweichung) als Maß für das Risiko. Markowitz entdeckte, dass die Varianz des Portfolios durch Diversifikation, also der Gewichtung unterschiedlicher Anlageklassen mit geringer Korrelation, minimiert werden kann. Hierdurch entsteht die gekrümmte Form der Effizienzkurve. Ein rational handelnder Investor würde nun ein Portfolio auf der Kurve wählen. Portfolios rechts oder unterhalb der Effizienzkurve weisen entweder eine geringere Rendite, zu dem selben Risiko oder eine identische Rendite zu mehr Risiko auf.
-
-Die Optimierung nach Markowitz lässt sich in einem kontinuierlichen, quadratischen Optimierungsproblem schreiben, das mithilfe von quadratischer Programmierung lösbar ist
-\cite{Markowitz 1959}.
-
-In der Praxis müssen jedoch oft diskrete Kauf- oder Nicht-Kauf-Entscheidungen getroffen werden, die das Problem zu einem kombinatorischen Optimierungsproblem machen. Solche Probleme lassen sich dann in einem Quadratic Unconstrained Binary Optimization (QUBO) Formulierung überführen. Die daraus entstehende Lösungsmenge wächst dabei exponentiell mit der Anzahl der hinzugefügten Assets.
-Trotz der theoretischen Stärke der Portfoliotheorie stößt sie schnell bei solch wachsender Komplexität an Ihre Grenzen \cite{sakuler_real-world_2025, orus_quantum_2019}.
-
-\subsubsection*{Quantenbasierte Methoden zur Portfoliotheorie}
-
-An dieser Stelle kommen Quantencomputer ins Spiel. Die Idee dahinter ist, das kombinatorische Problem direkt auf Quantenbits abzubilden und damit die Suche nach einer effizienten Lösung zu optimieren. Zwei Technologien stechen in den letzten Jahren der Forschung besonders heraus: Quantum Annealing und gate-basierte Quantenalgorithmen \cite{mugel_dynamic_2022, orus_quantum_2019}.
-
-\subsubsection*{Quantum Annealing}
- 
-Zahlreiche kombinatorische Optimierungsprobleme, wie zum Beispiel eine Portfolioauswahl von 0/1-Entscheidungen, gehören zu den sehr schwer lösbaren Problemen. Diese lassen sich in eine Quadratic Unconstrained Binary Optimization (QUBO-Form) überführen. Quantum Annealer sind spezialisierte Quantencomputer und nutzen diese QUBO-Probleme und leiten sie durch quantenmechanische Tunnel, um Ihre Minimums Lösung zu finden. 
-
-Die Übersetzung auf die Portfoliotheorie ist wie folgt: Jede mögliche Portfolioentscheidung wird als Qubit abgebildet, während die Markowitzfunktion, also die Kombination aus Rendite und Risiko als effektives Hamiltonian formuliert wird. Hamiltonian ist die mathematische Form der Energie des Modells. Diese dient zur Identifikation des optimalen Portfolios, also den Zustand mit der geringstmöglichen Energie erzeugt durch das stetige Herunterkühlens des Quantenannealers. Details zu dieser Technologie in Kapitel 4.4.1 \cite{mugel_dynamic_2022}.
- 
-Erste praktische Untersuchungen zeigen, dass kleine Portfolioinstanzen erfolgreich mithilfe von Quantum Annealing gelöst werden können. So gelang es, reale Portfolios mit etwa 9 bis 11 Assets (bestehend aus Aktien, Anleihen und Geldmarktinstrumenten) unter Berücksichtigung von Budget- und Volatilitätsrestriktionen als QUBO-Probleme zu formulieren und auf Quantenhardware auszuführen. Die Optimierungsläufe lieferten innerhalb von Sekunden bis wenigen Minuten Lösungen, die qualitativ mit klassischen Verfahren übereinstimmten \cite{sakuler_real-world_2025}rosenberg.
- 
-Dabei zeigten sich insbesondere bei hybriden Annealing-Methoden, also der Kombination aus klassischer Vorverarbeitung und quantenbasierter Optimierung robuste Ergebnisse mit hoher Reproduzierbarkeit. Herausfordernd bleiben allerdings die begrenzte Konnektivität der Qubits im Annealer und die damit verbundene Notwendigkeit, Problemstrukturen auf die zugrundeliegende Hardware-Topologie zu projizieren. Ebenso erweist sich die Auswahl geeigneter Modellparameter wie Strafterme oder Normierungen als kritisch für die Qualität der Lösung \cite{sakuler_real-world_2025}.
- 
-Auch in umfangreichen Testfällen mit deutlich größeren Portfolios und längeren historischen Datenreihen zeigten sich skalierbare Resultate. Die besten Ergebnisse wurden dabei mit hybriden oder quanteninspirierten Verfahren erzielt, die klassische Heuristiken mit quantum-naher Optimierung kombinierten. Ein echter Quantenvorteil gegenüber klassischen Methoden konnte bislang jedoch noch nicht nachgewiesen werden, wenngleich die Technologie als reif für kleinere, strukturierte Probleme gilt \cite{BBVA, 2020}.!!
-
-\subparagraph{Chancen und Herausforderungen}
-
-Quantum Annealing gilt als besonders geeigneter Ansatz zur Lösung kombinatorischer Optimierungsprobleme wie der Portfolioallokation. Die praktische Umsetzbarkeit wurde in mehreren Pilotstudien nachgewiesen, etwa durch Formulierung von realistischen Portfolios mit bis zu elf Assets als QUBO-Probleme \cite[S. 6]{orus_quantum_2019}. Dabei konnten innerhalb kurzer Rechenzeiten robuste Lösungen gefunden werden, die qualitativ mit klassischen Verfahren übereinstimmen. Insbesondere hybride Methoden, welche klassische Vorverarbeitung mit quantenmechanischer Lösungsfindung kombinieren, zeigten eine hohe Reproduzierbarkeit der Ergebnisse.
-
-Herausforderungen bestehen jedoch in der begrenzten Konnektivität der Qubits in aktuellen Annealing-Hardwarearchitekturen (z.\,B. D-Wave), was eine komplexe Problemembedding-Strategie erfordert \cite[S. 9]{orus_quantum_2019}. Zusätzlich beeinflussen Parameter wie Strafterme und Normalisierungen die Lösungssuche stark, was eine sorgfältige Modellierung notwendig macht \cite[S. 10]{sakuler_real-world_2025}. Obwohl Quantum Annealing keine universelle Quantenlösung darstellt, bieten erste Resultate auf praktischen Geräten vielversprechende Hinweise auf eine sinnvolle Anwendbarkeit in kleinen bis mittelgroßen Portfolioinstanzen.
-
-\subsubsection*{Gate-basierte-Algorithmen}
- 
-Gate-basierte Algorithmen wie QAOA und VQE lassen sich auf Portfoliooptimierungsprobleme anwenden, indem diese zunächst in ein Ising-Modell oder einen geeigneten Hamiltonoperator überführt werden. In dieser Darstellung entsprechen die Qubits binären Portfolioentscheidungen, während die Zielfunktion aus Risiko- und Ertragsanteilen als Energieausdruck kodiert wird. Der Quantenalgorithmus sucht dann durch parametrische Variationen jenen Zustand mit minimaler Energie, der einer optimalen Allokation entspricht \cite{buonaiuto_best_2023, brandhofer_benchmarking_2022}.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\linewidth]{EfficientFrontier_VQE.png}
-    \caption{Beispiel einer Efficient Frontier in der Portfolio-Optimierung (simuliertes 6-Asset-Portfolio). Die blaue Kurve zeigt die optimale Risiko-Rendite-Kurve (klassische Exhaustivsuche), die grünen Dreiecke markieren Lösungen des Quantum-VQE-Algorithmus. Man sieht, dass die Quantenlösungen die Effizienzgrenze eng nachzeichnen (Rendite $\mu^T x$ und Risiko $x^T \Sigma x$ sind in willkürlichen Einheiten). \cite[Abb. 8]{egger_quantum_2020}}
-    \label{fig:efficient_frontier_vqe}
-\end{figure}
-
-
-Abb. \ref{fig:efficient_frontier_vqe} illustriert, dass bereits heutige gate-basierte Quantenalgorithmen wie der VQE in der Lage sind, für kleine Portfolios (hier ein simuliertes 6-Asset-Portfolio) ähnlich effiziente Lösungen wie klassische Exhaustivsuche zu erzeugen. Die grünen Dreiecke zeigen, dass die vom VQE generierten Lösungen eng entlang der klassischen Efficient Frontier liegen. Dies verdeutlicht das Potenzial quantenbasierter Optimierung in Kombination mit VQE, insbesondere für risikoertragsbasierte Portfolioentscheidungen. Die zugrunde liegende Studie von Egger et al. (2020) demonstriert damit erfolgreich die prinzipielle Machbarkeit dieser Methode auf simulierten Quantencomputern. Einschränkungen bestehen jedoch weiterhin in Bezug auf Skalierbarkeit, da größere Portfolios tiefere Schaltkreise und längere Optimierung erfordern.
- 
-Gleichzeitig zeigen erste Studien jedoch, dass unter kontrollierten Bedingungen bereits vielversprechende Ergebnisse erzielt werden können. So testeten mehrere Arbeiten die Wirksamkeit von VQE-Pipelines. Die Ergebnisse lieferten, dass der VQE auf einem 5-Qubit-Gerät eine fast identische Lösung zum klassischen Optimum generieren konnte. Die Qualität der Lösung variierte jedoch mit der Qualität des Quantenchips. Größere und weniger von Rausch behaftete Geräte lieferten verbesserte Ergebnisse als kleinere. Somit schmälern Rauschen und die begrenzte Qubit-Zahlen zwar noch den Nutzen, obwohl die Algorithmen prinzipiell eine optimale Lösung bieten \cite{buonaiuto_best_2023}.
-Der Einsatz von QAOA mit der Fixierung der Anzahl der enthaltenen Assets zeigte, dass die Anzahl benötigter Quantengatter und Messungen, die für mittlere Problemgrößen benötigt werden, die NISQ-Geräte an ihre Grenzen bringt. Für kleinere Portfolios konnten jedoch annähernd optimale Ergebnisse erzielt werden \cite{brandhofer_benchmarking_2022}.
- 
-Beide Ansätze QAOA/VQE glänzen in Ihrer Flexibilität. Es können leichter zusätzliche Nebenbedingungen eingebaut und dynamische Portfolio-Probleme formuliert werden. Nachteile spiegeln sich in der Limitation durch Rauschen und Dekohärenz wider, die ohne notwendige Fehlerkorrektur nicht behoben werden können. Aufgrund dieser Einschränkungen bleiben die Anwendungen der gate-basierten Ansätze noch auf rein simulierter Ebene oder auf kleinen Hardware-Experimenten beschränkt.
-
-\subparagraph{Chancen und Herausforderungen}
-
-Gate-basierte Algorithmen wie VQE bieten ein hohes Maß an Anpassungsfähigkeit für Portfoliooptimierungsprobleme, insbesondere im Umgang mit komplexen Nebenbedingungen. Erste Tests auf realer Hardware zeigen, dass bei kleinen Portfolios bereits Lösungen in Nähe des klassischen Optimums erzielt werden können \cite[S. 2–4]{buonaiuto_best_2023}. Dabei hängt die Qualität stark von den gewählten Hyperparametern und der verwendeten Hardware ab. Je größer und rauschärmer das Quantenchip, desto näher die Lösung an der klassischen Referenz. Allerdings bleiben signifikante Herausforderungen bestehen: Skalierungsprobleme, Rauschanfälligkeit und die Auswahl geeigneter Optimierer beeinflussen die Ergebnisse maßgeblich. Trotz des hohen Potenzials für künftige Verbesserungen ist ein praktischer Vorteil gegenüber klassischen Methoden bislang nicht eindeutig belegt.
-
-\subsection{ Monte Carlo Simulation}
-
-Die Bewertung von Anlagen und Portfolios bedingt eine enorme Komplexität durch die
-unvollkommene Verteilung von Informationen auf Finanzmärkten. Entscheidungen über Risikostrategien, Bewertungen und Investitionen müssen häufig in Situationen getroffen werden, in denen wirtschaftliche Verläufe nicht direkt einsichtig sind. Hierbei greifen Marktteilnehmer auf Schätzungen, Wahrscheinlichkeiten und historische Daten zurück, um zukünftige Entwicklungen zu bewerten. 
-\\
- Als grundlegendes Instrument wird in diesem Bereich die Monte-Carlo-Simulation in Betracht gezogen. Mithilfe der Monte-Carlo-Simulation können die Lösungen von analytisch komplexen und schwer lösbaren mathematischen Problemen geschätzt werden. Es nutzt also statistische Simulierung und Zufallsstichproben, um wiederholt verschiedene Szenarien eines Systems zu simulieren und Erwartungswerte oder Wahrscheinlichkeiten approximativ zu bestimmen.\cite{orus_quantum_2019}.
- 
-Typische Anwendungsfelder dieses stochastischen Ansatzes sind: Optionsbewertung (Pricing von Derivaten, deren Auszahlung vom zukünftigen Preisverlauf eines Basiswerts abhängt) und Risikobemessung (Berechnung des Value at Risk für ein Portfolio über einen Zeithorizont). Letzteres wird in Kapitel 4.3.3 näher beleuchtet \cite{orus_quantum_2019}. Sowohl die Optionsbewertung als auch die Risikobemessung stellen zentrale Aufgaben im Finanzwesen dar, bei denen zukünftige, stochastisch unsichere Größen quantifiziert werden müssen. Aufgrund der Komplexität moderner Finanzinstrumente und der hohen Dimensionalität der zugrunde liegenden Zufallsprozesse sind analytische Lösungen häufig nicht verfügbar. Die Monte-Carlo-Simulation dient in beiden Anwendungsfeldern als methodisches Fundament, um durch zufällige Stichproben komplexe Erwartungswerte oder Verteilungsquantile numerisch zu vergleichen. Damit bildet sie die Grundlage zahlreicher Bewertungs- und Risikomodelle in Praxis und Forschung.
-
-\subsubsection*{Optionsbewertung}
-Die Bewertung von Optionen erfordert häufig numerische Verfahren, da für viele Ausgestaltungen keine geschlossenen analytischen Lösungen existieren. Besonders bei komplexeren Derivaten wie asiatischen Optionen, Barrier-Optionen oder Portfolios von Optionen muss meist numerisch simuliert werden. Optionen stellen Finanzderivate dar, wobei ein Derivat ein Instrument ist, dessen Preisentwicklung von der Entwicklung einer oder mehrerer Anlagen abhängt. Das Monte-Carlo-Verfahren nutzt hierbei eine große Menge an Zufallspfad-Simulationen generiert für die relevanten Prozesse und errechnet aus den Auszahlungen oder Verlusten statistische Kennzahlen. Faktisch wird versucht, den „fairen“ Preis einer Option zu ermitteln. Dazu werden mögliche Pfade, die der Aktienkurs einnehmen könnte, bis zur Fälligkeit simuliert, für jeden Pfad die Auszahlung berechnet und gemittelt\cite{orus_quantum_2019}.
- 
-Damit die Verteilungsmerkmale in der geforderten Genauigkeit erfasst werden können, müssen ausreichend Pfade generiert werden. Das Gesetz der großen Zahlen bestimmt hierbei dass die Schätzung des Erwartungswertes mit der Anzahl N der simulierten Pfade ungefähr mit $1/\sqrt{N}$ konvergiert. Diese Konvergenz ist verhältnismäßig gering. Um die Genauigkeit, um genau eine Einheit zu verbessern, muss die Zahl der Simulationsläufe um das Vierfache erhöht werden. Dadurch steigt die Zahl der Pfade schnell auf eine Millionen oder Milliarden Höhe an.
-In der Praxis ist genau das eins der größten Probleme. Komplexe Berechnungen von zum Beispiel Kreditrisiko-Simulationen von Hunderten von Banken und Unternehmen können Tage dauern. Trotz der stetigen Parallelisierung stoßen herkömmliche Methoden aufgrund der Rechenzeit und Kosten an Ihre Grenzen \cite{orus_quantum_2019}.
-
-\subsubsection*{Quantenbasierte Methoden zur Optionsbewertung}
-Durch methodische Erweiterungen, wie der Quantum Amplitude Estimation (QAE) können Prozesse der klassischen Monte-Carlo Simulation beschleunigt werden. Bei dem Fall der Optionsbewertung, müssen Wahrscheinlichkeitsverteilungen über zukünftige Assetpreise quantenmechanisch kodiert werden. Diesbezüglich wird QAE angewendet, um effiziente Schätzungen des Erwartungswertes, also die Bestimmung des “fairen” Optionspreises, zu gewährleisten. Im Vergleich zur klassischen Monte-Carlo-Methode, die für eine Zielgenauigkeit von $\varepsilon$ etwa $O(1/\varepsilon^2)$ Stichproben benötigt, minimiert QAE diesen Aufwand auf $O(1/\varepsilon)$. Praktisch bedeutet das, dass statt einer Million klassischer Proben rund 1000 Quantenproben ausreichen bei gleichbleibender Akkuratesse \cite{Brassard/Lomonaco+Brandt; Montanaro, 2015}.
-
-In ersten Bewertungs-Workflows wurde dieser theoretische Ansatz bereits auf realer Quantenhardware getestet und demonstriert. Es wurden verschieden Optionsarten mithilfe passender Quantenschaltungen modelliert und darauf folgend mit Maximum-Likelihood-Amplitude-Estimation (MLAE) bewertet. Dieses Verfahren ist vorteilhafter als das klassische QAE, da es durch eine flachere Schaltung besser für die NISQ-Geräte geeignet ist. NISQ-Geräte (Noisy Intermediate-Scale Quantum) sind gegenwärtige Quantencomputer mit einer begrenzten Anzahl von Qubits und ohne vollständige Fehlerkorrektur, die bereits erste praktische Anwendungen ermöglichen, jedoch noch anfällig für Störungen und Skalierungsprobleme sind \cite{stamatopoulos_option_2020}.
-
-Fehler können durch Kalibrierung von Zwei-Qubit-Gattern gedämpft werden, wodurch bereits aus Drei-Qubit-Schaltungen valide Optionspreise extrahiert werden konnten. Zentrale praktische Hindernisse bleiben jedoch bestehen. Besonders das effiziente Laden von Datenquellen und klassischen Wahrscheinlichkeitsverteilungen auf Quantenhardware stellt sich als kompliziert heraus. Um diese Marktszenarien, wie Asset-Preise, auf Quantencomputern zu verarbeiten, müssen die Daten in einen entsprechenden Quantenzustand überführt werden. Hiefür benötigen die klassischen Verfahren einen exponentiell steigenden Ressourcenaufwand von $O(2^n)$. Eine Lösung bietet Quantum Generative Adversial Networks (qGans), die aus den klassischen Marktdaten die passenden Wahrscheinlichkeitsverteilungen erlernt und anschließend als polynomieller Komplexität als Quantenzustand bereitstellt \cite{zoufal_quantum_2019}.
-
-Zusammenfassend wird deutlich, dass QAE in Kombination mit verfahren wie MLAE, iterativen QAE oder variationalen Ansätzen zu einer Beschleunigung klassischer Monte-Carlo-Simulationen führt. In Verbindung mit effizienten Datenlagern wie qGANs rückt der Einsatz solcher Verfahren auf realer Quantenhardware in greifbare Nähe.
-
-\subparagraph{Chancen und Herausforderungen}
-
-Die Anwendung quantenmechanischer Verfahren zur Optionsbewertung, etwa durch Quantum Amplitude Estimation (QAE) oder Maximum-Likelihood-Amplitude-Estimation (MLAE), verspricht signifikante Rechenzeitvorteile gegenüber klassischen Monte-Carlo-Simulationen. In ersten Experimenten konnten realistische Optionspreise bereits aus wenigen Qubits extrahiert werden \cite[S. 4–6]{stamatopoulos_option_2020}, was das Potenzial für eine breitere Nutzung unterstreicht. Gleichzeitig bestehen technische Hürden: Insbesondere das effiziente Laden klassischer Wahrscheinlichkeitsverteilungen in Quantenregister ist rechenintensiv. Quantum Generative Adversarial Networks (qGANs) bieten hier einen vielversprechenden Ansatz zur effizienten Quantenzustandspräparation \cite[S. 1–3]{zoufal_quantum_2019}. Die hohe Variabilität exotischer Auszahlungsstrukturen und die Unsicherheit bei Modellkalibrierungen bleiben jedoch praktische Herausforderungen.
-
-\subsection{Risikobemessung und Value at Risk}
-
-Eine der zentralen Herausforderungen im modernen Finanzwesen ist die Risikobemessung. Um drohende Verluste rechtzeitig zu erkennen und gezielt Gegenmaßnahmen zu ergreifen, sind Banken, Investoren und andere Marktteilnehmer in einem hoch volatilen Marktumfeld darauf angewiesen, Risiken genau zu quantifizieren und zuverlässig einschätzen zu können. 
-Auch in der Risikobemessung stellt die Monte-Carlo-Simulation ein zentrales Werkzeug dar, insbesondere zur Schätzung von Risikokennzahlen wie dem Value at Risk (VaR) oder dem Conditional Value at Risk (CVaR), die auf der Analyse stochastischer Verlustverteilungen basieren. Der VaR ist ein anerkanntes und gängiges Instrument zur Quantifizierung von Risiko und zeigt den maximalen Verlust an, den ein Portfolio oder eine einzelne Anlageposition innerhalb eines bestimmten Zeitraums und mit einer festgelegten Vertrauens-Wahrscheinlichkeit (in der Regel 95\,\% oder 99\,\%) nicht überschreiten wird \cite{springer2025, plos2024}. 
-Für Finanzinstitutionen ist der VaR nicht nur methodisch relevant, sondern auch regulatorisch von hoher Bedeutung. Finanzinstitute wie Banken, Versicherungen und Investmentfonds sind gesetzlich verpflichtet, Marktrisiken und Kreditrisiken regelmäßig zu quantifizieren, um ausreichende Kapitalpuffer zu erzeugen. Die Risikokennzahlen dienen darüber hinaus intern der Begrenzung von Handelspositionen, etwa durch tägliche VaR-Limits für einzelne Portfolios oder Trader. Auch in der langfristigen Risikosteuerung, etwa bei Pensionskassen oder Versicherungen, sind VaR und CVaR zentrale Steuerungsgrößen, um sicherzustellen, dass finanzielle Verpflichtungen auch unter Stressszenarien eingehalten werden können \cite{Orús et al., 2019}.
-Trotz seiner weiten Verbreitung ist der VaR nicht frei von Kritik. Insbesondere die fehlende Subadditivität kann bei der Aggregation von Risiken zu fehlerhaften Einschätzungen führen. Der CVaR wurde als kohärentes Risikomaß eingeführt, um auch die Schwere der Verluste im Extrembereich zu erfassen und gilt in vielen Anwendungen als präzisere Alternative \cite{orus_quantum_2019}.In der Praxis lassen sich VaR und CVaR nur in einfachen Fällen analytisch berechnen. Komplexe Portfolios mit nicht-normalverteilten Erträgen oder Derivatebestandteilen erfordern numerische Verfahren. Die Monte-Carlo-Simulation ist hier besonders geeignet, um aus vielen simulierten Szenarien empirische Verlustverteilungen abzuleiten und daraus die relevanten Quantile zu bestimmen \cite{Zoufal et al., 2019}.
-
-Die Monte-Carlo-Simulation gilt zwar als Standardverfahren zur Schätzung komplexer Verlustverteilungen, stößt jedoch bei steigender Modellkomplexität schnell an ihre Grenzen. Mit zunehmender Anzahl an Risikofaktoren, Anlageklassen oder eingebetteten Derivaten steigt der Rechenaufwand drastisch an. Insbesondere die Ermittlung von Extremrisiken wie dem 99{,}9\,\%\,VaR erfordert Millionen von Simulationsläufen, was selbst auf leistungsstarken Rechnern mit erheblichen Laufzeiten verbunden ist. Für verschachtelte Portfolios kommt es häufig zu sogenannten Nested-Monte-Carlo-Strukturen, bei denen für jedes Szenario zusätzliche Bewertungen durchgeführt werden müssen. Die resultierende Rechenzeit verhindert eine laufende Risikobewertung in kurzen Intervallen und erschwert eine schnelle Reaktion in volatilen Marktphasen \cite{bouland_prospects_2020, orus_quantum_2019}
-
-
-\subsubsection*{Quantenbasierte Methoden zur Risikobemessung}
-
-In Anbetracht der rechentechnischen Hürden klassischer Risikosimulationen rückt Quantum Computing als vielversprechender Lösungsansatz zunehmend in den Fokus. Besonders relevant ist hierbei der Quantum-Amplitude-Estimation-Algorithmus (QAE), der bei der Berechnung stochastischer Erwartungswerte eine quadratische Beschleunigung gegenüber klassischen Monte-Carlo-Verfahren ermöglicht \cite{quantumjournal2020, rebentrost_quantum_2018}. Der Vorteil des QAE besteht darin, dass weniger Simulationsläufe benötigt werden, um eine Zielgenauigkeit $\varepsilon$ zu erreichen, da die Komplexität von $O(1/\varepsilon^2)$ auf $O(1/\varepsilon)$ reduziert wird \cite{martin2022}. Dies ist besonders relevant bei der Schätzung seltener Ereignisse wie dem 99{,}9\,\%-VaR, bei dem klassisch Millionen bis Milliarden Pfade erforderlich wären.
-
-Zur Anwendung von QAE im Risikokontext wird ein Orakel-Operator entworfen, der für ein bestimmtes Verlustniveau $x$ anzeigt, ob der simulierte Portfolioverlust dieses Niveau überschreitet. Mittels QAE lässt sich dann die Wahrscheinlichkeit $P(\text{Verlust} > x)$ effizient bestimmen. Durch Variation von $x$ kann so derjenige Schwellenwert ermittelt werden, für den die Überschreitungswahrscheinlichkeit einem definierten Konfidenzniveau entspricht, was exakt der Definition des Value at Risk entspricht. Analog dazu lässt sich auch der Conditional Value at Risk berechnen, indem ein modifizierter Schaltkreis verwendet wird, der den durchschnittlichen Verlust im Überschreitungsfall quantifiziert \cite{orus_quantum_2019, egger_quantum_2020}.
-
-Die Umsetzung dieser quantenmechanischen Verfahren erfordert jedoch eine geeignete Repräsentation der Verlustverteilung auf dem Quantencomputer. Dazu müssen komplexe stochastische Prozesse, wie sie etwa durch Marktrisiken und Korrelationen zwischen verschiedenen Risikofaktoren entstehen, in einem Quantenzustand abgebildet werden. Eine direkte Kodierung solcher Verteilungen auf Quantenhardware ist jedoch exponentiell aufwendig, weshalb quantum-native Methoden wie Quantum Generative Adversarial Networks (qGANs) eingesetzt werden. Diese Netzwerke sind in der Lage, aus realen Marktdaten eine Zielverteilung zu lernen und diese in polynomieller Komplexität als Quantenzustand bereitzustellen \cite{zoufal_quantum_2019}. Kombiniert mit vereinfachten QAE-Varianten wie dem Maximum-Likelihood-Amplitude-Estimation (MLAE), die flachere Quantenschaltkreise erzeugen, können solche Verfahren auch auf heutiger NISQ-Hardware eingesetzt werden \cite{stamatopoulos_option_2020}.
-
-Erste Proof-of-Concept-Studien zeigen, dass quantenbasierte Risikomessung prinzipiell umsetzbar ist. In einer wegweisenden Arbeit demonstrierten Woerner und Egger die Berechnung des VaR für ein vereinfachtes Anleiheportfolio mit Hilfe eines IBM-Q-Prozessors. Trotz der Beschränkung auf wenige Qubits konnten valide Resultate erzeugt werden, die die klassische Berechnung reproduzierten \cite{egger_quantum_2020}. Aufbauend darauf wurden in weiteren Studien der potenzielle Ressourcenbedarf für realistische Risikoszenarien analysiert. Diese Arbeiten kommen zu dem Ergebnis, dass für große Portfolios mit vielen Risikofaktoren und hohen Konfidenzniveaus fehlerkorrigierte Quantencomputer mit deutlich größerer Qubit-Anzahl erforderlich wären. Gleichzeitig wurden aber auch Ansätze zur Reduktion der Komplexität untersucht, etwa durch grobe Vorabschätzungen mittels klassischer Simulation oder durch analytische Näherungen innerhalb des quantenbasierten Modells \cite{martin2022}.
-
-Auch in der Finanzindustrie wächst das Interesse an quantenbasierter Risikomodellierung. Verschiedene Banken, Technologieunternehmen und Start-ups forschen an hybriden Architekturen, bei denen klassische und Quantencomputer kombiniert werden. Ziel ist es, einzelne Komponenten wie die Quantilschätzung gezielt zu beschleunigen und so tägliche Risikoberichte effizienter zu gestalten. Langfristig wird angestrebt, komplexe Verlustverteilungen nahezu in Echtzeit zu analysieren und damit ein neues Niveau an Präzision und Reaktionsgeschwindigkeit im Risikomanagement zu erreichen \cite{orus_quantum_2019, bouland_prospects_2020}.
-
-Insgesamt zeigt sich, dass quantenbasierte Methoden wie QAE das Potenzial haben, bestehende Grenzen klassischer Risikoberechnung deutlich zu verschieben. Zwar steht die praktische Umsetzung noch am Anfang, doch bereits heute belegen erste experimentelle Studien den theoretischen Vorteil und die prinzipielle Machbarkeit. Mit zunehmender Reife der Quantenhardware sowie verbesserter Datenkodierung und Fehlerkorrektur könnten quantenmechanische Simulationen zu einem festen Bestandteil moderner Finanzanalyse werden.
-
-\subparagraph{Chancen und Herausforderungen}
-
-Quantengestützte Risikomodellierung verspricht eine signifikante Beschleunigung bei der Schätzung von Value at Risk und Conditional Value at Risk, insbesondere in Szenarien mit hohen Konfidenzniveaus und komplexer Portfoliostruktur. QAE reduziert die erforderliche Anzahl an Simulationsläufen drastisch und ermöglicht präzisere Risikoberichte bei geringerem Rechenaufwand \cite[S. 6–7]{orus_quantum_2019}. Gleichzeitig sind praktische Anwendungen noch limitiert: Das Laden komplexer Verlustverteilungen ist technisch aufwendig, und aktuelle NISQ-Geräte stoßen bei umfangreichen Risikomodellen rasch an Grenzen. Auch klassische Monte-Carlo-Verfahren leiden unter ähnlichen Problemen, insbesondere bei Konvergenzgeschwindigkeit und Modellrisiken \cite[S. 1–2]{MonteCarloSim2023}. Quantenverfahren zeigen daher bislang insbesondere bei strukturierten, datengetriebenen Subproblemen einen Vorteil.
-
-\begin{table}[!htbp]
-\centering
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{|p{0.25\linewidth}|p{0.23\linewidth}|p{0.23\linewidth}|p{0.23\linewidth}|}
-\hline
-\textbf{Anwendungsfeld} & \textbf{Problem} & \textbf{Quantenlösung} & \textbf{Technologie(n)} \\
-\hline
-\textbf{Portfolio-optimierung} & 
-Kombinatorische Auswahl aus Assets mit Budget/Risiko & 
-Binäre Optimierung mit Energie-Minimum-Suche & 
-\begin{minipage}[t]{\linewidth}
-\begin{itemize}[leftmargin=*,noitemsep]
-  \item Quantum Annealing (D-Wave)
-  \item QAOA/VQE (gate-basiert)
-\end{itemize}
-\end{minipage} \\
-\hline
-\textbf{Optionsbewertung} & 
-Erwartungswert der Auszahlung über viele Pfade & 
-Schätzung des Mittelwerts über quantisierte Wahrscheinlichkeiten & 
-\begin{minipage}[t]{\linewidth}
-\begin{itemize}[leftmargin=*,noitemsep]
-  \item QAE
-  \item MLAE (NISQ-kompatibel)
-\end{itemize}
-\end{minipage} \\
-\hline
-\textbf{Risikomessung (VaR/CVaR)} & 
-Quantile aus Verlustverteilung (extreme Szenarien) & 
-Amplitude-Schätzung von Überschreitungswahrscheinlichkeit & 
-\begin{minipage}[t]{\linewidth}
-\begin{itemize}[leftmargin=*,noitemsep]
-  \item QAE
-  \item QAE + qGANs
-\end{itemize}
-\end{minipage} \\
-\hline
-\end{tabular}
-\caption{Übersicht der Anwendungsfelder und Quantenlösungen im Finanzbereich}
-\label{tab:qc_overview}
-\end{table}
-
-
-
-
-
-
-
-
-\section{Wichtige Unternehmen und Akteure und Ihre Zukunftsprojekte}
-Der Fortschritt im Quantencomputing für Finanzanwendungen wird wesentlich von der engen Vernetzung führender Technologieunternehmen, Finanzinstitute und Forschungsinitiativen geprägt. Einige Akteure entwickeln Hardware und Plattformen, andere arbeiten direkt an Algorithmen oder Pilotprojekten. Im Folgenden werden die wichtigsten Akteure vorgestellt und ihre Projekte zugeordnet.
-
-\subsection{IBM und JPMorgan: Technologie trifft Anwendung}
-
-IBM zählt zu den globalen Vorreitern im Bereich Quantencomputing. Über die Cloudplattform IBM Quantum stellt das Unternehmen supraleitende Quantenprozessoren und entsprechende Entwicklungsumgebungen bereit. Partnerunternehmen können dort eigene Algorithmen entwickeln, testen und auf realer Quantenhardware ausführen. Im Finanzsektor nimmt IBM eine zentrale Rolle ein, indem es nicht nur Infrastruktur anbietet, sondern auch aktiv an der Entwicklung domänenspezifischer Quantenlösungen mitwirkt.
-Ein bedeutender Kooperationspartner ist JPMorgan Chase, eine der ersten Banken, die strategisch auf Quantencomputing setzen. Im Rahmen der IBM-Quantum-Partnerschaft forscht JPMorgan an Anwendungen zur Bewertung komplexer Finanzinstrumente und zur Risikomodellierung (Moody’s, 2024). Besonders im Fokus steht die Quantum Amplitude Estimation (QAE), ein Algorithmus, der klassische Monte-Carlo-Simulationen deutlich effizienter gestaltet. Durch QAE lässt sich der Rechenaufwand zur Berechnung von Erwartungswerten signifikant verringern, was für Finanzanwendungen wie die Derivatebewertung oder die Berechnung des Value at Risk (VaR) besonders relevant ist (Larsson & Oosterlee, 2019; Schuld, 2020).
-Ein weiteres gemeinsames Forschungsfeld ist die Quantum Random Number Generation (QRNG), bei der echte Zufallszahlen aus quantenphysikalischen Effekten gewonnen werden. Solche Zufallszahlen können klassische Pseudozufallsverfahren ersetzen und liefern robustere Ergebnisse für Simulationen und stochastische Modelle (Schuld, 2020). Die Kombination aus verbesserter Genauigkeit und höherer Rechengeschwindigkeit macht quantengestützte Verfahren für den Finanzsektor besonders vielversprechend.
-Die Kooperation zwischen IBM und JPMorgan steht exemplarisch für eine enge Verzahnung von technologischer Innovation und praktischer Finanzanwendung. IBM stellt die Hardware und Softwareplattform bereit, während JPMorgan konkrete Anwendungsfälle identifiziert und validiert. Dadurch entsteht ein messbarer Erkenntnisgewinn für beide Seiten und ein reales Testfeld für die Leistungsfähigkeit aktueller Quantenalgorithmen im Finanzkontext (Moody’s, 2024).
-
-\subsection{Microsoft und Alphabet: Infrastruktur ohne konkreten Finanzfokus}
-
-Microsoft und Alphabet zählen zu den technologisch führenden Unternehmen im Bereich des Quantencomputings. Beide Konzerne investieren umfangreich in Forschung und Entwicklung und betreiben eigene Quantenplattformen, die den Zugang zu verschiedenen Hardwarearchitekturen ermöglichen. Im Gegensatz zu IBM fokussieren sich Microsoft und Alphabet bislang jedoch primär auf die infrastrukturelle Ebene. Konkrete, öffentlich dokumentierte Finanzanwendungen oder Partnerschaften mit Banken sind derzeit nicht bekannt.
-Microsoft verfolgt mit der Plattform Azure Quantum einen Multi-Backend-Ansatz. Nutzer können über eine einheitliche Cloud-Umgebung auf verschiedene Quantenprozessoren zugreifen, darunter Anbieter wie IonQ, Quantinuum und Rigetti. Die Plattform richtet sich an Entwickler, Forschungseinrichtungen und Unternehmen, die eigene Quantenanwendungen testen oder simulieren möchten. Azure Quantum stellt damit eine flexible und leistungsstarke Infrastruktur zur Verfügung, die theoretisch auch für Finanzanwendungen geeignet ist. Bisher liegen jedoch keine spezifischen Kooperationen mit Finanzinstituten vor, in denen Microsoft aktiv quantenbasierte Lösungen für Risikoanalyse, Portfoliooptimierung oder Simulation mitgestaltet hätte (Microsoft Azure Quantum, 2024).
-Alphabet verfolgt mit dem Quantum AI Lab einen stärker forschungsgetriebenen Ansatz. Der Fokus liegt auf der Weiterentwicklung supraleitender Quantenprozessoren sowie auf algorithmischen Innovationen, etwa im Bereich des maschinellen Lernens. Im Jahr 2019 erreichte Alphabet mit einem experimentellen Quantenprozessor einen wichtigen Meilenstein: die Demonstration der sogenannten Quantenvorherrschaft. Dabei wurde eine Aufgabe gelöst, die auf klassischen Computern kaum noch effizient berechnet werden kann (Arute et al., 2019). Trotz dieses Fortschritts beschränken sich die Aktivitäten von Alphabet bislang auf die Grundlagenforschung. Finanzanwendungen oder Kooperationen mit Banken wurden bisher nicht veröffentlicht (Google Quantum AI, 2024).
-Sowohl Microsoft als auch Alphabet spielen eine zentrale Rolle beim Aufbau eines globalen Quantenökosystems. Ihre Plattformen tragen dazu bei, eine technologische Grundlage zu schaffen, auf der verschiedenste Branchen eigene Use Cases entwickeln können. Für den Finanzsektor bieten beide Unternehmen damit eine potenziell wertvolle Infrastruktur. Im Unterschied zu IBM engagieren sie sich bisher jedoch nicht direkt in der Entwicklung oder Validierung quantenspezifischer Anwendungen für finanzwirtschaftliche Problemstellungen.
-
-\subsection{Europäische Perspektive: NEASQC und interdisziplinäre Zusammenarbeit}
-Während große US-amerikanische Technologieunternehmen den Markt für Quantencomputing dominieren, verfolgt die Europäische Union mit gezielten Förder-programmen das Ziel, eigene Anwendungen für die NISQ-Ära zu entwickeln und gleichzeitig ihre technologische Souveränität zu stärken. Ein zentrales Vorhaben in diesem Kontext ist das Forschungsprojekt NEASQC (Next Applications of Quantum Computing), das im Rahmen des Horizon-2020-Programms der EU gefördert wird.
-NEASQC bringt ein interdisziplinäres Konsortium aus Forschungseinrichtungen, Technologieunternehmen und Industriepartnern zusammen. Zu den beteiligten Organisationen gehören unter anderem Atos, das französische Forschungsinstitut CEA sowie als einziger Finanzakteur die Großbank HSBC. Ziel des Projekts ist es, praxistaugliche Algorithmen für aktuelle Quantenhardware zu entwickeln und anwendungsnah zu testen. Der Fokus liegt dabei auf sogenannten NISQ-Geräten, also Quantencomputern mit begrenzter Qubit-Anzahl und ohne vollständige Fehlerkorrektur (NEASQC, 2025).
-Im Finanzbereich konzentriert sich NEASQC auf drei zentrale Anwendungsfelder: Monte-Carlo-Simulation, Portfolioanalyse und Hauptkomponentenanalyse (PCA). Dabei werden klassische Verfahren durch quantenmechanische Ansätze ersetzt oder ergänzt, etwa mithilfe von Quantum Amplitude Estimation, Quantum Machine Learning oder variationalen Algorithmen. In einem konkreten Anwendungsfall arbeitet HSBC gemeinsam mit Partnern an der Beschleunigung stochastischer Risikomodelle und der Entwicklung von Quantenschemata zur Optionsbewertung (Manzano et al., 2024; Zenodo, 2025).
-Besonderes Gewicht liegt im Projekt auf der offenen Veröffentlichung von Ergebnissen und Tools. NEASQC verfolgt eine Open-Source-Strategie, bei der entwickelte Algorithmen und Testumgebungen für Dritte verfügbar gemacht werden, um Transparenz, Anschlussfähigkeit und Transfer in andere Anwendungsbereiche zu ermöglichen (NEASQC, 2025).
-Das Projekt gilt als wichtiger Baustein der europäischen Quantenstrategie, da es nicht nur technische Entwicklungen fördert, sondern auch den Dialog zwischen Wissenschaft, Wirtschaft und öffentlicher Hand institutionalisiert. Für den Finanzsektor bietet NEASQC damit die Möglichkeit, die Anwendbarkeit quantenbasierter Methoden unter realen Bedingungen frühzeitig zu evaluieren und europaweit nutzbare Standards und Vorgehensweisen mitzugestalten (Finextra, 2020).
 
 \section{Bewertung anhand der Kriterien}
 
-Auf Basis der in diesem Kapitel analysierten Anwendungsfelder erfolgt im Folgenden eine vergleichende Bewertung der drei zentralen Einsatzbereiche von Quantencomputing im Finanzwesen: Portfoliooptimierung, Optionsbewertung und Risikomessung (Value at Risk / Conditional Value at Risk). Die Bewertung orientiert sich an fünf übergeordneten Kriterien: technologischer Reifegrad, wirtschaftliche Nutzbarkeit, gesellschaftlicher Nutzen, Forschungspotenzial sowie Risiken und ethische Implikationen.
+Auf Basis der in diesem Kapitel analysierten Anwendungsfelder erfolgt im Folgenden eine vergleichende Bewertung der drei zentralen Einsatzbereiche von Quantencomputing im Finanzwesen: Portfoliooptimierung, Optionsbewertung und Risikobemessung. Die Bewertung orientiert sich an fünf übergeordneten Kriterien: technologischer Reifegrad, wirtschaftliche Nutzbarkeit, gesellschaftlicher Nutzen, Forschungspotenzial sowie Risiken und ethische Implikationen.
 
 Ziel dieser Gegenüberstellung ist es, die unterschiedlichen Entwicklungsstände, Chancen und Herausforderungen der betrachteten Anwendungsfelder systematisch einzuordnen. Dabei wird deutlich, in welchen Bereichen bereits erste praxisnahe Anwendungen existieren und wo insbesondere aus wissenschaftlicher Perspektive weiterführende Forschung notwendig ist, um das volle Potenzial quantenbasierter Methoden auszuschöpfen.
 
+Die Bewertungen erfolgen auf einer qualitativen Skala von \emph{niedrig} über \emph{mittel} bis \emph{hoch} und dienen der vereinfachten Einordnung der jeweiligen Merkmalsausprägungen in den betrachteten Anwendungsfeldern.
 
 
 \begin{table}[!htbp]
