@@ -8,9 +8,28 @@
 
 \abstract*{some abstract}
 
-\abstract{some abstract}
+\abstract{}
+Die folgende Gliederung dieses Teils konzentriert sich auf zwei der zentralen Quantenalgorithmen, die das Potenzial haben, bestimmte klassische Probleme signifikant effizienter zu lösen – vorausgesetzt, es steht ausreichend leistungsfähige Quantenhardware zur Verfügung. Die Algorithmen werden aus mathematischer und physikalischer Perspektive detailliert beschrieben, durch Beispiele illustriert, visuell unterstützt und hinsichtlich ihrer Komplexität eingeordnet. Die Kapitel im Überblick:
 
-\section{Shor's Algorithmus zur Faktorisierung}
+\begin{itemize}
+\item \textbf{Kapitel 4.1: Shor-Algorithmus – Faktorisierung und RSA}
+\item \textbf{Kapitel 4.2: Grover-Algorithmus – Quantenbasierte Suche}
+\item \textbf{Kapitel 4.3: Probleme der Datenkodierung des Grover-Algorithmus}
+\item \textbf{Kapitel 4.4: Klassifikation von Algorithmen nach deren Zeitkomplexität}
+\end{itemize}
+
+\abstract{
+In diesem Kapitel behandeln wir zwei wegweisende Quantenalgorithmen: den Shor-Algorithmus zur effizienten Faktorisierung großer Zahlen sowie den Grover-Algorithmus zur Beschleunigung unstrukturierter Suchprobleme. Beide Algorithmen demonstrieren ein erhebliches theoretisches Potenzial gegenüber klassischen Verfahren, insbesondere bei wachsender Problemgröße und verfügbarer Quantenhardware.\\
+
+Kapitel \textbf{4.1} beginnt mit der Darstellung des Faktorisierungsproblems und seiner Relevanz für die RSA-Verschlüsselung. Es wird erläutert, wie RSA durch das Finden der Primfaktoren $p$ und $q$ mittels periodischer Eigenschaften einer modularen Exponentialfunktion gebrochen werden kann. Es wird gezeigt, an welcher Stelle der klassischen Faktorisierung der quantenbasierte Teil beschleunigt. Der Shor-Algorithmus wird anschließend in seiner mathematischen Tiefe beschrieben und anhand eines vereinfachten Beispiels praktisch nachvollzogen. Visualisierungen – etwa zur Periodenfrequenz und Wahrscheinlichkeitsverstärkung nach der Quanten-Fourier-Transformation ergänzen die Analyse. Für Grundlagen wie das Hadamard-Gate oder Phasenrotationen verweisen wir auf frühere Kapitel.\\
+
+In Kapitel \textbf{4.2} folgt der Grover-Algorithmus, mit dem unstrukturierte Suchprobleme in quadratisch reduzierter Zeit lösbar sind. Neben der mathematischen und physikalischen Intuition wird seine Anwendung auf ein konkretes Beispiel (Kartensuche unter vier Möglichkeiten) illustriert. Die iterative Verstärkung der Zielamplitude und ihre Darstellung auf der Bloch-Kugel ermöglichen ein vertieftes Verständnis. Auch hier ergänzen Pseudo-Code und konzeptionelle Querverweise die Darstellung.\\
+
+Kapitel \textbf{4.3} geht auf zwei zentrale Verfahren zur Datenkodierung im Grover-Algorithmus ein: Amplitudenkodierung und Block-Encoding. Es werden sowohl deren Funktionsweise als auch deren Herausforderungen in der praktischen Umsetzung dargestellt.\\
+
+In Kapitel \textbf{4.4} schließen wir mit einer Analyse der Komplexität beider Algorithmen. Die Einordnung in bekannte Komplexitätsklassen und der Vergleich mit klassischen Verfahren unterstreichen die potenzielle Relevanz dieser quantenmechanischen Ansätze für zukünftige Anwendungen in Kryptografie, Suche und Optimierung.
+
+\section{Shor-Algorithmus: Faktorisierung und RSA}
 
 In der Informatik und insbesondere in der Kryptografie spielt die Sicherheit digitaler Kommunikation eine zentrale Rolle. Ein wesentliches Prinzip moderner Verschlüsselungsverfahren — etwa des RSA-Algorithmus — beruht auf der Annahme, dass die Zerlegung großer Zahlen in ihre Primfaktoren auf klassischen Computern mit exponentiellem Aufwand verbunden ist. Für ausreichend große Zahlen ist dieser Aufwand so gewaltig, dass selbst modernste Supercomputer über Jahre hinweg rechnen müssten, um einen privaten Schlüssel zu entschlüsseln.\\
 
@@ -74,7 +93,7 @@ ist definiert als der Rest bei der Division von \(x^a\) durch \(N\).
     \item \(f(a)\) gibt den Rest an, wenn \(x^a\) durch \(N\) geteilt wird, also den Wert modulo \(N\).
 \end{itemize}
 \end{definition}
-um mithilfe eines quantenmechanischen Verfahrens – konkret der Quanten-Phasenschätzung (QPE) – die Periode \( r \) dieser Funktion effizient zu bestimmen.
+um mithilfe eines quantenmechanischen Verfahrens – konkret der Quanten-\\Phasenschätzung (QPE) – die Periode \( r \) dieser Funktion effizient zu bestimmen.
 
 Im Algorithmus wird zunächst ein Superpositionszustand über viele Werte \( a \) erzeugt und anschließend durch eine unitäre Operation \( U_f \), die \( |a\rangle \mapsto |f(a)\rangle \) abbildet, mit den Funktionswerten moduliert.\\
 
@@ -166,7 +185,7 @@ Bevor wir das Beispiel vollständig durchrechnen, formulieren wir zunächst die 
     \item \textbf{Initialisierung in einen Superpositionszustand:} 
     Die erste Operation besteht darin, zwei Quantenregister entsprechend der berechneten Qubit-Größen als Eingabe und Ausgaberegister zu erzeugen, welche sich alle in den Basiszuständen befinden, also mit der gleichen Wahrscheinlichkeit auftreten:
 \[
-\ket{\psi_0} = \ket{0}^{\otimes n} \otimes \ket{0}^{\otimes m}
+\ket{\psi_0} = \ket{0}^{\otimes n} \otimes \ket{1}
 \]
     Die \textit{Gleichverteilung} wird dadurch erreicht, dass die Amplituden aller Zustände gleich sind. Wenn das System anfangs im Zustand $\ket{0}^{\otimes n}$ ist (alle Qubits auf 0), dann erzeugen wir durch Anwendung der Hadamard-Transformation auf jedes Qubit die Superposition - aber nur auf das erste Register:
 
@@ -182,7 +201,8 @@ Dabei ist:
   \end{itemize}
 
   Durch die Hadamard-Gates wird das Register in eine Superposition gebracht, in der alle \( Q \) Basiszustände gleichwahrscheinlich sind. Diese Superposition ist notwendig, um später durch die Phaseninterferenz Information über die Periode der Funktion zu extrahieren.\\
- \item \textbf{Unitäre Funktion anwenden} 
+ \item \textbf{Unitäre Funktion anwenden:} 
+  Das zweite Register wird mit dem Zustand \( |1\rangle \) initialisiert, damit durch die Multiplikation mit \( x^a \bmod N \) direkt der Funktionswert entsteht.
 \[
 U_f \colon |a\rangle|1\rangle \mapsto |a\rangle|x^a \bmod N\rangle
 \]
@@ -190,7 +210,7 @@ U_f \colon |a\rangle|1\rangle \mapsto |a\rangle|x^a \bmod N\rangle
     \item \textbf{\( a \)}: Wert im ersten Register (Index der Superposition), typischerweise \( a \in \{0, 1, \dotsc, Q-1\} \) mit \( Q = 2^n \), wobei \( n \) die Anzahl der Qubits im ersten Register ist.
     \item \textbf{\( x \)}: Eine zufällig gewählte ganze Zahl mit \( 1 < x < N \), die zu \( N \) teilerfremd ist.
     \item \textbf{\( N \)}: Die zusammengesetzte Zahl, deren Primfaktoren bestimmt werden sollen.
-    \item \textbf{\( U_f \)}: Eine unitäre Transformation, die auf beiden Registern wirkt. Sie berechnet im zweiten Register die Funktion \( f(a) = x^a \bmod N \), wobei das erste Register \( |a\rangle \) als Steuerregister dient.
+    \item \textbf{\( U_f \)}: Eine unitäre, reversible Transformation, die auf beiden Registern wirkt. Sie berechnet im zweiten Register den Funktionswert \( f(a) = x^a \bmod N \), wobei das erste Register \( |a\rangle \) unverändert bleibt. Diese Operation ist unitär, da sie bijektiv, normerhaltend und invertierbar ist – vorausgesetzt, \( \gcd(x, N) = 1 \).
 \end{itemize}
 
 Nach Anwendung von \( U_f \) ergibt sich der verschränkte Zustand
@@ -317,13 +337,13 @@ Wir wählen \( N = 15 \) und \( x = 2 \). Für den Algorithmus benötigen wir ei
     Der Anfangszustand ist:
 
     \[
-    \ket{\psi_0} = \ket{0}^{\otimes 8} \otimes \ket{0}^{\otimes 4}
+    \ket{\psi_0} = \ket{0}^{\otimes 8} \otimes \ket{1}
     \]
 
     Nach Anwendung von Hadamard-Gattern auf alle 8 Qubits des ersten Registers entsteht die Gleichverteilung (Superposition) über alle \( Q = 256 \) Zustände:
 
     \[
-    \ket{\psi_1} = \frac{1}{\sqrt{256}} \sum_{a=0}^{255} \ket{a} \otimes \ket{0}
+    \ket{\psi_1} = \frac{1}{\sqrt{256}} \sum_{a=0}^{255} \ket{a} \otimes \ket{1}
     \]
 
     Diese Superposition ermöglicht es, alle Werte \( a \) gleichzeitig zu verarbeiten.\\
@@ -333,7 +353,7 @@ Wir wählen \( N = 15 \) und \( x = 2 \). Für den Algorithmus benötigen wir ei
     Die Funktion \( f(a) = 2^a \bmod 15 \) wird auf das zweite Register angewandt, ohne das erste Register zu verändern. Die Transformation lautet:
 
     \[
-    U_f: \ket{a} \ket{0} \mapsto \ket{a} \ket{2^a \bmod 15}
+    U_f: \ket{a} \ket{1} \mapsto \ket{a} \ket{2^a \bmod 15}
     \]
 
     Der Zustand nach Anwendung von \( U_f \) ist:
@@ -434,7 +454,7 @@ Damit stellt der Shor-Algorithmus einen Meilenstein in der Quanteninformatik dar
 
 Obwohl praktische Quantencomputer mit ausreichend vielen stabilen Qubits derzeit noch in der Entwicklung sind, verdeutlicht Shors Algorithmus bereits jetzt die Notwendigkeit, langfristig auf quantensichere Verschlüsselungsverfahren umzusteigen. Die theoretischen Grundlagen, wie sie in diesem Kapitel erarbeitet wurden, schaffen ein tiefes Verständnis für die Funktionsweise und Tragweite dieses Algorithmus und bilden die Basis für weitere Forschung im Bereich der Quantenalgorithmen und der Post-Quanten-Kryptographie.
 
-\section{Grover-Algorithmus: Quantum-Suche}
+\section{Grover-Algorithmus: Quantenbasierte Suche}
 \label{sec:grover-algorithm}
 In der Informatik zählt die Datenverarbeitung zu den gefragtesten Aufgaben. In der heutigen Zeit ist die Möglichkeit, große Datenmengen zu durchsuchen — insbesondere unstrukturierte Daten — ein wesentlicher Aspekt der Datenanalyse. Um dies zu veranschaulichen, betrachten wir folgendes Beispiel:\\ 
 
@@ -560,7 +580,7 @@ Mit dem Verständnis der oben genannten unitären Operationen lässt sich der Gr
 \end{algorithmic}
 \end{algorithm}
 
-Ein entscheidender Schritt in diesem Algorithmus ist die \textit{Grover-Diffusionstransformation}, die wesentliche Änderungen an den Amplituden bewirkt. Nämlich, sie verstärkt gezielt die Amplitude des gesuchten Zustands. Um Diffusionstransformation zu verstehen, erwähnt Grover in seiner Arbeit das Konzept der \textit{lokalen Übergangsmatrizen} ein.
+Ein entscheidender Schritt in diesem Algorithmus ist die\\ \textit{Grover-Diffusionstransformation}, die wesentliche Änderungen an den Amplituden bewirkt. Nämlich, sie verstärkt gezielt die Amplitude des gesuchten Zustands. Um Diffusionstransformation zu verstehen, erwähnt Grover in seiner Arbeit das Konzept der \textit{lokalen Übergangsmatrizen} ein.
 
 \begin{definition}[Lokale Übergangsmatrizen]
 Lokale Übergangsmatrizen sind Matrizen, in denen nur eine konstante Anzahl von Elementen in jeder Spalte ungleich null ist.
@@ -569,7 +589,7 @@ Lokale Übergangsmatrizen sind Matrizen, in denen nur eine konstante Anzahl von 
 Anschließend führt Grover den Begriff der Diffusionstransformation ein:
 
 \begin{definition}[Grover-Diffusionstransformation]
-\( D \) ist keine lokale Übergangsmatrix, da es Übergänge von jedem Zustand zu allen \( N \) Zuständen gibt (\cite{zotero-1211}):
+\( D \) ist keine lokale Übergangsmat\-rix, da es Übergänge von jedem Zustand zu allen \( N \) Zuständen gibt (\cite{zotero-1211}):
 $$
 D_{ij} = 
 \begin{cases}
@@ -593,11 +613,11 @@ Alle für den Grover-Algorithmus nötigen Operationen bestehen aus nur zwei fund
 \subsection{Beispielanwendung von Grover-Algorithmus}
 
 Um ein Beispiel für die Funktionsweise des Grover-Algorithmus zu betrachten, ohne den Überblick zu verlieren, analysieren wir ein kleineres Beispiel – basierend auf drei Qubits. Das Beispiel basiert sich auf die Materialen von \textit{Microsoft Learn
-}.(\cite{microsoft})\\ 
+}.(\cite{noauthor_theory_2025})\\ 
 
 Wir greifen erneut auf das Beispiel mit den Karten zurück: Nehmen wir an, alle vier Karten sind mit Hilfe von zwei Qubits kodiert. Dann erhalten wir die folgenden Daten: 00, 01, 10 und 11. Den dritten Qubit werden wir als Hilfsqubit  verwenden – mit seiner Hilfe können wir die gesuchte Karte durch Multiplikation mit -1 markieren. Anschließend betrachten wir die Anwendung des Grover-Algorithmus auf dieses Beispiel.\\
 
-Das Quantenschaltbild sieht folgendermaßen aus:
+Das Quantenschaltbild sieht folgendermaßen aus \ref{fig:grover-three-bits}.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{images/basic-algorithms/3-qubits-grover.png}
@@ -892,13 +912,69 @@ Die untere Schranke aus der Arbeit von Bennett–Bernstein–Brassard–Vazirani
 \]  
 Orakelaufrufen auskommen kann.(\cite{zotero-1211}) Damit ist der Grover‐Algorithmus in diesem Modell asymptotisch optimal: Ohne zusätzliche Struktur in der Datenbank lässt sich kein suprakquadratischer (etwa exponentieller) Vorteil erzielen.  
 
-\section{Problem der Datenkodierung}
-\subsection{Zustände vorbereiten}
-\subsection{Dateninitialisierung in Grover}
-\subsection{Aufbau der Quanten-Datenbank}
-\subsection{Konstruktion des Orakels}
+\section{Problem der Datenkodierung des Grover-Algorithmus}
+Der Algorithmus von Grover ist für die Suche in unstrukturierten Datenbanken konzipiert, was im Kern dem Problem entspricht, eine Nadel im Heuhaufen zu finden.\\
 
-\section{Klassifikation von Algorithmen nach Zeitkomplexität}
+Eines der zentralen Probleme vor seiner Anwendung besteht in der unmittelbaren Darstellung des „Heuhaufens“ in Form von Quantenzuständen - der Kodierung von Informationen in Qubits. Derzeit existieren verschiedene Implementierungsvarianten dieser Aufgabe, wobei die Komplexität direkt von der Datenmenge abhängt: Je größer die Datenmenge ist, desto mehr Qubits werden benötigt, um die Informationen vor ihrer Überführung in einen Superpositionszustand zu kodieren. In diesem Kapitel werden Ansätze zur Vorbereitung von Quantenzuständen für den Grover-Algorithmus untersucht, die es ermöglichen, Informationen in Qubits zu kodieren.
+
+\subsection{Zustände vorbereiten}
+Für den Start des Grover-Algorithmus muss das Quantenregister so initialisiert werden, dass es alle Elemente der Suchbasis „repräsentiert“. In der Praxis bedeutet dies, ein \(n\)-Qubit-Register in eine gleichmäßige Superposition aller \(2^n\) Basiszustände zu überführen.\ref{sec: Superposition} Der einfachste Weg besteht darin, jeden Qubit zunächst in den Zustand \(\lvert 0\rangle\) zu bringen und anschließend auf alle Qubits Hadamard-Gates \(H\) anzuwenden, wodurch sich der Zustand  
+\[
+\frac{1}{2^{n}}\sum_{x}\lvert x\rangle
+\]
+ergibt. Dieser Ansatz definiert jedoch nur formal die Indizes der Elemente; reale unstrukturierte Daten (z.B. Arrays oder Datenbanken) müssen in geeigneter Weise in den Quantencomputer kodiert werden, damit das Orakel die gewünschten Eigenschaften auswerten kann.
+
+\subsection{Datenkodierung}
+Es existieren zwei der gebräuchlichsten Kodierungsverfahren für Daten im Grover-Algorithmus:  
+\begin{enumerate}  
+  \item \textbf{Amplitudenkodierung:}  
+Amplitudenkodierung dient dazu, die Einträge eines Vektors $x$ der Länge $N$ (mit $N$ als Zweierpotenz) direkt in die Amplituden eines Quantenzustands auf $\log_2(N)$ Qubits zu übertragen. Dabei wird aus $x\in\mathbb{R}^N$ (oder $\mathbb{C}^N$) folgender normierter Zustand erzeugt:
+
+$$
+\lvert x\rangle
+=\frac{1}{\|x\|}\sum_{i=0}^{N-1}x_i\,\lvert i\rangle.
+$$
+
+Man spricht auch von \textit{Quantum Sampling Access}, weil das Messen dieses Zustands genau dem Zufallsziehen eines Index $i$ mit Wahrscheinlichkeit $\lvert x_i/\|x\|\rvert^2$ entspricht. Beachte, dass dabei nur die Richtung von $x$ (seine $\ell_2$-Normierung) gespeichert wird und die ursprüngliche Länge $\|x\|$ verloren geht. In vielen Anwendungen stört das jedoch nicht, wenn man vergleichbare Vektoren parallel behandelt.
+
+Diese Idee lässt sich auf Matrizen erweitern. Sei $X\in\mathbb{R}^{n\times d}$ mit Zeilen\\$x^{(1)},\dots,x^{(n)}$, wobei $n$ und $d$ wieder Zweierpotenzen sind. Dann kodieren wir $X$ auf $\lceil\log_2 n\rceil + \lceil\log_2 d\rceil$ Qubits zu
+
+$$
+\lvert X\rangle
+=\frac{1}{\sqrt{\sum_{i=1}^n\|x^{(i)}\|^2}}
+\sum_{i=1}^n\|x^{(i)}\|\;\lvert i\rangle\;\lvert x^{(i)}\rangle,
+$$
+
+wobei jeder Index $i$ in den ersten Qubits und die normierte Zeile $x^{(i)}$ in den nächsten Qubits gespeichert wird.\\
+
+  \item \textbf{Block-Encoding:}  
+    Bei diesem Verfahren kodiert man eine \(N\times N\)-Matrix \(A\) (\(N=2^n\)) in einen unitären Operator \(U_A\) auf \(n+a\) Qubits,  
+    sodass der obere linke \(N\times N\)-Block von \(U_A\) proportional zu \(A\) ist.  
+
+    \begin{definition}[Block-Encoding einer Matrix]\label{def:block-encoding}  
+    Sei \(A\in\mathbb{R}^{N\times N}\) mit \(N=2^n\) und \(\alpha\ge1\). Für \(\varepsilon>0\) heißt  
+    \[
+      U_A\;:\;\mathcal{H}_{n+a}\;\to\;\mathcal{H}_{n+a}
+    \]  
+    ein \((\alpha,a,\varepsilon)\)\nobreakdash-Block-Encoding von \(A\), wenn  
+    \[
+      \bigl\|A - \alpha\,(\langle0|^{\otimes a}\otimes I)\,U_A\,(|0\rangle^{\otimes a}\otimes I)\bigr\|_2 \;\le\;\varepsilon\,.  
+    \]
+    \end{definition}  
+
+    Man erkennt leicht, dass ein \((\alpha,a,\varepsilon)\)-Block-Encoding von \(A\) einem  
+    \(\bigl(1,a,\varepsilon\bigr)\)-Block-Encoding von \(A/\alpha\) entspricht. Wird das Hilfsregister der Größe \(a\) vernachlässigt, spricht man oft einfach von einem \((\alpha,\varepsilon)\)- bzw. \(\alpha\)-Block-Encoding (falls \(\varepsilon=0\)).  
+\end{enumerate}  
+
+\subsection{Aktuelle Grenzen}
+Kürzliche Ergebnisse zeigen, dass ohne explizite Struktur die Repräsentation allgemeiner Datensätze in einem Quantenregister eine nahezu lineare Schaltkreis-Komplexität in \(N\) erfordert. Anders ausgedrückt, alle gängigen Zugriffsmodelle auf klassische Daten (z.B. Block‑Encoding\ref{def:block-encoding}) benötigen im Allgemeinen \(\Omega(N)\) Gatter. Somit führt trotz des geringen, logarithmischen Bedarfs an Qubits die Zustandserzeugung zu einem Aufwand, der mit klassischen Verfahren vergleichbar ist. In der Fachliteratur heißt es daher: 
+Wenn \(N\) Datensätze in einer Quantenkette kodiert werden, beträgt die Schaltkreis-Komplexität mindestens \(O(N)\).\\
+
+Dies bedeutet, dass ohne spezielle Strukturen (z.B. Sparsität oder Symmetrien) der Geschwindigkeitsvorteil von Grover häufig durch die Initialisierungs‑ und Kodierungsaufwände aufgehoben wird.\\
+
+Insgesamt stellt die Repräsentation unstrukturierter Daten eine erhebliche Herausforderung dar, da die Vorbereitung des Quantenzustands mit einem hohen Aufwand verbunden ist. Die derzeit etablierten Verfahren (z.B. Amplitudenkodierung, binäre Kodierung) weisen entweder eine ungünstige Komplexität auf oder erfordern übermäßige Ressourcen. Solange kein Verfahren existiert, das diese Einschränkungen umgeht, bedarf die Kodierung solcher Daten Quantencomputer mit einer sehr großen Anzahl von Qubits, was gegenwärtig ein wesentliches Hindernis für den kommerziellen Einsatz des Grover-Algorithmus darstellt.
+
+\section{Klassifikation von Algorithmen nach deren Zeitkomplexität}
 
 Im Rahmen der theoretischen Informatik werden Entscheidungsprobleme nach der zur Lösung benötigten Zeit in verschiedene Klassen eingeordnet. Dabei interessiert insbesondere, welche Probleme auf einem klassischen bzw. quantenmechanischen Modell in polynomieller Zeit lösbar sind, und wie sich diese Klassen zueinander verhalten.\\
 
@@ -923,3 +999,4 @@ Der quantenmechanische Gegenpart zu \(\mathbf{BPP}\) ist die Klasse \(\mathbf{BQ
 
 Abschließend lässt sich festhalten, dass die Frage, ob \(\mathbf{P}=\mathbf{NP}\) gilt, zu den bedeutendsten offenen Problemen der Informatik zählt. Auch der Vergleich zwischen klassischen und quantenmechanischen Modellen, speziell die Vermutung \(\mathbf{P}\subsetneq \mathbf{BQP}\subseteq \mathbf{NP}\), prägt die Forschung im Bereich effizienter Algorithmen maßgeblich.
 \printbibliography
+
