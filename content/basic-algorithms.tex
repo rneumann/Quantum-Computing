@@ -18,32 +18,37 @@ Die folgende Gliederung dieses Teils konzentriert sich auf zwei der zentralen Qu
 \item \textbf{Kapitel 4.4: Klassifikation von Algorithmen nach deren Zeitkomplexität}
 \end{itemize}
 
-\abstract{
-In diesem Kapitel behandeln wir zwei wegweisende Quantenalgorithmen: den Shor-Algorithmus zur effizienten Faktorisierung großer Zahlen sowie den Grover-Algorithmus zur Beschleunigung unstrukturierter Suchprobleme. Beide Algorithmen demonstrieren ein erhebliches theoretisches Potenzial gegenüber klassischen Verfahren, insbesondere bei wachsender Problemgröße und verfügbarer Quantenhardware.\\
-
-Kapitel \textbf{4.1} beginnt mit der Darstellung des Faktorisierungsproblems und seiner Relevanz für die RSA-Verschlüsselung. Es wird erläutert, wie RSA durch das Finden der Primfaktoren $p$ und $q$ mittels periodischer Eigenschaften einer modularen Exponentialfunktion gebrochen werden kann. Es wird gezeigt, an welcher Stelle der klassischen Faktorisierung der quantenbasierte Teil beschleunigt. Der Shor-Algorithmus wird anschließend in seiner mathematischen Tiefe beschrieben und anhand eines vereinfachten Beispiels praktisch nachvollzogen. Visualisierungen – etwa zur Periodenfrequenz und Wahrscheinlichkeitsverstärkung nach der Quanten-Fourier-Transformation ergänzen die Analyse. Für Grundlagen wie das Hadamard-Gate oder Phasenrotationen verweisen wir auf frühere Kapitel.\\
-
-In Kapitel \textbf{4.2} folgt der Grover-Algorithmus, mit dem unstrukturierte Suchprobleme in quadratisch reduzierter Zeit lösbar sind. Neben der mathematischen und physikalischen Intuition wird seine Anwendung auf ein konkretes Beispiel (Kartensuche unter vier Möglichkeiten) illustriert. Die iterative Verstärkung der Zielamplitude und ihre Darstellung auf der Bloch-Kugel ermöglichen ein vertieftes Verständnis. Auch hier ergänzen Pseudo-Code und konzeptionelle Querverweise die Darstellung.\\
-
-Kapitel \textbf{4.3} geht auf zwei zentrale Verfahren zur Datenkodierung im Grover-Algorithmus ein: Amplitudenkodierung und Block-Encoding. Es werden sowohl deren Funktionsweise als auch deren Herausforderungen in der praktischen Umsetzung dargestellt.\\
-
-In Kapitel \textbf{4.4} schließen wir mit einer Analyse der Komplexität beider Algorithmen. Die Einordnung in bekannte Komplexitätsklassen und der Vergleich mit klassischen Verfahren unterstreichen die potenzielle Relevanz dieser quantenmechanischen Ansätze für zukünftige Anwendungen in Kryptografie, Suche und Optimierung.
-
 \section{Shor-Algorithmus: Faktorisierung und RSA}
 
-In der Informatik und insbesondere in der Kryptografie spielt die Sicherheit digitaler Kommunikation eine zentrale Rolle. Ein wesentliches Prinzip moderner Verschlüsselungsverfahren — etwa des RSA-Algorithmus — beruht auf der Annahme, dass die Zerlegung großer Zahlen in ihre Primfaktoren auf klassischen Computern mit exponentiellem Aufwand verbunden ist. Für ausreichend große Zahlen ist dieser Aufwand so gewaltig, dass selbst modernste Supercomputer über Jahre hinweg rechnen müssten, um einen privaten Schlüssel zu entschlüsseln.\\
+In der Informatik und insbesondere in der Kryptografie spielt die Sicherheit digitaler Kommunikation eine zentrale Rolle. Ein wesentliches Prinzip moderner Verschlüsselungsverfahren — etwa des RSA-Algorithmus — beruht auf der Annahme, dass die Zerlegung großer Zahlen in ihre Primfaktoren auf klassischen Computern mit exponentiellem Aufwand verbunden ist. Für ausreichend große Zahlen ist dieser Aufwand so gewaltig, dass selbst modernste Supercomputer über Jahre hinweg rechnen müssten, um einen privaten Schlüssel zu entschlüsseln (\cite[]{milanov_rsa_2009}).\\
 
-Stellen wir uns vor, wir kennen lediglich eine große zusammengesetzte Zahl $N$, von der wir wissen, dass sie das Produkt zweier unbekannter Primzahlen $p$ und $q$ ist. Die klassische Faktorisierung würde in diesem Fall im schlimmsten Fall exponentiell viele Operationen erfordern. Genau hier setzt der Shor-Algorithmus an, der das Problem aus quantenmechanischer Sicht betrachtet.\\
+Stellen wir uns vor, wir kennen lediglich eine große zusammengesetzte Zahl $N$, von der wir wissen, dass sie das Produkt zweier unbekannter Primzahlen $p$ und $q$ ist. Die klassische Faktorisierung würde in diesem Fall im schlimmsten Fall exponentiell viele Operationen erfordern. Genau hier setzt der Shor-Algorithmus an, der das Problem aus quantenmechanischer Sicht betrachtet (\cite{shor_polynomial-time_1994}).\\
 
-Peter Shor entwickelte 1994 einen Algorithmus, der das Faktorisierungsproblem mithilfe eines Quantencomputers in polynomieller Zeit lösen kann — genauer gesagt in $\mathcal{O}((\log N)^3)$. Dies stellt eine exponentielle Beschleunigung gegenüber den besten bekannten klassischen Verfahren dar. Die zentrale Idee des Algorithmus liegt in der Reduktion des Faktorisierungsproblems auf das Periodenfindungsproblem, das sich durch Quanten-Phasenschätzung effizient lösen lässt.\\
+Peter Shor entwickelte 1994 einen Algorithmus, der das Faktorisierungsproblem mithilfe eines Quantencomputers in polynomieller Zeit lösen kann — genauer gesagt in $\mathcal{O}((\log N)^3)$. Dies stellt eine exponentielle Beschleunigung gegenüber den besten bekannten klassischen Verfahren dar. Die zentrale Idee des Algorithmus liegt in der Reduktion des Faktorisierungsproblems auf das Periodenfindungsproblem, das sich durch Quanten-Phasenschätzung effizient lösen lässt (\cite{montanaro_quantum_2016}).\\
 
 Mit anderen Worten: Während klassische Computer für große $N$ praktisch keine Chance auf eine schnelle Faktorisierung haben, kann ein ausreichend großer Quantencomputer dieses Problem in überschaubarer Zeit lösen — mit drastischen Konsequenzen für die heute eingesetzten kryptografischen Verfahren.\\
 
 Im Folgenden wird der Ablauf von Shors Algorithmus detailliert dargestellt und anhand eines konkreten Beispiels veranschaulicht. Dabei zeigen wir, wie Quantenregister, Quanten-Fourier-Transformation und die klassische Nachbearbeitung zusammenwirken, um die verborgenen Primfaktoren einer gegebenen Zahl zu enthüllen.\\
 
 
-\subsection{Grundlagen: Primfaktorzerlegung und RSA}
-Der RSA-Algorithmus basiert auf der Schwierigkeit, eine große Zahl \( N = pq \) zu faktorisieren. Shor’s Algorithmus bricht diese Sicherheit, indem er in polynomialer Zeit die Faktoren \( p \) und \( q \) bestimmt. Hat ein Angreifer Zugriff auf einen leistungsfähigen Quantencomputer, kann er aus dem öffentlichen Schlüssel die privaten Schlüsselparameter rekonstruieren. Shor's Algorithmus beschleunigt einen entscheidenen Schritt im klassischen Teil der Primfaktorzerlegung:
+\subsection{Grundlagen: Primfaktorzerlegung, GCD und Modulare Arithmetik}
+Der RSA-Algorithmus basiert auf der Schwierigkeit, eine große Zahl \( N = pq \) zu faktorisieren (\cite[9-10]{milanov_rsa_2009}). Shor’s Algorithmus bricht diese Sicherheit, indem er in polynomialer Zeit die Faktoren \( p \) und \( q \) bestimmt. Hat ein Angreifer Zugriff auf einen leistungsfähigen Quantencomputer, kann er aus dem öffentlichen Schlüssel die privaten Schlüsselparameter rekonstruieren. Im Folgenden werden die nötigen mathematischen Grundlagen des RSA-Algorithmus dargestellt (\cite[4-5]{milanov_rsa_2009}).
+
+Kennt man die beiden Primfaktoren \( p \) und \( q \), so kann man den geheimen Exponenten \( d \) leicht berechnen. Dazu wird zunächst die Eulersche Funktion 
+\[
+\varphi(N) = (p - 1)(q - 1)
+\]
+berechnet. Der öffentliche Schlüssel enthält den Exponenten \( e \), der teilerfremd zu \( \varphi(N) \) gewählt wurde, d.\,h.
+\[
+\gcd(e, \varphi(N)) = 1.
+\]
+Der geheime Schlüssel \( d \) ist dann das multiplikative Inverse von \( e \) modulo \( \varphi(N) \), also die eindeutige Lösung der Kongruenz
+\[
+ed \equiv 1 \mod \varphi(N).
+\]
+Diese Inverse lässt sich effizient mit dem erweiterten Euklidischen Algorithmus berechnen. Das bedeutet: Hat man \( p \) und \( q \), ist auch \( d \) leicht zu berechnen – und damit ist die Sicherheit durch RSA verloren.
+
+Shor's Algorithmus beschleunigt einen entscheidenen Schritt im klassischen Teil der Primfaktorzerlegung (\cite{shor_polynomial-time_1994}):
 
 \begin{itemize}
   \item[a)] Wähle eine ganze Zahl \(x\) mit \(1 < x < N\).
@@ -75,10 +80,8 @@ Der RSA-Algorithmus basiert auf der Schwierigkeit, eine große Zahl \( N = pq \)
   \textit{Hinweis:} Die so gefundenen Teiler müssen nicht direkt den gesuchten Primfaktoren \(p\) oder \(q\) entsprechen. Sie teilen jedoch \(N\) und können mit Hilfe des Euklidischen Algorithmus weiterverarbeitet werden, um auf die Primfaktoren zu schließen.
 \end{itemize}
 
-
-Shor's Algorithmus setzt bei Schritt c) ein und beschleunigt diesen massiv. Für einen klassischen Computer dauert es exponentiell lange diesen Schritt zu lösen. Dies zeigt, dass RSA bei hinreichend großen Quantencomputern als unsicher gelten muss.
-
-Ziel ist es also, eine zusammengesetzte Zahl \( N = pq \) effizient zu faktorisieren. Um diese Faktorisierung zu beschleunigen nutzt Shor's Algorithmus die Periodizität der Funktion
+Shor's Algorithmus setzt bei Schritt c) ein und beschleunigt diesen massiv. Für einen klassischen Computer dauert es exponentiell lange, diesen Schritt zu lösen. Dies zeigt, dass RSA bei hinreichend großen Quantencomputern als unsicher gelten muss. Ziel ist es also, eine zusammengesetzte Zahl \( N = pq \) effizient zu faktorisieren. Um diese Faktorisierung zu beschleunigen, nutzt Shor's Algorithmus die Periodizität der Funktion (\cite[10-11]{shor_polynomial-time_1994})
+ :
 
 \begin{definition}[Modulare Arithmetik] 
 \[
@@ -93,7 +96,7 @@ ist definiert als der Rest bei der Division von \(x^a\) durch \(N\).
     \item \(f(a)\) gibt den Rest an, wenn \(x^a\) durch \(N\) geteilt wird, also den Wert modulo \(N\).
 \end{itemize}
 \end{definition}
-um mithilfe eines quantenmechanischen Verfahrens – konkret der Quanten-\\Phasenschätzung (QPE) – die Periode \( r \) dieser Funktion effizient zu bestimmen.
+um mithilfe eines quantenmechanischen Verfahrens - der Quanten-\\Phasenschätzung (QPE) - die Periode \( r \) dieser Funktion effizient zu bestimmen. Obwohl Shor in seinem ursprünglichen Paper noch nicht explizit auf Quantum Phase Estimation (QPE) Bezug nimmt, lässt sich der beschriebene Algorithmus in moderner Literatur als deren Spezialfall interpretieren.\\
 
 Im Algorithmus wird zunächst ein Superpositionszustand über viele Werte \( a \) erzeugt und anschließend durch eine unitäre Operation \( U_f \), die \( |a\rangle \mapsto |f(a)\rangle \) abbildet, mit den Funktionswerten moduliert.\\
 
@@ -105,7 +108,7 @@ Nach der Fouriertransformation wird eine Messung durchgeführt, die mit hoher Wa
 \[
 \frac{c}{Q} \approx \frac{d}{r}
 \]
-zu \( r \) steht. Mithilfe der Kettenbruchentwicklung kann daraus die Periode \( r \) bestimmt werden.
+zu \( r \) steht. Mithilfe der Kettenbruchentwicklung kann daraus die Periode \( r \) bestimmt werden.\\
 
 Ist \( r \) bekannt und erfüllt sie bestimmte Voraussetzungen (z.B. \( r \) ist gerade und \( x^{r/2} \not\equiv -1 \bmod N \)), so lassen sich mit dem Euklidischen Algorithmus die Primfaktoren von \( N \) berechnen: 
 
@@ -161,7 +164,7 @@ So nutzt Shor's Algorithmus die Quanteninterferenz und Fourier-Analyse, um verst
 
 \subsection{Aufbau des Shor Algorithmus}
 
-Im folgenden Abschnitt werden wir alle notwendigen Methoden, Definitionen und Schritte beschreiben, die erforderlich sind, um den Shor-Algorithmus auszuführen. Dabei erklären wir Methode für Methode und wenden diese stets auf ein konkretes Beispiel an, um den Algorithmus möglichst präzise und anschaulich zu veranschaulichen. Anstelle einer sehr großen Zahl \( N \), wie sie in der Praxis als Schlüssel verwendet wird, wählen wir hier eine deutlich kleinere Zahl. \\
+Im folgenden Abschnitt werden wir alle notwendigen Methoden, Definitionen und Schritte beschreiben, die erforderlich sind, um den Shor-Algorithmus auszuführen (\cite[15-17]{shor_polynomial-time_1994}). Dabei erklären wir Methode für Methode und wenden diese stets auf ein konkretes Beispiel an, um den Algorithmus möglichst präzise und anschaulich zu veranschaulichen. Anstelle einer sehr großen Zahl \( N \), wie sie in der Praxis als Schlüssel verwendet wird, wählen wir hier eine deutlich kleinere Zahl. \\
 
 Der konkrete Fall, den wir betrachten, ist die Primfaktorzerlegung der Zahl \( N = 15 \). Natürlich kennen wir bereits die Primfaktoren \( 3 \) und \( 5 \). Es gilt somit \( N = q \cdot p \) mit \( q, p \in \mathbb{Z} \). \\
 
@@ -187,7 +190,7 @@ Bevor wir das Beispiel vollständig durchrechnen, formulieren wir zunächst die 
 \[
 \ket{\psi_0} = \ket{0}^{\otimes n} \otimes \ket{1}
 \]
-    Die \textit{Gleichverteilung} wird dadurch erreicht, dass die Amplituden aller Zustände gleich sind. Wenn das System anfangs im Zustand $\ket{0}^{\otimes n}$ ist (alle Qubits auf 0), dann erzeugen wir durch Anwendung der Hadamard-Transformation auf jedes Qubit die Superposition - aber nur auf das erste Register:
+    Die \textit{Gleichverteilung} wird dadurch erreicht, dass die Amplituden aller Zustände gleich sind. Wenn das System anfangs im Zustand $\ket{0}^{\otimes n}$ ist (alle Qubits auf 0), dann erzeugen wir durch Anwendung der Hadamard-Transformation (\ref{subsubsec:hadamard_gatter}) auf jedes Qubit die Superposition - aber nur auf das erste Register:
 
 $$
 \ket{\psi_1} = \frac{1}{\sqrt{Q}} \sum_{a=0}^{Q-1} \ket{a}
@@ -200,7 +203,7 @@ Dabei ist:
     \item \( 1 \): Anfangszustand des zweiten Registers, auf das später die modulare Exponentiation angewendet wird.
   \end{itemize}
 
-  Durch die Hadamard-Gates wird das Register in eine Superposition gebracht, in der alle \( Q \) Basiszustände gleichwahrscheinlich sind. Diese Superposition ist notwendig, um später durch die Phaseninterferenz Information über die Periode der Funktion zu extrahieren.\\
+  Durch die Hadamard-Gates wird das Register in eine Superposition gebracht, in der alle \( Q \) Basiszustände gleichwahrscheinlich sind. Diese Superposition ist notwendig, um später durch die Phaseninterferenz Information über die Periode der Funktion zu extrahieren (\cite[15-16]{shor_polynomial-time_1994}).\\
  \item \textbf{Unitäre Funktion anwenden:} 
   Das zweite Register wird mit dem Zustand \( |1\rangle \) initialisiert, damit durch die Multiplikation mit \( x^a \bmod N \) direkt der Funktionswert entsteht.
 \[
@@ -217,11 +220,11 @@ Nach Anwendung von \( U_f \) ergibt sich der verschränkte Zustand
 \[
 \ket{\psi_2} = \frac{1}{\sqrt{Q}} \sum_{a=0}^{Q-1} \ket{a} \otimes \ket{x^a \bmod N}
 \]
-Dieser Zustand ist eine Superposition über alle möglichen Paare \( (a, f(a)) \), wobei \( f(a) = x^a \bmod N \) die periodische Struktur trägt, die später durch die Quanten-Fourier-Transformation im ersten Register erkennbar gemacht wird.\\
+Dieser Zustand ist eine Superposition über alle möglichen Paare \( (a, f(a)) \), wobei \( f(a) = x^a \bmod N \) die periodische Struktur trägt, die später durch die Quanten-Fourier-Transformation im ersten Register erkennbar gemacht wird (\cite[16]{shor_polynomial-time_1994}).\\
 
 \item \textbf{Quanten-Fourier-Transformation (QFT) auf das erste Register anwenden}
 
-\noindent Die Quanten-Fourier-Transformation wird nun auf das erste Register angewendet. Diese transformiert den Zustand \( |a\rangle \) gemäß:
+\noindent Die Quanten-Fourier-Transformation (\cite[13-15,17]{shor_polynomial-time_1994}) wird nun auf das erste Register angewendet. Diese transformiert den Zustand \( |a\rangle \) gemäß:
 
 \[
 \mathrm{QFT}(|a\rangle) = \frac{1}{\sqrt{Q}} \sum_{c=0}^{Q-1} e^{2\pi i \frac{a c}{Q}} |c\rangle
@@ -280,7 +283,7 @@ e^{2\pi i \frac{a c}{Q}} = \cos\left(2\pi \frac{a c}{Q}\right) + i \cdot \sin\le
     \item \( r \): die Periode der Funktion \( f(a) = x^a \bmod N \), die bestimmt werden soll.
 \end{itemize}
 
-\noindent Ziel ist es, aus dem gemessenen Bruch \( \frac{c}{Q} \) eine möglichst genaue Näherung \( \frac{d}{r} \) zu finden, wobei \( r \) möglichst klein ist. Dies gelingt über die sogenannte \(Kettenbruchentwicklung\):
+\noindent Ziel ist es, aus dem gemessenen Bruch \( \frac{c}{Q} \) eine möglichst genaue Näherung \( \frac{d}{r} \) zu finden, wobei \( r \) möglichst klein ist. Dies gelingt über die sogenannte \(Kettenbruchentwicklung\) (\cite[18-19]{shor_polynomial-time_1994}):
 
 \begin{enumerate}
     \item Entwickle den Bruch \( \frac{c}{Q} \) in einen Kettenbruch.
@@ -300,7 +303,7 @@ e^{2\pi i \frac{a c}{Q}} = \cos\left(2\pi \frac{a c}{Q}\right) + i \cdot \sin\le
 \noindent
 Alle Operationen lassen sich im wesentlichen wie folgt zusammenfassen: Zunächst erfolgt die Initialisierung von zwei Quantenregistern, wobei das erste in eine Superposition aller möglichen Werte gebracht wird und das zweite den Ausgangszustand \( |1\rangle \) erhält. Durch Anwendung der unitären Funktion \( U_f \) wird eine Kopplung zwischen den Registern hergestellt, die die periodische Struktur der Funktion \( f(a) = x^a \bmod N \) abbildet. Anschließend findet die Quanten-Fourier-Transformation (QFT) auf dem ersten Register statt, wodurch mittels Interferenzinformation über die Periode \( r \) gewonnen wird. Die Messung des ersten Registers liefert eine Näherung an einen Bruch \( d/r \), aus dem mit der Kettenbruchentwicklung die Periode bestimmt wird. Auf Basis dieser Periode können die Teiler von \( N \) berechnet werden. \\
 
-\noindent Die Operationen des Shor's Algorithmus zur Faktorisierung lassen sich wie folgt darstellen:
+\noindent Die Operationen des Shor's Algorithmus zur Faktorisierung lassen sich wie folgt darstellen (\cite[15-19]{shor_polynomial-time_1994}):
 
 \begin{algorithm}[H] % <-- [H] erzwingt Platzierung an dieser Stelle
 \caption{Shor's Algorithmus zur Faktorisierung einer Zahl \( N \)}
@@ -444,11 +447,15 @@ Wir wählen \( N = 15 \) und \( x = 2 \). Für den Algorithmus benötigen wir ei
 
     Wir erhalten die nicht-trivialen Faktoren 3 und 5 von \( N = 15 \). Die Faktorisierung ist damit erfolgreich abgeschlossen.\\
 
-\textit{Hinweis:} Dass hier direkt beide Primfaktoren von \( N \) ermittelt werden, ist ein Glücksfall dieses kleinen Beispiels. In realistischen Anwendungen des Shor-Algorithmus ist es üblich, dass einer oder beide der berechneten Werte lediglich einen gemeinsamen Teiler mit dem ursprünglichen \( N \) ergeben. Diese Teiler führen aber dennoch – eventuell nach mehreren Wiederholungen von Euklids Algorithmus– zuverlässig zur vollständigen Faktorisierung, da der Algorithmus mit hoher Wahrscheinlichkeit mindestens einen nicht-trivialen Teiler liefert.
+\textit{Hinweis:} Dass hier direkt beide Primfaktoren von \( N \) ermittelt werden, ist ein Glücksfall dieses kleinen Beispiels. In realistischen Anwendungen des Shor-Algorithmus ist es üblich, dass einer oder beide der berechneten Werte lediglich einen gemeinsamen Teiler mit dem ursprünglichen \( N \) ergeben. Diese Teiler führen aber dennoch – eventuell nach mehreren Wiederholungen von Euklids Algorithmus– zuverlässig zur vollständigen Faktorisierung, da der Algorithmus mit hoher Wahrscheinlichkeit mindestens einen nicht-trivialen Teiler liefert.\\
+
 
 \end{enumerate}
 
-Der Shor-Algorithmus zeigt, wie Quantencomputer periodische Strukturen in Funktionen aufdecken können, die klassisch nur mit exponentiellem Aufwand zu finden wären. Die Kombination aus Quanten-Phasenabschätzung, Fourier-Transformation und Kettenbruchentwicklung ermöglicht eine effiziente Faktorisierung großer Zahlen – ein fundamentaler Angriff auf die Sicherheit klassischer Verschlüsselung.\\
+Der Shor-Algorithmus zeigt, wie Quantencomputer periodische Strukturen in Funktionen aufdecken können, die klassisch nur mit exponentiellem Aufwand zu finden wären. Die Kombination aus Quanten-Phasenabschätzung (Untersuchung der Periodizität einer Funktion), Fourier-Transformati\-on und Kettenbruchentwicklung ermöglicht eine effiziente Faktorisierung großer Zahlen – ein fundamentaler Angriff auf die Sicherheit klassischer Verschlüsselung.\\
+
+Neben der Faktorisierung behandelt Shor in seinem Originalpaper auch das diskrete Logarithmusproblem (\cite[19-24]{shor_polynomial-time_1994})
+ – ein weiteres mathematisches Problem, das zentrale Bedeutung für kryptographische Verfahren wie Diffie-Hellman und ElGamal besitzt. Auch dieses Problem lässt sich mithilfe ähnlicher quantenmechanischer Techniken lösen, insbesondere durch Periodizitätserkennung mittels Quanten-Phasenabschätzung und Fouriertransformation. Da jedoch insbesondere die Faktorisierung die Grundlage für die weitverbreitete RSA-Verschlüsselung bildet, liegt der Fokus dieses Kapitels auf diesem Aspekt von Shors Algorithmus.\\
 
 Damit stellt der Shor-Algorithmus einen Meilenstein in der Quanteninformatik dar: Er demonstriert das Potenzial quantenmechanischer Algorithmen, bestimmte Probleme deutlich schneller zu lösen als klassische Verfahren. Besonders betroffen ist dabei die auf der Faktorisierung großer Zahlen basierende Kryptographie, wie etwa RSA, deren Sicherheitsversprechen durch die Existenz effizienter Quantenalgorithmen grundlegend in Frage gestellt wird.\\
 
@@ -487,7 +494,7 @@ Eine Möglichkeit, das heuristische Suchproblem klassisch zu lösen, besteht dar
 
 \subsection{Aufbau des Grover Algorithmus}
 
-Um den Grover-Algorithmus vollständig zu verstehen, ist es wichtig, zunächst die grundlegenden Quantenoperationen zu begreifen. Lov Grover führte die folgende Definition für eine bestimmte Klasse von Operationen ein.\cite[1-2]{zotero-1211}
+Um den Grover-Algorithmus vollständig zu verstehen, ist es wichtig, zunächst die grundlegenden Quantenoperationen zu begreifen. Lov Grover führte die folgende Definition für eine bestimmte Klasse von Operationen ein.(\cite[1-2]{zotero-1211})
 
 \begin{definition}[Unitäre Operationen]
 Quantenmechanische Operationen, die in kontrollierter Weise ausgeführt werden können, sind \emph{unitäre Operationen}, welche in jedem Schritt auf eine kleine Anzahl von Qubits wirken.
@@ -506,7 +513,7 @@ $$
 $$
 
 Dies ist die gleichmäßige Superposition über alle möglichen Zustände $\ket{x}$ mit $x \in {0, \ldots, N-1}$.\\
-    \item \textbf{Walsch-Hadamard Transformation}: Hadamard Transformation ist eine wichtige Quantummechanische Operation, die durch eine Operation $H$ definiert ist.(\ref{subsubsec:hadamard_gatter}) Diese Operation wird auf ein einzelnes Qubit angewendet und wird durch die folgende Matrix dargestellt:
+    \item \textbf{Walsch-Hadamard Transformation}: Hadamard Transformation ist eine wichtige Quantummechanische Operation, die durch eine Operation $H$ definiert ist (\ref{subsubsec:hadamard_gatter}). Diese Operation wird auf ein einzelnes Qubit angewendet und wird durch die folgende Matrix dargestellt:
     $$
 H = \frac{1}{\sqrt{2}} \begin{pmatrix}
 1 & 1 \\
