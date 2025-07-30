@@ -79,7 +79,7 @@ Dieses Kapitel stellt drei zentrale Vertreter solcher Technologien vor: Variatio
 \subsubsection*{Variational Quantum Algorithms}
 \label{Chemie_Algos_VQA}
 
-Variational Quantum Algorithms (VQAs) sind eine Methode, um mit Quantencomputern die Energiezustände eines physikalischen Systems, beispielsweise eines Moleküls, zu berechnen. Es handelt sich hierbei um ein hybrides Verfahren, bei dem sowohl Quantencomputer als auch herkömmliche Computer genutzt werden, um ein klassisches Optimierungsverfahren auszuführen (vgl. \cite{weidmanQuantumComputingChemistry2024a}).
+Variational Quantum Algorithms (VQAs) sind eine Methode, um mit Quantencomputern die Energiezustände eines physikalischen Systems, beispielsweise eines Moleküls, zu berechnen. Es handelt sich hierbei um ein hybrides Verfahren, bei dem sowohl Quantencomputer als auch herkömmliche Computer genutzt werden, um ein klassisches Optimierungsverfahren auszuführen (vgl. \cite{weidman_quantum_2024}).
 
 \vspace{0.5em}
 
@@ -87,12 +87,12 @@ Es gibt dabei zwei Haupttypen von VQAs, zwischen denen zu differenzieren ist: Va
 
 \vspace{0.5em}
 
-Konkret finden VQO Bedeutung in der Chemie unter anderem als Variational Quantum Eigensolver (VQE). Dieser VQE-Algorithmus wurde zur Bestimmung der Grundzustandsenergie elektronischer Moleküle entwickelt. Dafür wird zunächst eine angenommene Form der Elektronenverteilung, der sogenannten Wellenfunktion, für ein Molekül gewählt. Der Quantencomputer berechnet den Erwartungswert der Energie eines Systems für bestimmte Parameter \( E(\theta) \) (vgl. \cite{mottaEmergingQuantumComputing2022}), woraufhin der klassische Computer die Parameter dieser Wellenfunktion so anpasst, dass die berechnete Energie immer kleiner wird. Dieser Ablauf wird so lange wiederholt, bis die geringste mögliche Energie ermittelt wird und somit die Grundzustandsenergie des elektronischen Moleküls geschätzt werden kann (vgl. \cite{weidmanQuantumComputingChemistry2024a}).
+Konkret finden VQO Bedeutung in der Chemie unter anderem als Variational Quantum Eigensolver (VQE). Dieser VQE-Algorithmus wurde zur Bestimmung der Grundzustandsenergie elektronischer Moleküle entwickelt. Dafür wird zunächst eine angenommene Form der Elektronenverteilung, der sogenannten Wellenfunktion, für ein Molekül gewählt. Der Quantencomputer berechnet den Erwartungswert der Energie eines Systems für bestimmte Parameter \( E(\theta) \) (vgl. \cite{mottaEmergingQuantumComputing2022}), woraufhin der klassische Computer die Parameter dieser Wellenfunktion so anpasst, dass die berechnete Energie immer kleiner wird. Dieser Ablauf wird so lange wiederholt, bis die geringste mögliche Energie ermittelt wird und somit die Grundzustandsenergie des elektronischen Moleküls geschätzt werden kann (vgl. \cite{weidman_quantum_2024}).
 Diese statistische Schätzung ergibt sich als Durchschnittswert mit einer gewissen Streuung. Deshalb müssen die Optimierungsverfahren, die die Parameter schrittweise verbessern, darauf achten, dass diese Messwerte nicht exakt, sondern mit Unsicherheit behaftet sind (vgl. \cite{mottaEmergingQuantumComputing2022}).
 
 \vspace{0.5em}
 
-Dieser VQE-Algorithmus wurde auch auf andere Bereiche ausgeweitet, etwa Lösungsverfahren für lineare Gleichungssysteme, Matrixzerlegung und numerische lineare Algebra (vgl. \cite{weidmanQuantumComputingChemistry2024a}).
+Dieser VQE-Algorithmus wurde auch auf andere Bereiche ausgeweitet, etwa Lösungsverfahren für lineare Gleichungssysteme, Matrixzerlegung und numerische lineare Algebra (vgl. \cite{weidman_quantum_2024}).
 
 \vspace{0.5em}
 
@@ -103,11 +103,11 @@ Bei dem VQE-Verfahren sind die Messfehler statistisch klar abschätzbar, allerdi
 \subsubsection*{Quantum Phase Estimation}
 \label{Chemie_Algos_QPE}
 
-Quantum Phase Estimation (QPE) ist ein grundlegender Quantum-Algorithmus, mit dem sich die Eigenenergie eines Quantensystems präzise bestimmen lässt. In der Quantenchemie wurde bereits 2005 mit dem QPE die Energie eines Moleküls in einer Simulation ermittelt (vgl. \cite{weidmanQuantumComputingChemistry2024a}). Der Algorithmus kann den möglichst niedrigen Energiezustand direkt identifizieren, wenn ein geeigneter Startzustand verwendet wird. Je öfter die zentrale Quantenoperation wiederholt wird, desto genauer wird das Ergebnis.
+Quantum Phase Estimation (QPE) ist ein grundlegender Quantum-Algorithmus, mit dem sich die Eigenenergie eines Quantensystems präzise bestimmen lässt. In der Quantenchemie wurde bereits 2005 mit dem QPE die Energie eines Moleküls in einer Simulation ermittelt (vgl. \cite{weidman_quantum_2024}). Der Algorithmus kann den möglichst niedrigen Energiezustand direkt identifizieren, wenn ein geeigneter Startzustand verwendet wird. Je öfter die zentrale Quantenoperation wiederholt wird, desto genauer wird das Ergebnis.
 
 \vspace{0.5em}
 
-Die Durchführung der Methode sieht die Vorbereitung von zwei Qubit-Registern vor, eines für das Molekül (Systemregister) und eines für die Messung (Hilfsregister). Das Hilfsregister wird mithilfe sogenannter Hadamard-Operationen in eine Überlagerung gebracht, sodass es viele mögliche Phasen gleichzeitig abbilden kann. Diese Vorbereitung ermöglicht es, die Energieinformation als Phase im späteren Verlauf präzise auszulesen (vgl. \cite{weidmanQuantumComputingChemistry2024a}, \cite{mottaEmergingQuantumComputing2022}). 
+Die Durchführung der Methode sieht die Vorbereitung von zwei Qubit-Registern vor, eines für das Molekül (Systemregister) und eines für die Messung (Hilfsregister). Das Hilfsregister wird mithilfe sogenannter Hadamard-Operationen in eine Überlagerung gebracht, sodass es viele mögliche Phasen gleichzeitig abbilden kann. Diese Vorbereitung ermöglicht es, die Energieinformation als Phase im späteren Verlauf präzise auszulesen (vgl. \cite{weidman_quantum_2024}, \cite{mottaEmergingQuantumComputing2022}). 
 
 \vspace{0.5em}
 
@@ -131,7 +131,7 @@ Diese Kombination von quantenmechanischer Zustandserzeugung und klassischer Rüc
 
 \vspace{0.5em}
 
-In der Materialwissenschaft wurde QAOA bereits in Simulationen zur Gestaltung von Metamaterialien eingesetzt. Dabei wurde ein Quantenannealing-Modell genutzt, um transparente Kühlbeschichtungen mit optimierter Energieeffizienz zu entwerfen (vgl. \cite{guoHarnessingQuantumPower2024}). Währendessen werden Konzeptstudien zur molekularen Wirkstoffsuche erprobt, etwa durch die Optimierung molekularer Strukturen im Hinblick auf ihre Bindungsstärke. Guo et al. (2024) demonstrierten dies mithilfe eines quantengestützten Verfahrens, das verschiedene zweiatomige Moleküle hinsichtlich ihrer Bindungsstärke an eine Protein-Tasche analysierte. Die aktuell erhältliche Hardware ist allerdings begrenzt und schränkt die Anwendungsmöglichkeiten ein. Herausforderungen wie Rauschunempfindlichkeit und das Barren-Plateau-Problem müssen jedoch noch überwunden werden (vgl. \cite{weidmanQuantumComputingChemistry2024a}).
+In der Materialwissenschaft wurde QAOA bereits in Simulationen zur Gestaltung von Metamaterialien eingesetzt. Dabei wurde ein Quantenannealing-Modell genutzt, um transparente Kühlbeschichtungen mit optimierter Energieeffizienz zu entwerfen (vgl. \cite{guoHarnessingQuantumPower2024}). Währendessen werden Konzeptstudien zur molekularen Wirkstoffsuche erprobt, etwa durch die Optimierung molekularer Strukturen im Hinblick auf ihre Bindungsstärke. Guo et al. (2024) demonstrierten dies mithilfe eines quantengestützten Verfahrens, das verschiedene zweiatomige Moleküle hinsichtlich ihrer Bindungsstärke an eine Protein-Tasche analysierte. Die aktuell erhältliche Hardware ist allerdings begrenzt und schränkt die Anwendungsmöglichkeiten ein. Herausforderungen wie Rauschunempfindlichkeit und das Barren-Plateau-Problem müssen jedoch noch überwunden werden (vgl. \cite{weidman_quantum_2024}).
 
 
 \section{Top 3 Zukunftsprojekte \& Forschungsinitiativen}
