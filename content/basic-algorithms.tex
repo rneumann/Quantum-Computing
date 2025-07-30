@@ -31,13 +31,15 @@ Mit anderen Worten: Während klassische Computer für große $N$ praktisch keine
 Im Folgenden wird der Ablauf von Shors Algorithmus detailliert dargestellt und anhand eines konkreten Beispiels veranschaulicht. Dabei zeigen wir, wie Quantenregister, Quanten-Fourier-Transformation und die klassische Nachbearbeitung zusammenwirken, um die verborgenen Primfaktoren einer gegebenen Zahl zu enthüllen.\\
 
 
-\subsection{Grundlagen: Primfaktorzerlegung, GCD und Modulare Arithmetik}
-Der RSA-Algorithmus basiert auf der Schwierigkeit, eine große Zahl \( N = pq \) zu faktorisieren (\cite[9-10]{milanov_rsa_2009}). Shor’s Algorithmus bricht diese Sicherheit, indem er in polynomialer Zeit die Faktoren \( p \) und \( q \) bestimmt. Hat ein Angreifer Zugriff auf einen leistungsfähigen Quantencomputer, kann er aus dem öffentlichen Schlüssel die privaten Schlüsselparameter rekonstruieren. Im Folgenden werden die nötigen mathematischen Grundlagen des RSA-Algorithmus dargestellt (\cite[4-5]{milanov_rsa_2009}).
+\subsection{Grundlagen: Primfaktorzerlegung, ggT und Modulare Arithmetik}
+Der RSA-Algorithmus basiert auf der Schwierigkeit, eine große Zahl \( N = pq \) zu faktorisieren (\cite[9-10]{milanov_rsa_2009}). Shor’s Algorithmus bricht diese Sicherheit, indem er in polynomialer Zeit die Faktoren \( p \) und \( q \) bestimmt. Hat ein Angreifer Zugriff auf einen leistungsfähigen Quantencomputer, kann er aus dem öffentlichen Schlüssel die privaten Schlüsselparameter rekonstruieren. Im Folgenden werden die nötigen mathematischen Grundlagen des RSA-Algorithmus mit Bezug auf den Shor-Algorithmus dargestellt (\cite[4-5]{milanov_rsa_2009}).
 
 Kennt man die beiden Primfaktoren \( p \) und \( q \), so kann man den geheimen Exponenten \( d \) leicht berechnen. Dazu wird zunächst die Eulersche Funktion 
+\begin{definition}[Eulersche Funktion]\label{def:eulerscheFunktion}
 \[
 \varphi(N) = (p - 1)(q - 1)
 \]
+\end{definition}
 berechnet. Der öffentliche Schlüssel enthält den Exponenten \( e \), der teilerfremd zu \( \varphi(N) \) gewählt wurde, d.\,h.
 \[
 \gcd(e, \varphi(N)) = 1.
@@ -144,8 +146,8 @@ a^2 - b^2 = (a - b)(a + b),
 \]
 wobei hier \( a = x^{r/2}, b = 1 \).
 
-\begin{definition}[Größter gemeinsamer Teiler (gcd)]
-Der größte gemeinsame Teiler zweier Zahlen \(m, n \in \mathbb{N}\), bezeichnet als \(\gcd(m,n)\), ist die größte natürliche Zahl, die sowohl \(m\) als auch \(n\) ohne Rest teilt.\\
+\begin{definition}[Größter gemeinsamer Teiler (ggT)]\label{def:ggT}
+Der größte gemeinsame Teiler zweier Zahlen \(m, n \in \mathbb{N}\), bezeichnet als \(\gcd(m,n)\), ist die größte natürliche Zahl, die sowohl \(m\) als auch \(n\) ohne Rest teilt.
 
 Im Kontext von Shor's Algorithmus verwenden wir
 \[
@@ -168,7 +170,7 @@ Im folgenden Abschnitt werden wir alle notwendigen Methoden, Definitionen und Sc
 
 Der konkrete Fall, den wir betrachten, ist die Primfaktorzerlegung der Zahl \( N = 15 \). Natürlich kennen wir bereits die Primfaktoren \( 3 \) und \( 5 \). Es gilt somit \( N = q \cdot p \) mit \( q, p \in \mathbb{Z} \). \\
 
-Zunächst muss festgelegt werden, wie groß der Hilbertraum \( Q = 2^n \) mit \( n \) Qubits sein muss, also die Gesamtanzahl aller Basiszustände des \( n \)-Qubit-Systems. Dies bestimmt, wie viele mögliche Zustände \( a \) betrachtet werden sollen. Dabei gilt die Bedingung
+Zunächst muss festgelegt werden, wie groß der Hilbertraum \( Q = 2^n \) mit \( n \) Qubits sein muss, also die Gesamtanzahl aller Basiszustände des \( n \)-Qubit-Systems (\cite[5-6]{shor_polynomial-time_1994}). Dies bestimmt, wie viele mögliche Zustände \( a \) betrachtet werden sollen. Dabei gilt die Bedingung
 \[
 2^n \geq N^2.
 \]
@@ -186,11 +188,13 @@ Bevor wir das Beispiel vollständig durchrechnen, formulieren wir zunächst die 
 
 \begin{enumerate}
     \item \textbf{Initialisierung in einen Superpositionszustand:} 
-    Die erste Operation besteht darin, zwei Quantenregister entsprechend der berechneten Qubit-Größen als Eingabe und Ausgaberegister zu erzeugen, welche sich alle in den Basiszuständen befinden, also mit der gleichen Wahrscheinlichkeit auftreten:
-\[
-\ket{\psi_0} = \ket{0}^{\otimes n} \otimes \ket{1}
-\]
-    Die \textit{Gleichverteilung} wird dadurch erreicht, dass die Amplituden aller Zustände gleich sind. Wenn das System anfangs im Zustand $\ket{0}^{\otimes n}$ ist (alle Qubits auf 0), dann erzeugen wir durch Anwendung der Hadamard-Transformation (\ref{subsubsec:hadamard_gatter}) auf jedes Qubit die Superposition - aber nur auf das erste Register:
+    Die erste Operation besteht darin, zwei Quantenregister entsprechend der berechneten Qubit-Größen zu erzeugen: ein erstes Register mit \( n \) Qubits für die Eingabewerte \( a \), und ein zweites Register mit \( m \) Qubits für die Funktionsergebnisse \( f(a) = x^a \bmod N \).
+
+    Zu Beginn befinden sich alle Qubits im Zustand \( \ket{0} \), mit Ausnahme des zweiten Registers, das wir gezielt in den Zustand \( \ket{1} \) setzen:
+    \[
+    \ket{\psi_0} = \ket{0}^{\otimes n} \otimes \ket{1}
+    \]
+    Der Grund für diese Wahl liegt in der späteren Anwendung der unitären Operation \( U_f \), welche das zweite Register mit dem Ergebnis der modularen Exponentiation multipliziert. Wird \( \ket{1} \) als Startzustand verwendet, so ergibt sich durch \( U_f \) direkt der gewünschte Zustand \( \ket{x^a \bmod N} \), ohne weitere Vorverarbeitung. Die \textit{Gleichverteilung} wird dadurch erreicht, dass die Amplituden aller Zustände gleich sind. Wenn das System anfangs im Zustand $\ket{0}^{\otimes n}$ ist (alle Qubits auf 0), dann erzeugen wir durch Anwendung der Hadamard-Transformation (\ref{subsubsec:hadamard_gatter}) auf jedes Qubit die Superposition - aber nur auf das erste Register:
 
 $$
 \ket{\psi_1} = \frac{1}{\sqrt{Q}} \sum_{a=0}^{Q-1} \ket{a}
@@ -203,7 +207,7 @@ Dabei ist:
     \item \( 1 \): Anfangszustand des zweiten Registers, auf das später die modulare Exponentiation angewendet wird.
   \end{itemize}
 
-  Durch die Hadamard-Gates wird das Register in eine Superposition gebracht, in der alle \( Q \) Basiszustände gleichwahrscheinlich sind. Diese Superposition ist notwendig, um später durch die Phaseninterferenz Information über die Periode der Funktion zu extrahieren (\cite[15-16]{shor_polynomial-time_1994}).\\
+  Durch die Hadamard-Gates wird das Register in eine Superposition gebracht, in der alle \( Q \) Basiszustände gleichwahrscheinlich sind. Diese Superposition ist notwendig, um später durch die Phaseninterferenz Information über die Periode der Funktion zu extrahieren (\cite[5-6, 15-16]{shor_polynomial-time_1994}).\\
  \item \textbf{Unitäre Funktion anwenden:} 
   Das zweite Register wird mit dem Zustand \( |1\rangle \) initialisiert, damit durch die Multiplikation mit \( x^a \bmod N \) direkt der Funktionswert entsteht.
 \[
@@ -292,12 +296,12 @@ e^{2\pi i \frac{a c}{Q}} = \cos\left(2\pi \frac{a c}{Q}\right) + i \cdot \sin\le
     \item Der kleinste passende \( r_i \) ist dann mit hoher Wahrscheinlichkeit die gesuchte Periode \( r \).
 \end{enumerate}
 
-\noindent Sobald die Periode \( r \) gefunden wurde, kann man im nächsten Schritt durch Berechnung des größten gemeinsamen Teilers (siehe \texttt{gcd}-Definition) mögliche Faktoren von \( N \) bestimmen:
+\noindent Sobald die Periode \( r \) gefunden wurde, kann man im nächsten Schritt durch Berechnung des größten gemeinsamen Teilers (\ref{def:ggT}) mögliche Faktoren von \( N \) bestimmen:
 \[
 \gcd(x^{r/2} \pm 1, N)
 \]
 
-\noindent Damit ist der zentrale algorithmische Teil von Shor abgeschlossen – die restlichen Schritte sind rein klassisch.\\
+\noindent Anschließend kann \(d\) gefunden werden, um die Nachricht zu entschlüsseln (\ref{def:eulerscheFunktion}). Damit ist der zentrale algorithmische Teil von Shor abgeschlossen, sobald \( r \) gefunden wurde  – die restlichen Schritte sind rein klassisch.\\
 \end{enumerate}
 
 \noindent
@@ -449,6 +453,7 @@ Wir wählen \( N = 15 \) und \( x = 2 \). Für den Algorithmus benötigen wir ei
 
 \textit{Hinweis:} Dass hier direkt beide Primfaktoren von \( N \) ermittelt werden, ist ein Glücksfall dieses kleinen Beispiels. In realistischen Anwendungen des Shor-Algorithmus ist es üblich, dass einer oder beide der berechneten Werte lediglich einen gemeinsamen Teiler mit dem ursprünglichen \( N \) ergeben. Diese Teiler führen aber dennoch – eventuell nach mehreren Wiederholungen von Euklids Algorithmus– zuverlässig zur vollständigen Faktorisierung, da der Algorithmus mit hoher Wahrscheinlichkeit mindestens einen nicht-trivialen Teiler liefert.\\
 
+Nachdem \( p \) und \( q \) berechnet wurden, kann der geheime Exponent \( d \) als das multiplikative Inverse von \( e \) modulo \( \varphi(N) \) bestimmt werden (\ref{def:eulerscheFunktion}) und somit lässt sich die Nachricht entschlüsseln.
 
 \end{enumerate}
 
@@ -475,7 +480,7 @@ Bevor wir uns dem Grover-Algorithmus zuwenden, betrachten wir folgendes Beispiel
 Formulieren wir nun das Beispiel um: Anstelle von Spielkarten betrachten wir eine binäre Reihenfolge natürlicher Zahlen — nämlich $00$, $01$, $10$ und $11$. Nehmen wir an, die Pik-Dame entspricht dabei der Zahl $11$. Wir definieren eine Funktion $f$, die den Wert $1$ zurückgibt, wenn das Eingabemuster $11$ ist, und $0$ in allen anderen Fällen. Somit lässt sich das Problem wie folgt formal ausdrücken:
 
 \begin{definition}[Unstrukturiertes Suchproblem]
-Sei $f\colon \{0, 1\}^n \rightarrow \{0, 1\}$ eine abstrakte Funktion mit $f(x) \in \{0, 1\}$. Gesucht ist ein Wert $x$, sodass $f(x) = 1$, falls ein solcher Wert existiert; andernfalls soll das Ergebnis $0$ sein.(\cite{montanaro_quantum_2016})
+Sei $f\colon \{0, 1\}^n \rightarrow \{0, 1\}$ eine abstrakte Funktion mit $f(x) \in \{0, 1\}$. Gesucht ist ein Wert $x$, sodass $f(x) = 1$, falls ein solcher Wert existiert; andernfalls soll das Ergebnis $0$ sein (\cite{montanaro_quantum_2016}).
 \end{definition}
 
 Die Komplexität des unstrukturierten Suchproblems ergibt sich daraus, wie viele Iterationen der Funktion erforderlich sind, um das gesuchte Element zu finden. Wir benötigen im schlechtesten Fall $N - 1$ Funktionsauswertungen, wobei $N = 2^n$ gilt. Auf diese Weise prüfen wir alle möglichen Eingaben. Ähnlich wie im Beispiel mit den Karten entspricht $N$ dem letzten Element, vorausgesetzt, die vorherigen wurden bereits geprüft. Der Grover-Algorithmus kann dieses Problem jedoch deutlich schneller lösen und erreicht dabei eine quadratische Laufzeitverbesserung.\\
@@ -494,7 +499,7 @@ Eine Möglichkeit, das heuristische Suchproblem klassisch zu lösen, besteht dar
 
 \subsection{Aufbau des Grover Algorithmus}
 
-Um den Grover-Algorithmus vollständig zu verstehen, ist es wichtig, zunächst die grundlegenden Quantenoperationen zu begreifen. Lov Grover führte die folgende Definition für eine bestimmte Klasse von Operationen ein.(\cite[1-2]{zotero-1211})
+Um den Grover-Algorithmus vollständig zu verstehen, ist es wichtig, zunächst die grundlegenden Quantenoperationen zu begreifen. Lov Grover führte die folgende Definition für eine bestimmte Klasse von Operationen ein (\cite[1-2]{zotero-1211}).
 
 \begin{definition}[Unitäre Operationen]
 Quantenmechanische Operationen, die in kontrollierter Weise ausgeführt werden können, sind \emph{unitäre Operationen}, welche in jedem Schritt auf eine kleine Anzahl von Qubits wirken.
@@ -534,7 +539,7 @@ $$
 
 Dabei ist $x \cdot y$ das bitweise Skalarprodukt der $n$-Bit-Binärzahlen $x$ und $y$.\\
 
-    \item \textbf{Selektive Phasenrotation:} Die dritte elementare Operation ist die selektive Phasenrotation der Amplitude in bestimmten Zuständen.(\cite{zotero-1211}) Die Transformation, die dies für ein Zwei-Zustands-System beschreibt, hat die Form:
+    \item \textbf{Selektive Phasenrotation:} Die dritte elementare Operation ist die selektive Phasenrotation der Amplitude in bestimmten Zuständen (\cite{zotero-1211}). Die Transformation, die dies für ein Zwei-Zustands-System beschreibt, hat die Form:
 
     $$
 R = \begin{pmatrix}
@@ -620,7 +625,7 @@ Alle für den Grover-Algorithmus nötigen Operationen bestehen aus nur zwei fund
 \subsection{Beispielanwendung von Grover-Algorithmus}
 
 Um ein Beispiel für die Funktionsweise des Grover-Algorithmus zu betrachten, ohne den Überblick zu verlieren, analysieren wir ein kleineres Beispiel – basierend auf drei Qubits. Das Beispiel basiert sich auf die Materialen von \textit{Microsoft Learn
-}.(\cite{noauthor_theory_2025})\\ 
+}(\cite{noauthor_theory_2025}).\\ 
 
 Wir greifen erneut auf das Beispiel mit den Karten zurück: Nehmen wir an, alle vier Karten sind mit Hilfe von zwei Qubits kodiert. Dann erhalten wir die folgenden Daten: 00, 01, 10 und 11. Den dritten Qubit werden wir als Hilfsqubit  verwenden – mit seiner Hilfe können wir die gesuchte Karte durch Multiplikation mit -1 markieren. Anschließend betrachten wir die Anwendung des Grover-Algorithmus auf dieses Beispiel.\\
 
@@ -640,11 +645,11 @@ Anschließend beginnen die Iterationen. Jede Iteration besteht aus zwei Phasen. 
 
 Um das Funktionsprinzip des Algorithmus in diesem Beispiel besser zu verstehen, definieren wir eine vereinfachte Orakelfunktion manuell. Dabei ist zu beachten, dass die tatsächliche Orakelfunktion in der Praxis spezifisch an die jeweilige Aufgabe angepasst ist und daher möglicherweise anders implementiert wird. Auf die konkrete technische Realisierung der Orakelfunktion zur Datensuche gehen wir hier nicht ein, da dies den grundlegenden Ablauf von Grovers Algorithmus nicht beeinflusst.
 
-Für das Verständnis des Grover-Algorithmus ist es entscheidend nachzuvollziehen, wie sich die Zustände der Qubits verändern, bis zum Zeitpunkt der Messung, die schließlich den gesuchten Index liefert.In diesem Beispiel haben wir als das gesuchte Index $11$ definiert - so wie es in dem Beispiel von Karten gab. Das bedeutet, dass die Messung am Ende genau dieses Ergebnis liefern soll. Wir modellieren daher ein Orakel, das genau diesen Index markiert. Als solche Orakelfunktion eignet sich das Toffoli-Gatter ($CCNOT$), das bei Ansteuerung beider Kontrollqubits mit dem Wert $1$ ein $X$-Gatter auf das Zielqubit – in diesem Fall das Hilfsqubit – anwendet:
+Für das Verständnis des Grover-Algorithmus ist es entscheidend nachzuvollziehen, wie sich die Zustände der Qubits verändern, bis zum Zeitpunkt der Messung, die schließlich den gesuchten Index liefert. In diesem Beispiel haben wir als das gesuchte Index $11$ definiert - so wie es in dem Beispiel von Karten gab. Das bedeutet, dass die Messung am Ende genau dieses Ergebnis liefern soll. Wir modellieren daher ein Orakel, das genau diesen Index markiert. Als solche Orakelfunktion eignet sich das Toffoli-Gatter ($CCNOT$), das bei Ansteuerung beider Kontrollqubits mit dem Wert $1$ ein $X$-Gatter auf das Zielqubit – in diesem Fall das Hilfsqubit – anwendet:
 
 \begin{definition}[Toffoli-Gatter]
 \label{def:toffoli}
-Das Toffoli-Gatter, auch bekannt als $CCNOT$-Gatter (für „controlled-controlled-not“), ist eine Erweiterung des bekannten $CNOT$-Gatters mit zwei Steuerbits und einem Zielbit. Das bedeutet: Das Zielbit (das dritte Bit) wird genau dann invertiert, wenn sowohl das erste als auch das zweite Steuerbit den Wert $1$ haben.(\cite{toffoli_proceedings_1980})
+Das Toffoli-Gatter, auch bekannt als $CCNOT$-Gatter (für „controlled-controlled-not“), ist eine Erweiterung des bekannten $CNOT$-Gatters mit zwei Steuerbits und einem Zielbit. Das bedeutet: Das Zielbit (das dritte Bit) wird genau dann invertiert, wenn sowohl das erste als auch das zweite Steuerbit den Wert $1$ haben (\cite{toffoli_proceedings_1980}).
 \end{definition}
 
 Das Toffoli-Gatter sieht folgendermaßen aus:
@@ -917,7 +922,7 @@ Die untere Schranke aus der Arbeit von Bennett–Bernstein–Brassard–Vazirani
 \[
 \Omega(\sqrt{N})
 \]  
-Orakelaufrufen auskommen kann.(\cite{zotero-1211}) Damit ist der Grover‐Algorithmus in diesem Modell asymptotisch optimal: Ohne zusätzliche Struktur in der Datenbank lässt sich kein suprakquadratischer (etwa exponentieller) Vorteil erzielen.  
+Orakelaufrufen auskommen kann (\cite{zotero-1211}). Damit ist der Grover‐Algorithmus in diesem Modell asymptotisch optimal: Ohne zusätzliche Struktur in der Datenbank lässt sich kein suprakquadratischer (etwa exponentieller) Vorteil erzielen.  
 
 \section{Problem der Datenkodierung des Grover-Algorithmus}
 Der Algorithmus von Grover ist für die Suche in unstrukturierten Datenbanken konzipiert, was im Kern dem Problem entspricht, eine Nadel im Heuhaufen zu finden.\\
@@ -929,13 +934,13 @@ Für den Start des Grover-Algorithmus muss das Quantenregister so initialisiert 
 \[
 \frac{1}{2^{n}}\sum_{x}\lvert x\rangle
 \]
-ergibt.(\cite{miguel_a_naranjo_review_2024}) Dieser Ansatz definiert jedoch nur formal die Indizes der Elemente; reale unstrukturierte Daten (z.B. Arrays oder Datenbanken) müssen in geeigneter Weise in den Quantencomputer kodiert werden, damit das Orakel die gewünschten Eigenschaften auswerten kann.
+ergibt (\cite{miguel_a_naranjo_review_2024}). Dieser Ansatz definiert jedoch nur formal die Indizes der Elemente; reale unstrukturierte Daten (z.B. Arrays oder Datenbanken) müssen in geeigneter Weise in den Quantencomputer kodiert werden, damit das Orakel die gewünschten Eigenschaften auswerten kann.
 
 \subsection{Datenkodierung}
 Es existieren zwei der gebräuchlichsten Kodierungsverfahren für Daten im Grover-Algorithmus:  
 \begin{enumerate}  
   \item \textbf{Amplitudenkodierung:}  
-Amplitudenkodierung dient dazu, die Einträge eines Vektors $x$ der Länge $N$ (mit $N$ als Zweierpotenz) direkt in die Amplituden eines Quantenzustands auf $\log_2(N)$ Qubits zu übertragen.(\cite{alessandro_luongo_quantum_2024}) Dabei wird aus $x\in\mathbb{R}^N$ (oder $\mathbb{C}^N$) folgender normierter Zustand erzeugt:
+Amplitudenkodierung dient dazu, die Einträge eines Vektors $x$ der Länge $N$ (mit $N$ als Zweierpotenz) direkt in die Amplituden eines Quantenzustands auf $\log_2(N)$ Qubits zu übertragen (\cite{alessandro_luongo_quantum_2024}). Dabei wird aus $x\in\mathbb{R}^N$ (oder $\mathbb{C}^N$) folgender normierter Zustand erzeugt:
 
 $$
 \lvert x\rangle
@@ -956,7 +961,7 @@ wobei jeder Index $i$ in den ersten Qubits und die normierte Zeile $x^{(i)}$ in 
 
   \item \textbf{Block-Encoding:}  
     Bei diesem Verfahren kodiert man eine \(N\times N\)-Matrix \(A\) (\(N=2^n\)) in einen unitären Operator \(U_A\) auf \(n+a\) Qubits,  
-    sodass der obere linke \(N\times N\)-Block von \(U_A\) proportional zu \(A\) ist.(\cite{alessandro_luongo_quantum_2024})
+    sodass der obere linke \(N\times N\)-Block von \(U_A\) proportional zu \(A\) ist (\cite{alessandro_luongo_quantum_2024}).
 
     \begin{definition}[Block-Encoding einer Matrix]\label{def:block-encoding}  
     Sei \(A\in\mathbb{R}^{N\times N}\) mit \(N=2^n\) und \(\alpha\ge1\). Für \(\varepsilon>0\) heißt  
@@ -973,7 +978,7 @@ wobei jeder Index $i$ in den ersten Qubits und die normierte Zeile $x^{(i)}$ in 
     \(\bigl(1,a,\varepsilon\bigr)\)-Block-Encoding von \(A/\alpha\) entspricht. Wird das Hilfsregister der Größe \(a\) vernachlässigt, spricht man oft einfach von einem \((\alpha,\varepsilon)\)- bzw. \(\alpha\)-Block-Encoding (falls \(\varepsilon=0\)).  
 \end{enumerate}  
 
-\subsection{Aktuelle Grenzen}
+\subsection{Limitationen}
 Kürzliche Ergebnisse zeigen (\cite{zhang_xiao-ming_circuit_2024}), dass ohne explizite Struktur die Repräsentation allgemeiner Datensätze in einem Quantenregister eine nahezu lineare Schaltkreis-Komplexität in \(N\) erfordert. Anders ausgedrückt, alle gängigen Zugriffsmodelle auf klassische Daten (z.B. Block‑Encoding\ref{def:block-encoding}) benötigen im Allgemeinen \(\Omega(N)\) Gatter. Somit führt trotz des geringen, logarithmischen Bedarfs an Qubits die Zustandserzeugung zu einem Aufwand, der mit klassischen Verfahren vergleichbar ist. In der Fachliteratur heißt es daher: 
 Wenn \(N\) Datensätze in einer Quantenkette kodiert werden, beträgt die Schaltkreis-Komplexität mindestens \(O(N)\).\\
 
@@ -985,7 +990,14 @@ Insgesamt stellt die Repräsentation unstrukturierter Daten eine erhebliche Hera
 
 Im Rahmen der theoretischen Informatik werden Entscheidungsprobleme nach der zur Lösung benötigten Zeit in verschiedene Klassen eingeordnet. Dabei interessiert insbesondere, welche Probleme auf einem klassischen bzw. quantenmechanischen Modell in polynomieller Zeit lösbar sind, und wie sich diese Klassen zueinander verhalten.\\
 
-Zunächst versteht man unter der Klasse \(\mathbf{P}\) jene Probleme, für die es deterministische Algorithmen gibt, die auf einem klassischen Computer in polynomieller Zeit laufen. Formal heißt das: Ein Problem liegt in \(\mathbf{P}\), wenn es einen Algorithmus gibt, dessen Laufzeit durch einen Polynomausdruck \(O(n^k)\) für eine feste Konstante \(k\) beschränkt ist, wobei \(n\) die Eingabegröße bezeichnet. Probleme aus \(\mathbf{P}\) gelten als praktisch effizient lösbar, sofern der Exponent \(k\) nicht zu groß wird.\\
+Zunächst versteht man unter der Klasse \(\mathbf{P}\) jene Probleme, für die es deterministische Algorithmen gibt, die auf einem klassischen Computer in polynomieller Zeit laufen. Formal heißt das: Ein Problem liegt in \(\mathbf{P}\), wenn es einen Algorithmus gibt, dessen Laufzeit durch einen Polynomausdruck \(O(n^k)\) für eine feste Konstante \(k\) beschränkt ist, wobei \(n\) die Eingabegröße bezeichnet. Probleme aus \(\mathbf{P}\) gelten als praktisch effizient lösbar, sofern der Exponent \(k\) nicht zu groß wird.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.7\textwidth]{images/basic-algorithms/problem-classes.png}
+  \caption{Übersicht der wichtigsten Zeitkomplexitätsklassen: \(\mathbf{P}\subseteq \mathbf{BQP}\subseteq \mathbf{NP}\subseteq \mathbf{NP}\text{-hard}\) und die Lage von \(\mathbf{NP}\)-complete Problemen innerhalb von \(\mathbf{NP}\).}
+  \label{fig:problem_classes}
+\end{figure}
 
 Die Klasse \(\mathbf{NP}\) (nondeterministic polynomial time) umfasst diejenigen Entscheidungsprobleme, bei denen eine etwaige Lösung auf einem klassischen Computer in polynomieller Zeit verifizierbar ist, auch wenn ein deterministischer polynomieller Lösungsalgorithmus bislang unbekannt ist. Ein typisches Beispiel ist das Teilmengen-Summen-Problem: Legt man dem Algorithmus als „Zertifikat“ eine vermutete Teilmenge vor, so kann man in \(O(n)\) bzw. \(O(n\log n)\) Zeit nachprüfen, ob die Summe den Zielwert ergibt.\\
 
@@ -997,13 +1009,7 @@ Wenn man zusätzlich zur deterministischen Rechenmaschine Zufallsbits zulässt u
 
 Der quantenmechanische Gegenpart zu \(\mathbf{BPP}\) ist die Klasse \(\mathbf{BQP}\) (bounded‑error quantum polynomial time).(\cite{zotero-1212}) Hierbei kann ein Quantenalgorithmus für ein Problem in polynomieller Zeit auf einem Quantencomputer mit hoher Wahrscheinlichkeit das korrekte Ergebnis liefern. Ein bekanntes Beispiel ist die Ganzzahlfaktorzerlegung großer Zahlen mittels Shor’s Algorithmus, der das hierfür klassische \(\mathbf{NP}\)-Problem in polynomieller Zeit auf einem Quantencomputer löst.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.7\textwidth]{images/basic-algorithms/problem-classes.png}
-  \caption{Übersicht der wichtigsten Zeitkomplexitätsklassen: \(\mathbf{P}\subseteq \mathbf{BQP}\subseteq \mathbf{NP}\subseteq \mathbf{NP}\text{-hard}\) und die Lage von \(\mathbf{NP}\)-complete Problemen innerhalb von \(\mathbf{NP}\).}
-  \label{fig:problem_classes}
-\end{figure}
-
 Abschließend lässt sich festhalten, dass die Frage, ob \(\mathbf{P}=\mathbf{NP}\) gilt, zu den bedeutendsten offenen Problemen der Informatik zählt. Auch der Vergleich zwischen klassischen und quantenmechanischen Modellen, speziell die Vermutung \(\mathbf{P}\subsetneq \mathbf{BQP}\subseteq \mathbf{NP}\), prägt die Forschung im Bereich effizienter Algorithmen maßgeblich.
+\newpage
 \printbibliography
 
