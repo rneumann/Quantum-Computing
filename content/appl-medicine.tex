@@ -216,21 +216,31 @@ Insgesamt zeigen diese Entwicklungen, dass Quantenansätze nicht nur eine techno
 \subsection*{Erläuterung der Bewertungskriterien}
 %Mögliche Kriterien zur Bewertung: Reifegrad, Anwendungspotenzial, Datenanforderung/Datenverfügbarkeit, Algorithmische Stabilität/Fehlertoleranz, Experimentelle Validierung/Proof-of-Concept, Integration in bestehende Workflows, wirtschaftliches und gesellschaftliches Potenzial
 
+Die Bewertung der drei Anwendungsfelder Wirkstoffentwicklung, Proteinstrukturvorhersage und personalisierte Medizin erfolgt anhand vier zentraler Kriterien:
+\begin{itemize}
+  \item \textbf{Reifegrad:} Technologischer Entwicklungsstand, gemessen an praktischer Umsetzbarkeit, Stabilität und Skalierbarkeit.\\
+  \item \textbf{Anwendungspotenzial:} Potenzielle Wirksamkeit, Reichweite und Bedeutung der Technologie für das jeweilige Feld.\\
+  \item \textbf{Wirtschaftliches und gesellschaftliches Potenzial:} Einfluss auf Kosten, Effizienz, Gesundheitsversorgung sowie gesellschaftliche Implikationen.\\
+  \item \textbf{Risiken und ethische Implikationen:} Technologische, soziale oder regulatorische Risiken sowie ethische Herausforderungen.
+\end{itemize}
+
 \subsection{Reifegrad}
 Wirkstoffentwicklung:
-Quantencomputing in der Wirkstoffentwicklung ist noch nicht marktreif, da sowohl technische als auch ethische und regulatorische Hürden bestehen. Trotz hohem Potenzial erfordert der Übergang zur praktischen Anwendung noch erhebliche Fortschritte in Hardware, Algorithmen, Datenschutz und Fachkräfteentwicklung.\cite{flother_state_2023}
-
+Quantencomputing in der Wirkstoffentwicklung ist noch nicht marktreif, da sowohl technische als auch ethische und regulatorische Hürden bestehen. Trotz hohem Potenzial erfordert der Übergang zur praktischen Anwendung noch erhebliche Fortschritte in Hardware, Algorithmen, Datenschutz und Fachkräfteentwicklung.\cite{flother_state_2023}\\
+\\
+Proteinstrukturvorhersage: Auch in der Proteinstrukturvorhersage ist der Reifegrad noch begrenzt. Zwar zeigen aktuelle Studien, dass selbst heutige Quantencomputer einfache Faltungsszenarien kleiner Proteine simulieren können, etwa am Beispiel der Zika-Helikase. Jedoch bleibt der Einsatz in realitätsnahen, hochdimensionalen Modellen aufgrund der erforderlichen Tiefen von Quantenschaltkreisen bisher unpraktisch. (\cite{doga_perspective_2024})\\
+\\
 Wirkstoffentwicklung/Personalisierte Medizin:
 Quantencomputing ist derzeit noch technisch limitiert, unter anderem durch die Fehleranfälligkeit, nötige Spezialhardware und die bislang eingeschränkte Skalierbarkeit. Jedoch besteht die Empfehlung, Hybridlösungen (quantum-klassisch) und  Pilotprojekte zu starten. Dies belegt, dass die Technologie noch nicht einsetzbar, aber für erste praktische Tests reif ist. Wie das vorherige Kapitel veranschaulicht, befinden sich erste Anwendungen bereits in Sichtweite, sofern gezielte Kooperationen mit Technologieanbietern erfolgen. (Vgl. \cite{jeyaraman_revolutionizing_2024})
 
 \subsection{Anwendungspotenzial}
 
 Wirkstoffentwicklung:
-Quantencomputing (QC) kann die Wirkstoffentwicklung erheblich beschleunigen, indem es hochpräzise Simulationen molekularer Strukturen und Interaktionen ermöglicht und damit vielversprechende Wirkstoffkandidaten schneller identifiziert. Quantum Machine Learning (QML) und spezielle Algorithmen wie VQE, QPE oder Grover’s Algorithmus verbessern Virtual Screening, Molekül-Docking und die Vorhersage pharmakokinetischer Eigenschaften. Darüber hinaus erlaubt QC die Analyse großer biologischer und klinischer Datensätze zur frühzeitigen Krankheitsdiagnose, Therapieoptimierung und Individualisierung medizinischer Entscheidungen. Auch klinische Studien lassen sich durch Quantenalgorithmen effizienter planen und simulieren, etwa durch die Generierung synthetischer Patientendaten oder optimierte Standort- und Kohortenwahl. (Vgl. \cite{bertl_quantum_2025})
-
+Quantencomputing kann die Wirkstoffentwicklung erheblich beschleunigen, indem es hochpräzise Simulationen molekularer Strukturen und Interaktionen ermöglicht und damit vielversprechende Wirkstoffkandidaten schneller identifiziert. Quantum Machine Learning und spezielle Algorithmen wie VQE, QPE oder Grover’s Algorithmus verbessern Virtual Screening, Molekül-Docking und die Vorhersage pharmakokinetischer Eigenschaften. Darüber hinaus erlaubt QC die Analyse großer biologischer und klinischer Datensätze zur frühzeitigen Krankheitsdiagnose, Therapieoptimierung und Individualisierung medizinischer Entscheidungen. Auch klinische Studien lassen sich durch Quantenalgorithmen effizienter planen und simulieren, etwa durch die Generierung synthetischer Patientendaten oder optimierte Standort- und Kohortenwahl. (Vgl. \cite{bertl_quantum_2025})\\
+\\
 Personalisierte Medizin/Wirkstoffentwicklung:
-Verschiedene Quantencomputing-Techniken zeigen trotz aktueller Herausforderungen bereits vielversprechende Ansätze für erste Anwendungen in der P5-Medizin. Insbesondere Quanten-Machine-Learning, Quanten-Simulationen und Quanten-Verschlüsselung (QKD) liefern neue Möglichkeiten in der Wirkstoffentwicklung, Diagnostik, personalisierten Therapieplanung und dem sicheren Umgang mit sensiblen Patientendaten. (Vgl. \cite{bertl_quantum_2025})
-
+Verschiedene Quantencomputing-Techniken zeigen trotz aktueller Herausforderungen bereits vielversprechende Ansätze für erste Anwendungen in der P5-Medizin. Insbesondere Quanten-Machine-Learning, Quanten-Simulationen und Quanten-Verschlüsselung (QKD) liefern neue Möglichkeiten in der Wirkstoffentwicklung, Diagnostik, personalisierten Therapieplanung und dem sicheren Umgang mit sensiblen Patientendaten. (Vgl. \cite{bertl_quantum_2025})\\
+\\
 Wirkstoffentwicklung/Proteinfaltung:
 Quantencomputing kann durch präzisere Simulationen des Protein-Faltungsprozesses entscheidend zur Wirkstoffentwicklung beitragen, indem es tiefere Einblicke in Struktur, Funktion und energetische Zustände von Proteinen ermöglicht – etwa mithilfe von Quantum Monte Carlo-Methoden oder Quantum Annealing zur Bestimmung der energetisch günstigsten Konformation. (\cite{bertl_quantum_2025})
 
@@ -238,19 +248,50 @@ Quantencomputing kann durch präzisere Simulationen des Protein-Faltungsprozesse
 %Vielleicht wirtschaftliches und gesellschaftliches Potenzial aufsplitten und einzeln weiterbearbeiten?
 
 Proteinstrukturvorhersage/Wirkstoffentwicklung:
-Quantum Computing verspricht nicht nur Zeit- und Kostenersparnisse, sondern könnte die pharmazeutische Forschung durch präzisere Simulation komplexer biologischer Prozesse grundlegend verändern und so den Übergang zu risikoreduzierter In-silico-Forschung ermöglichen. (\cite{dhande_quantum_2023})
-
+Die wirtschaftliche Relevanz ist angesichts extrem hoher Entwicklungskosten neuer Medikamente besonders ausgeprägt. Eine effizientere präklinische Phase durch quantenbasierte Simulationen könnte Entwicklungszyklen verkürzen und damit erhebliches Einsparpotenzial freisetzen. Auch könnte die pharmazeutische Forschung durch präzisere Simulation komplexer biologischer Prozesse grundlegend verändert werden und so den Übergang zu risikoreduzierter In-silico-Forschung ermöglichen. (\cite{dhande_quantum_2023})\\
+\\
 Personalisierte Medizin:
-Bessere Patientenergebnisse und effizientere Abläufe, welche durch einen effektiven Einsatz von Quantencomputing realisiert werden können, können große volkswirtschaftliche Vorteile bieten. (Vgl. \cite{jeyaraman_revolutionizing_2024})
-
+Bessere Patientenergebnisse und effizientere Abläufe, welche durch einen effektiven Einsatz von Quantencomputing realisiert werden können, können große volkswirtschaftliche Vorteile bieten. (Vgl. \cite{jeyaraman_revolutionizing_2024})\\
+\\
 Allgemein: 
 Der Aufbau eines quantum-literate workforce (quantum-kompetente Fachkräfte) sowie einerseits der Weiterführung von Konsortien und Kooperationen, wie auch andererseits der Schaffung regulatorischer Rahmenbedingungen bieten langfristigen gesellschaftlichen und wirtschaftlichen Nutzen. (Vgl. \cite{jeyaraman_revolutionizing_2024})
 
-\subsection{}
+\subsection{Risiken und ethische Implikationen}
 
-\subsubsection*{Risiken und ethische Implikationen}
+Wirkstoffentwicklung:
+Ein zentrales Risiko liegt in der unkontrollierten Beschleunigung der Medikamentenentwicklung durch Quantencomputing. Die Simulation komplexer Moleküle könnte potenziell auch für die Entwicklung biologischer Gefahrenstoffe genutzt werden. Zudem bestehen ethische Fragen zur Verantwortung bei KI-gestützter Auswahl von Wirkstoffen. Die derzeit fehlenden Standards zur Validierung quantenbasierter Ergebnisse verschärfen diese Problematik. (\cite{flother_state_2023})\\
+\\
+Proteinstrukturvorhersage:  
+Die datengetriebene Vorhersage von Proteinstrukturen wirft Fragen zum geistigen Eigentum auf, insbesondere wenn Open-Access-Datenbanken mit proprietären Quantenmodellen kombiniert werden. Zudem ist die Transparenz der genutzten Algorithmen für medizinisch-klinische Anwendungen kritisch. Hier kann fehlende Interpretierbarkeit zur Ablehnung durch Regulierungsbehörden führen. (\cite{doga_perspective_2024})\\
+\\
+Personalisierte Medizin:
+In der personalisierten Medizin sind ethische Risiken besonders ausgeprägt. Die Analyse sensibler genetischer und klinischer Daten mittels Quantenalgorithmen erfordert strenge Datenschutzkonzepte. Missbrauch oder mangelnde Kontrolle könnten zu Diskriminierung führen, etwa bei Versicherungen oder Beschäftigung. Zugleich besteht die Gefahr der Verschärfung bestehender Ungleichheiten beim Zugang zu Hochtechnologien. (\cite{jeyaraman_revolutionizing_2024})
 
-\section{Teilfazit}
+\subsection{Vergleichende Gesamtbewertung}
+Die Bewertungen erfolgen qualitativ gestuft von \textit{niedrig}, \textit{mittel}, \textit{hoch} bis \textit{sehr hoch}.\\
+\\
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{0.25\linewidth}|p{0.23\linewidth}|p{0.23\linewidth}|p{0.23\linewidth}|}
+\hline
+\textbf{Kriterium} & \textbf{Wirkstoff\-entwicklung} & \textbf{Proteinstruktur\-vorhersage} & \textbf{Personalisierte Medizin} \\
+\hline
+\textbf{Technologischer Reifegrad} & mittel & niedrig & niedrig \\
+\hline
+\textbf{Anwendungs\-potenzial} & sehr hoch & hoch & hoch \\
+\hline
+\textbf{Wirtschaftl. / gesellschaftl. Nutzen} & hoch & mittel & hoch \\
+\hline
+\textbf{Risiken und Ethik} & mittel & mittel & hoch \\
+\hline
+\end{tabular}
+\caption{Bewertung der drei Hauptanwendungsfelder von Quantencomputing in der Medizin}
+\label{tab:qc-medizin-bewertung}
+\end{table}
+\\
+Trotz technischer Limitierungen zeigt die Bewertung, dass Quantencomputing in allen drei Anwendungsfeldern bereits relevantes Potenzial entfaltet. Die Wirkstoffentwicklung ist am weitesten vorangeschritten, während proteinbasierte und personalisierte Ansätze noch stärker durch infrastrukturelle und ethische Hürden gebremst werden. Dennoch eröffnen sich in allen Bereichen bedeutende Perspektiven für künftige medizinische Innovationen.
+
+%\section{Teilfazit}
 
 
 \printbibliography

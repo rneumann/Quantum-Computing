@@ -130,9 +130,42 @@ Anwendungsbeispiel:
 
 
 \subsubsection{QRAM Encoding}
-Marvin
+
+\begin{itemize}
+    \item Quantum Random Access Memory Encoding
+    \item Wie im klassischen RAM wird eine Adresse mit einem Speicherindex übergeben. Die Daten an dem Index werden in ein Ausgaberegister geschrieben.
+    \item QRAM bietet die gleiche Funktionalität. Die Adresse und das Ausgaberegister sind aber Quantenregister
+    \item Die Adresse und das Ausgaberegister können Superposition über mehrere Werte sein
+    \item Das Adressregister benötigt $\log(n)$ zusätzliche QBits für $n$ Adressen
+    \item Die Daten werden mit Hilfe von Basis-Encoding Codiert
+    \item Die Recheneigenschaften sind ähnlich wie die von Basis- oder QuAM-Encoding. Es kann Quantenparallelismus und arithmetische Operationen verwendet werden.
+    \item Daten müssen in logarithmischer Laufzeit vorbereitet werden
+\end{itemize}
+
 \subsubsection{Amplituden Encoding}
-Marvin
+\begin{itemize}
+    \item Daten werden in die Amplitude eines Quantenzustands codiert
+    \item Es werden $\log(NM)$ QBits benötigt um $M$ Datenpunkte mit $N$ zuständen zu repräsentieren.
+\end{itemize}
+\begin{itemize}
+    \item Wir wollen folgenden Vektor codieren 
+    $$
+        x = (0.1, -0.7, 1)
+    $$
+    \item Die Datenpunkte werden Normalisiert und die länge des Vektors auf $2^n$ Datenpunkte angepasst. Hinzugefügt Datenpunkte werden mit $0$ initialisiert. (Hier gerundet auf 3 Nachkommastellen)
+    $$
+        x = (0.081, -0.571, 0.816, 0.000)
+    $$
+    \item Der Vektor kann nun mit 2 QBits repräsentiert werden
+    $$
+          \begin{aligned}
+            &0.081|00\rangle \\
+            &-0.571|01\rangle \\
+            &+0.816|10\rangle \\
+            &+0.000|11\rangle
+        \end{aligned}
+    $$
+\end{itemize}
 
 \subsection{Verschränkung von Qubits}
 \label{subsec:verschraenkungQubits}
