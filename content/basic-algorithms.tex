@@ -922,13 +922,13 @@ Für den Start des Grover-Algorithmus muss das Quantenregister so initialisiert 
 \[
 \frac{1}{2^{n}}\sum_{x}\lvert x\rangle
 \]
-ergibt. Dieser Ansatz definiert jedoch nur formal die Indizes der Elemente; reale unstrukturierte Daten (z.B. Arrays oder Datenbanken) müssen in geeigneter Weise in den Quantencomputer kodiert werden, damit das Orakel die gewünschten Eigenschaften auswerten kann.
+ergibt.(\cite{miguel_a_naranjo_review_2024}) Dieser Ansatz definiert jedoch nur formal die Indizes der Elemente; reale unstrukturierte Daten (z.B. Arrays oder Datenbanken) müssen in geeigneter Weise in den Quantencomputer kodiert werden, damit das Orakel die gewünschten Eigenschaften auswerten kann.
 
 \subsection{Datenkodierung}
 Es existieren zwei der gebräuchlichsten Kodierungsverfahren für Daten im Grover-Algorithmus:  
 \begin{enumerate}  
   \item \textbf{Amplitudenkodierung:}  
-Amplitudenkodierung dient dazu, die Einträge eines Vektors $x$ der Länge $N$ (mit $N$ als Zweierpotenz) direkt in die Amplituden eines Quantenzustands auf $\log_2(N)$ Qubits zu übertragen. Dabei wird aus $x\in\mathbb{R}^N$ (oder $\mathbb{C}^N$) folgender normierter Zustand erzeugt:
+Amplitudenkodierung dient dazu, die Einträge eines Vektors $x$ der Länge $N$ (mit $N$ als Zweierpotenz) direkt in die Amplituden eines Quantenzustands auf $\log_2(N)$ Qubits zu übertragen.(\cite{alessandro_luongo_quantum_2024}) Dabei wird aus $x\in\mathbb{R}^N$ (oder $\mathbb{C}^N$) folgender normierter Zustand erzeugt:
 
 $$
 \lvert x\rangle
@@ -949,7 +949,7 @@ wobei jeder Index $i$ in den ersten Qubits und die normierte Zeile $x^{(i)}$ in 
 
   \item \textbf{Block-Encoding:}  
     Bei diesem Verfahren kodiert man eine \(N\times N\)-Matrix \(A\) (\(N=2^n\)) in einen unitären Operator \(U_A\) auf \(n+a\) Qubits,  
-    sodass der obere linke \(N\times N\)-Block von \(U_A\) proportional zu \(A\) ist.  
+    sodass der obere linke \(N\times N\)-Block von \(U_A\) proportional zu \(A\) ist.(\cite{alessandro_luongo_quantum_2024})
 
     \begin{definition}[Block-Encoding einer Matrix]\label{def:block-encoding}  
     Sei \(A\in\mathbb{R}^{N\times N}\) mit \(N=2^n\) und \(\alpha\ge1\). Für \(\varepsilon>0\) heißt  
@@ -967,7 +967,7 @@ wobei jeder Index $i$ in den ersten Qubits und die normierte Zeile $x^{(i)}$ in 
 \end{enumerate}  
 
 \subsection{Aktuelle Grenzen}
-Kürzliche Ergebnisse zeigen, dass ohne explizite Struktur die Repräsentation allgemeiner Datensätze in einem Quantenregister eine nahezu lineare Schaltkreis-Komplexität in \(N\) erfordert. Anders ausgedrückt, alle gängigen Zugriffsmodelle auf klassische Daten (z.B. Block‑Encoding\ref{def:block-encoding}) benötigen im Allgemeinen \(\Omega(N)\) Gatter. Somit führt trotz des geringen, logarithmischen Bedarfs an Qubits die Zustandserzeugung zu einem Aufwand, der mit klassischen Verfahren vergleichbar ist. In der Fachliteratur heißt es daher: 
+Kürzliche Ergebnisse zeigen (\cite{zhang_xiao-ming_circuit_2024}), dass ohne explizite Struktur die Repräsentation allgemeiner Datensätze in einem Quantenregister eine nahezu lineare Schaltkreis-Komplexität in \(N\) erfordert. Anders ausgedrückt, alle gängigen Zugriffsmodelle auf klassische Daten (z.B. Block‑Encoding\ref{def:block-encoding}) benötigen im Allgemeinen \(\Omega(N)\) Gatter. Somit führt trotz des geringen, logarithmischen Bedarfs an Qubits die Zustandserzeugung zu einem Aufwand, der mit klassischen Verfahren vergleichbar ist. In der Fachliteratur heißt es daher: 
 Wenn \(N\) Datensätze in einer Quantenkette kodiert werden, beträgt die Schaltkreis-Komplexität mindestens \(O(N)\).\\
 
 Dies bedeutet, dass ohne spezielle Strukturen (z.B. Sparsität oder Symmetrien) der Geschwindigkeitsvorteil von Grover häufig durch die Initialisierungs‑ und Kodierungsaufwände aufgehoben wird.\\
