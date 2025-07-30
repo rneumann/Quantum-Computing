@@ -147,7 +147,7 @@ Gate-basierte Algorithmen wie QAOA und VQE lassen sich auf Portfoliooptimierungs
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{EfficientFrontier_VQE.png}
+    \includegraphics[width=0.8\linewidth]{images/EfficientFrontier_VQE.png}
     \caption{Beispiel einer Efficient Frontier in der Portfolio-Optimierung (simuliertes 6-Asset-Portfolio). Die blaue Kurve zeigt die optimale Risiko-Rendite-Kurve (klassische Exhaustivsuche), die grünen Dreiecke markieren Lösungen des Quantum-VQE-Algorithmus. Man sieht, dass die Quantenlösungen die Effizienzgrenze eng nachzeichnen (Rendite $\mu^T x$ und Risiko $x^T \Sigma x$ sind in willkürlichen Einheiten). (vgl. \cite[Abb. 8]{egger_quantum_2020}}
     \label{fig:efficient_frontier_vqe}
 \end{figure}
@@ -400,26 +400,26 @@ Die strategische Roadmap von IBM sieht eine schrittweise Skalierung vor:
 \begin{itemize}
 \item Condor ($>1.000$ Qubits, 2023–2024)
 \item Flamingo (4.000+ Qubits, 2025–2026)
-\item Kookaburra (modulare Systeme mit Fehlerkorrektur, $>10.000$ Qubits, ab 2027) [3] (vgl. \cite{brandhofer_benchmarking_20220})
+\item Kookaburra (modulare Systeme mit Fehlerkorrektur, $>10.000$ Qubits, ab 2027) [3] (vgl. \cite{brandhofer_benchmarking_2022})
 \end{itemize}
 IBM fokussiert sich langfristig auf fehlerkorrigierte, skalierbare Architekturen, die kommerzielle Nutzung in komplexen Bereichen wie Finanzmodellierung, Materialforschung oder Supply‑Chain‑Optimierung ermöglichen sollen.
 
 \subsubsection*{D‑Wave Systems}
-Das kanadische Unternehmen D‑Wave Systems ist Pionier im Bereich des Quantum Annealing und brachte 2011 den weltweit ersten kommerziell verfügbaren Quantencomputer auf den Markt [4] (vgl. \cite{brandhofer_benchmarking_20220}).
+Das kanadische Unternehmen D‑Wave Systems ist Pionier im Bereich des Quantum Annealing und brachte 2011 den weltweit ersten kommerziell verfügbaren Quantencomputer auf den Markt [4] (vgl. \cite{brandhofer_benchmarking_2022}).
 Im Gegensatz zu IBM verfolgt D‑Wave kein universelles gate‑basiertes Modell, sondern konzentriert sich auf adiabatische Quantenberechnung, die speziell für kombinatorische Optimierungsprobleme optimiert ist.
 
 Die Flux‑Qubits von D‑Wave arbeiten mit supraleitenden Schleifen, in denen Quantenflüsse kontrolliert und manipuliert werden.
 Diese Architektur ist hochspezialisiert auf Probleme, die sich in QUBO‑Form (Quadratic Unconstrained Binary Optimization) darstellen lassen, eine in der Praxis häufige Formulierung für Optimierungsaufgaben.
 
-Mit der aktuellen Advantage2‑Architektur stellt D‑Wave Systeme mit über 5.000 Qubits bereit, die über die Cloudplattform Leap zugänglich sind [5] (vgl. \cite{brandhofer_benchmarking_20220}).
+Mit der aktuellen Advantage2‑Architektur stellt D‑Wave Systeme mit über 5.000 Qubits bereit, die über die Cloudplattform Leap zugänglich sind [5] (vgl. \cite{brandhofer_benchmarking_2022}).
 Entwickler können mithilfe des Ocean SDK Probleme modellieren und direkt auf der Hardware oder in hybriden Workflows ausführen.
-Der Hybrid Solver Service (HSS) kombiniert klassische und quantenbasierte Optimierung, um bei realen Unternehmensanwendungen die besten Resultate zu erzielen [6] (vgl. \cite{brandhofer_benchmarking_20220}).
+Der Hybrid Solver Service (HSS) kombiniert klassische und quantenbasierte Optimierung, um bei realen Unternehmensanwendungen die besten Resultate zu erzielen [6] (vgl. \cite{brandhofer_benchmarking_2022}).
 
 D‑Wave arbeitet derzeit parallel an einem gate‑basierten Quantencomputer, um die eigenen Optimierungssysteme durch universelle Rechenmöglichkeiten zu ergänzen und in weiteren Anwendungsbereichen konkurrenzfähig zu sein [7].
 
 \subsubsection*{Reply}
 Reply ist ein europäischer IT‑Dienstleister, der sich auf die Entwicklung, Implementierung und Integration von Quantenlösungen in Unternehmensprozesse spezialisiert hat.
-Das Unternehmen verfügt über keine eigene Quantenhardware, sondern agiert als Integrator zwischen Hardwareanbietern (u.a. IBM, D‑Wave) und Endanwendern in Industrie und Finanzwirtschaft [8] (vgl. \cite{brandhofer_benchmarking_20220}).
+Das Unternehmen verfügt über keine eigene Quantenhardware, sondern agiert als Integrator zwischen Hardwareanbietern (u.a. IBM, D‑Wave) und Endanwendern in Industrie und Finanzwirtschaft [8] (vgl. \cite{brandhofer_benchmarking_2022}).
 
 Replys technologische Kompetenz liegt in der Entwicklung hybrider Quanten‑Klassik‑Architekturen sowie in der Modellierung von Problemen in QUBO‑Form.
 Das Unternehmen bietet eigene Softwareframeworks an, die eine effiziente Schnittstellenintegration zwischen Quanten‑APIs und bestehender Unternehmens‑IT ermöglichen.
@@ -431,12 +431,12 @@ Branchenschwerpunkte von Reply sind unter anderem:
 \item Logistik \& Supply Chain – Routenoptimierung, Lagerbestandsplanung
 \item Automotive \& Energie – Materialsimulation, Produktionsplanung
 \end{itemize}
-[9] (vgl. \cite{brandhofer_benchmarking_20220})
+[9] (vgl. \cite{brandhofer_benchmarking_2022})
 
 Diese breite Anwendungskompetenz macht Reply zu einem zentralen Akteur bei der Umsetzung praxisnaher Quantencomputing‑Lösungen für Unternehmen.
 
 \subsubsection*{QC Ware}
-QC Ware ist ein US‑amerikanisches Unternehmen mit Sitz in Palo Alto, das sich auf die Entwicklung plattformunabhängiger Quantenalgorithmen und -software spezialisiert hat [10] (vgl. \cite{brandhofer_benchmarking_20220}).
+QC Ware ist ein US‑amerikanisches Unternehmen mit Sitz in Palo Alto, das sich auf die Entwicklung plattformunabhängiger Quantenalgorithmen und -software spezialisiert hat [10] (vgl. \cite{brandhofer_benchmarking_2022}).
 Im Gegensatz zu Hardwareanbietern wie IBM oder D‑Wave konzentriert sich QC Ware vollständig auf Softwarelösungen, die auf unterschiedlichen Quantencomputing‑Architekturen lauffähig sind.
 
 Das Unternehmen bietet mit seiner Cloud‑Plattform Forge eine Umgebung, in der Entwickler Quantenalgorithmen sowohl auf realer Hardware (z.B. IBM, D‑Wave, IonQ, Rigetti) als auch auf Simulatoren ausführen können. QC Ware adressiert insbesondere Optimierungsprobleme, maschinelles Lernen und quantitative Finanzmodelle als Kernanwendungsbereiche.
@@ -452,7 +452,7 @@ Ihr strategisches Ziel besteht darin, Wettbewerbsvorteile durch schnellere und p
 Im Folgenden werden drei der derzeit bedeutendsten Finanzakteure vorgestellt, die durch ihre Forschungsprojekte und Pilotanwendungen als Vorreiter im Einsatz von Quantencomputing im Finanzsektor gelten.
 
 \subsubsection*{JPMorgan Chase \& Co.}
-JPMorgan Chase \& Co. ist einer der führenden globalen Finanzdienstleister und gilt als Vorreiter bei der Erprobung von Quantencomputing im Finanzwesen [12] (vgl. \cite{brandhofer_benchmarking_20220}).
+JPMorgan Chase \& Co. ist einer der führenden globalen Finanzdienstleister und gilt als Vorreiter bei der Erprobung von Quantencomputing im Finanzwesen [12] (vgl. \cite{brandhofer_benchmarking_2022}).
 Das unternehmenseigene Quantum Computing Team unter der Leitung von Dr. Marco Pistoia arbeitet seit Jahren eng mit IBM Quantum und QC Ware zusammen, um praxisnahe Algorithmen zu entwickeln, die auf NISQ‑Systemen lauffähig sind.
 Technologisch liegt der Fokus auf gate‑basierten Quantenalgorithmen und hybriden Verfahren, bei denen klassische Optimierungsschritte mit quantenmechanischer Parallelität kombiniert werden. Zu den priorisierten Anwendungsfeldern zählen:
 \begin{itemize}
@@ -460,10 +460,10 @@ Technologisch liegt der Fokus auf gate‑basierten Quantenalgorithmen und hybrid
 \item Optionsbewertung auf Basis von Quantum Amplitude Estimation (QAE), um Monte-Carlo-Simulationen zu beschleunigen.
 \item Risikomodellierung durch Quanten-Sampling-Techniken und verbesserte Zufallszahlengenerierung.
 \end{itemize}
-Ein besonderer technologischer Meilenstein war die Entwicklung eines Quantum Random Number Generators (QRNG) für sicherheitskritische Finanztransaktionen. Darüber hinaus forscht JPMorgan an quantenbasierten Methoden für Szenarioanalysen, um in komplexen Märkten schneller optimale Entscheidungen treffen zu können [13] (vgl. \cite{brandhofer_benchmarking_20220}).
+Ein besonderer technologischer Meilenstein war die Entwicklung eines Quantum Random Number Generators (QRNG) für sicherheitskritische Finanztransaktionen. Darüber hinaus forscht JPMorgan an quantenbasierten Methoden für Szenarioanalysen, um in komplexen Märkten schneller optimale Entscheidungen treffen zu können [13] (vgl. \cite{brandhofer_benchmarking_2022}).
 
 \subsubsection*{Goldman Sachs}
-Goldman Sachs gehört zu den führenden Investmentbanken und forscht seit mehreren Jahren aktiv an Quantencomputing-Anwendungen im Finanzsektor [14] (vgl. \cite{brandhofer_benchmarking_20220}).
+Goldman Sachs gehört zu den führenden Investmentbanken und forscht seit mehreren Jahren aktiv an Quantencomputing-Anwendungen im Finanzsektor [14] (vgl. \cite{brandhofer_benchmarking_2022}).
 Das Unternehmen arbeitet eng mit QC Ware sowie akademischen Partnern wie der University of Maryland zusammen. Ziel ist es, komplexe finanzmathematische Bewertungsverfahren auf Quantenarchitekturen zu übertragen.
 
 Technologisch setzt Goldman Sachs vor allem auf gate‑basierte Algorithmen und quantum‑unterstützte Monte-Carlo-Verfahren für die Optionsbewertung.
@@ -478,7 +478,7 @@ der den Aufwand bei der Optionspreisberechnung theoretisch von
 $O\!\left(\frac{1}{\epsilon^3}\right)$ auf $O\!\left(\frac{1}{\epsilon}\right)$ 
 reduziert, wobei $\epsilon$ die gewünschte Genauigkeit ist. 
 Diese Verbesserung verdeutlicht das Potenzial von Quantencomputern, 
-Echtzeit-Bewertungen in hochvolatilen Märkten zu ermöglichen~\cite{15} (vgl. \cite{brandhofer_benchmarking_20220}).
+Echtzeit-Bewertungen in hochvolatilen Märkten zu ermöglichen~\cite{15} (vgl. \cite{brandhofer_benchmarking_2022}).
 
 
 \subsubsection*{Raiffeisen Bank International (RBI)}
@@ -493,7 +493,7 @@ Der technologische Fokus der RBI liegt auf:
 \end{itemize}
 
 Im Unterschied zu globalen Playern wie JPMorgan oder Goldman Sachs verfolgt die RBI eine anwendungsorientierte Pilotstrategie:
-Zunächst werden kleine, spezifische Finanzprobleme mit Quantenmethoden gelöst, bevor die Verfahren auf breitere Geschäftsbereiche übertragen werden. Ziel ist es, in der europäischen Bankenlandschaft eine Vorreiterrolle einzunehmen und den Übergang zu produktiven Quantenanwendungen vorzubereiten [17] (vgl. \cite{brandhofer_benchmarking_20220}).
+Zunächst werden kleine, spezifische Finanzprobleme mit Quantenmethoden gelöst, bevor die Verfahren auf breitere Geschäftsbereiche übertragen werden. Ziel ist es, in der europäischen Bankenlandschaft eine Vorreiterrolle einzunehmen und den Übergang zu produktiven Quantenanwendungen vorzubereiten [17] (vgl. \cite{brandhofer_benchmarking_2022}).
 
 \section{Zentrale Zukunftsprojekte und Forschungsinitiativen}
 
@@ -501,13 +501,13 @@ Der Fortschritt im Quantencomputing für Finanzanwendungen wird maßgeblich durc
 
 \subsection{IBM Quantum Roadmap – Skalierung der Quantenhardware}
 
-Die IBM Quantum Roadmap stellt ein langfristiges, strategisches Projekt dar, das sich auf die schrittweise Verbesserung und industrielle Skalierung von Quantenhardware konzentriert. IBM strebt dabei eine kontinuierliche Erhöhung der Anzahl und Qualität supraleitender Qubits an, mit dem Ziel, innerhalb der nächsten Jahre Quantenprozessoren mit Tausenden von Qubits bereitzustellen. Diese technologische Weiterentwicklung ist entscheidend, um komplexere Algorithmen mit praxisrelevanter Größenordnung durchführen zu können und somit den kommerziellen Einsatz in Bereichen wie Finanzdienstleistungen zu ermöglichen. Im Rahmen der Roadmap wurden bereits signifikante Fortschritte erzielt, darunter die Einführung von Quantenprozessoren mit mehreren hundert Qubits, die aktuell durch Cloud-Plattformen nutzbar sind (vgl. \cite{IBM Quantum, 2023}).
+Die IBM Quantum Roadmap stellt ein langfristiges, strategisches Projekt dar, das sich auf die schrittweise Verbesserung und industrielle Skalierung von Quantenhardware konzentriert. IBM strebt dabei eine kontinuierliche Erhöhung der Anzahl und Qualität supraleitender Qubits an, mit dem Ziel, innerhalb der nächsten Jahre Quantenprozessoren mit Tausenden von Qubits bereitzustellen. Diese technologische Weiterentwicklung ist entscheidend, um komplexere Algorithmen mit praxisrelevanter Größenordnung durchführen zu können und somit den kommerziellen Einsatz in Bereichen wie Finanzdienstleistungen zu ermöglichen. Im Rahmen der Roadmap wurden bereits signifikante Fortschritte erzielt, darunter die Einführung von Quantenprozessoren mit mehreren hundert Qubits, die aktuell durch Cloud-Plattformen nutzbar sind (vgl. \cite{ibminstituteforbusinessvalueQuantumDecade2023}).
 
 \subsection{NEASQC – Europäisches Projekt für NISQ-Anwendungen}
 
 Das NEASQC-Projekt (Next Applications of Quantum Computing) ist ein von der Europäischen Union im Horizon 2020 Programm mit 4,7 Mio.€ gefördertes Konsortium aus 12 Industrie- und Forschungspartnern aus acht Ländern [4]. Ziel ist die Entwicklung von Algorithmen für Noisy Intermediate-Scale Quantum (NISQ)-Systeme, die in den nächsten 5–10 Jahren wirtschaftlich nutzbar sind.
 
-Für den Finanzbereich liegt der Schwerpunkt auf Monte-Carlo-Simulationen, Portfolioanalysen und Hauptkomponentenanalyse (PCA). Dabei werden Verfahren wie Quantum Amplitude Estimation (QAE) und Variational Quantum Eigensolver (VQE) evaluiert. HSBC übernimmt die Validierung anhand realer Bankmodelle, während Partner wie Atos und CEA universelle Quantenalgorithmen und Benchmarking-Tools bereitstellen. Die Projektergebnisse werden Open Source veröffentlicht, um einen schnellen Transfer in die Industrie zu ermöglichen [4] (vgl. \cite{brandhofer_benchmarking_20220})[5] (vgl. \cite{brandhofer_benchmarking_20220}).
+Für den Finanzbereich liegt der Schwerpunkt auf Monte-Carlo-Simulationen, Portfolioanalysen und Hauptkomponentenanalyse (PCA). Dabei werden Verfahren wie Quantum Amplitude Estimation (QAE) und Variational Quantum Eigensolver (VQE) evaluiert. HSBC übernimmt die Validierung anhand realer Bankmodelle, während Partner wie Atos und CEA universelle Quantenalgorithmen und Benchmarking-Tools bereitstellen. Die Projektergebnisse werden Open Source veröffentlicht, um einen schnellen Transfer in die Industrie zu ermöglichen [4] (vgl. \cite{brandhofer_benchmarking_2022})[5] (vgl. \cite{brandhofer_benchmarking_2022}).
 
 \subsection{IBM Quantum Finance – Quantenalgorithmen für Risikoanalyse und Simulation}
 
@@ -519,12 +519,12 @@ Tests mit 127-Qubit-Systemen (Eagle) zeigten bereits eine Reduktion der benötig
 
 Der D-Wave Portfolio Pilot untersucht den Einsatz von Quantum Annealing für Portfoliooptimierung in Zusammenarbeit mit Finanzinstitutionen in Nordamerika und Europa [8]. Die aktuelle Advantage2-Architektur mit über 5000 Qubits ist spezialisiert auf kombinatorische Optimierungsprobleme und kann Portfolioallokationen mit mehreren tausend Assets in Sekunden lösen.
 
-Durch den Hybrid Solver Service (HSS) werden klassische Optimierungsalgorithmen mit Quantenprozessoren kombiniert, was in Pilotprojekten zu einer 20–40\% schnelleren Lösungsfindung und einer verbesserten Risikodiversifizierung führte. Ziel ist es, innerhalb von drei Jahren einen hybriden Quantenoptimierer zu etablieren, der in der Vermögensverwaltung produktiv eingesetzt werden kann [8] (vgl. \cite{brandhofer_benchmarking_20220})[9] (vgl. \cite{brandhofer_benchmarking_20220}).
+Durch den Hybrid Solver Service (HSS) werden klassische Optimierungsalgorithmen mit Quantenprozessoren kombiniert, was in Pilotprojekten zu einer 20–40\% schnelleren Lösungsfindung und einer verbesserten Risikodiversifizierung führte. Ziel ist es, innerhalb von drei Jahren einen hybriden Quantenoptimierer zu etablieren, der in der Vermögensverwaltung produktiv eingesetzt werden kann [8] (vgl. \cite{brandhofer_benchmarking_2022})[9] (vgl. \cite{brandhofer_benchmarking_2022}).
 
 \subsection{Goldman Sachs & QC Ware – Quantenbasierte Derivatebewertung}
 Goldman Sachs arbeitet seit 2020 mit QC Ware an quantenbasierten Verfahren zur Bewertung komplexer Derivate [10]. Im Zentrum stehen QAE und quantum-enhanced path sampling, die eine Beschleunigung von Monte-Carlo-Simulationen um bis zu 90\% ermöglichen. Tests erfolgten auf hybriden QC-Ware-Systemen und IBM-Eagle-Prozessoren mit 127 Qubits.
 
-Ziel ist es, innerhalb der nächsten fünf Jahre quantenbasierte Pricing-Modelle für exotische Optionen und strukturierte Produkte produktiv einzusetzen. Neben Goldman Sachs und QC Ware sind auch Forscher der Stanford University und University of Toronto beteiligt. Die strategische Bedeutung liegt in der Fähigkeit, zeitkritische Risikoanalysen und komplexe Hedging-Strategien in nahezu Echtzeit berechnen zu können [10] (vgl. \cite{brandhofer_benchmarking_20220})[11] (vgl. \cite{brandhofer_benchmarking_20220}).
+Ziel ist es, innerhalb der nächsten fünf Jahre quantenbasierte Pricing-Modelle für exotische Optionen und strukturierte Produkte produktiv einzusetzen. Neben Goldman Sachs und QC Ware sind auch Forscher der Stanford University und University of Toronto beteiligt. Die strategische Bedeutung liegt in der Fähigkeit, zeitkritische Risikoanalysen und komplexe Hedging-Strategien in nahezu Echtzeit berechnen zu können [10] (vgl. \cite{brandhofer_benchmarking_2022})[11] (vgl. \cite{brandhofer_benchmarking_2022}).
 
 
 \section{Bewertung der Anwendungsbereiche}

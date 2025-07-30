@@ -129,7 +129,7 @@ Ein wesentliches Problem sind fehlerhafte Gatteroperationen. Idealerweise sollen
  \item Leakage-Fehler: Besonders bei supraleitenden oder mehrstufigen Systemen kann ein Qubit durch ein Gatter in höhere Energiezustände außerhalb des Rechenraums (z.B. $|2\rangle$) übergehen, was spätere Gates unbrauchbar macht.
 \item Falsche Kalibrierung: Abweichungen in der Kalibrierung der Steuerpulse führen dazu, dass Operationen (z.B. ein X-Gate) nicht exakt das tun, was vorgesehen ist, etwa eine Rotation um 178° statt 180°.
 \end{itemize}
-Diese Gatterfehler häufen sich über tiefe Schaltkreise hinweg und führen dazu, dass die logische Fehlerrate mit zunehmender Schaltungstiefe exponentiell ansteigt. Selbst bei modernen Quantenprozessoren liegt die mittlere Gatterfidelität, also die Wahrscheinlichkeit, mit der ein Gatter korrekt ausgeführt wird, typischerweise nur bei 99–99,9 \%. vgl. \cite[Seite 2-5]{acharyaQuantumErrorCorrection2025a}; \cite[Seite 5-13]{kang_timeadaptive_2025}\medskip
+Diese Gatterfehler häufen sich über tiefe Schaltkreise hinweg und führen dazu, dass die logische Fehlerrate mit zunehmender Schaltungstiefe exponentiell ansteigt. Selbst bei modernen Quantenprozessoren liegt die mittlere Gatterfidelität, also die Wahrscheinlichkeit, mit der ein Gatter korrekt ausgeführt wird, typischerweise nur bei 99–99,9 \%. vgl. \cite[Seite 2-5]{acharyaQuantumErrorCorrection2025}; \cite[Seite 5-13]{kang_timeadaptive_2025}\medskip
 
 
 
@@ -141,7 +141,7 @@ Ein weiterer kritischer Aspekt sind Messfehler. Die Auslese eines Qubits erfolgt
 
 \textbf{Qubitinitalisierung}
 
-Die Initialisierung von Qubits ist ein grundlegender Schritt zu Beginn jeder Quantenberechnung. Ziel ist es, sämtliche Qubits zuverlässig in den Grundzustand $|0\rangle$ zu bringen. In der Praxis gelingt dies jedoch nicht immer mit perfekter Genauigkeit. Mögliche Ursachen sind zum Beispiel thermische Anregungen bei unzureichender Kühlung, unvollständige Relaxation aus angeregten Zuständen oder Restkopplungen an Resonatoren oder benachbarte Qubits. Fehlerhafte Initialisierungen beeinflussen unmittelbar die Ausführung der ersten Gatteroperationen und können sich über den gesamten Quantenschaltkreis hinweg auswirken. vgl. \cite[Seite 3-5]{acharyaQuantumErrorCorrection2025a}\medskip
+Die Initialisierung von Qubits ist ein grundlegender Schritt zu Beginn jeder Quantenberechnung. Ziel ist es, sämtliche Qubits zuverlässig in den Grundzustand $|0\rangle$ zu bringen. In der Praxis gelingt dies jedoch nicht immer mit perfekter Genauigkeit. Mögliche Ursachen sind zum Beispiel thermische Anregungen bei unzureichender Kühlung, unvollständige Relaxation aus angeregten Zuständen oder Restkopplungen an Resonatoren oder benachbarte Qubits. Fehlerhafte Initialisierungen beeinflussen unmittelbar die Ausführung der ersten Gatteroperationen und können sich über den gesamten Quantenschaltkreis hinweg auswirken. vgl. \cite[Seite 3-5]{acharyaQuantumErrorCorrection2025}\medskip
 
 
 
