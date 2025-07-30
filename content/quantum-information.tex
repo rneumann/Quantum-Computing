@@ -63,9 +63,53 @@ Der Zustand des Qubits kann folgendermaßen berechnet werden:
 Ein Qubit kann also eine unendliche Anzahl an Zuständen annehmen. Das ließe die Vermutung zu, dass ein Qubit auch unendlich viele Informationen speichern kann. Dies ist jedoch nicht der Fall, weil beim Messen des Zustandes die Superposition zusammenfällt und das Qubit dann entweder den Wert $\ket{0}$ oder $\ket{1}$ hat. (vgl. [5 ff.]\cite{pattanayakQuantumMachineLearning2017}, \cite[15 f.]{nielsen_quantum_2010}
 
 \subsection{Informationscodierung}
-Thilo
-\subsubsection{Basis Encoding}
-Thilo
+Eine zentrale Herausforderung im Quantencomputing ist die effiziente Codierung klassischer Daten in Quantenzustände. Quantenalgorithmen operieren auf Zuständen, die in einem Hilbertraum beschrieben werden – nicht auf klassischen Bitmustern. Um Daten quantenmechanisch verarbeiten zu können, müssen sie daher in geeignete Qubitzustände übersetzt werden.
+
+Je nach Art der Daten und Anforderungen des Algorithmus existieren unterschiedliche Codierungsmethoden. Diese unterscheiden sich unter anderem in der Anzahl benötigter Qubits, in ihrer Fähigkeit zur Darstellung kontinuierlicher oder diskreter Werte, sowie im Aufwand zur Zustandspräparation und -messung. Dieses Kapitel stellt die wichtigsten Codierungstechniken vor.
+
+\subsubsection{Basis-Encoding}
+\begin{itemize}
+\item Ziel: Direkte Abbildung binärer klassischer Daten auf die Computational-Basiszustände von Qubits
+\item Jeder Datenwert wird 1:1 als Bitstring interpretiert und im Quantenregister als entsprechender Basiszustand gespeichert
+\item Es entsteht keine Superposition – jeder Qubit-Zustand steht für genau einen Datenwert
+\item Grundlage vieler Quantenalgorithmen mit diskreten Datenstrukturen (z.\,B. Suchalgorithmen, Entscheidungsprobleme)
+\item Daten sind binär codiert (z.\,B. $ x_1 = 101, x_2 = 011$)
+\item Jeder Datenwert = ein spezifischer Basiszustand im Quantenregister (z.\,B. $\ket{101}$)
+\item Auch geschrieben als $\ket{101} = \alpha\ket{1} \otimes \beta \ket{0} \otimes \gamma\ket{1}$ wobei das Tensorprodukt $\otimes$ darstellt, dass die Qubits unabhängig voneinander zu sehen sind
+\item Für \( n \) Bit lange Daten: benötigt werden $n$ Qubits
+\end{itemize}
+\cite{Date encoding patterns for quantum computing}
+\\
+
+Anwendungsbeispiel 1
+\begin{itemize}
+\item Gegeben: Zwei Werte $x_1 = 101$, $x_2 = 011$
+\item Jeder Wert ist 3 Bit lang → 3 Qubits nötig
+\item Quantenregister speichert z.\,B. einzeln $\ket{101}$ oder $ \ket{011}$
+\item Darstellung 
+\item Keine Superposition oder Interferenz enthalten – Datenzugriff erfolgt deterministisch (wenn exakt vorbereitet)
+\item Nach Messung: genau der gespeicherte Basiszustand wird gelesen (sofern keine Quantenoperationen dazwischentreten)
+\end{itemize}
+
+Anwendungsbeispiel 2 – Text „hello“
+\begin{itemize}
+\item ASCII-Codierung von „hello“:
+\begin{itemize}
+    \item $\ket{h} = \ket{1101000}$
+    \item $\ket{e} = \ket{1100101}$
+    \item $\ket{l_1} = \ket{1101100}$
+    \item $\ket{l_2} = \ket{1101100}$
+    \item $\ket{o} = \ket{1101111}$
+    
+\end{itemize}
+\item Darstellung: „hello“ → Folge von fünf 8-Bit-Binärwerten
+\item Gesamtanzahl benötigter Qubits: $5 \times 8 = 40$
+\item Quantenregister speichert z.\,B. $\ket{1101000\,1100101\,1101100\,1101100\,1101111}$
+\item Nach Messung: exakt dieser Bitstring wird gelesen (sofern Zustand nicht verändert wurde)
+\item Wichtig: Keine Quantenparallelität in dieser Form – rein klassisch gespeicherte Information auf einem Quantenregister
+\end{itemize}
+\cite{Quantum Data Encoding: A Comparative Analysis of Classical-to-Quantum Mapping Techniques and Their Impact on Machine Learning Accuracy}
+
 
 \subsubsection{QuAM Encoding}
 \begin{itemize}
