@@ -389,29 +389,29 @@ Dabei liegt der Fokus auf den technischen Grundlagen, der aktuellen Entwicklungs
 \subsubsection*{IBM}
 IBM gilt als einer der globalen Vorreiter im gate‑basierten universellen Quantencomputing.
 Das Unternehmen entwickelt seit den frühen 2000er‑Jahren Quantenprozessoren auf Basis von supraleitenden Transmon‑Qubits, die in einer Heavy‑Hex‑Topologie angeordnet sind.
-Diese spezielle Anordnung reduziert Kreuzkopplungsfehler zwischen Qubits und verbessert die Kohärenzzeiten signifikant [1] (vgl. \cite{brandhofer_benchmarking_2022}).
+Diese spezielle Anordnung reduziert Kreuzkopplungsfehler zwischen Qubits und verbessert die Kohärenzzeiten signifikant  (vgl. \cite{noauthor_ibm_nodate-1}).
 Zur Realisierung der Quantenprozessoren kommen hochstabile Kryosysteme zum Einsatz, die Temperaturen von wenigen Millikelvin ermöglichen – notwendig, um quantenmechanische Zustände stabil zu halten.
 
 Die IBM Quantum‑Cloudplattform bietet Forschern und Unternehmen Zugang zu Quantencomputern mit bis zu mehreren Hundert Qubits.
-Über das Open‑Source‑SDK Qiskit können Entwickler Quantenalgorithmen modellieren, simulieren und auf echter Hardware ausführen [2] (vgl. \cite{brandhofer_benchmarking_20220}).
+Über das Open‑Source‑SDK Qiskit können Entwickler Quantenalgorithmen modellieren, simulieren und auf echter Hardware ausführen (vgl. \cite{noauthor_ibm_nodate}).
 Mit der Qiskit Runtime hat IBM zudem eine Architektur geschaffen, die Rechenprozesse direkt auf den Quantenservern ausführt, wodurch Laufzeiten und Latenzen erheblich reduziert werden.
 
 Die strategische Roadmap von IBM sieht eine schrittweise Skalierung vor:
 \begin{itemize}
 \item Condor ($>1.000$ Qubits, 2023–2024)
 \item Flamingo (4.000+ Qubits, 2025–2026)
-\item Kookaburra (modulare Systeme mit Fehlerkorrektur, $>10.000$ Qubits, ab 2027) [3] (vgl. \cite{brandhofer_benchmarking_2022})
+\item Kookaburra (modulare Systeme mit Fehlerkorrektur, $>10.000$ Qubits, ab 2027) [3] (vgl. \cite{noauthor_httpswwwibmcomroadmapsquantum_nodate})
 \end{itemize}
 IBM fokussiert sich langfristig auf fehlerkorrigierte, skalierbare Architekturen, die kommerzielle Nutzung in komplexen Bereichen wie Finanzmodellierung, Materialforschung oder Supply‑Chain‑Optimierung ermöglichen sollen.
 
 \subsubsection*{D‑Wave Systems}
-Das kanadische Unternehmen D‑Wave Systems ist Pionier im Bereich des Quantum Annealing und brachte 2011 den weltweit ersten kommerziell verfügbaren Quantencomputer auf den Markt [4] (vgl. \cite{brandhofer_benchmarking_2022}).
+Das kanadische Unternehmen D‑Wave Systems ist Pionier im Bereich des Quantum Annealing und brachte 2011 den weltweit ersten kommerziell verfügbaren Quantencomputer auf den Markt (vgl. \cite{noauthor_d-wave_nodate-2}).
 Im Gegensatz zu IBM verfolgt D‑Wave kein universelles gate‑basiertes Modell, sondern konzentriert sich auf adiabatische Quantenberechnung, die speziell für kombinatorische Optimierungsprobleme optimiert ist.
 
 Die Flux‑Qubits von D‑Wave arbeiten mit supraleitenden Schleifen, in denen Quantenflüsse kontrolliert und manipuliert werden.
 Diese Architektur ist hochspezialisiert auf Probleme, die sich in QUBO‑Form (Quadratic Unconstrained Binary Optimization) darstellen lassen, eine in der Praxis häufige Formulierung für Optimierungsaufgaben.
 
-Mit der aktuellen Advantage2‑Architektur stellt D‑Wave Systeme mit über 5.000 Qubits bereit, die über die Cloudplattform Leap zugänglich sind [5] (vgl. \cite{brandhofer_benchmarking_2022}).
+Mit der aktuellen Advantage2‑Architektur stellt D‑Wave Systeme mit über 5.000 Qubits bereit, die über die Cloudplattform Leap zugänglich sind (vgl. \cite{noauthor_d-wave_nodate}).
 Entwickler können mithilfe des Ocean SDK Probleme modellieren und direkt auf der Hardware oder in hybriden Workflows ausführen.
 Der Hybrid Solver Service (HSS) kombiniert klassische und quantenbasierte Optimierung, um bei realen Unternehmensanwendungen die besten Resultate zu erzielen [6] (vgl. \cite{brandhofer_benchmarking_2022}).
 
@@ -421,7 +421,8 @@ D‑Wave arbeitet derzeit parallel an einem gate‑basierten Quantencomputer, um
 Reply ist ein europäischer IT‑Dienstleister, der sich auf die Entwicklung, Implementierung und Integration von Quantenlösungen in Unternehmensprozesse spezialisiert hat.
 Das Unternehmen verfügt über keine eigene Quantenhardware, sondern agiert als Integrator zwischen Hardwareanbietern (u.a. IBM, D‑Wave) und Endanwendern in Industrie und Finanzwirtschaft [8] (vgl. \cite{brandhofer_benchmarking_2022}).
 
-Replys technologische Kompetenz liegt in der Entwicklung hybrider Quanten‑Klassik‑Architekturen sowie in der Modellierung von Problemen in QUBO‑Form.
+Reply verfügt über technologische Expertise in der Entwicklung hybrider Quanten-Klassik-Architekturen und der Formulierung von Problemen als QUBO.
+
 Das Unternehmen bietet eigene Softwareframeworks an, die eine effiziente Schnittstellenintegration zwischen Quanten‑APIs und bestehender Unternehmens‑IT ermöglichen.
 
 Branchenschwerpunkte von Reply sind unter anderem:
@@ -521,7 +522,7 @@ Der D-Wave Portfolio Pilot untersucht den Einsatz von Quantum Annealing für Por
 
 Durch den Hybrid Solver Service (HSS) werden klassische Optimierungsalgorithmen mit Quantenprozessoren kombiniert, was in Pilotprojekten zu einer 20–40\% schnelleren Lösungsfindung und einer verbesserten Risikodiversifizierung führte. Ziel ist es, innerhalb von drei Jahren einen hybriden Quantenoptimierer zu etablieren, der in der Vermögensverwaltung produktiv eingesetzt werden kann [8] (vgl. \cite{brandhofer_benchmarking_2022})[9] (vgl. \cite{brandhofer_benchmarking_2022}).
 
-\subsection{Goldman Sachs & QC Ware – Quantenbasierte Derivatebewertung}
+\subsection{Goldman Sachs \& QC Ware – Quantenbasierte Derivatebewertung}
 Goldman Sachs arbeitet seit 2020 mit QC Ware an quantenbasierten Verfahren zur Bewertung komplexer Derivate [10]. Im Zentrum stehen QAE und quantum-enhanced path sampling, die eine Beschleunigung von Monte-Carlo-Simulationen um bis zu 90\% ermöglichen. Tests erfolgten auf hybriden QC-Ware-Systemen und IBM-Eagle-Prozessoren mit 127 Qubits.
 
 Ziel ist es, innerhalb der nächsten fünf Jahre quantenbasierte Pricing-Modelle für exotische Optionen und strukturierte Produkte produktiv einzusetzen. Neben Goldman Sachs und QC Ware sind auch Forscher der Stanford University und University of Toronto beteiligt. Die strategische Bedeutung liegt in der Fähigkeit, zeitkritische Risikoanalysen und komplexe Hedging-Strategien in nahezu Echtzeit berechnen zu können [10] (vgl. \cite{brandhofer_benchmarking_2022})[11] (vgl. \cite{brandhofer_benchmarking_2022}).
@@ -578,7 +579,7 @@ Die \textit{Optionsbewertung} ist in einem früheren Stadium. Zwar konnte Quantu
 
 Für die \textit{Risikobemessung} (VaR/CVaR) existieren erste Proof-of-Concepts wie bei Woerner und Egger (vgl. \cite{orus_quantum_2019}), jedoch ist die Skalierbarkeit auf realistische Portfolios bislang technisch limitiert. Die notwendige Datenkodierung erfordert komplexe Vorverarbeitung (vgl. \cite{zoufal_quantum_2019}).
 
-\subsubsection*{Marktrelevanz / Wirtschaftliche Nutzbarkeit})
+\subsubsection*{Marktrelevanz / Wirtschaftliche Nutzbarkeit}
 
 Die \textit{Portfoliooptimierung} ist ökonomisch relevant für institutionelle Anleger, Robo-Advisors und Asset Manager. Optimierte Allokationen können direkte Renditeeffekte erzielen (vgl. \cite{sakuler_real-world_2025}), (vgl. \cite{mugel_dynamic_2022}).
 
